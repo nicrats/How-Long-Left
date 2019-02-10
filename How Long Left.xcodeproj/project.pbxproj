@@ -175,11 +175,6 @@
 		BFC4E7782210202F00EE4A1F /* DoubleEventDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7162210202F00EE4A1F /* DoubleEventDetector.swift */; };
 		BFC4E7792210202F00EE4A1F /* DoubleEventDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7162210202F00EE4A1F /* DoubleEventDetector.swift */; };
 		BFC4E77A2210202F00EE4A1F /* DoubleEventDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7162210202F00EE4A1F /* DoubleEventDetector.swift */; };
-		BFC4E77B2210202F00EE4A1F /* MagdaleneUpdateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7172210202F00EE4A1F /* MagdaleneUpdateAlert.swift */; };
-		BFC4E77C2210202F00EE4A1F /* MagdaleneUpdateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7172210202F00EE4A1F /* MagdaleneUpdateAlert.swift */; };
-		BFC4E77D2210202F00EE4A1F /* MagdaleneUpdateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7172210202F00EE4A1F /* MagdaleneUpdateAlert.swift */; };
-		BFC4E77E2210202F00EE4A1F /* MagdaleneUpdateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7172210202F00EE4A1F /* MagdaleneUpdateAlert.swift */; };
-		BFC4E77F2210202F00EE4A1F /* MagdaleneUpdateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7172210202F00EE4A1F /* MagdaleneUpdateAlert.swift */; };
 		BFC4E7802210202F00EE4A1F /* MagdaleneUpdateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7172210202F00EE4A1F /* MagdaleneUpdateAlert.swift */; };
 		BFC4E7812210202F00EE4A1F /* EventTimeAdjuster.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7182210202F00EE4A1F /* EventTimeAdjuster.swift */; };
 		BFC4E7822210202F00EE4A1F /* EventTimeAdjuster.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7182210202F00EE4A1F /* EventTimeAdjuster.swift */; };
@@ -1360,7 +1355,6 @@
 				BFC4E7472210202F00EE4A1F /* EventCache.swift in Sources */,
 				BFC4E7772210202F00EE4A1F /* DoubleEventDetector.swift in Sources */,
 				BFC4E78F2210202F00EE4A1F /* SchoolAnalyser.swift in Sources */,
-				BFC4E77D2210202F00EE4A1F /* MagdaleneUpdateAlert.swift in Sources */,
 				BFC4E7412210202F00EE4A1F /* EventTimeRemainingMonitor.swift in Sources */,
 				BFC4E7652210202F00EE4A1F /* MagdaleneSchoolHolidays.swift in Sources */,
 				BFC4E7352210202F00EE4A1F /* HLLCountdownController.swift in Sources */,
@@ -1407,7 +1401,6 @@
 				BFF05ED921E9DE4F0044F049 /* ViewController.swift in Sources */,
 				BFC4E7632210202F00EE4A1F /* MagdaleneSchoolHolidays.swift in Sources */,
 				BFC0C54421FF19A200D041DA /* VoiceShortcutStatusChecker.swift in Sources */,
-				BFC4E77B2210202F00EE4A1F /* MagdaleneUpdateAlert.swift in Sources */,
 				BFC4E7212210202F00EE4A1F /* Enums.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1443,7 +1436,6 @@
 				BFC4E7582210202F00EE4A1F /* RepeatingTimer.swift in Sources */,
 				BFC4E7702210202F00EE4A1F /* MagdaleneBreaks.swift in Sources */,
 				BFC4E7882210202F00EE4A1F /* MagdalenePeriods.swift in Sources */,
-				BFC4E77C2210202F00EE4A1F /* MagdaleneUpdateAlert.swift in Sources */,
 				BFC4E75E2210202F00EE4A1F /* SchoolFunctionsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1461,7 +1453,6 @@
 				BFC0C53921FEB78700D041DA /* SiriResponseGenerator.swift in Sources */,
 				BFC4E7732210202F00EE4A1F /* MagdaleneBreaks.swift in Sources */,
 				BFC4E7252210202F00EE4A1F /* Enums.swift in Sources */,
-				BFC4E77F2210202F00EE4A1F /* MagdaleneUpdateAlert.swift in Sources */,
 				BFC4E73D2210202F00EE4A1F /* Extensions.swift in Sources */,
 				BFC4E78B2210202F00EE4A1F /* MagdalenePeriods.swift in Sources */,
 				BFC4E72B2210202F00EE4A1F /* EventDataSource.swift in Sources */,
@@ -1492,7 +1483,6 @@
 				BFC0C54021FECF1900D041DA /* CountdownStringHandler.swift in Sources */,
 				BFC4E7722210202F00EE4A1F /* MagdaleneBreaks.swift in Sources */,
 				BFC4E7242210202F00EE4A1F /* Enums.swift in Sources */,
-				BFC4E77E2210202F00EE4A1F /* MagdaleneUpdateAlert.swift in Sources */,
 				BFC4E73C2210202F00EE4A1F /* Extensions.swift in Sources */,
 				BFC4E78A2210202F00EE4A1F /* MagdalenePeriods.swift in Sources */,
 				BFC4E72A2210202F00EE4A1F /* EventDataSource.swift in Sources */,
