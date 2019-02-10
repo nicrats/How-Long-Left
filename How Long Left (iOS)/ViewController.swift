@@ -13,8 +13,6 @@ import Intents
 import IntentsUI
 #endif
 import ViewAnimator
-import Erik
-import WebKit
 
 class ViewController: UIViewController, HLLCountdownController, DataSourceChangedDelegate {
     

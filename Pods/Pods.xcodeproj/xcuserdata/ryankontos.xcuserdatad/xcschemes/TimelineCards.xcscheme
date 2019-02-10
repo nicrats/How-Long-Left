@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EABAD81A19EE71009167041184616BD2"
+               BlueprintIdentifier = "85A295ED2537F027090FAEEDADEADE5F"
                BlueprintName = "TimelineCards"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "TimelineCards.framework">
