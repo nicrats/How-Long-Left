@@ -61,8 +61,6 @@ class EventDataSource {
         
         getCalendarAccess()
         
-        
-        
         var returnArray = [HLLEvent]()
         
         var calendars = [EKCalendar]()

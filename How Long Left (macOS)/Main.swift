@@ -290,6 +290,8 @@ class Main: HLLCountdownController {
                     
                 }
                 
+                 self.updateCalendarData(doGlobal: true)
+
                 return
                 
             } else {
