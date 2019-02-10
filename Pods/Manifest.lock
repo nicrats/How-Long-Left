@@ -1,0 +1,20 @@
+PODS:
+  - TimelineCards (1.0.5)
+  - ViewAnimator (2.2.2)
+
+DEPENDENCIES:
+  - TimelineCards
+  - ViewAnimator
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - TimelineCards
+    - ViewAnimator
+
+SPEC CHECKSUMS:
+  TimelineCards: 8f3377fbe40ae587b5ad9e6d29dd7e6d2654e418
+  ViewAnimator: 6eaa112663b6a2d9e6b2573df65b416dd051cbe4
+
+PODFILE CHECKSUM: 8d0f1f130669ee1bc3ed0cab0ccd90432075cd3b
+
+COCOAPODS: 1.5.3

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/EventTimeRemainingMonitor.swift"
+            timestampString = "571390535.612439"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "checkCurrentEvents()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/EventTimeRemainingMonitor.swift"
+            timestampString = "571390535.614531"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "checkCurrentEvents()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "How Long Left (macOS)/Preferences UI/MagdalenePreferenceViewController.swift"
+            timestampString = "571455043.316925"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "MagdalenePreferenceViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "How_Long_Left_macOS.MagdalenePreferenceViewController.magdaleneHolidays.getter : How_Long_Left_macOS.MagdaleneSchoolHolidays"
+                  moduleName = "How Long Left"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryankontos/Developer/Projects/How%20Long%20Left/How%20Long%20Left%20(macOS)/Preferences%20UI/MagdalenePreferenceViewController.swift"
+                  timestampString = "571410490.60912"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "114">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "How_Long_Left_macOS.MagdalenePreferenceViewController.magdaleneHolidays.setter : How_Long_Left_macOS.MagdaleneSchoolHolidays"
+                  moduleName = "How Long Left"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryankontos/Developer/Projects/How%20Long%20Left/How%20Long%20Left%20(macOS)/Preferences%20UI/MagdalenePreferenceViewController.swift"
+                  timestampString = "571410490.613467"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "How_Long_Left_macOS.MagdalenePreferenceViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; How_Long_Left_macOS.MagdalenePreferenceViewController"
+                  moduleName = "How Long Left"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryankontos/Developer/Projects/How%20Long%20Left/How%20Long%20Left%20(macOS)/Preferences%20UI/MagdalenePreferenceViewController.swift"
+                  timestampString = "571410490.6160949"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "408">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "How_Long_Left_macOS.MagdalenePreferenceViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;How_Long_Left_macOS.MagdalenePreferenceViewController&gt;"
+                  moduleName = "How Long Left"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ryankontos/Developer/Projects/How%20Long%20Left/How%20Long%20Left%20(macOS)/Preferences%20UI/MagdalenePreferenceViewController.swift"
+                  timestampString = "571410490.618196"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "381">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "How Long Left (macOS)/UIController.swift"
+            timestampString = "571455043.31705"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "hotKey"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "How Long Left (macOS)/UIController.swift"
+            timestampString = "571455043.31751"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "hotKey"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

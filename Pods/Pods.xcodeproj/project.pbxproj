@@ -1,0 +1,1707 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0DABB852AD6CF247407647AF3039A3FB /* Pods-How Long Left Siri ExtensionUI-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575796C50E3DC41560E965D5AB745D3 /* Pods-How Long Left Siri ExtensionUI-dummy.m */; };
+		1386CC189406D272649BE106F049D943 /* Pods-How Long Left (macOS)-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3738F257FBD78EF47148A500857195D4 /* Pods-How Long Left (macOS)-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1E87EFB2F942C1D858168AEC84697664 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D344D96922E9B66A300407E431DAC2 /* Foundation.framework */; };
+		1F43A09587DE6597747D235DB9D53F34 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 232BB153CAFD8228B535793BDE90394A /* CoreGraphics.framework */; };
+		23C5318E462F4565737B4370D1AC204E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A75F0E24510F772241521F5B016A3EE /* Foundation.framework */; };
+		30706357C093ABC3973F5598AC7A46B8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FD2E9DF9E76B15893739DB9CDD863DF /* Cocoa.framework */; };
+		33396D0B3BB93F619D727772DE5E623D /* TimelineCards-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B9CCD619820264E305DBA2588EF9FD9 /* TimelineCards-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		352C902ADB3484D22BE7410B0DE982F6 /* Pods-How Long Left Siri Extension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F37F41D3E93348F4F8EDE43492A2DC4B /* Pods-How Long Left Siri Extension-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3586EA8EE787B7133DA9430C70A3FE2E /* Pods-How Long Left (macOS)-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D8C6026383AC903EC4C352B1BB89C /* Pods-How Long Left (macOS)-dummy.m */; };
+		3CC7CF6665697A432F2F2F2A449E8C3C /* ViewAnimator-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE707535A8E62C8DED225677CAF9F95 /* ViewAnimator-dummy.m */; };
+		3EF521A7CCF61F4450BA829C03DA6FF0 /* Pods-How Long Left (watchOS) Extension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A98C05F372862698DDC21FEB78114F80 /* Pods-How Long Left (watchOS) Extension-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		453772DB00AE31E5892AA2493E289FF5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D344D96922E9B66A300407E431DAC2 /* Foundation.framework */; };
+		592B7458CB7DED83D35EF54F14EE84E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A75F0E24510F772241521F5B016A3EE /* Foundation.framework */; };
+		60332BAA2EE82589EC38815D58F1D96C /* TimelineFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096223971D03D24196A1C7F2D654DFC4 /* TimelineFeed.swift */; };
+		63BB99A0044BE482F9E1399F4E174887 /* Pods-How Long Left (watchOS)-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CFF1477813EB5F06D43C287B8EFEF3A0 /* Pods-How Long Left (watchOS)-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6D8804866D90CD526E3953FE66FD70D3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D344D96922E9B66A300407E431DAC2 /* Foundation.framework */; };
+		762896C6D8E06F415D1DB06BFF247EDA /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCAB75C951EB47FB561497A9B3416D /* Direction.swift */; };
+		76E6CB6B01E522FD05C16901F5CBA5B7 /* Pods-How Long Left (iOS)-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D76741862A9590134714A6A91224F4C /* Pods-How Long Left (iOS)-dummy.m */; };
+		80BE358B105D0B6EE83134312C73005A /* Pods-How Long Left Siri Extension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1735CA63A712ED15166A23F7FC0D0C /* Pods-How Long Left Siri Extension-dummy.m */; };
+		8D2A27DD6BAC16A69F8ED01AEF7C9CA9 /* Pods-How Long Left (iOS)-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A53CC217F9DEE441714E671F1A834FF /* Pods-How Long Left (iOS)-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8F52A7BA6F3FDDFF5AC20BE2E02587E8 /* UICollectionView + ViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5BA25F9E038241D90688075260601 /* UICollectionView + ViewAnimator.swift */; };
+		92A1EAE9DF48B34D49AE1EC38BFF3AE1 /* UITableView + ViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40A37C8E7C6A597526D023EA6BC8F47 /* UITableView + ViewAnimator.swift */; };
+		9B4BD27839954290FE409C1FE32DDE1D /* TimelineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB626319B9119935C76728FC0BC8FDBD /* TimelineItem.swift */; };
+		A7085D4566C1C2B9462EB6571F5F492C /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308EAD51A72F3032CFEAB3DDD9306BA8 /* Animation.swift */; };
+		A7CA0AC66351B58725C8DB6514F947AF /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DED499B3C525D1D77C2BBE1688B79C6 /* Utilities.swift */; };
+		AED9BA786B7340C25FF2C222E8BC9576 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFC27B099888C8B51E4504BF651611B /* UIKit.framework */; };
+		B0920ABCB8F37010C9812AF0AD9714E9 /* Pods-How Long Left (watchOS) Extension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 611B1D3F09B1F93EEC29DA2D93135557 /* Pods-How Long Left (watchOS) Extension-dummy.m */; };
+		B5EB2781E7210BF3F12FB9BC710E31FB /* TimelineCards-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8164F1D83236B3F9D6D51B8B1F4F8AD2 /* TimelineCards-dummy.m */; };
+		B5FA6E4A9B0CE6BEBDA4B10B270F75C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D344D96922E9B66A300407E431DAC2 /* Foundation.framework */; };
+		C96C82E1C4B52E1630EF49DEA4E89D3D /* ViewAnimator-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 394B76D6255726B3DBC3F307AD67E202 /* ViewAnimator-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D0415471C7756789AE5AEE3ACFE416BF /* Pods-How Long Left Siri ExtensionUI-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B09F75841F3C092ACDA8F6BCB5321F7 /* Pods-How Long Left Siri ExtensionUI-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2346A3A6F95839930622A14C84742FD /* Pods-How Long Left (watchOS)-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B19C48DAB5CDC7171C2ED9F48FAFF677 /* Pods-How Long Left (watchOS)-dummy.m */; };
+		D901868CEA75CBE53CA7E99012905848 /* TimelineCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B97EF7D1147F2AB645DB4FF7610C95E /* TimelineCard.swift */; };
+		DD6B4FBFA2E1EBA767AF5065D6657E95 /* ViewAnimatorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F4C181EE467543CFA4CEB72F789419 /* ViewAnimatorConfig.swift */; };
+		DF377C36CD898786EFFC902C89ABEB15 /* ViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7A649734A52EC814AD61B4A3A37EF9 /* ViewAnimator.swift */; };
+		E0C3C0CA77EC275E6A243877AEEC176A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D344D96922E9B66A300407E431DAC2 /* Foundation.framework */; };
+		FD23C46DEB287C086BBBF5A9B11C2E63 /* AnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCB38430A7E22C398659B5FA7CC98D8 /* AnimationType.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		77DE75BDBD1100522736E8A025622BFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E7E265333BDDF30A145CB2335DA6FD6C;
+			remoteInfo = ViewAnimator;
+		};
+		EB9135CCFCF97C57D7FB3591559976E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EABAD81A19EE71009167041184616BD2;
+			remoteInfo = TimelineCards;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		04A5BA25F9E038241D90688075260601 /* UICollectionView + ViewAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UICollectionView + ViewAnimator.swift"; path = "ViewAnimator/Classes/Extensions/UICollectionView + ViewAnimator.swift"; sourceTree = "<group>"; };
+		06517A433238A207E776BD72B854806A /* Pods-How Long Left (watchOS) Extension-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left (watchOS) Extension-frameworks.sh"; sourceTree = "<group>"; };
+		06D4DCDC43DAD917F2DCAF8127880E5E /* Pods-How Long Left Siri ExtensionUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left Siri ExtensionUI.debug.xcconfig"; sourceTree = "<group>"; };
+		096223971D03D24196A1C7F2D654DFC4 /* TimelineFeed.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimelineFeed.swift; path = TimelineCards/TimelineFeed.swift; sourceTree = "<group>"; };
+		0B3099648AF02F12FCD83A79D5A86F66 /* Pods_How_Long_Left__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_How_Long_Left__iOS_.framework; path = "Pods-How Long Left (iOS).framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D76741862A9590134714A6A91224F4C /* Pods-How Long Left (iOS)-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-How Long Left (iOS)-dummy.m"; sourceTree = "<group>"; };
+		0EC1EB947CD0C72F394AF9289A547D5D /* Pods-How Long Left (macOS)-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left (macOS)-resources.sh"; sourceTree = "<group>"; };
+		0F5F9B1643BF7965B5F96BD8971E8B4E /* Pods-How Long Left (watchOS) Extension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-How Long Left (watchOS) Extension.modulemap"; sourceTree = "<group>"; };
+		0FD2E9DF9E76B15893739DB9CDD863DF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		14AC99566C2D024B96CAC44949DF80AE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16BA1A9188006341ADA763C7CA89BA1F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		19601A4B7D7D9F2ABE297D6AEF6F4E8C /* Pods-How Long Left (watchOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left (watchOS).debug.xcconfig"; sourceTree = "<group>"; };
+		19A24EBB255352BE37580AF0427F1A47 /* ViewAnimator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ViewAnimator.modulemap; sourceTree = "<group>"; };
+		19F220A9FFF3A76EF565B50EF473E081 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A75F0E24510F772241521F5B016A3EE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		1B47DB120BCB22E73B5F378FCB2287C8 /* Pods-How Long Left (watchOS) Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left (watchOS) Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		1B97EF7D1147F2AB645DB4FF7610C95E /* TimelineCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimelineCard.swift; path = TimelineCards/TimelineCard.swift; sourceTree = "<group>"; };
+		1DED499B3C525D1D77C2BBE1688B79C6 /* Utilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = ViewAnimator/Classes/Utilities/Utilities.swift; sourceTree = "<group>"; };
+		232BB153CAFD8228B535793BDE90394A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		238AF64D66B2F1C03D8999F7E3D1C56E /* Pods-How Long Left (watchOS)-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left (watchOS)-frameworks.sh"; sourceTree = "<group>"; };
+		24390EFD555DD124430DFF9724065945 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		28D344D96922E9B66A300407E431DAC2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		2A828AB260CBE2F8D1C744D1F7F84B43 /* Pods-How Long Left (macOS)-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-How Long Left (macOS)-acknowledgements.markdown"; sourceTree = "<group>"; };
+		2B494CD3367E0077E3C2C110C3364C4B /* Pods-How Long Left Siri Extension-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-How Long Left Siri Extension-acknowledgements.plist"; sourceTree = "<group>"; };
+		2EDD9C9B3DB3A25850A2C9CBD6CE6CFF /* ViewAnimator.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ViewAnimator.xcconfig; sourceTree = "<group>"; };
+		308EAD51A72F3032CFEAB3DDD9306BA8 /* Animation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Animation.swift; path = ViewAnimator/Classes/Protocols/Animation.swift; sourceTree = "<group>"; };
+		358A034700E57E57DD1637B968629361 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3738F257FBD78EF47148A500857195D4 /* Pods-How Long Left (macOS)-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-How Long Left (macOS)-umbrella.h"; sourceTree = "<group>"; };
+		394B76D6255726B3DBC3F307AD67E202 /* ViewAnimator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ViewAnimator-umbrella.h"; sourceTree = "<group>"; };
+		3AFC27B099888C8B51E4504BF651611B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		4372F7FB20830385EB90DABB09BD71F7 /* Pods-How Long Left (watchOS)-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left (watchOS)-resources.sh"; sourceTree = "<group>"; };
+		4526FE9023025E143D5BCA904BBB390B /* Pods_How_Long_Left__watchOS__Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_How_Long_Left__watchOS__Extension.framework; path = "Pods-How Long Left (watchOS) Extension.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49DB8B4CFB84181F299B59C260F33255 /* Pods_How_Long_Left__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_How_Long_Left__macOS_.framework; path = "Pods-How Long Left (macOS).framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5083C391E08714F9C94C40347B6BC16E /* Pods_How_Long_Left_Siri_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_How_Long_Left_Siri_Extension.framework; path = "Pods-How Long Left Siri Extension.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		53E097C25C0248F23FD29E12125AF209 /* Pods-How Long Left Siri Extension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-How Long Left Siri Extension.modulemap"; sourceTree = "<group>"; };
+		545F2A5DA5533A028BA808A0F3911F7A /* Pods-How Long Left Siri Extension-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-How Long Left Siri Extension-acknowledgements.markdown"; sourceTree = "<group>"; };
+		57CDF936B3AE06E2372547A9805647AE /* Pods_How_Long_Left__watchOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_How_Long_Left__watchOS_.framework; path = "Pods-How Long Left (watchOS).framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		58F95C9A4043C5A073C94865F5842A96 /* Pods-How Long Left (iOS)-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left (iOS)-resources.sh"; sourceTree = "<group>"; };
+		5A7B831E8629495A6E8B9AB26BCCADCC /* Pods-How Long Left (macOS)-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left (macOS)-frameworks.sh"; sourceTree = "<group>"; };
+		5D7A649734A52EC814AD61B4A3A37EF9 /* ViewAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewAnimator.swift; path = ViewAnimator/Classes/ViewAnimator.swift; sourceTree = "<group>"; };
+		5E96C6BD4254F27D9690E13D6918EB3F /* Pods-How Long Left Siri Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left Siri Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		611B1D3F09B1F93EEC29DA2D93135557 /* Pods-How Long Left (watchOS) Extension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-How Long Left (watchOS) Extension-dummy.m"; sourceTree = "<group>"; };
+		64D89ABB9E951D2F6F0F8FDF8A65A6F2 /* TimelineCards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TimelineCards.framework; path = TimelineCards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		668F2E0225D31806F50ECF91A2634B5F /* ViewAnimator-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ViewAnimator-prefix.pch"; sourceTree = "<group>"; };
+		68C53A980BD848B29D68A99071505C20 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6B09F75841F3C092ACDA8F6BCB5321F7 /* Pods-How Long Left Siri ExtensionUI-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-How Long Left Siri ExtensionUI-umbrella.h"; sourceTree = "<group>"; };
+		6B9CCD619820264E305DBA2588EF9FD9 /* TimelineCards-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TimelineCards-umbrella.h"; sourceTree = "<group>"; };
+		6E2EAB685FB9073610D0A8484071C9FA /* Pods-How Long Left (iOS)-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-How Long Left (iOS)-acknowledgements.markdown"; sourceTree = "<group>"; };
+		735D1014A4D4693AEDE7909E2CF111FA /* Pods-How Long Left (iOS)-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-How Long Left (iOS)-acknowledgements.plist"; sourceTree = "<group>"; };
+		75934CED14D34AE18D3D3A3FFD581960 /* Pods-How Long Left Siri Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left Siri Extension.release.xcconfig"; sourceTree = "<group>"; };
+		7A53CC217F9DEE441714E671F1A834FF /* Pods-How Long Left (iOS)-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-How Long Left (iOS)-umbrella.h"; sourceTree = "<group>"; };
+		7C35E992A101876767977024779120A1 /* Pods-How Long Left (watchOS)-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-How Long Left (watchOS)-acknowledgements.plist"; sourceTree = "<group>"; };
+		7C688E6236923EDC83DE58C5DD3E819B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E3FB0976283AF9182758527F4455C23 /* Pods-How Long Left (iOS).modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-How Long Left (iOS).modulemap"; sourceTree = "<group>"; };
+		8164F1D83236B3F9D6D51B8B1F4F8AD2 /* TimelineCards-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TimelineCards-dummy.m"; sourceTree = "<group>"; };
+		83263B4EBEAE6122C625F6B657F98468 /* Pods-How Long Left (watchOS) Extension-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-How Long Left (watchOS) Extension-acknowledgements.markdown"; sourceTree = "<group>"; };
+		89DE1C1AFD4004A3F71DA36A8C0ECBAC /* Pods-How Long Left Siri ExtensionUI-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-How Long Left Siri ExtensionUI-acknowledgements.plist"; sourceTree = "<group>"; };
+		8D29C1B51ED7907F5AEB97D28D19A299 /* TimelineCards.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = TimelineCards.modulemap; sourceTree = "<group>"; };
+		8DE707535A8E62C8DED225677CAF9F95 /* ViewAnimator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ViewAnimator-dummy.m"; sourceTree = "<group>"; };
+		90E78D14A92910A3DD24A9B451AB96B4 /* Pods-How Long Left Siri ExtensionUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left Siri ExtensionUI.release.xcconfig"; sourceTree = "<group>"; };
+		9575796C50E3DC41560E965D5AB745D3 /* Pods-How Long Left Siri ExtensionUI-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-How Long Left Siri ExtensionUI-dummy.m"; sourceTree = "<group>"; };
+		959D6304A8AA0F2DAF44E514F040AB50 /* Pods-How Long Left (watchOS).modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-How Long Left (watchOS).modulemap"; sourceTree = "<group>"; };
+		95B32DED4918535FA77349A3BA8B4435 /* Pods-How Long Left Siri ExtensionUI-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left Siri ExtensionUI-resources.sh"; sourceTree = "<group>"; };
+		96C4CF59EA136D42D3274B12CAC2FFA6 /* Pods-How Long Left (macOS).modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-How Long Left (macOS).modulemap"; sourceTree = "<group>"; };
+		96DC94BA3A2FF632D0047C31AC51B667 /* Pods-How Long Left (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left (iOS).release.xcconfig"; sourceTree = "<group>"; };
+		96E3B63CA80DAE4B88BE8880E5B426F3 /* Pods-How Long Left (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left (iOS).debug.xcconfig"; sourceTree = "<group>"; };
+		9CE4F00B2C2BE147BC826022F5322483 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A11D6F355FD57A1F5232D00758B80BE1 /* Pods-How Long Left (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left (macOS).release.xcconfig"; sourceTree = "<group>"; };
+		A1AAF9FBE42D4949F701228374E4D44E /* Pods-How Long Left (watchOS) Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left (watchOS) Extension.release.xcconfig"; sourceTree = "<group>"; };
+		A4D94891A80321E6197F9FE93F99F06D /* Pods-How Long Left Siri ExtensionUI.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-How Long Left Siri ExtensionUI.modulemap"; sourceTree = "<group>"; };
+		A4FEFF613EDD97D149AE8115A380BB83 /* Pods_How_Long_Left_Siri_ExtensionUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_How_Long_Left_Siri_ExtensionUI.framework; path = "Pods-How Long Left Siri ExtensionUI.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5838D951BC6E0E83E9ACAA9033A26AE /* TimelineCards-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TimelineCards-prefix.pch"; sourceTree = "<group>"; };
+		A98C05F372862698DDC21FEB78114F80 /* Pods-How Long Left (watchOS) Extension-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-How Long Left (watchOS) Extension-umbrella.h"; sourceTree = "<group>"; };
+		AB626319B9119935C76728FC0BC8FDBD /* TimelineItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimelineItem.swift; path = TimelineCards/TimelineItem.swift; sourceTree = "<group>"; };
+		ABCEF1AC06555E698B1E45A38CE8A1C6 /* Pods-How Long Left Siri ExtensionUI-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-How Long Left Siri ExtensionUI-acknowledgements.markdown"; sourceTree = "<group>"; };
+		B19C48DAB5CDC7171C2ED9F48FAFF677 /* Pods-How Long Left (watchOS)-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-How Long Left (watchOS)-dummy.m"; sourceTree = "<group>"; };
+		BA96B277B3C53B070C38E7BC4D30755D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C06EDA5A49885E3100442927FB998C3B /* TimelineCards.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TimelineCards.xcconfig; sourceTree = "<group>"; };
+		C196661294A1E77D352AB151B23CDD53 /* Pods-How Long Left (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left (macOS).debug.xcconfig"; sourceTree = "<group>"; };
+		C1BCAB75C951EB47FB561497A9B3416D /* Direction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Direction.swift; path = ViewAnimator/Classes/Models/Direction.swift; sourceTree = "<group>"; };
+		C56DB68BE6578DF58177E981F7A78773 /* Pods-How Long Left Siri Extension-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left Siri Extension-resources.sh"; sourceTree = "<group>"; };
+		C9AEA4B8E213D4FC81E06F8FA86DE477 /* Pods-How Long Left (watchOS)-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-How Long Left (watchOS)-acknowledgements.markdown"; sourceTree = "<group>"; };
+		CA1735CA63A712ED15166A23F7FC0D0C /* Pods-How Long Left Siri Extension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-How Long Left Siri Extension-dummy.m"; sourceTree = "<group>"; };
+		CAB5DE2255215EBF7288555DB78CE63F /* Pods-How Long Left (iOS)-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left (iOS)-frameworks.sh"; sourceTree = "<group>"; };
+		CFF1477813EB5F06D43C287B8EFEF3A0 /* Pods-How Long Left (watchOS)-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-How Long Left (watchOS)-umbrella.h"; sourceTree = "<group>"; };
+		D33D8C6026383AC903EC4C352B1BB89C /* Pods-How Long Left (macOS)-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-How Long Left (macOS)-dummy.m"; sourceTree = "<group>"; };
+		D40A37C8E7C6A597526D023EA6BC8F47 /* UITableView + ViewAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITableView + ViewAnimator.swift"; path = "ViewAnimator/Classes/Extensions/UITableView + ViewAnimator.swift"; sourceTree = "<group>"; };
+		D85A18532158D3B25D8A2934336D7870 /* Pods-How Long Left (macOS)-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-How Long Left (macOS)-acknowledgements.plist"; sourceTree = "<group>"; };
+		E33F0C0ABAB3A811E734836A47A06797 /* Pods-How Long Left (watchOS) Extension-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left (watchOS) Extension-resources.sh"; sourceTree = "<group>"; };
+		E4F4C181EE467543CFA4CEB72F789419 /* ViewAnimatorConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewAnimatorConfig.swift; path = ViewAnimator/Classes/ViewAnimatorConfig.swift; sourceTree = "<group>"; };
+		E915EA28195FFD1D18EA1BADF16FC1AA /* Pods-How Long Left (watchOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left (watchOS).release.xcconfig"; sourceTree = "<group>"; };
+		EE742195F6D9AF1DD559BA3C65AA640B /* ViewAnimator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ViewAnimator.framework; path = ViewAnimator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFCB38430A7E22C398659B5FA7CC98D8 /* AnimationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnimationType.swift; path = ViewAnimator/Classes/Models/AnimationType.swift; sourceTree = "<group>"; };
+		F1413BA2E5A45CDE6DC3569CA2CDD58D /* Pods-How Long Left (watchOS) Extension-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-How Long Left (watchOS) Extension-acknowledgements.plist"; sourceTree = "<group>"; };
+		F37F41D3E93348F4F8EDE43492A2DC4B /* Pods-How Long Left Siri Extension-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-How Long Left Siri Extension-umbrella.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		14AB7751FD40E61DB8E3FC38879FB94F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				592B7458CB7DED83D35EF54F14EE84E5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34B0A54C5988E0F0831B973C02768D34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F43A09587DE6597747D235DB9D53F34 /* CoreGraphics.framework in Frameworks */,
+				6D8804866D90CD526E3953FE66FD70D3 /* Foundation.framework in Frameworks */,
+				AED9BA786B7340C25FF2C222E8BC9576 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68E25851BE502A9A721A2844E568DE82 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0C3C0CA77EC275E6A243877AEEC176A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6BD3009C5AFCD622C937627FCC41C642 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				453772DB00AE31E5892AA2493E289FF5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74FF6D30505C7154B049CE465B9A8443 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E87EFB2F942C1D858168AEC84697664 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F46DA61485EA015B517BF89EEE1ED1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23C5318E462F4565737B4370D1AC204E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FC3FA08F10828372B0D26E2B81BF4C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30706357C093ABC3973F5598AC7A46B8 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC0F238A8B3D38325DFBBF3705EAA75A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5FA6E4A9B0CE6BEBDA4B10B270F75C1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		07A8349A299E3228267EB76B5A0504F3 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				751F0F1037A6ADC445A948DEF89343ED /* Pods-How Long Left (iOS) */,
+				B3C2F21B75014E5F3837DAB40F0001D0 /* Pods-How Long Left (macOS) */,
+				3DE9A887A95BF6A9F5A08E1A03CEEFF5 /* Pods-How Long Left (watchOS) */,
+				6BF89758DAE79EF0D11B814B1FA782AA /* Pods-How Long Left (watchOS) Extension */,
+				91DCEE2FDAA4320C516834F95D6D7768 /* Pods-How Long Left Siri Extension */,
+				C3D3D0B6B80FCC6E3468487878D14293 /* Pods-How Long Left Siri ExtensionUI */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		2474925E18378809AE0F84902DEF7CC0 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9CE4F00B2C2BE147BC826022F5322483 /* Info.plist */,
+				8D29C1B51ED7907F5AEB97D28D19A299 /* TimelineCards.modulemap */,
+				C06EDA5A49885E3100442927FB998C3B /* TimelineCards.xcconfig */,
+				8164F1D83236B3F9D6D51B8B1F4F8AD2 /* TimelineCards-dummy.m */,
+				A5838D951BC6E0E83E9ACAA9033A26AE /* TimelineCards-prefix.pch */,
+				6B9CCD619820264E305DBA2588EF9FD9 /* TimelineCards-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/TimelineCards";
+			sourceTree = "<group>";
+		};
+		27FE01BA3F9F5822B6168B6B9B6AA239 /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				0FD2E9DF9E76B15893739DB9CDD863DF /* Cocoa.framework */,
+			);
+			name = "OS X";
+			sourceTree = "<group>";
+		};
+		36609BAD3BB7AD8135262C3182F6DD09 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0B3099648AF02F12FCD83A79D5A86F66 /* Pods_How_Long_Left__iOS_.framework */,
+				49DB8B4CFB84181F299B59C260F33255 /* Pods_How_Long_Left__macOS_.framework */,
+				57CDF936B3AE06E2372547A9805647AE /* Pods_How_Long_Left__watchOS_.framework */,
+				4526FE9023025E143D5BCA904BBB390B /* Pods_How_Long_Left__watchOS__Extension.framework */,
+				5083C391E08714F9C94C40347B6BC16E /* Pods_How_Long_Left_Siri_Extension.framework */,
+				A4FEFF613EDD97D149AE8115A380BB83 /* Pods_How_Long_Left_Siri_ExtensionUI.framework */,
+				64D89ABB9E951D2F6F0F8FDF8A65A6F2 /* TimelineCards.framework */,
+				EE742195F6D9AF1DD559BA3C65AA640B /* ViewAnimator.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3DE9A887A95BF6A9F5A08E1A03CEEFF5 /* Pods-How Long Left (watchOS) */ = {
+			isa = PBXGroup;
+			children = (
+				7C688E6236923EDC83DE58C5DD3E819B /* Info.plist */,
+				959D6304A8AA0F2DAF44E514F040AB50 /* Pods-How Long Left (watchOS).modulemap */,
+				C9AEA4B8E213D4FC81E06F8FA86DE477 /* Pods-How Long Left (watchOS)-acknowledgements.markdown */,
+				7C35E992A101876767977024779120A1 /* Pods-How Long Left (watchOS)-acknowledgements.plist */,
+				B19C48DAB5CDC7171C2ED9F48FAFF677 /* Pods-How Long Left (watchOS)-dummy.m */,
+				238AF64D66B2F1C03D8999F7E3D1C56E /* Pods-How Long Left (watchOS)-frameworks.sh */,
+				4372F7FB20830385EB90DABB09BD71F7 /* Pods-How Long Left (watchOS)-resources.sh */,
+				CFF1477813EB5F06D43C287B8EFEF3A0 /* Pods-How Long Left (watchOS)-umbrella.h */,
+				19601A4B7D7D9F2ABE297D6AEF6F4E8C /* Pods-How Long Left (watchOS).debug.xcconfig */,
+				E915EA28195FFD1D18EA1BADF16FC1AA /* Pods-How Long Left (watchOS).release.xcconfig */,
+			);
+			name = "Pods-How Long Left (watchOS)";
+			path = "Target Support Files/Pods-How Long Left (watchOS)";
+			sourceTree = "<group>";
+		};
+		4A97953C6BB73A8CC57261FFEA64FBB5 /* watchOS */ = {
+			isa = PBXGroup;
+			children = (
+				1A75F0E24510F772241521F5B016A3EE /* Foundation.framework */,
+			);
+			name = watchOS;
+			sourceTree = "<group>";
+		};
+		560E6F05FD9B8CEE45BA0856EFF2352C /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				232BB153CAFD8228B535793BDE90394A /* CoreGraphics.framework */,
+				28D344D96922E9B66A300407E431DAC2 /* Foundation.framework */,
+				3AFC27B099888C8B51E4504BF651611B /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		5B16F87A5E2DBEA1F63ACB389A02E4AF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6A5882C7FD5373F5F1259FB38DE96296 /* TimelineCards */,
+				ED18160A72A03F1ECA9329FA79A38135 /* ViewAnimator */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		63E59A7584CF8083AB66FE2C83855C02 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				560E6F05FD9B8CEE45BA0856EFF2352C /* iOS */,
+				27FE01BA3F9F5822B6168B6B9B6AA239 /* OS X */,
+				4A97953C6BB73A8CC57261FFEA64FBB5 /* watchOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6A5882C7FD5373F5F1259FB38DE96296 /* TimelineCards */ = {
+			isa = PBXGroup;
+			children = (
+				1B97EF7D1147F2AB645DB4FF7610C95E /* TimelineCard.swift */,
+				096223971D03D24196A1C7F2D654DFC4 /* TimelineFeed.swift */,
+				AB626319B9119935C76728FC0BC8FDBD /* TimelineItem.swift */,
+				2474925E18378809AE0F84902DEF7CC0 /* Support Files */,
+			);
+			name = TimelineCards;
+			path = TimelineCards;
+			sourceTree = "<group>";
+		};
+		6BF89758DAE79EF0D11B814B1FA782AA /* Pods-How Long Left (watchOS) Extension */ = {
+			isa = PBXGroup;
+			children = (
+				68C53A980BD848B29D68A99071505C20 /* Info.plist */,
+				0F5F9B1643BF7965B5F96BD8971E8B4E /* Pods-How Long Left (watchOS) Extension.modulemap */,
+				83263B4EBEAE6122C625F6B657F98468 /* Pods-How Long Left (watchOS) Extension-acknowledgements.markdown */,
+				F1413BA2E5A45CDE6DC3569CA2CDD58D /* Pods-How Long Left (watchOS) Extension-acknowledgements.plist */,
+				611B1D3F09B1F93EEC29DA2D93135557 /* Pods-How Long Left (watchOS) Extension-dummy.m */,
+				06517A433238A207E776BD72B854806A /* Pods-How Long Left (watchOS) Extension-frameworks.sh */,
+				E33F0C0ABAB3A811E734836A47A06797 /* Pods-How Long Left (watchOS) Extension-resources.sh */,
+				A98C05F372862698DDC21FEB78114F80 /* Pods-How Long Left (watchOS) Extension-umbrella.h */,
+				1B47DB120BCB22E73B5F378FCB2287C8 /* Pods-How Long Left (watchOS) Extension.debug.xcconfig */,
+				A1AAF9FBE42D4949F701228374E4D44E /* Pods-How Long Left (watchOS) Extension.release.xcconfig */,
+			);
+			name = "Pods-How Long Left (watchOS) Extension";
+			path = "Target Support Files/Pods-How Long Left (watchOS) Extension";
+			sourceTree = "<group>";
+		};
+		70F0F37AD5DF578E903BB614E575D4A9 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				16BA1A9188006341ADA763C7CA89BA1F /* Info.plist */,
+				19A24EBB255352BE37580AF0427F1A47 /* ViewAnimator.modulemap */,
+				2EDD9C9B3DB3A25850A2C9CBD6CE6CFF /* ViewAnimator.xcconfig */,
+				8DE707535A8E62C8DED225677CAF9F95 /* ViewAnimator-dummy.m */,
+				668F2E0225D31806F50ECF91A2634B5F /* ViewAnimator-prefix.pch */,
+				394B76D6255726B3DBC3F307AD67E202 /* ViewAnimator-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/ViewAnimator";
+			sourceTree = "<group>";
+		};
+		751F0F1037A6ADC445A948DEF89343ED /* Pods-How Long Left (iOS) */ = {
+			isa = PBXGroup;
+			children = (
+				358A034700E57E57DD1637B968629361 /* Info.plist */,
+				7E3FB0976283AF9182758527F4455C23 /* Pods-How Long Left (iOS).modulemap */,
+				6E2EAB685FB9073610D0A8484071C9FA /* Pods-How Long Left (iOS)-acknowledgements.markdown */,
+				735D1014A4D4693AEDE7909E2CF111FA /* Pods-How Long Left (iOS)-acknowledgements.plist */,
+				0D76741862A9590134714A6A91224F4C /* Pods-How Long Left (iOS)-dummy.m */,
+				CAB5DE2255215EBF7288555DB78CE63F /* Pods-How Long Left (iOS)-frameworks.sh */,
+				58F95C9A4043C5A073C94865F5842A96 /* Pods-How Long Left (iOS)-resources.sh */,
+				7A53CC217F9DEE441714E671F1A834FF /* Pods-How Long Left (iOS)-umbrella.h */,
+				96E3B63CA80DAE4B88BE8880E5B426F3 /* Pods-How Long Left (iOS).debug.xcconfig */,
+				96DC94BA3A2FF632D0047C31AC51B667 /* Pods-How Long Left (iOS).release.xcconfig */,
+			);
+			name = "Pods-How Long Left (iOS)";
+			path = "Target Support Files/Pods-How Long Left (iOS)";
+			sourceTree = "<group>";
+		};
+		91DCEE2FDAA4320C516834F95D6D7768 /* Pods-How Long Left Siri Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BA96B277B3C53B070C38E7BC4D30755D /* Info.plist */,
+				53E097C25C0248F23FD29E12125AF209 /* Pods-How Long Left Siri Extension.modulemap */,
+				545F2A5DA5533A028BA808A0F3911F7A /* Pods-How Long Left Siri Extension-acknowledgements.markdown */,
+				2B494CD3367E0077E3C2C110C3364C4B /* Pods-How Long Left Siri Extension-acknowledgements.plist */,
+				CA1735CA63A712ED15166A23F7FC0D0C /* Pods-How Long Left Siri Extension-dummy.m */,
+				C56DB68BE6578DF58177E981F7A78773 /* Pods-How Long Left Siri Extension-resources.sh */,
+				F37F41D3E93348F4F8EDE43492A2DC4B /* Pods-How Long Left Siri Extension-umbrella.h */,
+				5E96C6BD4254F27D9690E13D6918EB3F /* Pods-How Long Left Siri Extension.debug.xcconfig */,
+				75934CED14D34AE18D3D3A3FFD581960 /* Pods-How Long Left Siri Extension.release.xcconfig */,
+			);
+			name = "Pods-How Long Left Siri Extension";
+			path = "Target Support Files/Pods-How Long Left Siri Extension";
+			sourceTree = "<group>";
+		};
+		B3C2F21B75014E5F3837DAB40F0001D0 /* Pods-How Long Left (macOS) */ = {
+			isa = PBXGroup;
+			children = (
+				19F220A9FFF3A76EF565B50EF473E081 /* Info.plist */,
+				96C4CF59EA136D42D3274B12CAC2FFA6 /* Pods-How Long Left (macOS).modulemap */,
+				2A828AB260CBE2F8D1C744D1F7F84B43 /* Pods-How Long Left (macOS)-acknowledgements.markdown */,
+				D85A18532158D3B25D8A2934336D7870 /* Pods-How Long Left (macOS)-acknowledgements.plist */,
+				D33D8C6026383AC903EC4C352B1BB89C /* Pods-How Long Left (macOS)-dummy.m */,
+				5A7B831E8629495A6E8B9AB26BCCADCC /* Pods-How Long Left (macOS)-frameworks.sh */,
+				0EC1EB947CD0C72F394AF9289A547D5D /* Pods-How Long Left (macOS)-resources.sh */,
+				3738F257FBD78EF47148A500857195D4 /* Pods-How Long Left (macOS)-umbrella.h */,
+				C196661294A1E77D352AB151B23CDD53 /* Pods-How Long Left (macOS).debug.xcconfig */,
+				A11D6F355FD57A1F5232D00758B80BE1 /* Pods-How Long Left (macOS).release.xcconfig */,
+			);
+			name = "Pods-How Long Left (macOS)";
+			path = "Target Support Files/Pods-How Long Left (macOS)";
+			sourceTree = "<group>";
+		};
+		C3D3D0B6B80FCC6E3468487878D14293 /* Pods-How Long Left Siri ExtensionUI */ = {
+			isa = PBXGroup;
+			children = (
+				14AC99566C2D024B96CAC44949DF80AE /* Info.plist */,
+				A4D94891A80321E6197F9FE93F99F06D /* Pods-How Long Left Siri ExtensionUI.modulemap */,
+				ABCEF1AC06555E698B1E45A38CE8A1C6 /* Pods-How Long Left Siri ExtensionUI-acknowledgements.markdown */,
+				89DE1C1AFD4004A3F71DA36A8C0ECBAC /* Pods-How Long Left Siri ExtensionUI-acknowledgements.plist */,
+				9575796C50E3DC41560E965D5AB745D3 /* Pods-How Long Left Siri ExtensionUI-dummy.m */,
+				95B32DED4918535FA77349A3BA8B4435 /* Pods-How Long Left Siri ExtensionUI-resources.sh */,
+				6B09F75841F3C092ACDA8F6BCB5321F7 /* Pods-How Long Left Siri ExtensionUI-umbrella.h */,
+				06D4DCDC43DAD917F2DCAF8127880E5E /* Pods-How Long Left Siri ExtensionUI.debug.xcconfig */,
+				90E78D14A92910A3DD24A9B451AB96B4 /* Pods-How Long Left Siri ExtensionUI.release.xcconfig */,
+			);
+			name = "Pods-How Long Left Siri ExtensionUI";
+			path = "Target Support Files/Pods-How Long Left Siri ExtensionUI";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				24390EFD555DD124430DFF9724065945 /* Podfile */,
+				63E59A7584CF8083AB66FE2C83855C02 /* Frameworks */,
+				5B16F87A5E2DBEA1F63ACB389A02E4AF /* Pods */,
+				36609BAD3BB7AD8135262C3182F6DD09 /* Products */,
+				07A8349A299E3228267EB76B5A0504F3 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		ED18160A72A03F1ECA9329FA79A38135 /* ViewAnimator */ = {
+			isa = PBXGroup;
+			children = (
+				308EAD51A72F3032CFEAB3DDD9306BA8 /* Animation.swift */,
+				EFCB38430A7E22C398659B5FA7CC98D8 /* AnimationType.swift */,
+				C1BCAB75C951EB47FB561497A9B3416D /* Direction.swift */,
+				04A5BA25F9E038241D90688075260601 /* UICollectionView + ViewAnimator.swift */,
+				D40A37C8E7C6A597526D023EA6BC8F47 /* UITableView + ViewAnimator.swift */,
+				1DED499B3C525D1D77C2BBE1688B79C6 /* Utilities.swift */,
+				5D7A649734A52EC814AD61B4A3A37EF9 /* ViewAnimator.swift */,
+				E4F4C181EE467543CFA4CEB72F789419 /* ViewAnimatorConfig.swift */,
+				70F0F37AD5DF578E903BB614E575D4A9 /* Support Files */,
+			);
+			name = ViewAnimator;
+			path = ViewAnimator;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2E0A7C8A0287878BC088EA9EB6F8D43E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C96C82E1C4B52E1630EF49DEA4E89D3D /* ViewAnimator-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		39F47D18556D49405255B5B493F45065 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33396D0B3BB93F619D727772DE5E623D /* TimelineCards-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64DF480A882B2718DFAAD080F632EFCE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D2A27DD6BAC16A69F8ED01AEF7C9CA9 /* Pods-How Long Left (iOS)-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77919D6C40713871DEF206B398E55D40 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				352C902ADB3484D22BE7410B0DE982F6 /* Pods-How Long Left Siri Extension-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B5F59A8FCD296E06242834F97C07ACB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0415471C7756789AE5AEE3ACFE416BF /* Pods-How Long Left Siri ExtensionUI-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90AF640F7F6DFB635EF9D074928BDCFF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EF521A7CCF61F4450BA829C03DA6FF0 /* Pods-How Long Left (watchOS) Extension-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D496A90582BF100C77A7DDA689E4AD7C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1386CC189406D272649BE106F049D943 /* Pods-How Long Left (macOS)-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5EB9494EE69D5B2A246AC6E8B7E0CD5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63BB99A0044BE482F9E1399F4E174887 /* Pods-How Long Left (watchOS)-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		25F0DA0C2E5DF17222B4B2AA1834B726 /* Pods-How Long Left (watchOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68C524D6EF215784CC003E6213CA19B4 /* Build configuration list for PBXNativeTarget "Pods-How Long Left (watchOS)" */;
+			buildPhases = (
+				F5EB9494EE69D5B2A246AC6E8B7E0CD5 /* Headers */,
+				9D0D3AA83CC6FAC99220B79D2DDB7329 /* Sources */,
+				9F46DA61485EA015B517BF89EEE1ED1F /* Frameworks */,
+				E1DF2E01DBAE5AB249230D3E0C51F01E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-How Long Left (watchOS)";
+			productName = "Pods-How Long Left (watchOS)";
+			productReference = 57CDF936B3AE06E2372547A9805647AE /* Pods_How_Long_Left__watchOS_.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		571AB2CE2CF828CD85FB9F227F27BEA8 /* Pods-How Long Left (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2007DF006B1BAF122F1CBAF205F89FF4 /* Build configuration list for PBXNativeTarget "Pods-How Long Left (macOS)" */;
+			buildPhases = (
+				D496A90582BF100C77A7DDA689E4AD7C /* Headers */,
+				755CBBC10B1C2C3EE8D872BA0C3FE27E /* Sources */,
+				9FC3FA08F10828372B0D26E2B81BF4C7 /* Frameworks */,
+				BF1BC2D8933A83D52240F8E698B95204 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-How Long Left (macOS)";
+			productName = "Pods-How Long Left (macOS)";
+			productReference = 49DB8B4CFB84181F299B59C260F33255 /* Pods_How_Long_Left__macOS_.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B4DBA176BC2787378622CCC7CAA9B4F0 /* Pods-How Long Left Siri Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1764D0767BBDFD5D1F92E450676308E1 /* Build configuration list for PBXNativeTarget "Pods-How Long Left Siri Extension" */;
+			buildPhases = (
+				77919D6C40713871DEF206B398E55D40 /* Headers */,
+				D5F9EACC95A84AE6B2CAF94ABF61BCC5 /* Sources */,
+				74FF6D30505C7154B049CE465B9A8443 /* Frameworks */,
+				D20A46B04682CD1C682047907CF5EC8A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-How Long Left Siri Extension";
+			productName = "Pods-How Long Left Siri Extension";
+			productReference = 5083C391E08714F9C94C40347B6BC16E /* Pods_How_Long_Left_Siri_Extension.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C6CC9CE4268E52B2DA862CB04D6E26C9 /* Pods-How Long Left Siri ExtensionUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91F09552F886D44A3871AB3ADF8CCA22 /* Build configuration list for PBXNativeTarget "Pods-How Long Left Siri ExtensionUI" */;
+			buildPhases = (
+				7B5F59A8FCD296E06242834F97C07ACB /* Headers */,
+				BC73ACE36C289F1D2FBBBE4FCDBC6B6C /* Sources */,
+				68E25851BE502A9A721A2844E568DE82 /* Frameworks */,
+				55C80208DEDEB86F6110C9B5542A31F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-How Long Left Siri ExtensionUI";
+			productName = "Pods-How Long Left Siri ExtensionUI";
+			productReference = A4FEFF613EDD97D149AE8115A380BB83 /* Pods_How_Long_Left_Siri_ExtensionUI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C78B966EA226E49AAF64CAEF04B0A743 /* Pods-How Long Left (watchOS) Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB6931D3DBEA00A42E05D4906E3E9489 /* Build configuration list for PBXNativeTarget "Pods-How Long Left (watchOS) Extension" */;
+			buildPhases = (
+				90AF640F7F6DFB635EF9D074928BDCFF /* Headers */,
+				700D5FCFEFC7B517562E4ACC08A81FB0 /* Sources */,
+				14AB7751FD40E61DB8E3FC38879FB94F /* Frameworks */,
+				4089DAFDA94D45ADC94E22745124DA63 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-How Long Left (watchOS) Extension";
+			productName = "Pods-How Long Left (watchOS) Extension";
+			productReference = 4526FE9023025E143D5BCA904BBB390B /* Pods_How_Long_Left__watchOS__Extension.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		DD6975B0A310AB578CDF22BA622CD135 /* Pods-How Long Left (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0454A846639C2123FE74CB08F4B32196 /* Build configuration list for PBXNativeTarget "Pods-How Long Left (iOS)" */;
+			buildPhases = (
+				64DF480A882B2718DFAAD080F632EFCE /* Headers */,
+				4658818FF19C6B1A8138F9644C175F31 /* Sources */,
+				6BD3009C5AFCD622C937627FCC41C642 /* Frameworks */,
+				E3FF9500AED45C61DE9225DD938F5F33 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E22B336BA163BF85D154EB466FD76134 /* PBXTargetDependency */,
+				14CB8621548F0B9F3A781A659E365CF3 /* PBXTargetDependency */,
+			);
+			name = "Pods-How Long Left (iOS)";
+			productName = "Pods-How Long Left (iOS)";
+			productReference = 0B3099648AF02F12FCD83A79D5A86F66 /* Pods_How_Long_Left__iOS_.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E7E265333BDDF30A145CB2335DA6FD6C /* ViewAnimator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26B841E250660E46D1E20B1BF8DA12BB /* Build configuration list for PBXNativeTarget "ViewAnimator" */;
+			buildPhases = (
+				2E0A7C8A0287878BC088EA9EB6F8D43E /* Headers */,
+				2D38B800B81651DE53028558E4A3A6F5 /* Sources */,
+				DC0F238A8B3D38325DFBBF3705EAA75A /* Frameworks */,
+				09FDDCF32E169D523EC231AB6500F96F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ViewAnimator;
+			productName = ViewAnimator;
+			productReference = EE742195F6D9AF1DD559BA3C65AA640B /* ViewAnimator.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EABAD81A19EE71009167041184616BD2 /* TimelineCards */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7DF53EAB83A55475E763FB1AEB29B207 /* Build configuration list for PBXNativeTarget "TimelineCards" */;
+			buildPhases = (
+				39F47D18556D49405255B5B493F45065 /* Headers */,
+				6418FC05174641AF32FC2B6FFCDDCF46 /* Sources */,
+				34B0A54C5988E0F0831B973C02768D34 /* Frameworks */,
+				B98520601EE4A90808567B994773FC83 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimelineCards;
+			productName = TimelineCards;
+			productReference = 64D89ABB9E951D2F6F0F8FDF8A65A6F2 /* TimelineCards.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 36609BAD3BB7AD8135262C3182F6DD09 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DD6975B0A310AB578CDF22BA622CD135 /* Pods-How Long Left (iOS) */,
+				571AB2CE2CF828CD85FB9F227F27BEA8 /* Pods-How Long Left (macOS) */,
+				25F0DA0C2E5DF17222B4B2AA1834B726 /* Pods-How Long Left (watchOS) */,
+				C78B966EA226E49AAF64CAEF04B0A743 /* Pods-How Long Left (watchOS) Extension */,
+				B4DBA176BC2787378622CCC7CAA9B4F0 /* Pods-How Long Left Siri Extension */,
+				C6CC9CE4268E52B2DA862CB04D6E26C9 /* Pods-How Long Left Siri ExtensionUI */,
+				EABAD81A19EE71009167041184616BD2 /* TimelineCards */,
+				E7E265333BDDF30A145CB2335DA6FD6C /* ViewAnimator */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		09FDDCF32E169D523EC231AB6500F96F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4089DAFDA94D45ADC94E22745124DA63 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55C80208DEDEB86F6110C9B5542A31F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B98520601EE4A90808567B994773FC83 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF1BC2D8933A83D52240F8E698B95204 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D20A46B04682CD1C682047907CF5EC8A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1DF2E01DBAE5AB249230D3E0C51F01E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E3FF9500AED45C61DE9225DD938F5F33 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2D38B800B81651DE53028558E4A3A6F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7085D4566C1C2B9462EB6571F5F492C /* Animation.swift in Sources */,
+				FD23C46DEB287C086BBBF5A9B11C2E63 /* AnimationType.swift in Sources */,
+				762896C6D8E06F415D1DB06BFF247EDA /* Direction.swift in Sources */,
+				8F52A7BA6F3FDDFF5AC20BE2E02587E8 /* UICollectionView + ViewAnimator.swift in Sources */,
+				92A1EAE9DF48B34D49AE1EC38BFF3AE1 /* UITableView + ViewAnimator.swift in Sources */,
+				A7CA0AC66351B58725C8DB6514F947AF /* Utilities.swift in Sources */,
+				3CC7CF6665697A432F2F2F2A449E8C3C /* ViewAnimator-dummy.m in Sources */,
+				DF377C36CD898786EFFC902C89ABEB15 /* ViewAnimator.swift in Sources */,
+				DD6B4FBFA2E1EBA767AF5065D6657E95 /* ViewAnimatorConfig.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4658818FF19C6B1A8138F9644C175F31 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76E6CB6B01E522FD05C16901F5CBA5B7 /* Pods-How Long Left (iOS)-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6418FC05174641AF32FC2B6FFCDDCF46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D901868CEA75CBE53CA7E99012905848 /* TimelineCard.swift in Sources */,
+				B5EB2781E7210BF3F12FB9BC710E31FB /* TimelineCards-dummy.m in Sources */,
+				60332BAA2EE82589EC38815D58F1D96C /* TimelineFeed.swift in Sources */,
+				9B4BD27839954290FE409C1FE32DDE1D /* TimelineItem.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		700D5FCFEFC7B517562E4ACC08A81FB0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0920ABCB8F37010C9812AF0AD9714E9 /* Pods-How Long Left (watchOS) Extension-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		755CBBC10B1C2C3EE8D872BA0C3FE27E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3586EA8EE787B7133DA9430C70A3FE2E /* Pods-How Long Left (macOS)-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D0D3AA83CC6FAC99220B79D2DDB7329 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2346A3A6F95839930622A14C84742FD /* Pods-How Long Left (watchOS)-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC73ACE36C289F1D2FBBBE4FCDBC6B6C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DABB852AD6CF247407647AF3039A3FB /* Pods-How Long Left Siri ExtensionUI-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5F9EACC95A84AE6B2CAF94ABF61BCC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80BE358B105D0B6EE83134312C73005A /* Pods-How Long Left Siri Extension-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		14CB8621548F0B9F3A781A659E365CF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ViewAnimator;
+			target = E7E265333BDDF30A145CB2335DA6FD6C /* ViewAnimator */;
+			targetProxy = 77DE75BDBD1100522736E8A025622BFD /* PBXContainerItemProxy */;
+		};
+		E22B336BA163BF85D154EB466FD76134 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TimelineCards;
+			target = EABAD81A19EE71009167041184616BD2 /* TimelineCards */;
+			targetProxy = EB9135CCFCF97C57D7FB3591559976E9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0C9E5D68893D6BA9DAEB3E4BC404D8EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75934CED14D34AE18D3D3A3FFD581960 /* Pods-How Long Left Siri Extension.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left Siri Extension/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left Siri Extension/Pods-How Long Left Siri Extension.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		0FD48247CB218DA7DECB5AE682E11773 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C196661294A1E77D352AB151B23CDD53 /* Pods-How Long Left (macOS).debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (macOS)/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (macOS)/Pods-How Long Left (macOS).modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		1011161A66B7431128879CB1F4623A79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Debug;
+		};
+		13262DFFE548B79DF07289140323433E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C06EDA5A49885E3100442927FB998C3B /* TimelineCards.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TimelineCards/TimelineCards-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TimelineCards/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/TimelineCards/TimelineCards.modulemap";
+				PRODUCT_MODULE_NAME = TimelineCards;
+				PRODUCT_NAME = TimelineCards;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		337F21DE4904D77608705316491CEC3A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A11D6F355FD57A1F5232D00758B80BE1 /* Pods-How Long Left (macOS).release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (macOS)/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (macOS)/Pods-How Long Left (macOS).modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4FC81BA34E6E7D6CA3F45A2686934F85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19601A4B7D7D9F2ABE297D6AEF6F4E8C /* Pods-How Long Left (watchOS).debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (watchOS)/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (watchOS)/Pods-How Long Left (watchOS).modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Debug;
+		};
+		6B16450467B9841A1E2A44194C502A60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06D4DCDC43DAD917F2DCAF8127880E5E /* Pods-How Long Left Siri ExtensionUI.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left Siri ExtensionUI/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left Siri ExtensionUI/Pods-How Long Left Siri ExtensionUI.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6B45A70550ACBDD90D0344C6F3F55A56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96E3B63CA80DAE4B88BE8880E5B426F3 /* Pods-How Long Left (iOS).debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (iOS)/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (iOS)/Pods-How Long Left (iOS).modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		82E04E195258A9066CF0EA44E36A433E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EDD9C9B3DB3A25850A2C9CBD6CE6CFF /* ViewAnimator.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ViewAnimator/ViewAnimator-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ViewAnimator/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/ViewAnimator/ViewAnimator.modulemap";
+				PRODUCT_MODULE_NAME = ViewAnimator;
+				PRODUCT_NAME = ViewAnimator;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		96285F9855D57DE9A93856344CF00368 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B47DB120BCB22E73B5F378FCB2287C8 /* Pods-How Long Left (watchOS) Extension.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (watchOS) Extension/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (watchOS) Extension/Pods-How Long Left (watchOS) Extension.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 5.0;
+			};
+			name = Debug;
+		};
+		992BE60785DEB92A42803D34DD865E4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1AAF9FBE42D4949F701228374E4D44E /* Pods-How Long Left (watchOS) Extension.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (watchOS) Extension/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (watchOS) Extension/Pods-How Long Left (watchOS) Extension.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 5.0;
+			};
+			name = Release;
+		};
+		A19A0EC90FA059471F680BB0D0927224 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C06EDA5A49885E3100442927FB998C3B /* TimelineCards.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TimelineCards/TimelineCards-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TimelineCards/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/TimelineCards/TimelineCards.modulemap";
+				PRODUCT_MODULE_NAME = TimelineCards;
+				PRODUCT_NAME = TimelineCards;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A91B42DFEE6B0A4FDE5E669A14C5C482 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E915EA28195FFD1D18EA1BADF16FC1AA /* Pods-How Long Left (watchOS).release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (watchOS)/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (watchOS)/Pods-How Long Left (watchOS).modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Release;
+		};
+		B14BD08FDA4BECEF356534CFD6F1C4E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E96C6BD4254F27D9690E13D6918EB3F /* Pods-How Long Left Siri Extension.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left Siri Extension/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left Siri Extension/Pods-How Long Left Siri Extension.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B429B496FB765CFB6166AD9E0DA39E06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Release;
+		};
+		E3059F41066A03C47B9C305756DA62C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EDD9C9B3DB3A25850A2C9CBD6CE6CFF /* ViewAnimator.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ViewAnimator/ViewAnimator-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ViewAnimator/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/ViewAnimator/ViewAnimator.modulemap";
+				PRODUCT_MODULE_NAME = ViewAnimator;
+				PRODUCT_NAME = ViewAnimator;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F354D8559B798665BF1DAC345E353311 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90E78D14A92910A3DD24A9B451AB96B4 /* Pods-How Long Left Siri ExtensionUI.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left Siri ExtensionUI/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left Siri ExtensionUI/Pods-How Long Left Siri ExtensionUI.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FE8D379CC91513BCF0F5CD664364A63D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96DC94BA3A2FF632D0047C31AC51B667 /* Pods-How Long Left (iOS).release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (iOS)/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (iOS)/Pods-How Long Left (iOS).modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0454A846639C2123FE74CB08F4B32196 /* Build configuration list for PBXNativeTarget "Pods-How Long Left (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6B45A70550ACBDD90D0344C6F3F55A56 /* Debug */,
+				FE8D379CC91513BCF0F5CD664364A63D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1764D0767BBDFD5D1F92E450676308E1 /* Build configuration list for PBXNativeTarget "Pods-How Long Left Siri Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B14BD08FDA4BECEF356534CFD6F1C4E9 /* Debug */,
+				0C9E5D68893D6BA9DAEB3E4BC404D8EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2007DF006B1BAF122F1CBAF205F89FF4 /* Build configuration list for PBXNativeTarget "Pods-How Long Left (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0FD48247CB218DA7DECB5AE682E11773 /* Debug */,
+				337F21DE4904D77608705316491CEC3A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		26B841E250660E46D1E20B1BF8DA12BB /* Build configuration list for PBXNativeTarget "ViewAnimator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3059F41066A03C47B9C305756DA62C2 /* Debug */,
+				82E04E195258A9066CF0EA44E36A433E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1011161A66B7431128879CB1F4623A79 /* Debug */,
+				B429B496FB765CFB6166AD9E0DA39E06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68C524D6EF215784CC003E6213CA19B4 /* Build configuration list for PBXNativeTarget "Pods-How Long Left (watchOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FC81BA34E6E7D6CA3F45A2686934F85 /* Debug */,
+				A91B42DFEE6B0A4FDE5E669A14C5C482 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7DF53EAB83A55475E763FB1AEB29B207 /* Build configuration list for PBXNativeTarget "TimelineCards" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A19A0EC90FA059471F680BB0D0927224 /* Debug */,
+				13262DFFE548B79DF07289140323433E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91F09552F886D44A3871AB3ADF8CCA22 /* Build configuration list for PBXNativeTarget "Pods-How Long Left Siri ExtensionUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6B16450467B9841A1E2A44194C502A60 /* Debug */,
+				F354D8559B798665BF1DAC345E353311 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB6931D3DBEA00A42E05D4906E3E9489 /* Build configuration list for PBXNativeTarget "Pods-How Long Left (watchOS) Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96285F9855D57DE9A93856344CF00368 /* Debug */,
+				992BE60785DEB92A42803D34DD865E4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

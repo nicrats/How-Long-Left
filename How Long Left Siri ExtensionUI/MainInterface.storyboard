@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Intent View Controller-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController storyboardIdentifier="TodayCountdownView" id="M4Y-Lb-cyx" customClass="IntentViewController" customModule="How_Long_Left_Siri_ExtensionUI_Project" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="95"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ppy-2z-Tz6">
+                                <rect key="frame" x="0.0" y="39" width="250" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="4Rk-ZF-Jbc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="61"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title ends in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVu-YR-yYl">
+                                <rect key="frame" x="0.0" y="10" width="250" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="pjO-wL-RxV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No events are on" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuB-m1-5n6">
+                                <rect key="frame" x="60.333333333333329" y="39.666666666666664" width="129.33333333333337" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="KMW-sR-wr1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.30571859137055835" green="0.30571859137055835" blue="0.30571859137055835" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="xuB-m1-5n6" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" id="Glv-28-OeX"/>
+                            <constraint firstItem="MVu-YR-yYl" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" id="JSa-uX-BR1"/>
+                            <constraint firstItem="xuB-m1-5n6" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" id="OCf-v8-5Te"/>
+                            <constraint firstItem="Ppy-2z-Tz6" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" constant="15" id="XGC-OF-Aym"/>
+                            <constraint firstItem="Ppy-2z-Tz6" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" id="aeX-HS-X3d"/>
+                            <constraint firstAttribute="trailing" secondItem="MVu-YR-yYl" secondAttribute="trailing" id="byS-uG-Yej"/>
+                            <constraint firstItem="Ppy-2z-Tz6" firstAttribute="trailing" secondItem="ssy-KU-ocm" secondAttribute="trailing" id="lkD-xA-BfV"/>
+                            <constraint firstItem="Ppy-2z-Tz6" firstAttribute="top" secondItem="MVu-YR-yYl" secondAttribute="bottom" constant="9" id="m2p-AT-leY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ssy-KU-ocm"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="5og-Rz-k7x" appends="YES" id="ENX-Mv-rGi"/>
+                        </connections>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="250" height="95"/>
+                    <connections>
+                        <outlet property="doneInfoLabel" destination="xuB-m1-5n6" id="MEY-dv-vop"/>
+                        <outlet property="infoLabel" destination="MVu-YR-yYl" id="zFq-il-qX8"/>
+                        <outlet property="timerLabel" destination="Ppy-2z-Tz6" id="YVj-jd-sRB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="5og-Rz-k7x">
+                    <connections>
+                        <action selector="viewTapped:" destination="M4Y-Lb-cyx" id="dnN-gY-HhM"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="129.59999999999999" y="26.23152709359606"/>
+        </scene>
+    </scenes>
+</document>
