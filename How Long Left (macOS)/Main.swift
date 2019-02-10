@@ -289,6 +289,8 @@ class Main: HLLCountdownController {
                     self.sendNoCalAccessNotification()
                     
                 }
+                
+                self.updateCalendarData(doGlobal: true)
 
                 return
                 
