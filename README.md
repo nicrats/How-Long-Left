@@ -11,7 +11,3 @@ git clone https://github.com/ryankontos/How-Long-Left
 ```
 
 This will place a copy of the How Long Left source code in your Home directory. You can then launch How Long Left.xcworkspace, set unique Bundle Identifiers and build.
-
-## Acknowledgments
-
-* Thanks to all my friends that use and sometimes beta test How Long Left, especially Hayden and Kane, you two were epic 1.0 beta testers.
