@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch38" orientation="portrait">
+    <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -164,26 +164,26 @@
                         </group>
                         <group alignment="center" verticalAlignment="center" layout="vertical" id="4Km-fE-dhL" userLabel="Upcoming Events Container Group">
                             <items>
-                                <table alignment="center" verticalAlignment="bottom" id="Qrm-JD-cNZ">
+                                <table alignment="center" verticalAlignment="bottom" spacing="6" id="Qrm-JD-cNZ">
                                     <items>
                                         <tableRow identifier="EventRowID" id="SwY-VE-W2q" customClass="EventRow" customModule="How_Long_Left_watchOS_Extension">
                                             <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="0.0" id="ZY9-MR-BB3">
                                                 <items>
-                                                    <group width="136" alignment="left" verticalAlignment="center" layout="vertical" spacing="1" id="Koa-ki-2TW">
+                                                    <group width="136" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="Koa-ki-2TW">
                                                         <items>
-                                                            <label width="1" height="19" alignment="left" verticalAlignment="center" text="Event" textAlignment="left" minimumScaleFactor="0.69999999999999996" id="C0Z-4k-oBa">
-                                                                <fontDescription key="font" type="system" weight="medium" pointSize="18"/>
+                                                            <label width="130" height="15" alignment="left" verticalAlignment="center" text="Period 1" numberOfLines="0" minimumScaleFactor="0.10000000000000001" id="id5-Bi-VqP">
+                                                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                                <fontDescription key="font" type="system" weight="medium" pointSize="14"/>
                                                             </label>
-                                                            <group width="1" alignment="center" verticalAlignment="center" id="M5L-NJ-Rm1">
-                                                                <items>
-                                                                    <label alignment="left" verticalAlignment="center" text="11:09am - Room: 10" minimumScaleFactor="0.10000000000000001" id="id5-Bi-VqP">
-                                                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
-                                                                        <fontDescription key="font" type="system" weight="medium" pointSize="13"/>
-                                                                    </label>
-                                                                </items>
-                                                            </group>
+                                                            <label width="1" height="21" alignment="left" verticalAlignment="center" text="Event" textAlignment="left" minimumScaleFactor="0.69999999999999996" id="C0Z-4k-oBa">
+                                                                <fontDescription key="font" type="system" weight="semibold" pointSize="19"/>
+                                                            </label>
+                                                            <label height="14" alignment="left" verticalAlignment="center" text="Room: 10" minimumScaleFactor="0.10000000000000001" id="exH-6O-68o">
+                                                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                                <fontDescription key="font" type="system" pointSize="14"/>
+                                                            </label>
                                                         </items>
-                                                        <edgeInsets key="margins" left="0.0" right="0.0" top="5" bottom="5"/>
+                                                        <edgeInsets key="margins" left="0.0" right="0.0" top="4" bottom="4"/>
                                                     </group>
                                                     <label alignment="left" verticalAlignment="center" id="pWa-1m-ycK"/>
                                                 </items>
@@ -192,7 +192,8 @@
                                                 </connections>
                                             </group>
                                             <connections>
-                                                <outlet property="eventDetailLabel" destination="id5-Bi-VqP" id="zH4-aK-usP"/>
+                                                <outlet property="eventLocationLabel" destination="exH-6O-68o" id="npO-hM-1MA"/>
+                                                <outlet property="eventTimeLabel" destination="id5-Bi-VqP" id="sls-pA-Cgf"/>
                                                 <outlet property="eventTitleLabel" destination="C0Z-4k-oBa" id="u8Q-WA-1V5"/>
                                             </connections>
                                         </tableRow>
@@ -217,7 +218,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="68" y="-66.026785714285708"/>
+            <point key="canvasLocation" x="68" y="-67.128205128205138"/>
         </scene>
         <!--NextOccurView-->
         <scene sceneID="RHk-he-nvF">

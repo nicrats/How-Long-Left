@@ -207,6 +207,7 @@ class Main: HLLCountdownController {
         }
         
         RunLoop.main.add(mainTimer!, forMode: .common)
+        RunLoop.main.add(frequentLowUsageTimer, forMode: .common)
         
         NotificationCenter.default.addObserver(
             self,
@@ -219,7 +220,18 @@ class Main: HLLCountdownController {
             
        print("Init took \(Date().timeIntervalSince(UIController.awokeAt!))s")
         
+        for event in calendarData.fetchEventsFromPresetPeriod(period: .AllTodayPlus24HoursFromNow) {
+            
+            print("\(event.title): \(event.startDate.formattedTime())-\(event.endDate.formattedTime())")
+            
+        }
+        
+        
+        
+        
     }
+    
+    
     
     
     @objc func updateGlobalTrigger() {
@@ -252,9 +264,11 @@ class Main: HLLCountdownController {
     
     @objc func checkEvents() {
         
-        eventMilestoneTracker.checkCurrentEvents()
+        DispatchQueue.global(qos: .background).async {
         
-        DispatchQueue.main.async {
+            self.eventMilestoneTracker.checkCurrentEvents()
+            
+        }
             
             let second = self.calendar.component(.second, from: Date())
             
@@ -269,7 +283,7 @@ class Main: HLLCountdownController {
                 
             }
             
-        }
+        
         
     }
     
@@ -360,7 +374,7 @@ class Main: HLLCountdownController {
                 if unwrappedUpcoming.startDate.timeIntervalSinceNow < 1 {
                     
                     self.nextEventToStart = nil
-                    self.updateCalendarData(doGlobal: false)
+                    self.updateCalendarData(doGlobal: true)
                     
                 }
             
@@ -373,7 +387,7 @@ class Main: HLLCountdownController {
                     if self.beenTooLongWithoutUpdate == false {
                         
                         self.beenTooLongWithoutUpdate = true
-                        self.updateCalendarData(doGlobal: false)
+                        self.updateCalendarData(doGlobal: true)
                         print("Updating calendar at \(Date()) due to too long")
                         
                     }
@@ -428,18 +442,20 @@ class Main: HLLCountdownController {
             
             if self.calendarData.latestFetchSchoolMode != SchoolAnalyser.schoolMode {
                 
-                self.updateCalendarData(doGlobal: false)
+                self.updateCalendarData(doGlobal: true)
             }
                 
                 if self.updateCalID != HLLDefaults.calendar.selectedCalendar {
                     
                     self.updateCalID = HLLDefaults.calendar.selectedCalendar
                     self.schoolAnalyser.analyseCalendar()
-                    self.updateCalendarData(doGlobal: false)
+                    self.updateCalendarData(doGlobal: true)
                     
                     print("Update for new cal")
                     
                 }
+            
+            var update = false
                 
             for event in EventCache.upcomingEventsToday {
                 
@@ -447,12 +463,18 @@ class Main: HLLCountdownController {
                     
                     if EventCache.currentEvents.contains(event) == false {
                         
-                        self.updateCalendarData(doGlobal: false)
-                        
+                       
+                        update = true
                         
                     }
                     
                 }
+                
+            }
+            
+            if update == true {
+                
+                 self.updateCalendarData(doGlobal: true)
                 
             }
             

@@ -311,7 +311,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + scheduledCycle) {
                     self.doingStatusItemAlert = false
-                    self.main.updateCalendarData(doGlobal: true)
+                    self.main.updateCalendarData(doGlobal: false)
                 }
                 
             }

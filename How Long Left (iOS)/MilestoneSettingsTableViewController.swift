@@ -29,9 +29,9 @@ class MilestoneSettingsTableViewController: UITableViewController {
     @objc func selectAllButtonTapped() {
         
         if #available(iOS 10.0, *) {
-            let lightImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+            let lightImpactFeedbackGenerator = UISelectionFeedbackGenerator()
             lightImpactFeedbackGenerator.prepare()
-            lightImpactFeedbackGenerator.impactOccurred()
+            lightImpactFeedbackGenerator.selectionChanged()
             
         }
         

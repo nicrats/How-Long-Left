@@ -65,9 +65,9 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
     @objc func selectAllButtonTapped() {
         
         if #available(iOS 10.0, *) {
-            let lightImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+            let lightImpactFeedbackGenerator = UISelectionFeedbackGenerator()
             lightImpactFeedbackGenerator.prepare()
-            lightImpactFeedbackGenerator.impactOccurred()
+            lightImpactFeedbackGenerator.selectionChanged()
             
         }
         
@@ -148,9 +148,9 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
         print("\(calendars[indexPath.row].title) selected")
         
         if #available(iOS 10.0, *) {
-            let lightImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+            let lightImpactFeedbackGenerator = UISelectionFeedbackGenerator()
             lightImpactFeedbackGenerator.prepare()
-            lightImpactFeedbackGenerator.impactOccurred()
+            lightImpactFeedbackGenerator.selectionChanged()
             
         }
         

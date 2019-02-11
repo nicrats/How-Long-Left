@@ -14,55 +14,6 @@ class SchoolAnalyser {
     static var doneAnalysis = false
     static var isRenamerApp = false
     
-    
-    var yrCondition = false {
-        
-        didSet {
-            
-            updateAnalysis()
-            
-        }
-        
-    }
-    var homeroomCondition = false {
-        
-        didSet {
-            
-            updateAnalysis()
-            
-        }
-        
-    }
-    var roomCondtion = false {
-        
-        didSet {
-            
-            updateAnalysis()
-            
-        }
-        
-    }
-    
-    func updateAnalysis() {
-    
-    if yrCondition == true, roomCondtion == true {
-    SchoolAnalyser.privSchoolMode = .Magdalene
-    
-    } else {
-    
-    if roomCondtion == true, homeroomCondition == true {
-    
-    SchoolAnalyser.privSchoolMode = .Magdalene
-    
-    } else {
-    
-    SchoolAnalyser.privSchoolMode = .None
-    }
-    
-    }
-    
-    }
-    
     public private(set) static var privSchoolMode: SchoolMode = .None
      private var schoolModeChangedDelegates = [SchoolModeChangedDelegate]()
     
@@ -107,14 +58,14 @@ class SchoolAnalyser {
         
         // Checks recent events (in both the past and present) and determines if the user goes to Magdalene or is Lauren.
         
-     //   let previousSchoolMode = SchoolAnalyser.privSchoolMode
+     let previousSchoolMode = SchoolAnalyser.privSchoolMode
         
         
         
         // let isLauren = analyseForLauren(Events: events)
-        self.analyseForMagdalene()
+        let isMagdalene = self.analyseForMagdalene()
         
-       /* if isMagdalene == true {
+        if isMagdalene == true {
             
             // The user goes to Magdalene
             
@@ -124,7 +75,7 @@ class SchoolAnalyser {
             
             SchoolAnalyser.privSchoolMode = .None
             
-        } */
+        }
         
         /* if isLauren == true {
          
@@ -144,14 +95,14 @@ class SchoolAnalyser {
          
          } */
         
-      /*  if SchoolAnalyser.schoolMode != previousSchoolMode {
+       if SchoolAnalyser.schoolMode != previousSchoolMode {
             
             print("School mode is now \(SchoolAnalyser.privSchoolMode.rawValue)")
             schoolModeChangedDelegates.forEach {
                $0.schoolModeChanged()
             }
-            
-        } */
+        
+        }
         
         SchoolAnalyser.doneAnalysis = true
         
@@ -159,30 +110,33 @@ class SchoolAnalyser {
         
     }
     
-    private func analyseForMagdalene() {
+    private func analyseForMagdalene() -> Bool {
         
         // Analyses calendar events and determines if the user goes to Magdalene or not.
         
         let analysisStart = Date()
         
+        var returnVal = false
+        
+        var yrCondition = false
+        var homeroomCondition = false
+        var roomCondtion = false
         
         let Events = self.calendarData.fetchEventsFromPresetPeriod(period: .AnalysisPeriod)
         
         for (index, event) in Events.enumerated() {
             
-            DispatchQueue.global(qos: .userInteractive).async {
-                
             
                 if event.originalTitle.range(of:"Yr") != nil {
-                    self.yrCondition = true
+                    yrCondition = true
                 }
                 
                 if event.originalTitle.range(of:"Homeroom") != nil {
-                    self.homeroomCondition = true
+                    homeroomCondition = true
                 }
                 
                 if let location = event.fullLocation, location.range(of:"Room:") != nil  {
-                    self.roomCondtion = true
+                    roomCondtion = true
                 }
                 
                 if index == Events.count-1 {
@@ -193,11 +147,27 @@ class SchoolAnalyser {
                     
                     
                 }
+            
+            if yrCondition == true, roomCondtion == true {
+                returnVal = true
+                
+            } else {
+                
+                if roomCondtion == true, homeroomCondition == true {
+                    
+                    returnVal = true
+                    
+                } else {
+                    
+                    returnVal = false
+                }
                 
             }
+                
+            
         }
         
-       // return returnVal
+       return returnVal
         
     }
     

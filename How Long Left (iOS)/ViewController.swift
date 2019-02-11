@@ -241,8 +241,12 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
             
             if let event = self.countdownEvent {
                 
-                self.countdownLabel.text = self.timerStringGenerator.generateStringFor(event: event)
+                let string = self.timerStringGenerator.generateStringFor(event: event)
                 
+                self.countdownLabel.text = string
+                
+                
+    
             }
             
             if ViewController.launchedWithSettingsShortcut == true {

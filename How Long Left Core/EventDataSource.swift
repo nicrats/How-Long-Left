@@ -16,9 +16,6 @@ class EventDataSource {
     static let shared = EventDataSource()
     
     static var accessToCalendar = calendarAccess.Unknown
-    let defaults = UserDefaults(suiteName: "group.com.ryankontos.How-Long-Left")!
-    let schoolFunctionsManager = SchoolFunctionsManager()
-    let schoolHolidaysManager = MagdaleneSchoolHolidays()
     var latestFetchSchoolMode = SchoolMode.None
     static var eventStore = EKEventStore()
     
@@ -60,6 +57,10 @@ class EventDataSource {
     func getEventsFromCalendar(start: Date, end: Date) -> [HLLEvent] {
         
         getCalendarAccess()
+        
+        let defaults = UserDefaults(suiteName: "group.com.ryankontos.How-Long-Left")!
+        let schoolFunctionsManager = SchoolFunctionsManager()
+        let schoolHolidaysManager = MagdaleneSchoolHolidays()
         
         var returnArray = [HLLEvent]()
         
@@ -223,12 +224,12 @@ class EventDataSource {
                 startDate = Date()
                 endDate = NSCalendar.current.date(from: comp)?.addingTimeInterval(86400)
                 
-            case .Next24Hours:
+            case .AllTodayPlus24HoursFromNow:
                 
                 // Return all calendar events occuring in the next 24 hours.
                 
-                startDate = Date()
-                endDate = startDate!.addingTimeInterval(86400)
+                startDate = NSCalendar.current.date(from: comp)!
+                endDate = Date().addingTimeInterval(86400)
                 
             case .Next2Weeks:
                 

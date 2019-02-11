@@ -238,7 +238,7 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
         
         DispatchQueue.global(qos: .userInteractive).async {
         super.willActivate()
-        self.routine(waitForTable: false)
+        self.routine(waitForTable: true)
         DispatchQueue.global(qos: .default).async {
         SchoolAnalyser.shared.analyseCalendar()
         }
@@ -528,21 +528,18 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
                 
                 }
                 
-                if NXOdays == 0 {
-                    
-                    if let location = event.location, location != "" {
-                        startString = "\(startString) - \(location)"
-                    }
-                    
-                }
                 
                 if let uDayText = dayText {
                     
-                    startString = "\(uDayText), \(startString)"
+                    startString = "\(startString) = \(uDayText)"
                     
                 }
                 
-                row.eventDetailText = startString
+                row.eventTimeText = startString
+                
+                if let loc = event.location {
+                    row.eventLocationText = loc
+                }
                 
                 if let CGcolor = event.calendar?.cgColor {
                     
@@ -557,7 +554,6 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
                 row.eventTitleText = event.title
                 
                 
-                row.eventDetailText = "\(startString)"
                 
                 genedArray.append(row)
                 
@@ -591,7 +587,19 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
                 let row = self.upcomingEventsTable.rowController(at: index) as! EventRow
                 row.eventTitleLabel.setText(rowContents.eventTitleText)
                 row.eventTitleLabel.setTextColor(rowContents.eventTitleColour)
-                row.eventDetailLabel.setText(rowContents.eventDetailText)
+                row.eventTimeLabel.setText(rowContents.eventTimeText)
+                
+                if let locLabelText = rowContents.eventLocationText {
+                    
+                    row.eventLocationLabel.setText(locLabelText)
+                        row.eventLocationLabel.setHidden(false)
+                    
+                } else {
+                    
+                    row.eventLocationLabel.setHidden(true)
+                    
+                    
+                }
             }
             
             
@@ -614,14 +622,15 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
 class EventRow: NSObject {
     
     @IBOutlet weak var eventTitleLabel: WKInterfaceLabel!
-    @IBOutlet weak var eventDetailLabel: WKInterfaceLabel!
-    
+    @IBOutlet var eventTimeLabel: WKInterfaceLabel!
+    @IBOutlet var eventLocationLabel: WKInterfaceLabel!
 }
 
 class eventRowInstance {
  
     var eventTitleText = ""
     var eventTitleColour = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-    var eventDetailText = ""
+    var eventLocationText: String?
+    var eventTimeText = ""
     
 }

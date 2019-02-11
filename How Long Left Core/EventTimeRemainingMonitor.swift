@@ -58,7 +58,6 @@ class EventTimeRemainingMonitor {
         
         for event in events {
             
-            print("Milestone: Checking \(event.title)")
             
             let timeUntilEnd = event.endDate.timeIntervalSinceNow
             let timeUntilStart = event.startDate.timeIntervalSinceNow
@@ -66,11 +65,9 @@ class EventTimeRemainingMonitor {
             
                 for milestone in milestones {
                     
-                    print("Milestone: Checking milestone \(milestone)")
                     
                     if secondsUntilEnd == milestone {
                         
-                        print("Milestone: Matched milestone \(milestone) to \(event.title)")
                         
                         if milestones.contains(milestone), coolingDown.contains(event) == false {
                             
@@ -82,7 +79,6 @@ class EventTimeRemainingMonitor {
                             
                         delegate.milestoneReached(milestone: milestone, event: event)
                             
-                        print("\(event.title) has reached milestone \(milestone/60).")
                         
                         }
                         

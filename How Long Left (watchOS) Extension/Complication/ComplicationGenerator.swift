@@ -24,7 +24,7 @@ class ComplicationContentsGenerator {
         
         var r = [CLKComplicationTimelineEntry]()
         cal.updateEventStore()
-        let events = cal.fetchEventsFromPresetPeriod(period: .Next24Hours)
+        let events = cal.fetchEventsFromPresetPeriod(period: .AllToday)
         
         for (index, item) in events.enumerated() {
             
@@ -393,14 +393,14 @@ class ComplicationContentsGenerator {
         
         let cal = EventDataSource.shared
         cal.updateEventStore()
-        return cal.fetchEventsFromPresetPeriod(period: .Next24Hours).first?.startDate
+        return cal.fetchEventsFromPresetPeriod(period: .AllToday).first?.startDate
         
     }
     
     func getTimelineEndDate() -> Date? {
         let cal = EventDataSource.shared
         cal.updateEventStore()
-        return cal.fetchEventsFromPresetPeriod(period: .Next24Hours).last?.endDate
+        return cal.fetchEventsFromPresetPeriod(period: .AllToday).last?.endDate
         
     }
     

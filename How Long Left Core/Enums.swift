@@ -11,7 +11,7 @@ import Foundation
 enum EventFetchPeriod {
     case AllToday
     case UpcomingToday
-    case Next24Hours
+    case AllTodayPlus24HoursFromNow
     case Next2Weeks
     case ThisYear
     case AnalysisPeriod

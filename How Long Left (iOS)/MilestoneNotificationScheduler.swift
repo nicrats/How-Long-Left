@@ -126,6 +126,12 @@ class MilestoneNotificationScheduler {
                     
                 }
                 
+             /*   for percentageMilestone in HLLDefaults.notifications.Percentagemilestones {
+                    
+                    
+                    
+                } */
+                
             }
             
             
