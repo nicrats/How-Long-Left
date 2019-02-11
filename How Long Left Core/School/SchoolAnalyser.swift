@@ -143,7 +143,17 @@ class SchoolAnalyser {
                     
                     let analysisTime = Date().timeIntervalSince(analysisStart)
                     
-                    print("School analysis took \(analysisTime)s")
+                    if Thread.isMainThread == true {
+                        
+                         print("School analysis took \(analysisTime)s on main thread")
+                        
+                    } else {
+                        
+                         print("School analysis took \(analysisTime)s on global thread")
+                        
+                    }
+                    
+                   
                     
                     
                 }

@@ -62,7 +62,7 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     var arrayOfCurrentUpcomingTableIDS = [String]()
     
     func schoolModeChanged() {
-        routine(waitForTable: true)
+        routine(waitForTable: true, asyncData: true)
         
         DispatchQueue.global(qos: .default).async {
             self.updateComplication()
@@ -81,7 +81,7 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     @IBAction func refreshClicked() {
         
         
-        routine(waitForTable: false)
+        routine(waitForTable: false, asyncData: true)
         
         DispatchQueue.global(qos: .default).async {
             SchoolAnalyser.shared.analyseCalendar()
@@ -146,16 +146,15 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
             
         }
         
+        self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(2), target: self, selector: #selector(self.updateEventDataGlobal), userInfo: nil, repeats: true)
+        RunLoop.main.add(self.timer, forMode: .common)
         
         eventMonitor = EventTimeRemainingMonitor(delegate: self as HLLCountdownController)
+        SchoolAnalyser.shared.addSchoolMOdeChangedDelegate(delegate: self)
         
         SchoolAnalyser.shared.analyseCalendar()
 
-        SchoolAnalyser.shared.addSchoolMOdeChangedDelegate(delegate: self)
         
-        routine(waitForTable: true)
-        
-        DispatchQueue.global(qos: .background).async {
 
             WatchSessionManager.sharedManager.addDataSourceChangedDelegate(delegate: self)
         
@@ -179,30 +178,38 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
             object: nil)
         
             
-            self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(2), target: self, selector: #selector(self.run), userInfo: nil, repeats: true)
-            RunLoop.main.add(self.timer, forMode: .common)
+            
             
         // Configure interface objects here.
        
+        self.getUpcomingEvents()
+        self.storeCurrent()
+
         
-        }
+        routine(waitForTable: true, asyncData: false)
         
-       
         
         
     }
     
     @objc func run() {
-        
-
+    
             
         self.getUpcomingEvents()
         self.storeCurrent()
-            
-            
+
+        
+        
+    }
+    
+    @objc func updateEventDataGlobal() {
+        
         DispatchQueue.global(qos: .default).async {
-        SchoolAnalyser.shared.analyseCalendar()
+        self.getUpcomingEvents()
+        self.storeCurrent()
         }
+        
+        
         
     }
     
@@ -213,11 +220,46 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     }
     
     
-    func routine(waitForTable: Bool) {
+    func routine(waitForTable: Bool, asyncData: Bool) {
         
-        run()
+        if asyncData == true {
+            
+            DispatchQueue.global(qos: .default).async {
+                
+                self.run()
+                self.updateCountdownUI(Event: self.current)
+                
+                
+                
+                
+                if waitForTable == true {
+                    
+                    self.generateUpcomingEventTableText(events: self.upcoming)
+                    
+                } else {
+                    
+                    DispatchQueue.global(qos: .default).async {
+                        
+                        self.generateUpcomingEventTableText(events: self.upcoming)
+                        
+                    }
+                }
+
+                
+            }
+            
+            return
+            
+        } else {
+            
+            run()
+            self.updateCountdownUI(Event: self.current)
+            
+        }
         
-        self.updateCountdownUI(Event: self.current)
+        
+        
+        
         
         if waitForTable == true {
             
@@ -236,14 +278,9 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         
-        DispatchQueue.global(qos: .userInteractive).async {
-        super.willActivate()
-        self.routine(waitForTable: true)
-        DispatchQueue.global(qos: .default).async {
-        SchoolAnalyser.shared.analyseCalendar()
-        }
+        self.routine(waitForTable: false, asyncData: true)
             
-        }
+        
       
     }
     
@@ -257,9 +294,11 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     
    @objc func request() {
     
-    routine(waitForTable: true)
+    // Called when the eventstore changes.
     
-    DispatchQueue.global(qos: .default).async {
+    routine(waitForTable: true, asyncData: true)
+    
+    DispatchQueue.global(qos: .userInteractive).async {
         SchoolAnalyser.shared.analyseCalendar()
     }
         DispatchQueue.global(qos: .default).async {
@@ -273,9 +312,9 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     
     func updateDueToEventEnd(event: HLLEvent, endingNow: Bool) {
         
-        routine(waitForTable: true)
+        routine(waitForTable: true, asyncData: true)
         
-        DispatchQueue.global(qos: .default).async {
+        DispatchQueue.global(qos: .userInteractive).async {
             SchoolAnalyser.shared.analyseCalendar()
         }
         DispatchQueue.global(qos: .default).async {
@@ -291,9 +330,9 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     
     func userInfoChanged() {
         
-        routine(waitForTable: true)
+        routine(waitForTable: true, asyncData: true)
         
-        DispatchQueue.global(qos: .default).async {
+        DispatchQueue.global(qos: .userInteractive).async {
             SchoolAnalyser.shared.analyseCalendar()
         }
         DispatchQueue.global(qos: .default).async {
@@ -417,11 +456,11 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
         
         eventMonitor?.setCurrentEvents(events: currentArray)
         
-        if let safeNextOccur = self.nextOccurEvent {
+      /*  if let safeNextOccur = self.nextOccurEvent {
             
             DispatchQueue.main.async {
                 if self.isShowingNextOccurButton == false {
-                    self.addMenuItem(with: .info, title: "Next \(safeNextOccur.title)", action: #selector(self.nextOccurTapped))
+                   // self.addMenuItem(with: .info, title: "Next \(safeNextOccur.title)", action: #selector(self.nextOccurTapped))
                 }
                 self.isShowingNextOccurButton = true
             }
@@ -435,13 +474,13 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
             
             isShowingNextOccurButton = false
             
-        }
+        } */
         
     }
     
     @objc func nextOccurTapped() {
         
-        pushController(withName: "NextOccurView", context: nextOccurEvent)
+      //  pushController(withName: "NextOccurView", context: nextOccurEvent)
         
     }
     
@@ -503,7 +542,7 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
                 
                 
                 
-                let dateFormatter = DateFormatter()
+              /*  let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "EEEE"
                 let formattedEnd = dateFormatter.string(from: event.startDate)
                 
@@ -516,8 +555,9 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
                     dayText = "Tomorrow"
                 default:
                     dayText = formattedEnd
-                }
+                } */
                 
+                let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "h:mma"
                 var startString = ""
                 if let period = event.magdalenePeriod {
@@ -529,11 +569,11 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
                 }
                 
                 
-                if let uDayText = dayText {
+              /*  if let uDayText = dayText {
                     
                     startString = "\(startString) = \(uDayText)"
                     
-                }
+                } */
                 
                 row.eventTimeText = startString
                 

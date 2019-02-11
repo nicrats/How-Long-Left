@@ -213,23 +213,6 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
         
         SchoolAnalyser.shared.analyseCalendar()
         
-        if SchoolAnalyser.schoolMode == .Magdalene, defaults.bool(forKey: "ShownMagdalenePrompt") == false {
-            
-            defaults.set(true, forKey: "ShownMagdalenePrompt")
-            
-            DispatchQueue.main.async {
-                
-                let alertController = UIAlertController(title: "Magdalene Mode", message: "Magdalene Mode has been added in this beta, and is now enabled.", preferredStyle: .alert)
-                let action1 = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-                    print("You've pressed default");
-                }
-                alertController.addAction(action1)
-                self.present(alertController, animated: true, completion: nil)
-            }
-            
-        }
-
-        
         
     }
     

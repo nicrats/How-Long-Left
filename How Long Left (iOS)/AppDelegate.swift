@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         WatchSessionManager.sharedManager.startSession()
         WatchSessionManager.sharedManager.updateContext(userInfo: ["MagdaleneManualSettingChanged" : HLLDefaults.magdalene.manuallyDisabled])
-        application.setMinimumBackgroundFetchInterval(600)
+        application.setMinimumBackgroundFetchInterval(60)
         
         
         return true
@@ -48,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
     notoGen.scheduleNotificationsForUpcomingEvents()
+    UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         
     }
 
@@ -66,6 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 

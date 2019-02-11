@@ -1073,13 +1073,13 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				BFEA0CE521788D0100FAF2F1 /* How Long Left (macOS) */,
 				BF5D29542174679500AC1EB6 /* How Long Left (iOS) */,
 				BF5D296B2174688700AC1EB6 /* How Long Left (watchOS) */,
 				BF5D29772174688F00AC1EB6 /* How Long Left (watchOS) Extension */,
 				BF39595422054D160002C4FD /* How Long Left Today Widget */,
 				BFC0C4F621FEB6EF00D041DA /* How Long Left Siri ExtensionUI */,
 				BFC0C4ED21FEB6EF00D041DA /* How Long Left Siri Extension */,
-				BFEA0CE521788D0100FAF2F1 /* How Long Left (macOS) */,
 			);
 		};
 /* End PBXProject section */
