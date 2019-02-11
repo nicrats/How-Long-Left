@@ -41,6 +41,7 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     var NXOdaysString: String?
     var nextOccurFinder = EventNextOccurenceFinder()
     var isShowingNextOccurButton = false
+    var hasGenedTable = false
     
     var upcoming = [HLLEvent]()
     var current: HLLEvent?
@@ -230,8 +231,6 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
                 self.updateCountdownUI(Event: self.current)
                 
                 
-                
-                
                 if waitForTable == true {
                     
                     self.generateUpcomingEventTableText(events: self.upcoming)
@@ -255,10 +254,8 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
             run()
             self.updateCountdownUI(Event: self.current)
             
+            
         }
-        
-        
-        
         
         
         if waitForTable == true {
@@ -524,16 +521,18 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     
     func generateUpcomingEventTableText(events: [HLLEvent]) {
         
+        DispatchQueue.main.async {
+        
         let upcomingEvents = events
         var genedArray = [eventRowInstance]()
         
-        if upcomingEvents.isEmpty == false, upcomingEvents != storedTableEvents  {
+            if upcomingEvents.isEmpty == false, upcomingEvents != self.storedTableEvents  {
             
-            upcomingSection.setHidden(true)
+                self.upcomingSection.setHidden(true)
             
             //  currentTableIdentifiers = IDS
             
-            storedTableEvents = upcomingEvents
+                self.storedTableEvents = upcomingEvents
             
             for event in upcomingEvents {
                 
@@ -599,12 +598,12 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
                 
             }
             
-            generatedEventRows = genedArray
+                self.generatedEventRows = genedArray
             populateUpcomingEventsTable()
             
         }
         
-        generatedEventRows = genedArray
+            self.generatedEventRows = genedArray
         
     }
     
@@ -645,7 +644,7 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
             
         }
         
-        
+        }
         
     }
     
@@ -655,6 +654,8 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
         
         
     }
+        
+        
     
 }
 
