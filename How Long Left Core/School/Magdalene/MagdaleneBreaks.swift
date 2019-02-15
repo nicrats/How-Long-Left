@@ -12,6 +12,18 @@ class MagdaleneBreaks {
     
     static let shared = MagdaleneBreaks()
     
+    func genStartDateTimeKey(event: HLLEvent) -> String {
+        
+        return "\(event.startDate.formattedTime()) \(event.startDate.formattedDate())"
+        
+    }
+    
+    func genEndDateTimeKey(event: HLLEvent) -> String {
+        
+        return "\(event.endDate.formattedTime()) \(event.endDate.formattedDate())"
+        
+    }
+    
     func getBreaks(events: [HLLEvent]) -> [HLLEvent] {
         
         // Check if the day's current events line up with a Magdalene timetable, if so return EKEvents of Lunch and Recess
@@ -27,15 +39,15 @@ class MagdaleneBreaks {
         
         if events.isEmpty == false {
             
-            let today = events.first!.startDate.midnight()
+            let today = events.first!.endDate.midnight()
             
             var startTimesDictionary = [String : HLLEvent]()
             var endTimesDictionary = [String : HLLEvent]()
             
             for event in events {
                 
-                startTimesDictionary[event.startDate.formattedTime()] = event
-                endTimesDictionary[event.endDate.formattedTime()] = event
+                startTimesDictionary[genStartDateTimeKey(event: event)] = event
+                endTimesDictionary[genEndDateTimeKey(event: event)] = event
                 
                 
               if event.title == "Recess" {
@@ -235,8 +247,8 @@ class MagdaleneBreaks {
                     
                     if let uRecessStart = recessStart, let uRecessEnd = recessEnd, alreadyContainedRecess == false {
                         
-                        let formattedRecessStart = uRecessStart.formattedTime()
-                        let formattedRecessEnd = uRecessEnd.formattedTime()
+                        let formattedRecessStart = "\(uRecessStart.formattedTime()) \(uRecessStart.formattedDate())"
+                        let formattedRecessEnd = "\(uRecessEnd.formattedTime()) \(uRecessEnd.formattedDate())"
                         let difFromEnd = Int(CFDateGetTimeIntervalSinceDate(uRecessEnd as CFDate, today as CFDate?))
                         
                         
@@ -245,11 +257,11 @@ class MagdaleneBreaks {
                             var event = HLLEvent(title: "Recess", start: uRecessStart, end: uRecessEnd, location: nil)
                             event.isMagdaleneBreak = true
                             
-                            if let startEvent = endTimesDictionary[formattedRecessStart], let endEvent = startTimesDictionary[formattedRecessEnd] {
+                           if let startEvent = endTimesDictionary[formattedRecessStart], let endEvent = startTimesDictionary[formattedRecessEnd] {
                                 
-                                if startEvent.calendar?.calendarIdentifier == endEvent.calendar?.calendarIdentifier {
+                                if startEvent.calendarID == endEvent.calendarID {
                                     
-                                    event.calendar = startEvent.calendar
+                                    event.calendarID = startEvent.calendarID
                                     
                                 }
                                 
@@ -263,8 +275,8 @@ class MagdaleneBreaks {
                     
                     if let uLunchStart = lunchStart, let uLunchEnd = lunchEnd, alreadyContainedLunch == false {
                         
-                        let formattedLunchStart = uLunchStart.formattedTime()
-                        let formattedLunchEnd = uLunchEnd.formattedTime()
+                        let formattedLunchStart = "\(uLunchStart.formattedTime()) \(uLunchStart.formattedDate())"
+                        let formattedLunchEnd = "\(uLunchEnd.formattedTime()) \(uLunchEnd.formattedDate())"
                         let difFromEnd = Int(CFDateGetTimeIntervalSinceDate(uLunchEnd as CFDate, today as CFDate?))
                         
                         
@@ -275,9 +287,9 @@ class MagdaleneBreaks {
                             
                             if let startEvent = endTimesDictionary[formattedLunchStart], let endEvent = startTimesDictionary[formattedLunchEnd] {
                                 
-                                if startEvent.calendar?.calendarIdentifier == endEvent.calendar?.calendarIdentifier {
+                                if startEvent.calendarID == endEvent.calendarID {
                                     
-                                    event.calendar = startEvent.calendar
+                                    event.calendarID = startEvent.calendarID
                                     
                                 }
                                 

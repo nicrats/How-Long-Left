@@ -8,13 +8,13 @@
 
 import Foundation
 
-enum EventFetchPeriod {
-    case AllToday
-    case UpcomingToday
-    case AllTodayPlus24HoursFromNow
-    case Next2Weeks
-    case ThisYear
-    case AnalysisPeriod
+@objc enum EventFetchPeriod: Int {
+    case AllToday = 0
+    case UpcomingToday = 1
+    case AllTodayPlus24HoursFromNow = 2
+    case Next2Weeks = 3
+    case ThisYear = 4
+    case AnalysisPeriod = 5
 }
 
 enum EventCompletionStatus {
@@ -23,9 +23,9 @@ enum EventCompletionStatus {
     case Done
 }
 
-enum SchoolMode: String {
-    case None = "None"
-    case Magdalene = "Magdalene"
+@objc enum SchoolMode: Int {
+    case None = 0
+    case Magdalene = 1
 }
 
 enum EventDate {

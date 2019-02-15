@@ -25,11 +25,14 @@ class NextOccurInterfaceController: WKInterfaceController {
         
     eventTitleLabel.setText("Next \(event.title)")
       
-        if let col = event.calendar?.cgColor {
             
-            dayLabel.setTextColor(UIColor(cgColor: col))
+            if let cal = EventDataSource.shared.calendarFromID(event.calendarID) {
             
-        }
+            dayLabel.setTextColor(UIColor(cgColor: cal.cgColor))
+                
+            }
+            
+        
         
         let cal: Calendar = Calendar(identifier: .gregorian)
         let midnightToday: Date = cal.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!

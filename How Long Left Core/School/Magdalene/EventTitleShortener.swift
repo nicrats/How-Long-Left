@@ -22,7 +22,7 @@ class EventTitleShortener {
         
         for eventItem in events {
         
-        var event = eventItem
+            var event = eventItem
             
         var newTitle = event.originalTitle
         

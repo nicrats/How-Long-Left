@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BFF76D9722068BC4001BE009"
-               BuildableName = "Event Renamer.app"
-               BlueprintName = "Event Renamer"
-               ReferencedContainer = "container:How Long Left.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "BFEA0CE521788D0100FAF2F1"
                BuildableName = "How Long Left.app"
                BlueprintName = "How Long Left (macOS)"

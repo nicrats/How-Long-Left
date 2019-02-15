@@ -10,6 +10,8 @@ import Foundation
 
 class StatusItemTimerStringGenerator {
     
+    let percentageCalculator = PercentageCalculator()
+    
     init (isForPreview: Bool) {
         
         if isForPreview == true {
@@ -61,7 +63,7 @@ class StatusItemTimerStringGenerator {
                     returnString = "\(returnString!) left"
                 }
                 
-                if HLLDefaults.statusItem.showPercentage == true, let percent = generatePercentOfEventComplete(event: event) {
+                if HLLDefaults.statusItem.showPercentage == true, let percent = percentageCalculator.calculatePercentageDone(event: event) {
                     returnString = "\(returnString!) (\(percent))"
                 }
                 
@@ -112,7 +114,7 @@ class StatusItemTimerStringGenerator {
                 returnString = "\(returnString) left"
             }
                 
-            if HLLDefaults.statusItem.showPercentage == true, let percent = generatePercentOfEventComplete(event: event) {
+            if HLLDefaults.statusItem.showPercentage == true, let percent = percentageCalculator.calculatePercentageDone(event: event) {
                 returnString += " (\(percent))"
             }
                 
@@ -127,22 +129,5 @@ class StatusItemTimerStringGenerator {
         
     }
     
-    func generatePercentOfEventComplete(event: HLLEvent) -> String? {
-        
-        if HLLDefaults.magdalene.showHolidaysPercent == false {
-            
-            if event.isHolidays == true {
-                
-                return nil
-            }
-            
-        }
-        
-        let secondsElapsed = Int(Date().timeIntervalSince(event.startDate))
-        let totalSeconds = Int(event.endDate.timeIntervalSince(event.startDate))
-        let percentOfEventComplete = 100*secondsElapsed/totalSeconds
-        return "\(percentOfEventComplete)%"
-        
-    }
     
 }

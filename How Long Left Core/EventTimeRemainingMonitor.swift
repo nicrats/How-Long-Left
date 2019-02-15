@@ -12,6 +12,7 @@ import Foundation
 
 class EventTimeRemainingMonitor {
 
+    var checkqueue = DispatchQueue(label: "CheckQueue")
     var countdownEvents = [HLLEvent]()
     var checkTimer = Timer()
     var delegate: HLLCountdownController
@@ -20,6 +21,7 @@ class EventTimeRemainingMonitor {
     var coolingDownPercentage = [HLLEvent:Int]()
     var coolingDownEnded = [HLLEvent]()
     var coolingDownStarted = [HLLEvent]()
+    let percentCalc = PercentageCalculator()
     
     init(delegate theDelegate: HLLCountdownController) {
         
@@ -28,18 +30,25 @@ class EventTimeRemainingMonitor {
     }
     
     func setCurrentEvents(events: [HLLEvent]) {
+        checkqueue.async(flags: .barrier) {
         
-        countdownEvents = events
-       
+            self.countdownEvents = events
+            
+        }
     }
     
     func removeAllCurrentEvents() {
+        checkqueue.async(flags: .barrier) {
         
-        countdownEvents.removeAll()
+            self.countdownEvents.removeAll()
+            
+        }
         
     }
     
     @objc func checkCurrentEvents() {
+        
+        checkqueue.async(flags: .barrier) {
         
         let milestones = HLLDefaults.notifications.milestones
         let percentageMilestones = HLLDefaults.notifications.Percentagemilestones
@@ -69,15 +78,15 @@ class EventTimeRemainingMonitor {
                     if secondsUntilEnd == milestone {
                         
                         
-                        if milestones.contains(milestone), coolingDown.contains(event) == false {
+                        if milestones.contains(milestone), self.coolingDown.contains(event) == false {
                             
-                            coolingDown.append(event)
+                            self.coolingDown.append(event)
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 self.coolingDown.removeAll()
                             }
                             
-                        delegate.milestoneReached(milestone: milestone, event: event)
+                            self.delegate.milestoneReached(milestone: milestone, event: event)
                             
                         
                         }
@@ -86,18 +95,18 @@ class EventTimeRemainingMonitor {
                 
                 }
             
-            let secondsElapsed = Int(Date().timeIntervalSince(event.startDate))+1
-            let totalSeconds = Int(event.endDate.timeIntervalSince(event.startDate))
-            let percentOfEventComplete = 100*secondsElapsed/totalSeconds
+            let secondsElapsed = Date().timeIntervalSince(event.startDate)
+            let totalSeconds = event.endDate.timeIntervalSince(event.startDate)
+            let percentOfEventComplete = Int(100*secondsElapsed/totalSeconds)
             
             for percentageMilestone in percentageMilestones {
                 
                 if percentOfEventComplete == percentageMilestone {
 
-                    if coolingDownPercentage[event] != percentageMilestone {
+                    if self.coolingDownPercentage[event] != percentageMilestone {
                         
-                        delegate.percentageMilestoneReached(milestone: percentageMilestone, event: event)
-                        coolingDownPercentage[event] = percentageMilestone
+                        self.delegate.percentageMilestoneReached(milestone: percentageMilestone, event: event)
+                        self.coolingDownPercentage[event] = percentageMilestone
                         
                     }
                     
@@ -107,7 +116,7 @@ class EventTimeRemainingMonitor {
             }
 
             
-            if timeUntilEnd < 1, coolingDownEnded.contains(event) == false {
+            if timeUntilEnd < 1, self.coolingDownEnded.contains(event) == false {
                     
                     print("\(event.title) is ending.")
                     
@@ -115,9 +124,9 @@ class EventTimeRemainingMonitor {
                     if timeUntilEnd < -5 {
                         endingNow = false
                     }
-                    delegate.updateDueToEventEnd(event: event, endingNow: endingNow)
+                self.delegate.updateDueToEventEnd(event: event, endingNow: endingNow)
                     
-                coolingDownEnded.append(event)
+                self.coolingDownEnded.append(event)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self.coolingDownEnded.removeAll()
                     }
@@ -138,13 +147,13 @@ class EventTimeRemainingMonitor {
                 
             }
             
-            if timeUntilStart < 1, timeUntilStart > -10, coolingDownStarted.contains(event) == false, startedAtEndOfEvent == false {
+            if timeUntilStart < 1, timeUntilStart > -10, self.coolingDownStarted.contains(event) == false, startedAtEndOfEvent == false {
                 
                 print("\(event.title) is starting.")
                 
-                delegate.eventStarted(event: event)
+                self.delegate.eventStarted(event: event)
                 
-                coolingDownStarted.append(event)
+                self.coolingDownStarted.append(event)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 15) {
                     self.coolingDownStarted.removeAll()
                 }
@@ -156,6 +165,8 @@ class EventTimeRemainingMonitor {
             
             
             }
+            
+        }
         
     }
     

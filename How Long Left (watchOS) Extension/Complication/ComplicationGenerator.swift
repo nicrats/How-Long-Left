@@ -214,7 +214,7 @@ class ComplicationContentsGenerator {
     private func generateEventComlicationText(complication: CLKComplication, event: HLLEvent, next: HLLEvent?) -> [CLKComplicationTimelineEntry] {
         
         var eventTint = #colorLiteral(red: 0.9944762588, green: 0.3928351742, blue: 0.08257865259, alpha: 1)
-        if let calCGCol = event.calendar?.cgColor {
+        if let calCGCol = EventDataSource.shared.calendarFromID(event.calendarID)?.cgColor {
         eventTint = UIColor(cgColor: calCGCol)
         }
         

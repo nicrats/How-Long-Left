@@ -54,13 +54,11 @@ class SchoolAnalyser {
     
     func analyseCalendar() {                                                                                                                                                                                                                                                                                                                                                
         
-        
+        let previousSchoolMode = SchoolAnalyser.privSchoolMode
         
         // Checks recent events (in both the past and present) and determines if the user goes to Magdalene or is Lauren.
         
-     let previousSchoolMode = SchoolAnalyser.privSchoolMode
-        
-        
+     
         
         // let isLauren = analyseForLauren(Events: events)
         let isMagdalene = self.analyseForMagdalene()
@@ -95,6 +93,7 @@ class SchoolAnalyser {
          
          } */
         
+        
        if SchoolAnalyser.schoolMode != previousSchoolMode {
             
             print("School mode is now \(SchoolAnalyser.privSchoolMode.rawValue)")
@@ -124,7 +123,7 @@ class SchoolAnalyser {
         
         let Events = self.calendarData.fetchEventsFromPresetPeriod(period: .AnalysisPeriod)
         
-        for (index, event) in Events.enumerated() {
+        for event in Events {
             
             
                 if event.originalTitle.range(of:"Yr") != nil {
@@ -138,34 +137,18 @@ class SchoolAnalyser {
                 if let location = event.fullLocation, location.range(of:"Room:") != nil  {
                     roomCondtion = true
                 }
-                
-                if index == Events.count-1 {
-                    
-                    let analysisTime = Date().timeIntervalSince(analysisStart)
-                    
-                    if Thread.isMainThread == true {
-                        
-                         print("School analysis took \(analysisTime)s on main thread")
-                        
-                    } else {
-                        
-                         print("School analysis took \(analysisTime)s on global thread")
-                        
-                    }
-                    
-                   
-                    
-                    
-                }
             
             if yrCondition == true, roomCondtion == true {
                 returnVal = true
+                print("Breaking Magdalene analysis early")
+                break
                 
             } else {
                 
                 if roomCondtion == true, homeroomCondition == true {
                     
                     returnVal = true
+                    break
                     
                 } else {
                     
@@ -173,7 +156,17 @@ class SchoolAnalyser {
                 }
                 
             }
-                
+        }
+        
+        let analysisTime = Date().timeIntervalSince(analysisStart)
+        
+        if Thread.isMainThread == true {
+            
+            print("School analysis took \(analysisTime)s on main thread")
+            
+        } else {
+            
+            print("School analysis took \(analysisTime)s on global thread")
             
         }
         

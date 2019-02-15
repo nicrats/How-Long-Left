@@ -13,7 +13,7 @@ import EventKit
  * Represents an event in How Long Left. A HLLEvent can be initalized from an EKEvent or with custom data.
  */
 
-struct HLLEvent: Equatable, Hashable, Comparable {
+struct HLLEvent: Equatable, Hashable, Codable {
     
     var title: String
     var shortTitle: String
@@ -26,9 +26,12 @@ struct HLLEvent: Equatable, Hashable, Comparable {
     var isDouble = false
     var isHolidays = false
     var magdalenePeriod: String?
-    var calendar: EKCalendar?
+  //  var calendar: EKCalendar?
+    var calendarID: String?
     var isMagdaleneBreak = false
-    var sourceEKEvent: EKEvent?
+   // var color: CGColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    //var sourceEKEvent: EKEvent?
+    
     var creationTime = Date()
     var completionStatus: EventCompletionStatus {
         
@@ -53,7 +56,6 @@ struct HLLEvent: Equatable, Hashable, Comparable {
         shortTitle = event.title.truncated(limit: 15, position: .tail, leader: "...")
         startDate = event.startDate
         endDate = event.endDate
-        sourceEKEvent = event
         
         if let loc = event.location, loc != "" {
             let truncatedLocation = loc.truncated(limit: 15, position: .tail, leader: "...")
@@ -64,14 +66,9 @@ struct HLLEvent: Equatable, Hashable, Comparable {
             
         }
         
-        if let cal = event.calendar {
-            
-            calendar = cal
-            
-        }
-        
         duration = endDate.timeIntervalSince(startDate)
         
+        calendarID = event.calendar.calendarIdentifier
         
     }
     
@@ -101,35 +98,9 @@ struct HLLEvent: Equatable, Hashable, Comparable {
     
     static func == (lhs: HLLEvent, rhs: HLLEvent) -> Bool {
         
-        return lhs.title == rhs.title && lhs.startDate == rhs.startDate && lhs.location == rhs.location && lhs.calendar == rhs.calendar
+        return lhs.title == rhs.title && lhs.startDate == rhs.startDate && lhs.location == rhs.location
         
     }
     
-    static func < (lhs: HLLEvent, rhs: HLLEvent) -> Bool {
-        
-        if lhs.startDate < rhs.startDate {
-            
-            return true
-            
-        } else {
-            
-            return false
-            
-        }
-        
-    }
-    
-    func convertToEKEvent() -> EKEvent {
-        
-        let event = EKEvent()
-        event.title = title
-        event.startDate = startDate
-        event.endDate = endDate
-        event.location = fullLocation
-        event.calendar = calendar
-        event.notes = sourceEKEvent?.notes
-        return event
-        
-    }
     
 }

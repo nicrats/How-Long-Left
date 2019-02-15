@@ -87,7 +87,6 @@ class MilestoneSettingsTableViewController: UITableViewController {
         } else {
             
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select all", style: .plain, target: self, action: #selector (selectAllButtonTapped))
-            defaults.set(true, forKey: "userDidTurnOffAllCalendars")
             selectAllState = true
             
         }

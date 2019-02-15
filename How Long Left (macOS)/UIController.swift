@@ -97,10 +97,10 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
     
     override func awakeFromNib() {
         
-        
+        main.mainRunLoop()
         
         SchoolAnalyser.shared.analyseCalendar()
-        main.mainRunLoop()
+       // main.mainRunLoop()
         
       //  UIController.awokeAt = Date()
         let currentVersion = version.currentVersion
@@ -320,16 +320,20 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
         }
     
     
+    let currentEventRowsQueue = DispatchQueue(label: "AddCurrentRows")
+    
    func addCurrentEventRows(with strings: [(String, String?, HLLEvent?)]) {
-        
-        for item in arrayOfCurrentEventMenuItems {
-            mainMenu.removeItem(item)
+    
+    currentEventRowsQueue.async(flags: .barrier) {
+    
+        for item in self.arrayOfCurrentEventMenuItems {
+            self.mainMenu.removeItem(item)
         }
         
-        arrayOfCurrentEventMenuItems.removeAll()
-        countdownMenuItemEvents.removeAll()
+        self.arrayOfCurrentEventMenuItems.removeAll()
+        self.countdownMenuItemEvents.removeAll()
     
-    if inNoAccessMode {
+        if self.inNoAccessMode {
         return
     }
     
@@ -357,7 +361,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
         
         if strings.count != 1 {
             
-            menuItem.action = #selector(currentEventMenuItemClicked(sender:))
+            menuItem.action = #selector(self.currentEventMenuItemClicked(sender:))
             menuItem.target = self
             menuItem.isEnabled = true
             
@@ -382,22 +386,24 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
             }
             
             
-            mainMenu.insertItem(menuItem, at: 0)
+        self.mainMenu.insertItem(menuItem, at: 0)
             
             if let event = data.2 {
                
-                countdownMenuItemEvents[menuItem] = event
+                self.countdownMenuItemEvents[menuItem] = event
                 
             }
             
             
-            arrayOfCurrentEventMenuItems.append(menuItem)
+        self.arrayOfCurrentEventMenuItems.append(menuItem)
             
         }
     
     if matchedEvent == false {
         
       //  EventCache.primaryEvent = EventCache.currentEvents.first
+        
+    }
         
     }
         

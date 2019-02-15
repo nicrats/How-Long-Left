@@ -11,6 +11,8 @@ import AppKit
 
 class CountdownStringGenerator {
     
+    let pecentageCalc = PercentageCalculator()
+    
     func generateStatusItemString(event: HLLEvent?) -> String? {
         
         if let countdownEvent = event {
@@ -65,7 +67,7 @@ class CountdownStringGenerator {
                 returnString = "\(returnString) left"
             }
             
-            if let percent = generatePercentOfEventComplete(event: currentEvent), HLLDefaults.statusItem.showPercentage == true {
+            if let percent = pecentageCalc.calculatePercentageDone(event: countdownEvent), HLLDefaults.statusItem.showPercentage == true {
                 
                 returnString += " (\(percent))"
                 
@@ -95,7 +97,7 @@ class CountdownStringGenerator {
                 
                 let returnText = generateRegularCountdownText(event: event)
                 
-                if let percent = generatePercentOfEventComplete(event: event), HLLDefaults.general.showPercentage {
+                if let percent = pecentageCalc.calculatePercentageDone(event: event), HLLDefaults.general.showPercentage {
                     
                     percentText = "(\(percent) Done)"
                 }
@@ -117,7 +119,7 @@ class CountdownStringGenerator {
     
     func generateCountdownNotificationStrings(event: HLLEvent) -> (String, String?) {
  
-        return (generateRegularCountdownText(event: event), generatePercentOfEventComplete(event: event))
+        return (generateRegularCountdownText(event: event), pecentageCalc.calculatePercentageDone(event: event))
         
     }
  
@@ -152,24 +154,6 @@ class CountdownStringGenerator {
     
     }
     
-    func generatePercentOfEventComplete(event: HLLEvent) -> String? {
-        
-        
-        if HLLDefaults.magdalene.showHolidaysPercent == false {
-            
-            if event.isHolidays == true {
-                
-                return nil
-            }
-            
-        }
-        
-        
-        let secondsElapsed = Int(Date().timeIntervalSince(event.startDate))+1
-        let totalSeconds = Int(event.endDate.timeIntervalSince(event.startDate))
-        let percentOfEventComplete = 100*secondsElapsed/totalSeconds
-        return "\(percentOfEventComplete)%"
-        
-    }
+
     
 }

@@ -11,6 +11,7 @@ import WatchKit
 
 class UpcomingEventScreenInterfaceController: WKInterfaceController {
     
+    
     @IBOutlet var eventTitleLabel: WKInterfaceLabel!
     
     override func awake(withContext context: Any?) {
@@ -20,11 +21,13 @@ class UpcomingEventScreenInterfaceController: WKInterfaceController {
             print("Finished segue with \(event.title)")
             
             eventTitleLabel.setText(event.title)
-            
-            if let cal = event.calendar {
+                
+                if let cal = EventDataSource.shared.calendarFromID(event.calendarID) {
                 
                 eventTitleLabel.setTextColor(UIColor(cgColor: cal.cgColor))
-            }
+                    
+                }
+            
             
             
             

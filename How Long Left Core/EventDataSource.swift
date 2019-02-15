@@ -15,6 +15,8 @@ class EventDataSource {
     
     static let shared = EventDataSource()
     
+    let fetchQueue = DispatchQueue(label: "eventFetchQueue")
+    
     static var accessToCalendar = calendarAccess.Unknown
     var latestFetchSchoolMode = SchoolMode.None
     static var eventStore = EKEventStore()
@@ -22,6 +24,7 @@ class EventDataSource {
     
     func updateEventStore() {
         EventDataSource.eventStore = EKEventStore()
+        SchoolAnalyser.shared.analyseCalendar()
     }
     
     init() {
@@ -56,22 +59,28 @@ class EventDataSource {
     
     func getEventsFromCalendar(start: Date, end: Date) -> [HLLEvent] {
         
-        getCalendarAccess()
+        var returnArray = [HLLEvent]()
+        
+        fetchQueue.sync(flags: .barrier) {
+        
+            self.getCalendarAccess()
         
         let defaults = UserDefaults(suiteName: "group.com.ryankontos.How-Long-Left")!
         let schoolFunctionsManager = SchoolFunctionsManager()
         let schoolHolidaysManager = MagdaleneSchoolHolidays()
         
-        var returnArray = [HLLEvent]()
         
         var calendars = [EKCalendar]()
       //  let allCals = calendars
         
         #if os(iOS) || os(watchOS)
-        
-        if var storedIDS = defaults.stringArray(forKey: "setCalendars")  {
+    
+        if var storedIDS = defaults.stringArray(forKey: "setCalendars") {
+            
+            #if os(iOS)
             
             if storedIDS.isEmpty, defaults.bool(forKey: "userDidTurnOffAllCalendars") == false {
+                
                 
                 var idArray = [String]()
                 
@@ -81,10 +90,11 @@ class EventDataSource {
                     
                 }
                 
-                
                 defaults.set(idArray, forKey: "setCalendars")
                 storedIDS = defaults.stringArray(forKey: "setCalendars")!
             }
+            
+            #endif
             
             
             for id in storedIDS {
@@ -123,7 +133,7 @@ class EventDataSource {
         
         #elseif os(OSX)
         
-        calendars = getCalendars()
+            calendars = self.getCalendars()
         if HLLDefaults.calendar.useAllCalendars != true, let calendar = HLLDefaults.calendar.selectedCalendar {
             
             for item in calendars {
@@ -158,7 +168,7 @@ class EventDataSource {
        
         if calendars.isEmpty == true {
             
-            return returnArray
+            return
             
         }
         
@@ -192,9 +202,12 @@ class EventDataSource {
         returnArray.sort(by: { $0.endDate.compare($1.endDate) == .orderedAscending })
             
         
-        latestFetchSchoolMode = SchoolAnalyser.schoolMode
-        return returnArray
+            self.latestFetchSchoolMode = SchoolAnalyser.schoolMode
         
+        
+        }
+        
+        return returnArray
     }
     
     
@@ -268,8 +281,9 @@ class EventDataSource {
     }
             
         
-    
+    let getCurrentEventsQueue = DispatchQueue(label: "getCurrentEvents")
     func getCurrentEvents() -> [HLLEvent] {
+        
         
         // Returns all calendar events that are currently in progress.
         
@@ -352,6 +366,8 @@ class EventDataSource {
             
         }
         
+        
+        
         EventCache.nextUpcomingEventsDay = returnEvents
         return returnEvents
         
@@ -378,6 +394,18 @@ class EventDataSource {
         
         EventCache.upcomingWeekEvents = returnArray
         return returnArray
+        
+    }
+    
+    func calendarFromID(_ id: String?) -> EKCalendar? {
+        
+        if let safeId = id {
+        
+        return EventDataSource.eventStore.calendar(withIdentifier: safeId)
+            
+        }
+        
+        return nil
         
     }
     

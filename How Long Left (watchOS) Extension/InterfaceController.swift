@@ -400,17 +400,18 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
             timerLabel.start()
             showTimerUI(show: true)
             nameLabel.setText("\(current.title)")
-            if let CGcolor = current.calendar?.cgColor {
+            
                 
-                let CalUIcolor = UIColor(cgColor: CGcolor)
-               timerLabel.setTextColor(CalUIcolor)
+                if let cal = EventDataSource.shared.calendarFromID(current.calendarID) {
+                    
+                    timerLabel.setTextColor(UIColor(cgColor: cal.cgColor))
+                    
+                } else {
+                    
+                  timerLabel.setTextColor(#colorLiteral(red: 1, green: 0.5769822296, blue: 0.1623516734, alpha: 1))
+                }
                 
-                
-            } else {
-                
-                timerLabel.setTextColor(#colorLiteral(red: 1, green: 0.5769822296, blue: 0.1623516734, alpha: 1))
-                
-            }
+            
             
                 
                 self.nextOccurEvent = self.nextOccurFinder.findNextOccurrences(currentEvents: [current], upcomingEvents: self.calendarData.fetchEventsFromPresetPeriod(period: .Next2Weeks)).first
@@ -580,7 +581,7 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
                     row.eventLocationText = loc
                 }
                 
-                if let CGcolor = event.calendar?.cgColor {
+                if let CGcolor = EventDataSource.shared.calendarFromID(event.calendarID)?.cgColor {
                     
                     let CalUIcolor = UIColor(cgColor: CGcolor)
                     row.eventTitleColour = (CalUIcolor)

@@ -80,7 +80,7 @@ extension WatchSessionManager {
                 
                 let calArray = rArray as! [String]
                 
-                
+                print(calArray.count)
                 
                 self.defaults.set(calArray, forKey: "setCalendars")
                 
