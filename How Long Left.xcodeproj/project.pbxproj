@@ -747,15 +747,15 @@
 			isa = PBXGroup;
 			children = (
 				BFC4E70E2210202F00EE4A1F /* HLLEvent.swift */,
-				BFC4E7052210202F00EE4A1F /* EventNextOccurenceFinder.swift */,
+				BFC4E70B2210202F00EE4A1F /* EventTimeRemainingMonitor.swift */,
 				BFC4E7062210202F00EE4A1F /* Enums.swift */,
 				BFC4E7072210202F00EE4A1F /* EventDataSource.swift */,
 				BFC4E7082210202F00EE4A1F /* Version.swift */,
 				BFC4E7092210202F00EE4A1F /* HLLCountdownController.swift */,
 				BFC4E70A2210202F00EE4A1F /* Extensions.swift */,
 				BFF563E82214D39F00A93D6B /* PercentageCalculator.swift */,
-				BFC4E70B2210202F00EE4A1F /* EventTimeRemainingMonitor.swift */,
 				BFC4E70C2210202F00EE4A1F /* EventCache.swift */,
+				BFC4E7052210202F00EE4A1F /* EventNextOccurenceFinder.swift */,
 				BFC4E70D2210202F00EE4A1F /* HLLDefaults.swift */,
 				BFC4E70F2210202F00EE4A1F /* RepeatingTimer.swift */,
 				BFC4E7102210202F00EE4A1F /* School */,

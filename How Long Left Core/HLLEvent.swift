@@ -20,7 +20,15 @@ struct HLLEvent: Equatable, Hashable, Codable {
     var originalTitle: String
     var startDate: Date
     var endDate: Date
-    var duration: TimeInterval
+    var duration: TimeInterval {
+        
+        get {
+            
+            return self.endDate.timeIntervalSince(self.startDate)
+            
+        }
+        
+    }
     var location: String?
     var fullLocation: String?
     var isDouble = false
@@ -66,7 +74,6 @@ struct HLLEvent: Equatable, Hashable, Codable {
             
         }
         
-        duration = endDate.timeIntervalSince(startDate)
         
         calendarID = event.calendar.calendarIdentifier
         
@@ -90,8 +97,6 @@ struct HLLEvent: Equatable, Hashable, Codable {
             fullLocation = loc
             
         }
-        
-        duration = endDate.timeIntervalSince(startDate)
         
     }
     

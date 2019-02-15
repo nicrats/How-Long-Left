@@ -52,12 +52,13 @@ class EventTimeRemainingMonitor {
         
         let milestones = HLLDefaults.notifications.milestones
         let percentageMilestones = HLLDefaults.notifications.Percentagemilestones
+            
         
         var events = [HLLEvent]()
         
         #if os(iOS) || os(watchOS)
         
-        events = countdownEvents
+        events = self.countdownEvents
         
         #elseif os(OSX)
         
@@ -66,6 +67,15 @@ class EventTimeRemainingMonitor {
         #endif
         
         for event in events {
+            
+            var percentageMilestoneSeconds = [Int:Int]()
+            
+            for percent in percentageMilestones {
+                
+                
+                percentageMilestoneSeconds[percent] = Int(event.duration)-Int(event.duration)/100*percent
+                
+            }
             
             
             let timeUntilEnd = event.endDate.timeIntervalSinceNow
@@ -95,26 +105,28 @@ class EventTimeRemainingMonitor {
                 
                 }
             
-            let secondsElapsed = Date().timeIntervalSince(event.startDate)
-            let totalSeconds = event.endDate.timeIntervalSince(event.startDate)
-            let percentOfEventComplete = Int(100*secondsElapsed/totalSeconds)
-            
-            for percentageMilestone in percentageMilestones {
+            for percentSecond in percentageMilestoneSeconds {
                 
-                if percentOfEventComplete == percentageMilestone {
-
-                    if self.coolingDownPercentage[event] != percentageMilestone {
+                
+                if secondsUntilEnd == percentSecond.value {
+                    
+                    
+                    if self.coolingDown.contains(event) == false {
                         
-                        self.delegate.percentageMilestoneReached(milestone: percentageMilestone, event: event)
-                        self.coolingDownPercentage[event] = percentageMilestone
+                        self.coolingDown.append(event)
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            self.coolingDown.removeAll()
+                        }
+                        
+                        self.delegate.percentageMilestoneReached(milestone: percentSecond.key, event: event)
+                        
                         
                     }
                     
-                
                 }
                 
             }
-
             
             if timeUntilEnd < 1, self.coolingDownEnded.contains(event) == false {
                     

@@ -9,13 +9,15 @@
 import Foundation
 
 class SchoolFunctionsManager {
-    
-  //  let doubleEventDetector = DoubleEventDetector()
-   // let magdaleneEventTitleShortener = EventTitleShortener()
-   // let magdalenePeriods = MagdalenePeriods()
-   // let magdaleneBreaks = MagdaleneBreaks()
+  
     
     func handle(events: [HLLEvent]) -> [HLLEvent] {
+        
+        // let doubleEventDetector = DoubleEventDetector()
+        let magdaleneEventTitleShortener = EventTitleShortener()
+        let magdalenePeriods = MagdalenePeriods()
+        let magdaleneBreaks = MagdaleneBreaks()
+        let timeAdjuster = EventTimeAdjuster()
         
         // Manages school specific functions on EKEvents.
         
@@ -25,11 +27,11 @@ class SchoolFunctionsManager {
         
         case .Magdalene:
             
-            var tempArray = EventTitleShortener.shared.shortenTitle(events: events)
+            var tempArray = magdaleneEventTitleShortener.shortenTitle(events: events)
             // tempArray = doubleEventDetector.detectDoublesIn(events: tempArray)
-            tempArray = EventTimeAdjuster.shared.adjustTime(events: tempArray)
-            tempArray.append(contentsOf: MagdaleneBreaks.shared.getBreaks(events: tempArray))
-            tempArray = MagdalenePeriods.shared.magdalenePeriodsFor(events: tempArray)
+            tempArray = timeAdjuster.adjustTime(events: tempArray)
+            tempArray.append(contentsOf: magdaleneBreaks.getBreaks(events: tempArray))
+            tempArray = magdalenePeriods.magdalenePeriodsFor(events: tempArray)
             
             if HLLDefaults.magdalene.hideNonMagdaleneEvents == true {
             
