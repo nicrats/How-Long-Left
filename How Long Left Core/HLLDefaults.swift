@@ -11,11 +11,11 @@ import Foundation
 class HLLDefaults {
 
     #if os(OSX)
-    fileprivate static var defaults = UserDefaults.init(suiteName: "5AMFX8X5ZN.howlongleft")!
+    static var defaults = UserDefaults.init(suiteName: "5AMFX8X5ZN.howlongleft")!
     #elseif os(watchOS)
-    fileprivate static var defaults = UserDefaults.standard
+    static var defaults = UserDefaults.standard
     #else
-    fileprivate static var defaults = UserDefaults(suiteName: "group.com.ryankontos.How-Long-Left")!
+    static var defaults = UserDefaults(suiteName: "group.com.ryankontos.How-Long-Left")!
     #endif
     
     struct appData {

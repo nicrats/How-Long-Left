@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch44" orientation="portrait">
+    <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -9,21 +9,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
     </dependencies>
     <scenes>
-        <!--Background_Light-->
-        <scene sceneID="aTl-ho-nwg">
-            <objects>
-                <notificationController backgroundImage="Background_Light" animationDuration="0.10000000000000001" id="VWd-oR-fj5">
-                    <items>
-                        <label alignment="left" verticalAlignment="center" text="Alert Label" id="6oz-xV-Ofo"/>
-                    </items>
-                    <notificationCategory key="notificationCategory" id="Mn9-Uq-Tbs"/>
-                    <connections>
-                        <outlet property="notificationAlertLabel" destination="6oz-xV-Ofo" id="KD8-PX-3d0"/>
-                    </connections>
-                </notificationController>
-            </objects>
-            <point key="canvasLocation" x="-437" y="-68"/>
-        </scene>
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
@@ -63,84 +48,74 @@
                                 </timer>
                             </items>
                         </group>
-                        <group width="1" height="113" alignment="center" verticalAlignment="center" layout="vertical" spacing="0.0" id="3Rn-fK-cOT">
+                        <group width="134" alignment="center" verticalAlignment="center" layout="vertical" spacing="0.0" id="3Rn-fK-cOT">
                             <items>
                                 <label height="40" alignment="center" text="New Event" textAlignment="center" baselineAdjustment="alignCenters" minimumScaleFactor="0.20000000000000001" id="VaA-UJ-GN1">
                                     <fontDescription key="font" type="system" weight="semibold" pointSize="29"/>
-                                    <variation key="device=watch38mm" height="31">
-                                        <fontDescription key="font" type="system" weight="semibold" pointSize="26"/>
+                                    <variation key="device=watch38mm" height="29">
+                                        <fontDescription key="font" type="system" weight="semibold" pointSize="29"/>
                                     </variation>
                                     <variation key="device=watch40mm" height="33">
                                         <fontDescription key="font" type="system" weight="semibold" pointSize="32"/>
                                     </variation>
-                                    <variation key="device=watch42mm" height="35">
+                                    <variation key="device=watch42mm" height="34">
                                         <fontDescription key="font" type="system" weight="semibold" pointSize="32"/>
                                     </variation>
                                     <variation key="device=watch44mm" height="36">
-                                        <fontDescription key="font" type="system" weight="semibold" pointSize="32"/>
+                                        <fontDescription key="font" type="system" weight="semibold" pointSize="35"/>
                                     </variation>
                                 </label>
                                 <label width="136" height="17" alignment="center" text="ends in" textAlignment="center" baselineAdjustment="alignCenters" id="Xpy-rQ-k4E">
                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="font" type="system" pointSize="16"/>
-                                    <variation key="device=watch38mm" height="21">
-                                        <fontDescription key="font" type="system" pointSize="17"/>
+                                    <variation key="device=watch38mm" height="22">
+                                        <fontDescription key="font" type="system" weight="medium" pointSize="17"/>
                                     </variation>
-                                    <variation key="device=watch40mm" height="22">
-                                        <fontDescription key="font" type="system" pointSize="19"/>
+                                    <variation key="device=watch40mm" height="19">
+                                        <fontDescription key="font" type="system" weight="medium" pointSize="18"/>
                                     </variation>
-                                    <variation key="device=watch42mm" height="21">
-                                        <fontDescription key="font" type="system" pointSize="19"/>
+                                    <variation key="device=watch42mm" height="20">
+                                        <fontDescription key="font" type="system" weight="medium" pointSize="18"/>
                                     </variation>
-                                    <variation key="device=watch44mm" height="24">
-                                        <fontDescription key="font" type="system" pointSize="20"/>
+                                    <variation key="device=watch44mm" height="22">
+                                        <fontDescription key="font" type="system" weight="medium" pointSize="20"/>
                                     </variation>
                                 </label>
                                 <timer height="51" alignment="center" textAlignment="center" baselineAdjustment="alignCenters" minimumScaleFactor="0.40000000000000002" enabled="YES" id="dnA-TY-aaL">
                                     <color key="textColor" red="1" green="0.57698222960000001" blue="0.16235167340000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="font" type="system" weight="semibold" pointSize="49"/>
                                     <calendarUnit key="units" minute="YES" second="YES"/>
-                                    <variation key="device=watch38mm" height="40">
-                                        <fontDescription key="font" type="system" weight="semibold" pointSize="40"/>
+                                    <variation key="device=watch38mm" height="38">
+                                        <fontDescription key="font" type="system" weight="semibold" pointSize="41"/>
                                     </variation>
                                     <variation key="device=watch40mm" height="43">
-                                        <fontDescription key="font" type="system" weight="semibold" pointSize="48"/>
+                                        <fontDescription key="font" type="system" weight="semibold" pointSize="45"/>
                                     </variation>
-                                    <variation key="device=watch42mm" height="46">
-                                        <fontDescription key="font" type="system" weight="semibold" pointSize="48"/>
+                                    <variation key="device=watch42mm" height="43">
+                                        <fontDescription key="font" type="system" weight="semibold" pointSize="45"/>
                                     </variation>
                                     <variation key="device=watch44mm" height="44">
-                                        <fontDescription key="font" type="system" weight="semibold" pointSize="50"/>
+                                        <fontDescription key="font" type="system" weight="semibold" pointSize="46"/>
                                     </variation>
                                 </timer>
-                                <timer height="51" alignment="center" verticalAlignment="center" hidden="YES" textAlignment="center" baselineAdjustment="alignCenters" minimumScaleFactor="0.40000000000000002" enabled="YES" previewedSeconds="5000" id="kIM-Ew-Lwd">
-                                    <color key="textColor" red="0.0" green="0.90667767772465746" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <fontDescription key="font" type="system" weight="semibold" pointSize="49"/>
-                                    <variation key="device=watch38mm" height="40">
-                                        <fontDescription key="font" type="system" weight="semibold" pointSize="52"/>
+                                <label width="136" height="17" alignment="center" hidden="YES" text="(Room: 10)" textAlignment="center" baselineAdjustment="alignCenters" id="KSq-YJ-xM1">
+                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="font" type="system" pointSize="16"/>
+                                    <variation key="device=watch38mm" height="25">
+                                        <fontDescription key="font" type="system" weight="medium" pointSize="13"/>
                                     </variation>
-                                    <variation key="device=watch40mm" height="45">
-                                        <fontDescription key="font" type="system" weight="semibold" pointSize="59"/>
+                                    <variation key="device=watch40mm" height="22">
+                                        <fontDescription key="font" type="system" weight="medium" pointSize="15"/>
                                     </variation>
-                                    <variation key="device=watch42mm" height="41">
-                                        <fontDescription key="font" type="system" weight="semibold" pointSize="55"/>
+                                    <variation key="device=watch42mm" height="21">
+                                        <fontDescription key="font" type="system" weight="medium" pointSize="15"/>
                                     </variation>
-                                    <variation key="device=watch44mm" height="50">
-                                        <fontDescription key="font" type="system" weight="semibold" pointSize="64"/>
+                                    <variation key="device=watch44mm" height="24">
+                                        <fontDescription key="font" type="system" weight="medium" pointSize="16"/>
                                     </variation>
-                                </timer>
+                                </label>
                             </items>
-                            <gestureRecognizers>
-                                <tapGestureRecognizer id="SkS-nH-jc8">
-                                    <connections>
-                                        <action selector="countdownViewTapped:" destination="AgC-eL-Hgc" id="1iQ-Ds-xVP"/>
-                                    </connections>
-                                </tapGestureRecognizer>
-                            </gestureRecognizers>
-                            <variation key="device=watch38mm" height="103"/>
-                            <variation key="device=watch40mm" height="107"/>
-                            <variation key="device=watch42mm" height="111"/>
-                            <variation key="device=watch44mm" height="118"/>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="6" bottom="6"/>
                         </group>
                         <group width="1" alignment="center" verticalAlignment="center" hidden="YES" layout="vertical" id="YJl-3x-gXp">
                             <items>
@@ -203,8 +178,8 @@
                         <outlet property="CountdownGroup" destination="3Rn-fK-cOT" id="N3q-ek-NeO"/>
                         <outlet property="NothingOnAndNoUpcomingGroup" destination="YJl-3x-gXp" id="0cd-BI-fqW"/>
                         <outlet property="NothingOnGroup" destination="K68-83-CwQ" id="4Si-up-l1t"/>
-                        <outlet property="endsInLabel" destination="Xpy-rQ-k4E" id="sa2-gk-NQA"/>
-                        <outlet property="hourTimerLabel" destination="kIM-Ew-Lwd" id="G7a-cV-P9Z"/>
+                        <outlet property="endsInLabel" destination="Xpy-rQ-k4E" id="ZoL-9O-EuQ"/>
+                        <outlet property="locationLabel" destination="KSq-YJ-xM1" id="6zj-sC-tjH"/>
                         <outlet property="nameLabel" destination="VaA-UJ-GN1" id="55b-zG-Lr8"/>
                         <outlet property="nextEventTimer" destination="2dJ-PR-hHf" id="Duk-m4-vgN"/>
                         <outlet property="nothingOnNoUpcomingText" destination="gZq-Db-rkF" id="JoF-Or-sbi"/>
@@ -215,74 +190,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="68" y="-67.128205128205138"/>
-        </scene>
-        <!--NextOccurView-->
-        <scene sceneID="RHk-he-nvF">
-            <objects>
-                <controller identifier="NextOccurView" id="nt2-Lw-rE3" customClass="NextOccurInterfaceController" customModule="How_Long_Left_watchOS_Extension">
-                    <items>
-                        <group width="1" height="1" alignment="center" verticalAlignment="center" layout="vertical" spacing="0.0" id="2Au-vT-dc3">
-                            <items>
-                                <label height="22" alignment="center" verticalAlignment="center" text="Next Event:" id="W6w-Oj-ohJ">
-                                    <fontDescription key="font" type="system" pointSize="17"/>
-                                    <variation key="device=watch38mm" height="23">
-                                        <fontDescription key="font" type="system" weight="medium" pointSize="17"/>
-                                    </variation>
-                                    <variation key="device=watch40mm">
-                                        <fontDescription key="font" type="system" weight="medium" pointSize="20"/>
-                                    </variation>
-                                    <variation key="device=watch42mm">
-                                        <fontDescription key="font" type="system" weight="medium" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                    </variation>
-                                    <variation key="device=watch44mm" height="34">
-                                        <fontDescription key="font" type="system" weight="medium" pointSize="22"/>
-                                    </variation>
-                                </label>
-                                <label height="34" alignment="center" verticalAlignment="center" text="Tomorrow" minimumScaleFactor="0.69999999999999996" id="qwL-aO-UG2">
-                                    <color key="textColor" red="0.99447625880000001" green="0.39283517420000003" blue="0.082578652589999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <fontDescription key="font" type="system" pointSize="29"/>
-                                    <variation key="device=watch38mm" height="34">
-                                        <fontDescription key="font" type="system" weight="semibold" pointSize="31"/>
-                                    </variation>
-                                    <variation key="device=watch40mm" height="42">
-                                        <fontDescription key="font" type="system" weight="semibold" pointSize="35"/>
-                                    </variation>
-                                    <variation key="device=watch42mm" height="40">
-                                        <fontDescription key="font" type="system" weight="semibold" pointSize="35"/>
-                                    </variation>
-                                    <variation key="device=watch44mm" height="44">
-                                        <fontDescription key="font" type="system" weight="semibold" pointSize="40"/>
-                                    </variation>
-                                </label>
-                                <label height="30" alignment="center" verticalAlignment="center" text="1 day from now" id="8OA-Dl-UFF">
-                                    <fontDescription key="font" type="system" pointSize="17"/>
-                                    <variation key="device=watch38mm" height="31">
-                                        <fontDescription key="font" type="system" weight="medium" pointSize="17"/>
-                                    </variation>
-                                    <variation key="device=watch40mm">
-                                        <fontDescription key="font" type="system" weight="medium" pointSize="20"/>
-                                    </variation>
-                                    <variation key="device=watch42mm">
-                                        <fontDescription key="font" type="system" weight="medium" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                    </variation>
-                                    <variation key="device=watch44mm" height="35">
-                                        <fontDescription key="font" type="system" weight="medium" pointSize="22"/>
-                                    </variation>
-                                </label>
-                            </items>
-                        </group>
-                    </items>
-                    <connections>
-                        <outlet property="dayLabel" destination="qwL-aO-UG2" id="lh1-9e-U27"/>
-                        <outlet property="eventTitleLabel" destination="W6w-Oj-ohJ" id="pn1-yD-EBX"/>
-                        <outlet property="relativeDateLabel" destination="8OA-Dl-UFF" id="o1K-Si-tVM"/>
-                    </connections>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="68" y="226.5"/>
+            <point key="canvasLocation" x="68" y="-74.5"/>
         </scene>
         <!--eventView-->
         <scene sceneID="JTg-aM-eTC">

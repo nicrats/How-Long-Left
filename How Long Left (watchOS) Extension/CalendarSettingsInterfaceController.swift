@@ -26,7 +26,7 @@ class CalendarSettingsInterfaceController: WKInterfaceController, DataSourceChan
     
     @IBOutlet var table: WKInterfaceTable!
     let cal = EventDataSource.shared
-    let defaults = UserDefaults.standard
+    let defaults = HLLDefaults.defaults
     
     override func willActivate() {
         WatchSessionManager.sharedManager.addDataSourceChangedDelegate(delegate: self)

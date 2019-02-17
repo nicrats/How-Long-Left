@@ -40,9 +40,13 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
         // Call the handler with the current timeline entry
+        DispatchQueue.global(qos: .default).async {
+            
         
-        handler(Generator.generateComplicationText(complication: complication).first)
+        handler(self.Generator.generateComplicationText(complication: complication).first)
         
+        }
+            
     }
     
     func getTimelineEntries(for complication: CLKComplication, before date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
@@ -54,11 +58,14 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
         // Call the handler with the timeline entries after to the given date
         
-        WatchSessionManager.sharedManager.sendUpdatedComplicationMessage()
+        DispatchQueue.global(qos: .default).async {
         
-        handler(Generator.generateComplicationText(complication: complication))
+     //   WatchSessionManager.sharedManager.sendUpdatedComplicationMessage()
+        
+            handler(self.Generator.generateComplicationText(complication: complication))
         
         
+    }
         
     }
     

@@ -470,7 +470,7 @@ class Main: HLLCountdownController {
                 if self.updateCalID != HLLDefaults.calendar.selectedCalendar {
                     
                     self.updateCalID = HLLDefaults.calendar.selectedCalendar
-                    self.schoolAnalyser.analyseCalendar()
+                    
                     self.updateCalendarData(doGlobal: true)
                     
                     print("Update for new cal")
@@ -511,9 +511,8 @@ class Main: HLLCountdownController {
        // print("Updating calendar at \(Date()) due to calendar change")
         updateCalendarData(doGlobal: false)
         print("Updating calendar at \(Date()) due to cal change")
-        DispatchQueue.global(qos: .default).asyncAfter(deadline: .now() + 1) {
-            self.schoolAnalyser.analyseCalendar()
-        }
+        
+        
         mainRunLoop()
         
         
@@ -712,6 +711,7 @@ class Main: HLLCountdownController {
                     self.calendarUpdateInProgress = false
                     self.beenTooLongWithoutUpdate = false
                     
+                    
                 }
                 
                 
@@ -775,6 +775,8 @@ class Main: HLLCountdownController {
                     EventCache.allUpcomingEvents = self.calendarData.fetchEventsFromPresetPeriod(period: .Next2Weeks)
                     EventCache.allEventsToday = self.calendarData.fetchEventsFromPresetPeriod(period: .AllToday)
                     EventCache.nextUpcomingEventsDay = self.calendarData.getUpcomingEventsFromNextDayWithEvents()
+                    self.schoolAnalyser.analyseCalendar()
+                    
                     
                 } else {
                 
@@ -789,6 +791,7 @@ class Main: HLLCountdownController {
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                 EventCache.allUpcomingEvents = self.calendarData.fetchEventsFromPresetPeriod(period: .Next2Weeks)
+                self.schoolAnalyser.analyseCalendar()
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
                 let _ = self.calendarData.getArraysOfUpcomingEventsForNextSevenDays()

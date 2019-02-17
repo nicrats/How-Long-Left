@@ -27,13 +27,13 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
 
     func applicationDidBecomeActive() {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        DispatchQueue.global(qos: .default).async {
+     /*   DispatchQueue.global(qos: .default).async {
       let bh = BackgroundUpdateHandler(); bh.scheduleComplicationUpdate()
         }
         
         
         
-        print("Became active")
+        print("Became active") */
         
     }
 

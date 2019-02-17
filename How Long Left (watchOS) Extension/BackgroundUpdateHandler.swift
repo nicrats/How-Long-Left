@@ -12,7 +12,7 @@ import ClockKit
 
 class BackgroundUpdateHandler {
     let complication = CLKComplicationServer.sharedInstance()
-    let defaults = UserDefaults.standard
+    let defaults = HLLDefaults.defaults
     
     func scheduleComplicationUpdate() {
         
@@ -32,11 +32,13 @@ class BackgroundUpdateHandler {
             
         } */
         
+        DispatchQueue.global(qos: .default).async {
+        
         var date = Date()
 
            date = date.addingTimeInterval(2700)
           //  date = date.addingTimeInterval(120)
-            defaults.set("\(date.timeIntervalSinceReferenceDate)", forKey: "lastUpdateScheduled")
+            self.defaults.set("\(date.timeIntervalSinceReferenceDate)", forKey: "lastUpdateScheduled")
             
             print(date)
             
@@ -56,7 +58,7 @@ class BackgroundUpdateHandler {
                 
             })
             
-        
+        }
         
     }
     

@@ -10,7 +10,7 @@ import Foundation
 
 class DefaultsMigrator {
 
-    let defaults = UserDefaults.init(suiteName: "5AMFX8X5ZN.howlongleft")!
+    let defaults = HLLDefaults.defaults
     
     func migrate1XXDefaults() {
         

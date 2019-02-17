@@ -18,7 +18,7 @@ class EventTimeRemainingMonitor {
     var delegate: HLLCountdownController
     let cal = EventDataSource.shared
     var coolingDown = [HLLEvent]()
-    var coolingDownPercentage = [HLLEvent:Int]()
+    var coolingDownPercentage = [HLLEvent]()
     var coolingDownEnded = [HLLEvent]()
     var coolingDownStarted = [HLLEvent]()
     let percentCalc = PercentageCalculator()
@@ -48,7 +48,7 @@ class EventTimeRemainingMonitor {
     
     @objc func checkCurrentEvents() {
         
-        checkqueue.async(flags: .barrier) {
+        checkqueue.sync(flags: .barrier) {
         
         let milestones = HLLDefaults.notifications.milestones
         let percentageMilestones = HLLDefaults.notifications.Percentagemilestones
@@ -68,16 +68,6 @@ class EventTimeRemainingMonitor {
         
         for event in events {
             
-            var percentageMilestoneSeconds = [Int:Int]()
-            
-            for percent in percentageMilestones {
-                
-                
-                percentageMilestoneSeconds[percent] = Int(event.duration)-Int(event.duration)/100*percent
-                
-            }
-            
-            
             let timeUntilEnd = event.endDate.timeIntervalSinceNow
             let timeUntilStart = event.startDate.timeIntervalSinceNow
             let secondsUntilEnd = Int(timeUntilEnd)
@@ -88,12 +78,12 @@ class EventTimeRemainingMonitor {
                     if secondsUntilEnd == milestone {
                         
                         
-                        if milestones.contains(milestone), self.coolingDown.contains(event) == false {
+                        if milestones.contains(milestone), self.coolingDownPercentage.contains(event) == false {
                             
-                            self.coolingDown.append(event)
+                            self.coolingDownPercentage.append(event)
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                self.coolingDown.removeAll()
+                                self.coolingDownPercentage.removeAll()
                             }
                             
                             self.delegate.milestoneReached(milestone: milestone, event: event)
@@ -104,6 +94,15 @@ class EventTimeRemainingMonitor {
                     }
                 
                 }
+            
+            var percentageMilestoneSeconds = [Int:Int]()
+            
+            for percent in percentageMilestones {
+                
+                
+                percentageMilestoneSeconds[percent] = Int(event.duration)-Int(event.duration)/100*percent
+                
+            }
             
             for percentSecond in percentageMilestoneSeconds {
                 

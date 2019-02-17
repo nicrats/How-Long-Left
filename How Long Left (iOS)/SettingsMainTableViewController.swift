@@ -17,7 +17,7 @@ class tableController: UITableViewController {
     
     @IBOutlet weak var nextEventCell: UITableViewCell!
     @IBOutlet weak var cell2: UISwitch!
-    let defaults = UserDefaults(suiteName: "group.com.ryankontos.How-Long-Left")!
+    let defaults = HLLDefaults.defaults
     @IBOutlet weak var calendarsRow: UITableViewCell!
     @IBOutlet weak var selectedCalendarsCountLabel: UILabel!
     @IBOutlet weak var darkBackgroundSwitch: UISwitch!

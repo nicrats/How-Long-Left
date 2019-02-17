@@ -435,6 +435,7 @@
 		BF8A4F0C21CDD6D200EC12B6 /* macOSExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOSExtensions.swift; sourceTree = "<group>"; };
 		BF8B99E921AE36CA00F7499A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF8B99EF21AE7BB600F7499A /* StatusItemPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusItemPreferencesView.xib; sourceTree = "<group>"; };
+		BF8C02B722191C6000A51DDC /* How Long Left WatchKit Extension.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "How Long Left WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		BF93AEA121BDD60B0035CE7F /* MagdalenePreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MagdalenePreferencesView.xib; sourceTree = "<group>"; };
 		BF93AEA321BDD64F0035CE7F /* GeneralPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralPreferencesView.xib; sourceTree = "<group>"; };
 		BF93AEA521BDD7060035CE7F /* MagdalenePreferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagdalenePreferenceViewController.swift; sourceTree = "<group>"; };
@@ -698,6 +699,7 @@
 				BF5D297F2174688F00AC1EB6 /* ExtensionDelegate.swift */,
 				BF5D29832174689000AC1EB6 /* Assets.xcassets */,
 				BF5D29852174689000AC1EB6 /* Info.plist */,
+				BF8C02B722191C6000A51DDC /* How Long Left WatchKit Extension.entitlements */,
 				BF9EA1A321FB0605008BC1C5 /* watchOS WatchSessionManager.swift */,
 			);
 			path = "How Long Left (watchOS) Extension";
@@ -747,14 +749,14 @@
 			isa = PBXGroup;
 			children = (
 				BFC4E70E2210202F00EE4A1F /* HLLEvent.swift */,
-				BFC4E70B2210202F00EE4A1F /* EventTimeRemainingMonitor.swift */,
-				BFC4E7062210202F00EE4A1F /* Enums.swift */,
 				BFC4E7072210202F00EE4A1F /* EventDataSource.swift */,
+				BFC4E7062210202F00EE4A1F /* Enums.swift */,
 				BFC4E7082210202F00EE4A1F /* Version.swift */,
 				BFC4E7092210202F00EE4A1F /* HLLCountdownController.swift */,
 				BFC4E70A2210202F00EE4A1F /* Extensions.swift */,
 				BFF563E82214D39F00A93D6B /* PercentageCalculator.swift */,
 				BFC4E70C2210202F00EE4A1F /* EventCache.swift */,
+				BFC4E70B2210202F00EE4A1F /* EventTimeRemainingMonitor.swift */,
 				BFC4E7052210202F00EE4A1F /* EventNextOccurenceFinder.swift */,
 				BFC4E70D2210202F00EE4A1F /* HLLDefaults.swift */,
 				BFC4E70F2210202F00EE4A1F /* RepeatingTimer.swift */,
@@ -1071,7 +1073,7 @@
 								enabled = 1;
 							};
 							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -1114,6 +1116,9 @@
 								enabled = 0;
 							};
 							com.apple.BackgroundModes.watchos.extension = {
+								enabled = 0;
+							};
+							com.apple.DataProtection = {
 								enabled = 0;
 							};
 							com.apple.Siri = {

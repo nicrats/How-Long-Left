@@ -59,13 +59,15 @@ class EventDataSource {
     
     func getEventsFromCalendar(start: Date, end: Date) -> [HLLEvent] {
         
+     //   print("Getting events")
+        
         var returnArray = [HLLEvent]()
         
         fetchQueue.sync(flags: .barrier) {
         
             self.getCalendarAccess()
         
-        let defaults = UserDefaults(suiteName: "group.com.ryankontos.How-Long-Left")!
+        let defaults = HLLDefaults.defaults
         let schoolFunctionsManager = SchoolFunctionsManager()
         let schoolHolidaysManager = MagdaleneSchoolHolidays()
         
@@ -79,7 +81,7 @@ class EventDataSource {
             
             #if os(iOS)
             
-            if storedIDS.isEmpty, defaults.bool(forKey: "userDidTurnOffAllCalendars") == false {
+            if storedIDS.isEmpty {
                 
                 
                 var idArray = [String]()
@@ -96,6 +98,7 @@ class EventDataSource {
             
             #endif
             
+            print("Stored IDs count: \(storedIDS.count)")
             
             for id in storedIDS {
                 
@@ -113,8 +116,11 @@ class EventDataSource {
                 
             }
             
+        //    print("Reading cal with \(calendars.count) calendars")
+            
             
         } else {
+            
             
             var idArray = [String]()
             

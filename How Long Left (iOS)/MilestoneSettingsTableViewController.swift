@@ -11,7 +11,7 @@ import UIKit
 class MilestoneSettingsTableViewController: UITableViewController {
     
     let scheduler = MilestoneNotificationScheduler()
-    let defaults = UserDefaults(suiteName: "group.com.ryankontos.How-Long-Left")!
+    let defaults = HLLDefaults.defaults
     var setMilestones = [Int]()
     static let defaultMilestones = [600, 300, 60, 0]
     var selectAllState = true

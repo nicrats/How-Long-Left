@@ -12,6 +12,7 @@ import EventKit
 import UserNotifications
 
 class InterfaceController: WKInterfaceController, HLLCountdownController, DataSourceChangedDelegate, SchoolModeChangedDelegate {
+    
     func percentageMilestoneReached(milestone percentage: Int, event: HLLEvent) {
         
     }
@@ -21,17 +22,25 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     }
     
     
-    func eventHalfDone(event: HLLEvent) {
-    }
-    
+    @IBOutlet var locationLabel: WKInterfaceLabel!
+    @IBOutlet weak var nameLabel: WKInterfaceLabel!
+    @IBOutlet weak var timerLabel: WKInterfaceTimer!
+    @IBOutlet weak var endsInLabel: WKInterfaceLabel!
+    @IBOutlet weak var NothingOnGroup: WKInterfaceGroup!
+    @IBOutlet weak var NothingOnAndNoUpcomingGroup: WKInterfaceGroup!
+    @IBOutlet weak var CountdownGroup: WKInterfaceGroup!
+    @IBOutlet weak var nothingOnText: WKInterfaceLabel!
+    @IBOutlet weak var nothingOnNoUpcomingText: WKInterfaceLabel!
+    @IBOutlet weak var upcomingEventsTable: WKInterfaceTable!
+    @IBOutlet weak var nextEventTimer: WKInterfaceTimer!
+    @IBOutlet var upcomingSection: WKInterfaceGroup!
     
     let Hdefaults = HLLDefaults()
-    
     let complication = CLKComplicationServer.sharedInstance()
     var eventMonitor: EventTimeRemainingMonitor?
     let calendarData = EventDataSource.shared
     var endCheckTimer = Timer()
-    let defaults = UserDefaults.standard
+    let defaults = HLLDefaults.defaults
     var currentTableIdentifiers = ""
     var currentCurrentIdentifier = ""
     var nothingOnInfo = ""
@@ -47,18 +56,6 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     var current: HLLEvent?
     var nextOccurEvent: HLLEvent?
     
-    @IBOutlet var hourTimerLabel: WKInterfaceTimer!
-    @IBOutlet weak var nameLabel: WKInterfaceLabel!
-    @IBOutlet weak var timerLabel: WKInterfaceTimer!
-    @IBOutlet weak var endsInLabel: WKInterfaceLabel!
-    @IBOutlet weak var NothingOnGroup: WKInterfaceGroup!
-    @IBOutlet weak var NothingOnAndNoUpcomingGroup: WKInterfaceGroup!
-    @IBOutlet weak var CountdownGroup: WKInterfaceGroup!
-    @IBOutlet weak var nothingOnText: WKInterfaceLabel!
-    @IBOutlet weak var nothingOnNoUpcomingText: WKInterfaceLabel!
-    @IBOutlet weak var upcomingEventsTable: WKInterfaceTable!
-    @IBOutlet weak var nextEventTimer: WKInterfaceTimer!
-    @IBOutlet var upcomingSection: WKInterfaceGroup!
 
     var arrayOfCurrentUpcomingTableIDS = [String]()
     
@@ -104,7 +101,9 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     
     func updateComplication() {
         
-        if let activeComplicationsArray = complication.activeComplications {
+        DispatchQueue.global(qos: .default).async {
+        
+            if let activeComplicationsArray = self.complication.activeComplications {
             
             
             for complicationItem in activeComplicationsArray {
@@ -113,6 +112,8 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
                 
             }
             
+            
+        }
             
         }
         
@@ -139,6 +140,8 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
+        print("Awake")
+        
         let center = UNUserNotificationCenter.current()
         // Request permission to display alerts and play sounds.
         center.requestAuthorization(options: [.alert, .sound])
@@ -147,14 +150,12 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
             
         }
         
-        self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(2), target: self, selector: #selector(self.updateEventDataGlobal), userInfo: nil, repeats: true)
-        RunLoop.main.add(self.timer, forMode: .common)
-        
+      //  self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(2), target: self, selector: #selector(self.updateEventDataGlobal), userInfo: nil, repeats: true)
+      //  RunLoop.main.add(self.timer, forMode: .common)
+      
         eventMonitor = EventTimeRemainingMonitor(delegate: self as HLLCountdownController)
         SchoolAnalyser.shared.addSchoolMOdeChangedDelegate(delegate: self)
         
-        SchoolAnalyser.shared.analyseCalendar()
-
         
 
             WatchSessionManager.sharedManager.addDataSourceChangedDelegate(delegate: self)
@@ -180,101 +181,33 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
         
             
             
-            
+            SchoolAnalyser.shared.analyseCalendar()
         // Configure interface objects here.
-       
-        self.getUpcomingEvents()
-        self.storeCurrent()
-
         
-        routine(waitForTable: true, asyncData: false)
-        
-        
-        
-    }
-    
-    @objc func run() {
-    
+       self.routine(waitForTable: false, asyncData: false)
             
-        self.getUpcomingEvents()
-        self.storeCurrent()
-
-        
-        
-    }
-    
-    @objc func updateEventDataGlobal() {
-        
-        DispatchQueue.global(qos: .default).async {
-        self.getUpcomingEvents()
-        self.storeCurrent()
-        }
         
         
         
     }
     
-    func storeCurrent() {
-        
-        current = calendarData.getCurrentEvent()
-        
-    }
     
     
     func routine(waitForTable: Bool, asyncData: Bool) {
         
-        if asyncData == true {
-            
-            DispatchQueue.global(qos: .default).async {
-                
-                self.run()
-                self.updateCountdownUI(Event: self.current)
-                
-                
-                if waitForTable == true {
-                    
-                    self.generateUpcomingEventTableText(events: self.upcoming)
-                    
-                } else {
-                    
-                    DispatchQueue.global(qos: .default).async {
-                        
-                        self.generateUpcomingEventTableText(events: self.upcoming)
-                        
-                    }
-                }
+            current = calendarData.getCurrentEvent()
+            self.getUpcomingEvents()
 
-                
-            }
-            
-            return
-            
-        } else {
-            
-            run()
             self.updateCountdownUI(Event: self.current)
-            
-            
-        }
-        
-        
-        if waitForTable == true {
-            
             self.generateUpcomingEventTableText(events: self.upcoming)
-            
-        } else {
-            
-            DispatchQueue.global(qos: .default).async {
-                
-                self.generateUpcomingEventTableText(events: self.upcoming)
-                
-            }
-        }
+
+           
     }
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         
+        print("Will activate")
         self.routine(waitForTable: false, asyncData: true)
             
         
@@ -293,12 +226,15 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     
     // Called when the eventstore changes.
     
-    routine(waitForTable: true, asyncData: true)
+    DispatchQueue.global(qos: .default).async {
     
-    DispatchQueue.global(qos: .userInteractive).async {
         SchoolAnalyser.shared.analyseCalendar()
-    }
-        DispatchQueue.global(qos: .default).async {
+        
+        self.routine(waitForTable: true, asyncData: true)
+    
+    
+    
+    
             self.updateComplication()
         }
     
@@ -377,71 +313,72 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
         
     }
     
-    
-    func totalUIUpdate() {
-        
-        self.getUpcomingEvents()
-        self.updateCountdownUI(Event: self.calendarData.getCurrentEvents().first)
-        self.generateUpcomingEventTableText(events: self.upcoming)
-       // self.populateUpcomingEventsTable()
-        
-        
-    }
-    
     func updateCountdownUI(Event: HLLEvent?) {
+        
+        DispatchQueue.main.async {
         
         var currentArray = [HLLEvent]()
         
-        if let current = Event {
-            
-            currentArray.append(current)
-            
-            timerLabel.setDate(current.endDate.addingTimeInterval(1))
-            timerLabel.start()
-            showTimerUI(show: true)
-            nameLabel.setText("\(current.title)")
+            if let currentE = Event {
             
                 
-                if let cal = EventDataSource.shared.calendarFromID(current.calendarID) {
+            currentArray.append(currentE)
+            
+            self.timerLabel.setDate(currentE.endDate.addingTimeInterval(1))
+            self.timerLabel.start()
+            
+                self.nameLabel.setText("\(currentE.title)")
+            
+                
+                if let cal = EventDataSource.shared.calendarFromID(currentE.calendarID) {
                     
-                    timerLabel.setTextColor(UIColor(cgColor: cal.cgColor))
+                    self.timerLabel.setTextColor(UIColor(cgColor: cal.cgColor))
                     
                 } else {
                     
-                  timerLabel.setTextColor(#colorLiteral(red: 1, green: 0.5769822296, blue: 0.1623516734, alpha: 1))
+                    self.timerLabel.setTextColor(#colorLiteral(red: 1, green: 0.5769822296, blue: 0.1623516734, alpha: 1))
                 }
                 
-            
+            if let loc = currentE.location {
+               
+                self.locationLabel.setText("(\(loc))")
+                self.locationLabel.setHidden(false)
+                
+            } else {
+                
+                self.locationLabel.setHidden(true)
+                
+            }
             
                 
-                self.nextOccurEvent = self.nextOccurFinder.findNextOccurrences(currentEvents: [current], upcomingEvents: self.calendarData.fetchEventsFromPresetPeriod(period: .Next2Weeks)).first
+               // self.nextOccurEvent = self.nextOccurFinder.findNextOccurrences(currentEvents: [current], upcomingEvents: self.calendarData.fetchEventsFromPresetPeriod(period: .Next2Weeks)).first
                 
 
-            
+            self.showTimerUI(show: true)
         } else {
             
-            timerLabel.stop()
-            showTimerUI(show: false)
+                self.timerLabel.stop()
+                self.showTimerUI(show: false)
             
-        nothingOnInfo = "No events are on right now"
+                self.nothingOnInfo = "No events are on right now"
         
         
-        if upcoming.isEmpty == false {
+                if self.upcoming.isEmpty == false {
             
             
-            if NXOdays == 0 {
+            if self.NXOdays == 0 {
             
-            nothingOnInfo = "Nothing is on until \(upcoming[0].startDate.formattedTime())."
+                self.nothingOnInfo = "Nothing is on until \(self.upcoming[0].startDate.formattedTime())."
          //   nextEventTimer.setDate(upcoming[0].startDate)
            // nextEventTimer.start()
-                nextEventTimer.setHidden(true)
+                self.nextEventTimer.setHidden(true)
          //   nextEventTimer.setHidden(false)
                 
-            } else if let uDay = NXOdaysString {
+            } else if let uDay = self.NXOdaysString {
                 
-                nextEventTimer.setHidden(true)
+                self.nextEventTimer.setHidden(true)
                 
-                nothingOnInfo = "Nothing is on until \(uDay)."
+                self.nothingOnInfo = "Nothing is on until \(uDay)."
                 
             }
         }
@@ -452,27 +389,11 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     }
         
         
-        eventMonitor?.setCurrentEvents(events: currentArray)
+            self.eventMonitor?.setCurrentEvents(events: currentArray)
         
-      /*  if let safeNextOccur = self.nextOccurEvent {
-            
-            DispatchQueue.main.async {
-                if self.isShowingNextOccurButton == false {
-                   // self.addMenuItem(with: .info, title: "Next \(safeNextOccur.title)", action: #selector(self.nextOccurTapped))
-                }
-                self.isShowingNextOccurButton = true
-            }
-        } else {
-            
-            if isShowingNextOccurButton == true {
-                
-                clearAllMenuItems()
-                
-            }
-            
-            isShowingNextOccurButton = false
-            
-        } */
+     
+        
+    }
         
     }
     
@@ -600,14 +521,20 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
             }
             
                 self.generatedEventRows = genedArray
-            populateUpcomingEventsTable()
+                self.populateUpcomingEventsTable()
             
         }
         
             self.generatedEventRows = genedArray
         
-    }
     
+    
+    
+    
+        
+    }
+        
+    }
     
     func populateUpcomingEventsTable() {
         
@@ -632,7 +559,7 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
                 if let locLabelText = rowContents.eventLocationText {
                     
                     row.eventLocationLabel.setText(locLabelText)
-                        row.eventLocationLabel.setHidden(false)
+                    row.eventLocationLabel.setHidden(false)
                     
                 } else {
                     
@@ -645,8 +572,6 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
             
         }
         
-        }
-        
     }
     
     override func contextsForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> [Any]? {
@@ -655,6 +580,13 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
         
         
     }
+    
+    
+    
+    
+    func eventHalfDone(event: HLLEvent) {
+    }
+    
         
         
     

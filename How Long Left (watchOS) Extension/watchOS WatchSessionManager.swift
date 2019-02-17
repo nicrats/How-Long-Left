@@ -14,7 +14,7 @@ import UserNotifications
 
 class WatchSessionManager: NSObject, WCSessionDelegate {
     
-    let defaults = UserDefaults.standard
+    let defaults = HLLDefaults.defaults
     let complication = CLKComplicationServer.sharedInstance()
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {

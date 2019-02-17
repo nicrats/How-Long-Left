@@ -55,7 +55,7 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
     @IBOutlet weak var upcomingButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     
-    let defaults = UserDefaults(suiteName: "group.com.ryankontos.How-Long-Left")!
+    let defaults = HLLDefaults.defaults
     
     @IBAction func countdownTapped(_ sender: UITapGestureRecognizer) {
         

@@ -13,7 +13,7 @@ import EventKit
 class SettingsCalendarSelectTableViewController: UITableViewController {
     
     let calendar = EventDataSource.shared
-    let defaults = UserDefaults(suiteName: "group.com.ryankontos.How-Long-Left")!
+    let defaults = HLLDefaults.defaults
     var setCalendars = [String]()
     var calendars = [EKCalendar]()
     var selectAllState = true

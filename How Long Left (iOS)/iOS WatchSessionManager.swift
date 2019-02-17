@@ -12,7 +12,7 @@ import EventKit
 
 class WatchSessionManager: NSObject, WCSessionDelegate {
     
-    let defaults = UserDefaults(suiteName: "group.com.ryankontos.How-Long-Left")
+    let defaults = HLLDefaults.defaults
     
     func sessionDidBecomeInactive(_ session: WCSession) {
         
