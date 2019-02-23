@@ -1,31 +1,24 @@
 PODS:
-  - Erik (4.2.0):
-    - Erik/Core (= 4.2.0)
-    - Kanna
-  - Erik/Core (4.2.0):
-    - Kanna
-  - Kanna (4.0.3)
-  - TimelineCards (1.0.5)
+  - HotKey (0.1.1)
+  - Preferences (0.2.1)
   - ViewAnimator (2.2.2)
 
 DEPENDENCIES:
-  - Erik
-  - TimelineCards
+  - HotKey
+  - Preferences
   - ViewAnimator
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Erik
-    - Kanna
-    - TimelineCards
+    - HotKey
+    - Preferences
     - ViewAnimator
 
 SPEC CHECKSUMS:
-  Erik: 6d235ccca881877bec9a28b833dfbb86dca91165
-  Kanna: 0ebbdd0e7e3308f0aafbd569e79c8cadc5eb877c
-  TimelineCards: 8f3377fbe40ae587b5ad9e6d29dd7e6d2654e418
+  HotKey: 0be143fd015544a63c51be6dc2066dbf455ced72
+  Preferences: 5543bfd757a2485a310683da977d661c0ae509a9
   ViewAnimator: 6eaa112663b6a2d9e6b2573df65b416dd051cbe4
 
-PODFILE CHECKSUM: 126e543e05aae2484514563b89f8d952fb6f6907
+PODFILE CHECKSUM: 8b48cca5b788015378e79d1ac3f2f98ab84fd575
 
 COCOAPODS: 1.5.3

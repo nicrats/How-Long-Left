@@ -114,6 +114,18 @@ class EventTitleShortener {
             newTitle = "GEL"
         }
         
+        if event.originalTitle.contains(text:"Early Childhood") {
+            newTitle = "EEC"
+        }
+            
+        if event.originalTitle.contains(text:"Bussiness Studies") {
+            newTitle = "Bussiness Studies"
+        }
+            
+        if event.originalTitle.contains(text:"Bussiness Servies") {
+            newTitle = "Bussiness Servies"
+        }
+            
         if event.originalTitle.contains(text:"IST") {
             newTitle = "IST"
         }
@@ -139,7 +151,7 @@ class EventTitleShortener {
         }
         
         if event.originalTitle.contains(text:"Study") {
-            newTitle = "Study Period"
+            newTitle = "Study"
         }
         
         if event.originalTitle.contains(text:"Drama") {

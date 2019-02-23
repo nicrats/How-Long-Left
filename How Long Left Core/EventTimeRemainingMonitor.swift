@@ -62,7 +62,9 @@ class EventTimeRemainingMonitor {
         
         #elseif os(OSX)
         
+        EventCache.fetchQueue.sync(flags: .barrier) {
         events = EventCache.currentEvents
+        }
         
         #endif
         

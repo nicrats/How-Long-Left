@@ -97,27 +97,28 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
     
     override func awakeFromNib() {
         
-        main.mainRunLoop()
+        
+            self.main.mainRunLoop()
         
         SchoolAnalyser.shared.analyseCalendar()
        // main.mainRunLoop()
         
       //  UIController.awokeAt = Date()
-        let currentVersion = version.currentVersion
+            let currentVersion = self.version.currentVersion
         
         let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
         
-        appInfoRow.title = "How Long Left \(currentVersion) (\(build!))"
+            self.appInfoRow.title = "How Long Left \(currentVersion) (\(build!))"
         
-        buildInfoRow.title = "Built: \(compileDate.formattedDate()), \(compileDate.formattedTime())"
+            self.buildInfoRow.title = "Built: \(self.compileDate.formattedDate()), \(self.compileDate.formattedTime())"
         
         
         
-        statusItem.menu = mainMenu
-        icon.isTemplate = true
-        statusItem.image = icon
-        mainMenu.removeItem(at: 0)
-        mainMenu.delegate = self as NSMenuDelegate
+            self.statusItem.menu = self.mainMenu
+            self.icon.isTemplate = true
+            self.statusItem.image = self.icon
+            self.mainMenu.removeItem(at: 0)
+            self.mainMenu.delegate = self as NSMenuDelegate
         
     }
     
@@ -340,7 +341,9 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
     var matchedEvent = false
     
     if strings.count == 1 {
+        EventCache.fetchQueue.async(flags: .barrier) {
         EventCache.primaryEvent = nil
+        }
     }
     
    
@@ -413,8 +416,9 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
         
         if sender.state == .on {
             
-            
+            EventCache.fetchQueue.async(flags: .barrier) {
             EventCache.primaryEvent = nil
+            }
             
         } else {
 
@@ -427,15 +431,20 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
             } else {
                 
                 clickedID = countdownMenuItemEvents[sender]
-                EventCache.primaryEvent = countdownMenuItemEvents[sender]
+                EventCache.fetchQueue.async(flags: .barrier) {
+                EventCache.primaryEvent = self.countdownMenuItemEvents[sender]
+                }
                 
             }
             
             
         } else {
                 
+                
                 clickedID = countdownMenuItemEvents[sender]
-                EventCache.primaryEvent = countdownMenuItemEvents[sender]
+                EventCache.fetchQueue.async(flags: .barrier) {
+                EventCache.primaryEvent = self.countdownMenuItemEvents[sender]
+                }
             
         }
         

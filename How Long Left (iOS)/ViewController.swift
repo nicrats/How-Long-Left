@@ -153,6 +153,8 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
     
     override func viewDidLoad() {
         
+
+        
         super.viewDidLoad()
         
         if ViewController.launchedWithSettingsShortcut == false {

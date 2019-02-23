@@ -121,7 +121,7 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     
     override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
         
-        if segueIdentifier == "UpcomingEventSegue" {
+        if segueIdentifier == "eventInfoSegue" {
         
         let event = upcoming[rowIndex]
             
@@ -315,7 +315,6 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     
     func updateCountdownUI(Event: HLLEvent?) {
         
-        DispatchQueue.main.async {
         
         var currentArray = [HLLEvent]()
         
@@ -351,7 +350,7 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
             }
             
                 
-               // self.nextOccurEvent = self.nextOccurFinder.findNextOccurrences(currentEvents: [current], upcomingEvents: self.calendarData.fetchEventsFromPresetPeriod(period: .Next2Weeks)).first
+               self.nextOccurEvent = self.nextOccurFinder.findNextOccurrences(currentEvents: [currentE], upcomingEvents: self.calendarData.fetchEventsFromPresetPeriod(period: .Next2Weeks)).first
                 
 
             self.showTimerUI(show: true)
@@ -393,7 +392,6 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
         
      
         
-    }
         
     }
     
@@ -403,11 +401,6 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
         
     }
     
-    @IBAction func countdownViewTapped(_ sender: Any) {
-        
-        pushController(withName: "NextOccurView", context: nextOccurEvent)
-        
-    }
     
     func showTimerUI(show: Bool) {
         
@@ -574,12 +567,6 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
         
     }
     
-    override func contextsForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> [Any]? {
-        
-        return [upcoming[rowIndex]]
-        
-        
-    }
     
     
     
@@ -587,7 +574,18 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     func eventHalfDone(event: HLLEvent) {
     }
     
+    @IBAction func countdownViewTapped(_ sender: Any) {
         
+        if let safeCurrent = current {
+            
+            pushController(withName: "eventView", context: safeCurrent)
+            
+        }
+        
+        
+        
+    }
+    
         
     
 }

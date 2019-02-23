@@ -7,8 +7,6 @@ target 'How Long Left (iOS)' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 pod "ViewAnimator"
-pod 'TimelineCards'
-pod 'Erik'
   # Pods for How Long Left (iOS)
 
 end
@@ -17,7 +15,8 @@ target 'How Long Left (macOS)' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   # Pods for How Long Left (macOS)
-
+pod 'HotKey'
+pod 'Preferences'
 end
 
 target 'How Long Left (watchOS)' do

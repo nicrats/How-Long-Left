@@ -73,9 +73,9 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" id="mAe-D1-pFc">
-                    <rect key="frame" x="36" y="149" width="222" height="18"/>
+                    <rect key="frame" x="36" y="149" width="229" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Show upcoming events submenu" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="xbs-WR-go2">
+                    <buttonCell key="cell" type="check" title="Show upcoming events submenus" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="xbs-WR-go2">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -84,9 +84,9 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="QMa-H3-f9Z">
-                    <rect key="frame" x="55" y="134" width="180" height="14"/>
+                    <rect key="frame" x="55" y="132" width="327" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" title="Show upcoming event submenus." id="tns-ED-Ch8">
+                    <textFieldCell key="cell" title="Show upcoming day and upcoming week submenus." id="tns-ED-Ch8">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

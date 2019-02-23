@@ -3,166 +3,148 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A3CE11628368107F09110916C571E5A /* LayoutEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C58C5DA040E0C6BA3C6D38C8E77C7A7 /* LayoutEngine.swift */; };
+		095907C37DF810C0A30E2DCB901C74E7 /* Preferences-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 202DA8CBB500CABF97269AF8E5D36E07 /* Preferences-dummy.m */; };
+		098C43FCBC4788EC6B665070A2242BDE /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090443F3F43BB397D102DAF88D7E9CEE /* Animation.swift */; };
+		099CCE29FDD81038505513FD5A313AA3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBBB82929C931E42DA3830EEF73763F9 /* Cocoa.framework */; };
+		0BC629CC89A0C7148332C506D29C627A /* HotKey-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFAC25B2B4147A6C7BF6AD1FBB1FE3B /* HotKey-dummy.m */; };
 		0DABB852AD6CF247407647AF3039A3FB /* Pods-How Long Left Siri ExtensionUI-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9575796C50E3DC41560E965D5AB745D3 /* Pods-How Long Left Siri ExtensionUI-dummy.m */; };
-		0F8B633BFEAB2BF65EA888FB283B58C5 /* ViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AF80660AF4DAD28FDD61BFAD69AC30 /* ViewAnimator.swift */; };
-		1016DE0E2E0F93291AF2D70025733C60 /* TimelineCards-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 02174D3F53D48F672C8CC8D2B338683B /* TimelineCards-dummy.m */; };
-		1386CC189406D272649BE106F049D943 /* Pods-How Long Left (macOS)-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3738F257FBD78EF47148A500857195D4 /* Pods-How Long Left (macOS)-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1E87EFB2F942C1D858168AEC84697664 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19DC00212CD2432E879508DBA6169354 /* Foundation.framework */; };
-		2163747B784A7003F94207182A3C7908 /* AnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C72B8E8A02F5EB9C91EC87E85B622B /* AnimationType.swift */; };
-		23C5318E462F4565737B4370D1AC204E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1B5EFCFBDB9EB46C1C39F3BE38959F /* Foundation.framework */; };
-		23E2AEB2F13E501FA10353C431B4C3D9 /* UITableView + ViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A220751A3D8A762E3E3409A16509A88D /* UITableView + ViewAnimator.swift */; };
-		2709F3914A56564281C5C05F688AF717 /* TimelineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F7BEAE4039D2BE7FCE340F72DA4293 /* TimelineItem.swift */; };
-		29286E640F32EB5B8794560B6B77DBAA /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50894DF0077D80076490616511E0A88C /* Animation.swift */; };
-		2FDAB6D29BA13899769A93F4E3D1E8A0 /* Kanna.h in Headers */ = {isa = PBXBuildFile; fileRef = B37C9523419050BC106EE7927821C4CE /* Kanna.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		30706357C093ABC3973F5598AC7A46B8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D101DDBCF199137DADF6AFFDE626AC1 /* Cocoa.framework */; };
+		0EC8540B1AE9EE3130E8FF81A50EC2CB /* NSEventModifierFlags+HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B389BC3577F3BBBDE35A50B993D43A00 /* NSEventModifierFlags+HotKey.swift */; };
+		0F9E8F3645491AB3077270417152ACFC /* KeyCombo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF1277A6FBA208CB51CA8558D84D4F1 /* KeyCombo.swift */; };
+		1E87EFB2F942C1D858168AEC84697664 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7BD552F04670866B15262D91BC96D5A /* Foundation.framework */; };
+		1F8A59117EFE99C3603C44AC57A01879 /* ViewAnimatorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F139014559204496C96D93C9A09C3 /* ViewAnimatorConfig.swift */; };
+		23C5318E462F4565737B4370D1AC204E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AABE78496E40EB26A7F7F803B123A6 /* Foundation.framework */; };
+		24D5598483563F210C1EEE1C65C20B6D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBBB82929C931E42DA3830EEF73763F9 /* Cocoa.framework */; };
+		2F24D9D2C9E3F1D57E214128DE4428C2 /* ViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6525E862DB18B1CA1044BF3A92D16828 /* ViewAnimator.swift */; };
 		352C902ADB3484D22BE7410B0DE982F6 /* Pods-How Long Left Siri Extension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F37F41D3E93348F4F8EDE43492A2DC4B /* Pods-How Long Left Siri Extension-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3586EA8EE787B7133DA9430C70A3FE2E /* Pods-How Long Left (macOS)-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D8C6026383AC903EC4C352B1BB89C /* Pods-How Long Left (macOS)-dummy.m */; };
-		3CE488369EF3089C829E88CB047B203B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19DC00212CD2432E879508DBA6169354 /* Foundation.framework */; };
+		39109584379F0A88CCFB1B50647BE9DD /* ViewAnimator-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E42FCFEB7918F5D9F92027067341A0 /* ViewAnimator-dummy.m */; };
 		3EF521A7CCF61F4450BA829C03DA6FF0 /* Pods-How Long Left (watchOS) Extension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A98C05F372862698DDC21FEB78114F80 /* Pods-How Long Left (watchOS) Extension-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3F89C31BECFD06D40CD8DA879770C3BF /* TimelineCards-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C27ED05D3BB17DCF7575F531090DD61C /* TimelineCards-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		592B7458CB7DED83D35EF54F14EE84E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1B5EFCFBDB9EB46C1C39F3BE38959F /* Foundation.framework */; };
-		5BA7A5D60724DB712159B78550A6228B /* ViewAnimator-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A493804D896A3D0E34E519340726183F /* ViewAnimator-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		61D48EB1C52E8655971D8016AD26A443 /* UICollectionView + ViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8397F8107171672D29D1BD47852E95F /* UICollectionView + ViewAnimator.swift */; };
+		4B9B11D8AB04AB4FDF9C9C7C21FE967E /* Preferences-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 973B8AE1DB14F0A3BE58815E8EE16FDB /* Preferences-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4CE70C08C55F35CF629C65D044F741C6 /* PreferencesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403F477472485FDBD9B00900D80B5136 /* PreferencesTabViewController.swift */; };
+		4DAF91C376939C9BA42F0962E7803960 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30193D6ED2499A38F50EA644203B8165 /* Utilities.swift */; };
+		516AD26E662F54A116735DDCF1A5DF80 /* UICollectionView + ViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5072C207E4AEF4F743C3BB1AA78E19 /* UICollectionView + ViewAnimator.swift */; };
+		592B7458CB7DED83D35EF54F14EE84E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AABE78496E40EB26A7F7F803B123A6 /* Foundation.framework */; };
+		631DDD374F31BD2259B1EE2A54D6EBD8 /* UITableView + ViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816BECCD877F4ADC13444E41771CA4F3 /* UITableView + ViewAnimator.swift */; };
 		63BB99A0044BE482F9E1399F4E174887 /* Pods-How Long Left (watchOS)-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CFF1477813EB5F06D43C287B8EFEF3A0 /* Pods-How Long Left (watchOS)-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74F0E11ACAD3B5A50B2E5F3E8B09F68B /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69FF976304F4C8DD3289F2C2633AC2 /* Document.swift */; };
-		79E83E6A5F24DA997A8D0E6B4841EF9E /* CSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D618EC71718EC7D33FA933922A9C60 /* CSS.swift */; };
-		7F6F8A215F1EF2B033B50F2AA8B7EF9D /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF26D6852C4D1D3E9D419E9BD91960E /* Utilities.swift */; };
+		657A257EC389269A1A166CD317BD53C7 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B603CF99A3BDA39D0DC8CF174789714 /* Key.swift */; };
+		6924B09F58320FAAD7E104EC5A5AB01A /* ViewAnimator-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E20819B6A34675D66B0E3C2ECF16F743 /* ViewAnimator-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6A4AB07018EC0827AFA03DB4B037D710 /* Pods-How Long Left (iOS)-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A53CC217F9DEE441714E671F1A834FF /* Pods-How Long Left (iOS)-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		759A67E8577809D89BFC3158DB8A8A50 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBBB82929C931E42DA3830EEF73763F9 /* Cocoa.framework */; };
+		7DD4DDC26867F8B2A8B3E842F9D361F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7BD552F04670866B15262D91BC96D5A /* Foundation.framework */; };
 		80BE358B105D0B6EE83134312C73005A /* Pods-How Long Left Siri Extension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1735CA63A712ED15166A23F7FC0D0C /* Pods-How Long Left Siri Extension-dummy.m */; };
-		862876518DC4E121D4C08DE0E1A3C4CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19DC00212CD2432E879508DBA6169354 /* Foundation.framework */; };
-		8B733B637035F0E2AAA52A306C6C2FA1 /* Kanna.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D77134CD64D77AA4D8CB026E3E13075 /* Kanna.swift */; };
-		9943869B1C26B25749D87596B2589EC0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19DC00212CD2432E879508DBA6169354 /* Foundation.framework */; };
-		99F55EE9B9883288010E8F3812415C1A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBFB62751507DA348CFBD0E8BB172EE1 /* CoreGraphics.framework */; };
-		9B816A0EC71230D417F2942F06B5BF1E /* ViewAnimator-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 89452690E53B188B7B608EDA78521C7A /* ViewAnimator-dummy.m */; };
-		9EB664D41DD3212F7D2B1635AC293203 /* Kanna.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC06268C61AD7BE4BC2F0D5C2332D74 /* Kanna.framework */; };
-		A299506B4C3C4EE8923F4073AD36C59D /* libxmlHTMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF59834BCDAE7969052B94D8959E26E /* libxmlHTMLNode.swift */; };
-		A589BADA9AD1ACB356D5308F7DF4AB67 /* Pods-How Long Left (iOS)-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D76741862A9590134714A6A91224F4C /* Pods-How Long Left (iOS)-dummy.m */; };
-		A9CEC6921D52C35E6AD8E5271CB3FF41 /* Erik-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5259803EB8C08668603BB79A60934B /* Erik-dummy.m */; };
-		AAF92942BE8BF1A62EDEFC3509CF9323 /* Kanna-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1066163016C039F36F2B2FEEE6DD2F9D /* Kanna-dummy.m */; };
+		814F306420675D2586FE4EF0A239AB4B /* HotKeysController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B3184FEC688FE1802D8B685DC5DF95 /* HotKeysController.swift */; };
+		8A741655C496DC88B0EDDE9AC3FFB35A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7BD552F04670866B15262D91BC96D5A /* Foundation.framework */; };
+		8DEF155EE2362D6BC9AC43B480476F98 /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AED74E0AFA4EF5A88AC3512CDFA744E /* HotKey.swift */; };
+		968A15A61EE26AD06F73D75CF76066ED /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C34C6FD9F112D5B24C45F4260172D5 /* Direction.swift */; };
+		99D3C908737119A8591D84A04E944423 /* Preferenceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5D26FA3D5381F9D0E62FF2660E92F9 /* Preferenceable.swift */; };
+		A49489E19A76BAE5F66F482DD372C0A7 /* HotKey-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 19270F165F85A95ADA63A9CE3FD46A78 /* HotKey-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ABB38D216BB6489256EF6860D695D992 /* Appkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98A42021D822C204DDE6A1D223A7892C /* Appkit.framework */; };
 		B0920ABCB8F37010C9812AF0AD9714E9 /* Pods-How Long Left (watchOS) Extension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 611B1D3F09B1F93EEC29DA2D93135557 /* Pods-How Long Left (watchOS) Extension-dummy.m */; };
-		B2768B6D588E18F35E1859889A40AC46 /* Erik-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 986AD07365E431520471DA2865F10EC0 /* Erik-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BF4C8BFC80FF8556E0A55EA881D1A596 /* Erik.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479282F19E19BCC558A69930977C57BC /* Erik.swift */; };
-		BF7AC57A238412C618BD9ED77626081B /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F651A983A1B8C334FED71C60295D8AE /* Direction.swift */; };
-		C30628670FF91BE419B994314BE045AB /* libxmlHTMLDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FF4D7F4F9AA9D4B236230E2AF5B4C9 /* libxmlHTMLDocument.swift */; };
-		C7CDED0F4379276B5A9C5E9FB1B9A8AA /* TimelineFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76531750D65F71217A5E349F455C0F6 /* TimelineFeed.swift */; };
-		C86DDEE98058FC887BDD42E05F6EB553 /* libxmlParserOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FD8DFCF648A3C47D57AB63A2A75401 /* libxmlParserOption.swift */; };
+		C5D0A78265928D90F79C3054D97A6BA1 /* AnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B834AF8620ADE65E99E57D870088C34 /* AnimationType.swift */; };
 		D0415471C7756789AE5AEE3ACFE416BF /* Pods-How Long Left Siri ExtensionUI-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B09F75841F3C092ACDA8F6BCB5321F7 /* Pods-How Long Left Siri ExtensionUI-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2346A3A6F95839930622A14C84742FD /* Pods-How Long Left (watchOS)-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B19C48DAB5CDC7171C2ED9F48FAFF677 /* Pods-How Long Left (watchOS)-dummy.m */; };
-		DAF3F2A933DFE7CDD04FCA746F7B746C /* TimelineCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB077D8BF7E2E4088AE1135A33A8A0A3 /* TimelineCard.swift */; };
-		DC58CB49D45E650EF61066599045C5C6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19DC00212CD2432E879508DBA6169354 /* Foundation.framework */; };
-		DCD9D7D574E406CEEAAD6A7DB66415C2 /* ViewAnimatorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B23706C601D8AA390AFB6A790A29CB /* ViewAnimatorConfig.swift */; };
-		DF9FDEE2163B5D5AB2C832D709C5E48E /* Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA71589681E55854337219E26E27E33 /* Deprecated.swift */; };
-		E0C3C0CA77EC275E6A243877AEEC176A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19DC00212CD2432E879508DBA6169354 /* Foundation.framework */; };
-		E250C4B7F8A310CBC2E6BF673E0AC4E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDB7BB6CC4E6BE7B8F8D2E081C7C67E /* UIKit.framework */; };
-		E4058F096C11FC18BBA5C44F72DC48E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19DC00212CD2432E879508DBA6169354 /* Foundation.framework */; };
-		E965E9D1C145D5A91F7238D2079EDB5B /* Pods-How Long Left (iOS)-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A53CC217F9DEE441714E671F1A834FF /* Pods-How Long Left (iOS)-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAAF5601CE993D45361247DBB87835E3 /* Kanna-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7461D9BDFCE17C35322AA7924E094E83 /* Kanna-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D3E0C95646D925F4E68311491264F636 /* Pods-How Long Left (macOS)-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D33D8C6026383AC903EC4C352B1BB89C /* Pods-How Long Left (macOS)-dummy.m */; };
+		DAE3224BD35D96E643FBF22A270BD904 /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698D7FC47B749375513E3D0FB9DAD633 /* util.swift */; };
+		DAE7A8E05B09BF28EB6B98F8A80165AD /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7F14D904B6595AA7704FB6E7FE3B41 /* Carbon.framework */; };
+		DBEF2629D1BD211C307A6DE8A129FCD0 /* Pods-How Long Left (macOS)-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3738F257FBD78EF47148A500857195D4 /* Pods-How Long Left (macOS)-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E0C3C0CA77EC275E6A243877AEEC176A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7BD552F04670866B15262D91BC96D5A /* Foundation.framework */; };
+		E25FB339406A68512E04E43ABB6FF368 /* Pods-How Long Left (iOS)-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D76741862A9590134714A6A91224F4C /* Pods-How Long Left (iOS)-dummy.m */; };
+		FEF12C186BDD1AB1AA38E6B22E9E8D9C /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A9FC043A674EC49DA8451F45A83F97 /* PreferencesWindowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3C451E493E2B261C14AF2BDAC150FC90 /* PBXContainerItemProxy */ = {
+		2675D18302CEE6BB24A6AA1C9D592DE4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = DBD3FA030AC2DA1343D98D95A0FAA9FA;
+			remoteGlobalIDString = B4701C5E905FC11D456850A7AE01D268;
+			remoteInfo = Preferences;
+		};
+		2D36A55EA8A40D32CB8C0589889F592E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2EDF8A783892E4A4E02B59ABA3405810;
 			remoteInfo = ViewAnimator;
 		};
-		C9B0943D1D90CEB853DDB13E5B83F69C /* PBXContainerItemProxy */ = {
+		49878EE71AD850936782C1D060F5E040 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 2CD56620BF09F0D84030E8BE87B406BD;
-			remoteInfo = Kanna;
-		};
-		D0CE61A01A92226E4937E56A441A8329 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B3439EE5CEC7D1312AA853136FE9C7E1;
-			remoteInfo = Erik;
-		};
-		EA9D8B6C09227C1F7BBBD85AF340D995 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2CD56620BF09F0D84030E8BE87B406BD;
-			remoteInfo = Kanna;
-		};
-		F18699018E883C422EC341BBC06C8BE0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 85A295ED2537F027090FAEEDADEADE5F;
-			remoteInfo = TimelineCards;
+			remoteGlobalIDString = 91C9120C8D4DC6ECA8A40DEAD4F2B1B5;
+			remoteInfo = HotKey;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02174D3F53D48F672C8CC8D2B338683B /* TimelineCards-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TimelineCards-dummy.m"; sourceTree = "<group>"; };
 		06517A433238A207E776BD72B854806A /* Pods-How Long Left (watchOS) Extension-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left (watchOS) Extension-frameworks.sh"; sourceTree = "<group>"; };
 		06D4DCDC43DAD917F2DCAF8127880E5E /* Pods-How Long Left Siri ExtensionUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left Siri ExtensionUI.debug.xcconfig"; sourceTree = "<group>"; };
-		0D101DDBCF199137DADF6AFFDE626AC1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		090443F3F43BB397D102DAF88D7E9CEE /* Animation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Animation.swift; path = ViewAnimator/Classes/Protocols/Animation.swift; sourceTree = "<group>"; };
+		0BE53F16B0004E3BEF69ECB276653102 /* ViewAnimator-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ViewAnimator-prefix.pch"; sourceTree = "<group>"; };
 		0D76741862A9590134714A6A91224F4C /* Pods-How Long Left (iOS)-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-How Long Left (iOS)-dummy.m"; sourceTree = "<group>"; };
 		0EC1EB947CD0C72F394AF9289A547D5D /* Pods-How Long Left (macOS)-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left (macOS)-resources.sh"; sourceTree = "<group>"; };
 		0F5F9B1643BF7965B5F96BD8971E8B4E /* Pods-How Long Left (watchOS) Extension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-How Long Left (watchOS) Extension.modulemap"; sourceTree = "<group>"; };
-		1066163016C039F36F2B2FEEE6DD2F9D /* Kanna-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Kanna-dummy.m"; sourceTree = "<group>"; };
+		11C59EEB40597A0EE9CFB21895018856 /* HotKey.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HotKey.xcconfig; sourceTree = "<group>"; };
 		14AC99566C2D024B96CAC44949DF80AE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		17AF80660AF4DAD28FDD61BFAD69AC30 /* ViewAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewAnimator.swift; path = ViewAnimator/Classes/ViewAnimator.swift; sourceTree = "<group>"; };
+		176F139014559204496C96D93C9A09C3 /* ViewAnimatorConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewAnimatorConfig.swift; path = ViewAnimator/Classes/ViewAnimatorConfig.swift; sourceTree = "<group>"; };
+		17C34C6FD9F112D5B24C45F4260172D5 /* Direction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Direction.swift; path = ViewAnimator/Classes/Models/Direction.swift; sourceTree = "<group>"; };
+		19270F165F85A95ADA63A9CE3FD46A78 /* HotKey-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HotKey-umbrella.h"; sourceTree = "<group>"; };
 		19601A4B7D7D9F2ABE297D6AEF6F4E8C /* Pods-How Long Left (watchOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left (watchOS).debug.xcconfig"; sourceTree = "<group>"; };
-		19DC00212CD2432E879508DBA6169354 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		19F220A9FFF3A76EF565B50EF473E081 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B47DB120BCB22E73B5F378FCB2287C8 /* Pods-How Long Left (watchOS) Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left (watchOS) Extension.debug.xcconfig"; sourceTree = "<group>"; };
-		1EFD21FA01ABFE9CC7DDF39499F58452 /* TimelineCards.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = TimelineCards.modulemap; sourceTree = "<group>"; };
+		1B834AF8620ADE65E99E57D870088C34 /* AnimationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnimationType.swift; path = ViewAnimator/Classes/Models/AnimationType.swift; sourceTree = "<group>"; };
+		1BFAC25B2B4147A6C7BF6AD1FBB1FE3B /* HotKey-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HotKey-dummy.m"; sourceTree = "<group>"; };
+		1E01DC6B995CEADDEB15CC22BAF7A5A4 /* Pods_How_Long_Left__watchOS__Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left__watchOS__Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		202DA8CBB500CABF97269AF8E5D36E07 /* Preferences-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Preferences-dummy.m"; sourceTree = "<group>"; };
 		238AF64D66B2F1C03D8999F7E3D1C56E /* Pods-How Long Left (watchOS)-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left (watchOS)-frameworks.sh"; sourceTree = "<group>"; };
-		24390EFD555DD124430DFF9724065945 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		25EC765B3BD676FE439A9B8CECF5746E /* Pods_How_Long_Left__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_How_Long_Left__iOS_.framework; path = "Pods-How Long Left (iOS).framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		276CC964D74D2DF52AB143428D9EA6ED /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23FD3690748BE56BAC951F66C17A3A15 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		243432F095D995D49762E3975B1060D6 /* Pods_How_Long_Left__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		24390EFD555DD124430DFF9724065945 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		2A828AB260CBE2F8D1C744D1F7F84B43 /* Pods-How Long Left (macOS)-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-How Long Left (macOS)-acknowledgements.markdown"; sourceTree = "<group>"; };
 		2B494CD3367E0077E3C2C110C3364C4B /* Pods-How Long Left Siri Extension-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-How Long Left Siri Extension-acknowledgements.plist"; sourceTree = "<group>"; };
-		2BA71589681E55854337219E26E27E33 /* Deprecated.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Deprecated.swift; path = Sources/Kanna/Deprecated.swift; sourceTree = "<group>"; };
+		2B603CF99A3BDA39D0DC8CF174789714 /* Key.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Key.swift; path = Sources/HotKey/Key.swift; sourceTree = "<group>"; };
+		2BE4248D491F1171197BB3135E99E51C /* ViewAnimator.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ViewAnimator.xcconfig; sourceTree = "<group>"; };
+		30193D6ED2499A38F50EA644203B8165 /* Utilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = ViewAnimator/Classes/Utilities/Utilities.swift; sourceTree = "<group>"; };
 		358A034700E57E57DD1637B968629361 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3738F257FBD78EF47148A500857195D4 /* Pods-How Long Left (macOS)-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-How Long Left (macOS)-umbrella.h"; sourceTree = "<group>"; };
-		3DF59834BCDAE7969052B94D8959E26E /* libxmlHTMLNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = libxmlHTMLNode.swift; path = Sources/Kanna/libxmlHTMLNode.swift; sourceTree = "<group>"; };
+		403F477472485FDBD9B00900D80B5136 /* PreferencesTabViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PreferencesTabViewController.swift; path = Sources/Preferences/PreferencesTabViewController.swift; sourceTree = "<group>"; };
 		4372F7FB20830385EB90DABB09BD71F7 /* Pods-How Long Left (watchOS)-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left (watchOS)-resources.sh"; sourceTree = "<group>"; };
-		479282F19E19BCC558A69930977C57BC /* Erik.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Erik.swift; path = Sources/Erik.swift; sourceTree = "<group>"; };
-		4EFCB6DE1D1CF6D9015FA1EF79350848 /* TimelineCards-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TimelineCards-prefix.pch"; sourceTree = "<group>"; };
-		4F651A983A1B8C334FED71C60295D8AE /* Direction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Direction.swift; path = ViewAnimator/Classes/Models/Direction.swift; sourceTree = "<group>"; };
-		50894DF0077D80076490616511E0A88C /* Animation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Animation.swift; path = ViewAnimator/Classes/Protocols/Animation.swift; sourceTree = "<group>"; };
-		53B23706C601D8AA390AFB6A790A29CB /* ViewAnimatorConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewAnimatorConfig.swift; path = ViewAnimator/Classes/ViewAnimatorConfig.swift; sourceTree = "<group>"; };
+		494E507558B170047F236ADF63F65FC1 /* HotKey-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HotKey-prefix.pch"; sourceTree = "<group>"; };
+		4A3CADB6CAAFDC6114D281E9B4059FC5 /* ViewAnimator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ViewAnimator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AC9C264857B815D54141459BE095981 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		53E097C25C0248F23FD29E12125AF209 /* Pods-How Long Left Siri Extension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-How Long Left Siri Extension.modulemap"; sourceTree = "<group>"; };
 		545F2A5DA5533A028BA808A0F3911F7A /* Pods-How Long Left Siri Extension-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-How Long Left Siri Extension-acknowledgements.markdown"; sourceTree = "<group>"; };
 		58F95C9A4043C5A073C94865F5842A96 /* Pods-How Long Left (iOS)-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left (iOS)-resources.sh"; sourceTree = "<group>"; };
 		5A7B831E8629495A6E8B9AB26BCCADCC /* Pods-How Long Left (macOS)-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left (macOS)-frameworks.sh"; sourceTree = "<group>"; };
-		5BA9B997DD909535998DCD3D99030B40 /* Erik.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Erik.framework; path = Erik.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B74C4962E4DEA0228ED3A831D69DB39 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E5072C207E4AEF4F743C3BB1AA78E19 /* UICollectionView + ViewAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UICollectionView + ViewAnimator.swift"; path = "ViewAnimator/Classes/Extensions/UICollectionView + ViewAnimator.swift"; sourceTree = "<group>"; };
 		5E96C6BD4254F27D9690E13D6918EB3F /* Pods-How Long Left Siri Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left Siri Extension.debug.xcconfig"; sourceTree = "<group>"; };
-		5EFDBD26C7DCD158B02EFC417BF1B97D /* Kanna.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Kanna.modulemap; sourceTree = "<group>"; };
-		5F4C48EDDB7535664E0E6D121D3FB700 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		611B1D3F09B1F93EEC29DA2D93135557 /* Pods-How Long Left (watchOS) Extension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-How Long Left (watchOS) Extension-dummy.m"; sourceTree = "<group>"; };
-		6311B5A59931EEAB71D8A33546158843 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		67AA784FB2962E012C591E60820E3426 /* Pods_How_Long_Left_Siri_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_How_Long_Left_Siri_Extension.framework; path = "Pods-How Long Left Siri Extension.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6525E862DB18B1CA1044BF3A92D16828 /* ViewAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewAnimator.swift; path = ViewAnimator/Classes/ViewAnimator.swift; sourceTree = "<group>"; };
 		68C53A980BD848B29D68A99071505C20 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		698D7FC47B749375513E3D0FB9DAD633 /* util.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = util.swift; path = Sources/Preferences/util.swift; sourceTree = "<group>"; };
+		6AED74E0AFA4EF5A88AC3512CDFA744E /* HotKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HotKey.swift; path = Sources/HotKey/HotKey.swift; sourceTree = "<group>"; };
 		6B09F75841F3C092ACDA8F6BCB5321F7 /* Pods-How Long Left Siri ExtensionUI-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-How Long Left Siri ExtensionUI-umbrella.h"; sourceTree = "<group>"; };
-		6C58C5DA040E0C6BA3C6D38C8E77C7A7 /* LayoutEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutEngine.swift; path = Sources/LayoutEngine.swift; sourceTree = "<group>"; };
-		6D77134CD64D77AA4D8CB026E3E13075 /* Kanna.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Kanna.swift; path = Sources/Kanna/Kanna.swift; sourceTree = "<group>"; };
+		6B52EB82D78767F12B1C9E9958BD481E /* HotKey.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = HotKey.modulemap; sourceTree = "<group>"; };
 		6E2EAB685FB9073610D0A8484071C9FA /* Pods-How Long Left (iOS)-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-How Long Left (iOS)-acknowledgements.markdown"; sourceTree = "<group>"; };
+		6EF1277A6FBA208CB51CA8558D84D4F1 /* KeyCombo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeyCombo.swift; path = Sources/HotKey/KeyCombo.swift; sourceTree = "<group>"; };
+		73582A3CC4DD055C9881F8781A09D8F8 /* Preferences.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Preferences.modulemap; sourceTree = "<group>"; };
 		735D1014A4D4693AEDE7909E2CF111FA /* Pods-How Long Left (iOS)-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-How Long Left (iOS)-acknowledgements.plist"; sourceTree = "<group>"; };
-		73FD8DFCF648A3C47D57AB63A2A75401 /* libxmlParserOption.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = libxmlParserOption.swift; path = Sources/Kanna/libxmlParserOption.swift; sourceTree = "<group>"; };
-		7461D9BDFCE17C35322AA7924E094E83 /* Kanna-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Kanna-umbrella.h"; sourceTree = "<group>"; };
+		74E749284D9416756DEC4FEE28A3E38B /* Preferences.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Preferences.xcconfig; sourceTree = "<group>"; };
 		75934CED14D34AE18D3D3A3FFD581960 /* Pods-How Long Left Siri Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left Siri Extension.release.xcconfig"; sourceTree = "<group>"; };
 		7A53CC217F9DEE441714E671F1A834FF /* Pods-How Long Left (iOS)-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-How Long Left (iOS)-umbrella.h"; sourceTree = "<group>"; };
+		7AD432005BEB25BA042E943CE60B182A /* Preferences-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Preferences-prefix.pch"; sourceTree = "<group>"; };
 		7C35E992A101876767977024779120A1 /* Pods-How Long Left (watchOS)-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-How Long Left (watchOS)-acknowledgements.plist"; sourceTree = "<group>"; };
 		7C688E6236923EDC83DE58C5DD3E819B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DDCECC6E2873937E9936715C4F432EF /* Pods_How_Long_Left_Siri_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left_Siri_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E3FB0976283AF9182758527F4455C23 /* Pods-How Long Left (iOS).modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-How Long Left (iOS).modulemap"; sourceTree = "<group>"; };
-		80418AD803A344C2C16CCAC4ABA1A599 /* ViewAnimator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ViewAnimator.modulemap; sourceTree = "<group>"; };
-		81470B342B553B81D96283F2E78F490E /* Pods_How_Long_Left__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_How_Long_Left__macOS_.framework; path = "Pods-How Long Left (macOS).framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		816BECCD877F4ADC13444E41771CA4F3 /* UITableView + ViewAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITableView + ViewAnimator.swift"; path = "ViewAnimator/Classes/Extensions/UITableView + ViewAnimator.swift"; sourceTree = "<group>"; };
+		81B1EDD7F7DAC2E25EB8CB12AC2482AC /* ViewAnimator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ViewAnimator.modulemap; sourceTree = "<group>"; };
 		83263B4EBEAE6122C625F6B657F98468 /* Pods-How Long Left (watchOS) Extension-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-How Long Left (watchOS) Extension-acknowledgements.markdown"; sourceTree = "<group>"; };
-		89452690E53B188B7B608EDA78521C7A /* ViewAnimator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ViewAnimator-dummy.m"; sourceTree = "<group>"; };
 		89DE1C1AFD4004A3F71DA36A8C0ECBAC /* Pods-How Long Left Siri ExtensionUI-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-How Long Left Siri ExtensionUI-acknowledgements.plist"; sourceTree = "<group>"; };
-		8CBE21055FEA2628B7B2B42643588E3A /* Kanna.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Kanna.xcconfig; sourceTree = "<group>"; };
 		90E78D14A92910A3DD24A9B451AB96B4 /* Pods-How Long Left Siri ExtensionUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left Siri ExtensionUI.release.xcconfig"; sourceTree = "<group>"; };
 		9575796C50E3DC41560E965D5AB745D3 /* Pods-How Long Left Siri ExtensionUI-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-How Long Left Siri ExtensionUI-dummy.m"; sourceTree = "<group>"; };
 		959D6304A8AA0F2DAF44E514F040AB50 /* Pods-How Long Left (watchOS).modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-How Long Left (watchOS).modulemap"; sourceTree = "<group>"; };
@@ -170,58 +152,42 @@
 		96C4CF59EA136D42D3274B12CAC2FFA6 /* Pods-How Long Left (macOS).modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-How Long Left (macOS).modulemap"; sourceTree = "<group>"; };
 		96DC94BA3A2FF632D0047C31AC51B667 /* Pods-How Long Left (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left (iOS).release.xcconfig"; sourceTree = "<group>"; };
 		96E3B63CA80DAE4B88BE8880E5B426F3 /* Pods-How Long Left (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left (iOS).debug.xcconfig"; sourceTree = "<group>"; };
-		97B5F45E99661AF2D72E9C42F45D5F77 /* ViewAnimator.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ViewAnimator.xcconfig; sourceTree = "<group>"; };
-		986AD07365E431520471DA2865F10EC0 /* Erik-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Erik-umbrella.h"; sourceTree = "<group>"; };
-		9AC06268C61AD7BE4BC2F0D5C2332D74 /* Kanna.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kanna.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B29EF70F2A1D242E6075B3883012790 /* TimelineCards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TimelineCards.framework; path = TimelineCards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9CEB372986BAFF0C512CD6692AFFF505 /* ViewAnimator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ViewAnimator.framework; path = ViewAnimator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		973B8AE1DB14F0A3BE58815E8EE16FDB /* Preferences-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Preferences-umbrella.h"; sourceTree = "<group>"; };
+		98A42021D822C204DDE6A1D223A7892C /* Appkit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Appkit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Appkit.framework; sourceTree = DEVELOPER_DIR; };
 		A11D6F355FD57A1F5232D00758B80BE1 /* Pods-How Long Left (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left (macOS).release.xcconfig"; sourceTree = "<group>"; };
 		A1AAF9FBE42D4949F701228374E4D44E /* Pods-How Long Left (watchOS) Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left (watchOS) Extension.release.xcconfig"; sourceTree = "<group>"; };
-		A220751A3D8A762E3E3409A16509A88D /* UITableView + ViewAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITableView + ViewAnimator.swift"; path = "ViewAnimator/Classes/Extensions/UITableView + ViewAnimator.swift"; sourceTree = "<group>"; };
-		A24E256CCE938D372E7B3D872F18CE02 /* ViewAnimator-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ViewAnimator-prefix.pch"; sourceTree = "<group>"; };
-		A493804D896A3D0E34E519340726183F /* ViewAnimator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ViewAnimator-umbrella.h"; sourceTree = "<group>"; };
 		A4D94891A80321E6197F9FE93F99F06D /* Pods-How Long Left Siri ExtensionUI.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-How Long Left Siri ExtensionUI.modulemap"; sourceTree = "<group>"; };
-		A872351BF3BAFFFB2B72E3F8C7ECAF73 /* Pods_How_Long_Left_Siri_ExtensionUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_How_Long_Left_Siri_ExtensionUI.framework; path = "Pods-How Long Left Siri ExtensionUI.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4E42FCFEB7918F5D9F92027067341A0 /* ViewAnimator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ViewAnimator-dummy.m"; sourceTree = "<group>"; };
 		A98C05F372862698DDC21FEB78114F80 /* Pods-How Long Left (watchOS) Extension-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-How Long Left (watchOS) Extension-umbrella.h"; sourceTree = "<group>"; };
-		AB69FF976304F4C8DD3289F2C2633AC2 /* Document.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Document.swift; path = Sources/Document.swift; sourceTree = "<group>"; };
 		ABCEF1AC06555E698B1E45A38CE8A1C6 /* Pods-How Long Left Siri ExtensionUI-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-How Long Left Siri ExtensionUI-acknowledgements.markdown"; sourceTree = "<group>"; };
 		B19C48DAB5CDC7171C2ED9F48FAFF677 /* Pods-How Long Left (watchOS)-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-How Long Left (watchOS)-dummy.m"; sourceTree = "<group>"; };
-		B37C9523419050BC106EE7927821C4CE /* Kanna.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Kanna.h; path = Sources/Kanna/Kanna.h; sourceTree = "<group>"; };
+		B389BC3577F3BBBDE35A50B993D43A00 /* NSEventModifierFlags+HotKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSEventModifierFlags+HotKey.swift"; path = "Sources/HotKey/NSEventModifierFlags+HotKey.swift"; sourceTree = "<group>"; };
+		B4AABE78496E40EB26A7F7F803B123A6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		B7729D205AE2C13D4D5BF33434D9649B /* Preferences.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Preferences.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7BD552F04670866B15262D91BC96D5A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		BA96B277B3C53B070C38E7BC4D30755D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BB077D8BF7E2E4088AE1135A33A8A0A3 /* TimelineCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimelineCard.swift; path = TimelineCards/TimelineCard.swift; sourceTree = "<group>"; };
-		BBE69C86AF095A5CE77253CA211A633F /* Erik-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Erik-prefix.pch"; sourceTree = "<group>"; };
-		BC3A73A7DC80801CDADC2042DD89C2C2 /* Kanna-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Kanna-prefix.pch"; sourceTree = "<group>"; };
-		BCDB7BB6CC4E6BE7B8F8D2E081C7C67E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		BF1B5EFCFBDB9EB46C1C39F3BE38959F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		BFC8CA29FA0C7DEDCDDC9BF8D8B5076D /* Pods_How_Long_Left__watchOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_How_Long_Left__watchOS_.framework; path = "Pods-How Long Left (watchOS).framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBBB82929C931E42DA3830EEF73763F9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		C196661294A1E77D352AB151B23CDD53 /* Pods-How Long Left (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left (macOS).debug.xcconfig"; sourceTree = "<group>"; };
-		C1E63123D3D40AF4F8F295F997602D21 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C27ED05D3BB17DCF7575F531090DD61C /* TimelineCards-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TimelineCards-umbrella.h"; sourceTree = "<group>"; };
-		C3D618EC71718EC7D33FA933922A9C60 /* CSS.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CSS.swift; path = Sources/Kanna/CSS.swift; sourceTree = "<group>"; };
+		C3B3184FEC688FE1802D8B685DC5DF95 /* HotKeysController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HotKeysController.swift; path = Sources/HotKey/HotKeysController.swift; sourceTree = "<group>"; };
 		C56DB68BE6578DF58177E981F7A78773 /* Pods-How Long Left Siri Extension-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left Siri Extension-resources.sh"; sourceTree = "<group>"; };
-		C76531750D65F71217A5E349F455C0F6 /* TimelineFeed.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimelineFeed.swift; path = TimelineCards/TimelineFeed.swift; sourceTree = "<group>"; };
 		C9AEA4B8E213D4FC81E06F8FA86DE477 /* Pods-How Long Left (watchOS)-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-How Long Left (watchOS)-acknowledgements.markdown"; sourceTree = "<group>"; };
 		CA1735CA63A712ED15166A23F7FC0D0C /* Pods-How Long Left Siri Extension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-How Long Left Siri Extension-dummy.m"; sourceTree = "<group>"; };
-		CA57A6BB9F36D4156A9A20BFBDE45887 /* Erik.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Erik.modulemap; sourceTree = "<group>"; };
+		CA5D26FA3D5381F9D0E62FF2660E92F9 /* Preferenceable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Preferenceable.swift; path = Sources/Preferences/Preferenceable.swift; sourceTree = "<group>"; };
 		CAB5DE2255215EBF7288555DB78CE63F /* Pods-How Long Left (iOS)-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left (iOS)-frameworks.sh"; sourceTree = "<group>"; };
 		CFF1477813EB5F06D43C287B8EFEF3A0 /* Pods-How Long Left (watchOS)-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-How Long Left (watchOS)-umbrella.h"; sourceTree = "<group>"; };
+		D28C1BB7783EBE4F477AE081E58FE70C /* Pods_How_Long_Left__watchOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left__watchOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33D8C6026383AC903EC4C352B1BB89C /* Pods-How Long Left (macOS)-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-How Long Left (macOS)-dummy.m"; sourceTree = "<group>"; };
-		D4F7BEAE4039D2BE7FCE340F72DA4293 /* TimelineItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimelineItem.swift; path = TimelineCards/TimelineItem.swift; sourceTree = "<group>"; };
-		D8397F8107171672D29D1BD47852E95F /* UICollectionView + ViewAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UICollectionView + ViewAnimator.swift"; path = "ViewAnimator/Classes/Extensions/UICollectionView + ViewAnimator.swift"; sourceTree = "<group>"; };
 		D85A18532158D3B25D8A2934336D7870 /* Pods-How Long Left (macOS)-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-How Long Left (macOS)-acknowledgements.plist"; sourceTree = "<group>"; };
-		DBFB62751507DA348CFBD0E8BB172EE1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
-		DFCFFA7B5101C98FB2F69CA310ECD435 /* Erik.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Erik.xcconfig; sourceTree = "<group>"; };
+		DA7F14D904B6595AA7704FB6E7FE3B41 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Carbon.framework; sourceTree = DEVELOPER_DIR; };
+		E20819B6A34675D66B0E3C2ECF16F743 /* ViewAnimator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ViewAnimator-umbrella.h"; sourceTree = "<group>"; };
 		E33F0C0ABAB3A811E734836A47A06797 /* Pods-How Long Left (watchOS) Extension-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left (watchOS) Extension-resources.sh"; sourceTree = "<group>"; };
+		E3995E82D761CE4A9F5F318575A432F0 /* Pods_How_Long_Left__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6A9FC043A674EC49DA8451F45A83F97 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PreferencesWindowController.swift; path = Sources/Preferences/PreferencesWindowController.swift; sourceTree = "<group>"; };
 		E915EA28195FFD1D18EA1BADF16FC1AA /* Pods-How Long Left (watchOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left (watchOS).release.xcconfig"; sourceTree = "<group>"; };
-		EA5259803EB8C08668603BB79A60934B /* Erik-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Erik-dummy.m"; sourceTree = "<group>"; };
-		ECF26D6852C4D1D3E9D419E9BD91960E /* Utilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = ViewAnimator/Classes/Utilities/Utilities.swift; sourceTree = "<group>"; };
+		EC6719DA4244C4C460639B018E8CDC30 /* Pods_How_Long_Left_Siri_ExtensionUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left_Siri_ExtensionUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1413BA2E5A45CDE6DC3569CA2CDD58D /* Pods-How Long Left (watchOS) Extension-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-How Long Left (watchOS) Extension-acknowledgements.plist"; sourceTree = "<group>"; };
-		F1BE13FE1445F36ACCDA15A6E283F3B8 /* Pods_How_Long_Left__watchOS__Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_How_Long_Left__watchOS__Extension.framework; path = "Pods-How Long Left (watchOS) Extension.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F30C55211AD385C73CE53839C106F654 /* HotKey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HotKey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F37F41D3E93348F4F8EDE43492A2DC4B /* Pods-How Long Left Siri Extension-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-How Long Left Siri Extension-umbrella.h"; sourceTree = "<group>"; };
-		F8C72B8E8A02F5EB9C91EC87E85B622B /* AnimationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnimationType.swift; path = ViewAnimator/Classes/Models/AnimationType.swift; sourceTree = "<group>"; };
-		F9CBBD397E355C7D348C13E2F68C3890 /* Kanna.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Kanna.framework; path = Kanna.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F9FF4D7F4F9AA9D4B236230E2AF5B4C9 /* libxmlHTMLDocument.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = libxmlHTMLDocument.swift; path = Sources/Kanna/libxmlHTMLDocument.swift; sourceTree = "<group>"; };
-		FAA5BCF1E934F19B4A8F7736B88753E1 /* TimelineCards.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TimelineCards.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,19 +199,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		25ABDC3BF589F53C6A435151A093CE80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				759A67E8577809D89BFC3158DB8A8A50 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		41425810CF52D3242809CD347E92AD9B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A741655C496DC88B0EDDE9AC3FFB35A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		68E25851BE502A9A721A2844E568DE82 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E0C3C0CA77EC275E6A243877AEEC176A /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6E22462037BE9739321B5D2A3137CADF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3CE488369EF3089C829E88CB047B203B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,74 +239,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9FC3FA08F10828372B0D26E2B81BF4C7 /* Frameworks */ = {
+		A2A921A4DD873109D22B3B663F7373C6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30706357C093ABC3973F5598AC7A46B8 /* Cocoa.framework in Frameworks */,
+				ABB38D216BB6489256EF6860D695D992 /* Appkit.framework in Frameworks */,
+				DAE7A8E05B09BF28EB6B98F8A80165AD /* Carbon.framework in Frameworks */,
+				24D5598483563F210C1EEE1C65C20B6D /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A1CCBDE49162AFFAC33E4D88BD34BA00 /* Frameworks */ = {
+		A88FF8F98C7C326A78F2026DBE9BD073 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				862876518DC4E121D4C08DE0E1A3C4CC /* Foundation.framework in Frameworks */,
+				7DD4DDC26867F8B2A8B3E842F9D361F3 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C4785ED78733B2731564F079A5E57706 /* Frameworks */ = {
+		C2F5134197CC0227DFFD29F50BCA155C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC58CB49D45E650EF61066599045C5C6 /* Foundation.framework in Frameworks */,
-				9EB664D41DD3212F7D2B1635AC293203 /* Kanna.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CBCFB2B8F4CAD9F0741BF5791C35D7AF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				99F55EE9B9883288010E8F3812415C1A /* CoreGraphics.framework in Frameworks */,
-				9943869B1C26B25749D87596B2589EC0 /* Foundation.framework in Frameworks */,
-				E250C4B7F8A310CBC2E6BF673E0AC4E3 /* UIKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E530D066B916DEF39E7AF63ABC110886 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E4058F096C11FC18BBA5C44F72DC48E3 /* Foundation.framework in Frameworks */,
+				099CCE29FDD81038505513FD5A313AA3 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		051F11F0657CC067829DF6CF28A0135F /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				6311B5A59931EEAB71D8A33546158843 /* Info.plist */,
-				1EFD21FA01ABFE9CC7DDF39499F58452 /* TimelineCards.modulemap */,
-				FAA5BCF1E934F19B4A8F7736B88753E1 /* TimelineCards.xcconfig */,
-				02174D3F53D48F672C8CC8D2B338683B /* TimelineCards-dummy.m */,
-				4EFCB6DE1D1CF6D9015FA1EF79350848 /* TimelineCards-prefix.pch */,
-				C27ED05D3BB17DCF7575F531090DD61C /* TimelineCards-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/TimelineCards";
-			sourceTree = "<group>";
-		};
-		05D560B9494B74242A82A1F7FE933C81 /* OS X */ = {
-			isa = PBXGroup;
-			children = (
-				0D101DDBCF199137DADF6AFFDE626AC1 /* Cocoa.framework */,
-			);
-			name = "OS X";
-			sourceTree = "<group>";
-		};
 		07A8349A299E3228267EB76B5A0504F3 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,31 +281,18 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		233D4DEDEDB075F9D652298884D72C92 /* Core */ = {
+		2CEB3986EA5E31A4218B0A8E41425AA8 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				AB69FF976304F4C8DD3289F2C2633AC2 /* Document.swift */,
-				479282F19E19BCC558A69930977C57BC /* Erik.swift */,
-				6C58C5DA040E0C6BA3C6D38C8E77C7A7 /* LayoutEngine.swift */,
+				5B74C4962E4DEA0228ED3A831D69DB39 /* Info.plist */,
+				73582A3CC4DD055C9881F8781A09D8F8 /* Preferences.modulemap */,
+				74E749284D9416756DEC4FEE28A3E38B /* Preferences.xcconfig */,
+				202DA8CBB500CABF97269AF8E5D36E07 /* Preferences-dummy.m */,
+				7AD432005BEB25BA042E943CE60B182A /* Preferences-prefix.pch */,
+				973B8AE1DB14F0A3BE58815E8EE16FDB /* Preferences-umbrella.h */,
 			);
-			name = Core;
-			sourceTree = "<group>";
-		};
-		245088243571F27358F410945F3B8D02 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5BA9B997DD909535998DCD3D99030B40 /* Erik.framework */,
-				F9CBBD397E355C7D348C13E2F68C3890 /* Kanna.framework */,
-				25EC765B3BD676FE439A9B8CECF5746E /* Pods_How_Long_Left__iOS_.framework */,
-				81470B342B553B81D96283F2E78F490E /* Pods_How_Long_Left__macOS_.framework */,
-				BFC8CA29FA0C7DEDCDDC9BF8D8B5076D /* Pods_How_Long_Left__watchOS_.framework */,
-				F1BE13FE1445F36ACCDA15A6E283F3B8 /* Pods_How_Long_Left__watchOS__Extension.framework */,
-				67AA784FB2962E012C591E60820E3426 /* Pods_How_Long_Left_Siri_Extension.framework */,
-				A872351BF3BAFFFB2B72E3F8C7ECAF73 /* Pods_How_Long_Left_Siri_ExtensionUI.framework */,
-				9B29EF70F2A1D242E6075B3883012790 /* TimelineCards.framework */,
-				9CEB372986BAFF0C512CD6692AFFF505 /* ViewAnimator.framework */,
-			);
-			name = Products;
+			name = "Support Files";
+			path = "../Target Support Files/Preferences";
 			sourceTree = "<group>";
 		};
 		3DE9A887A95BF6A9F5A08E1A03CEEFF5 /* Pods-How Long Left (watchOS) */ = {
@@ -391,54 +313,44 @@
 			path = "Target Support Files/Pods-How Long Left (watchOS)";
 			sourceTree = "<group>";
 		};
-		4932200D96462449A87F818DCD9C1E97 /* watchOS */ = {
+		5994BD75AE10B700C8E7A3FD8266F471 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				BF1B5EFCFBDB9EB46C1C39F3BE38959F /* Foundation.framework */,
-			);
-			name = watchOS;
-			sourceTree = "<group>";
-		};
-		4C17FA26EF3E3D56A7E4EC069CA99767 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				CA57A6BB9F36D4156A9A20BFBDE45887 /* Erik.modulemap */,
-				DFCFFA7B5101C98FB2F69CA310ECD435 /* Erik.xcconfig */,
-				EA5259803EB8C08668603BB79A60934B /* Erik-dummy.m */,
-				BBE69C86AF095A5CE77253CA211A633F /* Erik-prefix.pch */,
-				986AD07365E431520471DA2865F10EC0 /* Erik-umbrella.h */,
-				5F4C48EDDB7535664E0E6D121D3FB700 /* Info.plist */,
+				23FD3690748BE56BAC951F66C17A3A15 /* Info.plist */,
+				81B1EDD7F7DAC2E25EB8CB12AC2482AC /* ViewAnimator.modulemap */,
+				2BE4248D491F1171197BB3135E99E51C /* ViewAnimator.xcconfig */,
+				A4E42FCFEB7918F5D9F92027067341A0 /* ViewAnimator-dummy.m */,
+				0BE53F16B0004E3BEF69ECB276653102 /* ViewAnimator-prefix.pch */,
+				E20819B6A34675D66B0E3C2ECF16F743 /* ViewAnimator-umbrella.h */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/Erik";
+			path = "../Target Support Files/ViewAnimator";
 			sourceTree = "<group>";
 		};
-		5FF55CA02E78AEBBD10CA7D7FFDB048A /* ViewAnimator */ = {
+		66FB78890A4808F863E00EA7E3E6B54D /* OS X */ = {
 			isa = PBXGroup;
 			children = (
-				50894DF0077D80076490616511E0A88C /* Animation.swift */,
-				F8C72B8E8A02F5EB9C91EC87E85B622B /* AnimationType.swift */,
-				4F651A983A1B8C334FED71C60295D8AE /* Direction.swift */,
-				D8397F8107171672D29D1BD47852E95F /* UICollectionView + ViewAnimator.swift */,
-				A220751A3D8A762E3E3409A16509A88D /* UITableView + ViewAnimator.swift */,
-				ECF26D6852C4D1D3E9D419E9BD91960E /* Utilities.swift */,
-				17AF80660AF4DAD28FDD61BFAD69AC30 /* ViewAnimator.swift */,
-				53B23706C601D8AA390AFB6A790A29CB /* ViewAnimatorConfig.swift */,
-				BFF6A7D8E9093F518682762F70CA6BC9 /* Support Files */,
+				98A42021D822C204DDE6A1D223A7892C /* Appkit.framework */,
+				DA7F14D904B6595AA7704FB6E7FE3B41 /* Carbon.framework */,
+				BBBB82929C931E42DA3830EEF73763F9 /* Cocoa.framework */,
 			);
-			name = ViewAnimator;
-			path = ViewAnimator;
+			name = "OS X";
 			sourceTree = "<group>";
 		};
-		685B026FEBDC9C6FB8A9F3516A5323DC /* Pods */ = {
+		67B4B0297241700D00BAF7E71EB5ECC5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D8D1CE880008721F31FC5A0A056661C7 /* Erik */,
-				99A877FD9B6D434029B8E73C99957059 /* Kanna */,
-				A65ED84954A0BBDF6D66EFD9F8EF3E38 /* TimelineCards */,
-				5FF55CA02E78AEBBD10CA7D7FFDB048A /* ViewAnimator */,
+				F30C55211AD385C73CE53839C106F654 /* HotKey.framework */,
+				E3995E82D761CE4A9F5F318575A432F0 /* Pods_How_Long_Left__iOS_.framework */,
+				243432F095D995D49762E3975B1060D6 /* Pods_How_Long_Left__macOS_.framework */,
+				D28C1BB7783EBE4F477AE081E58FE70C /* Pods_How_Long_Left__watchOS_.framework */,
+				1E01DC6B995CEADDEB15CC22BAF7A5A4 /* Pods_How_Long_Left__watchOS__Extension.framework */,
+				7DDCECC6E2873937E9936715C4F432EF /* Pods_How_Long_Left_Siri_Extension.framework */,
+				EC6719DA4244C4C460639B018E8CDC30 /* Pods_How_Long_Left_Siri_ExtensionUI.framework */,
+				B7729D205AE2C13D4D5BF33434D9649B /* Preferences.framework */,
+				4A3CADB6CAAFDC6114D281E9B4059FC5 /* ViewAnimator.framework */,
 			);
-			name = Pods;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		6BF89758DAE79EF0D11B814B1FA782AA /* Pods-How Long Left (watchOS) Extension */ = {
@@ -459,6 +371,34 @@
 			path = "Target Support Files/Pods-How Long Left (watchOS) Extension";
 			sourceTree = "<group>";
 		};
+		6C31856A261A1186F6858C6ADE15FDC0 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				CA5D26FA3D5381F9D0E62FF2660E92F9 /* Preferenceable.swift */,
+				403F477472485FDBD9B00900D80B5136 /* PreferencesTabViewController.swift */,
+				E6A9FC043A674EC49DA8451F45A83F97 /* PreferencesWindowController.swift */,
+				698D7FC47B749375513E3D0FB9DAD633 /* util.swift */,
+				2CEB3986EA5E31A4218B0A8E41425AA8 /* Support Files */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		71E80FAB7B44C07A21327E4B12B9999C /* ViewAnimator */ = {
+			isa = PBXGroup;
+			children = (
+				090443F3F43BB397D102DAF88D7E9CEE /* Animation.swift */,
+				1B834AF8620ADE65E99E57D870088C34 /* AnimationType.swift */,
+				17C34C6FD9F112D5B24C45F4260172D5 /* Direction.swift */,
+				5E5072C207E4AEF4F743C3BB1AA78E19 /* UICollectionView + ViewAnimator.swift */,
+				816BECCD877F4ADC13444E41771CA4F3 /* UITableView + ViewAnimator.swift */,
+				30193D6ED2499A38F50EA644203B8165 /* Utilities.swift */,
+				6525E862DB18B1CA1044BF3A92D16828 /* ViewAnimator.swift */,
+				176F139014559204496C96D93C9A09C3 /* ViewAnimatorConfig.swift */,
+				5994BD75AE10B700C8E7A3FD8266F471 /* Support Files */,
+			);
+			path = ViewAnimator;
+			sourceTree = "<group>";
+		};
 		751F0F1037A6ADC445A948DEF89343ED /* Pods-How Long Left (iOS) */ = {
 			isa = PBXGroup;
 			children = (
@@ -475,31 +415,6 @@
 			);
 			name = "Pods-How Long Left (iOS)";
 			path = "Target Support Files/Pods-How Long Left (iOS)";
-			sourceTree = "<group>";
-		};
-		8038DC7CCEE6C2D8FBA77FA56DBDF3D1 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				276CC964D74D2DF52AB143428D9EA6ED /* Info.plist */,
-				5EFDBD26C7DCD158B02EFC417BF1B97D /* Kanna.modulemap */,
-				8CBE21055FEA2628B7B2B42643588E3A /* Kanna.xcconfig */,
-				1066163016C039F36F2B2FEEE6DD2F9D /* Kanna-dummy.m */,
-				BC3A73A7DC80801CDADC2042DD89C2C2 /* Kanna-prefix.pch */,
-				7461D9BDFCE17C35322AA7924E094E83 /* Kanna-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Kanna";
-			sourceTree = "<group>";
-		};
-		899B68069A51719BE44F9AC189033812 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				9AC06268C61AD7BE4BC2F0D5C2332D74 /* Kanna.framework */,
-				B0B6D1FFDC2AA5E488B9D1C4C6C32C3A /* iOS */,
-				05D560B9494B74242A82A1F7FE933C81 /* OS X */,
-				4932200D96462449A87F818DCD9C1E97 /* watchOS */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		91DCEE2FDAA4320C516834F95D6D7768 /* Pods-How Long Left Siri Extension */ = {
@@ -519,42 +434,33 @@
 			path = "Target Support Files/Pods-How Long Left Siri Extension";
 			sourceTree = "<group>";
 		};
-		99A877FD9B6D434029B8E73C99957059 /* Kanna */ = {
+		9F4389F06E1CD210A303DD0FAF8A5573 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				C3D618EC71718EC7D33FA933922A9C60 /* CSS.swift */,
-				2BA71589681E55854337219E26E27E33 /* Deprecated.swift */,
-				B37C9523419050BC106EE7927821C4CE /* Kanna.h */,
-				6D77134CD64D77AA4D8CB026E3E13075 /* Kanna.swift */,
-				F9FF4D7F4F9AA9D4B236230E2AF5B4C9 /* libxmlHTMLDocument.swift */,
-				3DF59834BCDAE7969052B94D8959E26E /* libxmlHTMLNode.swift */,
-				73FD8DFCF648A3C47D57AB63A2A75401 /* libxmlParserOption.swift */,
-				8038DC7CCEE6C2D8FBA77FA56DBDF3D1 /* Support Files */,
-			);
-			name = Kanna;
-			path = Kanna;
-			sourceTree = "<group>";
-		};
-		A65ED84954A0BBDF6D66EFD9F8EF3E38 /* TimelineCards */ = {
-			isa = PBXGroup;
-			children = (
-				BB077D8BF7E2E4088AE1135A33A8A0A3 /* TimelineCard.swift */,
-				C76531750D65F71217A5E349F455C0F6 /* TimelineFeed.swift */,
-				D4F7BEAE4039D2BE7FCE340F72DA4293 /* TimelineItem.swift */,
-				051F11F0657CC067829DF6CF28A0135F /* Support Files */,
-			);
-			name = TimelineCards;
-			path = TimelineCards;
-			sourceTree = "<group>";
-		};
-		B0B6D1FFDC2AA5E488B9D1C4C6C32C3A /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				DBFB62751507DA348CFBD0E8BB172EE1 /* CoreGraphics.framework */,
-				19DC00212CD2432E879508DBA6169354 /* Foundation.framework */,
-				BCDB7BB6CC4E6BE7B8F8D2E081C7C67E /* UIKit.framework */,
+				B7BD552F04670866B15262D91BC96D5A /* Foundation.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		A506674E1BF1AE6BBA6783507EF49E62 /* HotKey */ = {
+			isa = PBXGroup;
+			children = (
+				6AED74E0AFA4EF5A88AC3512CDFA744E /* HotKey.swift */,
+				C3B3184FEC688FE1802D8B685DC5DF95 /* HotKeysController.swift */,
+				2B603CF99A3BDA39D0DC8CF174789714 /* Key.swift */,
+				6EF1277A6FBA208CB51CA8558D84D4F1 /* KeyCombo.swift */,
+				B389BC3577F3BBBDE35A50B993D43A00 /* NSEventModifierFlags+HotKey.swift */,
+				DAE85596F2CD4BB5B6F524CA2C53B947 /* Support Files */,
+			);
+			path = HotKey;
+			sourceTree = "<group>";
+		};
+		ACFA8356125425695B11E9088ABE5BF6 /* watchOS */ = {
+			isa = PBXGroup;
+			children = (
+				B4AABE78496E40EB26A7F7F803B123A6 /* Foundation.framework */,
+			);
+			name = watchOS;
 			sourceTree = "<group>";
 		};
 		B3C2F21B75014E5F3837DAB40F0001D0 /* Pods-How Long Left (macOS) */ = {
@@ -575,20 +481,6 @@
 			path = "Target Support Files/Pods-How Long Left (macOS)";
 			sourceTree = "<group>";
 		};
-		BFF6A7D8E9093F518682762F70CA6BC9 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				C1E63123D3D40AF4F8F295F997602D21 /* Info.plist */,
-				80418AD803A344C2C16CCAC4ABA1A599 /* ViewAnimator.modulemap */,
-				97B5F45E99661AF2D72E9C42F45D5F77 /* ViewAnimator.xcconfig */,
-				89452690E53B188B7B608EDA78521C7A /* ViewAnimator-dummy.m */,
-				A24E256CCE938D372E7B3D872F18CE02 /* ViewAnimator-prefix.pch */,
-				A493804D896A3D0E34E519340726183F /* ViewAnimator-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/ViewAnimator";
-			sourceTree = "<group>";
-		};
 		C3D3D0B6B80FCC6E3468487878D14293 /* Pods-How Long Left Siri ExtensionUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -606,44 +498,75 @@
 			path = "Target Support Files/Pods-How Long Left Siri ExtensionUI";
 			sourceTree = "<group>";
 		};
+		C6562614EE212D63C037EC68649AA8B1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9F4389F06E1CD210A303DD0FAF8A5573 /* iOS */,
+				66FB78890A4808F863E00EA7E3E6B54D /* OS X */,
+				ACFA8356125425695B11E9088ABE5BF6 /* watchOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				24390EFD555DD124430DFF9724065945 /* Podfile */,
-				899B68069A51719BE44F9AC189033812 /* Frameworks */,
-				685B026FEBDC9C6FB8A9F3516A5323DC /* Pods */,
-				245088243571F27358F410945F3B8D02 /* Products */,
+				C6562614EE212D63C037EC68649AA8B1 /* Frameworks */,
+				F70B406EB11503F737F9E3F0D88AD5A5 /* Pods */,
+				67B4B0297241700D00BAF7E71EB5ECC5 /* Products */,
 				07A8349A299E3228267EB76B5A0504F3 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		D8D1CE880008721F31FC5A0A056661C7 /* Erik */ = {
+		DAE85596F2CD4BB5B6F524CA2C53B947 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				233D4DEDEDB075F9D652298884D72C92 /* Core */,
-				4C17FA26EF3E3D56A7E4EC069CA99767 /* Support Files */,
+				6B52EB82D78767F12B1C9E9958BD481E /* HotKey.modulemap */,
+				11C59EEB40597A0EE9CFB21895018856 /* HotKey.xcconfig */,
+				1BFAC25B2B4147A6C7BF6AD1FBB1FE3B /* HotKey-dummy.m */,
+				494E507558B170047F236ADF63F65FC1 /* HotKey-prefix.pch */,
+				19270F165F85A95ADA63A9CE3FD46A78 /* HotKey-umbrella.h */,
+				4AC9C264857B815D54141459BE095981 /* Info.plist */,
 			);
-			name = Erik;
-			path = Erik;
+			name = "Support Files";
+			path = "../Target Support Files/HotKey";
+			sourceTree = "<group>";
+		};
+		F70B406EB11503F737F9E3F0D88AD5A5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A506674E1BF1AE6BBA6783507EF49E62 /* HotKey */,
+				6C31856A261A1186F6858C6ADE15FDC0 /* Preferences */,
+				71E80FAB7B44C07A21327E4B12B9999C /* ViewAnimator */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		1492E39C69FAD69319E7A30771DD40AE /* Headers */ = {
+		1152EA3EB35CC5F659635436399005AD /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAAF5601CE993D45361247DBB87835E3 /* Kanna-umbrella.h in Headers */,
-				2FDAB6D29BA13899769A93F4E3D1E8A0 /* Kanna.h in Headers */,
+				6A4AB07018EC0827AFA03DB4B037D710 /* Pods-How Long Left (iOS)-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		63570AF9949F2AE23997AA3C762ADBFC /* Headers */ = {
+		3900C92DE9756DC038B113D277CE1805 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E965E9D1C145D5A91F7238D2079EDB5B /* Pods-How Long Left (iOS)-umbrella.h in Headers */,
+				6924B09F58320FAAD7E104EC5A5AB01A /* ViewAnimator-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		564B1A3D6F9BE4DAED11777B5EE33810 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B9B11D8AB04AB4FDF9C9C7C21FE967E /* Preferences-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,30 +586,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		81A5A69011BCDF7AAC8600A27A96286A /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5BA7A5D60724DB712159B78550A6228B /* ViewAnimator-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		84227D23E89F7FAE42AF27CEC7456E22 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3F89C31BECFD06D40CD8DA879770C3BF /* TimelineCards-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		88DFF40FE85921D5FAFE0B2ECE386EB2 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B2768B6D588E18F35E1859889A40AC46 /* Erik-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		90AF640F7F6DFB635EF9D074928BDCFF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -695,11 +594,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D496A90582BF100C77A7DDA689E4AD7C /* Headers */ = {
+		B107E0ECD1310B3F35137F058AE6D5A1 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1386CC189406D272649BE106F049D943 /* Pods-How Long Left (macOS)-umbrella.h in Headers */,
+				A49489E19A76BAE5F66F482DD372C0A7 /* HotKey-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2F5A392A23F45F276D7D0193C855971 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBEF2629D1BD211C307A6DE8A129FCD0 /* Pods-How Long Left (macOS)-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -714,6 +621,26 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		17E22BADAE2C1DC72474D4BE0458A2C0 /* Pods-How Long Left (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 486C21E4819C8A8BB8C562777873AC9B /* Build configuration list for PBXNativeTarget "Pods-How Long Left (macOS)" */;
+			buildPhases = (
+				C2F5A392A23F45F276D7D0193C855971 /* Headers */,
+				6E246ED0F32E89E141A4A3B19A315434 /* Sources */,
+				C2F5134197CC0227DFFD29F50BCA155C /* Frameworks */,
+				D7D9F541BECB8D6E404DBC2CEC9B4FFF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E008FB30F79B497C3E584FECCE0B8D9 /* PBXTargetDependency */,
+				6D7C009F5FAE49C6577DD0A3C5A2092C /* PBXTargetDependency */,
+			);
+			name = "Pods-How Long Left (macOS)";
+			productName = "Pods-How Long Left (macOS)";
+			productReference = 243432F095D995D49762E3975B1060D6 /* Pods_How_Long_Left__macOS_.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		25F0DA0C2E5DF17222B4B2AA1834B726 /* Pods-How Long Left (watchOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68C524D6EF215784CC003E6213CA19B4 /* Build configuration list for PBXNativeTarget "Pods-How Long Left (watchOS)" */;
@@ -729,80 +656,61 @@
 			);
 			name = "Pods-How Long Left (watchOS)";
 			productName = "Pods-How Long Left (watchOS)";
-			productReference = BFC8CA29FA0C7DEDCDDC9BF8D8B5076D /* Pods_How_Long_Left__watchOS_.framework */;
+			productReference = D28C1BB7783EBE4F477AE081E58FE70C /* Pods_How_Long_Left__watchOS_.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		2CD56620BF09F0D84030E8BE87B406BD /* Kanna */ = {
+		2EDF8A783892E4A4E02B59ABA3405810 /* ViewAnimator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F7F11D191A6C8E735B398D831D14CB17 /* Build configuration list for PBXNativeTarget "Kanna" */;
+			buildConfigurationList = D81236C0B2B9BCE16E7F72F38181E85A /* Build configuration list for PBXNativeTarget "ViewAnimator" */;
 			buildPhases = (
-				1492E39C69FAD69319E7A30771DD40AE /* Headers */,
-				C102DA4609E76B43AE1CC8FF454A97B2 /* Sources */,
-				6E22462037BE9739321B5D2A3137CADF /* Frameworks */,
-				6262A2E72E7EF2DD6AB262DFD1DA7B5B /* Resources */,
+				3900C92DE9756DC038B113D277CE1805 /* Headers */,
+				74CE52506633C8C19E6ED55BADA04364 /* Sources */,
+				41425810CF52D3242809CD347E92AD9B /* Frameworks */,
+				E32964EEC495A2026CD68212C7518125 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Kanna;
-			productName = Kanna;
-			productReference = F9CBBD397E355C7D348C13E2F68C3890 /* Kanna.framework */;
+			name = ViewAnimator;
+			productName = ViewAnimator;
+			productReference = 4A3CADB6CAAFDC6114D281E9B4059FC5 /* ViewAnimator.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		571AB2CE2CF828CD85FB9F227F27BEA8 /* Pods-How Long Left (macOS) */ = {
+		91C9120C8D4DC6ECA8A40DEAD4F2B1B5 /* HotKey */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2007DF006B1BAF122F1CBAF205F89FF4 /* Build configuration list for PBXNativeTarget "Pods-How Long Left (macOS)" */;
+			buildConfigurationList = 206AE7B5318027EC4BDF953F180A3C7D /* Build configuration list for PBXNativeTarget "HotKey" */;
 			buildPhases = (
-				D496A90582BF100C77A7DDA689E4AD7C /* Headers */,
-				755CBBC10B1C2C3EE8D872BA0C3FE27E /* Sources */,
-				9FC3FA08F10828372B0D26E2B81BF4C7 /* Frameworks */,
-				BF1BC2D8933A83D52240F8E698B95204 /* Resources */,
+				B107E0ECD1310B3F35137F058AE6D5A1 /* Headers */,
+				EF918C4F607066D273958B5323653B3E /* Sources */,
+				A2A921A4DD873109D22B3B663F7373C6 /* Frameworks */,
+				3ECF22E97E41401AE2CB8F715DDBD400 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-How Long Left (macOS)";
-			productName = "Pods-How Long Left (macOS)";
-			productReference = 81470B342B553B81D96283F2E78F490E /* Pods_How_Long_Left__macOS_.framework */;
+			name = HotKey;
+			productName = HotKey;
+			productReference = F30C55211AD385C73CE53839C106F654 /* HotKey.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		85A295ED2537F027090FAEEDADEADE5F /* TimelineCards */ = {
+		B4701C5E905FC11D456850A7AE01D268 /* Preferences */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F38F74D3E57D367B182B907600F2CBF5 /* Build configuration list for PBXNativeTarget "TimelineCards" */;
+			buildConfigurationList = D1BD7E6D1146C136C24764DDF28D8C23 /* Build configuration list for PBXNativeTarget "Preferences" */;
 			buildPhases = (
-				84227D23E89F7FAE42AF27CEC7456E22 /* Headers */,
-				EB4A0063294E2D875FF19AD8A146A6C1 /* Sources */,
-				CBCFB2B8F4CAD9F0741BF5791C35D7AF /* Frameworks */,
-				E01BEAE55E37AB1744B1D09C3BBB80D6 /* Resources */,
+				564B1A3D6F9BE4DAED11777B5EE33810 /* Headers */,
+				CBB3B359757C645A0C0663DF0FED7D24 /* Sources */,
+				25ABDC3BF589F53C6A435151A093CE80 /* Frameworks */,
+				99B72CD1D0412D1E14BEF93C5397631D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = TimelineCards;
-			productName = TimelineCards;
-			productReference = 9B29EF70F2A1D242E6075B3883012790 /* TimelineCards.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		B3439EE5CEC7D1312AA853136FE9C7E1 /* Erik */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7C6B262D4645F4D8B01CF962FEB7467F /* Build configuration list for PBXNativeTarget "Erik" */;
-			buildPhases = (
-				88DFF40FE85921D5FAFE0B2ECE386EB2 /* Headers */,
-				85AFCE9CEA264931D7074F3720A120AB /* Sources */,
-				C4785ED78733B2731564F079A5E57706 /* Frameworks */,
-				275EF17341B2DB8A6FD27E02401A0B51 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4ADB420AFE1C59D6A7CFC3A768B8978E /* PBXTargetDependency */,
-			);
-			name = Erik;
-			productName = Erik;
-			productReference = 5BA9B997DD909535998DCD3D99030B40 /* Erik.framework */;
+			name = Preferences;
+			productName = Preferences;
+			productReference = B7729D205AE2C13D4D5BF33434D9649B /* Preferences.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		B4DBA176BC2787378622CCC7CAA9B4F0 /* Pods-How Long Left Siri Extension */ = {
@@ -820,29 +728,26 @@
 			);
 			name = "Pods-How Long Left Siri Extension";
 			productName = "Pods-How Long Left Siri Extension";
-			productReference = 67AA784FB2962E012C591E60820E3426 /* Pods_How_Long_Left_Siri_Extension.framework */;
+			productReference = 7DDCECC6E2873937E9936715C4F432EF /* Pods_How_Long_Left_Siri_Extension.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		BC61798DB6C05E324740845145504F08 /* Pods-How Long Left (iOS) */ = {
+		B5A5DD898C0030510260019937C04021 /* Pods-How Long Left (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7AC61D52FEE08D3BAF4FE5831A4C9003 /* Build configuration list for PBXNativeTarget "Pods-How Long Left (iOS)" */;
+			buildConfigurationList = A9593B2C094A084DE6FB9EC37CF57780 /* Build configuration list for PBXNativeTarget "Pods-How Long Left (iOS)" */;
 			buildPhases = (
-				63570AF9949F2AE23997AA3C762ADBFC /* Headers */,
-				28A7578A5D60B74E5ABDBDEFDF099950 /* Sources */,
-				A1CCBDE49162AFFAC33E4D88BD34BA00 /* Frameworks */,
-				2B00DF6150533B81479DBB5F7F28483C /* Resources */,
+				1152EA3EB35CC5F659635436399005AD /* Headers */,
+				A78B3031D4784AC05B23E59C183D04A7 /* Sources */,
+				A88FF8F98C7C326A78F2026DBE9BD073 /* Frameworks */,
+				B3E9D81672D1ECB5BB80617C015A3A8A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E7B3F301712B11D51F1FD8531F129C11 /* PBXTargetDependency */,
-				6C42DCB6CDE740DE6925957EC30A8827 /* PBXTargetDependency */,
-				A57A005ADBF3094D86D0889A4DDF14D8 /* PBXTargetDependency */,
-				425E83B1F157971A59CBA721DF1125DC /* PBXTargetDependency */,
+				A5AE44B09FE30EABB11E7B080081E6B7 /* PBXTargetDependency */,
 			);
 			name = "Pods-How Long Left (iOS)";
 			productName = "Pods-How Long Left (iOS)";
-			productReference = 25EC765B3BD676FE439A9B8CECF5746E /* Pods_How_Long_Left__iOS_.framework */;
+			productReference = E3995E82D761CE4A9F5F318575A432F0 /* Pods_How_Long_Left__iOS_.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C6CC9CE4268E52B2DA862CB04D6E26C9 /* Pods-How Long Left Siri ExtensionUI */ = {
@@ -860,7 +765,7 @@
 			);
 			name = "Pods-How Long Left Siri ExtensionUI";
 			productName = "Pods-How Long Left Siri ExtensionUI";
-			productReference = A872351BF3BAFFFB2B72E3F8C7ECAF73 /* Pods_How_Long_Left_Siri_ExtensionUI.framework */;
+			productReference = EC6719DA4244C4C460639B018E8CDC30 /* Pods_How_Long_Left_Siri_ExtensionUI.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C78B966EA226E49AAF64CAEF04B0A743 /* Pods-How Long Left (watchOS) Extension */ = {
@@ -878,25 +783,7 @@
 			);
 			name = "Pods-How Long Left (watchOS) Extension";
 			productName = "Pods-How Long Left (watchOS) Extension";
-			productReference = F1BE13FE1445F36ACCDA15A6E283F3B8 /* Pods_How_Long_Left__watchOS__Extension.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		DBD3FA030AC2DA1343D98D95A0FAA9FA /* ViewAnimator */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B6080328E1783F0E9EE6D0F477C8AFA3 /* Build configuration list for PBXNativeTarget "ViewAnimator" */;
-			buildPhases = (
-				81A5A69011BCDF7AAC8600A27A96286A /* Headers */,
-				2559C2CE4C5DFB5751A945C35F99CA1A /* Sources */,
-				E530D066B916DEF39E7AF63ABC110886 /* Frameworks */,
-				C1559B3666C9AA1CCC9E9A31A9531CBC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = ViewAnimator;
-			productName = ViewAnimator;
-			productReference = 9CEB372986BAFF0C512CD6692AFFF505 /* ViewAnimator.framework */;
+			productReference = 1E01DC6B995CEADDEB15CC22BAF7A5A4 /* Pods_How_Long_Left__watchOS__Extension.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -907,6 +794,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
+				TargetAttributes = {
+					2EDF8A783892E4A4E02B59ABA3405810 = {
+						LastSwiftMigration = 1020;
+					};
+				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -914,35 +806,28 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 245088243571F27358F410945F3B8D02 /* Products */;
+			productRefGroup = 67B4B0297241700D00BAF7E71EB5ECC5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B3439EE5CEC7D1312AA853136FE9C7E1 /* Erik */,
-				2CD56620BF09F0D84030E8BE87B406BD /* Kanna */,
-				BC61798DB6C05E324740845145504F08 /* Pods-How Long Left (iOS) */,
-				571AB2CE2CF828CD85FB9F227F27BEA8 /* Pods-How Long Left (macOS) */,
+				91C9120C8D4DC6ECA8A40DEAD4F2B1B5 /* HotKey */,
+				B5A5DD898C0030510260019937C04021 /* Pods-How Long Left (iOS) */,
+				17E22BADAE2C1DC72474D4BE0458A2C0 /* Pods-How Long Left (macOS) */,
 				25F0DA0C2E5DF17222B4B2AA1834B726 /* Pods-How Long Left (watchOS) */,
 				C78B966EA226E49AAF64CAEF04B0A743 /* Pods-How Long Left (watchOS) Extension */,
 				B4DBA176BC2787378622CCC7CAA9B4F0 /* Pods-How Long Left Siri Extension */,
 				C6CC9CE4268E52B2DA862CB04D6E26C9 /* Pods-How Long Left Siri ExtensionUI */,
-				85A295ED2537F027090FAEEDADEADE5F /* TimelineCards */,
-				DBD3FA030AC2DA1343D98D95A0FAA9FA /* ViewAnimator */,
+				B4701C5E905FC11D456850A7AE01D268 /* Preferences */,
+				2EDF8A783892E4A4E02B59ABA3405810 /* ViewAnimator */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		275EF17341B2DB8A6FD27E02401A0B51 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2B00DF6150533B81479DBB5F7F28483C /* Resources */ = {
+		3ECF22E97E41401AE2CB8F715DDBD400 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -963,21 +848,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6262A2E72E7EF2DD6AB262DFD1DA7B5B /* Resources */ = {
+		99B72CD1D0412D1E14BEF93C5397631D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BF1BC2D8933A83D52240F8E698B95204 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C1559B3666C9AA1CCC9E9A31A9531CBC /* Resources */ = {
+		B3E9D81672D1ECB5BB80617C015A3A8A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -991,7 +869,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E01BEAE55E37AB1744B1D09C3BBB80D6 /* Resources */ = {
+		D7D9F541BECB8D6E404DBC2CEC9B4FFF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1005,30 +883,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		2559C2CE4C5DFB5751A945C35F99CA1A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+		E32964EEC495A2026CD68212C7518125 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29286E640F32EB5B8794560B6B77DBAA /* Animation.swift in Sources */,
-				2163747B784A7003F94207182A3C7908 /* AnimationType.swift in Sources */,
-				BF7AC57A238412C618BD9ED77626081B /* Direction.swift in Sources */,
-				61D48EB1C52E8655971D8016AD26A443 /* UICollectionView + ViewAnimator.swift in Sources */,
-				23E2AEB2F13E501FA10353C431B4C3D9 /* UITableView + ViewAnimator.swift in Sources */,
-				7F6F8A215F1EF2B033B50F2AA8B7EF9D /* Utilities.swift in Sources */,
-				9B816A0EC71230D417F2942F06B5BF1E /* ViewAnimator-dummy.m in Sources */,
-				0F8B633BFEAB2BF65EA888FB283B58C5 /* ViewAnimator.swift in Sources */,
-				DCD9D7D574E406CEEAAD6A7DB66415C2 /* ViewAnimatorConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		28A7578A5D60B74E5ABDBDEFDF099950 /* Sources */ = {
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6E246ED0F32E89E141A4A3B19A315434 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A589BADA9AD1ACB356D5308F7DF4AB67 /* Pods-How Long Left (iOS)-dummy.m in Sources */,
+				D3E0C95646D925F4E68311491264F636 /* Pods-How Long Left (macOS)-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1040,22 +909,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		755CBBC10B1C2C3EE8D872BA0C3FE27E /* Sources */ = {
+		74CE52506633C8C19E6ED55BADA04364 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3586EA8EE787B7133DA9430C70A3FE2E /* Pods-How Long Left (macOS)-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		85AFCE9CEA264931D7074F3720A120AB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				74F0E11ACAD3B5A50B2E5F3E8B09F68B /* Document.swift in Sources */,
-				A9CEC6921D52C35E6AD8E5271CB3FF41 /* Erik-dummy.m in Sources */,
-				BF4C8BFC80FF8556E0A55EA881D1A596 /* Erik.swift in Sources */,
-				0A3CE11628368107F09110916C571E5A /* LayoutEngine.swift in Sources */,
+				098C43FCBC4788EC6B665070A2242BDE /* Animation.swift in Sources */,
+				C5D0A78265928D90F79C3054D97A6BA1 /* AnimationType.swift in Sources */,
+				968A15A61EE26AD06F73D75CF76066ED /* Direction.swift in Sources */,
+				516AD26E662F54A116735DDCF1A5DF80 /* UICollectionView + ViewAnimator.swift in Sources */,
+				631DDD374F31BD2259B1EE2A54D6EBD8 /* UITableView + ViewAnimator.swift in Sources */,
+				4DAF91C376939C9BA42F0962E7803960 /* Utilities.swift in Sources */,
+				39109584379F0A88CCFB1B50647BE9DD /* ViewAnimator-dummy.m in Sources */,
+				2F24D9D2C9E3F1D57E214128DE4428C2 /* ViewAnimator.swift in Sources */,
+				1F8A59117EFE99C3603C44AC57A01879 /* ViewAnimatorConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1067,6 +933,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A78B3031D4784AC05B23E59C183D04A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E25FB339406A68512E04E43ABB6FF368 /* Pods-How Long Left (iOS)-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BC73ACE36C289F1D2FBBBE4FCDBC6B6C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1075,17 +949,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C102DA4609E76B43AE1CC8FF454A97B2 /* Sources */ = {
+		CBB3B359757C645A0C0663DF0FED7D24 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79E83E6A5F24DA997A8D0E6B4841EF9E /* CSS.swift in Sources */,
-				DF9FDEE2163B5D5AB2C832D709C5E48E /* Deprecated.swift in Sources */,
-				AAF92942BE8BF1A62EDEFC3509CF9323 /* Kanna-dummy.m in Sources */,
-				8B733B637035F0E2AAA52A306C6C2FA1 /* Kanna.swift in Sources */,
-				C30628670FF91BE419B994314BE045AB /* libxmlHTMLDocument.swift in Sources */,
-				A299506B4C3C4EE8923F4073AD36C59D /* libxmlHTMLNode.swift in Sources */,
-				C86DDEE98058FC887BDD42E05F6EB553 /* libxmlParserOption.swift in Sources */,
+				99D3C908737119A8591D84A04E944423 /* Preferenceable.swift in Sources */,
+				095907C37DF810C0A30E2DCB901C74E7 /* Preferences-dummy.m in Sources */,
+				4CE70C08C55F35CF629C65D044F741C6 /* PreferencesTabViewController.swift in Sources */,
+				FEF12C186BDD1AB1AA38E6B22E9E8D9C /* PreferencesWindowController.swift in Sources */,
+				DAE3224BD35D96E643FBF22A270BD904 /* util.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1097,53 +969,75 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EB4A0063294E2D875FF19AD8A146A6C1 /* Sources */ = {
+		EF918C4F607066D273958B5323653B3E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAF3F2A933DFE7CDD04FCA746F7B746C /* TimelineCard.swift in Sources */,
-				1016DE0E2E0F93291AF2D70025733C60 /* TimelineCards-dummy.m in Sources */,
-				C7CDED0F4379276B5A9C5E9FB1B9A8AA /* TimelineFeed.swift in Sources */,
-				2709F3914A56564281C5C05F688AF717 /* TimelineItem.swift in Sources */,
+				0BC629CC89A0C7148332C506D29C627A /* HotKey-dummy.m in Sources */,
+				8DEF155EE2362D6BC9AC43B480476F98 /* HotKey.swift in Sources */,
+				814F306420675D2586FE4EF0A239AB4B /* HotKeysController.swift in Sources */,
+				657A257EC389269A1A166CD317BD53C7 /* Key.swift in Sources */,
+				0F9E8F3645491AB3077270417152ACFC /* KeyCombo.swift in Sources */,
+				0EC8540B1AE9EE3130E8FF81A50EC2CB /* NSEventModifierFlags+HotKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		425E83B1F157971A59CBA721DF1125DC /* PBXTargetDependency */ = {
+		6D7C009F5FAE49C6577DD0A3C5A2092C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Preferences;
+			target = B4701C5E905FC11D456850A7AE01D268 /* Preferences */;
+			targetProxy = 2675D18302CEE6BB24A6AA1C9D592DE4 /* PBXContainerItemProxy */;
+		};
+		6E008FB30F79B497C3E584FECCE0B8D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HotKey;
+			target = 91C9120C8D4DC6ECA8A40DEAD4F2B1B5 /* HotKey */;
+			targetProxy = 49878EE71AD850936782C1D060F5E040 /* PBXContainerItemProxy */;
+		};
+		A5AE44B09FE30EABB11E7B080081E6B7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ViewAnimator;
-			target = DBD3FA030AC2DA1343D98D95A0FAA9FA /* ViewAnimator */;
-			targetProxy = 3C451E493E2B261C14AF2BDAC150FC90 /* PBXContainerItemProxy */;
-		};
-		4ADB420AFE1C59D6A7CFC3A768B8978E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Kanna;
-			target = 2CD56620BF09F0D84030E8BE87B406BD /* Kanna */;
-			targetProxy = C9B0943D1D90CEB853DDB13E5B83F69C /* PBXContainerItemProxy */;
-		};
-		6C42DCB6CDE740DE6925957EC30A8827 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Kanna;
-			target = 2CD56620BF09F0D84030E8BE87B406BD /* Kanna */;
-			targetProxy = EA9D8B6C09227C1F7BBBD85AF340D995 /* PBXContainerItemProxy */;
-		};
-		A57A005ADBF3094D86D0889A4DDF14D8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = TimelineCards;
-			target = 85A295ED2537F027090FAEEDADEADE5F /* TimelineCards */;
-			targetProxy = F18699018E883C422EC341BBC06C8BE0 /* PBXContainerItemProxy */;
-		};
-		E7B3F301712B11D51F1FD8531F129C11 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Erik;
-			target = B3439EE5CEC7D1312AA853136FE9C7E1 /* Erik */;
-			targetProxy = D0CE61A01A92226E4937E56A441A8329 /* PBXContainerItemProxy */;
+			target = 2EDF8A783892E4A4E02B59ABA3405810 /* ViewAnimator */;
+			targetProxy = 2D36A55EA8A40D32CB8C0589889F592E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		071DD858B5461C6F6B6DB61F7585CFA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11C59EEB40597A0EE9CFB21895018856 /* HotKey.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/HotKey/HotKey-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/HotKey/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MODULEMAP_FILE = "Target Support Files/HotKey/HotKey.modulemap";
+				PRODUCT_MODULE_NAME = HotKey;
+				PRODUCT_NAME = HotKey;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		0C9E5D68893D6BA9DAEB3E4BC404D8EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 75934CED14D34AE18D3D3A3FFD581960 /* Pods-How Long Left Siri Extension.release.xcconfig */;
@@ -1162,11 +1056,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left Siri Extension/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left Siri Extension/Pods-How Long Left Siri Extension.modulemap";
 				OTHER_LDFLAGS = "";
@@ -1182,45 +1072,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		0FD48247CB218DA7DECB5AE682E11773 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C196661294A1E77D352AB151B23CDD53 /* Pods-How Long Left (macOS).debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (macOS)/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (macOS)/Pods-How Long Left (macOS).modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		1011161A66B7431128879CB1F4623A79 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1290,151 +1141,7 @@
 			};
 			name = Debug;
 		};
-		16E747F0CF36B8A6A75DDB0FC7133C60 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8CBE21055FEA2628B7B2B42643588E3A /* Kanna.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Kanna/Kanna-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Kanna/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/Kanna/Kanna.modulemap";
-				PRODUCT_MODULE_NAME = Kanna;
-				PRODUCT_NAME = Kanna;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		198514055445263E5EAF7C4431D368BC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FAA5BCF1E934F19B4A8F7736B88753E1 /* TimelineCards.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/TimelineCards/TimelineCards-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TimelineCards/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/TimelineCards/TimelineCards.modulemap";
-				PRODUCT_MODULE_NAME = TimelineCards;
-				PRODUCT_NAME = TimelineCards;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		266CC2D5A778AE1268C6AEBB25AE2EB2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFCFFA7B5101C98FB2F69CA310ECD435 /* Erik.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Erik/Erik-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Erik/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/Erik/Erik.modulemap";
-				PRODUCT_MODULE_NAME = Erik;
-				PRODUCT_NAME = Erik;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		32FC7999A2F13F87E8733CF86DC2974E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFCFFA7B5101C98FB2F69CA310ECD435 /* Erik.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Erik/Erik-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Erik/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/Erik/Erik.modulemap";
-				PRODUCT_MODULE_NAME = Erik;
-				PRODUCT_NAME = Erik;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		337F21DE4904D77608705316491CEC3A /* Release */ = {
+		3CFB458B5AFC522F04E822CB2860B19D /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A11D6F355FD57A1F5232D00758B80BE1 /* Pods-How Long Left (macOS).release.xcconfig */;
 			buildSettings = {
@@ -1453,11 +1160,7 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (macOS)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (macOS)/Pods-How Long Left (macOS).modulemap";
@@ -1472,41 +1175,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		47313094604160EEFFF812F7D3856E2E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8CBE21055FEA2628B7B2B42643588E3A /* Kanna.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Kanna/Kanna-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Kanna/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/Kanna/Kanna.modulemap";
-				PRODUCT_MODULE_NAME = Kanna;
-				PRODUCT_NAME = Kanna;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		4FC81BA34E6E7D6CA3F45A2686934F85 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1525,11 +1193,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (watchOS)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (watchOS)/Pods-How Long Left (watchOS).modulemap";
 				OTHER_LDFLAGS = "";
@@ -1543,6 +1207,40 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Debug;
+		};
+		4FDBBDD0462EF3588214A556296A1E97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96E3B63CA80DAE4B88BE8880E5B426F3 /* Pods-How Long Left (iOS).debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (iOS)/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (iOS)/Pods-How Long Left (iOS).modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
@@ -1564,11 +1262,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left Siri ExtensionUI/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left Siri ExtensionUI/Pods-How Long Left Siri ExtensionUI.modulemap";
 				OTHER_LDFLAGS = "";
@@ -1584,9 +1278,44 @@
 			};
 			name = Debug;
 		};
-		80F92E0D6A6F7F2422DD5FA73CBDF3D9 /* Debug */ = {
+		7EF860AE04D510474F6019C185F2F2D9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97B5F45E99661AF2D72E9C42F45D5F77 /* ViewAnimator.xcconfig */;
+			baseConfigurationReference = 96DC94BA3A2FF632D0047C31AC51B667 /* Pods-How Long Left (iOS).release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (iOS)/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (iOS)/Pods-How Long Left (iOS).modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7FF7B082239C8206B4D2088910E2341B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BE4248D491F1171197BB3135E99E51C /* ViewAnimator.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1601,11 +1330,7 @@
 				INFOPLIST_FILE = "Target Support Files/ViewAnimator/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/ViewAnimator/ViewAnimator.modulemap";
 				PRODUCT_MODULE_NAME = ViewAnimator;
 				PRODUCT_NAME = ViewAnimator;
@@ -1618,42 +1343,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		9603B764E8C96AC8DBB8D0F9D5634F40 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97B5F45E99661AF2D72E9C42F45D5F77 /* ViewAnimator.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/ViewAnimator/ViewAnimator-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ViewAnimator/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/ViewAnimator/ViewAnimator.modulemap";
-				PRODUCT_MODULE_NAME = ViewAnimator;
-				PRODUCT_NAME = ViewAnimator;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		96285F9855D57DE9A93856344CF00368 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1672,11 +1361,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (watchOS) Extension/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (watchOS) Extension/Pods-How Long Left (watchOS) Extension.modulemap";
 				OTHER_LDFLAGS = "";
@@ -1692,6 +1377,38 @@
 				WATCHOS_DEPLOYMENT_TARGET = 5.0;
 			};
 			name = Debug;
+		};
+		98640AFCA58D7124E41DDC274BA2CE8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BE4248D491F1171197BB3135E99E51C /* ViewAnimator.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ViewAnimator/ViewAnimator-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ViewAnimator/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ViewAnimator/ViewAnimator.modulemap";
+				PRODUCT_MODULE_NAME = ViewAnimator;
+				PRODUCT_NAME = ViewAnimator;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		992BE60785DEB92A42803D34DD865E4C /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1710,11 +1427,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (watchOS) Extension/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (watchOS) Extension/Pods-How Long Left (watchOS) Extension.modulemap";
 				OTHER_LDFLAGS = "";
@@ -1729,6 +1442,38 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 				WATCHOS_DEPLOYMENT_TARGET = 5.0;
+			};
+			name = Release;
+		};
+		A7E809D9B147C1657D7A60D7C1327FB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11C59EEB40597A0EE9CFB21895018856 /* HotKey.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/HotKey/HotKey-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/HotKey/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MODULEMAP_FILE = "Target Support Files/HotKey/HotKey.modulemap";
+				PRODUCT_MODULE_NAME = HotKey;
+				PRODUCT_NAME = HotKey;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -1749,11 +1494,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (watchOS)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (watchOS)/Pods-How Long Left (watchOS).modulemap";
 				OTHER_LDFLAGS = "";
@@ -1789,11 +1530,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left Siri Extension/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left Siri Extension/Pods-How Long Left Siri Extension.modulemap";
 				OTHER_LDFLAGS = "";
@@ -1865,92 +1602,49 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				SYMROOT = "${SRCROOT}/../build";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
-		C48B09C85420FEC47F9C9272DE81FDDD /* Release */ = {
+		DA00F338F34235731CB9CA33BBD34E28 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 96DC94BA3A2FF632D0047C31AC51B667 /* Pods-How Long Left (iOS).release.xcconfig */;
+			baseConfigurationReference = 74E749284D9416756DEC4FEE28A3E38B /* Preferences.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (iOS)/Info.plist";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/Preferences/Preferences-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Preferences/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (iOS)/Pods-How Long Left (iOS).modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		C7FF1B978D231BA029303C534F9B9906 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FAA5BCF1E934F19B4A8F7736B88753E1 /* TimelineCards.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/TimelineCards/TimelineCards-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TimelineCards/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/TimelineCards/TimelineCards.modulemap";
-				PRODUCT_MODULE_NAME = TimelineCards;
-				PRODUCT_NAME = TimelineCards;
-				SDKROOT = iphoneos;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MODULEMAP_FILE = "Target Support Files/Preferences/Preferences.modulemap";
+				PRODUCT_MODULE_NAME = Preferences;
+				PRODUCT_NAME = Preferences;
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
-		ECEBF2034FBFD77094D6E42361E8BBF3 /* Debug */ = {
+		DA43516975E1122303D265836FCD8D44 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 96E3B63CA80DAE4B88BE8880E5B426F3 /* Pods-How Long Left (iOS).debug.xcconfig */;
+			baseConfigurationReference = C196661294A1E77D352AB151B23CDD53 /* Pods-How Long Left (macOS).debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -1958,29 +1652,26 @@
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (iOS)/Info.plist";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (macOS)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (iOS)/Pods-How Long Left (iOS).modulemap";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (macOS)/Pods-How Long Left (macOS).modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -2004,11 +1695,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left Siri ExtensionUI/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left Siri ExtensionUI/Pods-How Long Left Siri ExtensionUI.modulemap";
 				OTHER_LDFLAGS = "";
@@ -2020,6 +1707,39 @@
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F82AF90374211E87E62F5D0418BDF867 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74E749284D9416756DEC4FEE28A3E38B /* Preferences.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/Preferences/Preferences-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Preferences/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MODULEMAP_FILE = "Target Support Files/Preferences/Preferences.modulemap";
+				PRODUCT_MODULE_NAME = Preferences;
+				PRODUCT_NAME = Preferences;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -2037,11 +1757,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2007DF006B1BAF122F1CBAF205F89FF4 /* Build configuration list for PBXNativeTarget "Pods-How Long Left (macOS)" */ = {
+		206AE7B5318027EC4BDF953F180A3C7D /* Build configuration list for PBXNativeTarget "HotKey" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0FD48247CB218DA7DECB5AE682E11773 /* Debug */,
-				337F21DE4904D77608705316491CEC3A /* Release */,
+				071DD858B5461C6F6B6DB61F7585CFA7 /* Debug */,
+				A7E809D9B147C1657D7A60D7C1327FB7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2055,29 +1775,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		486C21E4819C8A8BB8C562777873AC9B /* Build configuration list for PBXNativeTarget "Pods-How Long Left (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA43516975E1122303D265836FCD8D44 /* Debug */,
+				3CFB458B5AFC522F04E822CB2860B19D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		68C524D6EF215784CC003E6213CA19B4 /* Build configuration list for PBXNativeTarget "Pods-How Long Left (watchOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FC81BA34E6E7D6CA3F45A2686934F85 /* Debug */,
 				A91B42DFEE6B0A4FDE5E669A14C5C482 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7AC61D52FEE08D3BAF4FE5831A4C9003 /* Build configuration list for PBXNativeTarget "Pods-How Long Left (iOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				ECEBF2034FBFD77094D6E42361E8BBF3 /* Debug */,
-				C48B09C85420FEC47F9C9272DE81FDDD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7C6B262D4645F4D8B01CF962FEB7467F /* Build configuration list for PBXNativeTarget "Erik" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				32FC7999A2F13F87E8733CF86DC2974E /* Debug */,
-				266CC2D5A778AE1268C6AEBB25AE2EB2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2091,11 +1802,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B6080328E1783F0E9EE6D0F477C8AFA3 /* Build configuration list for PBXNativeTarget "ViewAnimator" */ = {
+		A9593B2C094A084DE6FB9EC37CF57780 /* Build configuration list for PBXNativeTarget "Pods-How Long Left (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				80F92E0D6A6F7F2422DD5FA73CBDF3D9 /* Debug */,
-				9603B764E8C96AC8DBB8D0F9D5634F40 /* Release */,
+				4FDBBDD0462EF3588214A556296A1E97 /* Debug */,
+				7EF860AE04D510474F6019C185F2F2D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1BD7E6D1146C136C24764DDF28D8C23 /* Build configuration list for PBXNativeTarget "Preferences" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA00F338F34235731CB9CA33BBD34E28 /* Debug */,
+				F82AF90374211E87E62F5D0418BDF867 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D81236C0B2B9BCE16E7F72F38181E85A /* Build configuration list for PBXNativeTarget "ViewAnimator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7FF7B082239C8206B4D2088910E2341B /* Debug */,
+				98640AFCA58D7124E41DDC274BA2CE8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2105,24 +1834,6 @@
 			buildConfigurations = (
 				96285F9855D57DE9A93856344CF00368 /* Debug */,
 				992BE60785DEB92A42803D34DD865E4C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F38F74D3E57D367B182B907600F2CBF5 /* Build configuration list for PBXNativeTarget "TimelineCards" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				198514055445263E5EAF7C4431D368BC /* Debug */,
-				C7FF1B978D231BA029303C534F9B9906 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F7F11D191A6C8E735B398D831D14CB17 /* Build configuration list for PBXNativeTarget "Kanna" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				47313094604160EEFFF812F7D3856E2E /* Debug */,
-				16E747F0CF36B8A6A75DDB0FC7133C60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -32,7 +32,6 @@ class BackgroundUpdateHandler {
             
         } */
         
-        DispatchQueue.global(qos: .default).async {
         
         var date = Date()
 
@@ -58,7 +57,7 @@ class BackgroundUpdateHandler {
                 
             })
             
-        }
+        
         
     }
     

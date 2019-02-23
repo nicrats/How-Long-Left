@@ -103,7 +103,7 @@ struct HLLEvent: Equatable, Hashable, Codable {
     
     static func == (lhs: HLLEvent, rhs: HLLEvent) -> Bool {
         
-        return lhs.title == rhs.title && lhs.startDate == rhs.startDate && lhs.location == rhs.location
+        return lhs.title == rhs.title && lhs.startDate == rhs.startDate && lhs.location == rhs.location && lhs.calendarID == rhs.calendarID
         
     }
     

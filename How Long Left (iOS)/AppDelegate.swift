@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.setMinimumBackgroundFetchInterval(60)
         
         
+        
         return true
     }
     

@@ -36,10 +36,10 @@ class EventNextOccurenceFinder {
                     
                     let dif = Date().timeIntervalSince(event.startDate)
                     
-                    if event.title.contains(text: currentEvent.title), dif < 0 {
+                    if event.title.contains(text: currentEvent.title), dif < 0, event.startDate != currentEvent.startDate {
                         returnEvents.append(event)
                         break outer
-                    } else if currentEvent.title.contains(text: event.title), dif < 0 {
+                    } else if currentEvent.title.contains(text: event.title), dif < 0, event.startDate != currentEvent.startDate {
                         returnEvents.append(event)
                         break outer
                     }

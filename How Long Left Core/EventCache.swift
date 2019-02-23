@@ -10,6 +10,8 @@ import Foundation
 
 struct EventCache {
     
+    static var fetchQueue = DispatchQueue(label: "eventFetchQueue")
+    
     static var currentEvents = [HLLEvent]()
     static var allUpcomingEvents = [HLLEvent]()
     static var allEventsToday = [HLLEvent]()

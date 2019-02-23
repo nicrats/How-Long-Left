@@ -10,39 +10,23 @@ import Foundation
 import HotKey
 import AppKit
 import HLLHelper
+import os.log
 
 class Main: HLLCountdownController {
     
+    let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "Main")
     let updateInterval = 5
     let fastUpdateInterval = 0.5
     let minUpdateInterval = 0.5
-    
-    var statusItemLoops = 1
-    lazy var defaults = HLLDefaults()
-    lazy var countdownStringGenerator = CountdownStringGenerator()
-    lazy var upcomingEventStringGenerator = UpcomingEventStringGenerator()
-    lazy var schoolAnalyser = SchoolAnalyser()
-    lazy var milestoneNotifications = MilestoneNotifications()
-    lazy var calendarData = EventDataSource.shared
-    lazy var statusItemTimerStringGenerator = StatusItemTimerStringGenerator(isForPreview: false)
-    lazy var nextOccurStringGenerator = NextOccurenceStringGenerator()
-    lazy var holidaysStringGenerator = SchoolHolidaysStringGenerator()
-    lazy var eventNextOccurFinder = EventNextOccurenceFinder()
-    lazy var memoryRelaunch = MemoryRelaunch()
-    lazy var schoolManager = SchoolFunctionsManager()
-    var delegate: HLLMacUIController? {
-        
-        didSet {
-            
-            self.mainRunLoop()
-            
-        }
-        
-        
-    }
+    let statusItemTimerQueue = DispatchQueue(label: "statusItemTimer")
+    let mainRunQueue = DispatchQueue(label: "mainRunQueue")
+    let frequentLowUsageQueue = DispatchQueue(label: "frequentLowUsage")
+    let calUpdateQueue = DispatchQueue(label: "calendarUpdate")
     let schoolHoliday = MagdaleneSchoolHolidays()
-    var nextEventToStart: HLLEvent?
     let calendar = NSCalendar.current
+    let version = Version()
+    var statusItemLoops = 1
+    var nextEventToStart: HLLEvent?
     var betaExpiryDate: Date?
     var welcomeWindowController : NSWindowController?
     var welcomeStoryboard = NSStoryboard()
@@ -64,21 +48,36 @@ class Main: HLLCountdownController {
     var shownNoCalAccessNotification = false
     var shownBetaExpiredNoto = false
     var updateCalID: String?
-    
-    let version = Version()
     var currentStatusItemLoop = 0
-    
-    let statusItemTimerQueue = DispatchQueue(label: "statusItemTimer")
-    let mainRunQueue = DispatchQueue(label: "mainRunQueue")
-    let frequentLowUsageQueue = DispatchQueue(label: "frequentLowUsage")
-    let calUpdateQueue = DispatchQueue(label: "calendarUpdate")
-    
+    var connection: NSXPCConnection?
     lazy var preciseUpdateForMinuteChangeTimer = RepeatingTimer(time: minUpdateInterval)
     lazy var preciseUpdateForPreferencesOpenTimer = RepeatingTimer(time: minUpdateInterval)
     lazy var statusItemLoopTimer = RepeatingTimer(time: 5.0)
     lazy var statusItemTimer = RepeatingTimer(time: fastUpdateInterval)
     lazy var eventMilestoneTracker = EventTimeRemainingMonitor(delegate: self)
-    
+    lazy var defaults = HLLDefaults()
+    lazy var countdownStringGenerator = CountdownStringGenerator()
+    lazy var upcomingEventStringGenerator = UpcomingEventStringGenerator()
+    lazy var schoolAnalyser = SchoolAnalyser()
+    lazy var milestoneNotifications = MilestoneNotifications()
+    lazy var calendarData = EventDataSource.shared
+    lazy var statusItemTimerStringGenerator = StatusItemTimerStringGenerator(isForPreview: false)
+    lazy var nextOccurStringGenerator = NextOccurenceStringGenerator()
+    lazy var holidaysStringGenerator = SchoolHolidaysStringGenerator()
+    lazy var eventNextOccurFinder = EventNextOccurenceFinder()
+    lazy var memoryRelaunch = MemoryRelaunch()
+    lazy var schoolManager = SchoolFunctionsManager()
+    static var service: HLLHelperProtocol?
+    var delegate: HLLMacUIController? {
+        
+        didSet {
+            
+            self.mainRunLoop()
+            
+        }
+        
+        
+    }
    // let milestoneNotosch = MilestoneNotificationScheduler()
     
     
@@ -112,10 +111,6 @@ class Main: HLLCountdownController {
         return returnDict
     }
     
-    
-    var connection: NSXPCConnection?
-    static var service: HLLHelperProtocol?
-    
     func setupXPC() {
         
         connection = NSXPCConnection(serviceName: "ryankontos.How-Long-Left-Helper")
@@ -131,14 +126,15 @@ class Main: HLLCountdownController {
     
     init(aDelegate: HLLMacUIController) {
 
-        //setupXPC()
+       setupXPC()
 
+        DispatchQueue.main.async {
         
-        delegate = aDelegate
+            self.delegate = aDelegate
         
         UIController.awokeAt = Date()
         
-        schoolAnalyser.analyseCalendar()
+            self.schoolAnalyser.analyseCalendar()
         
       //  betaExpiryDate = Date(timeIntervalSince1970: 1544792400)
         
@@ -185,12 +181,12 @@ class Main: HLLCountdownController {
       //  let magdaleneUpdateAlert = MagdaleneUpdateAlert()
        // magdaleneUpdateAlert.CheckToShowMagdaleneChangesPrompt()
         
-        HLLDefaults.appData.launchedVersion = version.currentVersion
+            HLLDefaults.appData.launchedVersion = self.version.currentVersion
         
-        delegate?.setHotkey(to: HLLDefaults.notifications.hotkey)
+            self.delegate?.setHotkey(to: HLLDefaults.notifications.hotkey)
         
         
-        statusItemTimer.eventHandler = {
+            self.statusItemTimer.eventHandler = {
             
             self.statusItemTimerQueue.async(flags: .barrier) {
                 
@@ -221,24 +217,24 @@ class Main: HLLCountdownController {
             
         }
         
-        preciseUpdateForMinuteChangeTimer.eventHandler = { self.preciseMainRunLoopTrigger() }
-        preciseUpdateForPreferencesOpenTimer.eventHandler = { self.preciseMainRunLoopTrigger() }
+            self.preciseUpdateForMinuteChangeTimer.eventHandler = { self.preciseMainRunLoopTrigger() }
+            self.preciseUpdateForPreferencesOpenTimer.eventHandler = { self.preciseMainRunLoopTrigger() }
         
        // updateCalendarData(doGlobal: false)
         
      //   mainRunLoop()
         
-      mainTimer = Timer.scheduledTimer(timeInterval: TimeInterval(updateInterval), target: self, selector: #selector(mainRunLoop), userInfo: nil, repeats: true)
-        frequentLowUsageTimer = Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(checkEvents), userInfo: nil, repeats: true)
-        dataUpdateTimer = Timer.scheduledTimer(timeInterval: TimeInterval(300), target: self, selector: #selector(updateCalendarData), userInfo: nil, repeats: true)
-        checkForUpdateTimer = Timer.scheduledTimer(timeInterval: TimeInterval(300), target: self, selector: #selector(doUpdateCheck), userInfo: nil, repeats: true)
+            self.mainTimer = Timer.scheduledTimer(timeInterval: TimeInterval(self.updateInterval), target: self, selector: #selector(self.mainRunLoop), userInfo: nil, repeats: true)
+            self.frequentLowUsageTimer = Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(self.checkEvents), userInfo: nil, repeats: true)
+            self.dataUpdateTimer = Timer.scheduledTimer(timeInterval: TimeInterval(300), target: self, selector: #selector(self.updateCalendarData), userInfo: nil, repeats: true)
+            self.checkForUpdateTimer = Timer.scheduledTimer(timeInterval: TimeInterval(300), target: self, selector: #selector(self.doUpdateCheck), userInfo: nil, repeats: true)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.doUpdateCheck()
         }
         
-        RunLoop.main.add(mainTimer!, forMode: .common)
-        RunLoop.main.add(frequentLowUsageTimer, forMode: .common)
+           RunLoop.main.add(self.mainTimer!, forMode: .common)
+           //RunLoop.main.add(self.frequentLowUsageTimer, forMode: .common)
         
         NotificationCenter.default.addObserver(
             self,
@@ -253,10 +249,10 @@ class Main: HLLCountdownController {
         
         // Ooft we've finsihed launching
     
-       updateCalendarData(doGlobal: true)
-        mainRunLoop()
+            self.updateCalendarData(doGlobal: true)
+            self.mainRunLoop()
         
-       
+        }
         
     }
     
@@ -271,18 +267,20 @@ class Main: HLLCountdownController {
     
     @objc func doUpdateCheck() {
         
-        let update = version.updateAvaliable()
+        DispatchQueue.main.async {
         
-       delegate?.setUpdateAvaliableState(version: update)
+            let update = self.version.updateAvaliable()
         
-        if let uUpdate = update, shownUpdateNotification == false {
+            self.delegate?.setUpdateAvaliableState(version: update)
+        
+            if let uUpdate = update, self.shownUpdateNotification == false {
             
-            sendUpdateAvaliableNotification(version: uUpdate)
-            shownUpdateNotification = true
+                self.sendUpdateAvaliableNotification(version: uUpdate)
+            self.shownUpdateNotification = true
             
         }
         
-        
+        }
         
     }
     
@@ -295,7 +293,6 @@ class Main: HLLCountdownController {
         
         frequentLowUsageQueue.async(flags: .barrier) {
         
-            DispatchQueue.main.sync {
             
             self.eventMilestoneTracker.checkCurrentEvents()
             let second = self.calendar.component(.second, from: Date())
@@ -308,7 +305,7 @@ class Main: HLLCountdownController {
                 
             }
             
-        }
+        
           
 
         }
@@ -346,6 +343,7 @@ class Main: HLLCountdownController {
                 self.delegate?.noCalendarAccessUIState(enabled: false)
                 
             }
+            EventCache.fetchQueue.async(flags: .barrier) {
             
           EventCache.currentEvents = self.schoolManager.handle(events: EventCache.currentEvents)
             
@@ -358,6 +356,8 @@ class Main: HLLCountdownController {
             if let topE = EventCache.primaryEvent {
                 
             EventCache.primaryEvent = self.schoolManager.handle(events: [topE]).first!
+                
+            }
                 
             }
             
@@ -439,9 +439,10 @@ class Main: HLLCountdownController {
                 for event in EventCache.currentEvents {
                     
                     if event == top {
-                        
+                        EventCache.fetchQueue.sync(flags: .barrier) {
                         EventCache.primaryEvent = event
                         match = true
+                        }
                         
                     }
                     
@@ -449,9 +450,9 @@ class Main: HLLCountdownController {
                 }
                 
                 if match == false {
-                    
+                    EventCache.fetchQueue.async(flags: .barrier) {
                     EventCache.primaryEvent = EventCache.currentEvents.first
-                    
+                    }
                 }
                 
             }
@@ -509,7 +510,7 @@ class Main: HLLCountdownController {
     @objc func calendarDidChange() {
         
        // print("Updating calendar at \(Date()) due to calendar change")
-        updateCalendarData(doGlobal: false)
+        updateCalendarData(doGlobal: true)
         print("Updating calendar at \(Date()) due to cal change")
         
         
@@ -524,9 +525,9 @@ class Main: HLLCountdownController {
         currentEvents.sort(by: { $0.endDate.compare($1.endDate) == .orderedAscending })
         
         
-        
+        EventCache.fetchQueue.async(flags: .barrier) {
         EventCache.currentEvents = currentEvents
-        
+        }
     }
     
     func checkIfPrimaryIsStillRunning() {
@@ -547,8 +548,9 @@ class Main: HLLCountdownController {
             
             if match == false {
                 
+                EventCache.fetchQueue.async(flags: .barrier) {
                 EventCache.primaryEvent = nil
-                
+                }
             }
             
             
@@ -639,6 +641,8 @@ class Main: HLLCountdownController {
     
    @objc func updateCalendarData(doGlobal: Bool) {
     
+    os_log("Doing event update...", log: log, type: .default)
+    
     if connection != nil {
         
         updateOverXPC()
@@ -649,12 +653,16 @@ class Main: HLLCountdownController {
         
     }
     
+    os_log("Event update done.", log: log, type: .default)
+    
     }
     
    @objc func updateOverXPC() {
     
         calUpdateQueue.async(flags: .barrier) {
         
+        EventCache.fetchQueue.async(flags: .barrier) {
+            
             if self.inCalendarUpdateCooldown == false {
             
                 self.inCalendarUpdateCooldown = true
@@ -707,6 +715,8 @@ class Main: HLLCountdownController {
                         
                     })
                     
+                
+                    
                     self.lastCalendarUpdate = Date()
                     self.calendarUpdateInProgress = false
                     self.beenTooLongWithoutUpdate = false
@@ -743,7 +753,7 @@ class Main: HLLCountdownController {
         }
         
         
-            
+    }
     }
     
    @objc func updateCalendarDataOld(doGlobal: Bool) {
@@ -754,9 +764,6 @@ class Main: HLLCountdownController {
         
             self.inCalendarUpdateCooldown = true
             
-            
-        DispatchQueue.global(qos: .userInteractive).async {
-            
             self.calendarData.updateEventStore()
             
             if self.calendarUpdateInProgress == false {
@@ -766,20 +773,8 @@ class Main: HLLCountdownController {
             print("Cal update")
                 
                 
-                if doGlobal == true {
+                EventCache.fetchQueue.async(flags: .barrier) {
                     
-                    let _ = self.calendarData.getCurrentEvents()
-                    let _ = self.calendarData.getUpcomingEventsToday()
-                    let _ = self.calendarData.getUpcomingEventsFromNextDayWithEvents()
-                    let _ = self.calendarData.getArraysOfUpcomingEventsForNextSevenDays()
-                    EventCache.allUpcomingEvents = self.calendarData.fetchEventsFromPresetPeriod(period: .Next2Weeks)
-                    EventCache.allEventsToday = self.calendarData.fetchEventsFromPresetPeriod(period: .AllToday)
-                    EventCache.nextUpcomingEventsDay = self.calendarData.getUpcomingEventsFromNextDayWithEvents()
-                    self.schoolAnalyser.analyseCalendar()
-                    
-                    
-                } else {
-                
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
                 let _ = self.calendarData.getCurrentEvents()
             }
@@ -812,7 +807,7 @@ class Main: HLLCountdownController {
             }
            
             
-        }
+        
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 
@@ -822,7 +817,7 @@ class Main: HLLCountdownController {
                 if self.updateRequestedDuringCooldown == true {
                 //    print("Doing update requested during cooldown")
                     self.updateRequestedDuringCooldown = false
-                    self.updateCalendarData(doGlobal: false)
+                    self.updateCalendarData(doGlobal: true)
                     
                 }
                 
@@ -934,9 +929,6 @@ class Main: HLLCountdownController {
     func updateDueToEventEnd(event: HLLEvent, endingNow: Bool) {
         
         
-            self.updateCalendarData(doGlobal: false)
-            self.checkIfPrimaryIsStillRunning()
-        
         var idArray = [HLLEvent]()
         
         EventCache.currentEvents.forEach({ event in
@@ -946,12 +938,13 @@ class Main: HLLCountdownController {
         })
         
         if let indexOfEnding = idArray.firstIndex(of: event) {
-            
+            EventCache.fetchQueue.async(flags: .barrier) {
             EventCache.currentEvents.remove(at: indexOfEnding)
-            
+            }
         }
         
-        
+        self.updateCalendarData(doGlobal: true)
+        self.checkIfPrimaryIsStillRunning()
             
         if endingNow == true {
             
