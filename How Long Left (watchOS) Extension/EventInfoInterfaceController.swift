@@ -21,27 +21,58 @@ class EventInfoInterfaceController: WKInterfaceController {
     var percentageCalc = PercentageCalculator()
     var UIevent: HLLEvent?
     var foundNextOccur: HLLEvent?
+    var state: EventCompletionStatus?
+    //var timer = RepeatingTimer(time: 1.0)
+    var timer: Timer!
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        if let safeEvent = context as? HLLEvent {
+        if let safeEvent = context as? (HLLEvent, HLLEvent?) {
             
-            UIevent = safeEvent
+            UIevent = safeEvent.0
+            state = safeEvent.0.completionStatus
+            foundNextOccur = safeEvent.1
             
         }
         
+        self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(self.checkState), userInfo: nil, repeats: true)
+        
         updateView(event: UIevent)
+        
+    }
+    
+    @objc func checkState() {
+        
+        
+        if let safeState = self.state, let event = self.UIevent {
+            
+            print("\(safeState)")
+            print("\(event.completionStatus)")
+            
+            if safeState != event.completionStatus {
+                DispatchQueue.main.async {
+                    self.popToRootController()
+                    
+                }
+                
+            }
+            
+        }
         
     }
 
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
+        
+        
+        
         super.willActivate()
     }
 
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
+      //  timer.suspend()
         super.didDeactivate()
     }
     
@@ -96,8 +127,6 @@ class EventInfoInterfaceController: WKInterfaceController {
             
             if event.completionStatus == .InProgress {
                 
-                foundNextOccur = nextOccurFinder.findNextOccurrences(currentEvents: [event], upcomingEvents: dataSource.fetchEventsFromPresetPeriod(period: .Next2Weeks)).first
-                
                 if foundNextOccur != nil {
                     
                     rowIDS.append(.NextOccurRow)
@@ -121,20 +150,18 @@ class EventInfoInterfaceController: WKInterfaceController {
                     
                     
                     if event.completionStatus == .NotStarted {
-                        
                         row.countdownTypeLabel.setText("Starts in:")
-                        row.countdownLabel.setDate(event.startDate)
+                        row.countdownLabel.setDate(event.startDate.addingTimeInterval(1))
                         
                     } else {
                         
                         row.countdownTypeLabel.setText("Ends in:")
-                        row.countdownLabel.setDate(event.endDate)
+                        row.countdownLabel.setDate(event.endDate.addingTimeInterval(1))
                         
                     }
                     
                     
                     row.countdownLabel.start()
-                    
                     
                 case .PercentRow:
                     
@@ -215,12 +242,22 @@ class EventInfoInterfaceController: WKInterfaceController {
                             dayText = formattedEnd
                         }
                         
-                        if let period = event.magdalenePeriod {
+                        var infoText = nextOccur.startDate.formattedTime()
+                        
+                        if let period = nextOccur.magdalenePeriod {
                             
-                            dayText += " (p\(period))"
+                            infoText = "Period: \(period)"
                             
                         }
                         
+                        if let loc = nextOccur.location {
+                            
+                            
+                            infoText += " - \(loc)"
+                            
+                        }
+                        
+                        row.infoLabel.setText(infoText)
                         row.mainLabel.setText(dayText)
                         
                         if Int(NXOdays) != 1 {

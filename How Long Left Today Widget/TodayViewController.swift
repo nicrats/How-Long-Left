@@ -20,6 +20,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     let timerStringGenerator = EventCountdownTimerStringGenerator()
     let cal = EventDataSource.shared
     let backgroundImageView = UIImageView()
+    var current: HLLEvent?
     
      let bArray = [UIImage(named: "Background_Light"), UIImage(named: "Background_Dark"), UIImage(named: "Background_Black")]
     override func viewDidLoad() {
@@ -73,11 +74,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         SchoolAnalyser.shared.analyseCalendar()
         
+        current = self.cal.getCurrentEvent()
+        
         timer = Timer(fire: Date(), interval: 0.5, repeats: true, block: {_ in
             
             
             
-            if let currentEvent = self.cal.getCurrentEvent() {
+            if let currentEvent = self.current {
                 
                 self.timerLabel.isHidden = false
                 self.infoLabel.isHidden = false
@@ -85,6 +88,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 self.timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: self.timerLabel.font.pointSize, weight: .thin)
                 self.timerLabel.text = self.timerStringGenerator.generateStringFor(event: currentEvent)
                 self.infoLabel.text = "\(currentEvent.title) ends in"
+                
+                if currentEvent.endDate.timeIntervalSinceNow < 1 {
+                    
+                    self.current = self.cal.getCurrentEvent()
+                    
+                }
                 
             } else {
                 
@@ -96,9 +105,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 
             }
             
-            DispatchQueue.global(qos: .default).async {
-                SchoolAnalyser.shared.analyseCalendar()
-            }
+            
             
             completionHandler(NCUpdateResult.newData)
             
@@ -107,6 +114,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         RunLoop.main.add(timer, forMode: .common)
         
     }
+    
     
     @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
         

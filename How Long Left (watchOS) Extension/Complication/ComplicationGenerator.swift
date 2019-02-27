@@ -24,7 +24,21 @@ class ComplicationContentsGenerator {
         
         var r = [CLKComplicationTimelineEntry]()
         cal.updateEventStore()
-        let events = cal.fetchEventsFromPresetPeriod(period: .AllToday)
+        var events = cal.fetchEventsFromPresetPeriod(period: .AllToday)
+        
+        for event in events {
+            
+            if event.completionStatus == .Done {
+                
+                if let index = events.index(of: event) {
+                    
+                    events.remove(at: index)
+                    
+                }
+                
+            }
+            
+        }
         
         for (index, item) in events.enumerated() {
             

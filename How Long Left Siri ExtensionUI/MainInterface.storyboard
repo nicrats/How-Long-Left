@@ -28,9 +28,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title ends in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVu-YR-yYl">
-                                <rect key="frame" x="0.0" y="10" width="250" height="20"/>
+                                <rect key="frame" x="0.0" y="5" width="250" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="pjO-wL-RxV"/>
+                                    <constraint firstAttribute="height" constant="25" id="pjO-wL-RxV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <nil key="textColor"/>

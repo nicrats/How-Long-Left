@@ -12,7 +12,17 @@ import AppKit
 import HLLHelper
 import os.log
 
-class Main: HLLCountdownController {
+class Main: HLLCountdownController, SchoolModeChangedDelegate, Equatable {
+    static func == (lhs: Main, rhs: Main) -> Bool {
+        return false
+    }
+    
+    
+    
+    func schoolModeChanged() {
+        updateGlobalTrigger()
+    }
+    
     
     let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "Main")
     let updateInterval = 5
@@ -126,7 +136,7 @@ class Main: HLLCountdownController {
     
     init(aDelegate: HLLMacUIController) {
 
-       setupXPC()
+      setupXPC()
 
         DispatchQueue.main.async {
         
@@ -136,6 +146,7 @@ class Main: HLLCountdownController {
         
             self.schoolAnalyser.analyseCalendar()
         
+            self.schoolAnalyser.addSchoolMOdeChangedDelegate(delegate: self)
       //  betaExpiryDate = Date(timeIntervalSince1970: 1544792400)
         
         var showOnboarding = false
@@ -250,6 +261,7 @@ class Main: HLLCountdownController {
         // Ooft we've finsihed launching
     
             self.updateCalendarData(doGlobal: true)
+            print("UD9")
             self.mainRunLoop()
         
         }
@@ -261,7 +273,11 @@ class Main: HLLCountdownController {
     
     @objc func updateGlobalTrigger() {
         
-        updateCalendarData(doGlobal: true)
+        
+        self.updateCalendarData(doGlobal: true)
+        print("UD10")
+            
+        
         
     }
     
@@ -335,6 +351,7 @@ class Main: HLLCountdownController {
                 }
                 
                 self.updateCalendarData(doGlobal: true)
+                print("UD11")
 
                 return
                 
@@ -397,6 +414,7 @@ class Main: HLLCountdownController {
                     
                     self.nextEventToStart = nil
                     self.updateCalendarData(doGlobal: true)
+                    print("UD12")
                     
                 }
             
@@ -410,6 +428,7 @@ class Main: HLLCountdownController {
                         
                         self.beenTooLongWithoutUpdate = true
                         self.updateCalendarData(doGlobal: true)
+                        print("UD1")
                         print("Updating calendar at \(Date()) due to too long")
                         
                     }
@@ -463,16 +482,19 @@ class Main: HLLCountdownController {
             
             
             
-            if self.calendarData.latestFetchSchoolMode != SchoolAnalyser.schoolMode {
+          /*  if self.calendarData.latestFetchSchoolMode != SchoolAnalyser.schoolMode {
                 
                 self.updateCalendarData(doGlobal: true)
-            }
+                self.calendarData.latestFetchSchoolMode = schoolAnalyser.sc
+                print("UD2")
+            } */
                 
                 if self.updateCalID != HLLDefaults.calendar.selectedCalendar {
                     
                     self.updateCalID = HLLDefaults.calendar.selectedCalendar
                     
                     self.updateCalendarData(doGlobal: true)
+                    print("UD3")
                     
                     print("Update for new cal")
                     
@@ -498,6 +520,7 @@ class Main: HLLCountdownController {
             if update == true {
                 
                  self.updateCalendarData(doGlobal: true)
+                print("UD4")
                 
             }
             
@@ -512,6 +535,7 @@ class Main: HLLCountdownController {
        // print("Updating calendar at \(Date()) due to calendar change")
         updateCalendarData(doGlobal: true)
         print("Updating calendar at \(Date()) due to cal change")
+        print("UD5")
         
         
         mainRunLoop()
@@ -736,6 +760,7 @@ class Main: HLLCountdownController {
                     //    print("Doing update requested during cooldown")
                     self.updateRequestedDuringCooldown = false
                     self.updateCalendarData(doGlobal: false)
+                    print("UD6")
                     
                 }
                 
@@ -760,6 +785,8 @@ class Main: HLLCountdownController {
     
     calUpdateQueue.async(flags: .barrier) {
         
+        
+        
         if self.inCalendarUpdateCooldown == false || doGlobal == true {
         
             self.inCalendarUpdateCooldown = true
@@ -775,23 +802,23 @@ class Main: HLLCountdownController {
                 
                 EventCache.fetchQueue.async(flags: .barrier) {
                     
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+            DispatchQueue.global(qos: .default).asyncAfter(deadline: .now() + 0.0) {
                 let _ = self.calendarData.getCurrentEvents()
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            DispatchQueue.global(qos: .default).asyncAfter(deadline: .now() + 0.2) {
                 let _ = self.calendarData.getUpcomingEventsToday()
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            DispatchQueue.global(qos: .default).asyncAfter(deadline: .now() + 0.4) {
                 let _ = self.calendarData.getUpcomingEventsFromNextDayWithEvents()
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+            DispatchQueue.global(qos: .default).asyncAfter(deadline: .now() + 0.6) {
                 EventCache.allUpcomingEvents = self.calendarData.fetchEventsFromPresetPeriod(period: .Next2Weeks)
                 self.schoolAnalyser.analyseCalendar()
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+            DispatchQueue.global(qos: .default).asyncAfter(deadline: .now() + 0.0) {
                 let _ = self.calendarData.getArraysOfUpcomingEventsForNextSevenDays()
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            DispatchQueue.global(qos: .default).asyncAfter(deadline: .now() + 0.2) {
                 EventCache.allEventsToday = self.calendarData.fetchEventsFromPresetPeriod(period: .AllToday)
                 EventCache.nextUpcomingEventsDay = self.calendarData.getUpcomingEventsFromNextDayWithEvents()
             }
@@ -809,7 +836,7 @@ class Main: HLLCountdownController {
             
         
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+           DispatchQueue.global(qos: .default).asyncAfter(deadline: .now() + 3) {
                 
              //   print("Cooldown ending")
                 self.inCalendarUpdateCooldown = false
@@ -818,6 +845,7 @@ class Main: HLLCountdownController {
                 //    print("Doing update requested during cooldown")
                     self.updateRequestedDuringCooldown = false
                     self.updateCalendarData(doGlobal: true)
+                    print("UD7")
                     
                 }
                 
@@ -831,6 +859,8 @@ class Main: HLLCountdownController {
         }
     
         self.mainRunLoop()
+        
+        self.schoolAnalyser.analyseCalendar()
     
     }
             
@@ -944,6 +974,7 @@ class Main: HLLCountdownController {
         }
         
         self.updateCalendarData(doGlobal: true)
+        print("UD8")
         self.checkIfPrimaryIsStillRunning()
             
         if endingNow == true {

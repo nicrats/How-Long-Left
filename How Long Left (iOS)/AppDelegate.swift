@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
+    
     private func handleShortcut(_ item: UIApplicationShortcutItem) {
         
         if item.type == "com.ryankontos.howlongleft.settingshortcut" {

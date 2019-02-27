@@ -113,8 +113,6 @@ class SchoolAnalyser {
         
         // Analyses calendar events and determines if the user goes to Magdalene or not.
         
-        let analysisStart = Date()
-        
         var returnVal = false
         
         var yrCondition = false
@@ -140,7 +138,7 @@ class SchoolAnalyser {
             
             if yrCondition == true, roomCondtion == true {
                 returnVal = true
-                print("Breaking Magdalene analysis early")
+              //  print("Breaking Magdalene analysis early")
                 break
                 
             } else {
@@ -158,15 +156,15 @@ class SchoolAnalyser {
             }
         }
         
-        let analysisTime = Date().timeIntervalSince(analysisStart)
+      //  let analysisTime = Date().timeIntervalSince(analysisStart)
         
         if Thread.isMainThread == true {
             
-            print("School analysis took \(analysisTime)s on main thread")
+          //  print("School analysis took \(analysisTime)s on main thread")
             
         } else {
             
-            print("School analysis took \(analysisTime)s on global thread")
+          //  print("School analysis took \(analysisTime)s on global thread")
             
         }
         

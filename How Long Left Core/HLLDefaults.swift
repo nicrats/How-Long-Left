@@ -237,6 +237,22 @@ class HLLDefaults {
             
         }
         
+        static var enabledCalendars: [String] {
+            
+            get {
+                
+                return defaults.stringArray(forKey: "setCalendars") ?? [String]()
+                
+            }
+            
+            set (to) {
+                
+                defaults.set(to, forKey: "setCalendars")
+                
+            }
+            
+        }
+        
         
         static var useAllCalendars: Bool {
             

@@ -13,8 +13,10 @@ import Intents
 import IntentsUI
 #endif
 import ViewAnimator
+import Hero
 
 class ViewController: UIViewController, HLLCountdownController, DataSourceChangedDelegate {
+    
     
     
     func percentageMilestoneReached(milestone percentage: Int, event: HLLEvent) {
@@ -154,7 +156,11 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
     override func viewDidLoad() {
         
 
+        //let notoS = MilestoneNotificationScheduler()
+       // notoS.scheduleTestNotification()
         
+        self.hero.isEnabled = true
+        self.upcomingLabel.hero.id = "UpcomingTitle"
         super.viewDidLoad()
         
         if ViewController.launchedWithSettingsShortcut == false {
@@ -165,7 +171,7 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
             
         }
         
-        timer = Timer(fire: Date(), interval: 1, repeats: true, block: {_ in
+        timer = Timer(fire: Date(), interval: 3, repeats: true, block: {_ in
             
            self.run()
             
@@ -226,6 +232,13 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
         DispatchQueue.main.async {
             
             if let event = self.countdownEvent {
+                
+                if event.endDate.timeIntervalSinceNow < 0 {
+                    
+                    self.run()
+                    
+                }
+                
                 
                 let string = self.timerStringGenerator.generateStringFor(event: event)
                 

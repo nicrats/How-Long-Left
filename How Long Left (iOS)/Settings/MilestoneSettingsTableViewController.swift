@@ -12,14 +12,30 @@ class MilestoneSettingsTableViewController: UITableViewController {
     
     let scheduler = MilestoneNotificationScheduler()
     let defaults = HLLDefaults.defaults
-    var setMilestones = [Int]()
-    static let defaultMilestones = [600, 300, 60, 0]
+    var setMilestones = [HLLMilestone]()
+    
+    static let defaultMilestones = [HLLMilestone(value: 600, isPercent: false), HLLMilestone(value: 300, isPercent: false), HLLMilestone(value: 60, isPercent: false), HLLMilestone(value: 0, isPercent: false)]
+    
+    static let percentDefaultMilestones = [HLLMilestone(value: 25, isPercent: true), HLLMilestone(value: 50, isPercent: true), HLLMilestone(value: 75, isPercent: true)]
+    
     var selectAllState = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setMilestones = HLLDefaults.notifications.milestones
+        for milestone in HLLDefaults.notifications.milestones {
+            
+            setMilestones.append(HLLMilestone(value: milestone, isPercent: false))
+            
+        }
+        
+        
+        for pMilestone in HLLDefaults.notifications.Percentagemilestones {
+            
+            
+            setMilestones.append(HLLMilestone(value: pMilestone, isPercent: true))
+            
+        }
         
         self.clearsSelectionOnViewWillAppear = false
     }
@@ -45,10 +61,45 @@ class MilestoneSettingsTableViewController: UITableViewController {
                 
             }
             
+            for pMilestone in MilestoneSettingsTableViewController.percentDefaultMilestones {
+                
+                setMilestones.append(pMilestone)
+                
+            }
+            
         }
         
-        HLLDefaults.notifications.milestones = setMilestones
+        setMilestonesArrayToDefaults()
         tableView.reloadData()
+        
+    }
+    
+    
+    func setMilestonesArrayToDefaults() {
+        
+        HLLDefaults.notifications.milestones = [Int]()
+        HLLDefaults.notifications.Percentagemilestones = [Int]()
+        
+        var mArray = [Int]()
+        var pArray = [Int]()
+        
+        for milestone in setMilestones {
+            
+            if milestone.isPercent == true {
+                
+                pArray.append(milestone.value)
+                
+            } else {
+                
+                mArray.append(milestone.value)
+                
+            }
+            
+            
+        }
+        
+        HLLDefaults.notifications.milestones = mArray
+        HLLDefaults.notifications.Percentagemilestones = pArray
         
     }
     
@@ -71,14 +122,18 @@ class MilestoneSettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
         return "Send a notification when an event"
+        } else {
+        return nil
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         
         
-        if setMilestones.count == MilestoneSettingsTableViewController.defaultMilestones.count {
+        if setMilestones.count == MilestoneSettingsTableViewController.defaultMilestones.count+MilestoneSettingsTableViewController.percentDefaultMilestones.count {
             
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Deselect all", style: .plain, target: self, action: #selector (selectAllButtonTapped))
             selectAllState = false
@@ -95,20 +150,39 @@ class MilestoneSettingsTableViewController: UITableViewController {
         //  WatchSessionManager.sharedManager.startSession()
         
         
-        return 1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return MilestoneSettingsTableViewController.defaultMilestones.count
+        
+        if section == 0 {
+            
+            return MilestoneSettingsTableViewController.defaultMilestones.count
+            
+        } else {
+            
+            return MilestoneSettingsTableViewController.percentDefaultMilestones.count
+            
+        }
+            
+           
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let milestone = MilestoneSettingsTableViewController.defaultMilestones[indexPath.row]
+        var milestone: HLLMilestone
+        
+        if indexPath.section == 0 {
+          milestone = MilestoneSettingsTableViewController.defaultMilestones[indexPath.row]
+        } else {
+            
+            milestone = MilestoneSettingsTableViewController.percentDefaultMilestones[indexPath.row]
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MilestoneItemCell", for: indexPath) as! MilestoneSettingsCell
-        cell.setupCell(milestoneSeconds: milestone)
+        cell.setupCell(milestone: milestone)
         
         if setMilestones.contains(milestone) {
             cell.accessoryType = .checkmark
@@ -118,6 +192,7 @@ class MilestoneSettingsTableViewController: UITableViewController {
         
         return cell
     }
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       //  print("\(calendars[indexPath.row].title) selected")
@@ -129,8 +204,15 @@ class MilestoneSettingsTableViewController: UITableViewController {
             
         }
         
+        var selectedMilestone: HLLMilestone
         
-        let selectedMilestone = MilestoneSettingsTableViewController.defaultMilestones[indexPath.row]
+        if indexPath.section == 0 {
+          selectedMilestone = MilestoneSettingsTableViewController.defaultMilestones[indexPath.row]
+        } else {
+            
+            selectedMilestone = MilestoneSettingsTableViewController.percentDefaultMilestones[indexPath.row]
+        }
+        
         
         if setMilestones.contains(selectedMilestone) {
             
@@ -147,7 +229,7 @@ class MilestoneSettingsTableViewController: UITableViewController {
             
         }
         
-        HLLDefaults.notifications.milestones = setMilestones
+        setMilestonesArrayToDefaults()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
             
@@ -158,5 +240,51 @@ class MilestoneSettingsTableViewController: UITableViewController {
         
         
     }
+    
+}
+
+class HLLMilestone: Equatable {
+    
+    static func == (lhs: HLLMilestone, rhs: HLLMilestone) -> Bool {
+        return lhs.value == rhs.value && lhs.isPercent == rhs.isPercent
+    }
+    
+    let value: Int
+    let isPercent: Bool
+    
+    let settingsRowString: String
+    
+    init(value inputValue: Int, isPercent inputIsPercent: Bool) {
+        value = inputValue
+        isPercent = inputIsPercent
+        
+        
+        if isPercent == true {
+            
+            settingsRowString = "Is \(value)% Complete"
+            
+        } else {
+            
+            if value == 0 {
+                
+                settingsRowString = "Finishes"
+                
+            } else {
+                
+                var minText = "minutes"
+                if value == 60 {
+                    
+                    minText = "minute"
+                    
+                }
+                
+                settingsRowString = "Has \(value/60) \(minText) left"
+                
+            }
+            
+        }
+        
+    }
+    
     
 }

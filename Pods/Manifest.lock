@@ -1,24 +1,28 @@
 PODS:
+  - Hero (1.4.0)
   - HotKey (0.1.1)
   - Preferences (0.2.1)
   - ViewAnimator (2.2.2)
 
 DEPENDENCIES:
+  - Hero
   - HotKey
   - Preferences
   - ViewAnimator
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Hero
     - HotKey
     - Preferences
     - ViewAnimator
 
 SPEC CHECKSUMS:
+  Hero: bac92350d7201a1a940003e0767c7b52ce7c99a1
   HotKey: 0be143fd015544a63c51be6dc2066dbf455ced72
   Preferences: 5543bfd757a2485a310683da977d661c0ae509a9
   ViewAnimator: 6eaa112663b6a2d9e6b2573df65b416dd051cbe4
 
-PODFILE CHECKSUM: 8b48cca5b788015378e79d1ac3f2f98ab84fd575
+PODFILE CHECKSUM: 80d5bd2bcfc7451cabd079a6c883a94aa0dcecfa
 
 COCOAPODS: 1.5.3

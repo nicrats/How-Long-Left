@@ -140,7 +140,7 @@ final class MagdalenePreferenceViewController: NSViewController, Preferenceable 
         self.showHolidaysInStatusItemButton.isEnabled = !state
         self.hideNonMagdaleneBreaksButton.isEnabled = !state
         self.edvalButtonButton.isEnabled = !state
-        
+        NotificationCenter.default.post(name: Notification.Name("updateCalendar"), object: nil)
         }
             
     }

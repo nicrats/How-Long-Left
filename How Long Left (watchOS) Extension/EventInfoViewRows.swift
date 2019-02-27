@@ -76,11 +76,11 @@ class PeriodRow: NSObject {
 }
 
 class NextOccurRow: NSObject {
-    
 
     
     @IBOutlet var mainLabel: WKInterfaceLabel!
     @IBOutlet var relativeDaysLabel: WKInterfaceLabel!
+    @IBOutlet var infoLabel: WKInterfaceLabel!
     
     
 }

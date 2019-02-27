@@ -73,6 +73,40 @@ class StatusItemTimerStringGenerator {
         
     }
     
+    func generateJustTimerStringFor(event: HLLEvent) -> String? {
+        
+        var returnString: String?
+        
+        let secondsLeft = event.endDate.timeIntervalSince(Date()).rounded(.down)
+        
+        if secondsLeft > -2 {
+            
+            let formatter = DateComponentsFormatter()
+            formatter.unitsStyle = .positional
+            
+            if secondsLeft+1 > 86400 {
+                
+                formatter.allowedUnits = [.day]
+                
+            } else if secondsLeft+1 > 3599 {
+                
+                formatter.allowedUnits = [.hour, .minute, .second]
+                
+            } else {
+                
+                formatter.allowedUnits = [.minute, .second]
+            }
+            
+            formatter.zeroFormattingBehavior = [ .pad ]
+            let formattedDuration = formatter.string(from: secondsLeft+1)
+            
+            returnString = "\(formattedDuration!)"
+            
+        }
+            
+            return returnString
+    }
+    
     func generateStringsFor(event: HLLEvent) -> [Double: String] {
         
         var calcuatingFrom = Date()

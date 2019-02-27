@@ -12,6 +12,7 @@ import Preferences
 import LaunchAtLogin
 import EventKit
 
+
 final class CalendarPreferenceViewControllerNoAccess: NSViewController, Preferenceable {
     let toolbarItemTitle = "Calendar"
     let toolbarItemIcon = NSImage(named: NSImage.preferencesGeneralName)!

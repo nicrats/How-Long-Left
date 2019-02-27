@@ -71,7 +71,7 @@ class UpcomingEventStringGenerator {
                     formatter.unitsStyle = .full
                     let timeUntilStartFormatted = formatter.string(from: nextEvent.startDate.timeIntervalSinceNow+60)!
                     
-                    returnString = "\(nextEvent.title) starts in \(timeUntilStartFormatted)"
+                    returnString = "\(nextEvent.title) starts in \(timeUntilStartFormatted)."
                     
                     if let nextEventLocation = nextEvent.location {
                         

@@ -43,6 +43,7 @@ class EventDataSource {
                 
                 EventDataSource.accessToCalendar = .Granted
                 
+                
             } else {
                 
                 EventDataSource.accessToCalendar = .Denied
@@ -59,11 +60,9 @@ class EventDataSource {
     
     func getEventsFromCalendar(start: Date, end: Date) -> [HLLEvent] {
         
-     //   print("Getting events")
+        print("Getting events")
         
         var returnArray = [HLLEvent]()
-        
-        fetchQueue.sync(flags: .barrier) {
         
             self.getCalendarAccess()
         
@@ -139,7 +138,58 @@ class EventDataSource {
         
         #elseif os(OSX)
         
-            calendars = self.getCalendars()
+            if HLLDefaults.calendar.useAllCalendars == true, EventDataSource.accessToCalendar == .Granted {
+                
+                
+                var idArray = [String]()
+                
+                for calendar in getCalendars() {
+                    
+                    idArray.append(calendar.calendarIdentifier)
+                    
+                }
+                
+                HLLDefaults.calendar.enabledCalendars = idArray
+                HLLDefaults.defaults.set(true, forKey: "doNotUseAllCalendars")
+                
+            } else if let oldCal = HLLDefaults.calendar.selectedCalendar {
+                
+                HLLDefaults.defaults.set(nil, forKey: "selectedCalendar")
+                
+                var idArray = [String]()
+                
+                for calendar in getCalendars() {
+                    
+                    if calendar.calendarIdentifier == oldCal {
+                    
+                    idArray.append(calendar.calendarIdentifier)
+                        
+                    }
+                    
+                }
+                
+                HLLDefaults.calendar.enabledCalendars = idArray
+            
+                
+            }
+            
+            
+            let selected = HLLDefaults.calendar.enabledCalendars
+            
+            for calendar in getCalendars() {
+                
+                if selected.contains(calendar.calendarIdentifier) {
+                    
+                    calendars.append(calendar)
+                    
+                }
+                
+                
+            }
+            
+            
+            
+      /*      calendars = self.getCalendars()
         if HLLDefaults.calendar.useAllCalendars != true, let calendar = HLLDefaults.calendar.selectedCalendar {
             
             for item in calendars {
@@ -155,7 +205,7 @@ class EventDataSource {
                 }
             }
             
-        }
+        } */
         
         
         #endif
@@ -174,7 +224,7 @@ class EventDataSource {
        
         if calendars.isEmpty == true {
             
-            return
+            return returnArray
             
         }
         
@@ -211,7 +261,6 @@ class EventDataSource {
             self.latestFetchSchoolMode = SchoolAnalyser.schoolMode
         
         
-        }
         
         return returnArray
     }

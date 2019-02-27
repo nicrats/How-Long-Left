@@ -118,9 +118,9 @@ class tableController: UITableViewController {
             
            milestonesInfoLabel.text = "Unavaliable"
             
-        } else if HLLDefaults.notifications.milestones.isEmpty == false {
+        } else if HLLDefaults.notifications.milestones.isEmpty == false || HLLDefaults.notifications.Percentagemilestones.isEmpty == false {
             
-            milestonesInfoLabel.text = "\(HLLDefaults.notifications.milestones.count) Enabled"
+            milestonesInfoLabel.text = "\(HLLDefaults.notifications.milestones.count+HLLDefaults.notifications.Percentagemilestones.count) Enabled"
             
         } else {
             

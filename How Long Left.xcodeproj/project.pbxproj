@@ -7,18 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		25DE505574C93562284D78A7 /* Pods_How_Long_Left_Siri_ExtensionUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDAD22DF8D87F32947A3B9E4 /* Pods_How_Long_Left_Siri_ExtensionUI.framework */; };
-		852004CD957453052C08BB3D /* Pods_How_Long_Left__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A624CA8F379AACA52C7A2DE5 /* Pods_How_Long_Left__iOS_.framework */; };
-		BD5940E42A388CE3BE18074E /* Pods_How_Long_Left__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6661EE1D9855AEC9EC9A1AC7 /* Pods_How_Long_Left__macOS_.framework */; };
+		4871591FCC4FCA7C2F29B318 /* Pods_How_Long_Left__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B72F32C9028FF40F876F8FAA /* Pods_How_Long_Left__macOS_.framework */; };
+		516F50C8C434672F465260C4 /* Pods_How_Long_Left_Siri_ExtensionUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B1FA14FDB5D81DE3A7D01C /* Pods_How_Long_Left_Siri_ExtensionUI.framework */; };
+		8F7FCE05D0EBE22832BCA171 /* Pods_How_Long_Left__watchOS__Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FF220A0EA106D6EACA7A78 /* Pods_How_Long_Left__watchOS__Extension.framework */; };
+		9408F341ECAB69CE1E3DAF32 /* Pods_How_Long_Left__watchOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68C26516652959F8BEA6E5C0 /* Pods_How_Long_Left__watchOS_.framework */; };
+		BB4B69F32C46326591251CB7 /* Pods_How_Long_Left__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C3CF9210D105837321E872 /* Pods_How_Long_Left__iOS_.framework */; };
 		BF0AC1FE21A508C200795722 /* StatusItemTimerStringGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0AC1FD21A508C200795722 /* StatusItemTimerStringGenerator.swift */; };
 		BF2251C2221C0FF000BD4D72 /* EventInfoInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2251C1221C0FF000BD4D72 /* EventInfoInterfaceController.swift */; };
 		BF26D83A21BF943B00C2728E /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF26D83C21BF943B00C2728E /* Onboarding.storyboard */; };
 		BF26D84D21BFAD0D00C2728E /* DefaultsMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF26D84C21BFAD0C00C2728E /* DefaultsMigrator.swift */; };
 		BF26D85121BFC37300C2728E /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF26D84F21BFC37200C2728E /* Fabric.framework */; };
 		BF26D85221BFC37300C2728E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF26D85021BFC37300C2728E /* Crashlytics.framework */; };
-		BF28BC3D2220DFFE00188FBB /* LaunchAtLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF28BC3C2220DFFE00188FBB /* LaunchAtLogin.framework */; };
-		BF28BC3E2220DFFE00188FBB /* LaunchAtLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF28BC3C2220DFFE00188FBB /* LaunchAtLogin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BF38402821F5F1FE004E7FC1 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF38402721F5F1FE004E7FC1 /* Themes.swift */; };
 		BF38402A21F5F54F004E7FC1 /* UpcomingEventStringGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF38402921F5F54F004E7FC1 /* UpcomingEventStringGenerator.swift */; };
 		BF39595622054D160002C4FD /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF794DE721787DEE0076FA17 /* NotificationCenter.framework */; };
 		BF39596022054D160002C4FD /* How Long Left Today Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BF39595522054D160002C4FD /* How Long Left Today Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -26,7 +25,10 @@
 		BF395967220550610002C4FD /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC0C54F21FF2A6900D041DA /* MainInterface.storyboard */; };
 		BF39597D220550E70002C4FD /* EventCountdownTimerStringGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF884BEC21F58A2C00393658 /* EventCountdownTimerStringGenerator.swift */; };
 		BF39597E220550EA0002C4FD /* EventCountdownTimerStringGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF884BEC21F58A2C00393658 /* EventCountdownTimerStringGenerator.swift */; };
+		BF3B179022260EFD005E8364 /* CalSelectStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF3B178F22260C7A005E8364 /* CalSelectStoryboard.storyboard */; };
 		BF3BE73521A103A9001AFBA8 /* MilestoneNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BE73421A103A9001AFBA8 /* MilestoneNotifications.swift */; };
+		BF4126C42225F2F200BE078F /* LaunchAtLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF195C8D21B091BB001893A3 /* LaunchAtLogin.framework */; };
+		BF4126C52225F2F200BE078F /* LaunchAtLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF195C8D21B091BB001893A3 /* LaunchAtLogin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF4AEFED2207A63E00FEE4BC /* MilestoneNotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4AEFEC2207A63E00FEE4BC /* MilestoneNotificationScheduler.swift */; };
 		BF57E84D21ABC4EA00B021DD /* HLLMacUIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF57E84C21ABC4EA00B021DD /* HLLMacUIController.swift */; };
 		BF59A22821C0B38000038C58 /* SchoolHolidaysStringGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF59A22721C0B38000038C58 /* SchoolHolidaysStringGenerator.swift */; };
@@ -42,11 +44,37 @@
 		BF634B8621BE94EB00C285AB /* CalendarPreferenceViewControllerNoAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF634B8521BE94EA00C285AB /* CalendarPreferenceViewControllerNoAccess.swift */; };
 		BF6495E121B2C79E006CB6DF /* CalendarPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF6495E021B2C79D006CB6DF /* CalendarPreferencesView.xib */; };
 		BF69FD3D221E84150011B5F6 /* How Long Left Helper.xpc in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD24C012213CA1F000DC93F /* How Long Left Helper.xpc */; };
+		BF6AD69E2226505800B62C0C /* CalSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6AD69D2226505800B62C0C /* CalSelectViewController.swift */; };
+		BF6AD6C02226731F00B62C0C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF794DE721787DEE0076FA17 /* NotificationCenter.framework */; };
+		BF6AD6C32226731F00B62C0C /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6AD6C22226731F00B62C0C /* TodayViewController.swift */; };
+		BF6AD6C62226731F00B62C0C /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF6AD6C42226731F00B62C0C /* TodayViewController.xib */; };
+		BF6AD6CA2226731F00B62C0C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF6AD6C82226731F00B62C0C /* InfoPlist.strings */; };
+		BF6AD6CE2226731F00B62C0C /* How Long Left.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BF6AD6BF2226731E00B62C0C /* How Long Left.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BF6AD6D322267A6900B62C0C /* HLLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E70E2210202F00EE4A1F /* HLLEvent.swift */; };
+		BF6AD6D422267A6C00B62C0C /* EventDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7072210202F00EE4A1F /* EventDataSource.swift */; };
+		BF6AD6D522267A7000B62C0C /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7082210202F00EE4A1F /* Version.swift */; };
+		BF6AD6D722267A7F00B62C0C /* EventTimeRemainingMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E70B2210202F00EE4A1F /* EventTimeRemainingMonitor.swift */; };
+		BF6AD6D822267A8300B62C0C /* EventNextOccurenceFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7052210202F00EE4A1F /* EventNextOccurenceFinder.swift */; };
+		BF6AD6D922267A8600B62C0C /* PercentageCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF563E82214D39F00A93D6B /* PercentageCalculator.swift */; };
+		BF6AD6DA22267A8800B62C0C /* EventCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E70C2210202F00EE4A1F /* EventCache.swift */; };
+		BF6AD6DB22267A8C00B62C0C /* HLLDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E70D2210202F00EE4A1F /* HLLDefaults.swift */; };
+		BF6AD6DC22267A8F00B62C0C /* RepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E70F2210202F00EE4A1F /* RepeatingTimer.swift */; };
+		BF6AD6DD22267A9200B62C0C /* HLLCountdownController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7092210202F00EE4A1F /* HLLCountdownController.swift */; };
+		BF6AD6DE22267A9500B62C0C /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7062210202F00EE4A1F /* Enums.swift */; };
+		BF6AD6DF22267A9700B62C0C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E70A2210202F00EE4A1F /* Extensions.swift */; };
+		BF6AD6E022267A9A00B62C0C /* SchoolAnalyser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E71A2210202F00EE4A1F /* SchoolAnalyser.swift */; };
+		BF6AD6E122267A9D00B62C0C /* SchoolFunctionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7112210202F00EE4A1F /* SchoolFunctionsManager.swift */; };
+		BF6AD6E222267AA100B62C0C /* MagdaleneSchoolHolidays.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7132210202F00EE4A1F /* MagdaleneSchoolHolidays.swift */; };
+		BF6AD6E322267AA600B62C0C /* EventTitleShortener.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7142210202F00EE4A1F /* EventTitleShortener.swift */; };
+		BF6AD6E422267AAA00B62C0C /* MagdaleneBreaks.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7152210202F00EE4A1F /* MagdaleneBreaks.swift */; };
+		BF6AD6E522267AAC00B62C0C /* DoubleEventDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7162210202F00EE4A1F /* DoubleEventDetector.swift */; };
+		BF6AD6E622267AB000B62C0C /* MagdalenePeriods.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7192210202F00EE4A1F /* MagdalenePeriods.swift */; };
+		BF6AD6E722267AB300B62C0C /* EventTimeAdjuster.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7182210202F00EE4A1F /* EventTimeAdjuster.swift */; };
+		BF6AD6E822267AD300B62C0C /* StatusItemTimerStringGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0AC1FD21A508C200795722 /* StatusItemTimerStringGenerator.swift */; };
 		BF7B9BBF21760BFF00E44CCF /* BackgroundUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B9BBE21760BFF00E44CCF /* BackgroundUpdateHandler.swift */; };
 		BF876A09220C0EEE007D2EFF /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF876A08220C0EEE007D2EFF /* MainInterface.storyboard */; };
 		BF876A0B220C15F7007D2EFF /* MilestoneSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF876A0A220C15F7007D2EFF /* MilestoneSettingsTableViewController.swift */; };
 		BF876A0D220C3226007D2EFF /* MilestoneSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF876A0C220C3226007D2EFF /* MilestoneSettingsCell.swift */; };
-		BF876A0F220C4AF3007D2EFF /* CountdownPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF876A0E220C4AF3007D2EFF /* CountdownPageViewController.swift */; };
 		BF884BED21F58A2C00393658 /* EventCountdownTimerStringGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF884BEC21F58A2C00393658 /* EventCountdownTimerStringGenerator.swift */; };
 		BF8A4F0D21CDD6D200EC12B6 /* macOSExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A4F0C21CDD6D200EC12B6 /* macOSExtensions.swift */; };
 		BF8B99EA21AE36CA00F7499A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF8B99E921AE36CA00F7499A /* Assets.xcassets */; };
@@ -70,8 +98,6 @@
 		BFC0C51121FEB71800D041DA /* HLLIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BFC0C4B621FEB17600D041DA /* HLLIntents.intentdefinition */; };
 		BFC0C53921FEB78700D041DA /* SiriResponseGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC0C53821FEB78700D041DA /* SiriResponseGenerator.swift */; };
 		BFC0C53D21FEB82100D041DA /* SiriResponseGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC0C53821FEB78700D041DA /* SiriResponseGenerator.swift */; };
-		BFC0C53F21FECF1900D041DA /* CountdownStringHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC0C53E21FECF1900D041DA /* CountdownStringHandler.swift */; };
-		BFC0C54021FECF1900D041DA /* CountdownStringHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC0C53E21FECF1900D041DA /* CountdownStringHandler.swift */; };
 		BFC0C54221FED65500D041DA /* EventCountdownTimerStringGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF884BEC21F58A2C00393658 /* EventCountdownTimerStringGenerator.swift */; };
 		BFC0C54421FF19A200D041DA /* VoiceShortcutStatusChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC0C54321FF19A200D041DA /* VoiceShortcutStatusChecker.swift */; };
 		BFC2646521F9E493003298AA /* SettingsMainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC2646421F9E493003298AA /* SettingsMainTableViewController.swift */; };
@@ -247,9 +273,7 @@
 		BFF563ED2214D39F00A93D6B /* PercentageCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF563E82214D39F00A93D6B /* PercentageCalculator.swift */; };
 		BFF563EE2214D39F00A93D6B /* PercentageCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF563E82214D39F00A93D6B /* PercentageCalculator.swift */; };
 		BFF563EF2214D39F00A93D6B /* PercentageCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF563E82214D39F00A93D6B /* PercentageCalculator.swift */; };
-		D5579F1480735DDCB6905F5F /* Pods_How_Long_Left__watchOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FB3EBFEB07993D6291FD76 /* Pods_How_Long_Left__watchOS_.framework */; };
-		DC6ED6E47CF2FDA55528F135 /* Pods_How_Long_Left_Siri_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08CD62B90C0AED2184D3B93F /* Pods_How_Long_Left_Siri_Extension.framework */; };
-		F0E91F0E8E3F1EF3E0C0C0E5 /* Pods_How_Long_Left__watchOS__Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD826005E05BE424E2FBE1D1 /* Pods_How_Long_Left__watchOS__Extension.framework */; };
+		FF054FEB6A93CB8A8AF0424A /* Pods_How_Long_Left_Siri_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F380A8693B85722261FDE20A /* Pods_How_Long_Left_Siri_Extension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -273,6 +297,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = BF5D296B2174688700AC1EB6;
 			remoteInfo = "How Long Left (watchOS)";
+		};
+		BF6AD6CC2226731F00B62C0C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF5D294D2174679500AC1EB6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF6AD6BE2226731E00B62C0C;
+			remoteInfo = "Mac Widget";
 		};
 		BFC0C50021FEB6EF00D041DA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -298,16 +329,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		BF252A8E22005D8100ECB961 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		BF5D298C2174689000AC1EB6 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -343,6 +364,17 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BFA747452225380F00E05125 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BF4126C52225F2F200BE078F /* LaunchAtLogin.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BFD24BFC2213C994000DC93F /* Embed XPC Services */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -360,19 +392,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				BF6AD6CE2226731F00B62C0C /* How Long Left.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BFD812E3218B310D00992E23 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				BF28BC3E2220DFFE00188FBB /* LaunchAtLogin.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -380,18 +402,17 @@
 /* Begin PBXFileReference section */
 		02598EBDDC8315D97CC01D2D /* Pods-How Long Left (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-How Long Left (macOS).release.xcconfig"; path = "Pods/Target Support Files/Pods-How Long Left (macOS)/Pods-How Long Left (macOS).release.xcconfig"; sourceTree = "<group>"; };
 		0830BDBDF4B4DDB77CE87114 /* Pods-How Long Left (watchOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-How Long Left (watchOS).release.xcconfig"; path = "Pods/Target Support Files/Pods-How Long Left (watchOS)/Pods-How Long Left (watchOS).release.xcconfig"; sourceTree = "<group>"; };
-		08CD62B90C0AED2184D3B93F /* Pods_How_Long_Left_Siri_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left_Siri_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EE9040F05A083B964174114 /* Pods-How Long Left (watchOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-How Long Left (watchOS).debug.xcconfig"; path = "Pods/Target Support Files/Pods-How Long Left (watchOS)/Pods-How Long Left (watchOS).debug.xcconfig"; sourceTree = "<group>"; };
 		25E5B3BEB59F88476A30E004 /* Pods-How Long Left Siri Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-How Long Left Siri Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-How Long Left Siri Extension/Pods-How Long Left Siri Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		48C3CF9210D105837321E872 /* Pods_How_Long_Left__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		647C1E1B681DA10E2BE8E4E8 /* Pods-How Long Left (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-How Long Left (iOS).release.xcconfig"; path = "Pods/Target Support Files/Pods-How Long Left (iOS)/Pods-How Long Left (iOS).release.xcconfig"; sourceTree = "<group>"; };
-		6661EE1D9855AEC9EC9A1AC7 /* Pods_How_Long_Left__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		68C26516652959F8BEA6E5C0 /* Pods_How_Long_Left__watchOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left__watchOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7025AD64C6F76696DD1969AA /* Pods-How Long Left (watchOS) Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-How Long Left (watchOS) Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-How Long Left (watchOS) Extension/Pods-How Long Left (watchOS) Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		864E17474BEE385EA0A6E1E4 /* Pods-How Long Left (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-How Long Left (macOS).debug.xcconfig"; path = "Pods/Target Support Files/Pods-How Long Left (macOS)/Pods-How Long Left (macOS).debug.xcconfig"; sourceTree = "<group>"; };
 		926E1F8C51900BF695A793BB /* Pods-How Long Left (watchOS) Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-How Long Left (watchOS) Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-How Long Left (watchOS) Extension/Pods-How Long Left (watchOS) Extension.release.xcconfig"; sourceTree = "<group>"; };
-		A624CA8F379AACA52C7A2DE5 /* Pods_How_Long_Left__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9822CF19AC91F973FB9060 /* Pods-How Long Left Siri ExtensionUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-How Long Left Siri ExtensionUI.release.xcconfig"; path = "Pods/Target Support Files/Pods-How Long Left Siri ExtensionUI/Pods-How Long Left Siri ExtensionUI.release.xcconfig"; sourceTree = "<group>"; };
 		AFD212C02A9693172F47E137 /* Pods-How Long Left Siri ExtensionUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-How Long Left Siri ExtensionUI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-How Long Left Siri ExtensionUI/Pods-How Long Left Siri ExtensionUI.debug.xcconfig"; sourceTree = "<group>"; };
-		B7FB3EBFEB07993D6291FD76 /* Pods_How_Long_Left__watchOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left__watchOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B72F32C9028FF40F876F8FAA /* Pods_How_Long_Left__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF0AC1FD21A508C200795722 /* StatusItemTimerStringGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemTimerStringGenerator.swift; sourceTree = "<group>"; };
 		BF146C912202E6CB00EDD452 /* How Long Left Siri ExtensionUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "How Long Left Siri ExtensionUI.entitlements"; sourceTree = "<group>"; };
 		BF146C922202E6D900EDD452 /* How Long Left Siri Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "How Long Left Siri Extension.entitlements"; sourceTree = "<group>"; };
@@ -403,13 +424,11 @@
 		BF26D84C21BFAD0C00C2728E /* DefaultsMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsMigrator.swift; sourceTree = "<group>"; };
 		BF26D84F21BFC37200C2728E /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		BF26D85021BFC37300C2728E /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		BF28BC3C2220DFFE00188FBB /* LaunchAtLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LaunchAtLogin.framework; sourceTree = "<group>"; };
-		BF37B27F21F5E1D300E72A19 /* MarqueeLabelSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MarqueeLabelSwift.framework; sourceTree = "<group>"; };
-		BF38402721F5F1FE004E7FC1 /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		BF38402921F5F54F004E7FC1 /* UpcomingEventStringGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventStringGenerator.swift; sourceTree = "<group>"; };
 		BF39595522054D160002C4FD /* How Long Left Today Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "How Long Left Today Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF39595D22054D160002C4FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF3959642205503E0002C4FD /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		BF3B178F22260C7A005E8364 /* CalSelectStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = CalSelectStoryboard.storyboard; path = "/Users/ryankontos/Library/Mobile Documents/com~apple~CloudDocs/Developer/Projects/How Long Left/How Long Left (macOS)/Preferences UI/CalSelectStoryboard.storyboard"; sourceTree = "<absolute>"; };
 		BF3BE73421A103A9001AFBA8 /* MilestoneNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneNotifications.swift; sourceTree = "<group>"; };
 		BF4AEFEC2207A63E00FEE4BC /* MilestoneNotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneNotificationScheduler.swift; sourceTree = "<group>"; };
 		BF57E84C21ABC4EA00B021DD /* HLLMacUIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLLMacUIController.swift; sourceTree = "<group>"; };
@@ -428,12 +447,21 @@
 		BF634B8321BE93C900C285AB /* CalendarPreferencesViewNoAccess.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CalendarPreferencesViewNoAccess.xib; path = "How Long Left (macOS)/Preferences UI/CalendarPreferencesViewNoAccess.xib"; sourceTree = SOURCE_ROOT; };
 		BF634B8521BE94EA00C285AB /* CalendarPreferenceViewControllerNoAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarPreferenceViewControllerNoAccess.swift; sourceTree = "<group>"; };
 		BF6495E021B2C79D006CB6DF /* CalendarPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarPreferencesView.xib; sourceTree = "<group>"; };
+		BF6AD69D2226505800B62C0C /* CalSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalSelectViewController.swift; sourceTree = "<group>"; };
+		BF6AD69F2226514100B62C0C /* Pods_How_Long_Left__macOS_.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_How_Long_Left__macOS_.framework; path = "../../../../../Developer/Xcode/DerivedData/How_Long_Left-gaurjomfkshszzgwkqgckwyxbfxk/Build/Products/Debug-iphoneos/Pods_How_Long_Left__macOS_.framework"; sourceTree = "<group>"; };
+		BF6AD6BF2226731E00B62C0C /* How Long Left.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "How Long Left.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF6AD6C22226731F00B62C0C /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		BF6AD6C52226731F00B62C0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TodayViewController.xib; sourceTree = "<group>"; };
+		BF6AD6C72226731F00B62C0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF6AD6C92226731F00B62C0C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BF6AD6CB2226731F00B62C0C /* Mac_Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mac_Widget.entitlements; sourceTree = "<group>"; };
+		BF6AD6D222267A0A00B62C0C /* Mac Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Mac Widget.entitlements"; sourceTree = "<group>"; };
+		BF6AD6E92226998E00B62C0C /* Pods_How_Long_Left__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_How_Long_Left__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF794DE721787DEE0076FA17 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		BF7B9BBE21760BFF00E44CCF /* BackgroundUpdateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundUpdateHandler.swift; sourceTree = "<group>"; };
 		BF876A08220C0EEE007D2EFF /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		BF876A0A220C15F7007D2EFF /* MilestoneSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneSettingsTableViewController.swift; sourceTree = "<group>"; };
 		BF876A0C220C3226007D2EFF /* MilestoneSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneSettingsCell.swift; sourceTree = "<group>"; };
-		BF876A0E220C4AF3007D2EFF /* CountdownPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownPageViewController.swift; sourceTree = "<group>"; };
 		BF884BEC21F58A2C00393658 /* EventCountdownTimerStringGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCountdownTimerStringGenerator.swift; sourceTree = "<group>"; };
 		BF8A4F0C21CDD6D200EC12B6 /* macOSExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOSExtensions.swift; sourceTree = "<group>"; };
 		BF8B99E921AE36CA00F7499A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -458,7 +486,6 @@
 		BFC0C4FA21FEB6EF00D041DA /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
 		BFC0C4FF21FEB6EF00D041DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFC0C53821FEB78700D041DA /* SiriResponseGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriResponseGenerator.swift; sourceTree = "<group>"; };
-		BFC0C53E21FECF1900D041DA /* CountdownStringHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownStringHandler.swift; sourceTree = "<group>"; };
 		BFC0C54321FF19A200D041DA /* VoiceShortcutStatusChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceShortcutStatusChecker.swift; sourceTree = "<group>"; };
 		BFC0C55021FF2A6900D041DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		BFC2646421F9E493003298AA /* SettingsMainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMainTableViewController.swift; sourceTree = "<group>"; };
@@ -485,11 +512,6 @@
 		BFC4E7182210202F00EE4A1F /* EventTimeAdjuster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTimeAdjuster.swift; sourceTree = "<group>"; };
 		BFC4E7192210202F00EE4A1F /* MagdalenePeriods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagdalenePeriods.swift; sourceTree = "<group>"; };
 		BFC4E71A2210202F00EE4A1F /* SchoolAnalyser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolAnalyser.swift; sourceTree = "<group>"; };
-		BFC962BB221B811100FA4C59 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		BFC962BE221B811100FA4C59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TodayViewController.xib; sourceTree = "<group>"; };
-		BFC962C0221B811100FA4C59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BFC962C2221B811100FA4C59 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		BFC962C4221B811100FA4C59 /* How_Long_Left_Mac_Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = How_Long_Left_Mac_Widget.entitlements; sourceTree = "<group>"; };
 		BFC962CB221C0BEF00FA4C59 /* EventInfoViewRows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoViewRows.swift; sourceTree = "<group>"; };
 		BFD24C012213CA1F000DC93F /* How Long Left Helper.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = "How Long Left Helper.xpc"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD24C032213CA1F000DC93F /* How_Long_Left_HelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = How_Long_Left_HelperProtocol.swift; sourceTree = "<group>"; };
@@ -533,9 +555,10 @@
 		BFF54C012221020C0054BC13 /* UpcomingEventsTableCardDesignView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventsTableCardDesignView.swift; sourceTree = "<group>"; };
 		BFF563E82214D39F00A93D6B /* PercentageCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageCalculator.swift; sourceTree = "<group>"; };
 		D0112564BDA47E98370F96F3 /* Pods-How Long Left (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-How Long Left (iOS).debug.xcconfig"; path = "Pods/Target Support Files/Pods-How Long Left (iOS)/Pods-How Long Left (iOS).debug.xcconfig"; sourceTree = "<group>"; };
-		DD826005E05BE424E2FBE1D1 /* Pods_How_Long_Left__watchOS__Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left__watchOS__Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3B1FA14FDB5D81DE3A7D01C /* Pods_How_Long_Left_Siri_ExtensionUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left_Siri_ExtensionUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3FF220A0EA106D6EACA7A78 /* Pods_How_Long_Left__watchOS__Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left__watchOS__Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F380A8693B85722261FDE20A /* Pods_How_Long_Left_Siri_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left_Siri_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8959811953F194EC232D6E5 /* Pods-How Long Left Siri Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-How Long Left Siri Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-How Long Left Siri Extension/Pods-How Long Left Siri Extension.release.xcconfig"; sourceTree = "<group>"; };
-		FDAD22DF8D87F32947A3B9E4 /* Pods_How_Long_Left_Siri_ExtensionUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left_Siri_ExtensionUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -543,7 +566,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5579F1480735DDCB6905F5F /* Pods_How_Long_Left__watchOS_.framework in Frameworks */,
+				9408F341ECAB69CE1E3DAF32 /* Pods_How_Long_Left__watchOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,8 +582,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				852004CD957453052C08BB3D /* Pods_How_Long_Left__iOS_.framework in Frameworks */,
 				BFA352A122070B1800251F0E /* StoreKit.framework in Frameworks */,
+				BB4B69F32C46326591251CB7 /* Pods_How_Long_Left__iOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,7 +591,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0E91F0E8E3F1EF3E0C0C0E5 /* Pods_How_Long_Left__watchOS__Extension.framework in Frameworks */,
+				8F7FCE05D0EBE22832BCA171 /* Pods_How_Long_Left__watchOS__Extension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF6AD6BC2226731E00B62C0C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF6AD6C02226731F00B62C0C /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,7 +607,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC6ED6E47CF2FDA55528F135 /* Pods_How_Long_Left_Siri_Extension.framework in Frameworks */,
+				FF054FEB6A93CB8A8AF0424A /* Pods_How_Long_Left_Siri_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,7 +616,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFC0C4F821FEB6EF00D041DA /* IntentsUI.framework in Frameworks */,
-				25DE505574C93562284D78A7 /* Pods_How_Long_Left_Siri_ExtensionUI.framework in Frameworks */,
+				516F50C8C434672F465260C4 /* Pods_How_Long_Left_Siri_ExtensionUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,10 +632,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF26D85221BFC37300C2728E /* Crashlytics.framework in Frameworks */,
-				BF28BC3D2220DFFE00188FBB /* LaunchAtLogin.framework in Frameworks */,
 				BF26D85121BFC37300C2728E /* Fabric.framework in Frameworks */,
+				BF4126C42225F2F200BE078F /* LaunchAtLogin.framework in Frameworks */,
 				BF69FD3D221E84150011B5F6 /* How Long Left Helper.xpc in Frameworks */,
-				BD5940E42A388CE3BE18074E /* Pods_How_Long_Left__macOS_.framework in Frameworks */,
+				4871591FCC4FCA7C2F29B318 /* Pods_How_Long_Left__macOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,12 +675,14 @@
 		BF50797321AE33DD005CD52B /* Preferences UI */ = {
 			isa = PBXGroup;
 			children = (
+				BF3B178F22260C7A005E8364 /* CalSelectStoryboard.storyboard */,
 				BF93AEA321BDD64F0035CE7F /* GeneralPreferencesView.xib */,
 				BF8B99EF21AE7BB600F7499A /* StatusItemPreferencesView.xib */,
 				BF6495E021B2C79D006CB6DF /* CalendarPreferencesView.xib */,
 				BF634B8321BE93C900C285AB /* CalendarPreferencesViewNoAccess.xib */,
 				BFEE396121BD129F000106BD /* NotificationPreferencesView.xib */,
 				BF93AEA121BDD60B0035CE7F /* MagdalenePreferencesView.xib */,
+				BF6AD69D2226505800B62C0C /* CalSelectViewController.swift */,
 				BFDE4A6621B65FE000CD50BC /* GeneralPreferenceViewController.swift */,
 				BFDE4A6821B6607800CD50BC /* StatusItemPreferenceViewController.swift */,
 				BFDE4A6A21B660AF00CD50BC /* CalendarPreferenceViewController.swift */,
@@ -663,6 +696,7 @@
 		BF5D294C2174679500AC1EB6 = {
 			isa = PBXGroup;
 			children = (
+				BF6AD6E92226998E00B62C0C /* Pods_How_Long_Left__iOS_.framework */,
 				BFC4E7042210202F00EE4A1F /* How Long Left Core */,
 				BFEA0CE721788D0100FAF2F1 /* How Long Left (macOS) */,
 				BFF05ECF21E9DE4E0044F049 /* How Long Left (iOS) */,
@@ -673,7 +707,7 @@
 				BF39595722054D160002C4FD /* How Long Left Today Widget */,
 				BFD24C022213CA1F000DC93F /* How Long Left Helper */,
 				BFD80F71221A57AA0057407A /* How Long Left Mac Tests */,
-				BFC962BA221B811100FA4C59 /* How Long Left Mac Widget */,
+				BF6AD6C12226731F00B62C0C /* Mac Widget */,
 				BF794DE621787DEE0076FA17 /* Frameworks */,
 				BF5D29562174679500AC1EB6 /* Products */,
 				299747B92BF2210E4B750944 /* Pods */,
@@ -691,6 +725,7 @@
 				BFC0C4F721FEB6EF00D041DA /* How Long Left Siri ExtensionUI.appex */,
 				BF39595522054D160002C4FD /* How Long Left Today Widget.appex */,
 				BFD24C012213CA1F000DC93F /* How Long Left Helper.xpc */,
+				BF6AD6BF2226731E00B62C0C /* How Long Left.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -722,23 +757,35 @@
 			path = "How Long Left (watchOS) Extension";
 			sourceTree = "<group>";
 		};
+		BF6AD6C12226731F00B62C0C /* Mac Widget */ = {
+			isa = PBXGroup;
+			children = (
+				BF6AD6D222267A0A00B62C0C /* Mac Widget.entitlements */,
+				BF6AD6C22226731F00B62C0C /* TodayViewController.swift */,
+				BF6AD6C42226731F00B62C0C /* TodayViewController.xib */,
+				BF6AD6C72226731F00B62C0C /* Info.plist */,
+				BF6AD6C82226731F00B62C0C /* InfoPlist.strings */,
+				BF6AD6CB2226731F00B62C0C /* Mac_Widget.entitlements */,
+			);
+			path = "Mac Widget";
+			sourceTree = "<group>";
+		};
 		BF794DE621787DEE0076FA17 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BF28BC3C2220DFFE00188FBB /* LaunchAtLogin.framework */,
+				BF6AD69F2226514100B62C0C /* Pods_How_Long_Left__macOS_.framework */,
 				BFA352A022070B1800251F0E /* StoreKit.framework */,
-				BF37B27F21F5E1D300E72A19 /* MarqueeLabelSwift.framework */,
 				BF794DE721787DEE0076FA17 /* NotificationCenter.framework */,
 				BFC0C4D521FEB6C100D041DA /* IntentsUI.framework */,
-				A624CA8F379AACA52C7A2DE5 /* Pods_How_Long_Left__iOS_.framework */,
-				08CD62B90C0AED2184D3B93F /* Pods_How_Long_Left_Siri_Extension.framework */,
-				FDAD22DF8D87F32947A3B9E4 /* Pods_How_Long_Left_Siri_ExtensionUI.framework */,
 				BFD68FAB220EAA6E00265672 /* UserNotifications.framework */,
 				BFD68FAD220EAA6F00265672 /* UserNotificationsUI.framework */,
 				BFD68FE8220EB1AC00265672 /* Messages.framework */,
-				6661EE1D9855AEC9EC9A1AC7 /* Pods_How_Long_Left__macOS_.framework */,
-				B7FB3EBFEB07993D6291FD76 /* Pods_How_Long_Left__watchOS_.framework */,
-				DD826005E05BE424E2FBE1D1 /* Pods_How_Long_Left__watchOS__Extension.framework */,
+				48C3CF9210D105837321E872 /* Pods_How_Long_Left__iOS_.framework */,
+				B72F32C9028FF40F876F8FAA /* Pods_How_Long_Left__macOS_.framework */,
+				68C26516652959F8BEA6E5C0 /* Pods_How_Long_Left__watchOS_.framework */,
+				E3FF220A0EA106D6EACA7A78 /* Pods_How_Long_Left__watchOS__Extension.framework */,
+				F380A8693B85722261FDE20A /* Pods_How_Long_Left_Siri_Extension.framework */,
+				D3B1FA14FDB5D81DE3A7D01C /* Pods_How_Long_Left_Siri_ExtensionUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -771,16 +818,16 @@
 			children = (
 				BFC4E70E2210202F00EE4A1F /* HLLEvent.swift */,
 				BFC4E7072210202F00EE4A1F /* EventDataSource.swift */,
-				BFC4E7062210202F00EE4A1F /* Enums.swift */,
 				BFC4E7082210202F00EE4A1F /* Version.swift */,
-				BFC4E7092210202F00EE4A1F /* HLLCountdownController.swift */,
-				BFC4E70A2210202F00EE4A1F /* Extensions.swift */,
-				BFF563E82214D39F00A93D6B /* PercentageCalculator.swift */,
-				BFC4E70C2210202F00EE4A1F /* EventCache.swift */,
 				BFC4E70B2210202F00EE4A1F /* EventTimeRemainingMonitor.swift */,
 				BFC4E7052210202F00EE4A1F /* EventNextOccurenceFinder.swift */,
+				BFF563E82214D39F00A93D6B /* PercentageCalculator.swift */,
+				BFC4E70C2210202F00EE4A1F /* EventCache.swift */,
 				BFC4E70D2210202F00EE4A1F /* HLLDefaults.swift */,
 				BFC4E70F2210202F00EE4A1F /* RepeatingTimer.swift */,
+				BFC4E7092210202F00EE4A1F /* HLLCountdownController.swift */,
+				BFC4E7062210202F00EE4A1F /* Enums.swift */,
+				BFC4E70A2210202F00EE4A1F /* Extensions.swift */,
 				BFC4E7102210202F00EE4A1F /* School */,
 			);
 			path = "How Long Left Core";
@@ -819,16 +866,17 @@
 			path = Complication;
 			sourceTree = "<group>";
 		};
-		BFC962BA221B811100FA4C59 /* How Long Left Mac Widget */ = {
+		BFD0F2AE2224072000B14D9F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				BFC962BB221B811100FA4C59 /* TodayViewController.swift */,
-				BFC962BD221B811100FA4C59 /* TodayViewController.xib */,
-				BFC962C0221B811100FA4C59 /* Info.plist */,
-				BFC962C1221B811100FA4C59 /* InfoPlist.strings */,
-				BFC962C4221B811100FA4C59 /* How_Long_Left_Mac_Widget.entitlements */,
+				BFC2646421F9E493003298AA /* SettingsMainTableViewController.swift */,
+				BFC2646621F9EB51003298AA /* SettingsCalendarSelectTableViewController.swift */,
+				BF876A0A220C15F7007D2EFF /* MilestoneSettingsTableViewController.swift */,
+				BF876A0C220C3226007D2EFF /* MilestoneSettingsCell.swift */,
+				BFC2646821F9EBB5003298AA /* SettingsCalendarItemCell.swift */,
+				BFC0C54321FF19A200D041DA /* VoiceShortcutStatusChecker.swift */,
 			);
-			path = "How Long Left Mac Widget";
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		BFD24C022213CA1F000DC93F /* How Long Left Helper */ = {
@@ -917,19 +965,11 @@
 			children = (
 				BFF05ED421E9DE4E0044F049 /* Main.storyboard */,
 				BFF05ED021E9DE4E0044F049 /* ViewController.swift */,
-				BFC0C54321FF19A200D041DA /* VoiceShortcutStatusChecker.swift */,
-				BFC0C53E21FECF1900D041DA /* CountdownStringHandler.swift */,
-				BFC2646421F9E493003298AA /* SettingsMainTableViewController.swift */,
 				BF4AEFEC2207A63E00FEE4BC /* MilestoneNotificationScheduler.swift */,
-				BF876A0E220C4AF3007D2EFF /* CountdownPageViewController.swift */,
 				BF9EA1A121FB0431008BC1C5 /* iOS WatchSessionManager.swift */,
-				BFC2646621F9EB51003298AA /* SettingsCalendarSelectTableViewController.swift */,
-				BF876A0A220C15F7007D2EFF /* MilestoneSettingsTableViewController.swift */,
-				BF876A0C220C3226007D2EFF /* MilestoneSettingsCell.swift */,
-				BFC2646821F9EBB5003298AA /* SettingsCalendarItemCell.swift */,
-				BF38402721F5F1FE004E7FC1 /* Themes.swift */,
 				BFF05ED121E9DE4E0044F049 /* Assets.xcassets */,
 				BFF05ED621E9DE4E0044F049 /* How Long Left (iOS).entitlements */,
+				BFD0F2AE2224072000B14D9F /* Settings */,
 				BFF05ED721E9DE4E0044F049 /* AppDelegate.swift */,
 				BFF05ED821E9DE4F0044F049 /* Info.plist */,
 				BFF05ED221E9DE4E0044F049 /* LaunchScreen.storyboard */,
@@ -971,7 +1011,6 @@
 				BF5D29532174679500AC1EB6 /* Resources */,
 				BF5D29902174689000AC1EB6 /* Embed Watch Content */,
 				BF794DF621787DEE0076FA17 /* Embed App Extensions */,
-				BF252A8E22005D8100ECB961 /* Embed Frameworks */,
 				69F669A628DE864FF149A0B6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -1023,6 +1062,23 @@
 			productName = "How Long Left (watchOS) Extension";
 			productReference = BF5D29782174688F00AC1EB6 /* How Long Left.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		BF6AD6BE2226731E00B62C0C /* How Long Left Mac Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF6AD6CF2226731F00B62C0C /* Build configuration list for PBXNativeTarget "How Long Left Mac Widget" */;
+			buildPhases = (
+				BF6AD6BB2226731E00B62C0C /* Sources */,
+				BF6AD6BC2226731E00B62C0C /* Frameworks */,
+				BF6AD6BD2226731E00B62C0C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "How Long Left Mac Widget";
+			productName = "Mac Widget";
+			productReference = BF6AD6BF2226731E00B62C0C /* How Long Left.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 		BFC0C4ED21FEB6EF00D041DA /* How Long Left Siri Extension */ = {
 			isa = PBXNativeTarget;
@@ -1082,19 +1138,20 @@
 			buildConfigurationList = BFEA0D0D21788D0B00FAF2F1 /* Build configuration list for PBXNativeTarget "How Long Left (macOS)" */;
 			buildPhases = (
 				762C365960321131B970480D /* [CP] Check Pods Manifest.lock */,
+				BFA747452225380F00E05125 /* Embed Frameworks */,
 				BFEA0CE221788D0100FAF2F1 /* Sources */,
 				BFEA0CE321788D0100FAF2F1 /* Frameworks */,
 				BFEA0CE421788D0100FAF2F1 /* Resources */,
-				BFD812E3218B310D00992E23 /* Embed Frameworks */,
 				BF195C9121B093C8001893A3 /* ShellScript */,
-				BFD68FA5220EAA0700265672 /* Embed App Extensions */,
 				BFD24BFC2213C994000DC93F /* Embed XPC Services */,
 				8F5B8421FAE221CDC429D0E6 /* [CP] Embed Pods Frameworks */,
+				BFD68FA5220EAA0700265672 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				BFD24C0B2213CA1F000DC93F /* PBXTargetDependency */,
+				BF6AD6CD2226731F00B62C0C /* PBXTargetDependency */,
 			);
 			name = "How Long Left (macOS)";
 			productName = "How Long Left (macOS)";
@@ -1170,6 +1227,20 @@
 							};
 							com.apple.Siri = {
 								enabled = 0;
+							};
+						};
+					};
+					BF6AD6BE2226731E00B62C0C = {
+						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 1;
+							};
+							com.apple.HardenedRuntime = {
+								enabled = 1;
+							};
+							com.apple.Sandbox = {
+								enabled = 1;
 							};
 						};
 					};
@@ -1255,6 +1326,7 @@
 				BFC0C4F621FEB6EF00D041DA /* How Long Left Siri ExtensionUI */,
 				BFC0C4ED21FEB6EF00D041DA /* How Long Left Siri Extension */,
 				BFD24C002213CA1F000DC93F /* How Long Left Helper */,
+				BF6AD6BE2226731E00B62C0C /* How Long Left Mac Widget */,
 			);
 		};
 /* End PBXProject section */
@@ -1295,6 +1367,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BF6AD6BD2226731E00B62C0C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF6AD6C62226731F00B62C0C /* TodayViewController.xib in Resources */,
+				BF6AD6CA2226731F00B62C0C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BFC0C4EC21FEB6EF00D041DA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1325,6 +1406,7 @@
 				BF634B8421BE93CA00C285AB /* CalendarPreferencesViewNoAccess.xib in Resources */,
 				BF8B99EA21AE36CA00F7499A /* Assets.xcassets in Resources */,
 				BFEE396221BD129F000106BD /* NotificationPreferencesView.xib in Resources */,
+				BF3B179022260EFD005E8364 /* CalSelectStoryboard.storyboard in Resources */,
 				BF26D83A21BF943B00C2728E /* Onboarding.storyboard in Resources */,
 				BF93AEA221BDD60B0035CE7F /* MagdalenePreferencesView.xib in Resources */,
 				BF8B99F021AE7BB700F7499A /* StatusItemPreferencesView.xib in Resources */,
@@ -1345,12 +1427,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-How Long Left (iOS)/Pods-How Long Left (iOS)-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/ViewAnimator/ViewAnimator.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ViewAnimator.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1584,7 +1668,6 @@
 				BFC4E78D2210202F00EE4A1F /* SchoolAnalyser.swift in Sources */,
 				BFC2646721F9EB51003298AA /* SettingsCalendarSelectTableViewController.swift in Sources */,
 				BFC2646521F9E493003298AA /* SettingsMainTableViewController.swift in Sources */,
-				BF38402821F5F1FE004E7FC1 /* Themes.swift in Sources */,
 				BFC4E7812210202F00EE4A1F /* EventTimeAdjuster.swift in Sources */,
 				BFC0C53D21FEB82100D041DA /* SiriResponseGenerator.swift in Sources */,
 				BFC4E7512210202F00EE4A1F /* HLLEvent.swift in Sources */,
@@ -1593,14 +1676,12 @@
 				BFF54C002220FF490054BC13 /* UpcomingEventsTableViewController.swift in Sources */,
 				BFC4E73F2210202F00EE4A1F /* EventTimeRemainingMonitor.swift in Sources */,
 				BFC4E75D2210202F00EE4A1F /* SchoolFunctionsManager.swift in Sources */,
-				BF876A0F220C4AF3007D2EFF /* CountdownPageViewController.swift in Sources */,
 				BF884BED21F58A2C00393658 /* EventCountdownTimerStringGenerator.swift in Sources */,
 				BFC4E7572210202F00EE4A1F /* RepeatingTimer.swift in Sources */,
 				BFC4E7332210202F00EE4A1F /* HLLCountdownController.swift in Sources */,
 				BFC0C4B721FEB17600D041DA /* HLLIntents.intentdefinition in Sources */,
 				BF38402A21F5F54F004E7FC1 /* UpcomingEventStringGenerator.swift in Sources */,
 				BF876A0D220C3226007D2EFF /* MilestoneSettingsCell.swift in Sources */,
-				BFC0C53F21FECF1900D041DA /* CountdownStringHandler.swift in Sources */,
 				BFF05ED921E9DE4F0044F049 /* ViewController.swift in Sources */,
 				BFC4E7632210202F00EE4A1F /* MagdaleneSchoolHolidays.swift in Sources */,
 				BFC0C54421FF19A200D041DA /* VoiceShortcutStatusChecker.swift in Sources */,
@@ -1642,6 +1723,35 @@
 				BFC4E7702210202F00EE4A1F /* MagdaleneBreaks.swift in Sources */,
 				BFC4E7882210202F00EE4A1F /* MagdalenePeriods.swift in Sources */,
 				BFC4E75E2210202F00EE4A1F /* SchoolFunctionsManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF6AD6BB2226731E00B62C0C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF6AD6E022267A9A00B62C0C /* SchoolAnalyser.swift in Sources */,
+				BF6AD6D422267A6C00B62C0C /* EventDataSource.swift in Sources */,
+				BF6AD6DA22267A8800B62C0C /* EventCache.swift in Sources */,
+				BF6AD6D922267A8600B62C0C /* PercentageCalculator.swift in Sources */,
+				BF6AD6E422267AAA00B62C0C /* MagdaleneBreaks.swift in Sources */,
+				BF6AD6DD22267A9200B62C0C /* HLLCountdownController.swift in Sources */,
+				BF6AD6E122267A9D00B62C0C /* SchoolFunctionsManager.swift in Sources */,
+				BF6AD6E522267AAC00B62C0C /* DoubleEventDetector.swift in Sources */,
+				BF6AD6C32226731F00B62C0C /* TodayViewController.swift in Sources */,
+				BF6AD6E622267AB000B62C0C /* MagdalenePeriods.swift in Sources */,
+				BF6AD6D722267A7F00B62C0C /* EventTimeRemainingMonitor.swift in Sources */,
+				BF6AD6D822267A8300B62C0C /* EventNextOccurenceFinder.swift in Sources */,
+				BF6AD6E322267AA600B62C0C /* EventTitleShortener.swift in Sources */,
+				BF6AD6D522267A7000B62C0C /* Version.swift in Sources */,
+				BF6AD6DF22267A9700B62C0C /* Extensions.swift in Sources */,
+				BF6AD6E722267AB300B62C0C /* EventTimeAdjuster.swift in Sources */,
+				BF6AD6E222267AA100B62C0C /* MagdaleneSchoolHolidays.swift in Sources */,
+				BF6AD6E822267AD300B62C0C /* StatusItemTimerStringGenerator.swift in Sources */,
+				BF6AD6D322267A6900B62C0C /* HLLEvent.swift in Sources */,
+				BF6AD6DB22267A8C00B62C0C /* HLLDefaults.swift in Sources */,
+				BF6AD6DE22267A9500B62C0C /* Enums.swift in Sources */,
+				BF6AD6DC22267A8F00B62C0C /* RepeatingTimer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1687,7 +1797,6 @@
 				BFC0C54221FED65500D041DA /* EventCountdownTimerStringGenerator.swift in Sources */,
 				BFF563ED2214D39F00A93D6B /* PercentageCalculator.swift in Sources */,
 				BFC4E75A2210202F00EE4A1F /* RepeatingTimer.swift in Sources */,
-				BFC0C54021FECF1900D041DA /* CountdownStringHandler.swift in Sources */,
 				BFC4E7722210202F00EE4A1F /* MagdaleneBreaks.swift in Sources */,
 				BFC4E7242210202F00EE4A1F /* Enums.swift in Sources */,
 				BFC4E73C2210202F00EE4A1F /* Extensions.swift in Sources */,
@@ -1758,6 +1867,7 @@
 				BFDE4A6521B60AB500CD50BC /* OnboardingViewController.swift in Sources */,
 				BFC4E7262210202F00EE4A1F /* Enums.swift in Sources */,
 				BFC4E7802210202F00EE4A1F /* MagdaleneUpdateAlert.swift in Sources */,
+				BF6AD69E2226505800B62C0C /* CalSelectViewController.swift in Sources */,
 				BFC4E7382210202F00EE4A1F /* HLLCountdownController.swift in Sources */,
 				BF8A4F0D21CDD6D200EC12B6 /* macOSExtensions.swift in Sources */,
 				BFC4E7922210202F00EE4A1F /* SchoolAnalyser.swift in Sources */,
@@ -1807,6 +1917,11 @@
 			target = BF5D296B2174688700AC1EB6 /* How Long Left (watchOS) */;
 			targetProxy = BF5D29862174689000AC1EB6 /* PBXContainerItemProxy */;
 		};
+		BF6AD6CD2226731F00B62C0C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF6AD6BE2226731E00B62C0C /* How Long Left Mac Widget */;
+			targetProxy = BF6AD6CC2226731F00B62C0C /* PBXContainerItemProxy */;
+		};
 		BFC0C50121FEB6EF00D041DA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BFC0C4F621FEB6EF00D041DA /* How Long Left Siri ExtensionUI */;
@@ -1843,28 +1958,28 @@
 			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
+		BF6AD6C42226731F00B62C0C /* TodayViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF6AD6C52226731F00B62C0C /* Base */,
+			);
+			name = TodayViewController.xib;
+			sourceTree = "<group>";
+		};
+		BF6AD6C82226731F00B62C0C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF6AD6C92226731F00B62C0C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		BFC0C54F21FF2A6900D041DA /* MainInterface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				BFC0C55021FF2A6900D041DA /* Base */,
 			);
 			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
-		BFC962BD221B811100FA4C59 /* TodayViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BFC962BE221B811100FA4C59 /* Base */,
-			);
-			name = TodayViewController.xib;
-			sourceTree = "<group>";
-		};
-		BFC962C1221B811100FA4C59 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BFC962C2221B811100FA4C59 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		BFEA0CEC21788D0B00FAF2F1 /* MainMenu.xib */ = {
@@ -2213,6 +2328,54 @@
 			};
 			name = Release;
 		};
+		BF6AD6D02226731F00B62C0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Mac Widget/Mac Widget.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 5AMFX8X5ZN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "Mac Widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "ryankontos.How-Long-Left-Mac.Mac-Widget";
+				PRODUCT_NAME = "How Long Left";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		BF6AD6D12226731F00B62C0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Mac Widget/Mac Widget.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 5AMFX8X5ZN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "Mac Widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "ryankontos.How-Long-Left-Mac.Mac-Widget";
+				PRODUCT_NAME = "How Long Left";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
 		BFC0C50721FEB6EF00D041DA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AFD212C02A9693172F47E137 /* Pods-How Long Left Siri ExtensionUI.debug.xcconfig */;
@@ -2381,6 +2544,9 @@
 					"$(PROJECT_DIR)/How\\ Long\\ Left\\ (macOS)",
 					"$(PROJECT_DIR)/How\\ Long\\ Left\\ (macOS)",
 					"$(PROJECT_DIR)/How\\ Long\\ Left\\ (macOS)",
+					"$(PROJECT_DIR)/How\\ Long\\ Left\\ (macOS)",
+					"$(PROJECT_DIR)/How\\ Long\\ Left\\ (macOS)",
+					"$(PROJECT_DIR)/How\\ Long\\ Left\\ (macOS)",
 				);
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
@@ -2399,6 +2565,7 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+					"$(PROJECT_DIR)/How\\ Long\\ Left\\ (macOS)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "ryankontos.How-Long-Left-Mac";
@@ -2444,6 +2611,9 @@
 					"$(PROJECT_DIR)/How\\ Long\\ Left\\ (macOS)",
 					"$(PROJECT_DIR)/How\\ Long\\ Left\\ (macOS)",
 					"$(PROJECT_DIR)/How\\ Long\\ Left\\ (macOS)",
+					"$(PROJECT_DIR)/How\\ Long\\ Left\\ (macOS)",
+					"$(PROJECT_DIR)/How\\ Long\\ Left\\ (macOS)",
+					"$(PROJECT_DIR)/How\\ Long\\ Left\\ (macOS)",
 				);
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
@@ -2462,6 +2632,7 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+					"$(PROJECT_DIR)/How\\ Long\\ Left\\ (macOS)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "ryankontos.How-Long-Left-Mac";
@@ -2518,6 +2689,15 @@
 			buildConfigurations = (
 				BF5D298E2174689000AC1EB6 /* Debug */,
 				BF5D298F2174689000AC1EB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF6AD6CF2226731F00B62C0C /* Build configuration list for PBXNativeTarget "How Long Left Mac Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF6AD6D02226731F00B62C0C /* Debug */,
+				BF6AD6D12226731F00B62C0C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

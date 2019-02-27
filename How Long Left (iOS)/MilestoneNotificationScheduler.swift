@@ -13,7 +13,7 @@ import UserNotifications
 class MilestoneNotificationScheduler {
 
     let cal = EventDataSource.shared
-    var hasPermission = false
+    var hasPermission = true
     
     init() {
         
@@ -25,7 +25,9 @@ class MilestoneNotificationScheduler {
         
       let center = UNUserNotificationCenter.current()
         // Request permission to display alerts and play sounds.
-        center.requestAuthorization(options: [.alert, .sound])
+        
+        
+        center.requestAuthorization(options: [.alert, .sound, .badge])
         { (granted, error) in
             
             self.hasPermission = granted
@@ -36,12 +38,12 @@ class MilestoneNotificationScheduler {
     func scheduleTestNotification() {
         
         
-        
         if self.hasPermission == false { return }
         
                 let content = UNMutableNotificationContent()
+                content.sound = .default
                 content.subtitle = "Test notification"
-                let date = Date().addingTimeInterval(5.0)
+                let date = Date().addingTimeInterval(6.0)
                 let calendar = Calendar.current
                 let time = calendar.dateComponents([.hour, .minute, .second, .day, .month, .year], from: date)
                 let trigger = UNCalendarNotificationTrigger(dateMatching: time, repeats: false)
@@ -63,7 +65,7 @@ class MilestoneNotificationScheduler {
         
         let center = UNUserNotificationCenter.current()
         // Request permission to display alerts and play sounds.
-        center.requestAuthorization(options: [.alert, .sound])
+        center.requestAuthorization(options: [.alert, .sound, .badge])
         { (granted, error) in
             
             DispatchQueue.main.async {
@@ -76,10 +78,12 @@ class MilestoneNotificationScheduler {
             
                 print("Scheduling notifications with milestones \(HLLDefaults.notifications.milestones)")
                 
+                self.cal.updateEventStore()
+                SchoolAnalyser.shared.analyseCalendar()
                 var eventsArray = self.cal.getCurrentEvents()
                 eventsArray.append(contentsOf: self.cal.getUpcomingEventsToday())
             
-            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+          UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
             
             for event in eventsArray {
                 
@@ -89,6 +93,7 @@ class MilestoneNotificationScheduler {
                     
                     
                     let content = UNMutableNotificationContent()
+                    content.sound = .default
                     
                     if milestoneMin == 0 {
                         
@@ -116,7 +121,7 @@ class MilestoneNotificationScheduler {
                     let uuidString = UUID().uuidString
                     let request = UNNotificationRequest(identifier: uuidString,
                                                         content: content, trigger: trigger)
-                    
+    
                     
                     UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
                         
@@ -126,11 +131,34 @@ class MilestoneNotificationScheduler {
                     
                 }
                 
-             /*   for percentageMilestone in HLLDefaults.notifications.Percentagemilestones {
+               for percentageMilestone in HLLDefaults.notifications.Percentagemilestones {
+                
+                    let milestoneSecondsFromStart = Int(event.duration)/100*percentageMilestone
+                
+                let content = UNMutableNotificationContent()
+                content.sound = .default
+                
+                content.body = "\(event.title) is \(percentageMilestone)% done."
+                
+                let date = event.startDate.addingTimeInterval(TimeInterval(milestoneSecondsFromStart))
+                let calendar = Calendar.current
+                let time = calendar.dateComponents([.hour, .minute, .second, .day, .month, .year], from: date)
+                let trigger = UNCalendarNotificationTrigger(dateMatching: time, repeats: false)
+                let uuidString = UUID().uuidString
+                let request = UNNotificationRequest(identifier: uuidString,
+                                                    content: content, trigger: trigger)
+                
+                
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+                    
+                    print(error.debugDescription)
+                    
+                })
+                
+                
                     
                     
-                    
-                } */
+                }
                 
             }
             

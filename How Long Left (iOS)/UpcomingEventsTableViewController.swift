@@ -8,6 +8,7 @@
 
 import UIKit
 import ViewAnimator
+import Hero
 
 class UpcomingEventsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -31,9 +32,7 @@ class UpcomingEventsTableViewController: UIViewController, UITableViewDelegate, 
         tableView.separatorColor = .white
         tableView.delegate = self
         tableView.dataSource = self
-        self.tableView.contentInset = UIEdgeInsets(top: 20,left: 0,bottom: 0,right: 0)
-        
-       
+      
         
        // let backgroundImage = UIImage(named: "Background_Light")
        // let imageView = UIImageView(image: backgroundImage)
@@ -44,7 +43,7 @@ class UpcomingEventsTableViewController: UIViewController, UITableViewDelegate, 
     @objc func willClose() {
         
         let cells = tableView.visibleCells
-        UIView.animate(views: cells, animations: [AnimationType.from(direction: .left, offset: 50)], initialAlpha: 1.0,finalAlpha: 0.0 ,duration: 0.5)
+        UIView.animate(views: cells, animations: [AnimationType.from(direction: .left, offset: 20)], initialAlpha: 1.0,finalAlpha: 0.0 ,duration: 0.5)
         
     }
     
@@ -54,8 +53,14 @@ class UpcomingEventsTableViewController: UIViewController, UITableViewDelegate, 
         
         tableView.isHidden = false
         
-        let cells = self.tableView.visibleCells
-        UIView.animate(views: cells, animations: [AnimationType.from(direction: .bottom, offset: 50)], duration: 0.5)
+      let cells = self.tableView.visibleCells
+      //  UIView.animate(views: cells, animations: [AnimationType.from(direction: .bottom, offset: 50)], duration: 0.5)
+        
+        for cell in cells {
+        cell.hero.modifiers = [.translate(y:100)]
+        }
+        
+        
         
         
     }
@@ -159,6 +164,7 @@ class UpcomingEventParentView: UIViewController {
     
     let defaults = HLLDefaults.defaults
     
+    @IBOutlet weak var upcomingLabel: UILabel!
     let bArray = [UIImage(named: "Background_Light"), UIImage(named: "Background_Dark"), UIImage(named: "Background_Black")]
     let backgroundImageView = UIImageView()
     func setBackgroundImage() {
@@ -201,6 +207,8 @@ class UpcomingEventParentView: UIViewController {
     
     override func viewDidLoad() {
         setBackgroundImage()
+       // self.hero.isEnabled = true
+        //self.upcomingLabel.hero.id = "UpcomingTitle"
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

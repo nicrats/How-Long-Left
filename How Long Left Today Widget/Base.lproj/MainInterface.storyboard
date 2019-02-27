@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ppy-2z-Tz6">
-                                <rect key="frame" x="0.0" y="39" width="250" height="47"/>
+                                <rect key="frame" x="0.0" y="41" width="250" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="4Rk-ZF-Jbc"/>
                                 </constraints>
@@ -28,9 +28,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title ends in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVu-YR-yYl">
-                                <rect key="frame" x="0.0" y="10" width="250" height="20"/>
+                                <rect key="frame" x="0.0" y="7" width="250" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="pjO-wL-RxV"/>
+                                    <constraint firstAttribute="height" constant="25" id="pjO-wL-RxV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <nil key="textColor"/>
@@ -51,7 +51,7 @@
                             <constraint firstItem="xuB-m1-5n6" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" id="Glv-28-OeX"/>
                             <constraint firstItem="MVu-YR-yYl" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" id="JSa-uX-BR1"/>
                             <constraint firstItem="xuB-m1-5n6" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" id="OCf-v8-5Te"/>
-                            <constraint firstItem="Ppy-2z-Tz6" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" constant="15" id="XGC-OF-Aym"/>
+                            <constraint firstItem="Ppy-2z-Tz6" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" constant="17" id="XGC-OF-Aym"/>
                             <constraint firstItem="Ppy-2z-Tz6" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" id="aeX-HS-X3d"/>
                             <constraint firstAttribute="trailing" secondItem="MVu-YR-yYl" secondAttribute="trailing" id="byS-uG-Yej"/>
                             <constraint firstItem="Ppy-2z-Tz6" firstAttribute="trailing" secondItem="ssy-KU-ocm" secondAttribute="trailing" id="lkD-xA-BfV"/>

@@ -12,122 +12,124 @@ import Preferences
 import LaunchAtLogin
 import EventKit
 
+
 final class CalendarPreferenceViewController: NSViewController, Preferenceable {
     let toolbarItemTitle = "Calendar"
     let toolbarItemIcon = NSImage(named: NSImage.preferencesGeneralName)!
+    var calSelect : NSWindowController?
+    var calSelectStoryboard = NSStoryboard()
+    
+    @IBOutlet weak var calInfoLabel: NSTextField!
+    var timer: Timer!
+    let calendarData = EventDataSource.shared
+    
+    
+    override var nibName: NSNib.Name? {
+        return "CalendarPreferencesView"
+    }
+    
+    @IBAction func changeClicked(_ sender: NSButton) {
+        
+
+        if calSelect?.window?.isVisible == true {
+        
+        
+        
+        } else {
+            
+            self.calSelectStoryboard = NSStoryboard(name: "CalSelectStoryboard", bundle: nil)
+            
+            self.calSelect = self.calSelectStoryboard.instantiateController(withIdentifier: "Cal2") as? NSWindowController
+            self.calSelect!.showWindow(self)
+            
+            
+        }
+            
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.calendarChanged), name: Notification.Name("updateCalendar"), object: nil)
+        calendarChanged()
+        
+    }
+    
+    
+    
+    
+    override func viewWillDisappear() {
+        
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("updateCalendar"), object: nil)
+        
+        NotificationCenter.default.post(name: Notification.Name("closingCalPrefsWindow"), object: nil)
+        
+        
+    }
+    
+    @objc func calendarChanged() {
+        
+        let count = HLLDefaults.calendar.enabledCalendars.count
+        
+        if count == 1 {
+            
+            calInfoLabel.stringValue = "You are currently using 1 calendar with How Long Left."
+            
+        } else {
+            
+            calInfoLabel.stringValue = "You are currently using \(count) calendars with How Long Left."
+            
+        }
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+}
+
+class rowCheck: NSObject, NSTableViewDelegate, NSTableViewDataSource {
+    
+    var cals = [EKCalendar]()
+    
+ 
+    @IBOutlet weak var tableView: NSTableView!
+    @IBAction func clicked(_ sender: Any) {
+        
+        
+        
+        print("Cal row clicked")
+        
+    }
     
     let calendarData = EventDataSource.shared
     let schoolAnalyzer = SchoolAnalyser()
     var titleIdentifierDictionary: [String: String] = [:]
     var identifierTitleDictionary: [String: String] = [:]
     
+    override func awakeFromNib() {
+     //   arrayWhenLoaded = HLLDefaults.calendar.enabledCalendars
+        
+        cals = self.calendarData.getCalendars()
+        
+        
+        
+        
     
-    @IBOutlet weak var calendarSelectBox: NSPopUpButton!
-    @IBOutlet weak var useAllButton: NSButton!
-    
-    override var nibName: NSNib.Name? {
-        return "CalendarPreferencesView"
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
         
-        if HLLDefaults.calendar.useAllCalendars == true {
-            
-            useAllButton.state = .on
-            
-        } else {
-            
-            useAllButton.state = .off
-            
-        }
-        
-        updateUI()
-        
-        // Setup stuff here
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
-    @IBAction func calendarSelectBoxClicked(_ sender: NSPopUpButton) {
-        
-        DispatchQueue.main.async {
-        
-            if let ID = self.titleIdentifierDictionary[sender.title] {
-            
-            print("\(sender.title) = \(ID)")
-            HLLDefaults.calendar.selectedCalendar = ID
-        }
-        
-        
-            self.updateUI()
-            
-        }
-        
-    }
+    var SAState = false
     
     
-    @IBAction func useAllClicked(_ sender: NSButton) {
-        
-        DispatchQueue.main.async {
-        
-        if self.useAllButton.state == .on {
-            
-            HLLDefaults.calendar.useAllCalendars = true
-            self.calendarSelectBox.isEnabled = false
-            
-        } else {
-            HLLDefaults.calendar.useAllCalendars = false
-            self.calendarSelectBox.isEnabled = true
-            
-        }
-            
-            
-            
-        }
-        
-        DispatchQueue.main.async {
-            self.updateUI()
-        }
-        
-    }
+    @IBOutlet weak var selectAllButton: NSButton!
     
-    func updateUI() {
-        
-        
-        if useAllButton.state == .on {
-            
-            HLLDefaults.calendar.useAllCalendars = true
-            calendarSelectBox.isEnabled = false
-            
-        } else {
-            HLLDefaults.calendar.useAllCalendars = false
-            calendarSelectBox.isEnabled = true
-            
-        }
-        
-        calendarSelectBox.removeAllItems()
-        titleIdentifierDictionary.removeAll()
-        identifierTitleDictionary.removeAll()
-        
-        let cals = calendarData.getCalendars()
-        
-        for item in cals {
-            
-            calendarSelectBox.addItem(withTitle: item.title)
-            titleIdentifierDictionary[item.title] = item.calendarIdentifier
-            identifierTitleDictionary[item.calendarIdentifier] = item.title
-            
-        }
-        
-        if let selectedCalendar = HLLDefaults.calendar.selectedCalendar, let title = identifierTitleDictionary[selectedCalendar] {
-            calendarSelectBox.selectItem(withTitle: title)
-        }
-        
-        DispatchQueue.global(qos: .default).async {
-        self.schoolAnalyzer.analyseCalendar()
-        NotificationCenter.default.post(name: Notification.Name("updateCalendar"), object: nil)
-        }
-        
-    }
     
 }
