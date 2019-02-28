@@ -1176,7 +1176,7 @@
 								enabled = 1;
 							};
 							com.apple.ApplicationGroups.iOS = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -1319,6 +1319,7 @@
 			projectRoot = "";
 			targets = (
 				BFEA0CE521788D0100FAF2F1 /* How Long Left (macOS) */,
+				BF6AD6BE2226731E00B62C0C /* How Long Left Mac Widget */,
 				BF5D29542174679500AC1EB6 /* How Long Left (iOS) */,
 				BF5D296B2174688700AC1EB6 /* How Long Left (watchOS) */,
 				BF5D29772174688F00AC1EB6 /* How Long Left (watchOS) Extension */,
@@ -1326,7 +1327,6 @@
 				BFC0C4F621FEB6EF00D041DA /* How Long Left Siri ExtensionUI */,
 				BFC0C4ED21FEB6EF00D041DA /* How Long Left Siri Extension */,
 				BFD24C002213CA1F000DC93F /* How Long Left Helper */,
-				BF6AD6BE2226731E00B62C0C /* How Long Left Mac Widget */,
 			);
 		};
 /* End PBXProject section */

@@ -199,7 +199,6 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate, Equatable {
         
             self.statusItemTimer.eventHandler = {
             
-            self.statusItemTimerQueue.async(flags: .barrier) {
                 
                 var countdown: HLLEvent?
                 
@@ -224,7 +223,7 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate, Equatable {
                     self.delegate?.updateStatusItem(with: nil)
                     
                 }
-            }
+            
             
         }
         
@@ -458,10 +457,9 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate, Equatable {
                 for event in EventCache.currentEvents {
                     
                     if event == top {
-                        EventCache.fetchQueue.sync(flags: .barrier) {
                         EventCache.primaryEvent = event
                         match = true
-                        }
+                        
                         
                     }
                     
@@ -469,9 +467,8 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate, Equatable {
                 }
                 
                 if match == false {
-                    EventCache.fetchQueue.async(flags: .barrier) {
                     EventCache.primaryEvent = EventCache.currentEvents.first
-                    }
+                    
                 }
                 
             }
@@ -608,7 +605,7 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate, Equatable {
             
         delegate?.updateUpcomingWeekMenu(data: upcomingWeekItems)
         
-        delegate?.updateUpcomingEventsMenu(title: upcomingEventsMenuInfo.0, info: upcomingEventsMenuInfo.1, events: upcomingEventsMenuInfo.2)
+        delegate?.updateUpcomingEventsMenu(data: upcomingEventsMenuInfo)
         
         
         
@@ -683,9 +680,8 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate, Equatable {
     
    @objc func updateOverXPC() {
     
-        calUpdateQueue.async(flags: .barrier) {
+        calUpdateQueue.async {
         
-        EventCache.fetchQueue.async(flags: .barrier) {
             
             if self.inCalendarUpdateCooldown == false {
             
@@ -775,7 +771,7 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate, Equatable {
             
             self.mainRunLoop()
 
-        }
+        
         
         
     }
@@ -783,7 +779,7 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate, Equatable {
     
    @objc func updateCalendarDataOld(doGlobal: Bool) {
     
-    calUpdateQueue.async(flags: .barrier) {
+    calUpdateQueue.async {
         
         
         
@@ -799,8 +795,7 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate, Equatable {
                 self.calendarUpdateInProgress = true
             print("Cal update")
                 
-                
-                EventCache.fetchQueue.async(flags: .barrier) {
+            
                     
             DispatchQueue.global(qos: .default).asyncAfter(deadline: .now() + 0.0) {
                 let _ = self.calendarData.getCurrentEvents()
@@ -824,7 +819,7 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate, Equatable {
             }
                     
                     
-                }
+                
             
             self.lastCalendarUpdate = Date()
             self.mainRunLoop()
@@ -968,9 +963,8 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate, Equatable {
         })
         
         if let indexOfEnding = idArray.firstIndex(of: event) {
-            EventCache.fetchQueue.async(flags: .barrier) {
             EventCache.currentEvents.remove(at: indexOfEnding)
-            }
+            
         }
         
         self.updateCalendarData(doGlobal: true)

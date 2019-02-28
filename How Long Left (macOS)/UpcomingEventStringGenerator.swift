@@ -90,7 +90,7 @@ class UpcomingEventStringGenerator {
         return returnString
     }
     
-    func generateUpcomingEventsMenuStrings(upcoming events: [HLLEvent]) -> (String, [String], [String]) {
+    func generateUpcomingEventsMenuStrings(upcoming events: [HLLEvent]) -> upcomingDayOfEvents? {
         
         var menuTitle = "No events found within the next 7 days."
         var infoItems = [String]()
@@ -141,32 +141,15 @@ class UpcomingEventStringGenerator {
               //  infoItems.append("\(events.count) \(eventsPluralised) on \(dayText)...")
             }
             
-
-        for event in events {
-            
-            var titleAndMaybeLocation = event.title
-            
-            if let location = event.location, HLLDefaults.general.showLocation == true {
-                titleAndMaybeLocation += " (\(location))"
-            }
-            
-            var eventTimeInfo = event.startDate.formattedTime()
-            
-            if let period = event.magdalenePeriod {
-                
-                eventTimeInfo = "Period \(period)"
-                
-            }
-                
-            
-            
-            eventItems.append("\(eventTimeInfo): \(titleAndMaybeLocation)")
-            
-        }
+            eventItems = generateMenuEventStrings(events: events)
          
+        } else {
+            
+            return nil
+            
         }
         
-        return (menuTitle, infoItems, eventItems)
+        return upcomingDayOfEvents(rowTitle: menuTitle, eventStringItems: eventItems, eventsDate: events.first!.startDate.midnight(), events: events)
         
         
     }
@@ -179,7 +162,6 @@ class UpcomingEventStringGenerator {
             
             
             var menuTitle = ""
-            //var infoItems = [String]()
             var eventItems = [String]()
             var eventsArray = [HLLEvent]()
             
@@ -214,27 +196,9 @@ class UpcomingEventStringGenerator {
             
             if dayObject.value.isEmpty == false {
                 
+                eventsArray = dayObject.value
+                eventItems = generateMenuEventStrings(events: eventsArray)
                 
-                for event in dayObject.value {
-                    
-                    var titleAndMaybeLocation = event.title
-                    
-                    if let location = event.location, HLLDefaults.general.showLocation == true {
-                        titleAndMaybeLocation += " (\(location))"
-                    }
-                    
-                    var eventTimeInfo = event.startDate.formattedTime()
-                    
-                    if let period = event.magdalenePeriod {
-                        
-                        eventTimeInfo = "Period \(period)"
-                        
-                    }
-                    
-                    eventItems.append("\(eventTimeInfo): \(titleAndMaybeLocation)")
-                    eventsArray.append(event)
-                    
-                }
                 
             }
             
@@ -252,6 +216,33 @@ class UpcomingEventStringGenerator {
        return returnArray
     }
     
+    func generateMenuEventStrings(events: [HLLEvent]) -> [String] {
+        
+        var returnArray = [String]()
+        
+        for event in events {
+            
+            var titleAndMaybeLocation = event.title
+            
+            if let location = event.location, HLLDefaults.general.showLocation == true {
+                titleAndMaybeLocation += " (\(location))"
+            }
+            
+            var eventTimeInfo = event.startDate.formattedTime()
+            
+            if let period = event.magdalenePeriod {
+                
+                eventTimeInfo = "Period \(period)"
+                
+            }
+            
+            returnArray.append("\(eventTimeInfo): \(titleAndMaybeLocation)")
+            
+        }
+        
+        return returnArray
+        
+    }
     
 }
 

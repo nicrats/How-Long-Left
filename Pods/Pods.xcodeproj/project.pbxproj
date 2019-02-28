@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -142,7 +142,7 @@
 		064B33D6EF75867CC9561255686BAD63 /* Hero.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Hero.modulemap; sourceTree = "<group>"; };
 		06517A433238A207E776BD72B854806A /* Pods-How Long Left (watchOS) Extension-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left (watchOS) Extension-frameworks.sh"; sourceTree = "<group>"; };
 		06D4DCDC43DAD917F2DCAF8127880E5E /* Pods-How Long Left Siri ExtensionUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left Siri ExtensionUI.debug.xcconfig"; sourceTree = "<group>"; };
-		0B45161642D960AA43D21AB2197E9142 /* Pods_How_Long_Left__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_How_Long_Left__iOS_.framework; path = "Pods-How Long Left (iOS).framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B45161642D960AA43D21AB2197E9142 /* Pods_How_Long_Left__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D76741862A9590134714A6A91224F4C /* Pods-How Long Left (iOS)-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-How Long Left (iOS)-dummy.m"; sourceTree = "<group>"; };
 		0DAA78FE1DC23E39485631405E8E9D03 /* Preferences-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Preferences-prefix.pch"; sourceTree = "<group>"; };
 		0DC8B359C1B61D667EC4C43555565EB8 /* ViewAnimator-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ViewAnimator-prefix.pch"; sourceTree = "<group>"; };
@@ -158,13 +158,13 @@
 		1B765507473B9BD334207DED7F41D924 /* HeroCoreAnimationViewContext.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HeroCoreAnimationViewContext.swift; path = Sources/Animator/HeroCoreAnimationViewContext.swift; sourceTree = "<group>"; };
 		1D6172A094F6EF78C31EBE52C4933862 /* ViewAnimator.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ViewAnimator.xcconfig; sourceTree = "<group>"; };
 		2218236BDBF761D7C07CBC685145EA65 /* HeroTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HeroTransition.swift; path = Sources/Transition/HeroTransition.swift; sourceTree = "<group>"; };
-		2365D07CEE9EF4932C09E407604DDCA0 /* Pods_How_Long_Left_Siri_ExtensionUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_How_Long_Left_Siri_ExtensionUI.framework; path = "Pods-How Long Left Siri ExtensionUI.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2365D07CEE9EF4932C09E407604DDCA0 /* Pods_How_Long_Left_Siri_ExtensionUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left_Siri_ExtensionUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		238AF64D66B2F1C03D8999F7E3D1C56E /* Pods-How Long Left (watchOS)-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left (watchOS)-frameworks.sh"; sourceTree = "<group>"; };
-		24390EFD555DD124430DFF9724065945 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		24390EFD555DD124430DFF9724065945 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		251ACE81B6F06060D9C40704721C770C /* Hero-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Hero-umbrella.h"; sourceTree = "<group>"; };
 		2735D310DA46DA9ADFBE9C6D5490DF05 /* HeroModifier+Advanced.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "HeroModifier+Advanced.swift"; path = "Sources/HeroModifier+Advanced.swift"; sourceTree = "<group>"; };
-		29CC92B286362FFA508C98753B49EFC1 /* Pods_How_Long_Left__watchOS__Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_How_Long_Left__watchOS__Extension.framework; path = "Pods-How Long Left (watchOS) Extension.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A2E567350C2B464F2950A7B525CFE00 /* Pods_How_Long_Left__watchOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_How_Long_Left__watchOS_.framework; path = "Pods-How Long Left (watchOS).framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		29CC92B286362FFA508C98753B49EFC1 /* Pods_How_Long_Left__watchOS__Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left__watchOS__Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A2E567350C2B464F2950A7B525CFE00 /* Pods_How_Long_Left__watchOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left__watchOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A828AB260CBE2F8D1C744D1F7F84B43 /* Pods-How Long Left (macOS)-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-How Long Left (macOS)-acknowledgements.markdown"; sourceTree = "<group>"; };
 		2B494CD3367E0077E3C2C110C3364C4B /* Pods-How Long Left Siri Extension-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-How Long Left Siri Extension-acknowledgements.plist"; sourceTree = "<group>"; };
 		2C24449FA0315F73BAF75B001C0B1580 /* HeroTransition+Start.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "HeroTransition+Start.swift"; path = "Sources/Transition/HeroTransition+Start.swift"; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 		5D5523F10A84F99DA1C8A69F86B8610C /* Hero.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Hero.xcconfig; sourceTree = "<group>"; };
 		5E96C6BD4254F27D9690E13D6918EB3F /* Pods-How Long Left Siri Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left Siri Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		5F8D6C6F3BD73F8B6CB828ED5CC9F982 /* Lexer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Lexer.swift; path = Sources/Parser/Lexer.swift; sourceTree = "<group>"; };
-		5FF9F778F9962BF3B1063C2CFE1D0B0C /* Pods_How_Long_Left__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_How_Long_Left__macOS_.framework; path = "Pods-How Long Left (macOS).framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FF9F778F9962BF3B1063C2CFE1D0B0C /* Pods_How_Long_Left__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		611B1D3F09B1F93EEC29DA2D93135557 /* Pods-How Long Left (watchOS) Extension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-How Long Left (watchOS) Extension-dummy.m"; sourceTree = "<group>"; };
 		6835F60405E606C63A8B38E52D9C4ABB /* HeroCompatible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HeroCompatible.swift; path = Sources/HeroCompatible.swift; sourceTree = "<group>"; };
 		68C53A980BD848B29D68A99071505C20 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -217,17 +217,17 @@
 		7E3FB0976283AF9182758527F4455C23 /* Pods-How Long Left (iOS).modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-How Long Left (iOS).modulemap"; sourceTree = "<group>"; };
 		7F0C6014BE18715E3B4B2CD380B9B398 /* ViewAnimatorConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewAnimatorConfig.swift; path = ViewAnimator/Classes/ViewAnimatorConfig.swift; sourceTree = "<group>"; };
 		80F229ED0A959D44087A293BC2E0B662 /* HeroTypes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HeroTypes.swift; path = Sources/HeroTypes.swift; sourceTree = "<group>"; };
-		817CB8E0358D1B756FE45E5377A08764 /* Hero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Hero.framework; path = Hero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		817CB8E0358D1B756FE45E5377A08764 /* Hero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Hero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81CAEBD6CB0F204977E0A44FEC0E14D0 /* Preferences.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Preferences.modulemap; sourceTree = "<group>"; };
 		83263B4EBEAE6122C625F6B657F98468 /* Pods-How Long Left (watchOS) Extension-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-How Long Left (watchOS) Extension-acknowledgements.markdown"; sourceTree = "<group>"; };
 		8376BCE154531DA37B4CFFD801CBF339 /* UICollectionView + ViewAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UICollectionView + ViewAnimator.swift"; path = "ViewAnimator/Classes/Extensions/UICollectionView + ViewAnimator.swift"; sourceTree = "<group>"; };
 		845EB30B6F18C24EF619C66700B4C3C8 /* PreferencesTabViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PreferencesTabViewController.swift; path = Sources/Preferences/PreferencesTabViewController.swift; sourceTree = "<group>"; };
 		87C85882AC44DD17DE1629C97D6CE03D /* HeroTargetState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HeroTargetState.swift; path = Sources/HeroTargetState.swift; sourceTree = "<group>"; };
 		89DE1C1AFD4004A3F71DA36A8C0ECBAC /* Pods-How Long Left Siri ExtensionUI-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-How Long Left Siri ExtensionUI-acknowledgements.plist"; sourceTree = "<group>"; };
-		8A9582EF549A4E704C5A2D3121A1D9B3 /* HotKey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = HotKey.framework; path = HotKey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A9582EF549A4E704C5A2D3121A1D9B3 /* HotKey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HotKey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CA2EF099F1A422124FD6DF9A98F296B /* HeroModifier+HeroStringConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "HeroModifier+HeroStringConvertible.swift"; path = "Sources/HeroModifier+HeroStringConvertible.swift"; sourceTree = "<group>"; };
 		8D55289C5FD44D36F1CDE6A343D84C27 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PreferencesWindowController.swift; path = Sources/Preferences/PreferencesWindowController.swift; sourceTree = "<group>"; };
-		8F3C94759F8D7E3A299C86D7ECCC5EF3 /* Pods_How_Long_Left_Siri_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_How_Long_Left_Siri_Extension.framework; path = "Pods-How Long Left Siri Extension.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F3C94759F8D7E3A299C86D7ECCC5EF3 /* Pods_How_Long_Left_Siri_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_How_Long_Left_Siri_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90E78D14A92910A3DD24A9B451AB96B4 /* Pods-How Long Left Siri ExtensionUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-How Long Left Siri ExtensionUI.release.xcconfig"; sourceTree = "<group>"; };
 		926B5C9013DD0B68442F8C0E4DB6A62B /* HotKey-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HotKey-umbrella.h"; sourceTree = "<group>"; };
 		95079E50312850EE140F1C11F5EEDAFB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
@@ -282,7 +282,7 @@
 		DDFD65DB1582C3A7AD652A5AD26923DA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEB94961822F71507CF3DD251AA01D92 /* HeroDebugPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HeroDebugPlugin.swift; path = "Sources/Debug Plugin/HeroDebugPlugin.swift"; sourceTree = "<group>"; };
 		E01BA55C369B7CF1D2B69618399655B5 /* Hero-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Hero-prefix.pch"; sourceTree = "<group>"; };
-		E1E73F9D5F7DC432D81457567F51AF03 /* ViewAnimator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ViewAnimator.framework; path = ViewAnimator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1E73F9D5F7DC432D81457567F51AF03 /* ViewAnimator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ViewAnimator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2C52202F87DCD3090FAA31541775295 /* SourcePreprocessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SourcePreprocessor.swift; path = Sources/Preprocessors/SourcePreprocessor.swift; sourceTree = "<group>"; };
 		E33F0C0ABAB3A811E734836A47A06797 /* Pods-How Long Left (watchOS) Extension-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-How Long Left (watchOS) Extension-resources.sh"; sourceTree = "<group>"; };
 		E8FD1178B05413E06DBC1AC57EDE1419 /* IgnoreSubviewModifiersPreprocessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IgnoreSubviewModifiersPreprocessor.swift; path = Sources/Preprocessors/IgnoreSubviewModifiersPreprocessor.swift; sourceTree = "<group>"; };
@@ -299,7 +299,7 @@
 		F7D9BE5A54B1DD576BAC17C07A142688 /* CALayer+Hero.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CALayer+Hero.swift"; path = "Sources/Extensions/CALayer+Hero.swift"; sourceTree = "<group>"; };
 		F8F3D5F300123EBEC89330D6FADA75C3 /* Nodes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Nodes.swift; path = Sources/Parser/Nodes.swift; sourceTree = "<group>"; };
 		FAA14B4816466BD050AF1EE6FCA37706 /* CascadePreprocessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CascadePreprocessor.swift; path = Sources/Preprocessors/CascadePreprocessor.swift; sourceTree = "<group>"; };
-		FD1CC33044989D6F95C1C9C95538E51D /* Preferences.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Preferences.framework; path = Preferences.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD1CC33044989D6F95C1C9C95538E51D /* Preferences.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Preferences.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEE3FA5323A8BF039C5DCE061ECE063B /* Appkit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Appkit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Appkit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
@@ -469,7 +469,6 @@
 				4F28A86B818282B30EEDFFCEDD9A0AFE /* UIViewController+Hero.swift */,
 				1847EC413AB388BFD38995F6D82D532E /* Support Files */,
 			);
-			name = Hero;
 			path = Hero;
 			sourceTree = "<group>";
 		};
@@ -486,7 +485,6 @@
 				7F0C6014BE18715E3B4B2CD380B9B398 /* ViewAnimatorConfig.swift */,
 				851864077AD9F234D132A524936355EC /* Support Files */,
 			);
-			name = ViewAnimator;
 			path = ViewAnimator;
 			sourceTree = "<group>";
 		};
@@ -648,7 +646,6 @@
 				795EFC1C43FE768CBBE46A6B4842DB38 /* util.swift */,
 				6DEE5AE86BCF932EE6DEB1D885861105 /* Support Files */,
 			);
-			name = Preferences;
 			path = Preferences;
 			sourceTree = "<group>";
 		};
@@ -680,7 +677,6 @@
 				3CF246DAB5D8BDD7839520E1BBEFDD1A /* NSEventModifierFlags+HotKey.swift */,
 				058B01C0BD83C8C9474E362A813E1CAF /* Support Files */,
 			);
-			name = HotKey;
 			path = HotKey;
 			sourceTree = "<group>";
 		};
@@ -1019,6 +1015,14 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
+				TargetAttributes = {
+					1F1D0B241CFB1E300F43B2449DE1744B = {
+						LastSwiftMigration = 1020;
+					};
+					5F69DC9DF16F5FFF5FA834DF9655EC6A = {
+						LastSwiftMigration = 1020;
+					};
+				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1312,11 +1316,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/HotKey/HotKey-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/HotKey/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MODULEMAP_FILE = "Target Support Files/HotKey/HotKey.modulemap";
 				PRODUCT_MODULE_NAME = HotKey;
@@ -1348,11 +1348,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left Siri Extension/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left Siri Extension/Pods-How Long Left Siri Extension.modulemap";
 				OTHER_LDFLAGS = "";
@@ -1456,11 +1452,7 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (macOS)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (macOS)/Pods-How Long Left (macOS).modulemap";
@@ -1493,11 +1485,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (watchOS)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (watchOS)/Pods-How Long Left (watchOS).modulemap";
 				OTHER_LDFLAGS = "";
@@ -1532,11 +1520,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left Siri ExtensionUI/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left Siri ExtensionUI/Pods-How Long Left Siri ExtensionUI.modulemap";
 				OTHER_LDFLAGS = "";
@@ -1570,11 +1554,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (iOS)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (iOS)/Pods-How Long Left (iOS).modulemap";
 				OTHER_LDFLAGS = "";
@@ -1608,11 +1588,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (watchOS) Extension/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (watchOS) Extension/Pods-How Long Left (watchOS) Extension.modulemap";
 				OTHER_LDFLAGS = "";
@@ -1646,11 +1622,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (watchOS) Extension/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (watchOS) Extension/Pods-How Long Left (watchOS) Extension.modulemap";
 				OTHER_LDFLAGS = "";
@@ -1686,11 +1658,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/HotKey/HotKey-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/HotKey/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MODULEMAP_FILE = "Target Support Files/HotKey/HotKey.modulemap";
 				PRODUCT_MODULE_NAME = HotKey;
@@ -1721,11 +1689,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (watchOS)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (watchOS)/Pods-How Long Left (watchOS).modulemap";
 				OTHER_LDFLAGS = "";
@@ -1761,11 +1725,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (iOS)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (iOS)/Pods-How Long Left (iOS).modulemap";
 				OTHER_LDFLAGS = "";
@@ -1799,11 +1759,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left Siri Extension/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left Siri Extension/Pods-How Long Left Siri Extension.modulemap";
 				OTHER_LDFLAGS = "";
@@ -1875,8 +1831,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				SYMROOT = "${SRCROOT}/../build";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
@@ -1900,11 +1855,7 @@
 				INFOPLIST_FILE = "Target Support Files/Hero/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Hero/Hero.modulemap";
 				PRODUCT_MODULE_NAME = Hero;
 				PRODUCT_NAME = Hero;
@@ -1936,11 +1887,7 @@
 				INFOPLIST_FILE = "Target Support Files/ViewAnimator/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/ViewAnimator/ViewAnimator.modulemap";
 				PRODUCT_MODULE_NAME = ViewAnimator;
 				PRODUCT_NAME = ViewAnimator;
@@ -1973,11 +1920,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Preferences/Preferences-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Preferences/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MODULEMAP_FILE = "Target Support Files/Preferences/Preferences.modulemap";
 				PRODUCT_MODULE_NAME = Preferences;
@@ -2010,11 +1953,7 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left (macOS)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left (macOS)/Pods-How Long Left (macOS).modulemap";
@@ -2048,11 +1987,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-How Long Left Siri ExtensionUI/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-How Long Left Siri ExtensionUI/Pods-How Long Left Siri ExtensionUI.modulemap";
 				OTHER_LDFLAGS = "";
@@ -2086,11 +2021,7 @@
 				INFOPLIST_FILE = "Target Support Files/Hero/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Hero/Hero.modulemap";
 				PRODUCT_MODULE_NAME = Hero;
 				PRODUCT_NAME = Hero;
@@ -2121,11 +2052,7 @@
 				INFOPLIST_FILE = "Target Support Files/ViewAnimator/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/ViewAnimator/ViewAnimator.modulemap";
 				PRODUCT_MODULE_NAME = ViewAnimator;
 				PRODUCT_NAME = ViewAnimator;
@@ -2159,11 +2086,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Preferences/Preferences-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Preferences/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MODULEMAP_FILE = "Target Support Files/Preferences/Preferences.modulemap";
 				PRODUCT_MODULE_NAME = Preferences;

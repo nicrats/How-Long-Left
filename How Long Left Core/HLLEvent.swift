@@ -59,9 +59,9 @@ struct HLLEvent: Equatable, Hashable, Codable {
         
         // Init a HLLEvent from an EKEvent.
         
-        title = event.title.truncated(limit: 15, position: .tail, leader: "...")
+        title = event.title.truncated(limit: 25, position: .tail, leader: "...")
         originalTitle = event.title
-        shortTitle = event.title.truncated(limit: 15, position: .tail, leader: "...")
+        shortTitle = event.title.truncated(limit: 25, position: .tail, leader: "...")
         startDate = event.startDate
         endDate = event.endDate
         

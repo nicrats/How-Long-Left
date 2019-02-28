@@ -102,7 +102,7 @@ class calSelectViewController: NSViewController, NSTableViewDataSource, NSTableV
         
         if selectedCals.count == cals.count {
             
-            selectAllButton.title = "Delselect All"
+            selectAllButton.title = "Deselect All"
             saState = false
             
         } else {

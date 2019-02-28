@@ -14,7 +14,7 @@ protocol HLLMacUIController {
     func doStatusItemAlert(with strings: [String])
     func addCurrentEventRows(with strings: [(String, String?, HLLEvent?)])
     func updateNextEventItem(text: String?)
-    func updateUpcomingEventsMenu(title: String, info: [String], events: [String])
+    func updateUpcomingEventsMenu(data: upcomingDayOfEvents?)
     func updateUpcomingWeekMenu(data: [upcomingDayOfEvents])
     func addNextOccurRows(items: [(String, [String])])
     func setHotkey(to: HLLHotKeyOption)

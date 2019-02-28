@@ -44,6 +44,7 @@ class MilestoneNotificationScheduler {
                 content.sound = .default
                 content.subtitle = "Test notification"
                 let date = Date().addingTimeInterval(6.0)
+        
                 let calendar = Calendar.current
                 let time = calendar.dateComponents([.hour, .minute, .second, .day, .month, .year], from: date)
                 let trigger = UNCalendarNotificationTrigger(dateMatching: time, repeats: false)
@@ -97,7 +98,7 @@ class MilestoneNotificationScheduler {
                     
                     if milestoneMin == 0 {
                         
-                        content.body = "\(event.title) is done."
+                        content.title = "\(event.title) is done."
                         
                     } else {
                         
@@ -109,12 +110,46 @@ class MilestoneNotificationScheduler {
                             
                         }
                         
-                        content.body = "\(event.title) ends in \(milestoneMin) \(minText)."
+                        content.title = "\(event.title) ends in \(milestoneMin) \(minText)."
                         
                     }
                                     
                     let negativeMilestone = 0 - milestone
                     let date = event.endDate.addingTimeInterval(TimeInterval(negativeMilestone))
+                    
+                    var subtitleText: String
+                    
+                    if let nextEvent = self.eventsNotStartedBy(date: date, events: eventsArray).first {
+                        
+                        var startingTypeText = "next"
+                        
+                        if nextEvent.startDate == date {
+                            
+                            startingTypeText = "on now"
+                            
+                        }
+                        
+                        subtitleText = "\(nextEvent.title) is \(startingTypeText)."
+                        
+                        if let loc = nextEvent.location {
+                            
+                            subtitleText += " (\(loc))"
+                            
+                        }
+                        
+                    } else {
+                        
+                        subtitleText = "Nothing is next."
+                        
+                    }
+                    
+                    
+                    
+                    content.body = subtitleText
+                    
+                    
+                    print("Subtitle: \(subtitleText)")
+                    
                     let calendar = Calendar.current
                     let time = calendar.dateComponents([.hour, .minute, .second, .day, .month, .year], from: date)
                     let trigger = UNCalendarNotificationTrigger(dateMatching: time, repeats: false)
@@ -133,14 +168,46 @@ class MilestoneNotificationScheduler {
                 
                for percentageMilestone in HLLDefaults.notifications.Percentagemilestones {
                 
-                    let milestoneSecondsFromStart = Int(event.duration)/100*percentageMilestone
+                let milestoneSecondsFromStart = Int(event.duration)/100*percentageMilestone
                 
                 let content = UNMutableNotificationContent()
                 content.sound = .default
                 
-                content.body = "\(event.title) is \(percentageMilestone)% done."
+                content.title = "\(event.title) is \(percentageMilestone)% done."
+                
                 
                 let date = event.startDate.addingTimeInterval(TimeInterval(milestoneSecondsFromStart))
+                
+                var subtitleText: String
+                
+                if let nextEvent = self.eventsNotStartedBy(date: date, events: eventsArray).first {
+                    
+                    var startingTypeText = "next"
+                    
+                    if nextEvent.startDate == date {
+                        
+                        startingTypeText = "on now"
+                    
+                    }
+                    
+                    subtitleText = "\(nextEvent.title) is \(startingTypeText)."
+                    
+                    if let loc = nextEvent.location {
+                       
+                        subtitleText += " (\(loc))"
+                        
+                    }
+                    
+                } else {
+                    
+                    subtitleText = "Nothing is next."
+                    
+                }
+                    
+                content.body = subtitleText
+                
+                print("Subtitle: \(subtitleText)")
+                
                 let calendar = Calendar.current
                 let time = calendar.dateComponents([.hour, .minute, .second, .day, .month, .year], from: date)
                 let trigger = UNCalendarNotificationTrigger(dateMatching: time, repeats: false)
@@ -170,6 +237,24 @@ class MilestoneNotificationScheduler {
         }
         
         
+    }
+    
+    
+    func eventsNotStartedBy(date: Date, events: [HLLEvent]) -> [HLLEvent] {
+        
+        var returnArray = [HLLEvent]()
+        
+        for event in events {
+            
+            if event.startDate.timeIntervalSince(date) > -1 {
+                
+                returnArray.append(event)
+                
+            }
+            
+        }
+        
+        return returnArray
     }
     
     

@@ -48,7 +48,7 @@ class EventTimeRemainingMonitor {
     
     @objc func checkCurrentEvents() {
         
-        checkqueue.sync(flags: .barrier) {
+        checkqueue.async(flags: .barrier) {
         
         let milestones = HLLDefaults.notifications.milestones
         let percentageMilestones = HLLDefaults.notifications.Percentagemilestones
@@ -62,9 +62,9 @@ class EventTimeRemainingMonitor {
         
         #elseif os(OSX)
         
-        EventCache.fetchQueue.sync(flags: .barrier) {
+
         events = EventCache.currentEvents
-        }
+        
         
         #endif
         

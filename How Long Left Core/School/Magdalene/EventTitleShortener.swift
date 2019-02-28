@@ -24,7 +24,7 @@ class EventTitleShortener {
         
             var event = eventItem
             
-        var newTitle = event.originalTitle
+        var newTitle = event.title
         
         if event.originalTitle.contains(text:"Pastoral Care") {
             newTitle = "Homeroom"

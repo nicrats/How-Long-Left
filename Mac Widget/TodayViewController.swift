@@ -11,8 +11,8 @@ import NotificationCenter
 
 class TodayViewController: NSViewController, NCWidgetProviding {
     
-    var eventFontSize: CGFloat = 23
-    var noEventFontSize: CGFloat = 16
+    var eventFontSize: CGFloat = 20
+    var noEventFontSize: CGFloat = 14
     
     var noEventOn = true
     
@@ -32,6 +32,9 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     
     override func viewDidLoad() {
         
+        endsInLabel.alphaValue = 0.75
+        countdownLabel.alphaValue = 0.75
+        
         updateEventStore()
         
         NotificationCenter.default.addObserver(
@@ -50,15 +53,16 @@ class TodayViewController: NSViewController, NCWidgetProviding {
         
         SchoolAnalyser.shared.analyseCalendar()
         
-        current = self.cal.getCurrentEvent()
+        
         
     }
 
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
        
         
-        
         timer = Timer(fire: Date(), interval: 0.5, repeats: true, block: {_ in
+            
+            self.current = self.cal.getCurrentEvent()
             
             if let currentEvent = self.current {
                 

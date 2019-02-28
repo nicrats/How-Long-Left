@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Main.swift"
-            timestampString = "572955515.039946"
+            timestampString = "573039835.6478831"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "792"
-            endingLineNumber = "792"
+            startingLineNumber = "789"
+            endingLineNumber = "789"
             landmarkName = "updateCalendarDataOld(doGlobal:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Main.swift"
-            timestampString = "572955515.045312"
+            timestampString = "573039835.652119"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "791"
-            endingLineNumber = "791"
+            startingLineNumber = "788"
+            endingLineNumber = "788"
             landmarkName = "updateCalendarDataOld(doGlobal:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -250,23 +250,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Main.swift"
-            timestampString = "572955515.049957"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "690"
-            endingLineNumber = "690"
-            landmarkName = "updateOverXPC()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "How Long Left (macOS)/Main.swift"
-            timestampString = "572955515.050519"
+            timestampString = "573039835.652975"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "687"
@@ -282,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Main.swift"
-            timestampString = "572955515.050946"
+            timestampString = "573039835.653463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "686"
-            endingLineNumber = "686"
+            startingLineNumber = "684"
+            endingLineNumber = "684"
             landmarkName = "updateOverXPC()"
             landmarkType = "7">
          </BreakpointContent>
@@ -298,13 +282,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Main.swift"
-            timestampString = "572955515.0514131"
+            timestampString = "573039835.653929"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "531"
-            endingLineNumber = "531"
-            landmarkName = "mainRunLoop()"
-            landmarkType = "7">
+            startingLineNumber = "529"
+            endingLineNumber = "529"
+            landmarkName = "Main"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -538,7 +522,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left Core/School/Magdalene/EventTitleShortener.swift"
-            timestampString = "572277118.7059"
+            timestampString = "572997755.393697"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "103"
@@ -858,11 +842,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Main.swift"
-            timestampString = "572955515.05437"
+            timestampString = "573039835.656661"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "534"
-            endingLineNumber = "534"
+            startingLineNumber = "532"
+            endingLineNumber = "532"
             landmarkName = "calendarDidChange()"
             landmarkType = "7">
          </BreakpointContent>
@@ -874,11 +858,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Main.swift"
-            timestampString = "572955515.0546581"
+            timestampString = "573039835.6574841"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "277"
-            endingLineNumber = "277"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
             landmarkName = "updateGlobalTrigger()"
             landmarkType = "7">
          </BreakpointContent>
@@ -890,11 +874,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Main.swift"
-            timestampString = "572955515.05496"
+            timestampString = "573039835.658262"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "263"
-            endingLineNumber = "263"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
             landmarkName = "init(aDelegate:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -906,11 +890,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Main.swift"
-            timestampString = "572955515.055324"
+            timestampString = "573039835.659001"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
             landmarkName = "updateGlobalTrigger()"
             landmarkType = "7">
          </BreakpointContent>
@@ -922,11 +906,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Main.swift"
-            timestampString = "572955515.055698"
+            timestampString = "573039835.6595761"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "785"
-            endingLineNumber = "785"
+            startingLineNumber = "782"
+            endingLineNumber = "782"
             landmarkName = "updateCalendarDataOld(doGlobal:)"
             landmarkType = "7">
             <Locations>
@@ -970,11 +954,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Main.swift"
-            timestampString = "572955515.056033"
+            timestampString = "573039835.660144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "787"
-            endingLineNumber = "787"
+            startingLineNumber = "784"
+            endingLineNumber = "784"
             landmarkName = "updateCalendarDataOld(doGlobal:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -986,11 +970,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Main.swift"
-            timestampString = "572955515.056349"
+            timestampString = "573039835.660755"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "786"
-            endingLineNumber = "786"
+            startingLineNumber = "783"
+            endingLineNumber = "783"
             landmarkName = "updateCalendarDataOld(doGlobal:)"
             landmarkType = "7">
             <Locations>
@@ -1034,11 +1018,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Main.swift"
-            timestampString = "572955515.0567009"
+            timestampString = "573039835.661406"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "487"
-            endingLineNumber = "487"
+            startingLineNumber = "485"
+            endingLineNumber = "485"
             landmarkName = "mainRunLoop()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1050,11 +1034,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Main.swift"
-            timestampString = "572955515.0571589"
+            timestampString = "573039835.662163"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "496"
-            endingLineNumber = "496"
+            startingLineNumber = "494"
+            endingLineNumber = "494"
             landmarkName = "mainRunLoop()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1066,11 +1050,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Main.swift"
-            timestampString = "572955515.057541"
+            timestampString = "573039835.662822"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "430"
-            endingLineNumber = "430"
+            startingLineNumber = "429"
+            endingLineNumber = "429"
             landmarkName = "mainRunLoop()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1082,11 +1066,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Main.swift"
-            timestampString = "572955515.057911"
+            timestampString = "573039835.663474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "432"
-            endingLineNumber = "432"
+            startingLineNumber = "431"
+            endingLineNumber = "431"
             landmarkName = "mainRunLoop()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1194,7 +1178,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Main.swift"
-            timestampString = "572955515.0587569"
+            timestampString = "573039835.66432"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "23"
@@ -1226,11 +1210,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Preferences UI/CalendarPreferenceViewController.swift"
-            timestampString = "572955515.059509"
+            timestampString = "573017144.613798"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "CalendarPreferenceViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -1242,7 +1226,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Preferences UI/CalendarPreferenceViewController.swift"
-            timestampString = "572955515.060938"
+            timestampString = "573017144.613958"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
@@ -1258,7 +1242,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Preferences UI/CalSelectViewController.swift"
-            timestampString = "572955515.062138"
+            timestampString = "573047335.238433"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "250"
@@ -1274,7 +1258,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "How Long Left (macOS)/Preferences UI/CalendarPreferenceViewController.swift"
-            timestampString = "572955515.062995"
+            timestampString = "573017144.6141"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
@@ -1344,6 +1328,102 @@
             startingLineNumber = "247"
             endingLineNumber = "247"
             landmarkName = "checkForEnd()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "How Long Left (macOS)/UIController.swift"
+            timestampString = "573039835.665192"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "482"
+            endingLineNumber = "482"
+            landmarkName = "updateUpcomingEventsMenu(data:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "How Long Left (iOS)/MilestoneNotificationScheduler.swift"
+            timestampString = "573049274.0186419"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "scheduleNotificationsForUpcomingEvents()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "How Long Left (iOS)/MilestoneNotificationScheduler.swift"
+            timestampString = "573049274.022783"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "scheduleNotificationsForUpcomingEvents()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "How Long Left (iOS)/MilestoneNotificationScheduler.swift"
+            timestampString = "573049274.023206"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "scheduleNotificationsForUpcomingEvents()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "How Long Left (iOS)/MilestoneNotificationScheduler.swift"
+            timestampString = "573049274.023618"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "scheduleNotificationsForUpcomingEvents()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "How Long Left (iOS)/MilestoneNotificationScheduler.swift"
+            timestampString = "573049274.024004"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "scheduleNotificationsForUpcomingEvents()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -325,7 +325,6 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
     
    func addCurrentEventRows(with strings: [(String, String?, HLLEvent?)]) {
     
-    currentEventRowsQueue.async(flags: .barrier) {
     
         for item in self.arrayOfCurrentEventMenuItems {
             self.mainMenu.removeItem(item)
@@ -408,7 +407,6 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
         
     }
         
-    }
         
     }
     
@@ -470,7 +468,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
         
     }
     
-    func updateUpcomingEventsMenu(title: String, info: [String], events: [String]) {
+    func updateUpcomingEventsMenu(data: upcomingDayOfEvents?) {
         
         if HLLDefaults.general.showUpcomingEventsSubmenu == false {
             upcomingEventsRow.isHidden = true
@@ -479,17 +477,22 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
             upcomingEventsRow.isHidden = false
         }
         
+        
+        if let safeData = data {
+            
+            let events = safeData.eventStrings
+        
         if events.isEmpty == true {
             
             upcomingEventsRow.isHidden = true
             return
         }
         
-        upcomingEventsRow.title = title
+        upcomingEventsRow.title = safeData.menuTitle
 
         upcomingEventsMenu.removeAllItems()
         
-        for item in info {
+       /* for item in safeData.eventStrings {
             
             let menuItem : NSMenuItem = NSMenuItem()
             
@@ -500,7 +503,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
         }
         
         let seperator = NSMenuItem.separator()
-        upcomingEventsMenu.addItem(seperator)
+        upcomingEventsMenu.addItem(seperator) */
         
         for item in events {
             
@@ -521,6 +524,12 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
         
         upcomingEventsRow.isEnabled = !events.isEmpty
         
+        } else {
+            
+            upcomingEventsRow.isHidden = true
+            return
+            
+        }
     }
     
     func updateUpcomingWeekMenu(data: [upcomingDayOfEvents]) {
@@ -639,6 +648,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
             mainMenu.insertItem(row, at: index)
         
         }
+        
         
     }
     

@@ -71,14 +71,19 @@ final class CalendarPreferenceViewController: NSViewController, Preferenceable {
     @objc func calendarChanged() {
         
         let count = HLLDefaults.calendar.enabledCalendars.count
-        
-        if count == 1 {
+                if count == 1 {
             
             calInfoLabel.stringValue = "You are currently using 1 calendar with How Long Left."
             
         } else {
             
             calInfoLabel.stringValue = "You are currently using \(count) calendars with How Long Left."
+            
+        }
+        
+        if count == calendarData.getCalendars().count {
+            
+            calInfoLabel.stringValue = "You are currently using all of your calendars with How Long Left."
             
         }
         

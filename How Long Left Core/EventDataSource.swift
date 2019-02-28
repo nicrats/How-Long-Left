@@ -15,7 +15,6 @@ class EventDataSource {
     
     static let shared = EventDataSource()
     
-    let fetchQueue = DispatchQueue(label: "eventFetchQueue")
     
     static var accessToCalendar = calendarAccess.Unknown
     var latestFetchSchoolMode = SchoolMode.None
@@ -358,12 +357,10 @@ class EventDataSource {
                 
             }
         }
-        
-        EventCache.fetchQueue.async(flags: .barrier) {
         currentEvents.sort(by: { $0.endDate.compare($1.endDate) == .orderedAscending })
         
         EventCache.currentEvents = currentEvents
-        }
+        
         return currentEvents
     }
     
@@ -383,9 +380,8 @@ class EventDataSource {
                 
             }
         }
-        EventCache.fetchQueue.async(flags: .barrier) {
         EventCache.upcomingEventsToday = upcomingEvents
-        }
+        
         return upcomingEvents
     }
     
@@ -426,9 +422,8 @@ class EventDataSource {
         }
         
         
-        EventCache.fetchQueue.async(flags: .barrier) {
         EventCache.nextUpcomingEventsDay = returnEvents
-        }
+        
         return returnEvents
         
     }
@@ -452,9 +447,8 @@ class EventDataSource {
             
         }
         
-        EventCache.fetchQueue.async(flags: .barrier) {
         EventCache.upcomingWeekEvents = returnArray
-        }
+        
         return returnArray
         
     }
