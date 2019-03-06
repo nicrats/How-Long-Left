@@ -8,6 +8,7 @@ target 'How Long Left (iOS)' do
   use_frameworks!
 pod "ViewAnimator"
 pod 'Hero'
+pod 'SwiftyOnboard'
   # Pods for How Long Left (iOS)
 
 end

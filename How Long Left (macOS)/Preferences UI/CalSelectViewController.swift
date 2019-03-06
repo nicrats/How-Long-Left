@@ -168,11 +168,8 @@ class calSelectViewController: NSViewController, NSTableViewDataSource, NSTableV
         
         HLLDefaults.calendar.enabledCalendars = idArray
         
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.2, execute: {
-            
-            NotificationCenter.default.post(name: Notification.Name("updateCalendar"), object: nil)
-            
-        })
+          NotificationCenter.default.post(name: Notification.Name("updatedCalendars"), object: nil)
+    
         
         
         
@@ -180,11 +177,6 @@ class calSelectViewController: NSViewController, NSTableViewDataSource, NSTableV
     
     override func viewWillDisappear() {
         outputSelectedArrayToDefaults()
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.2, execute: {
-            
-            NotificationCenter.default.post(name: Notification.Name("updateCalendar"), object: nil)
-            
-        })
         
     }
     

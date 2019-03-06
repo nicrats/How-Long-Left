@@ -16,12 +16,13 @@ class EventTimeRemainingMonitor {
     var countdownEvents = [HLLEvent]()
     var checkTimer = Timer()
     var delegate: HLLCountdownController
-    let cal = EventDataSource.shared
+    let cal = EventDataSource()
     var coolingDown = [HLLEvent]()
     var coolingDownPercentage = [HLLEvent]()
     var coolingDownEnded = [HLLEvent]()
     var coolingDownStarted = [HLLEvent]()
     let percentCalc = PercentageCalculator()
+    
     
     init(delegate theDelegate: HLLCountdownController) {
         
@@ -84,7 +85,7 @@ class EventTimeRemainingMonitor {
                             
                             self.coolingDownPercentage.append(event)
                             
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                                 self.coolingDownPercentage.removeAll()
                             }
                             
@@ -116,7 +117,7 @@ class EventTimeRemainingMonitor {
                         
                         self.coolingDown.append(event)
                         
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                             self.coolingDown.removeAll()
                         }
                         
@@ -140,7 +141,7 @@ class EventTimeRemainingMonitor {
                 self.delegate.updateDueToEventEnd(event: event, endingNow: endingNow)
                     
                 self.coolingDownEnded.append(event)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                         self.coolingDownEnded.removeAll()
                     }
                     
@@ -150,7 +151,7 @@ class EventTimeRemainingMonitor {
             
             var startedAtEndOfEvent = false
             
-            for eventToday in EventCache.allEventsToday {
+            for eventToday in self.cal.fetchEventsFromPresetPeriod(period: .AllToday) {
                 
                 if eventToday.endDate == event.startDate {
                     

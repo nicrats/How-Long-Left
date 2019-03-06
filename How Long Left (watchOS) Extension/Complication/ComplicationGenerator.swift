@@ -127,10 +127,21 @@ class ComplicationContentsGenerator {
         case .modularLarge:
             
             let entry = CLKComplicationTemplateModularLargeStandardBody()
+            
+             var updatedTimeText = "Tap to refresh"
+            
             entry.headerTextProvider = CLKSimpleTextProvider(text: "No events on")
             if let next = nextEvent {
                 
                 entry.body1TextProvider = CLKSimpleTextProvider(text: "Next: \(next.title)")
+                
+                if let loc = next.location {
+                    
+                    updatedTimeText = loc
+                    
+                    
+                }
+                
                 
             } else {
                 entry.body1TextProvider = CLKSimpleTextProvider(text: "No upcoming today")
@@ -140,7 +151,12 @@ class ComplicationContentsGenerator {
              let dateFormatter  = DateFormatter()
              dateFormatter.dateFormat = "hh:mm a"
              let dateInString = dateFormatter.string(from: date) */
-            let updatedTimeText = "Tap to refresh"
+            
+           
+            
+           
+            
+            
             
             entry.body2TextProvider = CLKSimpleTextProvider(text: updatedTimeText)
             entry.headerTextProvider.tintColor = #colorLiteral(red: 0.9944762588, green: 0.3928351742, blue: 0.08257865259, alpha: 1)
@@ -194,9 +210,19 @@ class ComplicationContentsGenerator {
             let entry = CLKComplicationTemplateGraphicRectangularStandardBody()
             entry.headerTextProvider = CLKSimpleTextProvider(text: "No events on")
             
+            var updatedTimeText = "Tap to refresh"
+            
             if let next = cal.getUpcomingEventsToday().first {
                 
                 entry.body1TextProvider = CLKSimpleTextProvider(text: "Next: \(next.title)")
+                
+                if let loc = next.location {
+                    
+                    updatedTimeText = loc
+                    
+                    
+                }
+                
                 
             } else {
                entry.body1TextProvider = CLKSimpleTextProvider(text: "Nothing next")
@@ -208,7 +234,7 @@ class ComplicationContentsGenerator {
              let dateFormatter  = DateFormatter()
              dateFormatter.dateFormat = "hh:mm a"
              let dateInString = dateFormatter.string(from: date) */
-            let updatedTimeText = "Tap to refresh"
+           
             
             entry.body2TextProvider = CLKSimpleTextProvider(text: updatedTimeText)
             entry.headerTextProvider.tintColor = #colorLiteral(red: 0.9944762588, green: 0.3928351742, blue: 0.08257865259, alpha: 1)

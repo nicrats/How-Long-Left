@@ -10,9 +10,16 @@
             <connections>
                 <outlet property="adjustTimesButton" destination="mmQ-pg-kyX" id="VdV-ER-Y8Q"/>
                 <outlet property="countDownSchoolHolidaysButton" destination="CpK-La-TR4" id="6Oa-Zi-rae"/>
+                <outlet property="des1" destination="QMa-H3-f9Z" id="Ob3-2f-n0e"/>
+                <outlet property="des2" destination="K66-Fd-2jL" id="wFW-u9-l7a"/>
+                <outlet property="des3" destination="rsO-F6-VZ7" id="RCi-Uv-uN7"/>
+                <outlet property="des4" destination="cnO-2z-Wgs" id="Tuk-4p-MPe"/>
+                <outlet property="des5" destination="mJ4-LX-j3h" id="FFc-On-icQ"/>
+                <outlet property="des6" destination="rCF-rG-Vak" id="goM-2K-b9R"/>
+                <outlet property="des7" destination="c6T-zK-Bce" id="fRH-dS-2Zq"/>
                 <outlet property="edvalButtonButton" destination="9ww-ar-oA0" id="ucg-Sh-itz"/>
                 <outlet property="hideNonMagdaleneBreaksButton" destination="UVc-rc-5Dj" id="pcW-Ab-Uyn"/>
-                <outlet property="holidaysDateLabel" destination="kif-AK-YLE" id="SN0-Zo-cx1"/>
+                <outlet property="holidaysDateLabel" destination="kif-AK-YLE" id="0Y0-8G-kb4"/>
                 <outlet property="launchAtLoginCheckbox" destination="uOS-Db-JpP" id="NFv-6f-gRv"/>
                 <outlet property="magdaleneFeaturesButton" destination="uOS-Db-JpP" id="2LF-VX-ht6"/>
                 <outlet property="shortenTitlesButton" destination="mAe-D1-pFc" id="NZF-gU-ap2"/>

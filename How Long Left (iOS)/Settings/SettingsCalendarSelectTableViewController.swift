@@ -96,6 +96,13 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
           SchoolAnalyser.shared.analyseCalendar()
         }
         
+        if calendars.count > 0, setCalendars.count == 0 {
+            
+            defaults.set(true, forKey: "userDidTurnOffAllCalendars")
+            
+        }
+            
+        
         if setCalendars.count == calendars.count {
             
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Deselect all", style: .plain, target: self, action: #selector (selectAllButtonTapped))
@@ -105,7 +112,6 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
         } else {
             
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select all", style: .plain, target: self, action: #selector (selectAllButtonTapped))
-            defaults.set(true, forKey: "userDidTurnOffAllCalendars")
             selectAllState = true
             
         }
@@ -145,6 +151,10 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        
+        
         print("\(calendars[indexPath.row].title) selected")
         
         if #available(iOS 10.0, *) {
@@ -194,6 +204,12 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
         DispatchQueue.main.async {
             
             WatchSessionManager.sharedManager.updateContext(userInfo: ["SelectedCalendars" : self.setCalendars])
+            
+        }
+        
+        if calendars.count > 0, setCalendars.count == 0 {
+            
+            defaults.set(true, forKey: "userDidTurnOffAllCalendars")
             
         }
        

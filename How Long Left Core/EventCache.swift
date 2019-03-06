@@ -13,12 +13,7 @@ struct EventCache {
     static var fetchQueue = DispatchQueue(label: "eventFetchQueue")
     
     static var currentEvents = [HLLEvent]()
-    static var allUpcomingEvents = [HLLEvent]()
-    static var allEventsToday = [HLLEvent]()
-    static var upcomingEventsToday = [HLLEvent]()
-    static var nextUpcomingEvents = [HLLEvent]()
-    static var nextUpcomingEventsDay = [HLLEvent]()
-    static var upcomingWeekEvents = [Date:[HLLEvent]]()
     static var primaryEvent: HLLEvent?
+    static var upcomingEventsToday = [HLLEvent]()
     
 }

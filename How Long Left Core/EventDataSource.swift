@@ -14,12 +14,12 @@ import EventKit
 class EventDataSource {
     
     static let shared = EventDataSource()
-    
+    let eFetchQueue = DispatchQueue(label: "fetchQueue")
     
     static var accessToCalendar = calendarAccess.Unknown
     var latestFetchSchoolMode = SchoolMode.None
     static var eventStore = EKEventStore()
-    
+    static var lastUpdatedWithCalendars = [String]()
     
     func updateEventStore() {
         EventDataSource.eventStore = EKEventStore()
@@ -59,84 +59,88 @@ class EventDataSource {
     
     func getEventsFromCalendar(start: Date, end: Date) -> [HLLEvent] {
         
-        print("Getting events")
-        
         var returnArray = [HLLEvent]()
         
+        eFetchQueue.sync {
+            
+           // print("Getting events")
+            
+            
+            
             self.getCalendarAccess()
-        
-        let defaults = HLLDefaults.defaults
-        let schoolFunctionsManager = SchoolFunctionsManager()
-        let schoolHolidaysManager = MagdaleneSchoolHolidays()
-        
-        
-        var calendars = [EKCalendar]()
-      //  let allCals = calendars
-        
-        #if os(iOS) || os(watchOS)
-    
-        if var storedIDS = defaults.stringArray(forKey: "setCalendars") {
             
-            #if os(iOS)
+            let defaults = HLLDefaults.defaults
+            let schoolFunctionsManager = SchoolFunctionsManager()
+            let schoolHolidaysManager = MagdaleneSchoolHolidays()
             
-            if storedIDS.isEmpty {
+            
+            var calendars = [EKCalendar]()
+            //  let allCals = calendars
+            
+            #if os(iOS) || os(watchOS)
+            
+            if var storedIDS = defaults.stringArray(forKey: "setCalendars") {
+                
+                #if os(iOS)
+                
+                if storedIDS.isEmpty, defaults.bool(forKey: "userDidTurnOffAllCalendars") == false {
+                    
+                    
+                    var idArray = [String]()
+                    
+                    for calendar in self.getCalendars() {
+                        
+                        idArray.append(calendar.calendarIdentifier)
+                        
+                    }
+                    
+                    defaults.set(idArray, forKey: "setCalendars")
+                    storedIDS = defaults.stringArray(forKey: "setCalendars")!
+                }
+                
+                #endif
+                
+                print("Stored IDs count: \(storedIDS.count)")
+                
+                for id in storedIDS {
+                    
+                    for calendar in self.getCalendars() {
+                        
+                        if calendar.calendarIdentifier == id {
+                            
+                            calendars.append(calendar)
+                            
+                            
+                        }
+                        
+                    }
+                    
+                    
+                }
+                
+                //    print("Reading cal with \(calendars.count) calendars")
+                
+                
+            } else {
                 
                 
                 var idArray = [String]()
                 
-                for calendar in getCalendars() {
+                for calendar in self.getCalendars() {
                     
                     idArray.append(calendar.calendarIdentifier)
                     
                 }
                 
+                
                 defaults.set(idArray, forKey: "setCalendars")
-                storedIDS = defaults.stringArray(forKey: "setCalendars")!
-            }
-            
-            #endif
-            
-            print("Stored IDs count: \(storedIDS.count)")
-            
-            for id in storedIDS {
-                
-                for calendar in getCalendars() {
-                    
-                    if calendar.calendarIdentifier == id {
-                        
-                        calendars.append(calendar)
-                        
-                        
-                    }
-                    
-                }
-                
-                
-            }
-            
-        //    print("Reading cal with \(calendars.count) calendars")
-            
-            
-        } else {
-            
-            
-            var idArray = [String]()
-            
-            for calendar in getCalendars() {
-                
-                idArray.append(calendar.calendarIdentifier)
                 
             }
             
             
-            defaults.set(idArray, forKey: "setCalendars")
             
-        }
-        
-        
-        
-        #elseif os(OSX)
-        
+            #elseif os(OSX)
+            
             if HLLDefaults.calendar.useAllCalendars == true, EventDataSource.accessToCalendar == .Granted {
                 
                 
@@ -149,7 +153,7 @@ class EventDataSource {
                 }
                 
                 HLLDefaults.calendar.enabledCalendars = idArray
-                HLLDefaults.defaults.set(true, forKey: "doNotUseAllCalendars")
+                HLLDefaults.calendar.useAllCalendars = false
                 
             } else if let oldCal = HLLDefaults.calendar.selectedCalendar {
                 
@@ -160,15 +164,15 @@ class EventDataSource {
                 for calendar in getCalendars() {
                     
                     if calendar.calendarIdentifier == oldCal {
-                    
-                    idArray.append(calendar.calendarIdentifier)
+                        
+                        idArray.append(calendar.calendarIdentifier)
                         
                     }
                     
                 }
                 
                 HLLDefaults.calendar.enabledCalendars = idArray
-            
+                
                 
             }
             
@@ -188,80 +192,102 @@ class EventDataSource {
             
             
             
-      /*      calendars = self.getCalendars()
-        if HLLDefaults.calendar.useAllCalendars != true, let calendar = HLLDefaults.calendar.selectedCalendar {
+            /*      calendars = self.getCalendars()
+             if HLLDefaults.calendar.useAllCalendars != true, let calendar = HLLDefaults.calendar.selectedCalendar {
+             
+             for item in calendars {
+             
+             if item.calendarIdentifier != calendar {
+             
+             if let index = calendars.firstIndex(of: item) {
+             
+             calendars.remove(at: index)
+             
+             }
+             
+             }
+             }
+             
+             } */
             
-            for item in calendars {
+            
+            #endif
+            
+            #if os(iOS)
+            
+            
+            // let ids = calendars.map { $0.calendarIdentifier }
+            // WatchSessionManager.sharedManager.startSession()
+            // WatchSessionManager.sharedManager.updateContext(userInfo: ["SelectedCalendars" : ids])
+            
+            //  let _ = WatchSessionManager.sharedManager.tra
+            
+            #endif
+            
+            var idArray = [String]()
+            
+            for cal in calendars {
                 
-                if item.calendarIdentifier != calendar {
+                idArray.append(cal.calendarIdentifier)
+                
+            }
+            
+            
+            eFetchQueue.async(flags: .barrier) {
+            
+            EventDataSource.lastUpdatedWithCalendars = idArray
+                
+            }
+            
+            
+            
+            if calendars.isEmpty == true {
+                
+                returnArray = [HLLEvent]()
+                return
+                
+            }
+            
+            
+            
+            let predicate = EventDataSource.eventStore.predicateForEvents(withStart: start, end: end, calendars: calendars)
+            
+            let EKevents = EventDataSource.eventStore.events(matching: predicate)
+            
+            /*   var hashableArray = EKevents.map { $0.title }
+             hashableArray.append(contentsOf: EKevents.map { $0.startDate.formattedTime() })
+             hashableArray.append(contentsOf: EKevents.map { $0.endDate.formattedTime() }) */
+            
+            //  print("Events hash is \(hashableArray.hashValue)")
+            
+            for event in EKevents {
+                
+                if event.isAllDay == false {
                     
-                    if let index = calendars.firstIndex(of: item) {
-                        
-                        calendars.remove(at: index)
-                        
-                    }
+                    returnArray.append(HLLEvent(event: event))
                     
                 }
             }
             
-        } */
-        
-        
-        #endif
-        
-        #if os(iOS)
-        
-        
-       // let ids = calendars.map { $0.calendarIdentifier }
-       // WatchSessionManager.sharedManager.startSession()
-       // WatchSessionManager.sharedManager.updateContext(userInfo: ["SelectedCalendars" : ids])
-        
-      //  let _ = WatchSessionManager.sharedManager.tra
-        
-        #endif
-        
-       
-        if calendars.isEmpty == true {
             
-            return returnArray
-            
-        }
-        
-        
-        let predicate = EventDataSource.eventStore.predicateForEvents(withStart: start, end: end, calendars: calendars)
-        
-        let EKevents = EventDataSource.eventStore.events(matching: predicate)
-        
-     /*   var hashableArray = EKevents.map { $0.title }
-        hashableArray.append(contentsOf: EKevents.map { $0.startDate.formattedTime() })
-        hashableArray.append(contentsOf: EKevents.map { $0.endDate.formattedTime() }) */
-        
-      //  print("Events hash is \(hashableArray.hashValue)")
-            
-        for event in EKevents {
-            
-            if event.isAllDay == false {
-                
-                returnArray.append(HLLEvent(event: event))
-                
-            }
-        }
-        
-        
-        returnArray = schoolFunctionsManager.handle(events: returnArray)
+            returnArray = schoolFunctionsManager.handle(events: returnArray)
             
             if let holidays = schoolHolidaysManager.getSchoolHolidaysFrom(start: start, end: end) {
-            returnArray.append(holidays)
-        }
+                returnArray.append(holidays)
+            }
             
-        returnArray.sort(by: { $0.endDate.compare($1.endDate) == .orderedAscending })
+            returnArray.sort(by: { $0.endDate.compare($1.endDate) == .orderedAscending })
             
-        
+            
             self.latestFetchSchoolMode = SchoolAnalyser.schoolMode
+            
+            
+            
+        }
         
+       return returnArray
         
-        
-        return returnArray
+            
     }
     
     
@@ -348,15 +374,13 @@ class EventDataSource {
 
         for event in eventsToday {
             
-            let timeUntilStart = event.startDate.timeIntervalSinceNow
-            let timeUntilEnd = event.endDate.timeIntervalSinceNow
-            
-            if timeUntilStart < 1, timeUntilEnd > 0 {
+            if event.startDate.timeIntervalSinceNow < 1, event.endDate.timeIntervalSinceNow > 0 {
                 
                 currentEvents.append(event)
                 
             }
         }
+        
         currentEvents.sort(by: { $0.endDate.compare($1.endDate) == .orderedAscending })
         
         EventCache.currentEvents = currentEvents
@@ -380,7 +404,6 @@ class EventDataSource {
                 
             }
         }
-        EventCache.upcomingEventsToday = upcomingEvents
         
         return upcomingEvents
     }
@@ -421,9 +444,6 @@ class EventDataSource {
             
         }
         
-        
-        EventCache.nextUpcomingEventsDay = returnEvents
-        
         return returnEvents
         
     }
@@ -446,8 +466,6 @@ class EventDataSource {
             loopEnd = loopEnd.addingTimeInterval(86400)
             
         }
-        
-        EventCache.upcomingWeekEvents = returnArray
         
         return returnArray
         

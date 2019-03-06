@@ -107,11 +107,11 @@ class MilestoneSettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         
-        if UIApplication.shared.backgroundRefreshStatus != .available {
+        if UIApplication.shared.backgroundRefreshStatus != .available, section == 1 {
             
            return "Background app refresh is currently disabled. You will not receive these countdown notifications until you enable it in Settings."
             
-        } else if ProcessInfo.processInfo.isLowPowerModeEnabled == true {
+        } else if ProcessInfo.processInfo.isLowPowerModeEnabled == true, section == 1 {
             
             return "Countdown notifications may be unreliable or outdated in Low Power Mode."
             

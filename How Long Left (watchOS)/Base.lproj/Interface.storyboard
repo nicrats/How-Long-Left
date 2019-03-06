@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14490.64" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.47"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14490.20"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
@@ -88,16 +88,16 @@
                                             <fontDescription key="font" type="system" weight="semibold" pointSize="49"/>
                                             <calendarUnit key="units" minute="YES" second="YES"/>
                                             <variation key="device=watch38mm" height="38">
-                                                <fontDescription key="font" type="system" weight="semibold" pointSize="41"/>
+                                                <fontDescription key="font" type="system" weight="semibold" pointSize="37"/>
                                             </variation>
                                             <variation key="device=watch40mm" height="43">
-                                                <fontDescription key="font" type="system" weight="semibold" pointSize="45"/>
+                                                <fontDescription key="font" type="system" weight="semibold" pointSize="39"/>
                                             </variation>
                                             <variation key="device=watch42mm" height="43">
-                                                <fontDescription key="font" type="system" weight="semibold" pointSize="45"/>
+                                                <fontDescription key="font" type="system" weight="semibold" pointSize="39"/>
                                             </variation>
                                             <variation key="device=watch44mm" height="44">
-                                                <fontDescription key="font" type="system" weight="semibold" pointSize="46"/>
+                                                <fontDescription key="font" type="system" weight="semibold" pointSize="39"/>
                                             </variation>
                                         </timer>
                                     </items>

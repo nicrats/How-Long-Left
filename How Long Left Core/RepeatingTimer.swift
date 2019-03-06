@@ -15,6 +15,7 @@ class RepeatingTimer {
     self.timeInterval = TimeInterval(time)
     }
     private lazy var timer: DispatchSourceTimer = {
+        
         let queue = DispatchQueue(label: "HLLStatusItemTimer", qos: .userInteractive)
         let t = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
         t.schedule(deadline: .now(), repeating: self.timeInterval, leeway: .nanoseconds(0))

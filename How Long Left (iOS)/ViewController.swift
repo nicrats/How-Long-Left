@@ -50,12 +50,16 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
     @IBOutlet weak var eventTitleLabel: UILabel!
     @IBOutlet weak var countdownLabel: UILabel!
     
+    @IBOutlet weak var endsInLabel: UILabel!
     @IBOutlet weak var upcomingLabel: UILabel!
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var upcomingLocationLabel: UILabel!
     
     @IBOutlet weak var upcomingButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
+    
+    @IBOutlet weak var noEventOnInfo: UILabel!
+    
     
     let defaults = HLLDefaults.defaults
     
@@ -66,6 +70,7 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
         
     }
     
+    let percentageGen = PercentageCalculator()
     let notoScheduler = MilestoneNotificationScheduler()
     let backgroundImageView = UIImageView()
     let darkView = UIView()
@@ -155,12 +160,61 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
     
     override func viewDidLoad() {
         
+        IAPHandler.shared.fetchAvailableProducts()
+        
+        
 
         //let notoS = MilestoneNotificationScheduler()
        // notoS.scheduleTestNotification()
         
         self.hero.isEnabled = true
         self.upcomingLabel.hero.id = "UpcomingTitle"
+        
+        countdownLabel.layer.shadowColor = UIColor.black.cgColor
+        countdownLabel.layer.shadowRadius = 3.0
+        countdownLabel.layer.shadowOpacity = 0.3
+        countdownLabel.layer.shadowOffset = CGSize(width: 2, height: 2)
+        countdownLabel.layer.masksToBounds = false
+        
+        eventTitleLabel.layer.shadowColor = UIColor.black.cgColor
+        eventTitleLabel.layer.shadowRadius = 3.0
+        eventTitleLabel.layer.shadowOpacity = 0.3
+        eventTitleLabel.layer.shadowOffset = CGSize(width: 2, height: 2)
+        eventTitleLabel.layer.masksToBounds = false
+        
+        endsInLabel.layer.shadowColor = UIColor.black.cgColor
+        endsInLabel.layer.shadowRadius = 3.0
+        endsInLabel.layer.shadowOpacity = 0.3
+        endsInLabel.layer.shadowOffset = CGSize(width: 2, height: 2)
+        endsInLabel.layer.masksToBounds = false
+        
+        noEventOnInfo.layer.shadowColor = UIColor.black.cgColor
+        noEventOnInfo.layer.shadowRadius = 3.0
+        noEventOnInfo.layer.shadowOpacity = 0.3
+        noEventOnInfo.layer.shadowOffset = CGSize(width: 2, height: 2)
+        noEventOnInfo.layer.masksToBounds = false
+        
+        progressLabel.layer.shadowColor = UIColor.black.cgColor
+        progressLabel.layer.shadowRadius = 3.0
+        progressLabel.layer.shadowOpacity = 0.3
+        progressLabel.layer.shadowOffset = CGSize(width: 2, height: 2)
+        progressLabel.layer.masksToBounds = false
+        
+        upcomingLabel.layer.shadowColor = UIColor.black.cgColor
+        upcomingLabel.layer.shadowRadius = 3.0
+        upcomingLabel.layer.shadowOpacity = 0.3
+        upcomingLabel.layer.shadowOffset = CGSize(width: 2, height: 2)
+        upcomingLabel.layer.masksToBounds = false
+        
+        upcomingLocationLabel.layer.shadowColor = UIColor.black.cgColor
+        upcomingLocationLabel.layer.shadowRadius = 3.0
+        upcomingLocationLabel.layer.shadowOpacity = 0.3
+        upcomingLocationLabel.layer.shadowOffset = CGSize(width: 2, height: 2)
+        upcomingLocationLabel.layer.masksToBounds = false
+        
+        
+        
+        
         super.viewDidLoad()
         
         if ViewController.launchedWithSettingsShortcut == false {
@@ -177,7 +231,7 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
             
         })
         
-        FastTimer = Timer(fire: Date(), interval: 0.5, repeats: true, block: {_ in
+        FastTimer = Timer(fire: Date(), interval: 0.1, repeats: true, block: {_ in
             
             self.updateTimer()
             
@@ -196,7 +250,7 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
         
         WatchSessionManager.sharedManager.addDataSourceChangedDelegate(delegate: self)
         
-        countdownLabel.font = UIFont.monospacedDigitSystemFont(ofSize: countdownLabel.font.pointSize, weight: .regular)
+        countdownLabel.font = UIFont.monospacedDigitSystemFont(ofSize: countdownLabel.font.pointSize, weight: .)
         
         run()
         
@@ -244,6 +298,10 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
                 
                 self.countdownLabel.text = string
                 
+                if let percentage = self.percentageGen.calculatePercentageDone(event: event) {
+                self.progressLabel.text = "(\(percentage) Done)"
+                    
+                }
                 
     
             }
@@ -282,6 +340,9 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
                 self.countdownLabel.text = self.timerStringGenerator.generateStringFor(event: current)
                 self.countdownLabel.isHidden = false
                 self.eventTitleLabel.isHidden = false
+                self.progressLabel.isHidden = false
+                self.endsInLabel.isHidden = true
+                self.noEventOnInfo.isHidden = true
                 
                 
                 
@@ -299,16 +360,24 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
                 if EventDataSource.accessToCalendar == .Granted {
                     
                     self.eventTitleLabel.text = "No events are on"
+                    self.noEventOnInfo.text = "When an event starts, How Long Left will count it down."
+                    self.noEventOnInfo.isHidden = false
+                    self.progressLabel.isHidden = true
                     self.upcomingLabel.isHidden = false
                 } else if EventDataSource.accessToCalendar == .Denied {
                     
                     self.eventTitleLabel.text = "Enable calendar access in the Settings app."
                     self.upcomingLabel.isHidden = true
+                    self.noEventOnInfo.isHidden = false
+                    self.progressLabel.isHidden = true
+                    
+                    self.noEventOnInfo.isHidden = true
                     
                 }
                 
-                
+                self.progressLabel.isHidden = true
                 self.countdownLabel.isHidden = true
+                self.endsInLabel.isHidden = true
                 
             }
             
@@ -318,7 +387,7 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
         
         let upcomingTuple = self.upcomingStringGenerator.generateNextEventString(upcomingEvents: upcomingEvents, currentEvents: currentEvents, isForDoneNotification: false)
         
-        if let upcomingInfo = upcomingTuple.0 {
+        if let upcomingInfo = upcomingTuple.0, EventDataSource.accessToCalendar == .Granted {
             
             DispatchQueue.main.async {
                 

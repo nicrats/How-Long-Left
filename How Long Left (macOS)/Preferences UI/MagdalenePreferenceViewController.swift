@@ -34,6 +34,13 @@ final class MagdalenePreferenceViewController: NSViewController, Preferenceable 
     @IBOutlet weak var showHolidaysPercentageClicked: NSButton!
     @IBOutlet weak var edvalButtonButton: NSButton!
     
+    @IBOutlet weak var des1: NSTextField!
+    @IBOutlet weak var des2: NSTextField!
+    @IBOutlet weak var des3: NSTextField!
+    @IBOutlet weak var des4: NSTextField!
+    @IBOutlet weak var des5: NSTextField!
+    @IBOutlet weak var des6: NSTextField!
+    @IBOutlet weak var des7: NSTextField!
     @IBOutlet weak var holidaysDateLabel: NSTextField!
 
     override func viewDidLoad() {
@@ -111,8 +118,14 @@ final class MagdalenePreferenceViewController: NSViewController, Preferenceable 
             
         }
         
+        updateButtonsState()
+       
+    }
+    
+    func updateButtonsState() {
+        
         let state = HLLDefaults.magdalene.manuallyDisabled
-       // doDoublesButton.isEnabled = !state
+        // doDoublesButton.isEnabled = !state
         shortenTitlesButton.isEnabled = !state
         adjustTimesButton.isEnabled = !state
         showBreaksButton.isEnabled = !state
@@ -121,27 +134,43 @@ final class MagdalenePreferenceViewController: NSViewController, Preferenceable 
         showHolidaysInStatusItemButton.isEnabled = !state
         self.hideNonMagdaleneBreaksButton.isEnabled = !state
         self.edvalButtonButton.isEnabled = !state
+        
+        var col: NSColor
+        
+        if !state == false {
+            
+            col = NSColor.disabledControlTextColor
+            
+        } else {
+            
+            col = NSColor.textColor
+            
+        }
+        
+        des1.textColor = col
+        des2.textColor = col
+        des3.textColor = col
+        des4.textColor = col
+        des5.textColor = col
+        des6.textColor = col
+        des7.textColor = col
+        holidaysDateLabel.textColor = col
+        
     }
     
     
     @IBAction func magdaleneFeaturesButtonClicked(_ sender: NSButton) {
         
-        DispatchQueue.main.async {
         
-        var state = true
-        if sender.state == .on { state = false }
-        HLLDefaults.magdalene.manuallyDisabled = state
-       // self.doDoublesButton.isEnabled = !state
-        self.shortenTitlesButton.isEnabled = !state
-        self.adjustTimesButton.isEnabled = !state
-        self.showBreaksButton.isEnabled = !state
-        self.countDownSchoolHolidaysButton.isEnabled = !state
-        self.showHolidaysPercentageClicked.isEnabled = !state
-        self.showHolidaysInStatusItemButton.isEnabled = !state
-        self.hideNonMagdaleneBreaksButton.isEnabled = !state
-        self.edvalButtonButton.isEnabled = !state
+            let on = sender.state == .on
+            
+            HLLDefaults.magdalene.manuallyDisabled = !on
+            
+        self.updateButtonsState()
+        
+        
         NotificationCenter.default.post(name: Notification.Name("updateCalendar"), object: nil)
-        }
+        
             
     }
     

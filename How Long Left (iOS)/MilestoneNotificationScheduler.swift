@@ -73,7 +73,7 @@ class MilestoneNotificationScheduler {
             
             self.hasPermission = granted
             
-            
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
             
             if granted == true, UIApplication.shared.backgroundRefreshStatus == .available {
             
@@ -230,7 +230,7 @@ class MilestoneNotificationScheduler {
             }
             
             
-        }
+            }
         
         }
             

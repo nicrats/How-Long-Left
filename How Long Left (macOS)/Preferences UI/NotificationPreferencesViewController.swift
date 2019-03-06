@@ -18,6 +18,7 @@ final class NotificationPreferenceViewController: NSViewController, Preferenceab
     override var nibName: NSNib.Name? {
         return "NotificationPreferencesView"
 }
+    @IBOutlet weak var soundsButton: NSButton!
     
     @IBOutlet weak var hotKeyOptionButton_Off: NSButton!
     @IBOutlet weak var hotKeyOptionButton_OptionW: NSButton!
@@ -137,6 +138,19 @@ final class NotificationPreferenceViewController: NSViewController, Preferenceab
             
         }
 
+        if HLLDefaults.notifications.sounds == true {
+            
+            if soundsButton.state == .off {
+                soundsButton.setNextState()
+            }
+            
+        } else {
+            
+            if soundsButton.state == .on {
+                soundsButton.setNextState()
+            }
+            
+        }
         
         
         
@@ -150,6 +164,21 @@ final class NotificationPreferenceViewController: NSViewController, Preferenceab
             hotKeyOptionButton_CommandT.setNextState()
         }
         
+        
+    }
+    
+    
+    @IBAction func soundsButtonClicked(_ sender: NSButton) {
+        
+        if sender.state == .on {
+            
+            HLLDefaults.notifications.sounds = true
+            
+        } else {
+            
+            HLLDefaults.notifications.sounds = false
+            
+        }
         
     }
     

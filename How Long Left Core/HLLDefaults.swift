@@ -274,6 +274,24 @@ class HLLDefaults {
     
     struct notifications {
         
+        
+        static var sounds: Bool {
+            
+            get {
+                
+                return defaults.bool(forKey: "useSounds")
+                
+            }
+            
+            set (to) {
+                
+                defaults.set(to, forKey: "useSounds")
+                
+            }
+            
+            
+        }
+        
         static var hotkey: HLLHotKeyOption {
             
             get {

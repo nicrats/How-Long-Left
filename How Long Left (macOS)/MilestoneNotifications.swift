@@ -7,17 +7,28 @@
 //
 
 import Foundation
+import Cocoa
 
 class MilestoneNotifications {
     
     let countdownStringGenerator = CountdownStringGenerator()
     let upcomingEventStringGenerator = UpcomingEventStringGenerator()
+    let eventData = EventDataSource()
     
     func sendNotificationFor(milestone: Int, event: HLLEvent) {
         
-       let upcomingEventText = upcomingEventStringGenerator.generateNextEventString(upcomingEvents: EventCache.upcomingEventsToday, currentEvents: EventCache.currentEvents, isForDoneNotification: true)
+       let upcomingEventText = upcomingEventStringGenerator.generateNextEventString(upcomingEvents: eventData.getUpcomingEventsToday(), currentEvents: eventData.getCurrentEvents(), isForDoneNotification: true)
         
         let notification = NSUserNotification()
+        
+        if HLLDefaults.notifications.sounds == true {
+            notification.soundName = "Hero"
+            print("Noto with sound")
+        } else {
+            
+            print("Noto without sound")
+            
+        }
         
         if milestone == 0 {
             
@@ -44,9 +55,13 @@ class MilestoneNotifications {
     
     func sendNotificationFor(percentage: Int, event: HLLEvent) {
         
-        let upcomingEventText = upcomingEventStringGenerator.generateNextEventString(upcomingEvents: EventCache.upcomingEventsToday, currentEvents: EventCache.currentEvents, isForDoneNotification: true)
+        let upcomingEventText = upcomingEventStringGenerator.generateNextEventString(upcomingEvents: eventData.getUpcomingEventsToday(), currentEvents: eventData.getCurrentEvents(), isForDoneNotification: true)
         
         let notification = NSUserNotification()
+        if HLLDefaults.notifications.sounds == true {
+        notification.soundName = "Hero"
+            print("Noto with sound")
+        }
         notification.title = "\(event.title) is \(percentage)% done."
         notification.informativeText = upcomingEventText
         NSUserNotificationCenter.default.deliver(notification)
@@ -55,10 +70,14 @@ class MilestoneNotifications {
     
     func sendStartingNotification(for event: HLLEvent) {
         
-        let upcomingEventText = upcomingEventStringGenerator.generateNextEventString(upcomingEvents: EventCache.upcomingEventsToday, currentEvents: EventCache.currentEvents, isForDoneNotification: true)
+        let upcomingEventText = upcomingEventStringGenerator.generateNextEventString(upcomingEvents: eventData.getUpcomingEventsToday(), currentEvents: eventData.getCurrentEvents(), isForDoneNotification: true)
         
         let notification = NSUserNotification()
         notification.title = "\(event.title) is starting now."
+        if HLLDefaults.notifications.sounds == true {
+            notification.soundName = "Hero"
+            print("Noto with sound")
+        }
         notification.informativeText = upcomingEventText
         NSUserNotificationCenter.default.deliver(notification)
         

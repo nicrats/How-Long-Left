@@ -36,6 +36,8 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
     @IBOutlet weak var updateAvaliableItem: NSMenuItem!
     @IBOutlet weak var buildInfoRow: NSMenuItem!
     
+    static var menuIsOpen = false
+    
     var inNoAccessMode = false
     
     lazy var main = Main(aDelegate: self as HLLMacUIController)
@@ -96,7 +98,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
     }
     
     override func awakeFromNib() {
-        
+ 
         
             self.main.mainRunLoop()
         
@@ -123,6 +125,11 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
     }
     
     func menuDidClose(_ menu: NSMenu) {
+        
+        if menu == mainMenu {
+        UIController.menuIsOpen = false
+        }
+        
     }
     
 
@@ -130,8 +137,10 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
     
     func menuWillOpen(_ menu: NSMenu) {
         
+        
         if menu == mainMenu {
-        main.runMainMenuUIUpdate()
+           UIController.menuIsOpen = true
+            main.runMainMenuUIUpdate(checkOpen: true)
             
             if SchoolAnalyser.schoolMode == .Magdalene, HLLDefaults.magdalene.showEdvalButton == true {
                 
@@ -149,12 +158,6 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
                 
                 appInfoRow.isHidden = false
                 
-                if NSEvent.modifierFlags.contains(NSEvent.ModifierFlags.command) {
-                   buildInfoRow.isHidden = false
-                } else {
-                   buildInfoRow.isHidden = true
-                    
-                }
                 
                 
                 
@@ -181,8 +184,11 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
             }
 
         }
+        
+        
     
     }
+    
     
     var settingHotKey = false
     
@@ -580,17 +586,31 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
             dayMenuItem.title = item.menuTitle
             dayMenuItem.submenu = eventsSubmenu
             dayMenuItem.isEnabled = !item.eventStrings.isEmpty
-                
+            
+            
+            
             
             
           //  upcomingFutureRow.isEnabled = !events.isEmpty
             
             upcomingFutureMenu.addItem(dayMenuItem)
             
+            if data.indices.contains(dataIndex+1) {
+                
+                if data[dataIndex].menuTitle.contains("Sunday"), data[dataIndex+1].menuTitle.contains("Monday") {
+                    
+                  //  let seperator = NSMenuItem.separator()
+                  //  upcomingFutureMenu.addItem(seperator)
+                    
+                }
+                
+            }
+            
+            
             if dataIndex == 0 {
                 
-                let seperator = NSMenuItem.separator()
-                upcomingFutureMenu.addItem(seperator)
+               let seperator = NSMenuItem.separator()
+               upcomingFutureMenu.addItem(seperator)
                 
             }
             

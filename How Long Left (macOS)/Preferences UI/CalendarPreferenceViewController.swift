@@ -14,7 +14,7 @@ import EventKit
 
 
 final class CalendarPreferenceViewController: NSViewController, Preferenceable {
-    let toolbarItemTitle = "Calendar"
+    let toolbarItemTitle = "Calendars"
     let toolbarItemIcon = NSImage(named: NSImage.preferencesGeneralName)!
     var calSelect : NSWindowController?
     var calSelectStoryboard = NSStoryboard()
@@ -51,7 +51,7 @@ final class CalendarPreferenceViewController: NSViewController, Preferenceable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.calendarChanged), name: Notification.Name("updateCalendar"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.calendarChanged), name: Notification.Name("updatedCalendars"), object: nil)
         calendarChanged()
         
     }
@@ -61,7 +61,7 @@ final class CalendarPreferenceViewController: NSViewController, Preferenceable {
     
     override func viewWillDisappear() {
         
-        NotificationCenter.default.removeObserver(self, name: Notification.Name("updateCalendar"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("updatedCalendars"), object: nil)
         
         NotificationCenter.default.post(name: Notification.Name("closingCalPrefsWindow"), object: nil)
         
