@@ -8,6 +8,8 @@
 
 import Foundation
 
+/*
+
 class EventManager {
     
     func putEventsInCache() {
@@ -35,3 +37,5 @@ class EventManager {
     }
     
 }
+
+ */

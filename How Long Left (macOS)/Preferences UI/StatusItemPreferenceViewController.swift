@@ -15,7 +15,7 @@ import EventKit
 final class StatusItemPreferenceViewController: NSViewController, Preferenceable {
 	
 	let toolbarItemTitle = "Status Item"
-    let toolbarItemIcon = NSImage(named: NSImage.preferencesGeneralName)!
+    let toolbarItemIcon = NSImage(named: "MenuSI")!
     
     override var nibName: NSNib.Name? {
         return "StatusItemPreferencesView"
@@ -31,13 +31,22 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
     @IBOutlet weak var showLeftTextCheckbox: NSButton!
     @IBOutlet weak var showPercentageCheckbox: NSButton!
     
-    @IBOutlet weak var unitsMenu: NSPopUpButton!
+    @IBOutlet weak var doneAlertsCheckbox: NSButton!
     
+    @IBOutlet weak var previewIcon: NSImageView!
+    @IBOutlet weak var unitsMenu: NSPopUpButton!
+	
     let shortUnitsMenuItemText = "Use short units (hr, min)"
     let fullUnitsMenuItemText = "Use full units (hours, minutes)"
     
     let unavalibleUnitsMenuItemText = "Only avaliable in Minute mode"
-    
+	
+	let timer = RepeatingTimer(time: 0.2)
+	
+	var previewEvent: HLLEvent?
+	
+	let previewEventData = HLLEvent(title: "Event", start: Date().addingTimeInterval(1), end: Date().addingTimeInterval(5401), location: nil)
+	
     @IBAction func modeRadioChanged(_ sender: NSButton) {
 		
 		DispatchQueue.main.async {
@@ -46,13 +55,30 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
         if let mode = StatusItemMode(rawValue: Int(sender.identifier!.rawValue)!) {
             
             HLLDefaults.statusItem.mode = mode
-            
+			
+			
+		
+				
+			if mode == .Off {
+				self.des1.textColor = NSColor.disabledControlTextColor
+				self.des2.textColor = NSColor.disabledControlTextColor
+				self.des3.textColor = NSColor.disabledControlTextColor
+                self.des4.textColor = NSColor.disabledControlTextColor
+				
+			} else {
+				self.des1.textColor = NSColor.controlTextColor
+				self.des2.textColor = NSColor.controlTextColor
+				self.des3.textColor = NSColor.controlTextColor
+                self.des4.textColor = NSColor.controlTextColor
+			}
+			
             let isOff = mode != .Off
+			
             
 			self.showTitleCheckbox.isEnabled = isOff
 			self.showLeftTextCheckbox.isEnabled = isOff
 			self.showPercentageCheckbox.isEnabled = isOff
-            
+            self.doneAlertsCheckbox.isEnabled = isOff
 			self.updateUnitsMenu(enabled: mode == .Minute)
             
         }
@@ -76,6 +102,19 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
 		}
         
     }
+    
+    @IBAction func doneAlertsClicked(_ sender: NSButton) {
+        
+        DispatchQueue.main.async {
+            
+            var state = false
+            if sender.state == .on { state = true }
+            HLLDefaults.statusItem.doneAlerts = state
+            
+        }
+        
+    }
+    
     
     @IBAction func showLeftText(_ sender: NSButton) {
 		
@@ -116,7 +155,6 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
             HLLDefaults.statusItem.useFullUnits = true
         default:
             HLLDefaults.statusItem.useFullUnits = false
-            
         }
         
 			self.generateStatusItemPreview()
@@ -128,7 +166,10 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+		
+		previewIcon.alphaValue = 1.0
+	//	previewIcon.contentTintColo
+		
         switch HLLDefaults.statusItem.mode {
             
         case .Off:
@@ -139,6 +180,19 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
             modeRadio_Minute.state = NSControl.StateValue.on
             
         }
+		
+		if HLLDefaults.statusItem.mode == .Off {
+			self.des1.textColor = NSColor.disabledControlTextColor
+			self.des2.textColor = NSColor.disabledControlTextColor
+			self.des3.textColor = NSColor.disabledControlTextColor
+            self.des4.textColor = NSColor.disabledControlTextColor
+			
+		} else {
+			self.des1.textColor = NSColor.controlTextColor
+			self.des2.textColor = NSColor.controlTextColor
+			self.des3.textColor = NSColor.controlTextColor
+            self.des4.textColor = NSColor.controlTextColor
+		}
         
         var SITitleState = NSControl.StateValue.off
         if HLLDefaults.statusItem.showTitle == true { SITitleState = .on }
@@ -147,6 +201,11 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
         var SILeftState = NSControl.StateValue.off
         if HLLDefaults.statusItem.showLeftText == true { SILeftState = .on }
         showLeftTextCheckbox.state = SILeftState
+        
+        
+        var SIDoneAlertsState = NSControl.StateValue.off
+        if HLLDefaults.statusItem.doneAlerts == true { SIDoneAlertsState = .on }
+        doneAlertsCheckbox.state = SIDoneAlertsState
         
         var SIPercentageState = NSControl.StateValue.off
         if HLLDefaults.statusItem.showPercentage == true { SIPercentageState = .on }
@@ -157,18 +216,43 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
         showTitleCheckbox.isEnabled = isOff
         showLeftTextCheckbox.isEnabled = isOff
         showPercentageCheckbox.isEnabled = isOff
+		doneAlertsCheckbox.isEnabled = isOff
         
         updateUnitsMenu(enabled: HLLDefaults.statusItem.mode == .Minute)
         
-        generateStatusItemPreview()
-        
         // Setup stuff here
+		
+		previewEvent = previewEventData
+		
+		statusItemPreviewText.font = NSFont.monospacedDigitSystemFont(ofSize: statusItemPreviewText.font!.pointSize, weight: .medium)
+		
+		DispatchQueue.main.async {
+			self.generateStatusItemPreview()
+			
+		}
+		
+		timer.eventHandler = {
+			
+			
+			self.timer.eventHandler = {
+				
+				DispatchQueue.main.async {
+				self.generateStatusItemPreview()
+					
+				}
+				
+			}
+			
+		}
+		
+		timer.resume()
     }
     
     func updateUnitsMenu(enabled: Bool) {
         
         if enabled == true {
-            
+			
+			unitsLabel.textColor = NSColor.controlTextColor
             unitsMenu.isEnabled = true
             unitsMenu.removeAllItems()
             unitsMenu.addItems(withTitles: [shortUnitsMenuItemText,fullUnitsMenuItemText])
@@ -180,7 +264,9 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
             }
             
         } else {
-            
+			
+			
+			unitsLabel.textColor = NSColor.disabledControlTextColor
             unitsMenu.isEnabled = false
             unitsMenu.removeAllItems()
             unitsMenu.addItem(withTitle: unavalibleUnitsMenuItemText)
@@ -189,32 +275,88 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
         
     }
     
-    func generateStatusItemPreview() {
-        
-        let previewEvent = HLLEvent(title: "Event", start: Date().addingTimeInterval(-5400), end: Date().addingTimeInterval(5400), location: nil)
+	@IBOutlet weak var unitsLabel: NSTextField!
+	
+	@IBOutlet weak var des1: NSTextField!
+	@IBOutlet weak var des2: NSTextField!
+	@IBOutlet weak var des3: NSTextField!
+    @IBOutlet weak var des4: NSTextField!
+	
+	
+	func generateStatusItemPreview() {
+		
+		var Pevent: HLLEvent?
+		
+		if let primary = EventCache.primaryEvent {
+			
+			Pevent = primary
+			
+		} else if let firstCurrent = EventCache.currentEvents.first {
+			
+			Pevent = firstCurrent
+			
+		} else {
+			
+			if let safePevent = Pevent {
+				
+			
+			if safePevent.endDate.timeIntervalSinceNow < 1 {
+				
+				previewEvent = previewEventData
+				
+			}
+				
+			}
+			
+			Pevent = previewEvent
+			
+			
+			
+		}
+		
+		
+		
+		if let preview = Pevent {
+			
+			
+			
         
         switch HLLDefaults.statusItem.mode {
             
         case .Off:
             
-            statusItemPreviewText.stringValue = "Off"
+            statusItemPreviewText.isHidden = true
+            previewIcon.isHidden = false
             
         case .Timer:
             
+            statusItemPreviewText.isHidden = false
+            previewIcon.isHidden = true
+            
             let stringGenerator = StatusItemTimerStringGenerator(isForPreview: true)
-            let data = stringGenerator.generateStringsFor(event: previewEvent)
+            let data = stringGenerator.generateStringsFor(event: preview)
             let key = data.keys.first!
             statusItemPreviewText.stringValue = data[key]!
             
         case .Minute:
             
+            statusItemPreviewText.isHidden = false
+            previewIcon.isHidden = true
+            
             let stringGenerator = CountdownStringGenerator()
-            statusItemPreviewText.stringValue = stringGenerator.generateStatusItemString(event: previewEvent)!
+            statusItemPreviewText.stringValue = stringGenerator.generateStatusItemString(event: preview)!
             
         }
-        
-        
-    }
+			
+			
+			
+		} else {
+			
+			previewEvent = previewEventData
+			
+		}
+	}
+	
     
     
 }

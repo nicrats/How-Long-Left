@@ -10,12 +10,12 @@ import Foundation
 
 class PercentageCalculator {
     
-    func calculatePercentageDone(event: HLLEvent) -> String? {
+    func calculatePercentageDone(event: HLLEvent, ignoreDefaults: Bool) -> String? {
         
         
-        if HLLDefaults.magdalene.showHolidaysPercent == false {
+        if HLLDefaults.magdalene.showHolidaysPercent == false, ignoreDefaults == false {
             
-            if event.isHolidays == true {
+            if event.holidaysTerm != nil {
                 
                 return nil
             }

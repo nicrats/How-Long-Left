@@ -26,7 +26,13 @@ class ComplicationContentsGenerator {
         cal.updateEventStore()
         var events = cal.fetchEventsFromPresetPeriod(period: .AllToday)
         
+        var startDatesArray = [Date]()
+        var endDatesArray = [Date]()
+        
         for event in events {
+            
+            startDatesArray.append(event.startDate)
+            endDatesArray.append(event.endDate)
             
             if event.completionStatus == .Done {
                 
@@ -40,7 +46,11 @@ class ComplicationContentsGenerator {
             
         }
         
+        var processedEvents = [HLLEvent]()
+        
         for (index, item) in events.enumerated() {
+            
+            
             
             var nextEvent: HLLEvent?
             
@@ -61,23 +71,10 @@ class ComplicationContentsGenerator {
             
             r.append(contentsOf: gen)
             
-            var addNoEventsAfterThisEvent = false
+           
+           
             
-            if let uNext = next {
-                
-                if item.endDate != uNext.startDate {
-                    
-                    addNoEventsAfterThisEvent = true
-                    
-                }
-                
-            } else {
-                
-                addNoEventsAfterThisEvent = true
-                
-            }
-            
-            if addNoEventsAfterThisEvent == true {
+            if startDatesArray.contains(item.endDate) == false {
                 
                 let entry = generateNoEventOnComlicationText(complication: complication, nextEvent: nextEvent)
                 
@@ -86,6 +83,7 @@ class ComplicationContentsGenerator {
                 
             }
             
+            processedEvents.append(item)
             
         }
         
@@ -151,12 +149,6 @@ class ComplicationContentsGenerator {
              let dateFormatter  = DateFormatter()
              dateFormatter.dateFormat = "hh:mm a"
              let dateInString = dateFormatter.string(from: date) */
-            
-           
-            
-           
-            
-            
             
             entry.body2TextProvider = CLKSimpleTextProvider(text: updatedTimeText)
             entry.headerTextProvider.tintColor = #colorLiteral(red: 0.9944762588, green: 0.3928351742, blue: 0.08257865259, alpha: 1)

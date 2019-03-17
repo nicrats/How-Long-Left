@@ -218,7 +218,7 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
         super.viewDidLoad()
         
         if ViewController.launchedWithSettingsShortcut == false {
-        let animation = AnimationType.zoom(scale: 2.1)
+          let animation = AnimationType.zoom(scale: 2.1)
         
         view.animate(animations: [animation], reversed: false, initialAlpha: 0.0, finalAlpha: 1.0, delay: 0, duration: 0.6, options: .allowAnimatedContent, completion: nil)
         
@@ -250,7 +250,7 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
         
         WatchSessionManager.sharedManager.addDataSourceChangedDelegate(delegate: self)
         
-        countdownLabel.font = UIFont.monospacedDigitSystemFont(ofSize: countdownLabel.font.pointSize, weight: .)
+        countdownLabel.font = UIFont.monospacedDigitSystemFont(ofSize: countdownLabel.font.pointSize, weight: .medium)
         
         run()
         

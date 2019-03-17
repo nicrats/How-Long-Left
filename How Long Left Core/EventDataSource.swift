@@ -11,6 +11,10 @@
 import Foundation
 import EventKit
 
+/**
+ * Methods for fetching user events.
+ */
+
 class EventDataSource {
     
     static let shared = EventDataSource()
@@ -20,6 +24,8 @@ class EventDataSource {
     var latestFetchSchoolMode = SchoolMode.None
     static var eventStore = EKEventStore()
     static var lastUpdatedWithCalendars = [String]()
+    
+    static var calendarReads = 0
     
     func updateEventStore() {
         EventDataSource.eventStore = EKEventStore()
@@ -59,6 +65,10 @@ class EventDataSource {
     
     func getEventsFromCalendar(start: Date, end: Date) -> [HLLEvent] {
         
+        EventDataSource.calendarReads += 1
+        
+       // print("Doing calendar read \(EventDataSource.calendarReads)")
+        
         var returnArray = [HLLEvent]()
         
         eFetchQueue.sync {
@@ -78,6 +88,22 @@ class EventDataSource {
             //  let allCals = calendars
             
             #if os(iOS) || os(watchOS)
+            
+            if defaults.bool(forKey: "hasLaunched") == false {
+                
+                var idArray = [String]()
+                
+                for calendar in self.getCalendars() {
+                    
+                    idArray.append(calendar.calendarIdentifier)
+                    
+                }
+                
+                defaults.set(idArray, forKey: "setCalendars")
+                defaults.set(true, forKey: "hasLaunched")
+                
+            }
+            
             
             if var storedIDS = defaults.stringArray(forKey: "setCalendars") {
                 
@@ -288,6 +314,30 @@ class EventDataSource {
        return returnArray
         
             
+    }
+    
+    func fetchEventsOnDay(day: Date) -> [HLLEvent] {
+        
+        let start = day.midnight()
+        let end = start.addingTimeInterval(86400)
+        return getEventsFromCalendar(start: start, end: end)
+        
+    }
+    
+    func fetchEventsOnDays(days: [Date]) -> [HLLEvent] {
+        
+        var returnArray = [HLLEvent]()
+        
+        for day in days {
+            
+            returnArray.append(contentsOf: fetchEventsOnDay(day: day))
+            
+        }
+        
+        returnArray.sort(by: { $0.endDate.compare($1.endDate) == .orderedAscending })
+        
+        return returnArray
+        
     }
     
     

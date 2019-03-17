@@ -109,9 +109,44 @@ class SchoolAnalyser {
         
     }
     
+    func getWednesdayFromWeek(weekNumber: Int, previousYear: Bool) -> Date {
+        
+        let calendar = NSCalendar.current
+        var currentYear = calendar.component(.year, from: Date())
+        
+        if previousYear == true {
+            
+            currentYear -= 1
+            
+        }
+        
+        let Calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        let dayComponent = NSDateComponents()
+        dayComponent.weekOfYear = weekNumber
+        dayComponent.weekday = 4
+        dayComponent.year = currentYear
+        var date = Calendar.date(from: dayComponent as DateComponents)
+        
+        if(weekNumber == 1 && Calendar.components(.month, from: date!).month != 1){
+            dayComponent.year = currentYear-1
+            date = Calendar.date(from: dayComponent as DateComponents)
+        }
+        
+        return date!
+    }
+    
     private func analyseForMagdalene() -> Bool {
         
         // Analyses calendar events and determines if the user goes to Magdalene or not.
+        
+        var searchDays = [Date]()
+        
+        searchDays.append(getWednesdayFromWeek(weekNumber: 46, previousYear: true))
+        searchDays.append(getWednesdayFromWeek(weekNumber: 12, previousYear: false))
+        searchDays.append(getWednesdayFromWeek(weekNumber: 36, previousYear: false))
+        searchDays.append(getWednesdayFromWeek(weekNumber: 46, previousYear: false))
+        
+        let Events = self.calendarData.fetchEventsOnDays(days: searchDays)
         
         var returnVal = false
         
@@ -119,7 +154,6 @@ class SchoolAnalyser {
         var homeroomCondition = false
         var roomCondtion = false
         
-        let Events = self.calendarData.fetchEventsFromPresetPeriod(period: .AnalysisPeriod)
         
         for event in Events {
             

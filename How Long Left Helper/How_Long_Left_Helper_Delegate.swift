@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+/*
 class HLLHelperDelegate: NSObject, NSXPCListenerDelegate {
     func listener(_ listener: NSXPCListener, shouldAcceptNewConnection newConnection: NSXPCConnection) -> Bool {
         let exportedObject = HLLHelper()
@@ -17,3 +17,4 @@ class HLLHelperDelegate: NSObject, NSXPCListenerDelegate {
         return true
     }
 }
+*/

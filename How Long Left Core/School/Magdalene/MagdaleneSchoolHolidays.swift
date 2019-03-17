@@ -10,15 +10,17 @@ import Foundation
 
 struct SchoolHolidaysPeriod {
     
-    init(startComp: NSDateComponents, endComp: NSDateComponents) {
+    init(startComp: NSDateComponents, endComp: NSDateComponents, term holidaysTerm: Int) {
         
         start = (NSCalendar(identifier: NSCalendar.Identifier.gregorian)?.date(from: startComp as DateComponents))!
         end = (NSCalendar(identifier: NSCalendar.Identifier.gregorian)?.date(from: endComp as DateComponents))!
         
+        term = holidaysTerm
     }
     
     var start: Date?
     var end: Date?
+    var term: Int
 }
 
 
@@ -49,7 +51,7 @@ class MagdaleneSchoolHolidays {
         end.hour = 00
         end.minute = 00
         end.second = 00
-        holidayPeriods.append(SchoolHolidaysPeriod(startComp: start, endComp: end))
+        holidayPeriods.append(SchoolHolidaysPeriod(startComp: start, endComp: end, term: 1))
         
         // Term 2 Holidays 2019
         
@@ -66,7 +68,7 @@ class MagdaleneSchoolHolidays {
         end.hour = 00
         end.minute = 00
         end.second = 00
-        holidayPeriods.append(SchoolHolidaysPeriod(startComp: start, endComp: end))
+        holidayPeriods.append(SchoolHolidaysPeriod(startComp: start, endComp: end, term: 2))
         
         // Term 3 Holidays 2019
         
@@ -83,7 +85,7 @@ class MagdaleneSchoolHolidays {
         end.hour = 00
         end.minute = 00
         end.second = 00
-        holidayPeriods.append(SchoolHolidaysPeriod(startComp: start, endComp: end))
+        holidayPeriods.append(SchoolHolidaysPeriod(startComp: start, endComp: end, term: 3))
         
         
     }
@@ -107,10 +109,8 @@ class MagdaleneSchoolHolidays {
             if unwrappedSHStart.timeIntervalSince(end) < 0, unwrappedSHEnd.timeIntervalSince(start) > 0 {
                 
                 var holidaysEvent = HLLEvent(title: "Holidays", start: unwrappedSHStart, end: unwrappedSHEnd, location: nil)
-                holidaysEvent.isHolidays = true
+                holidaysEvent.holidaysTerm = holidayPeriod.term
                 //holidaysEvent.shortTitle = "Holidays"
-                
-                
                 
                 return holidaysEvent
                 

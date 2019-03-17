@@ -252,17 +252,22 @@ class EventTimeAdjuster {
                 let components = calendar.components([.weekday], from: today)
                 if let weekday = components.weekday {
                     
+                    
+                    
                     let dateFormatter  = DateFormatter()
                     dateFormatter.dateFormat = "h:mma"
                     let formattedStart = dateFormatter.string(from: event.startDate).lowercased()
                     //let formattedEnd = dateFormatter.string(from: event.endDate).lowercased()
                     
                     
-                 /*   if weekday == 3 {
+                  if weekday == 3 {
+                    
+                    if formattedStart == "10:35am" {
+                        event.startDate = event.startDate - 300 // Adjust period 2 start to 5 minutes earlier.
+                    }
                         
                         
-                        
-                    } */
+                    }
                     
                     
                     if weekday == 2 || weekday == 4 || weekday == 5 || weekday == 6 {
@@ -400,5 +405,18 @@ class EventTimeAdjuster {
     }
         
     }
+    
+}
+
+enum DayOfTheWeek: Int {
+    
+    case Sunday = 1
+    case Monday = 2
+    case Tuesday = 3
+    case Wednesday = 4
+    case Thursday = 5
+    case Friday = 6
+    case Saturday = 7
+    
     
 }

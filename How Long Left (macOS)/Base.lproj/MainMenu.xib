@@ -17,10 +17,8 @@
         <customObject id="oYc-6H-eag" customClass="UIController" customModule="How_Long_Left_macOS" customModuleProvider="target">
             <connections>
                 <outlet property="appInfoRow" destination="s6E-pJ-X33" id="XvK-hb-hkf"/>
-                <outlet property="buildInfoRow" destination="hzd-fh-v7N" id="EJH-O6-Jvz"/>
                 <outlet property="edvalButton" destination="oqw-bm-k9q" id="zmY-w0-fLP"/>
                 <outlet property="mainMenu" destination="DoK-Lo-pdN" id="Qwd-h1-sUk"/>
-                <outlet property="nextEventRow" destination="fJb-IU-Cc8" id="mcc-lJ-ctO"/>
                 <outlet property="nextOccurRow" destination="Qdk-ki-u8C" id="KoH-Cc-BJS"/>
                 <outlet property="noCalAccessButton" destination="7Ki-yx-eIy" id="nxw-gs-ZY5"/>
                 <outlet property="noCalAccessInfo" destination="pin-50-jJg" id="tUl-BR-JV6"/>
@@ -37,9 +35,6 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="Nj0-JI-nJ4"/>
-                <menuItem title="Test starts next. (Room 10)" enabled="NO" id="fJb-IU-Cc8">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
                 <menuItem title="Upcoming Today (10)" id="pkm-sO-xmi">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Upcoming Today (10)" id="UgV-0s-5Nv">
@@ -76,19 +71,6 @@
                 <menuItem isSeparatorItem="YES" id="JgP-v7-dqP"/>
                 <menuItem title="Next &quot;Test&quot; - Tomorrow, 12:00am" hidden="YES" id="Qdk-ki-u8C">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Next &quot;Test&quot; - Tomorrow, 12:00am" id="MBW-xV-4du">
-                        <items>
-                            <menuItem title="Item 1" id="1sN-0g-Rji">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="Item 2" id="Odk-N0-eKK">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="Item 3" id="Xxj-Pd-Jp6">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                        </items>
-                    </menu>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="hua-Mh-Xje"/>
                 <menuItem title="How Long Left does not have calendar access ⚠️" enabled="NO" id="pin-50-jJg">
@@ -120,25 +102,18 @@
                         <action selector="edvalButtonClicked:" target="oYc-6H-eag" id="Lb1-Zc-0uC"/>
                     </connections>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="kcE-dc-S2X"/>
-                <menuItem title="How Long Left" enabled="NO" id="s6E-pJ-X33">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Built:" enabled="NO" id="hzd-fh-v7N">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
+                <menuItem isSeparatorItem="YES" id="fn7-It-OdN"/>
                 <menuItem title="An update is avaliable..." hidden="YES" id="c8H-V6-Z4u">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="updateAvaliableClicked:" target="oYc-6H-eag" id="6NJ-pI-0Kk"/>
                     </connections>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="fn7-It-OdN"/>
+                <menuItem title="How Long Left" enabled="NO" id="s6E-pJ-X33">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
             </items>
             <point key="canvasLocation" x="100" y="81"/>
         </menu>
-        <menuItem title="Item" id="Ago-Cr-mGS">
-            <modifierMask key="keyEquivalentModifierMask"/>
-        </menuItem>
     </objects>
 </document>

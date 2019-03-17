@@ -8,11 +8,15 @@
 
 import Foundation
 
+
 class EventNextOccurenceFinder {
     
+    /**
+     Returns the first match in upcomingEvents for each event in currentEvents
+     
+     */
+    
     func findNextOccurrences(currentEvents: [HLLEvent], upcomingEvents: [HLLEvent]) -> [HLLEvent] {
-        
-        // Find the next event with the same name.
         
         var returnEvents = [HLLEvent]()
         

@@ -15,5 +15,6 @@ struct EventCache {
     static var currentEvents = [HLLEvent]()
     static var primaryEvent: HLLEvent?
     static var upcomingEventsToday = [HLLEvent]()
+    static var allToday = [HLLEvent]()
     
 }

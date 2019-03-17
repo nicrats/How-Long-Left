@@ -8,7 +8,8 @@
 
 import Foundation
 
-let delegate = HLLHelperDelegate()
+/*let delegate = HLLHelperDelegate()
 let listener = NSXPCListener.service()
 listener.delegate = delegate
 listener.resume()
+*/

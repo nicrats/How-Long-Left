@@ -63,7 +63,7 @@ class StatusItemTimerStringGenerator {
                     returnString = "\(returnString!) left"
                 }
                 
-                if HLLDefaults.statusItem.showPercentage == true, let percent = percentageCalculator.calculatePercentageDone(event: event) {
+                if HLLDefaults.statusItem.showPercentage == true, let percent = percentageCalculator.calculatePercentageDone(event: event, ignoreDefaults: false) {
                     returnString = "\(returnString!) (\(percent))"
                 }
                 
@@ -148,7 +148,7 @@ class StatusItemTimerStringGenerator {
                 returnString = "\(returnString) left"
             }
                 
-            if HLLDefaults.statusItem.showPercentage == true, let percent = percentageCalculator.calculatePercentageDone(event: event) {
+                if HLLDefaults.statusItem.showPercentage == true, let percent = percentageCalculator.calculatePercentageDone(event: event, ignoreDefaults: false) {
                 returnString += " (\(percent))"
             }
                 

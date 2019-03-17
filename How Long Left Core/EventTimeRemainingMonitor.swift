@@ -10,6 +10,10 @@
 
 import Foundation
 
+/**
+ * Methods for monitoring current events for the purpose of delivering milestone notifications to the delegate.
+ */
+
 class EventTimeRemainingMonitor {
 
     var checkqueue = DispatchQueue(label: "CheckQueue")
@@ -151,7 +155,7 @@ class EventTimeRemainingMonitor {
             
             var startedAtEndOfEvent = false
             
-            for eventToday in self.cal.fetchEventsFromPresetPeriod(period: .AllToday) {
+            for eventToday in EventCache.allToday {
                 
                 if eventToday.endDate == event.startDate {
                     

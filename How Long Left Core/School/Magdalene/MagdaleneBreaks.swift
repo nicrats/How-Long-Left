@@ -67,12 +67,16 @@ class MagdaleneBreaks {
                     let calendar = Calendar.current
                     let todayComponents = calendar.dateComponents([.year, .month, .day], from: today)
                     
+                    
+                    
                     var recessStart: Date?
                     var recessEnd: Date?
                     var lunchStart: Date?
                     var lunchEnd: Date?
                     
                     if events[0].startDate.year() > 2018 {
+                        
+                      
                         
                         switch weekday {
                             
@@ -88,7 +92,7 @@ class MagdaleneBreaks {
                             
                             var rEnd = todayComponents
                             rEnd.hour = 10
-                            rEnd.minute = 35
+                            rEnd.minute = 30
                             rEnd.second = 00
                             recessEnd = NSCalendar(identifier: NSCalendar.Identifier.gregorian)!.date(from: rEnd)!
                             
@@ -246,6 +250,9 @@ class MagdaleneBreaks {
                 }
                     
                     if let uRecessStart = recessStart, let uRecessEnd = recessEnd, alreadyContainedRecess == false {
+                        
+                       
+                        
                         
                         let formattedRecessStart = "\(uRecessStart.formattedTime()) \(uRecessStart.formattedDate())"
                         let formattedRecessEnd = "\(uRecessEnd.formattedTime()) \(uRecessEnd.formattedDate())"

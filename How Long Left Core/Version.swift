@@ -10,14 +10,28 @@ import Foundation
 
 class Version { // Not Lauren lmao
     
-    var currentVersion: String
-    var appStoreVersion: String?
-    
-    init() {
+    static var currentVersion: String {
         
-        currentVersion = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!
+        get {
+            
+            return (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!
+            
+        }
+        
         
     }
+    static var buildVersion: String {
+        
+        
+        get {
+            
+           return (Bundle.main.infoDictionary?["CFBundleVersion"] as? String)!
+            
+        }
+        
+    }
+    
+    var appStoreVersion: String?
     
     func updateAvaliable() -> String? {
         
@@ -25,7 +39,7 @@ class Version { // Not Lauren lmao
         
         if let ASVersion = getAppStoreVersion() {
             
-            if ASVersion > currentVersion {
+            if ASVersion > Version.currentVersion {
                 returnVal = ASVersion
             }
             

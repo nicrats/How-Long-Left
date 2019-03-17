@@ -53,6 +53,8 @@ class OnboardingViewController: NSViewController {
             
         }
         
+        vcs.append(aboutViewController())
+        
         
         
         UIController.preferencesWindowController.window?.close()

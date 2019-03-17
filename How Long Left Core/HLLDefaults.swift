@@ -121,6 +121,22 @@ class HLLDefaults {
             
         }
         
+        static var showUpdates: Bool {
+            
+            get {
+                
+                return !defaults.bool(forKey: "hideUpdates")
+                
+            }
+            
+            set (to) {
+                
+                defaults.set(!to, forKey: "hideUpdates")
+                
+            }
+            
+        }
+        
         
     }
     
@@ -193,6 +209,22 @@ class HLLDefaults {
             set (to) {
                 
                 defaults.set(to, forKey: "showLeftText")
+                
+            }
+            
+        }
+        
+        static var doneAlerts: Bool {
+            
+            get {
+                
+                return !defaults.bool(forKey: "noDoneAlerts")
+                
+            }
+            
+            set (to) {
+                
+                defaults.set(!to, forKey: "noDoneAlerts")
                 
             }
             
@@ -274,6 +306,22 @@ class HLLDefaults {
     
     struct notifications {
         
+        static var startNotifications: Bool {
+            
+            get {
+                
+                return !defaults.bool(forKey: "doNotDoStartNotos")
+                
+            }
+            
+            set (to) {
+                
+                defaults.set(!to, forKey: "doNotDoStartNotos")
+                
+            }
+            
+            
+        }
         
         static var sounds: Bool {
             

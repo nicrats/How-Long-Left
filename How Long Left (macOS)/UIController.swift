@@ -12,13 +12,22 @@ import HotKey
 import Preferences
 
 class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
+   
+
+    func updateTermDataMenu(termData: TermData) {
     
+        
+        
+        
+    }
+    
+    
+    var menuCloseTimer: Timer?
     static var awokeAt: Date?
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     let SIAttribute = [ NSAttributedString.Key.font: NSFont(name: "Helvetica Neue", size: 14.0)!]
     let icon = NSImage(named: "statusIcon")!
     @IBOutlet weak var mainMenu: NSMenu!
-    @IBOutlet weak var nextEventRow: NSMenuItem!
     
     @IBOutlet weak var upcomingFutureRow: NSMenuItem!
     @IBOutlet weak var upcomingEventsRow: NSMenuItem!
@@ -34,7 +43,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
     @IBOutlet weak var edvalButton: NSMenuItem!
     @IBOutlet weak var appInfoRow: NSMenuItem!
     @IBOutlet weak var updateAvaliableItem: NSMenuItem!
-    @IBOutlet weak var buildInfoRow: NSMenuItem!
+    
     
     static var menuIsOpen = false
     
@@ -48,7 +57,8 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
     var currentStatusItemText: String?
     var statusItemIsEmpty = false
     var clickedID: HLLEvent?
-    
+    let nextOccurGen = NextOccurenceStringGenerator()
+    let nextOccurFind = EventNextOccurenceFinder()
     
     var countdownMenuItemEvents: [NSMenuItem: HLLEvent] = [:]
     var nextOccurMenuItems = [NSMenuItem]()
@@ -106,13 +116,13 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
        // main.mainRunLoop()
         
       //  UIController.awokeAt = Date()
-            let currentVersion = self.version.currentVersion
+            let currentVersion = Version.currentVersion
         
         let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
         
             self.appInfoRow.title = "How Long Left \(currentVersion) (\(build!))"
         
-            self.buildInfoRow.title = "Built: \(self.compileDate.formattedDate()), \(self.compileDate.formattedTime())"
+          //  self.buildInfoRow.title = "Built: \(self.compileDate.formattedDate()), \(self.compileDate.formattedTime())"
         
         
         
@@ -128,6 +138,9 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
         
         if menu == mainMenu {
         UIController.menuIsOpen = false
+            self.main.mainRunLoop()
+            
+            
         }
         
     }
@@ -164,12 +177,12 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
             } else {
                 
                 appInfoRow.isHidden = true
-                buildInfoRow.isHidden = true
+               // buildInfoRow.isHidden = true
             }
             
             if EventDataSource.accessToCalendar == .Denied {
                 
-                nextEventRow.isHidden = true
+              //  nextEventRow.isHidden = true
                 upcomingEventsRow.isHidden = true
                 nextOccurRow.isHidden = true
                 upcomingFutureRow.isHidden = true
@@ -182,13 +195,24 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
                 noCalAccessButton.isHidden = true
                 
             }
+            
+            if HLLDefaults.general.showUpdates == false {
+                
+                updateAvaliableItem.isHidden = true
+                
+            }
+            
+            
+           DispatchQueue.main.asyncAfter(deadline: .now() + 60, execute: {
+            
+            
+            self.mainMenu.cancelTracking()
+            
+           })
 
         }
-        
-        
     
     }
-    
     
     var settingHotKey = false
     
@@ -329,8 +353,28 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
     
     let currentEventRowsQueue = DispatchQueue(label: "AddCurrentRows")
     
-   func addCurrentEventRows(with strings: [(String, String?, HLLEvent?)]) {
     
+   func addCurrentEventRows(with strings: [(String, String?, HLLEvent?, HLLEvent?)], updateNextOccurs: Bool) {
+    
+    var setEvents = [HLLEvent]()
+    var callEvents = [HLLEvent]()
+    
+    for event in countdownMenuItemEvents.values {
+        
+        setEvents.append(event)
+        
+        
+    }
+    
+    for item in strings {
+        
+        if let event = item.2 {
+            
+            callEvents.append(event)
+            
+        }
+        
+    }
     
         for item in self.arrayOfCurrentEventMenuItems {
             self.mainMenu.removeItem(item)
@@ -346,11 +390,21 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
     var matchedEvent = false
     
     if strings.count == 1 {
-        EventCache.fetchQueue.async(flags: .barrier) {
         EventCache.primaryEvent = nil
+        
+        if strings[0].2 == nil {
+            
+            let menuItem : NSMenuItem = NSMenuItem()
+            menuItem.title = "No events are on right now."
+            menuItem.isEnabled = false
+            arrayOfCurrentEventMenuItems.append(menuItem)
+            self.mainMenu.insertItem(menuItem, at: 0)
+            return
+            
         }
+        
+        
     }
-    
    
     
     for data in strings.reversed() {
@@ -363,9 +417,82 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
                 
             }
         
-            let menuItem : NSMenuItem = NSMenuItem()
-            menuItem.title = titleString
+            let submenu = NSMenu()
         
+        let menuItem : NSMenuItem = NSMenuItem()
+        menuItem.title = titleString
+        
+        if let cEvent = data.2 {
+            
+        
+            let subData = CurrentEventSubmenuContentsGenerator.shared.generateSubmenuContentsFor(event: cEvent)
+            
+            for (iN, arrayItem) in subData.enumerated() {
+        
+            for subArrayItem in arrayItem {
+            
+                let smenuItem : NSMenuItem = NSMenuItem()
+                smenuItem.title = subArrayItem
+                
+                submenu.addItem(smenuItem)
+                }
+                
+                
+                if subData.indices.contains(iN+1) {
+            
+            let sep = NSMenuItem.separator()
+            submenu.addItem(sep)
+                    
+                }
+                
+            
+            
+            
+        }
+            
+            if let nextOccur = data.3, let item = nextOccurGen.generateNextOccurenceItems(events: [nextOccur]).first {
+                
+                
+                   // let index = mainMenu.index(of: nextOccurRow)
+                    let row = NSMenuItem(title: "\(item.0)", action: nil, keyEquivalent: "")
+                
+                    if item.1.isEmpty == false {
+                        
+                        let NXOsubmenu = NSMenu()
+                        
+                        for (index, submenuItemText) in item.1.enumerated() {
+                            
+                            if index == 2 {
+                                NXOsubmenu.addItem(NSMenuItem.separator())
+                            }
+                            
+                            let submenuItem = NSMenuItem()
+                            submenuItem.title = submenuItemText
+                            submenuItem.isEnabled = false
+                            NXOsubmenu.addItem(submenuItem)
+                            
+                        }
+                        
+                        row.submenu = NXOsubmenu
+                        row.isEnabled = true
+                        
+                    } else {
+                        
+                        row.isEnabled = false
+                        
+                    }
+                    
+                    nextOccurMenuItems.append(row)
+                
+                
+                submenu.addItem(NSMenuItem.separator())
+                
+                submenu.addItem(row)
+                
+            }
+            
+        
+        menuItem.submenu = submenu
         
         if strings.count != 1 {
             
@@ -375,10 +502,11 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
             
         } else {
             
-            menuItem.isEnabled = false
+           // menuItem.isEnabled = false
         }
         
             if let event = EventCache.primaryEvent {
+            
                 
                 if let rowEvent = data.2 {
                     
@@ -406,13 +534,48 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
         self.arrayOfCurrentEventMenuItems.append(menuItem)
             
         }
+        
+    }
     
     if matchedEvent == false {
         
       //  EventCache.primaryEvent = EventCache.currentEvents.first
         
     }
+      
+    
         
+        
+    }
+    
+    func updateExistingCurrentEventRows(with strings: [(String, String?, HLLEvent?, HLLEvent?)]) {
+        
+        for string in strings {
+            
+            
+            for item in countdownMenuItemEvents {
+                
+                if item.value == string.2 {
+                    
+                    var text = string.0
+                    
+                    if let percent = string.1 {
+                        
+                        text += " \(percent)"
+                        
+                    }
+                    
+                    
+                    item.key.title = text
+                    
+                    
+                    
+                }
+                
+                
+            }
+            
+        }
         
     }
     
@@ -420,9 +583,8 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
         
         if sender.state == .on {
             
-            EventCache.fetchQueue.async(flags: .barrier) {
             EventCache.primaryEvent = nil
-            }
+            
             
         } else {
 
@@ -435,20 +597,16 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
             } else {
                 
                 clickedID = countdownMenuItemEvents[sender]
-                EventCache.fetchQueue.async(flags: .barrier) {
                 EventCache.primaryEvent = self.countdownMenuItemEvents[sender]
-                }
                 
             }
             
             
         } else {
                 
-                
                 clickedID = countdownMenuItemEvents[sender]
-                EventCache.fetchQueue.async(flags: .barrier) {
                 EventCache.primaryEvent = self.countdownMenuItemEvents[sender]
-                }
+                
             
         }
         
@@ -460,13 +618,10 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
     
     func updateNextEventItem(text: String?) {
         
+     //   nextEventRow.isHidden = true
+        
         if let unwrappedText = text {
-            nextEventRow.title = unwrappedText
-            nextEventRow.isHidden = false
-            
-        } else {
-            
-            nextEventRow.isHidden = true
+         upcomingEventsRow.title = unwrappedText
             
         }
         
@@ -494,7 +649,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
             return
         }
         
-        upcomingEventsRow.title = safeData.menuTitle
+        //upcomingEventsRow.title = safeData.menuTitle
 
         upcomingEventsMenu.removeAllItems()
         
@@ -511,6 +666,34 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
         let seperator = NSMenuItem.separator()
         upcomingEventsMenu.addItem(seperator) */
         
+          //  let topMenuItem : NSMenuItem = NSMenuItem()
+           // topMenuItem.title = "Upcoming Events:"
+           // upcomingEventsMenu.addItem(topMenuItem)
+            
+            if safeData.headerStrings.isEmpty == false {
+                
+                for item in safeData.headerStrings {
+                    
+                    let menuItem : NSMenuItem = NSMenuItem()
+                    
+                    menuItem.title = item
+                    
+                        menuItem.isEnabled = false
+
+                    
+                    upcomingEventsMenu.addItem(menuItem)
+                    
+                    
+                    
+                }
+                
+                
+            }
+            
+            
+            let topSep = NSMenuItem.separator()
+            upcomingEventsMenu.addItem(topSep)
+            
         for item in events {
             
             let menuItem : NSMenuItem = NSMenuItem()
@@ -528,6 +711,33 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
             
         }
         
+            
+            let bottomSep = NSMenuItem.separator()
+            upcomingEventsMenu.addItem(bottomSep)
+            
+            if safeData.footerStrings.isEmpty == false {
+                
+                for item in safeData.footerStrings {
+                    
+                    let menuItem : NSMenuItem = NSMenuItem()
+                    
+                    menuItem.title = item
+                    
+                    menuItem.isEnabled = false
+                    
+                    
+                    upcomingEventsMenu.addItem(menuItem)
+                    
+                    
+                    
+                }
+                
+                
+            }
+            
+            
+           
+            
         upcomingEventsRow.isEnabled = !events.isEmpty
         
         } else {
@@ -545,6 +755,12 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
             return
         } else {
             upcomingFutureRow.isHidden = false
+        }
+        
+        if data.isEmpty == true {
+            
+           upcomingFutureRow.isHidden = true
+            
         }
         
         upcomingFutureMenu.removeAllItems()
@@ -619,6 +835,8 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
     
     
     func addNextOccurRows(items: [(String, [String])]) {
+    
+        /*
         
         for item in nextOccurMenuItems {
             
@@ -634,41 +852,41 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
         
         
         for item in items {
-            
+         
             let index = mainMenu.index(of: nextOccurRow)
             let row = NSMenuItem(title: "\(item.0)", action: nil, keyEquivalent: "")
-            
+         
             if item.1.isEmpty == false {
-            
+         
             let submenu = NSMenu()
-            
+         
             for (index, submenuItemText) in item.1.enumerated() {
-                
+         
                 if index == 2 {
                     submenu.addItem(NSMenuItem.separator())
                 }
-                
+         
                 let submenuItem = NSMenuItem()
                 submenuItem.title = submenuItemText
                 submenuItem.isEnabled = false
                 submenu.addItem(submenuItem)
-                
+         
             }
-                
+         
                 row.submenu = submenu
                 row.isEnabled = true
-                
+         
             } else {
-                
+         
                 row.isEnabled = false
-                
+         
             }
-            
+         
             nextOccurMenuItems.append(row)
             mainMenu.insertItem(row, at: index)
         
         }
-        
+ */
         
     }
     
@@ -780,7 +998,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
             
         }
         
-        
+        vcs.append(aboutViewController())
         
         UIController.preferencesWindowController.window?.close()
         

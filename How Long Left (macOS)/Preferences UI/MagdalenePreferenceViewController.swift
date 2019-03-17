@@ -13,7 +13,7 @@ import Preferences
 
 final class MagdalenePreferenceViewController: NSViewController, Preferenceable {
     let toolbarItemTitle = "Magdalene"
-    let toolbarItemIcon = NSImage(named: NSImage.preferencesGeneralName)!
+    let toolbarItemIcon = NSImage(named: "MagdaleneIcon")!
     
     override var nibName: NSNib.Name? {
         return "MagdalenePreferencesView"
@@ -46,6 +46,7 @@ final class MagdalenePreferenceViewController: NSViewController, Preferenceable 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         
         if HLLDefaults.magdalene.manuallyDisabled == false {
             magdaleneFeaturesButton.state = .on

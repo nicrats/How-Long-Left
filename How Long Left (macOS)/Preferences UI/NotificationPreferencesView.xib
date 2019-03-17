@@ -15,6 +15,7 @@
                 <outlet property="milestoneOptionButton_10" destination="pYn-sB-N3e" id="Hbr-oQ-T3E"/>
                 <outlet property="milestoneOptionButton_5" destination="LgV-66-OJ0" id="UC4-qe-y9r"/>
                 <outlet property="milestoneOptionButton_Ends" destination="D7z-SE-0hX" id="D5f-K1-YG9"/>
+                <outlet property="milestoneOptionButton_Starts" destination="5K4-pi-gGP" id="gQh-17-K3g"/>
                 <outlet property="percentageMIlestoneOptionButton_25" destination="yw5-EF-X6Q" id="rcc-Mr-WCs"/>
                 <outlet property="percentageMilestoneOptionButton_50" destination="pRU-Gk-qYu" id="Ju2-Ek-2rC"/>
                 <outlet property="percentageMilestoneOptionButton_75" destination="CxA-ht-FTG" id="BOf-O4-4yg"/>
@@ -25,7 +26,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView identifier="NotificationPreferenceView" id="06S-3Y-DMN">
-            <rect key="frame" x="0.0" y="0.0" width="412" height="346"/>
+            <rect key="frame" x="0.0" y="0.0" width="412" height="353"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="VF8-4e-e44">
@@ -38,7 +39,7 @@
                     </textFieldCell>
                 </textField>
                 <button identifier="2" verticalHuggingPriority="750" id="flm-XU-asf">
-                    <rect key="frame" x="181" y="301" width="42" height="18"/>
+                    <rect key="frame" x="181" y="308" width="42" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="radio" title="Off" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="hpj-US-fcu">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -49,7 +50,7 @@
                     </connections>
                 </button>
                 <button identifier="0" verticalHuggingPriority="750" id="Db8-vX-aIu">
-                    <rect key="frame" x="181" y="279" width="91" height="18"/>
+                    <rect key="frame" x="181" y="286" width="91" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="radio" title="Option + W" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="sX0-NQ-WvH">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -60,7 +61,7 @@
                     </connections>
                 </button>
                 <button identifier="1" verticalHuggingPriority="750" id="8Y2-zr-n8a">
-                    <rect key="frame" x="181" y="257" width="108" height="18"/>
+                    <rect key="frame" x="181" y="264" width="108" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="radio" title="Command + T" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="fHn-cV-aZo">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -71,7 +72,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" id="pYn-sB-N3e">
-                    <rect key="frame" x="180" y="205" width="139" height="18"/>
+                    <rect key="frame" x="180" y="172" width="139" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Has 10 minutes left" bezelStyle="regularSquare" imagePosition="left" inset="2" id="4jJ-ah-HHz">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -82,7 +83,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" id="LgV-66-OJ0">
-                    <rect key="frame" x="180" y="185" width="132" height="18"/>
+                    <rect key="frame" x="180" y="152" width="132" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Has 5 minutes left" bezelStyle="regularSquare" imagePosition="left" inset="2" id="iFX-Ih-PaB">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -93,7 +94,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" id="KWd-Cz-yYO">
-                    <rect key="frame" x="180" y="165" width="124" height="18"/>
+                    <rect key="frame" x="180" y="132" width="124" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Has 1 minute left" bezelStyle="regularSquare" imagePosition="left" inset="2" id="2Qp-5P-apF">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -104,7 +105,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" id="D7z-SE-0hX">
-                    <rect key="frame" x="180" y="145" width="52" height="18"/>
+                    <rect key="frame" x="180" y="202" width="52" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Ends" bezelStyle="regularSquare" imagePosition="left" inset="2" id="htV-en-pxC">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -115,7 +116,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Ud8-lx-78a">
-                    <rect key="frame" x="18" y="301" width="139" height="18"/>
+                    <rect key="frame" x="18" y="308" width="139" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" alignment="left" title="Notification Hot Key:" id="9XI-s6-rjU">
                         <font key="font" metaFont="systemMedium" size="13"/>
@@ -124,7 +125,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="9dv-fv-Fx3">
-                    <rect key="frame" x="18" y="189" width="135" height="34"/>
+                    <rect key="frame" x="18" y="205" width="135" height="34"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" alignment="left" title="Send a notification when an event:" id="Jia-LM-hau">
                         <font key="font" metaFont="systemMedium" size="13"/>
@@ -133,7 +134,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" id="yw5-EF-X6Q">
-                    <rect key="frame" x="180" y="112" width="125" height="18"/>
+                    <rect key="frame" x="180" y="103" width="125" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Is 25% Complete" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Lg5-VC-k5z">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -144,7 +145,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" id="pRU-Gk-qYu">
-                    <rect key="frame" x="180" y="92" width="125" height="18"/>
+                    <rect key="frame" x="180" y="83" width="125" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Is 50% Complete" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Kp3-qm-Z3Y">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -155,7 +156,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" id="CxA-ht-FTG">
-                    <rect key="frame" x="180" y="72" width="124" height="18"/>
+                    <rect key="frame" x="180" y="63" width="124" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Is 75% Complete" bezelStyle="regularSquare" imagePosition="left" inset="2" id="CQn-cv-Zkz">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -166,7 +167,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" id="cni-xX-4Vf">
-                    <rect key="frame" x="180" y="18" width="141" height="35"/>
+                    <rect key="frame" x="180" y="11" width="141" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Enabled" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Kur-OA-1Kp">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -177,7 +178,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="wY1-DB-M6h">
-                    <rect key="frame" x="18" y="27" width="135" height="17"/>
+                    <rect key="frame" x="18" y="20" width="135" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" alignment="left" title="Notification Sounds:" id="dzp-hK-2it">
                         <font key="font" metaFont="systemMedium" size="13"/>
@@ -185,8 +186,19 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button verticalHuggingPriority="750" id="5K4-pi-gGP">
+                    <rect key="frame" x="180" y="221" width="59" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Starts" bezelStyle="regularSquare" imagePosition="left" inset="2" id="GTf-x5-hPC">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="startsClicked:" target="-2" id="QpY-iS-FMT"/>
+                    </connections>
+                </button>
             </subviews>
-            <point key="canvasLocation" x="-5" y="119"/>
+            <point key="canvasLocation" x="-5" y="122.5"/>
         </customView>
     </objects>
 </document>

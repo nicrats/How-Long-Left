@@ -47,11 +47,15 @@ class MagdalenePeriods {
                             period = "R"
                         case "10:05am":
                             period = "2"
+                        case "10:10am":
+                            period = "2"
                         case "11:25am":
                             period = "3"
                         case "12:40pm":
                             period = "L"
                         case "1:15pm":
+                            period = "4"
+                        case "1:20pm":
                             period = "4"
                         default:
                             period = nil
@@ -69,6 +73,8 @@ class MagdalenePeriods {
                             period = "2"
                         case "10:15am":
                             period = "R"
+                        case "10:30am":
+                            period = "H"
                         case "10:35am":
                             period = "H"
                         case "11:25am":

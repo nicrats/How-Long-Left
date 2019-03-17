@@ -13,6 +13,8 @@ class CountdownStringGenerator {
     
     let pecentageCalc = PercentageCalculator()
     
+    let nextOccurFind = EventNextOccurenceFinder()
+    
     func generateStatusItemString(event: HLLEvent?) -> String? {
         
         if let countdownEvent = event {
@@ -67,7 +69,7 @@ class CountdownStringGenerator {
                 returnString = "\(returnString) left"
             }
             
-            if let percent = pecentageCalc.calculatePercentageDone(event: countdownEvent), HLLDefaults.statusItem.showPercentage == true {
+            if let percent = pecentageCalc.calculatePercentageDone(event: countdownEvent, ignoreDefaults: false), HLLDefaults.statusItem.showPercentage == true {
                 
                 returnString += " (\(percent))"
                 
@@ -84,9 +86,9 @@ class CountdownStringGenerator {
         
     }
     
-    func generateCurrentEventStrings(currentEvents: [HLLEvent], nextEvents: [HLLEvent]) -> [(String, String?, HLLEvent?)] {
+    func generateCurrentEventStrings(currentEvents: [HLLEvent], nextEvents: [HLLEvent], allUpcoming: [HLLEvent]?) -> [(String, String?, HLLEvent?, HLLEvent?)] {
         
-        var returnArray = [(String, String?, HLLEvent?)]()
+        var returnArray = [(String, String?, HLLEvent?, HLLEvent?)]()
         
         if currentEvents.isEmpty == false {
             
@@ -94,22 +96,39 @@ class CountdownStringGenerator {
                 
                 var percentText: String?
                 
-                
                 let returnText = generateRegularCountdownText(event: event)
                 
-                if let percent = pecentageCalc.calculatePercentageDone(event: event), HLLDefaults.general.showPercentage {
+                if let percent = pecentageCalc.calculatePercentageDone(event: event, ignoreDefaults: false), HLLDefaults.general.showPercentage {
                     
                     percentText = "(\(percent) Done)"
                 }
                 
-                returnArray.append((returnText, percentText, event))
+                if let allU = allUpcoming {
+                
+                
+                if let nextOccur = nextOccurFind.findNextOccurrences(currentEvents: [event], upcomingEvents: allU).first {
+                    
+                    returnArray.append((returnText, percentText, event, nextOccur))
+                    
+                } else {
+                    
+                    returnArray.append((returnText, percentText, event, nil))
+                    
+                }
+                
+                } else {
+                    
+                    returnArray.append((returnText, percentText, event, nil))
+                    
+                }
+                
                 
             }
             
             
         } else {
            
-            returnArray.append(("No events are on right now.", nil, nil))
+            returnArray.append(("No events are on right now.", nil, nil, nil))
             
         }
         
@@ -119,7 +138,7 @@ class CountdownStringGenerator {
     
     func generateCountdownNotificationStrings(event: HLLEvent) -> (String, String?) {
  
-        return (generateRegularCountdownText(event: event), pecentageCalc.calculatePercentageDone(event: event))
+        return (generateRegularCountdownText(event: event), pecentageCalc.calculatePercentageDone(event: event, ignoreDefaults: false))
         
     }
  

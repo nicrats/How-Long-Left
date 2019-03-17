@@ -119,7 +119,7 @@ class UpcomingEventStringGenerator {
             switch daysUntilUpcomingStart {
             case 0:
                 dayText = "Today"
-                menuTitle = "All Upcoming Today"
+                menuTitle = "Upcoming Today (\(events.count)):"
                 infoItems.append("\(events.count) upcoming \(eventsPluralised) today.")
                 
                 let interval = Int(events.last!.endDate.timeIntervalSinceNow)+60
@@ -133,11 +133,11 @@ class UpcomingEventStringGenerator {
                 
             case 1:
                 dayText = "Tomorrow"
-                menuTitle = "Events on Tomorrow (\(events.count))"
+                menuTitle = "Events on Tomorrow (\(events.count)):"
               //  infoItems.append("\(events.count) \(eventsPluralised) on tomorrow...")
             default:
                 dayText = formattedEnd
-                menuTitle = "Events on \(dayText) (\(events.count))"
+                menuTitle = "Events on \(dayText) (\(events.count)):"
               //  infoItems.append("\(events.count) \(eventsPluralised) on \(dayText)...")
             }
             
@@ -149,7 +149,37 @@ class UpcomingEventStringGenerator {
             
         }
         
-        return upcomingDayOfEvents(rowTitle: menuTitle, eventStringItems: eventItems, eventsDate: events.first!.startDate.midnight(), events: events)
+        var dayItem = upcomingDayOfEvents(rowTitle: menuTitle, eventStringItems: eventItems, eventsDate: events.first!.startDate.midnight(), events: events)
+        
+        dayItem.headerStrings = [menuTitle]
+        
+        
+        
+        if let first = EventCache.allToday.first, let last = EventCache.allToday.last, first.completionStatus != .NotStarted  {
+            
+            let secondsElapsed = Date().timeIntervalSince(first.startDate)
+            let totalSeconds = last.endDate.timeIntervalSince(first.startDate)
+            let percentOfEventComplete = Int(100*secondsElapsed/totalSeconds)
+            
+           
+            
+            if percentOfEventComplete < 101 {
+                
+                dayItem.footerStrings = ["You are \(percentOfEventComplete)% through your events today."]
+                
+                
+                
+            }
+            
+            
+            
+            
+        }
+        
+        
+        
+        
+        return dayItem
         
         
     }
@@ -220,6 +250,7 @@ class UpcomingEventStringGenerator {
         
         var returnArray = [String]()
         
+        
         for event in events {
             
             var titleAndMaybeLocation = event.title
@@ -248,6 +279,8 @@ class UpcomingEventStringGenerator {
 
 struct upcomingDayOfEvents {
     
+    var headerStrings = [String]()
+    var footerStrings = [String]()
     var menuTitle: String
     var eventStrings: [String]
     var HLLEvents: [HLLEvent]

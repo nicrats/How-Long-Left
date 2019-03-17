@@ -6,11 +6,16 @@
 //  Copyright © 2019 Ryan Kontos. All rights reserved.
 //
 
+
+
+
 import Foundation
+/*
+
 
 class HLLHelper: NSObject, HLLHelperProtocol {
     
-    
+  
     func updateEventStore() {
         
        dataSource.updateEventStore()
@@ -32,45 +37,45 @@ class HLLHelper: NSObject, HLLHelperProtocol {
     
     func getEventsFromCalendar(start: Date, end: Date, withReply reply: @escaping ([Data]) -> Void) {
         
-        reply(convertToData(HLLEvents: dataSource.getEventsFromCalendar(start: start, end: end)))
+      //  reply(convertToData(HLLEvents: dataSource.getEventsFromCalendar(start: start, end: end)))
         
     }
     
     func fetchEventsFromPresetPeriod(period: EventFetchPeriod, withReply reply: @escaping ([Data]) -> Void) {
         
-        reply(convertToData(HLLEvents: dataSource.fetchEventsFromPresetPeriod(period: period)))
+       // reply(convertToData(HLLEvents: dataSource.fetchEventsFromPresetPeriod(period: period)))
         
     }
     
     func getCurrentEvent(withReply reply: @escaping (Data?) -> Void) {
         
-        reply(convertToData(HLLEvent: dataSource.getCurrentEvent()))
+       // reply(convertToData(HLLEvent: dataSource.getCurrentEvent()))
         
     }
     
     func getCurrentEvents(withReply reply: @escaping ([Data]) -> Void) {
         
         dataSource.updateEventStore()
-        reply(convertToData(HLLEvents: dataSource.getCurrentEvents()))
+      //  reply(convertToData(HLLEvents: dataSource.getCurrentEvents()))
     }
     
     func getUpcomingEventsToday(withReply reply: @escaping ([Data]) -> Void) {
-        reply(convertToData(HLLEvents: dataSource.getUpcomingEventsToday()))
+       // reply(convertToData(HLLEvents: dataSource.getUpcomingEventsToday()))
     }
     
     func getUpcomingEventsFromNextDayWithEvents(withReply reply: @escaping ([Data]) -> Void) {
-        reply(convertToData(HLLEvents: dataSource.getUpcomingEventsFromNextDayWithEvents()))
+      //  reply(convertToData(HLLEvents: dataSource.getUpcomingEventsFromNextDayWithEvents()))
     }
     
     func getArraysOfUpcomingEventsForNextSevenDays(withReply reply: @escaping ([Date : [Data]]) -> Void) {
         
-        var returnDict = [Date : [Data]]()
+      //  var returnDict = [Date : [Data]]()
         
         let eventData = dataSource.getArraysOfUpcomingEventsForNextSevenDays()
         
         for item in eventData {
             
-            returnDict[item.key] = convertToData(HLLEvents: item.value)
+          //  returnDict[item.key] = convertToData(HLLEvents: item.value)
             
         }
         
@@ -79,7 +84,7 @@ class HLLHelper: NSObject, HLLHelperProtocol {
     }
     
     
-    func convertToData(HLLEvents: [HLLEvent]) -> [Data] {
+  /*  func convertToData(HLLEvents: [HLLEvent]) -> [Data] {
         
         var replyData = [Data]()
         
@@ -109,6 +114,7 @@ class HLLHelper: NSObject, HLLHelperProtocol {
     
         return replyData
         
-    }
+    } */
     
 }
+*/

@@ -95,11 +95,11 @@ class EventTitleShortener {
         }
         
         if event.originalTitle.contains(text:"Maths") {
-            newTitle = "Maths"
+            newTitle = "Math"
         }
         
         if event.originalTitle.contains(text:"Mathematics") {
-            newTitle = "Maths"
+            newTitle = "Math"
         }
         
         if event.originalTitle.contains(text:"PDHPE") {
@@ -119,11 +119,11 @@ class EventTitleShortener {
         }
             
         if event.originalTitle.contains(text:"Bussiness Studies") {
-            newTitle = "Bussiness Studies"
+            newTitle = "Bussiness"
         }
             
         if event.originalTitle.contains(text:"Bussiness Servies") {
-            newTitle = "Bussiness Servies"
+            newTitle = "Bussiness"
         }
             
         if event.originalTitle.contains(text:"IST") {
@@ -158,8 +158,8 @@ class EventTitleShortener {
             newTitle = "Drama"
         }
             
-        if event.originalTitle.contains(text:"Legal Studies") {
-            newTitle = "Legal Studies"
+        if event.originalTitle.contains(text:"Legal") {
+            newTitle = "Legal"
         }
             
         event.title = newTitle

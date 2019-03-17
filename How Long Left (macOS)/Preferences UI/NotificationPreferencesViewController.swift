@@ -13,7 +13,7 @@ import Preferences
 
 final class NotificationPreferenceViewController: NSViewController, Preferenceable {
     let toolbarItemTitle = "Notifications"
-    let toolbarItemIcon = NSImage(named: NSImage.preferencesGeneralName)!
+    let toolbarItemIcon = NSImage(named: "NotificationsIcon")!
     
     override var nibName: NSNib.Name? {
         return "NotificationPreferencesView"
@@ -28,6 +28,7 @@ final class NotificationPreferenceViewController: NSViewController, Preferenceab
     @IBOutlet weak var milestoneOptionButton_5: NSButton!
     @IBOutlet weak var milestoneOptionButton_1: NSButton!
     @IBOutlet weak var milestoneOptionButton_Ends: NSButton!
+    @IBOutlet weak var milestoneOptionButton_Starts: NSButton!
     
     @IBOutlet weak var percentageMIlestoneOptionButton_25: NSButton!
     @IBOutlet weak var percentageMilestoneOptionButton_50: NSButton!
@@ -152,6 +153,20 @@ final class NotificationPreferenceViewController: NSViewController, Preferenceab
             
         }
         
+        if HLLDefaults.notifications.startNotifications == true {
+            
+            if milestoneOptionButton_Starts.state == .off {
+                milestoneOptionButton_Starts.setNextState()
+            }
+            
+        } else {
+            
+            if milestoneOptionButton_Starts.state == .on {
+                milestoneOptionButton_Starts.setNextState()
+            }
+            
+        }
+        
         
         
         switch HLLDefaults.notifications.hotkey {
@@ -164,6 +179,21 @@ final class NotificationPreferenceViewController: NSViewController, Preferenceab
             hotKeyOptionButton_CommandT.setNextState()
         }
         
+        
+    }
+    
+    
+    @IBAction func startsClicked(_ sender: NSButton) {
+        
+        if sender.state == .on {
+            
+            HLLDefaults.notifications.startNotifications = true
+            
+        } else {
+            
+            HLLDefaults.notifications.startNotifications = false
+            
+        }
         
     }
     

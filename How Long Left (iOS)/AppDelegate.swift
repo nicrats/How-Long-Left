@@ -52,7 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     notoGen.scheduleNotificationsForUpcomingEvents()
     UNUserNotificationCenter.current().removeAllDeliveredNotifications()
-        
+    
+    WatchSessionManager.sharedManager.updateContext(userInfo: ["SelectedCalendars" : HLLDefaults.calendar.enabledCalendars])
+    
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

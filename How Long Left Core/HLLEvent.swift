@@ -13,13 +13,20 @@ import EventKit
  * Represents an event in How Long Left. A HLLEvent can be initalized from an EKEvent or with custom data.
  */
 
-struct HLLEvent: Equatable, Hashable, Codable {
+struct HLLEvent: Equatable {
     
     var title: String
     var shortTitle: String
     var originalTitle: String
     var startDate: Date
     var endDate: Date
+    var location: String?
+    var fullLocation: String?
+    var holidaysTerm: Int?
+    var magdalenePeriod: String?
+    var calendarID: String?
+    var isMagdaleneBreak = false
+    
     var duration: TimeInterval {
         
         get {
@@ -29,31 +36,24 @@ struct HLLEvent: Equatable, Hashable, Codable {
         }
         
     }
-    var location: String?
-    var fullLocation: String?
-    var isDouble = false
-    var isHolidays = false
-    var magdalenePeriod: String?
-  //  var calendar: EKCalendar?
-    var calendarID: String?
-    var isMagdaleneBreak = false
-   // var color: CGColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-    //var sourceEKEvent: EKEvent?
     
-    var creationTime = Date()
     var completionStatus: EventCompletionStatus {
         
         get {
             
             if self.startDate.timeIntervalSinceNow > 0 {
                 return .NotStarted
+            } else if self.endDate.timeIntervalSinceNow < 1 {
+                return .Done
             } else {
-                if self.endDate.timeIntervalSinceNow < 1 {
-                    return .Done
-                } else {
-                    return .InProgress
-                    
-    } } } }
+                return .InProgress
+            }
+                
+                
+            }
+            
+        }
+    
     
     init(event: EKEvent) {
         

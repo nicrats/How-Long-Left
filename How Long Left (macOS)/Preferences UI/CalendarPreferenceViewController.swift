@@ -15,7 +15,7 @@ import EventKit
 
 final class CalendarPreferenceViewController: NSViewController, Preferenceable {
     let toolbarItemTitle = "Calendars"
-    let toolbarItemIcon = NSImage(named: NSImage.preferencesGeneralName)!
+    let toolbarItemIcon = NSImage(named: "CalIcon")!
     var calSelect : NSWindowController?
     var calSelectStoryboard = NSStoryboard()
     

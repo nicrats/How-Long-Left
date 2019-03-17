@@ -39,7 +39,7 @@ class DoubleEventDetector {
                             newEvent.title = "Double \(newEvent.title)"
                             }
                             
-                            newEvent.isDouble = true
+                           // newEvent.isDouble = true
                             newEvent.endDate = eventTwo.endDate
                             ignoreIndexes.append(Doubleindex)
                             break inner
