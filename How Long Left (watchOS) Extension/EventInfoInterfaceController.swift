@@ -10,7 +10,7 @@ import WatchKit
 import Foundation
 
 
-class EventInfoInterfaceController: WKInterfaceController {
+class EventInfoInterfaceController: WKInterfaceController, EventTableRowDelegate {
     
     @IBOutlet var eventTitleLabel: WKInterfaceLabel!
     @IBOutlet var eventTypeLabel: WKInterfaceLabel!
@@ -25,14 +25,57 @@ class EventInfoInterfaceController: WKInterfaceController {
     //var timer = RepeatingTimer(time: 1.0)
     var timer: Timer!
     
+    override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
+        
+        if segueIdentifier == "mapSegue" {
+            return UIevent
+            
+        }
+        
+        return nil
+        
+    }
+    
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
+        
+        
         
         if let safeEvent = context as? (HLLEvent, HLLEvent?) {
             
             UIevent = safeEvent.0
             state = safeEvent.0.completionStatus
             foundNextOccur = safeEvent.1
+            
+            DispatchQueue.main.async {
+                
+                if let mapEvent = self.UIevent {
+                    
+                    if let location = mapEvent.fullLocation {
+                        
+                        
+                        let geocoder = CLGeocoder()
+                        geocoder.geocodeAddressString(location) {
+                            placemarks, error in
+                            if let loc = placemarks?.first?.location {
+                                self.UIevent?.CLLocation = loc
+                                // self.pushController(withName: "locationMapView", context: mapEvent)
+                                
+                            }
+                            
+                            
+                        }
+                        
+                    }
+                    
+                    
+                    
+                }
+
+                
+            }
+            
             
         }
         
@@ -174,9 +217,12 @@ class EventInfoInterfaceController: WKInterfaceController {
                     
                     let row = table.rowController(at: index) as! LocationRow
                     
+                    row.setDelegate(to: self)
+                    
                     if let loc = event.location {
                         
                         row.locationLabel.setText(loc)
+                        
                         
                     }
                     
@@ -282,6 +328,11 @@ class EventInfoInterfaceController: WKInterfaceController {
             
         }
 
+        
+        
+    }
+    
+    func showLocation() {
         
         
     }

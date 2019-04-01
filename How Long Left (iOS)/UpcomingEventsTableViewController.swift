@@ -2,221 +2,217 @@
 //  UpcomingEventsTableViewController.swift
 //  How Long Left (iOS)
 //
-//  Created by Ryan Kontos on 23/2/19.
+//  Created by Ryan Kontos on 31/3/19.
 //  Copyright © 2019 Ryan Kontos. All rights reserved.
 //
 
+import Foundation
 import UIKit
-import ViewAnimator
-import Hero
-
-class UpcomingEventsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
-    let defaults = HLLDefaults.defaults
-    let eventDatasource = EventDataSource()
-    
-    var events = [HLLEvent]()
-    
-    @IBOutlet weak var tableView: UITableView!
-    
-    override func viewDidLoad() {
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.willClose), name: Notification.Name("upcomingEventsViewWillClose"), object: nil)
+    class UpcomingEventsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DataSourceChangedDelegate {
         
         
-        tableView.isHidden = true
+        let eventDatasource = EventDataSource()
+        var events = [HLLEvent]()
+        var endCheckTimer: Timer!
+        @IBOutlet weak var tableView: UITableView!
         
-        events = eventDatasource.getUpcomingEventsFromNextDayWithEvents()
-        
-        tableView.separatorColor = .white
-        tableView.delegate = self
-        tableView.dataSource = self
-      
-        
-       // let backgroundImage = UIImage(named: "Background_Light")
-       // let imageView = UIImageView(image: backgroundImage)
-       // self.tableView.backgroundView = imageView
-        
-    }
-    
-    @objc func willClose() {
-        
-        let cells = tableView.visibleCells
-        UIView.animate(views: cells, animations: [AnimationType.from(direction: .left, offset: 20)], initialAlpha: 1.0,finalAlpha: 0.0 ,duration: 0.5)
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-   // setBackgroundImage()
-        
-        tableView.isHidden = false
-        
-      let cells = self.tableView.visibleCells
-      //  UIView.animate(views: cells, animations: [AnimationType.from(direction: .bottom, offset: 50)], duration: 0.5)
-        
-        for cell in cells {
-        cell.hero.modifiers = [.translate(y:100)]
-        }
-        
-        
-        
-        
-    }
-
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! eventCell
-        
-        cell.generate(from: events[indexPath.row])
-        
-        return cell
-        
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-}
-
-class eventCell: UITableViewCell {
-    
-    let colourDataSource = EventDataSource()
-    
-    @IBOutlet weak var cellCard: DesignView!
-    @IBOutlet weak var colorBox: UIView!
-    @IBOutlet weak var eventTitleLabel: UILabel!
-    @IBOutlet weak var eventLocationLabel: UILabel!
-    
-    func generate(from event: HLLEvent) {
-        
-        colorBox.layer.cornerRadius = colorBox.frame.size.width/2
-        colorBox.clipsToBounds = true
-        
-        colorBox.layer.borderColor = UIColor.white.cgColor
-        colorBox.layer.borderWidth = 5.0
-        
-        eventTitleLabel.text = event.title
-        
-        if let loc = event.location {
+        override func viewDidLoad() {
             
-            eventLocationLabel.isHidden = false
-            eventLocationLabel.text = loc
+            //  self.tabBarController?.tabBar.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             
-        } else {
+            self.endCheckTimer = Timer.scheduledTimer(timeInterval: TimeInterval(0.5), target: self, selector: #selector(self.checkForEnd), userInfo: nil, repeats: true)
+            RunLoop.main.add(self.endCheckTimer, forMode: .common)
             
-            eventLocationLabel.isHidden = true
+            tableView.delegate = self
+            tableView.dataSource = self
+            tableView.reloadData()
+            
+            WatchSessionManager.sharedManager.addDataSourceChangedDelegate(delegate: self)
+            
+            SchoolAnalyser.shared.analyseCalendar()
+            
+            
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(self.calendarDidChange),
+                name: .EKEventStoreChanged,
+                object: nil)
+            
             
         }
         
-        
-        if let cal = colourDataSource.calendarFromID(event.calendarID) {
+        @objc func calendarDidChange() {
             
-            if let color = cal.cgColor {
+            SchoolAnalyser.shared.analyseCalendar()
+            updateCountdownData()
+            
+            
+        }
+        
+        @objc func checkForEnd() {
+            
+            DispatchQueue.global(qos: .default).async {
                 
-                colorBox.layer.backgroundColor = color
+                if self.eventDatasource.getUpcomingEventsFromNextDayWithEvents() != self.events {
+                    
+                    self.updateCountdownData()
+                    
+                }
+                
+                
+            }
+            
+            
+        }
+        
+        func updateCountdownData() {
+            
+            eventDatasource.updateEventStore()
+            events = eventDatasource.getUpcomingEventsFromNextDayWithEvents()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            
+        }
+        
+        override func viewDidAppear(_ animated: Bool) {
+            
+            SchoolAnalyser.shared.analyseCalendar()
+            
+            
+            updateCountdownData()
+            
+            
+            
+        }
+        
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            
+            if events.isEmpty == false {
+                tableView.separatorStyle = .singleLine
+                tableView.backgroundView = nil
+                if #available(iOS 11.0, *) {
+                    navigationItem.largeTitleDisplayMode = .always
+                }
+                
+            } else {
+                
+                let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+                noDataLabel.text          = "No Upcoming Events"
+                noDataLabel.textColor     = UIColor.lightGray
+                noDataLabel.font = UIFont.systemFont(ofSize: 18)
+                noDataLabel.textAlignment = .center
+                tableView.backgroundView  = noDataLabel
+                tableView.separatorStyle  = .none
+                if #available(iOS 11.0, *) {
+                    navigationItem.largeTitleDisplayMode = .never
+                }
+            }
+            
+            //self.tabBarController?.tabBar.items?.first?.badgeValue = "\(events.count)"
+            return events.count
+        }
+        
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            
+            let event = events[indexPath.row]
+            
+            if event.location == nil {
+                
+                return 64
+                
+            } else {
+                
+                return 76
                 
             }
             
         }
         
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            
+            let event = events[indexPath.row]
+            
+            let iden = "UpcomingEventCellLocation"
+            
+            if event.location != nil {
+                
+               // iden = "UpcomingEventCellLocation"
+                
+            }
+            
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: iden, for: indexPath) as! upcomingCell
+            
+            cell.generate(from: event)
+            
+            return cell
+            
+        }
+        
+        func numberOfSections(in tableView: UITableView) -> Int {
+            return 1
+        }
+        
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+           // tableView.deselectRow(at: indexPath, animated: true)
+        }
+        
+        func userInfoChanged(date: Date) {
+        }
         
         
     }
+    
 
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+class upcomingCell: UITableViewCell {
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    
+    @IBOutlet weak var calColBAr: UIView!
+    var rowEvent: HLLEvent!
+    
+    func generate(from event: HLLEvent) {
         
-        if highlighted {
-            
-            
-            UIView.animate(withDuration: 0.4, animations: {
-                
-                
-                self.cellCard.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-                
-            })
+        rowEvent = event
+        titleLabel.text = event.title
+        
+        if let period = rowEvent.magdalenePeriod {
+        
+            timeLabel.text = "Period: \(period)"
             
         } else {
             
-            UIView.animate(withDuration: 0.4, animations: {
-                
-                
-                self.cellCard.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-                
-            })
+            timeLabel.text = "\(event.startDate.formattedTime()) - \(event.endDate.formattedTime())"
+            
+        }
+        
+        
+            
+            
+        if let loc = rowEvent.location {
+            
+            locationLabel.text = loc
+            
+        } else {
+            
+            locationLabel.isHidden = true
+            
+        }
+        
+        if let CGcolor = EventDataSource.shared.calendarFromID(event.calendarID)?.cgColor {
+            
+            let CalUIcolor = UIColor(cgColor: CGcolor)
+            calColBAr.backgroundColor = CalUIcolor
             
         }
         
     }
-
-    
-}
-
-class UpcomingEventParentView: UIViewController {
-    
-    let defaults = HLLDefaults.defaults
-    
-    @IBOutlet weak var upcomingLabel: UILabel!
-    let bArray = [UIImage(named: "Background_Light"), UIImage(named: "Background_Dark"), UIImage(named: "Background_Black")]
-    let backgroundImageView = UIImageView()
-    func setBackgroundImage() {
-        
-        
-        if defaults.bool(forKey: "useDarkBackground") == true {
-            backgroundImageView.image = bArray[1]
-            
-        } else {
-            backgroundImageView.image = bArray[0]
-            
-        }
-        
-        view.addSubview(backgroundImageView)
-        view.sendSubviewToBack(backgroundImageView)
-        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        backgroundImageView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        backgroundImageView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        backgroundImageView.removeFromSuperview()
-    }
-    
-    @IBAction func doneTapped(_ sender: UIButton) {
-        
-      //  NotificationCenter.default.post(name: Notification.Name("upcomingEventsViewWillClose"), object: nil)
-        
-            
-            self.dismiss(animated: true, completion: nil)
-        
-        
-        
-        
-    }
-    
-    override func viewDidLoad() {
-        setBackgroundImage()
-       // self.hero.isEnabled = true
-        //self.upcomingLabel.hero.id = "UpcomingTitle"
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        
-        return UIStatusBarStyle.lightContent
-        
-    }
-    
     
     
 }
+
+

@@ -43,15 +43,14 @@ class tableController: UITableViewController {
     }
     
     @IBAction func magdaleneModeSwitchChanged(_ sender: UISwitch) {
-        defaults.set(!sender.isOn, forKey: "magdaleneFeaturesManuallyDisabled")
+        HLLDefaults.magdalene.manuallyDisabled = !sender.isOn
         
-        DispatchQueue.main.async {
             
-            WatchSessionManager.sharedManager.updateContext(userInfo: ["MagdaleneManualSettingChanged" : !sender.isOn])
+           DefaultsSync.shared.syncDefaultsToWatch()
             
             SchoolAnalyser.shared.analyseCalendar()
             
-        }
+        
         
         
         
@@ -68,13 +67,13 @@ class tableController: UITableViewController {
     override func viewDidLoad() {
         
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
+      //  self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
         //   self.tableView.backgroundColor = #colorLiteral(red: 1, green: 0.5615011254, blue: 0, alpha: 1)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
         
-        darkBackgroundSwitch.setOn(defaults.bool(forKey: "useDarkBackground"), animated: false)
+    //    darkBackgroundSwitch.setOn(defaults.bool(forKey: "useDarkBackground"), animated: false)
         
         magdaleneModeSwitch.setOn(!defaults.bool(forKey: "magdaleneFeaturesManuallyDisabled"), animated: false)
         
@@ -155,11 +154,6 @@ class tableController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         
-        if section == 0 {
-            
-            return "Include events from the selected calendars in How Long Left."
-            
-        }
         
         
         if section == 1 {

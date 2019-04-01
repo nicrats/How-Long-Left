@@ -10,6 +10,8 @@ import HotKey
 import AppKit
 import os.log
 
+
+
 class Main: HLLCountdownController {
     
     let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "Main")
@@ -24,6 +26,7 @@ class Main: HLLCountdownController {
     let calendar = NSCalendar.current
     let version = Version()
     let magdaleneWifiCheck = MagdaleneWifiCheck()
+    let magdaleneUpdateAlert = MagdaleneUpdateAlert()
     var statusItemLoops = 1
     var nextEventToStart: HLLEvent?
     var betaExpiryDate: Date?
@@ -51,7 +54,7 @@ class Main: HLLCountdownController {
     var connection: NSXPCConnection?
     lazy var preciseUpdateForMinuteChangeTimer = RepeatingTimer(time: minUpdateInterval)
     lazy var mainMenuOpenTimer = RepeatingTimer(time: 1.0)
-    lazy var preciseUpdateForPreferencesOpenTimer = RepeatingTimer(time: 0.1)
+    lazy var preciseUpdateForPreferencesOpenTimer = RepeatingTimer(time: 0.5)
     lazy var statusItemLoopTimer = RepeatingTimer(time: 5.0)
     lazy var statusItemTimer = RepeatingTimer(time: fastUpdateInterval)
     lazy var eventMilestoneTracker = EventTimeRemainingMonitor(delegate: self)
@@ -158,6 +161,8 @@ class Main: HLLCountdownController {
                 
             }
             
+          //  showOnboarding = true
+            
             if showOnboarding == true {
                 
                 DispatchQueue.main.async {
@@ -168,23 +173,17 @@ class Main: HLLCountdownController {
                     self.welcomeStoryboard = NSStoryboard(name: "Onboarding", bundle: nil)
                     
                     self.welcomeWindowController = self.welcomeStoryboard.instantiateController(withIdentifier: "Onboard1") as? NSWindowController
+                    
                     self.welcomeWindowController!.showWindow(self)
+                    
                     
                 }
                 
                 
             }
             
-            let magdaleneUpdateAlert = MagdaleneUpdateAlert()
             
-            if self.magdaleneWifiCheck.isOnMagdaleneWifi() == true, SchoolAnalyser.privSchoolMode == SchoolMode.None, HLLDefaults.defaults.bool(forKey: "sentralPrompt") == false {
-                magdaleneUpdateAlert.presentSentralPrompt()
-                HLLDefaults.defaults.set(true, forKey: "sentralPrompt")
-                
-            }
-            
-            
-            magdaleneUpdateAlert.CheckToShowMagdaleneChangesPrompt()
+            self.magdaleneUpdateAlert.CheckToShowMagdaleneChangesPrompt()
             
             
             
@@ -195,7 +194,6 @@ class Main: HLLCountdownController {
             
             self.statusItemTimer.eventHandler = {
                 
-                self.statusItemTimerQueue.async(flags: .barrier) {
                     
                     var countdown: HLLEvent?
                     
@@ -220,7 +218,7 @@ class Main: HLLCountdownController {
                         self.delegate?.updateStatusItem(with: nil)
                         
                     }
-                }
+                
                 
             }
             
@@ -264,10 +262,27 @@ class Main: HLLCountdownController {
             // Ooft we've finsihed launching
             
             self.updateCalendarData(doGlobal: true)
+            print("Call4")
             self.mainRunLoop()
             
             
         }
+        
+        let compS = ComplicationSim()
+        let _ = compS.generateComplicationItems()
+        
+        
+        DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+            
+            
+            if self.magdaleneWifiCheck.isOnMagdaleneWifi() == true, SchoolAnalyser.privSchoolMode == SchoolMode.None, HLLDefaults.defaults.bool(forKey: "sentralPrompt") == false {
+                self.magdaleneUpdateAlert.presentSentralPrompt()
+                HLLDefaults.defaults.set(true, forKey: "sentralPrompt")
+                
+            }
+            
+        })
+    
         
     }
     
@@ -277,6 +292,7 @@ class Main: HLLCountdownController {
     @objc func updateGlobalTrigger() {
         
         DispatchQueue.global(qos: .default).async {
+            print("Call1")
             self.updateCalendarData(doGlobal: true)
         }
         
@@ -312,8 +328,6 @@ class Main: HLLCountdownController {
     
     @objc func checkEvents() {
         
-        frequentLowUsageQueue.async(flags: .barrier) {
-            
             
             self.eventMilestoneTracker.checkCurrentEvents()
             let second = self.calendar.component(.second, from: Date())
@@ -329,7 +343,7 @@ class Main: HLLCountdownController {
             
             
             
-        }
+        
         
         if UIController.menuIsOpen == true {
             
@@ -339,8 +353,11 @@ class Main: HLLCountdownController {
         
     }
     
+    let mainRLQ = DispatchQueue(label: "MRLQ")
+    
     @objc func mainRunLoop() {
-            
+        
+        mainRLQ.async(flags: .barrier) {
             
           //  print("Main")
             
@@ -358,6 +375,7 @@ class Main: HLLCountdownController {
                 }
                 
                 self.updateCalendarData(doGlobal: true)
+                print("Call2")
                 
                 return
                 
@@ -404,6 +422,7 @@ class Main: HLLCountdownController {
                     
                     self.nextEventToStart = nil
                     self.updateCalendarData(doGlobal: true)
+                    print("Call5")
                     
                 }
                 
@@ -417,6 +436,7 @@ class Main: HLLCountdownController {
                         
                         self.beenTooLongWithoutUpdate = true
                         self.updateCalendarData(doGlobal: true)
+                        print("Call6")
                         print("Updating calendar at \(Date()) due to too long")
                         
                     }
@@ -425,6 +445,7 @@ class Main: HLLCountdownController {
                 
             }
             
+            DispatchQueue.main.async {
                 
                 
                 if UIController.preferencesWindowController.window!.isVisible, HLLDefaults.statusItem.mode != .Off {
@@ -438,6 +459,8 @@ class Main: HLLCountdownController {
                     
                 }
                 
+                
+            }
         
             
             if let top = EventCache.primaryEvent {
@@ -472,10 +495,12 @@ class Main: HLLCountdownController {
                 print("Update for new cal")
 
                 self.updateCalendarData(doGlobal: true)
+                print("Call7")
                 
             } else if self.calendarData.latestFetchSchoolMode != SchoolAnalyser.schoolMode {
                 
                 self.updateCalendarData(doGlobal: true)
+                print("Call8")
             }
             
             var update = false
@@ -498,8 +523,10 @@ class Main: HLLCountdownController {
             if update == true {
                 
                 self.updateCalendarData(doGlobal: true)
-                
+                print("Call9")
             }
+            
+        }
         
     }
     
@@ -579,6 +606,16 @@ class Main: HLLCountdownController {
         
         delegate?.updateExistingCurrentEventRows(with: countdownData)
         
+        let holidays = MagdaleneSchoolHolidays()
+        var tData: TermData?
+        
+        if let next = holidays.getNextHolidays() {
+            
+            tData = TermData(nextHolidays: next)
+            
+        }
+        
+        delegate?.updateTermDataMenu(termData: tData)
         
         if checkOpen == false {
             
@@ -602,14 +639,20 @@ class Main: HLLCountdownController {
         
         delegate?.updateUpcomingEventsMenu(data: upcomingEventsMenuInfo)
         
-        let holidays = MagdaleneSchoolHolidays()
         
-        let tD = TermData(holidays: holidays.getNextHolidays())
-        delegate?.updateTermDataMenu(termData: tD)
+        
+        
+        
+        
         
     }
     
+    let SIQueue = DispatchQueue(label: "SIQ")
+    
     func runStatusItemUIUpdate(event: HLLEvent?) {
+        
+        
+        SIQueue.async(flags: .barrier) {
         
         if let uEvent = event {
             
@@ -635,7 +678,7 @@ class Main: HLLCountdownController {
                 
                 
                 self.statusItemTimer.suspend()
-                delegate?.updateStatusItem(with: countdownStringGenerator.generateStatusItemString(event: nil))
+                self.delegate?.updateStatusItem(with: self.countdownStringGenerator.generateStatusItemString(event: nil))
                 
             }
             
@@ -643,12 +686,14 @@ class Main: HLLCountdownController {
             
             self.statusItemTimer.suspend()
             
-            delegate?.updateStatusItem(with: countdownStringGenerator.generateStatusItemString(event: event))
+            self.delegate?.updateStatusItem(with: self.countdownStringGenerator.generateStatusItemString(event: event))
             
             
         } else {
             
-            delegate?.updateStatusItem(with: nil)
+            self.delegate?.updateStatusItem(with: nil)
+            
+        }
             
         }
         
@@ -668,7 +713,11 @@ class Main: HLLCountdownController {
     
     @objc func updateCalendarDataOld(doGlobal: Bool) {
             
-                
+        
+        calUpdateQueue.async(flags: .barrier) {
+        
+            SchoolAnalyser.shared.analyseCalendar()
+            
                 let updateSource = EventDataSource()
                 updateSource.updateEventStore()
                 EventCache.currentEvents = updateSource.getCurrentEvents()
@@ -676,6 +725,7 @@ class Main: HLLCountdownController {
                 SchoolAnalyser.shared.analyseCalendar()
                 EventCache.allToday = updateSource.fetchEventsFromPresetPeriod(period: .AllToday)
             
+        }
         
             
             os_log("Event update done.", log: self.log, type: .default)
@@ -791,6 +841,7 @@ class Main: HLLCountdownController {
         }
         
         self.updateCalendarData(doGlobal: true)
+        print("Call10")
         self.checkIfPrimaryIsStillRunning()
         
         if endingNow == true {

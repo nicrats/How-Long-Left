@@ -18,18 +18,24 @@ import EventKit
 class EventDataSource {
     
     static let shared = EventDataSource()
-    let eFetchQueue = DispatchQueue(label: "fetchQueue")
+    //let eFetchQueue = DispatchQueue(label: "fetchQueue")
     
     static var accessToCalendar = calendarAccess.Unknown
     var latestFetchSchoolMode = SchoolMode.None
     static var eventStore = EKEventStore()
     static var lastUpdatedWithCalendars = [String]()
+    //static var schoolCheckDone = false
     
     static var calendarReads = 0
     
     func updateEventStore() {
         EventDataSource.eventStore = EKEventStore()
-        SchoolAnalyser.shared.analyseCalendar()
+        
+            
+        
+            
+        
+        
     }
     
     init() {
@@ -37,6 +43,7 @@ class EventDataSource {
        // CalendarData.receivedStoredCalendars = getCalendars()
         
     }
+    
     
     
     func getCalendarAccess() {
@@ -63,6 +70,11 @@ class EventDataSource {
         return EventDataSource.eventStore.calendars(for: .event)
     }
     
+    
+    func getCalendarIDS() -> [String] {
+        return EventDataSource.eventStore.calendars(for: .event).map { $0.calendarIdentifier }
+    }
+    
     func getEventsFromCalendar(start: Date, end: Date) -> [HLLEvent] {
         
         EventDataSource.calendarReads += 1
@@ -70,8 +82,6 @@ class EventDataSource {
        // print("Doing calendar read \(EventDataSource.calendarReads)")
         
         var returnArray = [HLLEvent]()
-        
-        eFetchQueue.sync {
             
            // print("Getting events")
             
@@ -88,45 +98,11 @@ class EventDataSource {
             //  let allCals = calendars
             
             #if os(iOS) || os(watchOS)
+        
             
-            if defaults.bool(forKey: "hasLaunched") == false {
+            if let storedIDS = defaults.stringArray(forKey: "setCalendars") {
                 
-                var idArray = [String]()
-                
-                for calendar in self.getCalendars() {
-                    
-                    idArray.append(calendar.calendarIdentifier)
-                    
-                }
-                
-                defaults.set(idArray, forKey: "setCalendars")
-                defaults.set(true, forKey: "hasLaunched")
-                
-            }
-            
-            
-            if var storedIDS = defaults.stringArray(forKey: "setCalendars") {
-                
-                #if os(iOS)
-                
-                if storedIDS.isEmpty, defaults.bool(forKey: "userDidTurnOffAllCalendars") == false {
-                    
-                    
-                    var idArray = [String]()
-                    
-                    for calendar in self.getCalendars() {
-                        
-                        idArray.append(calendar.calendarIdentifier)
-                        
-                    }
-                    
-                    defaults.set(idArray, forKey: "setCalendars")
-                    storedIDS = defaults.stringArray(forKey: "setCalendars")!
-                }
-                
-                #endif
-                
-                print("Stored IDs count: \(storedIDS.count)")
+             //   print("Stored IDs count: \(storedIDS.count)")
                 
                 for id in storedIDS {
                     
@@ -147,22 +123,23 @@ class EventDataSource {
                 //    print("Reading cal with \(calendars.count) calendars")
                 
                 
-            } else {
+            }
+        
+        if calendars.isEmpty == true {
+            
+            for calendar in getCalendars() {
+                
+                calendars.append(calendar)
                 
                 
-                var idArray = [String]()
                 
-                for calendar in self.getCalendars() {
-                    
-                    idArray.append(calendar.calendarIdentifier)
-                    
-                }
-                
-                
-                defaults.set(idArray, forKey: "setCalendars")
                 
             }
             
+            
+        }
+        
+        HLLDefaults.calendar.enabledCalendars = calendars.map { $0.calendarIdentifier }
             
             
             #elseif os(OSX)
@@ -238,17 +215,7 @@ class EventDataSource {
             
             
             #endif
-            
-            #if os(iOS)
-            
-            
-            // let ids = calendars.map { $0.calendarIdentifier }
-            // WatchSessionManager.sharedManager.startSession()
-            // WatchSessionManager.sharedManager.updateContext(userInfo: ["SelectedCalendars" : ids])
-            
-            //  let _ = WatchSessionManager.sharedManager.tra
-            
-            #endif
+        
             
             var idArray = [String]()
             
@@ -258,19 +225,14 @@ class EventDataSource {
                 
             }
             
-            
-            eFetchQueue.async(flags: .barrier) {
-            
-            EventDataSource.lastUpdatedWithCalendars = idArray
-                
-            }
-            
-            
-            
+            EventDataSource.lastUpdatedWithCalendars = HLLDefaults.calendar.enabledCalendars
+            self.latestFetchSchoolMode = SchoolAnalyser.schoolMode
+        
+        
             if calendars.isEmpty == true {
                 
-                returnArray = [HLLEvent]()
-                return
+                
+                return returnArray
                 
             }
             
@@ -305,12 +267,8 @@ class EventDataSource {
             returnArray.sort(by: { $0.endDate.compare($1.endDate) == .orderedAscending })
             
             
-            self.latestFetchSchoolMode = SchoolAnalyser.schoolMode
-            
-            
-            
-        }
         
+            
        return returnArray
         
             

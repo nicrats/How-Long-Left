@@ -14,12 +14,14 @@ class SchoolAnalyser {
     static var doneAnalysis = false
     static var isRenamerApp = false
     
-    public private(set) static var privSchoolMode: SchoolMode = .None
+    public private(set) static var privSchoolMode: SchoolMode = .Unknown
      private var schoolModeChangedDelegates = [SchoolModeChangedDelegate]()
     
     static var schoolMode: SchoolMode {
         
         get {
+            
+            if privSchoolMode == .Magdalene {
             
             if HLLDefaults.magdalene.manuallyDisabled == false || isRenamerApp == true {
                 
@@ -28,6 +30,12 @@ class SchoolAnalyser {
             } else {
                 
                 return .None
+                
+            }
+                
+            } else {
+                
+                return privSchoolMode
                 
             }
             
@@ -61,17 +69,21 @@ class SchoolAnalyser {
      
         
         // let isLauren = analyseForLauren(Events: events)
-        let isMagdalene = self.analyseForMagdalene()
-        
-        if isMagdalene == true {
+        if let isMagdalene = self.analyseForMagdalene() {
             
-            // The user goes to Magdalene
-            
-            SchoolAnalyser.privSchoolMode = .Magdalene
+            if isMagdalene == true {
+                
+               SchoolAnalyser.privSchoolMode = .Magdalene
+                
+            } else {
+                
+                SchoolAnalyser.privSchoolMode = .None
+                
+            }
             
         } else {
             
-            SchoolAnalyser.privSchoolMode = .None
+            SchoolAnalyser.privSchoolMode = .Unknown
             
         }
         
@@ -135,7 +147,7 @@ class SchoolAnalyser {
         return date!
     }
     
-    private func analyseForMagdalene() -> Bool {
+    private func analyseForMagdalene() -> Bool? {
         
         // Analyses calendar events and determines if the user goes to Magdalene or not.
         
@@ -146,14 +158,20 @@ class SchoolAnalyser {
         searchDays.append(getWednesdayFromWeek(weekNumber: 36, previousYear: false))
         searchDays.append(getWednesdayFromWeek(weekNumber: 46, previousYear: false))
         
+        var returnVal: Bool?
+        
         let Events = self.calendarData.fetchEventsOnDays(days: searchDays)
         
-        var returnVal = false
+        if Events.isEmpty == false {
+            
+            returnVal = false
+            
+        }
         
         var yrCondition = false
-        var homeroomCondition = false
         var roomCondtion = false
-        
+        var schoolStartCondition = false
+        var schoolEndCondition = false
         
         for event in Events {
             
@@ -161,33 +179,30 @@ class SchoolAnalyser {
                 if event.originalTitle.range(of:"Yr") != nil {
                     yrCondition = true
                 }
-                
-                if event.originalTitle.range(of:"Homeroom") != nil {
-                    homeroomCondition = true
-                }
-                
+            
                 if let location = event.fullLocation, location.range(of:"Room:") != nil  {
                     roomCondtion = true
                 }
             
-            if yrCondition == true, roomCondtion == true {
+                if event.startDate.formattedTime() == "8:15am" {
+                    
+                    schoolStartCondition = true
+                
+                }
+            
+                if event.endDate.formattedTime() == "2:35pm" {
+                
+                schoolEndCondition = true
+                
+                }
+            
+            if yrCondition == true, roomCondtion == true, schoolStartCondition == true, schoolEndCondition == true {
+                
                 returnVal = true
-              //  print("Breaking Magdalene analysis early")
                 break
                 
-            } else {
-                
-                if roomCondtion == true, homeroomCondition == true {
-                    
-                    returnVal = true
-                    break
-                    
-                } else {
-                    
-                    returnVal = false
-                }
-                
             }
+            
         }
         
       //  let analysisTime = Date().timeIntervalSince(analysisStart)

@@ -2,23 +2,27 @@
   "images" : [
     {
       "idiom" : "watch",
-      "scale" : "2x",
-      "screen-width" : "<=145"
+      "filename" : "GraphCirc42.png",
+      "screen-width" : "<=145",
+      "scale" : "2x"
     },
     {
       "idiom" : "watch",
-      "scale" : "2x",
-      "screen-width" : ">161"
+      "filename" : "HLLCompIcon40mm.png",
+      "screen-width" : ">161",
+      "scale" : "2x"
     },
     {
       "idiom" : "watch",
-      "scale" : "2x",
-      "screen-width" : ">145"
+      "filename" : "GraphCirc42-1.png",
+      "screen-width" : ">145",
+      "scale" : "2x"
     },
     {
       "idiom" : "watch",
-      "scale" : "2x",
-      "screen-width" : ">183"
+      "filename" : "44mm Icon.png",
+      "screen-width" : ">183",
+      "scale" : "2x"
     }
   ],
   "info" : {

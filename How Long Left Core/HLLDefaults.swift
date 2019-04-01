@@ -39,6 +39,33 @@ class HLLDefaults {
         
     }
     
+    struct complication {
+        
+        
+        static var largeCountdown: Bool {
+            
+                
+                get {
+                    
+                    return defaults.bool(forKey: "largeCountdown")
+                    
+                }
+                
+                set (to) {
+                    
+                    defaults.set(to, forKey: "largeCountdown")
+                    
+                }
+                
+            
+            
+            
+        }
+        
+        
+        
+    }
+    
     struct general {
         
         static var showNextEvent: Bool {

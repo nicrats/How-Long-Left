@@ -11,6 +11,8 @@ import UserNotifications
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenterDelegate {
     
+    let calendarData = EventDataSource()
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler(.sound)
     }
@@ -49,6 +51,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
             
             if let entries = CLKComplicationServer.sharedInstance().activeComplications {
                 
+                 if CompDefaults.shared.hasUpdatedComplicationWith(events: self.calendarData.fetchEventsFromPresetPeriod(period: .AllTodayPlus24HoursFromNow)) == false {
+                
                 for complicationItem in entries  {
                     
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: complicationItem)
@@ -56,7 +60,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
                 }
             }
             
-            
+            }
             
         }
         else {
@@ -76,9 +80,13 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
                 
                 if let entries = CLKComplicationServer.sharedInstance().activeComplications {
                     
+                    if CompDefaults.shared.hasUpdatedComplicationWith(events: self.calendarData.fetchEventsFromPresetPeriod(period: .AllTodayPlus24HoursFromNow)) == false {
+                    
                     for complicationItem in entries  {
                         
                         CLKComplicationServer.sharedInstance().reloadTimeline(for: complicationItem)
+                        
+                    }
                         
                     }
                 }

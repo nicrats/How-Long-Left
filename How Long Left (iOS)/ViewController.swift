@@ -13,11 +13,15 @@ import Intents
 import IntentsUI
 #endif
 import ViewAnimator
-import Hero
 
 class ViewController: UIViewController, HLLCountdownController, DataSourceChangedDelegate {
     
     
+    @IBAction func doneTapped(_ sender: UIButton) {
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
     
     func percentageMilestoneReached(milestone percentage: Int, event: HLLEvent) {
         
@@ -132,10 +136,12 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
         
     }
     
-
+let sync = DefaultsSync()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        sync.syncDefaultsToWatch()
         
         setBackgroundImage()
         //shift.startTimedAnimation()
@@ -143,16 +149,17 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
         updateTimer()
         DispatchQueue.main.async {
         
-        VoiceShortcutStatusChecker.shared.check()
+        
         }
         
-        DispatchQueue.main.async {
-            SchoolAnalyser.shared.analyseCalendar()
+        SchoolAnalyser.shared.analyseCalendar()
+        
+            
             
             self.notoScheduler.getAccess()
             self.notoScheduler.scheduleNotificationsForUpcomingEvents()
             
-        }
+        
         
        
         
@@ -167,8 +174,7 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
         //let notoS = MilestoneNotificationScheduler()
        // notoS.scheduleTestNotification()
         
-        self.hero.isEnabled = true
-        self.upcomingLabel.hero.id = "UpcomingTitle"
+    
         
         countdownLabel.layer.shadowColor = UIColor.black.cgColor
         countdownLabel.layer.shadowRadius = 3.0
@@ -217,13 +223,12 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
         
         super.viewDidLoad()
         
-        if ViewController.launchedWithSettingsShortcut == false {
           let animation = AnimationType.zoom(scale: 2.1)
         
         view.animate(animations: [animation], reversed: false, initialAlpha: 0.0, finalAlpha: 1.0, delay: 0, duration: 0.6, options: .allowAnimatedContent, completion: nil)
         
             
-        }
+        
         
         timer = Timer(fire: Date(), interval: 3, repeats: true, block: {_ in
             
@@ -245,34 +250,6 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
         // Do any additional setup after loading the view, typically from a nib.
        // updateBackgroundGradient()
         setBackgroundImage()
-        donateInteraction()
-        
-        
-        WatchSessionManager.sharedManager.addDataSourceChangedDelegate(delegate: self)
-        
-        countdownLabel.font = UIFont.monospacedDigitSystemFont(ofSize: countdownLabel.font.pointSize, weight: .medium)
-        
-        run()
-        
-        WatchSessionManager.sharedManager.startSession()
-        //defaults.set(false, forKey: "ShownWatchAlert")
-        
-    
-            if WKInterfaceDevice.current().name != "", defaults.bool(forKey: "ShownWatchAlert") == false {
-                
-                defaults.set(true, forKey: "ShownWatchAlert")
-                
-                DispatchQueue.main.async {
-                    
-                    let alertController = UIAlertController(title: "Apple Watch App", message: "You can also use How Long Left on your Apple watch, and enable the Complication on the Modular Watch Face.", preferredStyle: .alert)
-                    let action1 = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-                        print("You've pressed default");
-                    }
-                    alertController.addAction(action1)
-                    self.present(alertController, animated: true, completion: nil)
-                }
-                
-            }
         
         SchoolAnalyser.shared.analyseCalendar()
         
@@ -298,7 +275,7 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
                 
                 self.countdownLabel.text = string
                 
-                if let percentage = self.percentageGen.calculatePercentageDone(event: event) {
+                if let percentage = self.percentageGen.calculatePercentageDone(event: event, ignoreDefaults: false) {
                 self.progressLabel.text = "(\(percentage) Done)"
                     
                 }
@@ -321,10 +298,11 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
     
     func run() {
         
-        DispatchQueue.global(qos: .default).async {
+        DispatchQueue.main.async {
             
         
         self.calData.updateEventStore()
+        SchoolAnalyser.shared.analyseCalendar()
         
         let currentEvents = self.calData.getCurrentEvents()
         let upcomingEvents = self.calData.getUpcomingEventsToday()

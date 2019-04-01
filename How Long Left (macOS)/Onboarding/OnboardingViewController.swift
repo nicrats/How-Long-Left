@@ -12,12 +12,16 @@ import Preferences
 
 class OnboardingViewController: NSViewController {
     
+    
     @IBOutlet weak var visualEffectView: NSVisualEffectView!
     
     override func viewWillAppear() {
         
+      
         
-        
+    }
+    
+    override func viewDidAppear() {
     }
     
     @IBAction func continueClicked(_ sender: NSButton) {

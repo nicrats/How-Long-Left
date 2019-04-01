@@ -22,14 +22,14 @@ class MagdaleneUpdateAlert {
             
             if Version.currentVersion > launched {
                 
-              //  presentMagdaleneChangesPrompt()
+              presentMagdaleneChangesPrompt()
                 
             }
             
         } else {
             
            
-          //  presentMagdaleneChangesPrompt()
+          presentMagdaleneChangesPrompt()
             
             
         }
@@ -51,10 +51,7 @@ class MagdaleneUpdateAlert {
             alert.messageText = "New in Magdalene Mode:"
             alert.informativeText = """
             
-            - Added a quick shortcut to Edval in the main menu.
-            = You can now set How Long Left to hide non Magdalene calendar events in Magdalene Preferences.
-            
-            This update also brings support for the next three School Holidays periods.
+            - This update fixes an issue where Magdalene Mode would not be avaliable for Magdalene users.
 
             """
             

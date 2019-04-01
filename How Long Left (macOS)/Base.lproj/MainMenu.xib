@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.68" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.68"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -19,9 +19,10 @@
                 <outlet property="appInfoRow" destination="s6E-pJ-X33" id="XvK-hb-hkf"/>
                 <outlet property="edvalButton" destination="oqw-bm-k9q" id="zmY-w0-fLP"/>
                 <outlet property="mainMenu" destination="DoK-Lo-pdN" id="Qwd-h1-sUk"/>
-                <outlet property="nextOccurRow" destination="Qdk-ki-u8C" id="KoH-Cc-BJS"/>
                 <outlet property="noCalAccessButton" destination="7Ki-yx-eIy" id="nxw-gs-ZY5"/>
                 <outlet property="noCalAccessInfo" destination="pin-50-jJg" id="tUl-BR-JV6"/>
+                <outlet property="termMenu" destination="9Fu-qU-wuK" id="3yP-53-wVd"/>
+                <outlet property="termRow" destination="eCF-26-80v" id="gFN-F0-AtQ"/>
                 <outlet property="upcomingEventsMenu" destination="UgV-0s-5Nv" id="oRR-cV-BLx"/>
                 <outlet property="upcomingEventsRow" destination="pkm-sO-xmi" id="x49-Gs-5yp"/>
                 <outlet property="upcomingFutureMenu" destination="MGu-lV-Zaw" id="QFW-2b-AsN"/>
@@ -69,8 +70,21 @@
                     </menu>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="JgP-v7-dqP"/>
-                <menuItem title="Next &quot;Test&quot; - Tomorrow, 12:00am" hidden="YES" id="Qdk-ki-u8C">
+                <menuItem title="Term 1 ends in 3 weeks..." hidden="YES" id="eCF-26-80v">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" id="9Fu-qU-wuK">
+                        <items>
+                            <menuItem title="Item 1" id="gbo-Vf-2Zf">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Item 2" id="L6r-Jp-0Mn">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Item 3" id="oGZ-K4-G67">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                        </items>
+                    </menu>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="hua-Mh-Xje"/>
                 <menuItem title="How Long Left does not have calendar access ⚠️" enabled="NO" id="pin-50-jJg">

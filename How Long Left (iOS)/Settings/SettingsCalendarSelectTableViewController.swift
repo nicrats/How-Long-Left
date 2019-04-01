@@ -18,8 +18,18 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
     var calendars = [EKCalendar]()
     var selectAllState = true
 
+    override func viewWillAppear(_ animated: Bool) {
+        //self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+       // self.tabBarController?.tabBar.isHidden = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         calendars = calendar.getCalendars()
         calendars.sort { $0.title < $1.title }
@@ -103,31 +113,21 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
         }
             
         
-        if setCalendars.count == calendars.count {
-            
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Deselect all", style: .plain, target: self, action: #selector (selectAllButtonTapped))
-            selectAllState = false
-            
-            
-        } else {
             
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select all", style: .plain, target: self, action: #selector (selectAllButtonTapped))
             selectAllState = true
             
-        }
         
-        DispatchQueue.main.async {
-            
-            WatchSessionManager.sharedManager.updateContext(userInfo: ["SelectedCalendars" : self.setCalendars])
-            
-        }
         
+        defaultsSync.syncDefaultsToWatch()
         
       //  WatchSessionManager.sharedManager.startSession()
        
         
         return 1
     }
+    
+    let defaultsSync = DefaultsSync()
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -167,7 +167,7 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
         
         let selectedCal = calendars[indexPath.row]
         
-        if setCalendars.contains(selectedCal.calendarIdentifier) {
+        if setCalendars.contains(selectedCal.calendarIdentifier), setCalendars.count > 1 {
             
             
             if let index = setCalendars.firstIndex(of: selectedCal.calendarIdentifier) {

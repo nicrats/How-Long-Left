@@ -153,13 +153,32 @@ class UpcomingEventStringGenerator {
         
         dayItem.headerStrings = [menuTitle]
         
+       // var arrayOfTimesWhereEventsAreOnToday = Set<Date>()
         
+        let calendar = Calendar(identifier: .gregorian)
+        
+        for event in events {
+            
+            
+            var date = event.startDate // first date
+            let endDate = event.endDate // last date
+            
+            // Formatter for printing the date, adjust it according to your needs:
+            
+            
+            while date <= endDate {
+
+                date = calendar.date(byAdding: .minute, value: 1, to: date)!
+            }
+            
+        }
         
         if let first = EventCache.allToday.first, let last = EventCache.allToday.last, first.completionStatus != .NotStarted  {
             
             let secondsElapsed = Date().timeIntervalSince(first.startDate)
             let totalSeconds = last.endDate.timeIntervalSince(first.startDate)
             let percentOfEventComplete = Int(100*secondsElapsed/totalSeconds)
+            
             
            
             
@@ -259,7 +278,7 @@ class UpcomingEventStringGenerator {
                 titleAndMaybeLocation += " (\(location))"
             }
             
-            var eventTimeInfo = event.startDate.formattedTime()
+            var eventTimeInfo = "\(event.startDate.formattedTime())-\(event.endDate.formattedTime())"
             
             if let period = event.magdalenePeriod {
                 

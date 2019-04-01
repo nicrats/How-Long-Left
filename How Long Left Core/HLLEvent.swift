@@ -8,6 +8,7 @@
 
 import Foundation
 import EventKit
+import CoreLocation
 
 /**
  * Represents an event in How Long Left. A HLLEvent can be initalized from an EKEvent or with custom data.
@@ -22,9 +23,11 @@ struct HLLEvent: Equatable {
     var endDate: Date
     var location: String?
     var fullLocation: String?
+    var CLLocation: CLLocation?
     var holidaysTerm: Int?
     var magdalenePeriod: String?
     var calendarID: String?
+    var calendar: EKCalendar?
     var isMagdaleneBreak = false
     
     var duration: TimeInterval {
@@ -54,6 +57,18 @@ struct HLLEvent: Equatable {
             
         }
     
+    var identifier: String {
+        
+        get {
+            
+            return "\(title) \(startDate) \(endDate) \(calendarID ?? "nil") \(location ?? "nil")"
+            
+            
+        }
+        
+        
+    }
+    
     
     init(event: EKEvent) {
         
@@ -76,6 +91,7 @@ struct HLLEvent: Equatable {
         
         
         calendarID = event.calendar.calendarIdentifier
+        calendar = event.calendar
         
     }
     
@@ -106,6 +122,8 @@ struct HLLEvent: Equatable {
         return lhs.title == rhs.title && lhs.startDate == rhs.startDate && lhs.location == rhs.location && lhs.calendarID == rhs.calendarID
         
     }
+    
+    
     
     
 }

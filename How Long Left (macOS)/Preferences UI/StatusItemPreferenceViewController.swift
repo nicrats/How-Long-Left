@@ -285,6 +285,9 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
 	
 	func generateStatusItemPreview() {
 		
+		DispatchQueue.main.async {
+			
+		
 		var Pevent: HLLEvent?
 		
 		if let primary = EventCache.primaryEvent {
@@ -302,13 +305,13 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
 			
 			if safePevent.endDate.timeIntervalSinceNow < 1 {
 				
-				previewEvent = previewEventData
+				self.previewEvent = self.previewEventData
 				
 			}
 				
 			}
 			
-			Pevent = previewEvent
+			Pevent = self.previewEvent
 			
 			
 			
@@ -325,26 +328,26 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
             
         case .Off:
             
-            statusItemPreviewText.isHidden = true
-            previewIcon.isHidden = false
+			self.statusItemPreviewText.isHidden = true
+			self.previewIcon.isHidden = false
             
         case .Timer:
             
-            statusItemPreviewText.isHidden = false
-            previewIcon.isHidden = true
+			self.statusItemPreviewText.isHidden = false
+			self.previewIcon.isHidden = true
             
             let stringGenerator = StatusItemTimerStringGenerator(isForPreview: true)
-            let data = stringGenerator.generateStringsFor(event: preview)
-            let key = data.keys.first!
-            statusItemPreviewText.stringValue = data[key]!
+            let data = stringGenerator.generateStringFor(event: preview)
+			
+			self.statusItemPreviewText.stringValue = data ?? ""
             
         case .Minute:
             
-            statusItemPreviewText.isHidden = false
-            previewIcon.isHidden = true
+			self.statusItemPreviewText.isHidden = false
+			self.previewIcon.isHidden = true
             
             let stringGenerator = CountdownStringGenerator()
-            statusItemPreviewText.stringValue = stringGenerator.generateStatusItemString(event: preview)!
+			self.statusItemPreviewText.stringValue = stringGenerator.generateStatusItemString(event: preview)!
             
         }
 			
@@ -352,7 +355,9 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
 			
 		} else {
 			
-			previewEvent = previewEventData
+			self.previewEvent = self.previewEventData
+			
+		}
 			
 		}
 	}

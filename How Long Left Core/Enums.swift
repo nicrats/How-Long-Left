@@ -26,6 +26,7 @@ enum EventCompletionStatus {
 @objc enum SchoolMode: Int {
     case None = 0
     case Magdalene = 1
+    case Unknown = 2
 }
 
 enum EventDate {

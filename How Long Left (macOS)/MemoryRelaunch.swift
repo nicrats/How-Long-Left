@@ -57,6 +57,16 @@ class MemoryRelaunch {
     
     @objc func relaunchApp() {
         
+        #if DEBUG
+        print("Would have relaunched if not in debug mode")
+        
+        
+        #else
+        print("Relaunching")
+        
+        
+        
+        
             let url = URL(fileURLWithPath: Bundle.main.resourcePath!)
             let path = url.deletingLastPathComponent().deletingLastPathComponent().absoluteString
             let task = Process()
@@ -64,6 +74,8 @@ class MemoryRelaunch {
             task.arguments = [path]
             task.launch()
             exit(0)
+        
+        #endif
         
     }
     

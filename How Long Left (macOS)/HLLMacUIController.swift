@@ -22,19 +22,6 @@ protocol HLLMacUIController {
     func noCalendarAccessUIState(enabled: Bool)
     func setUpdateAvaliableState(version: String?)
     func addHolidaysCountToRow(string: String?)
-    func updateTermDataMenu(termData: TermData)
-    
-}
-
-struct TermData {
-   
-    var nextHolidays: HLLEvent?
-    
-    init(holidays: HLLEvent?) {
-        
-        nextHolidays = holidays
-        
-    }
-    
+    func updateTermDataMenu(termData: TermData?)
     
 }

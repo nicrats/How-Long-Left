@@ -16,7 +16,15 @@ class CurrentEventSubmenuContentsGenerator {
         
         var arrayOne = [String]()
         
+        if event.completionStatus == .InProgress {
+        
         arrayOne.append("On Now: \(event.title)")
+            
+        } else {
+           
+        arrayOne.append("\(event.title)")
+            
+        }
         
         var arrayTwo = [String]()
         
@@ -51,7 +59,7 @@ class CurrentEventSubmenuContentsGenerator {
         // let minutesLeft = Int(secondsLeft/60+1)
         // let minText = MinutePluralizer(Minutes: minutesLeft)
         
-        if let percentage = PercentageCalculator().calculatePercentageDone(event: event, ignoreDefaults: true) {
+        if let percentage = PercentageCalculator().calculatePercentageDone(event: event, ignoreDefaults: true), event.completionStatus == .InProgress {
             
             
             arrayTwo.append("Completion: \(percentage)")
@@ -83,7 +91,11 @@ class CurrentEventSubmenuContentsGenerator {
         formatter1.unitsStyle = .full
         let elapsed = formatter1.string(from: secondsElapsed+60)!
         
+        if event.completionStatus == .InProgress {
+        
         arrayTwo.append("Elapsed: \(elapsed)")
+            
+        }
         
         let formatter = DateComponentsFormatter()
         

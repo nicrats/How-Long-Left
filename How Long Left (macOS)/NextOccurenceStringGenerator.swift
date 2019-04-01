@@ -49,7 +49,7 @@ func generateNextOccurenceItems(events: [HLLEvent]) -> [(String, [String])] {
             
         }
         
-        let rowTitle = "Next \(event.shortTitle) - \(dayText), \(eventTimeInfo)"
+        let rowTitle = "Next \(event.shortTitle): \(dayText), \(eventTimeInfo)"
         
         let components = calendar?.components([.weekOfYear], from: Date())
         let currentWeekOfYear = components!.weekOfYear!

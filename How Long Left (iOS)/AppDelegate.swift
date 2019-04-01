@@ -15,11 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     let notoGen = MilestoneNotificationScheduler()
-
+    
+    let sync = DefaultsSync()
+ 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        WatchSessionManager.sharedManager.startSession()
-        WatchSessionManager.sharedManager.updateContext(userInfo: ["MagdaleneManualSettingChanged" : HLLDefaults.magdalene.manuallyDisabled])
+       sync.syncDefaultsToWatch()
+        AppFunctions.shared.run()
         application.setMinimumBackgroundFetchInterval(60)
         
         
@@ -53,7 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     notoGen.scheduleNotificationsForUpcomingEvents()
     UNUserNotificationCenter.current().removeAllDeliveredNotifications()
     
-    WatchSessionManager.sharedManager.updateContext(userInfo: ["SelectedCalendars" : HLLDefaults.calendar.enabledCalendars])
+    sync.syncDefaultsToWatch()
+    
     
     }
 

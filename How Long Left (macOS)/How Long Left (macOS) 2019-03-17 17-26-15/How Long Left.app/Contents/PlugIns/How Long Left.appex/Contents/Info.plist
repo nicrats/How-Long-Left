@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BuildMachineOSBuild</key>
+	<string>18E220a</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>How Long Left</string>
+	<key>CFBundleExecutable</key>
+	<string>How Long Left</string>
+	<key>CFBundleIdentifier</key>
+	<string>ryankontos.How-Long-Left-Mac.Mac-Widget</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>How Long Left</string>
+	<key>CFBundlePackageType</key>
+	<string>XPC!</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2.3.3</string>
+	<key>CFBundleSupportedPlatforms</key>
+	<array>
+		<string>MacOSX</string>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>114</string>
+	<key>DTCompiler</key>
+	<string>com.apple.compilers.llvm.clang.1_0</string>
+	<key>DTPlatformBuild</key>
+	<string>10B61</string>
+	<key>DTPlatformVersion</key>
+	<string>GM</string>
+	<key>DTSDKBuild</key>
+	<string>18B71</string>
+	<key>DTSDKName</key>
+	<string>macosx10.14</string>
+	<key>DTXcode</key>
+	<string>1010</string>
+	<key>DTXcodeBuild</key>
+	<string>10B61</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.12</string>
+	<key>NSExtension</key>
+	<dict>
+		<key>NSExtensionAttributes</key>
+		<dict>
+			<key>NSExtensionPointVersion</key>
+			<string>3.0</string>
+		</dict>
+		<key>NSExtensionPointIdentifier</key>
+		<string>com.apple.widget-extension</string>
+		<key>NSExtensionPrincipalClass</key>
+		<string>How_Long_Left_Project.TodayViewController</string>
+		<key>com.apple.notificationcenter.widget.description</key>
+		<string>Mac Widget</string>
+	</dict>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2019 Ryan Kontos. All rights reserved.</string>
+</dict>
+</plist>

@@ -32,7 +32,7 @@ class PercentRow: NSObject {
     @objc func calcPercent(){
         
         if let e = event {
-       percentLabel.setText(percentageCalc.calculatePercentageDone(event: e))
+            percentLabel.setText(percentageCalc.calculatePercentageDone(event: e, ignoreDefaults: false))
         }
         
     }
@@ -46,6 +46,20 @@ class PercentRow: NSObject {
 class LocationRow: NSObject {
 
     @IBOutlet var locationLabel: WKInterfaceLabel!
+    
+    var delegate: EventTableRowDelegate?
+    
+    func setDelegate(to: EventTableRowDelegate) {
+        
+        delegate = to
+        
+    }
+    
+    @IBAction func tapped(_ sender: Any) {
+        
+        delegate?.showLocation()
+        
+    }
     
 }
 
@@ -98,3 +112,8 @@ enum InfoRowIdentifier: String {
     
 }
 
+protocol EventTableRowDelegate {
+    
+    func showLocation()
+    
+}
