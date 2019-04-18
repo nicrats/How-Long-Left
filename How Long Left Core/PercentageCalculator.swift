@@ -30,6 +30,17 @@ class PercentageCalculator {
         
     }
     
+    func calculateDoubleDone(of event: HLLEvent) -> Float {
+        
+        let secondsElapsed = Date().timeIntervalSince(event.startDate)
+        let totalSeconds = event.endDate.timeIntervalSince(event.startDate)
+        let double = secondsElapsed/totalSeconds
+        
+        return Float(double)
+        
+        
+    }
+    
     
     
 }

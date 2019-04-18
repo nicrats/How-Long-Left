@@ -62,7 +62,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         
      //   WatchSessionManager.sharedManager.sendUpdatedComplicationMessage()
         
-            handler(self.Generator.generateComplicationText(complication: complication))
+            handler(self.Generator.generateComplicationEntries(complication: complication))
         
         
     }
@@ -71,6 +71,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     
     // MARK: - Placeholder Templates
+    
     
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
         // This method will be called once per supported complication, and the results will be cached

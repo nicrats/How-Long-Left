@@ -24,10 +24,14 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
     //    let schoolAnalyser = SchoolAnalyser()
      //   schoolAnalyser.analyseCalendar()
         WatchSessionManager.sharedManager.startSession()
+        WatchSessionManager.sharedManager.askForDefaults()
         
     }
 
     func applicationDidBecomeActive() {
+        
+     //   HLLDefaults.shared.loadDefaultsFromCloud()
+        
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      /*   DispatchQueue.global(qos: .default).async {
       let bh = BackgroundUpdateHandler(); bh.scheduleComplicationUpdate()
@@ -51,7 +55,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
             
             if let entries = CLKComplicationServer.sharedInstance().activeComplications {
                 
-                 if CompDefaults.shared.hasUpdatedComplicationWith(events: self.calendarData.fetchEventsFromPresetPeriod(period: .AllTodayPlus24HoursFromNow)) == false {
+                 if ComplicationDataStatusHandler.shared.complicationIsUpToDate() == false {
                 
                 for complicationItem in entries  {
                     
@@ -80,7 +84,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
                 
                 if let entries = CLKComplicationServer.sharedInstance().activeComplications {
                     
-                    if CompDefaults.shared.hasUpdatedComplicationWith(events: self.calendarData.fetchEventsFromPresetPeriod(period: .AllTodayPlus24HoursFromNow)) == false {
+                    if ComplicationDataStatusHandler.shared.complicationIsUpToDate() == false {
                     
                     for complicationItem in entries  {
                         

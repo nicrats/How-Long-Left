@@ -41,6 +41,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
         
     }
     
+    var transfers = [WCSessionUserInfoTransfer]()
     
     static let sharedManager = WatchSessionManager()
     private override init() {
@@ -49,7 +50,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
     
     private let session: WCSession? = WCSession.isSupported() ? WCSession.default : nil
     
-    private var validSession: WCSession? {
+    public var validSession: WCSession? {
         
         // paired - the user has to have their device paired to the watch
         // watchAppInstalled - the user must have your watch app installed
@@ -65,8 +66,13 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
     
     
     func startSession() {
+        
+        if session?.activationState != WCSessionActivationState.activated {
+        
         session?.delegate = self
         session?.activate()
+            
+        }
     }
     
     private var dataSourceChangedDelegates = [DataSourceChangedDelegate]()
@@ -92,6 +98,10 @@ extension WatchSessionManager {
     
     // Sender
     
+    func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
+        DefaultsSync.shared.syncDefaultsToWatch()
+    }
+    
     func updateComplication() {
         
       //  validSession?.transferCurrentComplicationUserInfo(["UpdateComplication" : ""])
@@ -100,14 +110,57 @@ extension WatchSessionManager {
     
     
     
+    func sendMessage(info: [String : Any]) {
     
-    func transferUserInfo(userInfo: [String : Any]) -> WCSessionUserInfoTransfer? {
-        return validSession?.transferUserInfo(userInfo)
+        WatchSessionManager.sharedManager.startSession()
+        
+        do {
+            
+            try self.validSession?.updateApplicationContext(info)
+            
+        } catch {
+            
+        //    print("Failed")
+            
+        }
+        
+        if session?.isReachable == true {
+        
+        validSession?.sendMessage(info, replyHandler: nil, errorHandler: { Error in
+            
+            do {
+                
+                try self.validSession?.updateApplicationContext(info)
+                
+            } catch {
+                
+             //   print("Failed")
+                
+            }
+            
+            
+        })
+        
+        }
+            
+            
+            let _ = validSession?.transferUserInfo(info)
+            
+        
     }
     
     
+    func transferUserInfo(userInfo: [String : Any]) -> WCSessionUserInfoTransfer? {
+        return validSession?.transferUserInfo(userInfo)
+        
+    }
+    
+    
+    
     func updateContext(userInfo: [String : Any]) {
-            
+        
+        
+        
             validSession?.sendMessage(userInfo, replyHandler: nil, errorHandler: { Error in
                 
                 do {
@@ -116,7 +169,7 @@ extension WatchSessionManager {
                     
                 } catch {
                     
-                    print("Failed")
+                 //   print("Failed")
                     
                 }
 

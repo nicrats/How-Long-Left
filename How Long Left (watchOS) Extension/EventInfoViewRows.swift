@@ -76,6 +76,13 @@ class TimeRow: NSObject {
     
 }
 
+class ElapsedRow: NSObject {
+    
+    @IBOutlet var elapsedLabel: WKInterfaceLabel!
+    
+    
+}
+
 class DurationRow: NSObject {
     
     @IBOutlet var durationLabel: WKInterfaceLabel!
@@ -107,6 +114,7 @@ enum InfoRowIdentifier: String {
     case DateRow = "DateRow"
     case TimesRow = "TimesRow"
     case PeriodRow = "PeriodRow"
+    case ElapsedRow = "ElapsedRow"
     case DurationRow = "DurationRow"
     case NextOccurRow = "NextOccurRow"
     

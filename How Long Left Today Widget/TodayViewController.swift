@@ -18,7 +18,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     var timer = Timer()
     let timerStringGenerator = EventCountdownTimerStringGenerator()
-    let cal = EventDataSource.shared
+    let cal = EventDataSource()
     let backgroundImageView = UIImageView()
     var current: HLLEvent?
     
@@ -76,6 +76,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         current = self.cal.getCurrentEvent()
         
+        
         timer = Timer(fire: Date(), interval: 0.5, repeats: true, block: {_ in
             
             
@@ -87,7 +88,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 self.noEventOnInfoLabel.isHidden = true
                 self.timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: self.timerLabel.font.pointSize, weight: .thin)
                 self.timerLabel.text = self.timerStringGenerator.generateStringFor(event: currentEvent)
-                self.infoLabel.text = "\(currentEvent.title) ends in"
+                self.infoLabel.text = "\(currentEvent.title) \(currentEvent.endsInString) in"
                 
                 if currentEvent.endDate.timeIntervalSinceNow < 1 {
                     
@@ -118,7 +119,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
         
-        let url = URL(string: "HowLongLeft://")!
+        let url = URL(string: "HowLongLeft://ViewCurrentEvent")!
         self.extensionContext?.open(url, completionHandler: nil)
         
     }

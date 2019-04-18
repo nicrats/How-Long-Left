@@ -10,9 +10,13 @@ import HotKey
 import AppKit
 import os.log
 
-
-
-class Main: HLLCountdownController {
+class Main: HLLCountdownController, SchoolModeChangedDelegate {
+    
+    
+    func schoolModeChanged() {
+        self.updateCalendarData(doGlobal: true)
+    }
+    
     
     let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "Main")
     let updateInterval = 5
@@ -26,7 +30,7 @@ class Main: HLLCountdownController {
     let calendar = NSCalendar.current
     let version = Version()
     let magdaleneWifiCheck = MagdaleneWifiCheck()
-    let magdaleneUpdateAlert = MagdaleneUpdateAlert()
+    let magdalenePrompts = MagdalenePrompts()
     var statusItemLoops = 1
     var nextEventToStart: HLLEvent?
     var betaExpiryDate: Date?
@@ -63,7 +67,7 @@ class Main: HLLCountdownController {
     lazy var upcomingEventStringGenerator = UpcomingEventStringGenerator()
     lazy var schoolAnalyser = SchoolAnalyser()
     lazy var milestoneNotifications = MilestoneNotifications()
-    lazy var calendarData = EventDataSource.shared
+    lazy var calendarData = EventDataSource()
     lazy var statusItemTimerStringGenerator = StatusItemTimerStringGenerator(isForPreview: false)
     lazy var nextOccurStringGenerator = NextOccurenceStringGenerator()
     lazy var holidaysStringGenerator = SchoolHolidaysStringGenerator()
@@ -133,11 +137,32 @@ class Main: HLLCountdownController {
         
         DispatchQueue.main.async {
             
-            self.delegate = aDelegate
+            
+            
+            
+        self.delegate = aDelegate
             
             UIController.awokeAt = Date()
             
+            self.schoolAnalyser.setLoneDelegate(to: self)
             self.schoolAnalyser.analyseCalendar()
+            
+            
+            if HLLDefaults.defaults.bool(forKey: "changed24HourPref") == false {
+                
+                let locale = NSLocale.current
+                let formatter : String = DateFormatter.dateFormat(fromTemplate: "j", options:0, locale:locale)!
+                if formatter.contains("a") {
+                    HLLDefaults.general.use24HourTime = false
+                } else {
+                    
+                    HLLDefaults.general.use24HourTime = true
+                    
+                }
+                
+            }
+            
+            
             
             //  betaExpiryDate = Date(timeIntervalSince1970: 1544792400)
             
@@ -183,7 +208,29 @@ class Main: HLLCountdownController {
             }
             
             
-            self.magdaleneUpdateAlert.CheckToShowMagdaleneChangesPrompt()
+            
+            if SchoolAnalyser.schoolMode == .Magdalene {
+                
+               
+                
+                if let launched = HLLDefaults.appData.launchedVersion {
+                    
+                    if Version.currentVersion > launched {
+                        
+                        self.magdalenePrompts.presentMagdaleneChangesPrompt()
+                        
+                    }
+                    
+                } else {
+                    
+                    
+                    self.magdalenePrompts.presentMagdaleneChangesPrompt()
+                    
+                    
+                }
+                
+                
+            }
             
             
             
@@ -275,8 +322,8 @@ class Main: HLLCountdownController {
         DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
             
             
-            if self.magdaleneWifiCheck.isOnMagdaleneWifi() == true, SchoolAnalyser.privSchoolMode == SchoolMode.None, HLLDefaults.defaults.bool(forKey: "sentralPrompt") == false {
-                self.magdaleneUpdateAlert.presentSentralPrompt()
+            if self.magdaleneWifiCheck.isOnMagdaleneWifi() == true, SchoolAnalyser.schoolModeIgnoringUserPreferences == SchoolMode.None, HLLDefaults.defaults.bool(forKey: "sentralPrompt") == false {
+                self.magdalenePrompts.presentSentralPrompt()
                 HLLDefaults.defaults.set(true, forKey: "sentralPrompt")
                 
             }
@@ -497,10 +544,6 @@ class Main: HLLCountdownController {
                 self.updateCalendarData(doGlobal: true)
                 print("Call7")
                 
-            } else if self.calendarData.latestFetchSchoolMode != SchoolAnalyser.schoolMode {
-                
-                self.updateCalendarData(doGlobal: true)
-                print("Call8")
             }
             
             var update = false
@@ -524,6 +567,19 @@ class Main: HLLCountdownController {
                 
                 self.updateCalendarData(doGlobal: true)
                 print("Call9")
+            }
+            
+            
+            if let nextHolidays = self.schoolHoliday.getNextHolidays(), nextHolidays.completionStatus == .InProgress {
+                
+            if HLLDefaults.defaults.string(forKey: "shownHolidaysPrompt") != nextHolidays.identifier {
+                
+                HLLDefaults.defaults.set(nextHolidays.identifier, forKey: "shownHolidaysPrompt")
+                
+                self.magdalenePrompts.presentSchoolHolidaysPrompt()
+                
+                
+                }
             }
             
         }
@@ -602,7 +658,7 @@ class Main: HLLCountdownController {
         
         // let upcomingFuture = upcomingEventStringGenerator.generateUpcomingEventsMenuStrings(upcoming: nextUpcoming2)
         
-        delegate?.updateNextEventItem(text: upcomingEventStringGenerator.generateNextEventString(upcomingEvents: upcomingEventsToday, currentEvents: currentEvents, isForDoneNotification: false))
+        delegate?.updateNextEventItem(text: upcomingEventStringGenerator.generateNextEventString(upcomingEvents: nextUpcomingDay, currentEvents: currentEvents, isForDoneNotification: false))
         
         delegate?.updateExistingCurrentEventRows(with: countdownData)
         
@@ -615,6 +671,8 @@ class Main: HLLCountdownController {
             
         }
         
+        
+        
         delegate?.updateTermDataMenu(termData: tData)
         
         if checkOpen == false {
@@ -626,6 +684,8 @@ class Main: HLLCountdownController {
         // Stuff below here is only done on menu open.
         
          delegate?.addCurrentEventRows(with: countdownData, updateNextOccurs: false)
+        
+        
         
         let upcomingWeekItems = upcomingEventStringGenerator.generateUpcomingDayItems(days: upcomingWeek)
         
@@ -676,10 +736,11 @@ class Main: HLLCountdownController {
                 
             } else {
                 
-                
-                self.statusItemTimer.suspend()
+                 self.statusItemTimer.suspend()
+            
                 self.delegate?.updateStatusItem(with: self.countdownStringGenerator.generateStatusItemString(event: nil))
                 
+            
             }
             
         } else if HLLDefaults.statusItem.mode == .Minute || event?.holidaysTerm != nil {

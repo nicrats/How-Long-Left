@@ -14,7 +14,7 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
     var currentEvent: HLLEvent?
     var timer = Timer()
     let timerStringGenerator = EventCountdownTimerStringGenerator()
-    let cal = EventDataSource.shared
+    let cal = EventDataSource()
     var event: HLLEvent?
     
     @IBOutlet weak var timerLabel: UILabel!
@@ -57,7 +57,7 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
                        self.infoLabel.isHidden = false
                         self.doneInfoLabel.isHidden = true
                         self.timerLabel.text = self.timerStringGenerator.generateStringFor(event: loopEvent)
-                        self.infoLabel.text = "\(loopEvent.title) ends in"
+                        self.infoLabel.text = "\(loopEvent.title) \(loopEvent.endsInString) in"
                         
                         
                     }
@@ -90,7 +90,7 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
     
     
     var desiredSize: CGSize {
-        return CGSize(width: 250, height: 105)
+        return CGSize(width: 282, height: 105)
     }
     
 }

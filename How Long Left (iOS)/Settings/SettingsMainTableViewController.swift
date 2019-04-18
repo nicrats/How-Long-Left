@@ -26,7 +26,7 @@ class tableController: UITableViewController {
     @IBOutlet weak var addToSiriLabel: UILabel!
     @IBOutlet weak var magdaleneModeSwitch: UISwitch!
     @IBOutlet weak var milestonesInfoLabel: UILabel!
-    
+    @IBOutlet weak var complicationFakePurchaseSwitch: UISwitch!
     
     @IBAction func switchChanged(_ sender: UISwitch) {
         
@@ -63,10 +63,19 @@ class tableController: UITableViewController {
         
     }
     
+    @IBAction func complicationBetaSwitchChanged(_ sender: UISwitch) {
+        
+        IAPHandler.shared.setPurchasedStatus(sender.isOn)
+        
+        DefaultsSync.shared.syncDefaultsToWatch()
+        
+        
+    }
     
     override func viewDidLoad() {
         
-        
+        reloadSiriCell()
+
       //  self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
         //   self.tableView.backgroundColor = #colorLiteral(red: 1, green: 0.5615011254, blue: 0, alpha: 1)
         self.tableView.delegate = self
@@ -77,6 +86,8 @@ class tableController: UITableViewController {
         
         magdaleneModeSwitch.setOn(!defaults.bool(forKey: "magdaleneFeaturesManuallyDisabled"), animated: false)
         
+        
+        complicationFakePurchaseSwitch.setOn(IAPHandler.shared.hasPurchasedComplication(), animated: false)
         
     }
     
@@ -111,7 +122,8 @@ class tableController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         
-        
+        reloadSiriCell()
+
         
         if UIApplication.shared.backgroundRefreshStatus != .available {
             
@@ -128,7 +140,6 @@ class tableController: UITableViewController {
         }
         
         print("Appear")
-        reloadSiriCell()
         
         if let storedIDS = defaults.stringArray(forKey: "setCalendars") {
             
@@ -163,9 +174,9 @@ class tableController: UITableViewController {
         }
         
         
-        if section == 3 {
+        if section == 2 {
             
-            if SchoolAnalyser.privSchoolMode == .Magdalene {
+            if SchoolAnalyser.schoolModeIgnoringUserPreferences == .Magdalene {
                 
                 return "Enable special features for students of Magdalene Catholic College."
                 
@@ -182,9 +193,9 @@ class tableController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let count = super.tableView(tableView, numberOfRowsInSection: section)
         
-        if section == 3 {
+        if section == 2 {
             
-            if SchoolAnalyser.privSchoolMode != .Magdalene {
+            if SchoolAnalyser.schoolModeIgnoringUserPreferences != .Magdalene {
                 
                 return count - 1
             } else {
@@ -215,6 +226,7 @@ class tableController: UITableViewController {
                        let viewC = INUIEditVoiceShortcutViewController(voiceShortcut: alreadyRegistedVoiceShortcut)
                         viewC.modalPresentationStyle = .formSheet
                         viewC.delegate = self
+                        viewC.view.tintColor = UIColor.HLLOrange
                       //  self.present(viewC, animated: true, completion: nil)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                             
@@ -229,7 +241,11 @@ class tableController: UITableViewController {
                         
                         let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)
                         viewController.modalPresentationStyle = .formSheet
-                        viewController.delegate = self // Object conforming to `INUIAddVoiceShortcutViewControllerDelegate`.
+                        viewController.delegate = self
+                        viewController.view.tintColor = UIColor.HLLOrange
+                        
+                        
+                        // Object conforming to `INUIAddVoiceShortcutViewControllerDelegate`.
                      //   self.present(viewController, animated: true, completion: nil)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                             
@@ -256,6 +272,24 @@ class tableController: UITableViewController {
             
             
         }
+        
+        if indexPath.section == 3 {
+            
+            if IAPHandler.shared.hasPurchasedComplication() == false {
+            
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            let vc = mainStoryboard.instantiateViewController(withIdentifier: "PurchaseVC")
+            
+          present(vc, animated: true, completion: nil)
+            
+            } else {
+                
+            performSegue(withIdentifier: "CompManageSegue", sender: nil)
+                
+            }
+            
+        }
     
 }
     
@@ -276,29 +310,26 @@ class tableController: UITableViewController {
         
         if let uPhrase = phrase {
             
-            DispatchQueue.main.async {
                 
             self.addToSiriLabel.text = "Siri Phrase"
             self.siriPhraseLabel.text = "\"\(uPhrase)\""
             self.siriPhraseLabel.isHidden = false
                 
-            }
+            
             
         } else {
             
-            DispatchQueue.main.async {
             
             self.addToSiriLabel.text = "Add to Siri"
             self.siriPhraseLabel.isHidden = true
                 
-            }
+            
             
         }
         
-        DispatchQueue.main.async {
             
             self.tableView.reloadData()
-        }
+        
         
         
     }

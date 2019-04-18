@@ -11,37 +11,9 @@ import AppKit
 
 let version = Version()
 
-class MagdaleneUpdateAlert {
+class MagdalenePrompts {
     
-    func CheckToShowMagdaleneChangesPrompt() {
-        
-        
-        if SchoolAnalyser.schoolMode == .Magdalene {
-        
-        if let launched = HLLDefaults.appData.launchedVersion {
-            
-            if Version.currentVersion > launched {
-                
-              presentMagdaleneChangesPrompt()
-                
-            }
-            
-        } else {
-            
-           
-          presentMagdaleneChangesPrompt()
-            
-            
-        }
-        
-            
-        }
-        
-        
-    }
-    
-    
-    private func presentMagdaleneChangesPrompt() {
+    func presentMagdaleneChangesPrompt() {
         
         DispatchQueue.main.async {
             
@@ -50,9 +22,30 @@ class MagdaleneUpdateAlert {
             alert.window.title = "How Long Left \(Version.currentVersion)"
             alert.messageText = "New in Magdalene Mode:"
             alert.informativeText = """
-            
-            - This update fixes an issue where Magdalene Mode would not be avaliable for Magdalene users.
+            - Added a new submenu that displays a countdown to the School Holidays.
 
+            """
+            
+            alert.alertStyle = NSAlert.Style.informational
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
+            
+        }
+    }
+    
+    func presentSchoolHolidaysPrompt() {
+        
+        DispatchQueue.main.async {
+            
+            NSApp.activate(ignoringOtherApps: true)
+            let alert: NSAlert = NSAlert()
+            alert.window.title = "How Long Left \(Version.currentVersion)"
+            alert.messageText = "School is done for the term!"
+            alert.informativeText = """
+            How Long Left will count down to the start of next term. You can disable this in Magdalene preferences.
+            
+            Have a great holidays! Thanks for using How Long Left. 😁
+            
             """
             
             alert.alertStyle = NSAlert.Style.informational

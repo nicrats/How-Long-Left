@@ -10,12 +10,12 @@ import Foundation
 
 class DoubleEventDetector {
     
+    @available(*, deprecated, message: "Detecting doubles is deprecated.")
     func detectDoublesIn(events: [HLLEvent]) -> [HLLEvent] {
         
         if HLLDefaults.magdalene.doDoubles == false {
             return events
         }
-        
         
         var returnArray = [HLLEvent]()
         

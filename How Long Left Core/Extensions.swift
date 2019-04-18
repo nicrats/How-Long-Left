@@ -20,6 +20,15 @@ extension String {
         }
     }
     
+        func capitalizingFirstLetter() -> String {
+            return prefix(1).uppercased() + self.lowercased().dropFirst()
+        }
+        
+        mutating func capitalizeFirstLetter() {
+            self = self.capitalizingFirstLetter()
+        }
+    
+    
     func containsAnyOfThese(Strings: [String]) -> Bool {
         
         var r = false
@@ -83,10 +92,16 @@ extension Date {
     
     func formattedTime() -> String {
         
-        let dateFormatter  = DateFormatter()
-        dateFormatter.dateFormat = "h:mma"
-        return dateFormatter.string(from: self)
         
+        let dateFormatter  = DateFormatter()
+        
+        if HLLDefaults.general.use24HourTime == true {
+          dateFormatter.dateFormat = "HH:mm"
+        } else {
+          dateFormatter.dateFormat = "h:mma"
+        }
+        
+        return dateFormatter.string(from: self)
     }
     
     func formattedDate() -> String {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -164,25 +164,6 @@
                     <rect key="frame" x="16" y="77" width="444" height="5"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </box>
-                <popUpButton verticalHuggingPriority="750" id="R1B-k0-o5r">
-                    <rect key="frame" x="129" y="17" width="220" height="25"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" title="Use short units (hr, min)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="u44-1a-1Ew" id="OMF-dL-M4g">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="menu"/>
-                        <menu key="menu" id="cGm-Wz-Xpb">
-                            <items>
-                                <menuItem title="Use short units (hr, min)" state="on" identifier="4" id="u44-1a-1Ew">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="Use full units (hour, minute)" identifier="5" id="zng-ml-E5e"/>
-                            </items>
-                        </menu>
-                    </popUpButtonCell>
-                    <connections>
-                        <action selector="unitsClicked:" target="-2" id="GTv-2P-GVB"/>
-                    </connections>
-                </popUpButton>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Exu-hm-W0e">
                     <rect key="frame" x="206" y="364" width="65" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -226,6 +207,25 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <popUpButton verticalHuggingPriority="750" id="R1B-k0-o5r">
+                    <rect key="frame" x="122" y="17" width="235" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <popUpButtonCell key="cell" type="push" title="Use short units (hr, min)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="u44-1a-1Ew" id="OMF-dL-M4g">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" id="cGm-Wz-Xpb">
+                            <items>
+                                <menuItem title="Use short units (hr, min)" state="on" identifier="4" id="u44-1a-1Ew">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                                <menuItem title="Use full units (hour, minute)" identifier="5" id="zng-ml-E5e"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <action selector="unitsClicked:" target="-2" id="GTv-2P-GVB"/>
+                    </connections>
+                </popUpButton>
             </subviews>
             <point key="canvasLocation" x="25" y="208"/>
         </customView>

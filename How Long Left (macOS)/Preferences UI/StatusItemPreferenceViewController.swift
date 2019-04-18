@@ -39,7 +39,11 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
     let shortUnitsMenuItemText = "Use short units (hr, min)"
     let fullUnitsMenuItemText = "Use full units (hours, minutes)"
     
-    let unavalibleUnitsMenuItemText = "Only avaliable in Minute mode"
+    let timerFullText = "Include seconds remaining"
+	let timerShortText = "Don't include seconds remaining"
+	
+	
+	
 	
 	let timer = RepeatingTimer(time: 0.2)
 	
@@ -153,8 +157,19 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
             
 		case self.fullUnitsMenuItemText:
             HLLDefaults.statusItem.useFullUnits = true
+			
+		case self.shortUnitsMenuItemText:
+			HLLDefaults.statusItem.useFullUnits = false
+		
+		case self.timerShortText:
+			HLLDefaults.statusItem.hideTimerSeconds = true
+			
+		case self.timerFullText:
+			HLLDefaults.statusItem.hideTimerSeconds = false
+			
         default:
-            HLLDefaults.statusItem.useFullUnits = false
+			break
+			
         }
         
 			self.generateStatusItemPreview()
@@ -249,12 +264,22 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
     }
     
     func updateUnitsMenu(enabled: Bool) {
-        
+		
+		unitsMenu.removeAllItems()
+		
+		if HLLDefaults.statusItem.mode == .Off {
+			
+			unitsLabel.textColor = NSColor.disabledControlTextColor
+			unitsMenu.isEnabled = false
+			
+			
+		} else {
+		
+			unitsLabel.textColor = NSColor.controlTextColor
+			unitsMenu.isEnabled = true
+			
         if enabled == true {
 			
-			unitsLabel.textColor = NSColor.controlTextColor
-            unitsMenu.isEnabled = true
-            unitsMenu.removeAllItems()
             unitsMenu.addItems(withTitles: [shortUnitsMenuItemText,fullUnitsMenuItemText])
             
             if HLLDefaults.statusItem.useFullUnits == true {
@@ -265,13 +290,18 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
             
         } else {
 			
+			unitsMenu.addItems(withTitles: [timerFullText, timerShortText])
 			
-			unitsLabel.textColor = NSColor.disabledControlTextColor
-            unitsMenu.isEnabled = false
-            unitsMenu.removeAllItems()
-            unitsMenu.addItem(withTitle: unavalibleUnitsMenuItemText)
+			if HLLDefaults.statusItem.hideTimerSeconds == true {
+				unitsMenu.selectItem(withTitle: timerShortText)
+			} else {
+				unitsMenu.selectItem(withTitle: timerFullText)
+			}
             
         }
+		
+		
+		}
         
     }
     

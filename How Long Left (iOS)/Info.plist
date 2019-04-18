@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>20</string>
+	<string>25</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -47,6 +47,33 @@
 		<string>GetEventTimeRemainingIntent</string>
 		<string>HowLongLeftIntent</string>
 		<string>IntentIntent</string>
+	</array>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>SettingsQuickActionIcon</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Settings</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.ryankontos.howlongleft.SettingsQuickAction</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>UpcomingQuickActionIcon</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Upcoming Events</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.ryankontos.howlongleft.upcomingEventsQuickAction</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>CurrentQuickActionIcon</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Current Events</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.ryankontos.howlongleft.currentEventsQuickAction</string>
+		</dict>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

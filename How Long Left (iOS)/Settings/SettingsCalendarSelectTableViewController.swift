@@ -12,7 +12,7 @@ import EventKit
 
 class SettingsCalendarSelectTableViewController: UITableViewController {
     
-    let calendar = EventDataSource.shared
+    let calendar = EventDataSource()
     let defaults = HLLDefaults.defaults
     var setCalendars = [String]()
     var calendars = [EKCalendar]()
@@ -155,7 +155,7 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
         
         
         
-        print("\(calendars[indexPath.row].title) selected")
+        //print("\(calendars[indexPath.row].title) selected")
         
         if #available(iOS 10.0, *) {
             let lightImpactFeedbackGenerator = UISelectionFeedbackGenerator()
@@ -203,7 +203,8 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
         
         DispatchQueue.main.async {
             
-            WatchSessionManager.sharedManager.updateContext(userInfo: ["SelectedCalendars" : self.setCalendars])
+            self.defaultsSync.syncDefaultsToWatch()
+            
             
         }
         

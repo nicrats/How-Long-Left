@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="watchOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14490.21"/>
     </dependencies>
@@ -275,7 +274,7 @@
                 <controller identifier="Prefs" id="kTj-bd-jY7" customClass="Prefs" customModule="How_Long_Left_watchOS_Extension">
                     <items>
                         <table alignment="left" id="eir-ID-RJI"/>
-                        <switch width="1" height="71" alignment="left" value="YES" title="Large Complication Countdown" id="ved-Dg-0ft">
+                        <switch width="1" height="71" alignment="left" title="Large Complication Countdown" id="ved-Dg-0ft">
                             <fontDescription key="font" type="system" pointSize="15"/>
                             <variation key="device=watch38mm" height="53">
                                 <fontDescription key="font" type="system" pointSize="11"/>
@@ -478,6 +477,27 @@
                                     </group>
                                     <connections>
                                         <outlet property="periodLabel" destination="3gq-mJ-gMD" id="bPu-7K-xna"/>
+                                    </connections>
+                                </tableRow>
+                                <tableRow identifier="ElapsedRow" selectable="NO" id="BkS-DT-9jf" customClass="ElapsedRow" customModule="How_Long_Left_watchOS_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="tJY-rI-I4g">
+                                        <items>
+                                            <group width="1" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="789-vV-gW0">
+                                                <items>
+                                                    <label width="130" height="15" alignment="left" verticalAlignment="center" text="Elapsed:" numberOfLines="0" minimumScaleFactor="0.10000000000000001" id="fFg-16-5UT">
+                                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                        <fontDescription key="font" type="system" weight="medium" pointSize="13"/>
+                                                    </label>
+                                                    <label alignment="left" verticalAlignment="center" text="75 minutes" id="CHr-qE-rbJ">
+                                                        <fontDescription key="font" type="system" weight="semibold" pointSize="18"/>
+                                                    </label>
+                                                </items>
+                                                <edgeInsets key="margins" left="0.0" right="0.0" top="4" bottom="4"/>
+                                            </group>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="elapsedLabel" destination="CHr-qE-rbJ" id="k07-Oi-Iay"/>
                                     </connections>
                                 </tableRow>
                                 <tableRow identifier="DurationRow" selectable="NO" id="x6x-cP-jC0" customClass="DurationRow" customModule="How_Long_Left_watchOS_Extension">

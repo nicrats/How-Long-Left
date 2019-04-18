@@ -27,6 +27,7 @@ final class GeneralPreferenceViewController: NSViewController, Preferenceable {
     @IBOutlet weak var showPercentageCheckbox: NSButton!
     @IBOutlet weak var showLocationsCheckbox: NSButton!
     @IBOutlet weak var showUpdatesButton: NSButton!
+    @IBOutlet weak var use24HourTime: NSButton!
     
     @IBAction func showUpdatesClicked(_ sender: NSButton) {
         
@@ -92,6 +93,20 @@ final class GeneralPreferenceViewController: NSViewController, Preferenceable {
         
     }
     
+    @IBAction func use24HourTimeClicked(_ sender: NSButton) {
+        
+        DispatchQueue.main.async {
+            
+            var state = false
+            if sender.state == .on { state = true }
+            HLLDefaults.general.use24HourTime = state
+            
+            HLLDefaults.defaults.set(true, forKey: "changed24HourPref")
+            
+        }
+        
+        
+    }
     @IBAction func showLocationsClicked(_ sender: NSButton) {
         
         DispatchQueue.main.async {
@@ -147,6 +162,12 @@ final class GeneralPreferenceViewController: NSViewController, Preferenceable {
             showLocationsCheckbox.state = .on
         } else {
             showLocationsCheckbox.state = .off
+        }
+        
+        if HLLDefaults.general.use24HourTime == true {
+            use24HourTime.state = .on
+        } else {
+            use24HourTime.state = .off
         }
         
         // Setup stuff here

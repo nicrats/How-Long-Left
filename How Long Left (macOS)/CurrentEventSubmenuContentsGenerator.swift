@@ -16,22 +16,63 @@ class CurrentEventSubmenuContentsGenerator {
         
         var arrayOne = [String]()
         
-        if event.completionStatus == .InProgress {
-        
-        arrayOne.append("On Now: \(event.title)")
+        switch event.completionStatus {
             
-        } else {
-           
-        arrayOne.append("\(event.title)")
+        case .NotStarted:
+            arrayOne.append("Upcoming Event: \(event.title)")
+        case .InProgress:
+            arrayOne.append("On Now: \(event.title)")
+        case .Done:
+            arrayOne.append("Completed Event: \(event.title)")
+        }
+        
+        if event.completionStatus == .NotStarted {
+            
+            var secondsTo = event.startDate.timeIntervalSinceNow+60
+            // let minutesLeft = Int(secondsLeft/60+1)
+            // let minText = MinutePluralizer(Minutes: minutesLeft)
+            
+            let formatter1 = DateComponentsFormatter()
+            
+            if secondsTo+1 > 86400 {
+                secondsTo += 86400
+                formatter1.allowedUnits = [.day]
+                
+            } else if secondsTo+1 > 3599 {
+                
+                formatter1.allowedUnits = [.hour, .minute]
+                
+            } else {
+                
+                formatter1.allowedUnits = [.minute]
+                
+            }
+            
+            formatter1.unitsStyle = .full
+            let timeUntilStartString = formatter1.string(from: secondsTo)!
+            
+            arrayOne.append("Starts in \(timeUntilStartString).")
             
         }
         
         var arrayTwo = [String]()
         
        
+        if event.startDate.formattedDate() != event.endDate.formattedDate() || event.startDate.formattedDate() != Date().formattedDate() {
+            
+            arrayTwo.append("Start: \(event.startDate.formattedDate()), \(event.startDate.formattedTime())")
+            arrayTwo.append("End: \(event.endDate.formattedDate()), \(event.endDate.formattedTime())")
+            
+            
+        } else {
+            
+            
+            arrayTwo.append("Start: \(event.startDate.formattedTime())")
+            arrayTwo.append("End: \(event.endDate.formattedTime())")
+            
+        }
         
-        arrayTwo.append("Start: \(event.startDate.formattedTime())")
-        arrayTwo.append("End: \(event.endDate.formattedTime())")
+        
         
         
         if let period = event.magdalenePeriod {
@@ -89,7 +130,7 @@ class CurrentEventSubmenuContentsGenerator {
         }
         
         formatter1.unitsStyle = .full
-        let elapsed = formatter1.string(from: secondsElapsed+60)!
+        let elapsed = formatter1.string(from: secondsElapsed)!
         
         if event.completionStatus == .InProgress {
         
@@ -101,11 +142,13 @@ class CurrentEventSubmenuContentsGenerator {
         
         if secondsLeft+1 > 86400 {
             secondsLeft += 86400
-            formatter.allowedUnits = [.day]
+            formatter.allowedUnits = [.day, .weekOfMonth]
             
         } else if secondsLeft+1 > 3599 {
             
             formatter.allowedUnits = [.hour, .minute]
+            
+            secondsLeft -= 8640
             
         } else {
             
@@ -114,7 +157,7 @@ class CurrentEventSubmenuContentsGenerator {
         }
         
         formatter.unitsStyle = .full
-        let countdownText = formatter.string(from: secondsLeft+60)!
+        let countdownText = formatter.string(from: event.duration)!
         
         
         arrayTwo.append("Duration: \(countdownText)")

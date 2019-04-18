@@ -22,14 +22,13 @@ class CountdownStringGenerator {
             var returnString: String
             
             let currentEvent = countdownEvent
-            var secondsLeft = currentEvent.endDate.timeIntervalSinceNow
+            let secondsLeft = currentEvent.endDate.timeIntervalSinceNow
             
             let formatter = DateComponentsFormatter()
             
             if secondsLeft+1 > 86400 {
                 
-                secondsLeft += 86400
-                formatter.allowedUnits = [.day]
+                formatter.allowedUnits = [.day, .weekOfMonth]
                 
             } else if secondsLeft+1 > 3599 {
                 
@@ -169,7 +168,7 @@ class CountdownStringGenerator {
         let countdownText = formatter.string(from: secondsLeft+60)!
     
     
-        return "\(event.title) ends in \(countdownText)."
+        return "\(event.title) \(event.endsInString) in \(countdownText)."
     
     }
     

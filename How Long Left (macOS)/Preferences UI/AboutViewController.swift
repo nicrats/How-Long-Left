@@ -40,7 +40,7 @@ final class aboutViewController: NSViewController, Preferenceable {
         
         
         
-        if SchoolAnalyser.privSchoolMode == .Magdalene || MagdaleneWifiCheck().isOnMagdaleneWifi() {
+        if SchoolAnalyser.schoolModeIgnoringUserPreferences == .Magdalene || MagdaleneWifiCheck().isOnMagdaleneWifi() {
             
             let inYear = Date().year()-2008
             
@@ -54,7 +54,7 @@ final class aboutViewController: NSViewController, Preferenceable {
                 
             } else {
                 
-                devLabel.stringValue = "Developed by Ryan Kontos, a year \(inYear) student at Magdalene."
+                devLabel.stringValue = "Developed by Ryan Kontos, a Year \(inYear) student at Magdalene."
                 
             }
             

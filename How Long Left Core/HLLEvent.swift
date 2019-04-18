@@ -19,16 +19,37 @@ struct HLLEvent: Equatable {
     var title: String
     var shortTitle: String
     var originalTitle: String
+    var ultraCompactTitle: String
     var startDate: Date
     var endDate: Date
     var location: String?
     var fullLocation: String?
+    var shortLocation: String?
     var CLLocation: CLLocation?
     var holidaysTerm: Int?
     var magdalenePeriod: String?
     var calendarID: String?
     var calendar: EKCalendar?
     var isMagdaleneBreak = false
+    var EKEvent: EKEvent?
+    var endsInString: String {
+        
+        get {
+        
+        if self.holidaysTerm != nil {
+            
+            return "end"
+            
+        } else {
+            
+            return "ends"
+            
+        }
+            
+            
+        }
+        
+    }
     
     var duration: TimeInterval {
         
@@ -74,16 +95,23 @@ struct HLLEvent: Equatable {
         
         // Init a HLLEvent from an EKEvent.
         
-        title = event.title.truncated(limit: 25, position: .tail, leader: "...")
+        title = event.title
+        ultraCompactTitle = event.title
         originalTitle = event.title
         shortTitle = event.title.truncated(limit: 25, position: .tail, leader: "...")
         startDate = event.startDate
         endDate = event.endDate
+        EKEvent = event
         
         if let loc = event.location, loc != "" {
-            let truncatedLocation = loc.truncated(limit: 15, position: .tail, leader: "...")
+            
             if HLLDefaults.general.showLocation {
-                location = truncatedLocation
+                location = loc
+                
+                let truncatedLocation = loc.truncated(limit: 15, position: .tail, leader: "...")
+                
+                shortLocation = truncatedLocation
+                
             }
             fullLocation = loc
             
@@ -101,6 +129,7 @@ struct HLLEvent: Equatable {
         
         title = inputTitle
         originalTitle = inputTitle
+        ultraCompactTitle = inputTitle
         shortTitle = inputTitle
         startDate = inputStart
         endDate = inputEnd

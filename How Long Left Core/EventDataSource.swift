@@ -17,8 +17,14 @@ import EventKit
 
 class EventDataSource {
     
-    static let shared = EventDataSource()
     //let eFetchQueue = DispatchQueue(label: "fetchQueue")
+    
+    let queue = DispatchQueue(label: "thread-safe-obj", attributes: .concurrent)
+    
+    // write
+    
+    
+    // read
     
     static var accessToCalendar = calendarAccess.Unknown
     var latestFetchSchoolMode = SchoolMode.None
@@ -77,17 +83,12 @@ class EventDataSource {
     
     func getEventsFromCalendar(start: Date, end: Date) -> [HLLEvent] {
         
-        EventDataSource.calendarReads += 1
-        
        // print("Doing calendar read \(EventDataSource.calendarReads)")
         
         var returnArray = [HLLEvent]()
             
            // print("Getting events")
             
-            
-            
-            self.getCalendarAccess()
             
             let defaults = HLLDefaults.defaults
             let schoolFunctionsManager = SchoolFunctionsManager()
@@ -99,7 +100,6 @@ class EventDataSource {
             
             #if os(iOS) || os(watchOS)
         
-            
             if let storedIDS = defaults.stringArray(forKey: "setCalendars") {
                 
              //   print("Stored IDs count: \(storedIDS.count)")
@@ -373,10 +373,12 @@ class EventDataSource {
     
     func getCurrentEvents() -> [HLLEvent] {
         
-        
         // Returns all calendar events that are currently in progress.
         
-        let eventsToday = fetchEventsFromPresetPeriod(period: EventFetchPeriod.AllToday)
+        let startDate = Date().midnight()
+        let endDate = startDate.addingTimeInterval(86400)
+        
+        let eventsToday = getEventsFromCalendar(start: startDate, end: endDate)
         
         var currentEvents = [HLLEvent]()
 
@@ -391,7 +393,11 @@ class EventDataSource {
         
         currentEvents.sort(by: { $0.endDate.compare($1.endDate) == .orderedAscending })
         
-        EventCache.currentEvents = currentEvents
+        queue.async(flags: .barrier) {
+           EventCache.currentEvents = currentEvents
+        }
+        
+        
         
         return currentEvents
     }
@@ -413,7 +419,7 @@ class EventDataSource {
             }
         }
         
-        return upcomingEvents
+        return upcomingEvents.sorted(by: { $0.startDate.compare($1.startDate) == .orderedAscending })
     }
     
     func getUpcomingEventsFromNextDayWithEvents() -> ([HLLEvent]) {
@@ -452,7 +458,7 @@ class EventDataSource {
             
         }
         
-        return returnEvents
+        return returnEvents.sorted(by: { $0.startDate.compare($1.startDate) == .orderedAscending })
         
     }
     
@@ -467,13 +473,17 @@ class EventDataSource {
         
         for _ in 1...8 {
             
-            returnArray[loopStart] = getEventsFromCalendar(start: loopStart, end: loopEnd)
+            returnArray[loopStart] = getEventsFromCalendar(start: loopStart, end: loopEnd).sorted(by: { $0.startDate.compare($1.startDate) == .orderedAscending })
             var comp: DateComponents = NSCalendar.current.dateComponents([.year, .month, .day], from: loopStart)
             comp.timeZone = TimeZone.current
-            loopStart = NSCalendar.current.date(from: comp)!.addingTimeInterval(86400)
+            //loopStart = NSCalendar.current.date(from: comp)!.addingTimeInterval(86400)
+            loopStart = loopStart.addingTimeInterval(86400)
             loopEnd = loopEnd.addingTimeInterval(86400)
             
         }
+        
+       
+        
         
         return returnArray
         

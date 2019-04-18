@@ -12,11 +12,38 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    static var launchPage: TabBarPage? {
+        
+        didSet {
+            
+            if let launch = AppDelegate.launchPage {
+                
+                RootViewController.shared?.setSelectedPage(to: launch)
+                
+            }
+            
+            
+        }
+        
+    }
+    
+    static var launchToCurrentEvent = false {
+        
+        didSet {
+            
+            CurrentEventsTableViewController.shared?.checkLaunchToCurrent(external: true)
+            
+        }
+        
+    }
+    
     var window: UIWindow?
 
     let notoGen = MilestoneNotificationScheduler()
     
     let sync = DefaultsSync()
+    
+    let cal = EventDataSource()
  
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -24,6 +51,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppFunctions.shared.run()
         application.setMinimumBackgroundFetchInterval(60)
         
+        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+            
+            self.handleShortcut(shortcutItem)
+            
+        }
         
         
         return true
@@ -31,23 +63,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: {
-            self.handleShortcut(shortcutItem)
+        
+        self.handleShortcut(shortcutItem)
             
-        })
+        
         
         
     }
     
     
+    
     private func handleShortcut(_ item: UIApplicationShortcutItem) {
         
-        if item.type == "com.ryankontos.howlongleft.settingshortcut" {
+        if let shortcutItem = ApplicationShortcut(rawValue: item.type) {
             
-            ViewController.launchedWithSettingsShortcut = true
+            switch shortcutItem {
+            
+            case .LaunchCurrentEvents:
+                AppDelegate.launchPage = .Current
+            case .LaunchUpcomingEvents:
+                AppDelegate.launchPage = .Upcoming
+            case .LaunchSettngs:
+               AppDelegate.launchPage = .Settings
+            
+        }
+            
+        }
+            
+        
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        if let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true) {
+        
+            if components.host == "ViewCurrentEvent" {
+                
+                if cal.getCurrentEvent() != nil {
+                    
+               //     AppDelegate.launchPage = .Current
+                 //   AppDelegate.launchToCurrentEvent = true
+                    
+                }
+                
+                
+            }
             
         }
         
+        
+       return true
     }
     
    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -70,7 +135,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
+        
+     //   HLLDefaults.shared.loadDefaultsFromCloud()
+        
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
 
@@ -86,3 +155,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+enum ApplicationShortcut: String {
+    
+    case LaunchCurrentEvents = "com.ryankontos.howlongleft.currentEventsQuickAction"
+    case LaunchUpcomingEvents = "com.ryankontos.howlongleft.upcomingEventsQuickAction"
+    case LaunchSettngs = "com.ryankontos.howlongleft.SettingsQuickAction"
+    
+}

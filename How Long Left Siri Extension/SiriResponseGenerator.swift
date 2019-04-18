@@ -10,7 +10,7 @@ import Foundation
 
 class SiriResponseGenerator {
     
-    let calendar = EventDataSource.shared
+    let calendar = EventDataSource()
     
     
     
@@ -26,11 +26,11 @@ class SiriResponseGenerator {
             
             let eventOnResponses = [
                 
-            "\(title) ends in \(remaining).",
+            "\(title) \(currentEvent.endsInString) in \(remaining).",
                 
             "There's \(remaining) left of \(title).",
-            
-            "There's \(remaining) until \(title) is done.",
+                
+            "There's \(remaining) until \(title) finishes.",
             
             ]
                 
@@ -69,10 +69,12 @@ class SiriResponseGenerator {
         
         let formatter = DateComponentsFormatter()
         
+        secondsLeft -= 2
+        
         if secondsLeft+1 > 86400 {
             
             secondsLeft += 86400
-            formatter.allowedUnits = [.day]
+            formatter.allowedUnits = [.day, .hour, .minute, .second]
             
         } else if secondsLeft+1 > 3599 {
             

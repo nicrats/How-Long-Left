@@ -71,17 +71,34 @@ class UpcomingEventStringGenerator {
             } else {
                 
                 let formatter = DateComponentsFormatter()
-                formatter.allowedUnits = [.hour, .minute]
-                formatter.unitsStyle = .full
-                let timeUntilStartFormatted = formatter.string(from: nextEvent.startDate.timeIntervalSinceNow+60)!
+                var secondsLeft = nextEvent.startDate.timeIntervalSinceNow+60
                 
-                returnString = "\(nextEvent.title) starts in \(timeUntilStartFormatted)."
+                if secondsLeft+1 > 86400 {
+                    secondsLeft += 86400
+                    formatter.allowedUnits = [.day, .weekOfMonth]
+                    
+                } else if secondsLeft+1 > 3599 {
+                    
+                    formatter.allowedUnits = [.hour, .minute]
+                    
+                    secondsLeft -= 8640
+                    
+                } else {
+                    
+                    formatter.allowedUnits = [.minute]
+                    
+                }
+                
+                formatter.unitsStyle = .full
+                let countdownText = formatter.string(from: secondsLeft)!
+                
+                returnString = "\(nextEvent.title) starts in \(countdownText)."
                 
             }
             
         } else {
             
-            returnString = "No upcoming events today."
+            returnString = "No upcoming events."
             
         }
             
@@ -214,7 +231,6 @@ class UpcomingEventStringGenerator {
             var eventItems = [String]()
             var eventsArray = [HLLEvent]()
             
-            
             var comp: DateComponents = NSCalendar.current.dateComponents([.year, .month, .day], from: Date())
             comp.timeZone = TimeZone.current
             let midnightToday = NSCalendar.current.date(from: comp)!
@@ -245,8 +261,39 @@ class UpcomingEventStringGenerator {
             
             if dayObject.value.isEmpty == false {
                 
+                var finalArray = [HLLEvent]()
+                
                 eventsArray = dayObject.value
-                eventItems = generateMenuEventStrings(events: eventsArray)
+                
+                for event in eventsArray {
+                    
+                    if event.startDate.midnight() == dayObject.key.midnight() {
+                        
+                        finalArray.append(event)
+                        
+                    }
+                    
+                }
+                
+                eventsPluralised = "event"
+                if finalArray.count != 1 {
+                    eventsPluralised += "s"
+                }
+                
+                switch daysUntilUpcomingStart {
+                case 0:
+                    dayText = "Today"
+                    menuTitle = "Today (\(finalArray.count) \(eventsPluralised))"
+                    
+                    
+                default:
+                    dayText = formattedEnd
+                    menuTitle = "\(dayText) (\(finalArray.count) \(eventsPluralised))"
+                }
+                
+                
+                
+                eventItems = generateMenuEventStrings(events: finalArray)
                 
                 
             }
@@ -269,8 +316,9 @@ class UpcomingEventStringGenerator {
         
         var returnArray = [String]()
         
+        let sortedEvents = events.sorted(by: { $0.startDate.compare($1.startDate) == .orderedAscending })
         
-        for event in events {
+        for event in sortedEvents {
             
             var titleAndMaybeLocation = event.title
             
@@ -278,7 +326,14 @@ class UpcomingEventStringGenerator {
                 titleAndMaybeLocation += " (\(location))"
             }
             
+            
             var eventTimeInfo = "\(event.startDate.formattedTime())-\(event.endDate.formattedTime())"
+            
+            if event.startDate.formattedDate() != event.endDate.formattedDate() {
+                
+                eventTimeInfo = "\(event.startDate.formattedTime())"
+                
+            }
             
             if let period = event.magdalenePeriod {
                 

@@ -11,7 +11,7 @@ import EventKit
 
 class ComplicationSim {
     
-    let cal = EventDataSource.shared
+    let cal = EventDataSource()
     
     init() {
         
@@ -132,14 +132,14 @@ class ComplicationSim {
     
     func getTimelineStartDate() -> Date? {
         
-        let cal = EventDataSource.shared
+        let cal = EventDataSource()
         cal.updateEventStore()
         return cal.fetchEventsFromPresetPeriod(period: .AllToday).first?.startDate
         
     }
     
     func getTimelineEndDate() -> Date? {
-        let cal = EventDataSource.shared
+        let cal = EventDataSource()
         cal.updateEventStore()
         return cal.fetchEventsFromPresetPeriod(period: .AllToday).last?.endDate
         

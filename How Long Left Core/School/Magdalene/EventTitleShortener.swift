@@ -25,9 +25,11 @@ class EventTitleShortener {
             var event = eventItem
             
         var newTitle = event.title
+        var ultraCompact: String?
         
         if event.originalTitle.contains(text:"Pastoral Care") {
             newTitle = "Homeroom"
+            ultraCompact = "PC"
         }
         
         if event.originalTitle.contains(text:"Information Software Technology") {
@@ -48,6 +50,7 @@ class EventTitleShortener {
             
         if event.originalTitle.contains(text:"Commerce") {
             newTitle = "Commerce"
+            ultraCompact = "Cmrce"
         }
             
         if event.originalTitle.contains(text:"Arts") {
@@ -64,6 +67,7 @@ class EventTitleShortener {
             
         if event.originalTitle.contains(text:"Food Technology") {
             newTitle = "Food Tech"
+            ultraCompact = "FT"
         }
         
         if event.originalTitle.contains(text:"SPORT:") {
@@ -72,18 +76,22 @@ class EventTitleShortener {
         
         if event.originalTitle.contains(text:"English") {
             newTitle = "English"
+            ultraCompact = "ENG"
         }
         
         if event.originalTitle.contains(text:"Science") {
             newTitle = "Science"
+            ultraCompact = "SCI"
         }
         
         if event.originalTitle.contains(text:"HSIE") {
             newTitle = "History"
+            ultraCompact = "HIST"
         }
         
         if event.originalTitle.contains(text:"History") {
             newTitle = "History"
+            ultraCompact = "HIST"
         }
         
         if event.originalTitle.contains(text:"History Elective") {
@@ -104,6 +112,7 @@ class EventTitleShortener {
         
         if event.originalTitle.contains(text:"PDHPE") {
             newTitle = "PDHPE"
+            ultraCompact = "PDH"
         }
         
         if event.originalTitle.contains(text:"Geography Elective") {
@@ -120,10 +129,12 @@ class EventTitleShortener {
             
         if event.originalTitle.contains(text:"Bussiness Studies") {
             newTitle = "Bussiness"
+            ultraCompact = "BS"
         }
             
         if event.originalTitle.contains(text:"Bussiness Servies") {
             newTitle = "Bussiness"
+            ultraCompact = "BS"
         }
             
         if event.originalTitle.contains(text:"IST") {
@@ -132,24 +143,29 @@ class EventTitleShortener {
         
         if event.originalTitle.contains(text:"Religion") {
             newTitle = "Religion"
+            ultraCompact = "RE"
         }
             
         if event.originalTitle.contains(text:"Chemistry") {
             newTitle = "Chemistry"
+            ultraCompact = "Chem"
         }
             
         if event.originalTitle.contains(text:"Biology") {
             newTitle = "Biology"
+            ultraCompact = "Bio"
         }
         
         if event.originalTitle.contains(text:"Physics") {
             newTitle = "Physics"
+            ultraCompact = "PHYS"
         }
             
         if event.originalTitle.contains(text:"Photography") {
             newTitle = "Photography"
+            ultraCompact = "PHO"
         }
-        
+          
         if event.originalTitle.contains(text:"Study") {
             newTitle = "Study"
         }
@@ -164,6 +180,16 @@ class EventTitleShortener {
             
         event.title = newTitle
         event.shortTitle = newTitle
+            
+        if let UC = ultraCompact {
+                
+         event.ultraCompactTitle = UC
+                
+        } else {
+            
+        event.ultraCompactTitle = newTitle
+            
+        }
             
         returnArray.append(event)
             

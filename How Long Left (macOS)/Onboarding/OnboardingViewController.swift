@@ -51,7 +51,7 @@ class OnboardingViewController: NSViewController {
         
         vcs.append(NotificationPreferenceViewController())
         
-        if SchoolAnalyser.privSchoolMode == .Magdalene {
+        if SchoolAnalyser.schoolModeIgnoringUserPreferences == .Magdalene {
             
             vcs.append(MagdalenePreferenceViewController())
             

@@ -6,7 +6,8 @@ project 'How Long Left.xcodeproj'
 target 'How Long Left (iOS)' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-pod "ViewAnimator"
+pod 'CryptoSwift'
+pod 'MarqueeLabel'
   # Pods for How Long Left (iOS)
 
 end
@@ -22,7 +23,6 @@ end
 target 'How Long Left (watchOS)' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-
   # Pods for How Long Left (watchOS)
 
 end
@@ -30,7 +30,7 @@ end
 target 'How Long Left (watchOS) Extension' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-
+pod 'CryptoSwift'
   # Pods for How Long Left (watchOS) Extension
 
 end

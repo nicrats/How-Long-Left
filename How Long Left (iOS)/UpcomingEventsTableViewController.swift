@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MarqueeLabel
     
     class UpcomingEventsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DataSourceChangedDelegate {
         
@@ -20,17 +21,21 @@ import UIKit
         override func viewDidLoad() {
             
             //  self.tabBarController?.tabBar.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-            
+            SchoolAnalyser.shared.analyseCalendar()
             self.endCheckTimer = Timer.scheduledTimer(timeInterval: TimeInterval(0.5), target: self, selector: #selector(self.checkForEnd), userInfo: nil, repeats: true)
             RunLoop.main.add(self.endCheckTimer, forMode: .common)
+            
+            events = eventDatasource.getUpcomingEventsFromNextDayWithEvents()
             
             tableView.delegate = self
             tableView.dataSource = self
             tableView.reloadData()
             
+            updateCountdownData()
+            
             WatchSessionManager.sharedManager.addDataSourceChangedDelegate(delegate: self)
             
-            SchoolAnalyser.shared.analyseCalendar()
+            
             
             
             NotificationCenter.default.addObserver(
@@ -68,11 +73,40 @@ import UIKit
         
         func updateCountdownData() {
             
-            eventDatasource.updateEventStore()
-            events = eventDatasource.getUpcomingEventsFromNextDayWithEvents()
             DispatchQueue.main.async {
+                
                 self.tableView.reloadData()
+                
             }
+            
+            self.events = self.eventDatasource.getUpcomingEventsFromNextDayWithEvents()
+            
+            var tabTitle = "Upcoming Events"
+            
+            if let firstUpcoming = self.events.first {
+            
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "EEEE"
+                let formattedEnd = dateFormatter.string(from: firstUpcoming.startDate)
+            
+           let days = firstUpcoming.startDate.midnight().timeIntervalSince(Date().midnight())/60/60/24
+            
+           
+                
+            switch days {
+            case 0:
+                tabTitle = "Upcoming Today"
+            case 1:
+                tabTitle = "Upcoming Tomorrow"
+            default:
+                tabTitle = "Upcoming \(formattedEnd)"
+            }
+            
+        }
+           
+            self.navigationItem.title = tabTitle
+                
+            
             
         }
         
@@ -120,11 +154,11 @@ import UIKit
             
             if event.location == nil {
                 
-                return 64
+                return 70
                 
             } else {
                 
-                return 76
+                return 95
                 
             }
             
@@ -168,34 +202,64 @@ import UIKit
 
 class upcomingCell: UITableViewCell {
     
-    @IBOutlet weak var titleLabel: UILabel!
+    var timer: Timer!
+    
+    @IBOutlet weak var titleLabel: MarqueeLabel!
     @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var locationLabel: MarqueeLabel!
+    @IBOutlet weak var startsInTimer: UILabel!
+    let timerStringGenerator = EventCountdownTimerStringGenerator()
+    var rowEvent: HLLEvent!
+    let gradient = CAGradientLayer()
     
     @IBOutlet weak var calColBAr: UIView!
-    var rowEvent: HLLEvent!
     
     func generate(from event: HLLEvent) {
         
-        rowEvent = event
-        titleLabel.text = event.title
+        for label in [titleLabel!, locationLabel!] {
         
-        if let period = rowEvent.magdalenePeriod {
-        
-            timeLabel.text = "Period: \(period)"
-            
-        } else {
-            
-            timeLabel.text = "\(event.startDate.formattedTime()) - \(event.endDate.formattedTime())"
+        label.marqueeType = .MLContinuous
+        label.animationDelay = 6
+        label.scrollDuration = 15
+        label.fadeLength = 10
+        label.trailingBuffer = 20
+        label.triggerScrollStart()
             
         }
         
         
+        rowEvent = event
+
+        
+       // updateTimer()
+        
+       /* timer = Timer(fire: Date(), interval: 0.1, repeats: true, block: {_ in
             
+          //  self.updateTimer()
+            
+        })
+        
+        RunLoop.main.add(timer, forMode: .default) */
+        
+        
+        titleLabel.text = event.title
+        
+        var timeLabelText = "\(event.startDate.formattedTime()) - \(event.endDate.formattedTime())"
+        
+        if let period = rowEvent.magdalenePeriod {
+        
+            timeLabelText = "Period \(period): \(timeLabelText)"
+            
+        }
+        
+        timeLabel.text = timeLabelText
+        
+        
             
         if let loc = rowEvent.location {
             
             locationLabel.text = loc
+            locationLabel.isHidden = false
             
         } else {
             
@@ -203,16 +267,35 @@ class upcomingCell: UITableViewCell {
             
         }
         
-        if let CGcolor = EventDataSource.shared.calendarFromID(event.calendarID)?.cgColor {
+        if let col = event.calendar?.cgColor {
             
-            let CalUIcolor = UIColor(cgColor: CGcolor)
-            calColBAr.backgroundColor = CalUIcolor
+            let uiCOL = UIColor(cgColor: col)
+            
+          //  let lighter = uiCOL.lighter(by: 13)!.cgColor
+           // let darker = uiCOL.darker(by: 8)!.cgColor
+            
+            
+            
+            
+           // gradient.frame = calColBAr.bounds
+           // gradient.colors = [lighter, col, darker]
+            
+          //  calColBAr.layer.insertSublayer(gradient, at: 0)
+            
+            calColBAr.backgroundColor = uiCOL
             
         }
         
     }
     
+    func updateTimer() {
+        
+        if let countdownString = self.timerStringGenerator.generateStringFor(event: rowEvent, start: true) {
+            startsInTimer.text = "\(countdownString)"
+        }
+        
+        
+    }
+    
     
 }
-
-

@@ -12,8 +12,12 @@ import WatchKit
 import Intents
 import IntentsUI
 #endif
+import MarqueeLabel
 
 class CurrentEventsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DataSourceChangedDelegate {
+    
+    static var shared: CurrentEventsTableViewController?
+    static var selectedEvent: HLLEvent?
     
     let defaults = HLLDefaults.defaults
     let eventDatasource = EventDataSource()
@@ -24,10 +28,18 @@ class CurrentEventsTableViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var noEventsStack: UIStackView!
     var endCheckTimer: Timer!
     
+
+    
+    
     override func viewDidLoad() {
      
       //  self.tabBarController?.tabBar.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
+        IAPHandler.shared.fetchAvailableProducts()
+        
+        CurrentEventsTableViewController.shared = self
+        
+        events = eventDatasource.getCurrentEvents()
         self.endCheckTimer = Timer.scheduledTimer(timeInterval: TimeInterval(0.5), target: self, selector: #selector(self.checkForEnd), userInfo: nil, repeats: true)
         RunLoop.main.add(self.endCheckTimer, forMode: .common)
         
@@ -96,14 +108,20 @@ class CurrentEventsTableViewController: UIViewController, UITableViewDelegate, U
         eventDatasource.updateEventStore()
         events = eventDatasource.getCurrentEvents()
         DispatchQueue.main.async {
+           // self.tableView.beginUpdates()
             self.tableView.reloadData()
         }
-            
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.view.layoutSubviews()
+        self.navigationController?.view.layoutSubviews()
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         
          SchoolAnalyser.shared.analyseCalendar()
         
@@ -111,12 +129,79 @@ class CurrentEventsTableViewController: UIViewController, UITableViewDelegate, U
         
         updateCountdownData()
         
+        checkLaunchToCurrent(external: false)
         
         
     }
     
+    func checkLaunchToCurrent(external: Bool) {
+        
+        if AppDelegate.launchToCurrentEvent == true {
+            AppDelegate.launchToCurrentEvent = false
+            
+            if events.isEmpty == false {
+                
+                if external == true {
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.50, execute: {
+                    
+                  //  self.performSegue(withIdentifier: "FullScreenCountdownSegue", sender: nil)
+                    
+                })
+                    
+                } else {
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
+                        
+                     //   self.performSegue(withIdentifier: "FullScreenCountdownSegue", sender: nil)
+                        
+                    })
+                    
+                    
+                }
+            
+            }
+            
+        }
+        
+    }
     
+   /* let interactor = Interactor()
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        if let destinationViewController = segue.destination as? ViewController {
+            
+            if let cell = sender as? UITableViewCell {
+                
+                let path = tableView.indexPath(for: cell)!
+                CurrentEventsTableViewController.selectedEvent = events[path.row]
+                
+            } else {
+                
+               CurrentEventsTableViewController.selectedEvent = events.first
+                
+            }
+            
+            if segue.identifier == "FullScreenCountdownSegue Preview" {
+                
+            destinationViewController.hideTapToDismiss = true
+                
+                
+            } else {
+                
+               destinationViewController.hideTapToDismiss = false
+                
+            }
+            
+            
+            destinationViewController.transitioningDelegate = self
+            destinationViewController.interactor = interactor
+        }
+    } */
+    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if events.isEmpty == false {
@@ -159,7 +244,11 @@ class CurrentEventsTableViewController: UIViewController, UITableViewDelegate, U
         return 1
     }
 
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -171,7 +260,6 @@ class CurrentEventsTableViewController: UIViewController, UITableViewDelegate, U
     
 }
 
-
 class eventCell: UITableViewCell {
     
 
@@ -180,31 +268,59 @@ class eventCell: UITableViewCell {
     let timerStringGenerator = EventCountdownTimerStringGenerator()
     var rowEvent: HLLEvent!
     
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var titleLabel: MarqueeLabel!
     @IBOutlet weak var countdownLabel: UILabel!
+    @IBOutlet weak var percentLabel: UILabel!
     @IBOutlet weak var calColBar: UIView!
 
+    
+    let calc = PercentageCalculator()
+    let gradient = CAGradientLayer()
+    
     func generate(from event: HLLEvent) {
-        
         
         rowEvent = event
         
-      //  countdownLabel.font = UIFont.monospacedDigitSystemFont(ofSize: countdownLabel.font.pointSize, weight: .light)
+        titleLabel.text = "\(event.title) \(event.endsInString) in"
         
-        titleLabel.text = "\(event.title) ends in"
+        titleLabel.marqueeType = .MLContinuous
+        titleLabel.animationDelay = 4
+        titleLabel.scrollDuration = 15
+        titleLabel.fadeLength = 10
+        titleLabel.trailingBuffer = 20
+        titleLabel.triggerScrollStart()
         
-        if let CGcolor = EventDataSource.shared.calendarFromID(event.calendarID)?.cgColor {
+        updateTimer()
+        
+        if let col = event.calendar?.cgColor {
             
-            let CalUIcolor = UIColor(cgColor: CGcolor)
-            calColBar.backgroundColor = CalUIcolor
+            let uiCOL = UIColor(cgColor: col)
+            progressBar.progressTintColor = uiCOL
+            calColBar.backgroundColor = uiCOL
+            
+            
+          //  let lighter = uiCOL.lighter(by: 13)!.cgColor
+        //let darker = uiCOL.darker(by: 8)!.cgColor
+            
+            
+            
+            
+           // gradient.frame = calColBar.bounds
+          //  gradient.colors = [lighter, col, darker]
+            
+          //  calColBar.layer.insertSublayer(gradient, at: 0)
             
         }
+        
         
         countdownLabel.font = UIFont.monospacedDigitSystemFont(ofSize: countdownLabel.font.pointSize, weight: .thin)
         
         timer = Timer(fire: Date(), interval: 0.1, repeats: true, block: {_ in
             
+            DispatchQueue.main.async {
             self.updateTimer()
+            }
             
         })
         
@@ -215,14 +331,17 @@ class eventCell: UITableViewCell {
     func updateTimer() {
         
         if let countdownString = self.timerStringGenerator.generateStringFor(event: rowEvent) {
-        countdownLabel.text = "\(countdownString)"
+            
+                self.countdownLabel.text = "\(countdownString)"
+                
+                self.progressBar.progress = self.calc.calculateDoubleDone(of: self.rowEvent)
+                
+              //  self.percentLabel.text = self.calc.calculatePercentageDone(event: self.rowEvent, ignoreDefaults: true)
+                
+            
         }
         
         
     }
     
-
-
-    
 }
-

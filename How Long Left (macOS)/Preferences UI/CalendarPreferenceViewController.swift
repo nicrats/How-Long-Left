@@ -21,7 +21,7 @@ final class CalendarPreferenceViewController: NSViewController, Preferenceable {
     
     @IBOutlet weak var calInfoLabel: NSTextField!
     var timer: Timer!
-    let calendarData = EventDataSource.shared
+    let calendarData = EventDataSource()
     
     
     override var nibName: NSNib.Name? {
@@ -111,7 +111,7 @@ class rowCheck: NSObject, NSTableViewDelegate, NSTableViewDataSource {
         
     }
     
-    let calendarData = EventDataSource.shared
+    let calendarData = EventDataSource()
     let schoolAnalyzer = SchoolAnalyser()
     var titleIdentifierDictionary: [String: String] = [:]
     var identifierTitleDictionary: [String: String] = [:]

@@ -82,7 +82,7 @@ class DefaultsMigrator {
             
             if let setCal = defaults.string(forKey: "Calendar") {
             
-            let cal = EventDataSource.shared
+            let cal = EventDataSource()
             cal.getCalendarAccess()
             let cals = cal.getCalendars()
             

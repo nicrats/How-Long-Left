@@ -25,7 +25,6 @@ class StatusItemTimerStringGenerator {
     
     let generateInAdvance: Int
     
-    
     func generateStringFor(event: HLLEvent) -> String? {
 
         var returnString: String?
@@ -43,13 +42,34 @@ class StatusItemTimerStringGenerator {
                     
                 } else if secondsLeft+1 > 3599 {
                     
-                    formatter.allowedUnits = [.hour, .minute, .second]
+                    if HLLDefaults.statusItem.hideTimerSeconds == true {
+                        
+                        formatter.allowedUnits = [.hour, .minute]
+                        
+                        
+                    } else {
+                        
+                        
+                        formatter.allowedUnits = [.hour, .minute, .second]
+                        
+                    }
+                    
+                    
                     
                 } else {
                     
-                    formatter.allowedUnits = [.minute, .second]
+                    if HLLDefaults.statusItem.hideTimerSeconds == true {
+                        
+                        formatter.allowedUnits = [.hour, .minute]
+                        
+                    } else {
+                        
+                        formatter.allowedUnits = [.minute, .second]
+                        
+                    }
+                    
+                    
                 }
-                
                 formatter.zeroFormattingBehavior = [ .pad ]
                 let formattedDuration = formatter.string(from: secondsLeft+1)
                 
@@ -73,6 +93,64 @@ class StatusItemTimerStringGenerator {
         
     }
     
+    func generateStartStringFor(event: HLLEvent) -> String? {
+        
+        var returnString: String?
+        
+        let secondsLeft = event.startDate.timeIntervalSince(Date()).rounded(.down)
+        
+        if secondsLeft > -2 {
+            
+            let formatter = DateComponentsFormatter()
+            formatter.unitsStyle = .positional
+            
+            if secondsLeft+1 > 86400 {
+                
+                formatter.allowedUnits = [.day]
+                
+            } else if secondsLeft+1 > 3599 {
+                
+                if HLLDefaults.statusItem.hideTimerSeconds == true {
+                    
+                    formatter.allowedUnits = [.hour, .minute]
+                    
+                    
+                } else {
+                    
+                    
+                    formatter.allowedUnits = [.hour, .minute, .second]
+                    
+                }
+                
+                
+                
+            } else {
+                
+                if HLLDefaults.statusItem.hideTimerSeconds == true {
+                    
+                    formatter.allowedUnits = [.hour, .minute]
+                    
+                } else {
+                   
+                    formatter.allowedUnits = [.minute, .second]
+                    
+                }
+                
+                
+            }
+            
+            formatter.zeroFormattingBehavior = [ .pad ]
+            let formattedDuration = formatter.string(from: secondsLeft+1)
+            
+            returnString = "\(formattedDuration!)"
+            
+            
+        }
+        
+        return returnString
+        
+    }
+    
     func generateJustTimerStringFor(event: HLLEvent) -> String? {
         
         var returnString: String?
@@ -90,11 +168,33 @@ class StatusItemTimerStringGenerator {
                 
             } else if secondsLeft+1 > 3599 {
                 
-                formatter.allowedUnits = [.hour, .minute, .second]
+                if HLLDefaults.statusItem.hideTimerSeconds == true {
+                    
+                    formatter.allowedUnits = [.hour, .minute]
+                    
+                    
+                } else {
+                    
+                    
+                    formatter.allowedUnits = [.hour, .minute, .second]
+                    
+                }
+                
+                
                 
             } else {
                 
-                formatter.allowedUnits = [.minute, .second]
+                if HLLDefaults.statusItem.hideTimerSeconds == true {
+                    
+                    formatter.allowedUnits = [.hour, .minute]
+                    
+                } else {
+                    
+                    formatter.allowedUnits = [.minute, .second]
+                    
+                }
+                
+                
             }
             
             formatter.zeroFormattingBehavior = [ .pad ]
@@ -111,6 +211,8 @@ class StatusItemTimerStringGenerator {
         
         var calcuatingFrom = Date()
         var returnItems: [Double: String] = [:]
+        
+        
         
         for _ in 1...generateInAdvance+1 {
             

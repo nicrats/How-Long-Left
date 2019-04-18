@@ -8,9 +8,7 @@
 
 import Foundation
 import StoreKit
-
-import UIKit
-import StoreKit
+import CryptoSwift
 
 enum IAPHandlerAlertType{
     case disabled
@@ -35,6 +33,69 @@ class IAPHandler: NSObject {
     fileprivate var iapProducts = [SKProduct]()
     
     var purchaseStatusBlock: ((IAPHandlerAlertType) -> Void)?
+    
+    func setPurchasedStatus(_ to: Bool) {
+        
+        if to == true {
+            
+            let ID = UIDevice().identifierForVendor!
+            let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+            let salt = String((0..<6).map{ _ in letters.randomElement()! })
+            let hash = "\(ID)-\(salt)".sha256()
+            
+            HLLDefaults.defaults.set(salt, forKey: "ComplicationSalt")
+            HLLDefaults.defaults.set(hash, forKey: "ComplicationHash")
+            
+            
+        } else {
+            
+            HLLDefaults.defaults.set(nil, forKey: "ComplicationSalt")
+            HLLDefaults.defaults.set(nil, forKey: "ComplicationHash")
+            
+        }
+        
+        
+    }
+    
+    func hasPurchasedComplication() -> Bool {
+        
+        if SchoolAnalyser.schoolModeIgnoringUserPreferences == .Magdalene {
+            
+            print("IAPCheck: Magalene user; Getting complication for free.")
+            return true
+            
+        }
+        
+        var returnValue = false
+        
+        if let storedSalt = HLLDefaults.defaults.string(forKey: "ComplicationSalt"), let storedHash = HLLDefaults.defaults.string(forKey: "ComplicationHash") {
+            
+            let ID = UIDevice().identifierForVendor!
+            let newHash = "\(ID)-\(storedSalt)".sha256()
+            
+            if newHash == storedHash {
+                
+                returnValue = true
+                print("IAPCheck: Hashes did match")
+                
+            } else {
+                
+                print("IAPCheck: Hashes did not match")
+                
+            }
+            
+            
+        } else {
+            
+            print("IAPCheck: Defaults contained nil, didn't check hashes")
+            
+        }
+        
+        return returnValue
+        
+    }
+    
+    
     
     // MARK: - MAKE PURCHASE OF A PRODUCT
     func canMakePurchases() -> Bool {  return SKPaymentQueue.canMakePayments()  }
@@ -90,11 +151,15 @@ extension IAPHandler: SKProductsRequestDelegate, SKPaymentTransactionObserver{
                 print(product.localizedDescription + "\nfor just \(price1Str!)")
             }
         }
+        
+        
+        
     }
     
     func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
         purchaseStatusBlock?(.restored)
     }
+    
     
     // MARK:- IAP PAYMENT QUEUE
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {

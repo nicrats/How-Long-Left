@@ -102,6 +102,8 @@ class MagdaleneSchoolHolidays {
             return nil
         }
         
+        var returnEvent: HLLEvent?
+        
         for holidayPeriod in holidayPeriods {
         
         if let unwrappedSHStart = holidayPeriod.start, let unwrappedSHEnd = holidayPeriod.end {
@@ -110,25 +112,19 @@ class MagdaleneSchoolHolidays {
                 
                 var holidaysEvent = HLLEvent(title: "Holidays", start: unwrappedSHStart, end: unwrappedSHEnd, location: nil)
                 holidaysEvent.holidaysTerm = holidayPeriod.term
+                holidaysEvent.calendar = SchoolAnalyser.schoolCalendar
                 //holidaysEvent.shortTitle = "Holidays"
                 
-                return holidaysEvent
-                
-            } else {
-                
-                return nil
+                returnEvent = holidaysEvent
+                break
                 
             }
-            
-        } else {
-            
-            return nil
             
         }
         
     }
         
-        return nil
+        return returnEvent
     
     }
     

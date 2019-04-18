@@ -10,19 +10,26 @@ import Foundation
 
 class HLLDefaults {
 
+    static var shared = HLLDefaults()
+    
     #if os(OSX)
     static var defaults = UserDefaults.init(suiteName: "5AMFX8X5ZN.howlongleft")!
     #elseif os(watchOS)
     static var defaults = UserDefaults.standard
     #else
+    //static var cloudDefaults = NSUbiquitousKeyValueStore()
     static var defaults = UserDefaults(suiteName: "group.com.ryankontos.How-Long-Left")!
     #endif
     
+    
+    
     struct appData {
+        
         
         static var launchedVersion: String? {
             
             get {
+                
                 
                 return defaults.string(forKey: "launchedVersion")
                 
@@ -79,6 +86,22 @@ class HLLDefaults {
             set (to) {
                 
                 defaults.set(!to, forKey: "hideNext")
+                
+            }
+            
+        }
+        
+        static var use24HourTime: Bool {
+            
+            get {
+                
+                return defaults.bool(forKey: "use24HrTime")
+                
+            }
+            
+            set (to) {
+                
+                defaults.set(to, forKey: "use24HrTime")
                 
             }
             
@@ -268,6 +291,23 @@ class HLLDefaults {
             set (to) {
                 
                 defaults.set(to, forKey: "useFullUnits")
+                
+            }
+            
+        }
+
+        
+        static var hideTimerSeconds: Bool {
+            
+            get {
+                
+                return defaults.bool(forKey: "hideTimerSecs")
+                
+            }
+            
+            set (to) {
+                
+                defaults.set(to, forKey: "hideTimerSecs")
                 
             }
             
@@ -718,7 +758,34 @@ class HLLDefaults {
         
     }
         
+  /*  func exportDefaultsToCloud() {
         
+        for (key, value) in HLLDefaults.defaults.dictionaryRepresentation() {
+            
+            HLLDefaults.cloudDefaults.set(value, forKey: key)
+            
+        }
+        
+        HLLDefaults.cloudDefaults.synchronize()
+        
+        
+    }
+    
+    func loadDefaultsFromCloud() {
+        
+        HLLDefaults.cloudDefaults.synchronize()
+        
+        for (key, value) in HLLDefaults.cloudDefaults.dictionaryRepresentation {
+            
+            
+            HLLDefaults.defaults.set(value, forKey: key)
+            
+            
+        }
+        
+        
+        
+    } */
     
     
     

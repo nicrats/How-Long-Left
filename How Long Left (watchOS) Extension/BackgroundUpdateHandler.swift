@@ -39,7 +39,7 @@ class BackgroundUpdateHandler {
           //  date = date.addingTimeInterval(120)
             self.defaults.set("\(date.timeIntervalSinceReferenceDate)", forKey: "lastUpdateScheduled")
             
-            print(date)
+           // print(date)
             
             WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: date, userInfo: "UpdateComplication" as NSSecureCoding & NSObjectProtocol, scheduledCompletion: {Error in
                 

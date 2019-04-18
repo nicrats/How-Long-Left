@@ -83,7 +83,7 @@ class UpcomingEventStringGenerator {
                 
             } else {
                 
-                returnString = "No upcoming events today."
+                returnString = "No upcoming events."
                 
             }
         

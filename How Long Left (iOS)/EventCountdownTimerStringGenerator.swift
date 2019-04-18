@@ -10,11 +10,51 @@ import Foundation
 
 class EventCountdownTimerStringGenerator {
     
-    func generateStringFor(event: HLLEvent) -> String? {
+  /*  private var timer: Timer!
+    var event: HLLEvent
+    var delegate: CountdownUI
+    
+    init(event countdownEvent: HLLEvent, delegate UIDelegate: CountdownUI) {
+        
+        event = countdownEvent
+        delegate = UIDelegate
+        
+        timer = Timer(fire: Date(), interval: 0.1, repeats: true, block: {_ in
+            
+            DispatchQueue.main.async {
+                self.updateTimer()
+            }
+            
+        })
+        
+        RunLoop.main.add(timer, forMode: .default)
+        
+    }
+    
+    func updateTimer() {
+        
+        let countdownString = generateStringFor(event: event)
+        delegate.setCountdownString(to: countdownString)
+        
+    } */
+    
+    func generateStringFor(event: HLLEvent, start: Bool = false, advanceBySeconds: Int = 0) -> String? {
         
         var returnString: String?
         
-        let secondsLeft = event.endDate.timeIntervalSince(Date()).rounded(.down)
+        var secondsLeft: TimeInterval
+        
+        if start == true {
+            
+           secondsLeft = event.startDate.timeIntervalSince(Date()).rounded(.down)
+            
+        } else {
+            
+            secondsLeft = event.endDate.timeIntervalSince(Date()).rounded(.down)
+            
+        }
+        
+        secondsLeft -= Double(advanceBySeconds)
         
         if secondsLeft > -2 {
             
@@ -23,7 +63,7 @@ class EventCountdownTimerStringGenerator {
             
             if secondsLeft+1 > 86400 {
                 
-                formatter.allowedUnits = [.day]
+                formatter.allowedUnits = [.day, .hour, .minute, .second]
                 
             } else if secondsLeft+1 > 3599 {
                 
@@ -45,6 +85,13 @@ class EventCountdownTimerStringGenerator {
         return returnString
         
     }
+    
+    
+}
+
+protocol CountdownUI {
+    
+    func setCountdownString(to: String)
     
     
 }

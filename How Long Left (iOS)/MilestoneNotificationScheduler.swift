@@ -12,7 +12,7 @@ import UserNotifications
 
 class MilestoneNotificationScheduler {
 
-    let cal = EventDataSource.shared
+    let cal = EventDataSource()
     var hasPermission = true
     
     init() {
@@ -56,7 +56,7 @@ class MilestoneNotificationScheduler {
                 
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
                     
-                    print(error.debugDescription)
+                 //   print(error.debugDescription)
                     
                 })
     }
@@ -77,7 +77,7 @@ class MilestoneNotificationScheduler {
             
             if granted == true, UIApplication.shared.backgroundRefreshStatus == .available {
             
-                print("Scheduling notifications with milestones \(HLLDefaults.notifications.milestones)")
+              //  print("Scheduling notifications with milestones \(HLLDefaults.notifications.milestones)")
                 
                 self.cal.updateEventStore()
                 SchoolAnalyser.shared.analyseCalendar()
@@ -110,7 +110,7 @@ class MilestoneNotificationScheduler {
                             
                         }
                         
-                        content.title = "\(event.title) ends in \(milestoneMin) \(minText)."
+                        content.title = "\(event.title) \(event.endsInString) in \(milestoneMin) \(minText)."
                         
                     }
                                     
@@ -148,7 +148,7 @@ class MilestoneNotificationScheduler {
                     content.body = subtitleText
                     
                     
-                    print("Subtitle: \(subtitleText)")
+                   // print("Subtitle: \(subtitleText)")
                     
                     let calendar = Calendar.current
                     let time = calendar.dateComponents([.hour, .minute, .second, .day, .month, .year], from: date)
@@ -160,7 +160,7 @@ class MilestoneNotificationScheduler {
                     
                     UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
                         
-                        print(error.debugDescription)
+                     //   print(error.debugDescription)
                         
                     })
                     
@@ -206,7 +206,7 @@ class MilestoneNotificationScheduler {
                     
                 content.body = subtitleText
                 
-                print("Subtitle: \(subtitleText)")
+               // print("Subtitle: \(subtitleText)")
                 
                 let calendar = Calendar.current
                 let time = calendar.dateComponents([.hour, .minute, .second, .day, .month, .year], from: date)
@@ -218,7 +218,7 @@ class MilestoneNotificationScheduler {
                 
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
                     
-                    print(error.debugDescription)
+                  //  print(error.debugDescription)
                     
                 })
                 

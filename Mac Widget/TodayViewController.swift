@@ -18,7 +18,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     
     var timer = Timer()
     let timerStringGenerator = StatusItemTimerStringGenerator(isForPreview: false)
-    let cal = EventDataSource.shared
+    let cal = EventDataSource()
     var current: HLLEvent?
     
     @IBOutlet weak var endsInLabel: NSTextField!
@@ -70,7 +70,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
                  self.endsInLabel.font? = NSFont.systemFont(ofSize: self.eventFontSize, weight: NSFont.Weight.regular)
                 self.countdownLabel.font = NSFont.monospacedDigitSystemFont(ofSize: CGFloat(50), weight: NSFont.Weight.light)
                 self.countdownLabel.stringValue = self.timerStringGenerator.generateJustTimerStringFor(event: currentEvent)!
-                self.endsInLabel.stringValue = "\(currentEvent.title) ends in"
+                self.endsInLabel.stringValue = "\(currentEvent.title) \(currentEvent.endsInString) in"
                 
                 if currentEvent.endDate.timeIntervalSinceNow < 1 {
                     

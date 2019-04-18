@@ -18,10 +18,31 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
     
         termRow.isHidden = true
         
-        
-        if let data = termData {
+        if let data = termData, HLLDefaults.magdalene.doHolidays == true, data.onNow == false {
+            
+            let submenu = NSMenu()
+            
+            for item in data.topRow {
+                
+                let menuItem = NSMenuItem()
+                menuItem.title = item
+                menuItem.isEnabled = false
+                submenu.addItem(menuItem)
+                
+            }
+            submenu.addItem(NSMenuItem.separator())
+            
+            for item in data.submenuItems {
+                
+                let menuItem = NSMenuItem()
+                menuItem.title = item
+                menuItem.isEnabled = false
+                submenu.addItem(menuItem)
+                
+            }
             
             termRow.title = data.menuString
+            termRow.submenu = submenu
             termRow.isHidden = false
             
         } else {
@@ -445,50 +466,9 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
                 }
                 
                 
-                if iN == 0 {
                     
-                    if let nextOccur = data.3, let item = nextOccurGen.generateNextOccurenceItems(events: [nextOccur]).first {
-                        
-                        
-                        // let index = mainMenu.index(of: nextOccurRow)
-                        let row = NSMenuItem(title: "\(item.0)", action: nil, keyEquivalent: "")
-                        
-                        if item.1.isEmpty == false {
                             
-                            let NXOsubmenu = NSMenu()
-                            
-                            for (index, submenuItemText) in item.1.enumerated() {
-                                
-                                if index == 2 {
-                                    NXOsubmenu.addItem(NSMenuItem.separator())
-                                }
-                                
-                                let submenuItem = NSMenuItem()
-                                submenuItem.title = submenuItemText
-                                submenuItem.isEnabled = false
-                                NXOsubmenu.addItem(submenuItem)
-                                
-                            }
-                            
-                            row.submenu = NXOsubmenu
-                            row.isEnabled = true
-                            
-                        } else {
-                            
-                            row.isEnabled = false
-                            
-                        }
-                        
-                        nextOccurMenuItems.append(row)
-                        
-                        
-                       // submenu.addItem(NSMenuItem.separator())
-                        
-                        submenu.addItem(row)
-                        
-                    }
-                    
-                }
+                
                 
                 if subData.indices.contains(iN+1) {
             
@@ -497,12 +477,52 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
                     
                 }
                 
-            
+                
+
             
             
         }
             
-            
+            if let nextOccur = data.3, let item = nextOccurGen.generateNextOccurenceItems(events: [nextOccur]).first {
+                
+                
+                // let index = mainMenu.index(of: nextOccurRow)
+                let row = NSMenuItem(title: "\(item.0)", action: nil, keyEquivalent: "")
+                
+                if item.1.isEmpty == false {
+                    
+                    let NXOsubmenu = NSMenu()
+                    
+                    for (index, submenuItemText) in item.1.enumerated() {
+                        
+                        if index == 2 {
+                            NXOsubmenu.addItem(NSMenuItem.separator())
+                        }
+                        
+                        let submenuItem = NSMenuItem()
+                        submenuItem.title = submenuItemText
+                        submenuItem.isEnabled = false
+                        NXOsubmenu.addItem(submenuItem)
+                        
+                    }
+                    
+                    row.submenu = NXOsubmenu
+                    row.isEnabled = true
+                    
+                } else {
+                    
+                    row.isEnabled = false
+                    
+                }
+                
+                nextOccurMenuItems.append(row)
+                
+                
+                submenu.addItem(NSMenuItem.separator())
+                
+                submenu.addItem(row)
+                
+            }
             
         
         menuItem.submenu = submenu
@@ -644,7 +664,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
     
     func updateUpcomingEventsMenu(data: upcomingDayOfEvents?) {
         
-        if HLLDefaults.general.showUpcomingEventsSubmenu == false {
+        if HLLDefaults.general.showNextEvent == false {
             upcomingEventsRow.isHidden = true
             return
         } else {
@@ -654,9 +674,8 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
         
         if let safeData = data {
             
-            let events = safeData.eventStrings
         
-        if events.isEmpty == true {
+        if safeData.eventStrings.isEmpty == true {
             
             upcomingEventsRow.isHidden = true
             return
@@ -707,18 +726,45 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
             let topSep = NSMenuItem.separator()
             upcomingEventsMenu.addItem(topSep)
             
-        for item in events {
+            for (index, itemData) in safeData.HLLEvents.enumerated() {
+            
+            let item = safeData.eventStrings[index]
+            let event = itemData
             
             let menuItem : NSMenuItem = NSMenuItem()
             
-            menuItem.title = item
+            let submenuMenu = NSMenu()
             
-            if events.count > 1 {
-              menuItem.isEnabled = true
-            } else {
-                menuItem.isEnabled = false
+            
+                
+            let items = CurrentEventSubmenuContentsGenerator.shared.generateSubmenuContentsFor(event: event)
+            
+            for (iN, arrayItem) in items.enumerated() {
+                
+                for subArrayItem in arrayItem {
+                    
+                    let smenuItem : NSMenuItem = NSMenuItem()
+                    smenuItem.title = subArrayItem
+                    
+                    submenuMenu.addItem(smenuItem)
+                }
+                
+                
+                if items.indices.contains(iN+1) {
+                    
+                    let sep = NSMenuItem.separator()
+                    submenuMenu.addItem(sep)
+                    
+                }
+                
+                
+                
+                
             }
             
+            menuItem.submenu = submenuMenu
+            
+            menuItem.title = item
             
             upcomingEventsMenu.addItem(menuItem)
             
@@ -751,7 +797,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
             
            
             
-        upcomingEventsRow.isEnabled = !events.isEmpty
+        upcomingEventsRow.isEnabled = !safeData.HLLEvents.isEmpty
         
         } else {
             
@@ -806,7 +852,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
                 
                 menuItem.title = "\(String(eventString))"
                 
-              /*  let submenuMenu = NSMenu()
+               let submenuMenu = NSMenu()
                 
                let items = CurrentEventSubmenuContentsGenerator.shared.generateSubmenuContentsFor(event: event)
                 
@@ -834,7 +880,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
                 }
                 
                 
-                menuItem.submenu = submenuMenu */
+                menuItem.submenu = submenuMenu
                 
                 eventsSubmenu.addItem(menuItem)
                 
@@ -1034,7 +1080,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
         
         vcs.append(NotificationPreferenceViewController())
         
-        if SchoolAnalyser.privSchoolMode == .Magdalene {
+        if SchoolAnalyser.schoolModeIgnoringUserPreferences == .Magdalene {
             
             vcs.append(MagdalenePreferenceViewController())
             

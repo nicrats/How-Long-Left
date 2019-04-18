@@ -7,25 +7,28 @@
 //
 
 import Foundation
+import EventKit
 
 class SchoolAnalyser {
     
     static let shared = SchoolAnalyser()
     static var doneAnalysis = false
     static var isRenamerApp = false
+    var delegate: SchoolModeChangedDelegate?
     
-    public private(set) static var privSchoolMode: SchoolMode = .Unknown
-     private var schoolModeChangedDelegates = [SchoolModeChangedDelegate]()
+    public private(set) static var schoolModeIgnoringUserPreferences: SchoolMode = .Unknown
+    private var schoolModeChangedDelegates = [SchoolModeChangedDelegate]()
+    static var schoolCalendar: EKCalendar?
     
     static var schoolMode: SchoolMode {
         
         get {
             
-            if privSchoolMode == .Magdalene {
+            if schoolModeIgnoringUserPreferences == .Magdalene {
             
-            if HLLDefaults.magdalene.manuallyDisabled == false || isRenamerApp == true {
+            if HLLDefaults.magdalene.manuallyDisabled == false {
                 
-                return privSchoolMode
+                return schoolModeIgnoringUserPreferences
                 
             } else {
                 
@@ -35,7 +38,7 @@ class SchoolAnalyser {
                 
             } else {
                 
-                return privSchoolMode
+                return schoolModeIgnoringUserPreferences
                 
             }
             
@@ -48,6 +51,12 @@ class SchoolAnalyser {
         schoolModeChangedDelegates.append(delegate)
     }
     
+    func setLoneDelegate(to: SchoolModeChangedDelegate) {
+        
+        delegate = to
+        
+    }
+    
     func removeSchoolModeChangedDelegate<T>(delegate: T) where T: SchoolModeChangedDelegate, T: Equatable {
         for (index, schoolModeDelegate) in schoolModeChangedDelegates.enumerated() {
             if let schoolModeDelegate = schoolModeDelegate as? T, schoolModeDelegate == delegate {
@@ -58,11 +67,11 @@ class SchoolAnalyser {
     }
 
     
-    let calendarData = EventDataSource.shared
+    let calendarData = EventDataSource()
     
     func analyseCalendar() {                                                                                                                                                                                                                                                                                                                                                
         
-        let previousSchoolMode = SchoolAnalyser.privSchoolMode
+        let previousSchoolMode = SchoolAnalyser.schoolModeIgnoringUserPreferences
         
         // Checks recent events (in both the past and present) and determines if the user goes to Magdalene or is Lauren.
         
@@ -73,17 +82,17 @@ class SchoolAnalyser {
             
             if isMagdalene == true {
                 
-               SchoolAnalyser.privSchoolMode = .Magdalene
+               SchoolAnalyser.schoolModeIgnoringUserPreferences = .Magdalene
                 
             } else {
                 
-                SchoolAnalyser.privSchoolMode = .None
+                SchoolAnalyser.schoolModeIgnoringUserPreferences = .None
                 
             }
             
         } else {
             
-            SchoolAnalyser.privSchoolMode = .Unknown
+            SchoolAnalyser.schoolModeIgnoringUserPreferences = .Unknown
             
         }
         
@@ -107,8 +116,10 @@ class SchoolAnalyser {
         
         
        if SchoolAnalyser.schoolMode != previousSchoolMode {
-            
-            print("School mode is now \(SchoolAnalyser.privSchoolMode.rawValue)")
+        
+        delegate?.schoolModeChanged()
+        
+            print("School mode is now \(SchoolAnalyser.schoolModeIgnoringUserPreferences.rawValue)")
             schoolModeChangedDelegates.forEach {
                $0.schoolModeChanged()
             }
@@ -197,7 +208,7 @@ class SchoolAnalyser {
                 }
             
             if yrCondition == true, roomCondtion == true, schoolStartCondition == true, schoolEndCondition == true {
-                
+                SchoolAnalyser.schoolCalendar = event.calendar
                 returnVal = true
                 break
                 

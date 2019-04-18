@@ -22,14 +22,26 @@ class AppFunctions {
     
     init() {
         
+   //     HLLDefaults.shared.loadDefaultsFromCloud()
+        VoiceShortcutStatusChecker.shared.check()
         let eventDatasource = EventDataSource()
         eventDatasource.getCalendarAccess()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(cloudDefaultsChanged),
+            name: NSUbiquitousKeyValueStore.didChangeExternallyNotification,
+            object: nil)
         
         run()
     }
     
     func run() {
         
+        
+        VoiceShortcutStatusChecker.shared.check()
         donateInteraction()
         
        
@@ -38,12 +50,25 @@ class AppFunctions {
         WatchSessionManager.sharedManager.startSession()
         
         self.sync.syncDefaultsToWatch()
-        VoiceShortcutStatusChecker.shared.check()
+        
         
         self.notoScheduler.getAccess()
         self.notoScheduler.scheduleNotificationsForUpcomingEvents()
         
         
+        
+        
+    }
+    
+    @objc private func cloudDefaultsChanged() {
+        
+    //    HLLDefaults.shared.loadDefaultsFromCloud()
+        
+    }
+    
+    @objc private func defaultsChanged() {
+        
+      //  HLLDefaults.shared.exportDefaultsToCloud()
         
         
     }

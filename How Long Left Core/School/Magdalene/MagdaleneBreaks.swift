@@ -269,6 +269,7 @@ class MagdaleneBreaks {
                                 if startEvent.calendarID == endEvent.calendarID {
                                     
                                     event.calendarID = startEvent.calendarID
+                                    event.calendar = startEvent.calendar
                                     
                                 }
                                 
@@ -297,6 +298,7 @@ class MagdaleneBreaks {
                                 if startEvent.calendarID == endEvent.calendarID {
                                     
                                     event.calendarID = startEvent.calendarID
+                                    event.calendar = startEvent.calendar
                                     
                                 }
                                 

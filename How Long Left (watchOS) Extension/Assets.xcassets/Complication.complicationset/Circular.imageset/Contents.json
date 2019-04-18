@@ -2,25 +2,25 @@
   "images" : [
     {
       "idiom" : "watch",
-      "filename" : "CircSmall38.png",
+      "filename" : "circ32.png",
       "screen-width" : "<=145",
       "scale" : "2x"
     },
     {
       "idiom" : "watch",
-      "filename" : "CircSmall40:42.png",
+      "filename" : "circ36.png",
       "screen-width" : ">161",
       "scale" : "2x"
     },
     {
       "idiom" : "watch",
-      "filename" : "CircSmall40:42-1.png",
+      "filename" : "circ36-1.png",
       "screen-width" : ">145",
       "scale" : "2x"
     },
     {
       "idiom" : "watch",
-      "filename" : "CircSmall44.png",
+      "filename" : "circ40-1.png",
       "screen-width" : ">183",
       "scale" : "2x"
     }
@@ -30,7 +30,6 @@
     "author" : "xcode"
   },
   "properties" : {
-    "template-rendering-intent" : "template",
-    "auto-scaling" : "auto"
+    "template-rendering-intent" : "template"
   }
 }

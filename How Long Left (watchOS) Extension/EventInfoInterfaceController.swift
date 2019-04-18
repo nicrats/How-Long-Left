@@ -40,8 +40,6 @@ class EventInfoInterfaceController: WKInterfaceController, EventTableRowDelegate
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        
-        
         if let safeEvent = context as? (HLLEvent, HLLEvent?) {
             
             UIevent = safeEvent.0
@@ -90,8 +88,8 @@ class EventInfoInterfaceController: WKInterfaceController, EventTableRowDelegate
         
         if let safeState = self.state, let event = self.UIevent {
             
-            print("\(safeState)")
-            print("\(event.completionStatus)")
+          //  print("\(safeState)")
+           // print("\(event.completionStatus)")
             
             if safeState != event.completionStatus {
                 DispatchQueue.main.async {
@@ -165,6 +163,14 @@ class EventInfoInterfaceController: WKInterfaceController, EventTableRowDelegate
                 rowIDS.append(.PeriodRow)
                 
             }
+            
+            
+            if event.completionStatus == .InProgress {
+                
+               rowIDS.append(.ElapsedRow)
+                
+            }
+            
             
             rowIDS.append(.DurationRow)
             
@@ -254,10 +260,27 @@ class EventInfoInterfaceController: WKInterfaceController, EventTableRowDelegate
                     
                     let row = table.rowController(at: index) as! DurationRow
                     
-                    let durationMin = event.duration/60
+                    var secondsLeft = event.duration-60
+                      let formatter = DateComponentsFormatter()
                     
-                    row.durationLabel.setText("\(Int(durationMin)) minutes")
+                    if secondsLeft+1 > 86400 {
+                        secondsLeft += 86400
+                        formatter.allowedUnits = [.day]
+                        
+                    } else if secondsLeft+1 > 3599 {
+                        
+                        formatter.allowedUnits = [.hour, .minute]
+                        
+                    } else {
+                        
+                        formatter.allowedUnits = [.minute]
+                        
+                    }
                     
+                    formatter.unitsStyle = .full
+                    let countdownText = formatter.string(from: secondsLeft+60)!
+                    
+                    row.durationLabel.setText(countdownText)
                     
                 case .NextOccurRow:
                     
@@ -319,6 +342,32 @@ class EventInfoInterfaceController: WKInterfaceController, EventTableRowDelegate
                         
                         
                     }
+                    
+                case .ElapsedRow:
+                    
+                    let row = table.rowController(at: index) as! ElapsedRow
+                    
+                    var secondsLeft = Date().timeIntervalSince(event.startDate)-60
+                    let formatter = DateComponentsFormatter()
+                    
+                    if secondsLeft+1 > 86400 {
+                        secondsLeft += 86400
+                        formatter.allowedUnits = [.day]
+                        
+                    } else if secondsLeft+1 > 3599 {
+                        
+                        formatter.allowedUnits = [.hour, .minute]
+                        
+                    } else {
+                        
+                        formatter.allowedUnits = [.minute]
+                        
+                    }
+                    
+                    formatter.unitsStyle = .full
+                    let countdownText = formatter.string(from: secondsLeft+60)!
+                    
+                    row.elapsedLabel .setText(countdownText)
                     
                 }
                 

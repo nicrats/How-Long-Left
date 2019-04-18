@@ -57,25 +57,21 @@ extension WatchSessionManager {
     // Receiver
     
     
-    func sendUpdatedComplicationMessage() {
-      //  WatchSessionManager.sharedManager.startSession()
-      //  session.sendMessage(["UpdatedComplication" : Date()], replyHandler: nil, errorHandler: nil)
+    func askForDefaults() {
+      session.activate()
+        session.sendMessage(["SendDefaults": "Please?"], replyHandler: nil, errorHandler: nil)
         
     }
     
     func gotData(data: [String : Any]) {
         
+        for item in data {
+            
+            print("\(item.key), \(item.value)")
+            
+        }
         
-        DispatchQueue.main.async {
-            
-            let center = UNUserNotificationCenter.current()
-            // Request permission to display alerts and play sounds.
-            center.requestAuthorization(options: [.alert, .sound])
-            { (granted, error) in
-                
-                
-            }
-            
+        
             if let rArray = data["SelectedCalendars"] {
                 
                 let calArray = rArray as! [String]
@@ -86,17 +82,42 @@ extension WatchSessionManager {
                 
                 
                 
-            } else if let rArray = data["MagdaleneManualSettingChanged"]  {
+            }
+        
+        if let rArray = data["MagdaleneManualSettingChanged"]  {
                 
                 let setting = rArray as! Bool
                 
                 self.defaults.set(setting, forKey: "magdaleneFeaturesManuallyDisabled")
                 
             }
+        
+      /*  if let compStatus = data["ComplicationPurchased"]  {
             
+            let compStatusBool = compStatus as! Bool
+            
+            if compStatusBool != HLLDefaults.complication.complicationPurchased {
+            
+            HLLDefaults.complication.complicationPurchased = compStatusBool
+                
+                
+                if let entries = CLKComplicationServer.sharedInstance().activeComplications {
+                        
+                        for complicationItem in entries  {
+                            
+                            CLKComplicationServer.sharedInstance().reloadTimeline(for: complicationItem)
+                        }
+                    
+                    
+                }
+            
+                
+            }
+            
+            
+        } */
+        
             self.dataSourceChangedDelegates.forEach { $0.userInfoChanged() }
-            
-        }
         
     }
     

@@ -136,7 +136,7 @@ class EventTimeRemainingMonitor {
             
             if timeUntilEnd < 1, self.coolingDownEnded.contains(event) == false {
                     
-                    print("\(event.title) is ending.")
+                   // print("\(event.title) is ending.")
                     
                     var endingNow = true
                     if timeUntilEnd < -5 {
@@ -167,7 +167,7 @@ class EventTimeRemainingMonitor {
             
             if timeUntilStart < 1, timeUntilStart > -10, self.coolingDownStarted.contains(event) == false, startedAtEndOfEvent == false {
                 
-                print("\(event.title) is starting.")
+              //  print("\(event.title) is starting.")
                 
                 self.delegate.eventStarted(event: event)
                 

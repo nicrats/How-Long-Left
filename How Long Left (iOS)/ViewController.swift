@@ -12,74 +12,23 @@ import WatchKit
 import Intents
 import IntentsUI
 #endif
-import ViewAnimator
 
 class ViewController: UIViewController, HLLCountdownController, DataSourceChangedDelegate {
     
-    
-    @IBAction func doneTapped(_ sender: UIButton) {
-        
-        self.dismiss(animated: true, completion: nil)
-        
-    }
-    
-    func percentageMilestoneReached(milestone percentage: Int, event: HLLEvent) {
-        
-    }
-    
-    func eventStarted(event: HLLEvent) {
-        
-    }
-    
-    
-    func eventHalfDone(event: HLLEvent) {
-    }
-    
-    
-    @IBOutlet weak var settingsStack: UIStackView!
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        
-        return UIStatusBarStyle.lightContent
-        
-    }
-    
-    func userInfoChanged(date: Date) {
-    }
-    
-    @IBAction func unwindToMain(segue: UIStoryboardSegue) {
-        
-    }
-    
     @IBOutlet weak var eventTitleLabel: UILabel!
     @IBOutlet weak var countdownLabel: UILabel!
-    
     @IBOutlet weak var endsInLabel: UILabel!
     @IBOutlet weak var upcomingLabel: UILabel!
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var upcomingLocationLabel: UILabel!
-    
-    @IBOutlet weak var upcomingButton: UIButton!
-    @IBOutlet weak var settingsButton: UIButton!
-    
     @IBOutlet weak var noEventOnInfo: UILabel!
-    
-    
     let defaults = HLLDefaults.defaults
-    
-    @IBAction func countdownTapped(_ sender: UITapGestureRecognizer) {
-        
-      //  showingProgress = !showingProgress
-      //  setBackgroundImage()
-        
-    }
-    
     let percentageGen = PercentageCalculator()
     let notoScheduler = MilestoneNotificationScheduler()
     let backgroundImageView = UIImageView()
     let darkView = UIView()
     let gradient = CAGradientLayer()
-    let calData = EventDataSource.shared
+    let calData = EventDataSource()
     var timer: Timer!
     var FastTimer: Timer!
     let timerStringGenerator = EventCountdownTimerStringGenerator()
@@ -88,13 +37,21 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
     lazy var eventMonitor = EventTimeRemainingMonitor(delegate: self)
     static var launchedWithSettingsShortcut = false
     
+    var hideTapToDismiss = false
+    
+    override var shouldAutorotate: Bool {
+        
+        return false
+        
+    }
+    
     var countdownEvent: HLLEvent? {
         
-        didSet {
+        get {
             
             var currentArray = [HLLEvent]()
             
-            if let current = countdownEvent {
+            if let current = CurrentEventsTableViewController.selectedEvent {
                 
                 currentArray.append(current)
                 
@@ -102,39 +59,16 @@ class ViewController: UIViewController, HLLCountdownController, DataSourceChange
             
             eventMonitor.setCurrentEvents(events: currentArray)
             
+            return CurrentEventsTableViewController.selectedEvent
+            
         }
         
-    }
-    
-    func segueToSettings() {
-        
-        performSegue(withIdentifier: "OpenSettings", sender: nil)
+       
         
     }
     
-    @IBAction func settingsButtonTapped(_ sender: UIButton) {
-        
-     //   self.notoScheduler.getAccess()
-      //  self.notoScheduler.scheduleTestNotification()
-        
-    }
-    
-    @IBAction func upcomingButtonTapped(_ sender: Any) {
-        
-        
-        
-    }
-    
-    func showAlertBanner(Title: String, Subtitle: String) {
-        
-       /* let banner = GrowingNotificationBanner(title: Title, subtitle: Subtitle, style: .info)
-        banner.backgroundColor = UIColor.white
-        banner.applyStyling(titleColor: UIColor.black, titleTextAlign: NSTextAlignment.left, subtitleColor: UIColor.black, subtitleTextAlign: NSTextAlignment.left)
-        DispatchQueue.main.async {
-        banner.show() 
-        } */
-        
-    }
+
+ 
     
 let sync = DefaultsSync()
     
@@ -167,14 +101,18 @@ let sync = DefaultsSync()
     
     override func viewDidLoad() {
         
+        //swipeToDismissLabel.isHidden = self.hideTapToDismiss
+        
         IAPHandler.shared.fetchAvailableProducts()
         
-        
+        countdownLabel.font = UIFont.monospacedDigitSystemFont(ofSize: countdownLabel.font.pointSize, weight: .regular)
 
         //let notoS = MilestoneNotificationScheduler()
        // notoS.scheduleTestNotification()
         
-    
+        run()
+        
+    setBackgroundImage()
         
         countdownLabel.layer.shadowColor = UIColor.black.cgColor
         countdownLabel.layer.shadowRadius = 3.0
@@ -206,6 +144,7 @@ let sync = DefaultsSync()
         progressLabel.layer.shadowOffset = CGSize(width: 2, height: 2)
         progressLabel.layer.masksToBounds = false
         
+        
         upcomingLabel.layer.shadowColor = UIColor.black.cgColor
         upcomingLabel.layer.shadowRadius = 3.0
         upcomingLabel.layer.shadowOpacity = 0.3
@@ -223,9 +162,9 @@ let sync = DefaultsSync()
         
         super.viewDidLoad()
         
-          let animation = AnimationType.zoom(scale: 2.1)
+         // let animation = AnimationType.zoom(scale: 2.1)
         
-        view.animate(animations: [animation], reversed: false, initialAlpha: 0.0, finalAlpha: 1.0, delay: 0, duration: 0.6, options: .allowAnimatedContent, completion: nil)
+      //  view.animate(animations: [animation], reversed: false, initialAlpha: 0.0, finalAlpha: 1.0, delay: 0, duration: 0.6, options: .allowAnimatedContent, completion: nil)
         
             
         
@@ -236,7 +175,7 @@ let sync = DefaultsSync()
             
         })
         
-        FastTimer = Timer(fire: Date(), interval: 0.1, repeats: true, block: {_ in
+        FastTimer = Timer(fire: Date(), interval: 0.2, repeats: true, block: {_ in
             
             self.updateTimer()
             
@@ -258,15 +197,13 @@ let sync = DefaultsSync()
     
     func updateTimer() {
         
-        
-        
         DispatchQueue.main.async {
             
             if let event = self.countdownEvent {
                 
                 if event.endDate.timeIntervalSinceNow < 0 {
                     
-                    self.run()
+                    self.navigationController?.popToRootViewController(animated: true)
                     
                 }
                 
@@ -281,40 +218,37 @@ let sync = DefaultsSync()
                 }
                 
     
+            } else {
+                
+                self.navigationController?.popToRootViewController(animated: true)
+                
+                
             }
             
-            if ViewController.launchedWithSettingsShortcut == true {
-                
-                ViewController.launchedWithSettingsShortcut = false
-                
-                self.segueToSettings()
-                
-            }
             
         }
         
         
     }
     
+    var currentEvents = [HLLEvent]()
+    var upcomingEvents = [HLLEvent]()
+    
     func run() {
         
-        DispatchQueue.main.async {
             
         
         self.calData.updateEventStore()
         SchoolAnalyser.shared.analyseCalendar()
         
-        let currentEvents = self.calData.getCurrentEvents()
-        let upcomingEvents = self.calData.getUpcomingEventsToday()
-        
-        if let current = currentEvents.first {
+        if let current = countdownEvent {
             
-            self.countdownEvent = current
+
             
             
             DispatchQueue.main.async {
                 
-                self.eventTitleLabel.text = "\(current.title) ends in"
+                self.eventTitleLabel.text = "\(current.title) \(current.endsInString) in"
                 self.countdownLabel.text = self.timerStringGenerator.generateStringFor(event: current)
                 self.countdownLabel.isHidden = false
                 self.eventTitleLabel.isHidden = false
@@ -330,7 +264,7 @@ let sync = DefaultsSync()
             
         } else {
             
-            self.countdownEvent = nil
+
             
             DispatchQueue.main.async {
                 self.progressLabel.isHidden = true
@@ -339,9 +273,9 @@ let sync = DefaultsSync()
                     
                     self.eventTitleLabel.text = "No events are on"
                     self.noEventOnInfo.text = "When an event starts, How Long Left will count it down."
-                    self.noEventOnInfo.isHidden = false
+                    self.noEventOnInfo.isHidden = true
                     self.progressLabel.isHidden = true
-                    self.upcomingLabel.isHidden = false
+                    self.upcomingLabel.isHidden = true
                 } else if EventDataSource.accessToCalendar == .Denied {
                     
                     self.eventTitleLabel.text = "Enable calendar access in the Settings app."
@@ -408,14 +342,13 @@ let sync = DefaultsSync()
             
         
         
-        }
+        
     }
-    
     
     func updateDueToEventEnd(event: HLLEvent, endingNow: Bool) {
         
         if endingNow == true {
-        showAlertBanner(Title: "\(event.title) is done.", Subtitle: "")
+        //showAlertBanner(Title: "\(event.title) is done.", Subtitle: "")
         }
     }
     
@@ -424,12 +357,36 @@ let sync = DefaultsSync()
     }
     
     let bArray = [UIImage(named: "Background_Light"), UIImage(named: "Background_Dark"), UIImage(named: "Background_Black")]
+   
+    let adjustBy: CGFloat = 10.0
     
     func setBackgroundImage() {
               
     //  backgroundImageView.image = bArray[0]
         
-        if defaults.bool(forKey: "useDarkBackground") == true {
+     /*   if let col = currentEvents.first?.calendar?.cgColor {
+            
+            let uiCOL = UIColor(cgColor: col)
+            
+            let lighter = uiCOL.lighter(by: 18.0)!.cgColor
+            let darker = uiCOL.darker(by: 16.0)!.cgColor
+            
+            
+            
+            
+            gradient.frame = view.bounds
+            gradient.colors = [lighter, darker]
+            
+            view.layer.insertSublayer(gradient, at: 0)
+            
+        }
+        
+        */
+        
+        
+        
+        
+   /* if defaults.bool(forKey: "useDarkBackground") == true {
             backgroundImageView.image = bArray[1]
             /*darkView.backgroundColor = UIColor.black
             darkView.alpha = 0.75
@@ -442,10 +399,12 @@ let sync = DefaultsSync()
             darkView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true*/
             
         } else {
-            backgroundImageView.image = bArray[0]
-            darkView.removeFromSuperview()
+         
             
-        }
+        } */
+        
+        backgroundImageView.image = bArray[0]
+        darkView.removeFromSuperview()
         
         view.addSubview(backgroundImageView)
         view.sendSubviewToBack(backgroundImageView)
@@ -485,110 +444,156 @@ let sync = DefaultsSync()
     }
     
     }
+    
+    var interactor:Interactor! = nil
+    
+    func percentageMilestoneReached(milestone percentage: Int, event: HLLEvent) {
+        
+    }
+    
+    func eventStarted(event: HLLEvent) {
+        
+    }
+    
+    
+    func eventHalfDone(event: HLLEvent) {
+    }
+    
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        
+        return UIStatusBarStyle.lightContent
+        
+    }
+    
+    func userInfoChanged(date: Date) {
+    }
+    
+    @IBAction func unwindToMain(segue: UIStoryboardSegue) {
+        
+    }
+    
+    
+
+    
+    @IBAction func handleGesture(sender: UIPanGestureRecognizer) {
+        
+        if .Down == sender.verticalDirection(target: self.view) {
+            
+            let percentThreshold:CGFloat = 1
+            
+            // convert y-position to downward pull progress (percentage)
+            let translation = sender.translation(in: view)
+            let verticalMovement = translation.y / view.bounds.height
+            let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
+            let downwardMovementPercent = fminf(downwardMovement, 1.0)
+            let progress = CGFloat(downwardMovementPercent)
+            
+            interactor = Interactor()
+            
+            switch sender.state {
+            case .began:
+                interactor.hasStarted = true
+                dismiss(animated: true, completion: nil)
+            case .changed:
+                interactor.shouldFinish = progress > percentThreshold
+                interactor.update(progress)
+            case .cancelled:
+                interactor.hasStarted = false
+                interactor.cancel()
+            case .ended:
+                interactor.hasStarted = false
+                interactor.shouldFinish
+                    ? interactor.finish()
+                    : interactor.cancel()
+            default:
+                break
+            }
+            
+        }
+    }
+    
 
 }
 
+class Interactor: UIPercentDrivenInteractiveTransition {
+    var hasStarted = false
+    var shouldFinish = false
+}
 
-extension CALayer {
-    
-    func bringToFront() {
-        guard let sLayer = superlayer else {
-            return
-        }
-        removeFromSuperlayer()
-        sLayer.insertSublayer(self, at: UInt32(sLayer.sublayers?.count ?? 0))
+
+extension CurrentEventsTableViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator()
     }
-    
-    func sendToBack() {
-        guard let sLayer = superlayer else {
-            return
-        }
-        removeFromSuperlayer()
-        sLayer.insertSublayer(self, at: 0)
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
     }
 }
 
-/*
- 
- class webView: UIViewController, WKNavigationDelegate {
- 
- @IBOutlet weak var viewW: UIView!
- var webView: WKWebView!
- var browser: Erik!
- override func viewDidLoad() {
- 
- super.viewDidLoad()
- self.navigationItem.title = "Erik"
- 
- let url = URL(string: "https://spring.edval.education/timetable")
- 
- let frame = UIScreen.main.bounds
- 
- 
- webView = WKWebView(frame: frame, configuration:  WKWebViewConfiguration())
- webView.allowsBackForwardNavigationGestures = true
- viewW.addSubview(webView)
- 
- webView.navigationDelegate = self
- 
- browser = Erik(webView: webView)
- 
- browser.visit(url: url!) { object, error in
- if let e = error {
- 
- } else if let doc = object {
- 
- if let input = doc.querySelectorAll("input[name=\"webCode\"]").first {
- input["value"] = "ETMF55V"
- 
- if let form = doc.querySelector("button") {
- form.click()
- }
- 
- 
- 
- }
- 
- 
- 
- 
- }
- }
- 
- 
- browser!.visit(url: url!) { object, error in
- 
- DispatchQueue.main.asyncAfter(deadline: .now() + 0, execute: {
- 
- 
- 
- 
- 
- if let e = error {
- 
- } else if let doc = object {
- 
- print(doc.toHTML)
- 
- 
- 
- 
- 
- 
- } else {
- 
- 
- }
- 
- 
- 
- })
- 
- }
- 
- }
- 
- 
- }
- 
- */
+class DismissAnimator : NSObject {
+}
+
+extension DismissAnimator : UIViewControllerAnimatedTransitioning {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return 0.4
+    }
+    
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        let fromVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)
+        let toVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)
+        let containerView = transitionContext.containerView
+        
+        containerView.insertSubview(toVC!.view, belowSubview: fromVC!.view)
+        let screenBounds = UIScreen.main.bounds
+        let bottomLeftCorner = CGPoint(x: 0, y: screenBounds.height)
+        let finalFrame = CGRect(origin: bottomLeftCorner, size: screenBounds.size)
+        
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
+            
+            fromVC!.view.frame = finalFrame
+            
+        }, completion: { item in
+            
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            
+            
+        })
+        
+    }
+}
+
+extension UIPanGestureRecognizer {
+    
+    enum GestureDirection {
+        case Up
+        case Down
+        case Left
+        case Right
+    }
+    
+    /// Get current vertical direction
+    ///
+    /// - Parameter target: view target
+    /// - Returns: current direction
+    func verticalDirection(target: UIView) -> GestureDirection {
+        return self.velocity(in: target).y > 0 ? .Down : .Up
+    }
+    
+    /// Get current horizontal direction
+    ///
+    /// - Parameter target: view target
+    /// - Returns: current direction
+    func horizontalDirection(target: UIView) -> GestureDirection {
+        return self.velocity(in: target).x > 0 ? .Right : .Left
+    }
+    
+    /// Get a tuple for current horizontal/vertical direction
+    ///
+    /// - Parameter target: view target
+    /// - Returns: current direction
+    func versus(target: UIView) -> (horizontal: GestureDirection, vertical: GestureDirection) {
+        return (self.horizontalDirection(target: target), self.verticalDirection(target: target))
+    }
+    
+}
