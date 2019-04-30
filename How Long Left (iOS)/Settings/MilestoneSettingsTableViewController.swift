@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class MilestoneSettingsTableViewController: UITableViewController {
     
@@ -21,6 +22,11 @@ class MilestoneSettingsTableViewController: UITableViewController {
     var selectAllState = true
     
     override func viewDidLoad() {
+        
+        extendedLayoutIncludesOpaqueBars = true
+        tableView.backgroundColor = AppTheme.current.groupedTableViewBackgroundColor
+        tableView.separatorColor = AppTheme.current.tableCellSeperatorColor
+        
         super.viewDidLoad()
         
         for milestone in HLLDefaults.notifications.milestones {
@@ -38,6 +44,27 @@ class MilestoneSettingsTableViewController: UITableViewController {
         }
         
         self.clearsSelectionOnViewWillAppear = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: {
+            
+            let center = UNUserNotificationCenter.current()
+            // Request permission to display alerts and play sounds.
+            
+            center.requestAuthorization(options: [.alert, .sound, .badge])
+            { (granted, error) in
+                
+                if granted == false {
+                    
+                    self.NotoAccessDenied()
+                    
+                    
+                }
+            }
+            
+            
+            
+        })
+        
     }
     
     
@@ -238,6 +265,29 @@ class MilestoneSettingsTableViewController: UITableViewController {
         })
         
         
+        
+    }
+    
+    func NotoAccessDenied() {
+        let alertController = UIAlertController(title: "How Long Left does not have permission to send you notifications", message: "You can grant it in Settings.", preferredStyle: .alert)
+        
+        let action1 = UIAlertAction(title: "Settings", style: .default) { (action:UIAlertAction) in
+            if let url = URL(string:UIApplication.openSettingsURLString) {
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: { success in
+                    })
+                }
+            }
+        }
+        
+        let action2 = UIAlertAction(title: "Cancel", style: .cancel) { (action:UIAlertAction) in
+            print("You've pressed cancel");
+        }
+        
+        alertController.addAction(action1)
+        alertController.addAction(action2)
+        alertController.view.tintColor = UIColor.HLLOrange
+        self.present(alertController, animated: true, completion: nil)
         
     }
     

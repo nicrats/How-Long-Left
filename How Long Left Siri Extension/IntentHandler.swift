@@ -14,6 +14,7 @@ import IntentsUI
 @available(iOS 12.0, *)
 class IntentHandler: INExtension {
     
+    
     override func handler(for intent: INIntent) -> Any {
         guard intent is HowLongLeftIntent else {
             fatalError("Unhandled intent type: \(intent)")
@@ -24,13 +25,14 @@ class IntentHandler: INExtension {
     
 }
 
-import Foundation
 
 @available(iOS 12.0, *)
 class HowLongLeftIntentHandler: NSObject, HowLongLeftIntentHandling {
     
+    let schoolAnalyser = SchoolAnalyser()
+    
     override init() {
-        SchoolAnalyser.shared.analyseCalendar()
+        schoolAnalyser.analyseCalendar()
     }
     
     func confirm(intent: HowLongLeftIntent, completion: @escaping (HowLongLeftIntentResponse) -> Void) {

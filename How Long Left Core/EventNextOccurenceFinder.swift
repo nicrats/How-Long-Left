@@ -32,7 +32,7 @@ class EventNextOccurenceFinder {
             var loopStart = Date()
             var loopEnd = Date()
             loopStart = istartDate
-            loopEnd = loopStart.addingTimeInterval(86400)
+            loopEnd = Calendar.current.date(byAdding: .day, value: 1, to: loopStart)!
             
             outer: for _ in 0...8 {
                 
@@ -50,8 +50,8 @@ class EventNextOccurenceFinder {
                     
                 }
                 
-                loopStart = loopStart.addingTimeInterval(86400)
-                loopEnd = loopEnd.addingTimeInterval(86400)
+                loopStart = Calendar.current.date(byAdding: .day, value: 1, to: loopStart)!
+                loopEnd = Calendar.current.date(byAdding: .day, value: 1, to: loopEnd)!
                 
             }
             

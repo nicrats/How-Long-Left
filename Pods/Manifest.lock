@@ -1,5 +1,6 @@
 PODS:
   - CryptoSwift (0.13.1)
+  - DeviceKit (1.11.0)
   - HotKey (0.1.1)
   - MarqueeLabel (3.2.0):
     - MarqueeLabel/ObjC (= 3.2.0)
@@ -8,6 +9,7 @@ PODS:
 
 DEPENDENCIES:
   - CryptoSwift
+  - DeviceKit
   - HotKey
   - MarqueeLabel
   - Preferences
@@ -15,16 +17,18 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - CryptoSwift
+    - DeviceKit
     - HotKey
     - MarqueeLabel
     - Preferences
 
 SPEC CHECKSUMS:
   CryptoSwift: ff68c35a53e03177d31aaa2c1e8b3e010aeed6cb
+  DeviceKit: a3a86f8dddbe1317a9a243cdf9646858bf135dce
   HotKey: 0be143fd015544a63c51be6dc2066dbf455ced72
   MarqueeLabel: 440a502b91a9179bd98f9fff00ba1150650a1c0e
   Preferences: 5543bfd757a2485a310683da977d661c0ae509a9
 
-PODFILE CHECKSUM: 475f3de157b00d533e2e8e339badf0376334cbcd
+PODFILE CHECKSUM: a3a67a1d2c5eed7bc1e69efbc7f5c868302b9d2e
 
 COCOAPODS: 1.5.3

@@ -58,7 +58,7 @@ enum HLLHotKeyOption: Int {
     
 }
 
-enum calendarAccess {
+enum calendarAccessState {
     
     case Granted
     case Denied

@@ -18,7 +18,11 @@ class MilestoneSettingsCell: UITableViewCell {
     
     
     func setupCell(milestone: HLLMilestone) {
-            
+        
+        self.selectedBackgroundView = AppTheme.current.selectedCellView
+        self.backgroundColor = AppTheme.current.tableCellBackgroundColor
+        self.milestoneItemLabel.textColor = AppTheme.current.textColor
+        
             milestoneItemLabel.text = milestone.settingsRowString
             
         }

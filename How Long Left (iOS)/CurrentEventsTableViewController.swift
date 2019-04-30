@@ -1,8 +1,8 @@
 //
-//  UpcomingEventsTableViewController.swift
+//  CurrentEventsTableViewController.swift
 //  How Long Left (iOS)
 //
-//  Created by Ryan Kontos on 23/2/19.
+//  Created by Ryan Kontos on 31/3/19.
 //  Copyright © 2019 Ryan Kontos. All rights reserved.
 //
 
@@ -19,65 +19,72 @@ class CurrentEventsTableViewController: UIViewController, UITableViewDelegate, U
     static var shared: CurrentEventsTableViewController?
     static var selectedEvent: HLLEvent?
     
+    static var timerStartDate = Date()
+    
     let defaults = HLLDefaults.defaults
     let eventDatasource = EventDataSource()
    
     var events = [HLLEvent]()
-    
+    var lastReadReturnedNoCalendarAccess = false
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noEventsStack: UIStackView!
     var endCheckTimer: Timer!
+    let schoolAnalyser = SchoolAnalyser()
     
 
     
     
     override func viewDidLoad() {
-     
+        
+        extendedLayoutIncludesOpaqueBars = true
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateTheme), name: Notification.Name("ThemeChanged"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateCountdownData), name: Notification.Name("CalendarAllowed"), object: nil)
+        
+        
       //  self.tabBarController?.tabBar.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
         IAPHandler.shared.fetchAvailableProducts()
-        
+        schoolAnalyser.analyseCalendar()
         CurrentEventsTableViewController.shared = self
         
         events = eventDatasource.getCurrentEvents()
         self.endCheckTimer = Timer.scheduledTimer(timeInterval: TimeInterval(0.5), target: self, selector: #selector(self.checkForEnd), userInfo: nil, repeats: true)
         RunLoop.main.add(self.endCheckTimer, forMode: .common)
         
+        updateTheme()
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
         
-       
-        //defaults.set(false, forKey: "ShownWatchAlert")
         
         WatchSessionManager.sharedManager.addDataSourceChangedDelegate(delegate: self)
         
-        
-        if WKInterfaceDevice.current().name != "", defaults.bool(forKey: "ShownWatchAlert") == false {
-            
-            defaults.set(true, forKey: "ShownWatchAlert")
-            
-            DispatchQueue.main.async {
-                
-                let alertController = UIAlertController(title: "Apple Watch App", message: "You can also use How Long Left on your Apple watch, and enable the Complication on the Modular Watch Face.", preferredStyle: .alert)
-                let action1 = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-                    print("You've pressed default");
-                }
-                alertController.addAction(action1)
-                self.present(alertController, animated: true, completion: nil)
-            }
-            
-        }
         
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.calendarDidChange),
             name: .EKEventStoreChanged,
             object: nil)
-      
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.calendarDidChange), name: UIApplication.willEnterForegroundNotification, object: nil)
+
     }
     
+    @objc func updateTheme() {
+        
+       self.navigationController?.navigationBar.barStyle = AppTheme.current.barStyle
+        self.tabBarController?.tabBar.barStyle = AppTheme.current.barStyle
+        self.navigationController?.navigationBar.isTranslucent = AppTheme.current.translucentBars
+        self.tabBarController?.tabBar.isTranslucent = AppTheme.current.translucentBars
+        self.tabBarController?.tabBar.barStyle = AppTheme.current.barStyle
+        self.tabBarController?.tabBar.backgroundColor = nil
+        self.tableView.backgroundColor = AppTheme.current.groupedTableViewBackgroundColor
+        self.tableView.separatorColor = AppTheme.current.tableCellSeperatorColor
+        
+        tableView.reloadData()
+    }
     
     @objc func checkForEnd() {
         
@@ -90,6 +97,22 @@ class CurrentEventsTableViewController: UIViewController, UITableViewDelegate, U
             }
             
             
+            if self.lastReadReturnedNoCalendarAccess == true {
+                
+                self.updateCountdownData()
+                
+            }
+            
+            if EventDataSource.accessToCalendar != .Granted {
+                
+                self.lastReadReturnedNoCalendarAccess = true
+                
+            } else {
+                
+                self.lastReadReturnedNoCalendarAccess = false
+                
+            }
+            
         }
         
         
@@ -97,17 +120,18 @@ class CurrentEventsTableViewController: UIViewController, UITableViewDelegate, U
     
     @objc func calendarDidChange() {
         
-        SchoolAnalyser.shared.analyseCalendar()
+        schoolAnalyser.analyseCalendar()
         updateCountdownData()
        
         
     }
     
-    func updateCountdownData() {
+    @objc func updateCountdownData() {
         
-        eventDatasource.updateEventStore()
-        events = eventDatasource.getCurrentEvents()
         DispatchQueue.main.async {
+        
+            self.events = self.eventDatasource.getCurrentEvents()
+        
            // self.tableView.beginUpdates()
             self.tableView.reloadData()
         }
@@ -122,47 +146,9 @@ class CurrentEventsTableViewController: UIViewController, UITableViewDelegate, U
     
     override func viewDidAppear(_ animated: Bool) {
         
-        
-         SchoolAnalyser.shared.analyseCalendar()
-        
+        schoolAnalyser.analyseCalendar()
         AppFunctions.shared.run()
-        
         updateCountdownData()
-        
-        checkLaunchToCurrent(external: false)
-        
-        
-    }
-    
-    func checkLaunchToCurrent(external: Bool) {
-        
-        if AppDelegate.launchToCurrentEvent == true {
-            AppDelegate.launchToCurrentEvent = false
-            
-            if events.isEmpty == false {
-                
-                if external == true {
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.50, execute: {
-                    
-                  //  self.performSegue(withIdentifier: "FullScreenCountdownSegue", sender: nil)
-                    
-                })
-                    
-                } else {
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
-                        
-                     //   self.performSegue(withIdentifier: "FullScreenCountdownSegue", sender: nil)
-                        
-                    })
-                    
-                    
-                }
-            
-            }
-            
-        }
         
     }
     
@@ -204,6 +190,8 @@ class CurrentEventsTableViewController: UIViewController, UITableViewDelegate, U
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        CurrentEventsTableViewController.timerStartDate = Date()
+        
         if events.isEmpty == false {
             tableView.separatorStyle = .singleLine
             tableView.backgroundView = nil
@@ -213,8 +201,16 @@ class CurrentEventsTableViewController: UIViewController, UITableViewDelegate, U
        
         } else {
             
+            var text = "No Events Are On"
+            
+            if EventDataSource.accessToCalendar == .Denied {
+                
+                text = "No Calendar Access"
+                
+            }
+            
             let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-            noDataLabel.text          = "No Events Are On"
+            noDataLabel.text          = text
             noDataLabel.textColor     = UIColor.lightGray
             noDataLabel.font = UIFont.systemFont(ofSize: 18)
             noDataLabel.textAlignment = .center
@@ -247,8 +243,6 @@ class CurrentEventsTableViewController: UIViewController, UITableViewDelegate, U
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
-        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -279,6 +273,10 @@ class eventCell: UITableViewCell {
     let gradient = CAGradientLayer()
     
     func generate(from event: HLLEvent) {
+        
+        self.backgroundColor = AppTheme.current.tableCellBackgroundColor
+        titleLabel.textColor = AppTheme.current.textColor
+        countdownLabel.textColor = AppTheme.current.textColor
         
         rowEvent = event
         
@@ -316,7 +314,7 @@ class eventCell: UITableViewCell {
         
         countdownLabel.font = UIFont.monospacedDigitSystemFont(ofSize: countdownLabel.font.pointSize, weight: .thin)
         
-        timer = Timer(fire: Date(), interval: 0.1, repeats: true, block: {_ in
+        timer = Timer(fire: CurrentEventsTableViewController.timerStartDate, interval: 0.07, repeats: true, block: {_ in
             
             DispatchQueue.main.async {
             self.updateTimer()

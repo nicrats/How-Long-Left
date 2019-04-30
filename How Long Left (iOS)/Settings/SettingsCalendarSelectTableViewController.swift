@@ -17,6 +17,7 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
     var setCalendars = [String]()
     var calendars = [EKCalendar]()
     var selectAllState = true
+    let schoolAnalyser = SchoolAnalyser()
 
     override func viewWillAppear(_ animated: Bool) {
         //self.tabBarController?.tabBar.isHidden = true
@@ -27,11 +28,14 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
         
-        
-        
         calendars = calendar.getCalendars()
+        extendedLayoutIncludesOpaqueBars = true
+        tableView.backgroundColor = AppTheme.current.groupedTableViewBackgroundColor
+        tableView.separatorColor = AppTheme.current.tableCellSeperatorColor
         calendars.sort { $0.title < $1.title }
         
         if let storedIDS = defaults.stringArray(forKey: "setCalendars") {
@@ -103,7 +107,7 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         DispatchQueue.main.async {
-          SchoolAnalyser.shared.analyseCalendar()
+            self.schoolAnalyser.analyseCalendar()
         }
         
         if calendars.count > 0, setCalendars.count == 0 {
@@ -134,6 +138,11 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
         return calendars.count
     }
 
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return "Select Calendars to use"
+        
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         

@@ -14,6 +14,7 @@ class MilestoneNotificationScheduler {
 
     let cal = EventDataSource()
     var hasPermission = true
+    let schoolAnalyser = SchoolAnalyser()
     
     init() {
         
@@ -34,6 +35,7 @@ class MilestoneNotificationScheduler {
         }
         
     }
+    
     
     func scheduleTestNotification() {
         
@@ -80,7 +82,7 @@ class MilestoneNotificationScheduler {
               //  print("Scheduling notifications with milestones \(HLLDefaults.notifications.milestones)")
                 
                 self.cal.updateEventStore()
-                SchoolAnalyser.shared.analyseCalendar()
+                self.schoolAnalyser.analyseCalendar()
                 var eventsArray = self.cal.getCurrentEvents()
                 eventsArray.append(contentsOf: self.cal.getUpcomingEventsToday())
             

@@ -26,6 +26,8 @@ class CountdownStringGenerator {
             
             let formatter = DateComponentsFormatter()
             
+            print("secondsLeft: \(secondsLeft)")
+            
             if secondsLeft+1 > 86400 {
                 
                 formatter.allowedUnits = [.day, .weekOfMonth]

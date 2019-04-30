@@ -13,10 +13,11 @@ import EventKit
 class ComplicationContentsGenerator {
 
     let cal = EventDataSource()
+    let schoolAnalyser = SchoolAnalyser()
     
     init() {
         
-        SchoolAnalyser.shared.analyseCalendar()
+        schoolAnalyser.analyseCalendar()
         
     }
     
@@ -25,9 +26,18 @@ class ComplicationContentsGenerator {
         var returnArray = [CLKComplicationTimelineEntry]()
         let items = generateComplicationItems()
         
+        if HLLDefaults.defaults.bool(forKey: "ComplicationPurchased") == true {
+        
         for item in items {
             
             returnArray.append(contentsOf: getEntryForItem(complication: complication, data: item))
+            
+        }
+            
+        } else {
+            
+           returnArray.append(generateComplicationNotPurchasedEntry(for: complication))
+            
             
         }
         
@@ -104,7 +114,7 @@ class ComplicationContentsGenerator {
             
             if let start = getSoonestEndingEvent(at: item.startDate, from: events) {
                 
-                let next = getNextEvent(after: start, events: upcomingEvents)
+                let next = getNextEventToStart(after: start.startDate, from: upcomingEvents)
                 
                 print("CompSim1: \(item.startDate.formattedDate()) \(item.startDate.formattedTime()): \(start.title), Next: \(String(describing: next?.title))")
                 
@@ -133,7 +143,7 @@ class ComplicationContentsGenerator {
             if let end = getSoonestEndingEvent(at: item.endDate, from: events) {
                 
                 
-                let next = getNextEvent(after: end, events: upcomingEvents)
+                let next = getNextEventToStart(after: end.startDate, from: upcomingEvents)
                 
                 print("CompSim3: \(item.endDate.formattedDate()) \(item.endDate.formattedTime()): No event is on, Next: \(next?.title ?? "None")")
                 
@@ -211,14 +221,14 @@ class ComplicationContentsGenerator {
             
         }
         
-        let next = getNextEventToStart(after: Date(), from: events)
-        
+       
+         var next = getNextEventToStart(after: Date(), from: events)
         var entry = HLLComplicationEntry(date: Date(), event: nil, next: next)
     
         if let event = getSoonestEndingEvent(at: Date(), from: events) {
             
             if event.startDate.timeIntervalSinceNow < 1 {
-                
+                 next = getNextEventToStart(after: event.startDate, from: events)
                 entry = HLLComplicationEntry(date: event.startDate, event: event, next: next)
                 
             }
@@ -273,11 +283,12 @@ class ComplicationContentsGenerator {
             
             
             let template = CLKComplicationTemplateModularSmallStackText()
+            template.line1TextProvider = CLKSimpleTextProvider(text: current.title)
+            template.line2TextProvider = CLKRelativeDateTextProvider(date: current.endDate, style: .naturalAbbreviated, units: [.day, .hour, .minute])
             template.line1TextProvider.tintColor = eventTint
             template.line2TextProvider.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            template.line1TextProvider = CLKSimpleTextProvider(text: current.title)
-            template.line2TextProvider = CLKRelativeDateTextProvider(date: current.endDate, style: .timer, units: [.day, .hour, .minute])
             rArray.append(CLKComplicationTimelineEntry(date: data.showAt, complicationTemplate: template))
+            
             
         case .modularLarge:
             
@@ -553,7 +564,7 @@ class ComplicationContentsGenerator {
                 
                 updatedTimeText = "\(next.startDate.formattedTime())"
                 
-                entry.headerTextProvider = CLKSimpleTextProvider(text: "Next: \(next.title)")
+                entry.headerTextProvider = CLKSimpleTextProvider(text: "\(next.title)")
                 
                 
                 
@@ -621,11 +632,11 @@ class ComplicationContentsGenerator {
             
             let template = CLKComplicationTemplateUtilitarianLargeFlat()
             
-            let image = UIImage(named: "UtilitySmallIcon")!
+          /*  let image = UIImage(named: "UtilitySmallIcon")!
             let imageP = CLKImageProvider(onePieceImage: image)
             imageP.tintColor = nextTint
             
-            template.imageProvider = imageP
+            template.imageProvider = imageP */
             
             template.textProvider = CLKSimpleTextProvider(text: "No event is on")
              entryItem = template
@@ -772,6 +783,136 @@ class ComplicationContentsGenerator {
         
     }
     
+    func generateComplicationNotPurchasedEntry(for complication: CLKComplication) -> CLKComplicationTimelineEntry {
+        
+        var entryItem: CLKComplicationTemplate?
+        
+        switch complication.family {
+            
+        case .modularSmall:
+            
+            let modularSmallEntry = CLKComplicationTemplateModularSmallSimpleImage()
+            let image = UIImage(named: "ModularSmallIcon")!
+            let imageP = CLKImageProvider(onePieceImage: image)
+            imageP.tintColor = UIColor.orange
+            modularSmallEntry.imageProvider = imageP
+            
+            entryItem = modularSmallEntry
+            
+        case .modularLarge:
+            
+            let modularLargeEntry = CLKComplicationTemplateModularLargeStandardBody()
+            modularLargeEntry.headerTextProvider = CLKSimpleTextProvider(text: "How Long Left")
+            modularLargeEntry.headerTextProvider.tintColor = UIColor.orange
+            modularLargeEntry.body1TextProvider = CLKSimpleTextProvider(text: "Tap to open")
+            
+            entryItem = modularLargeEntry
+            
+        case .utilitarianSmall:
+            
+            let utilitySmallEntry = CLKComplicationTemplateUtilitarianSmallSquare()
+            let image = UIImage(named: "UtilitySmallIcon")!
+            let imageP = CLKImageProvider(onePieceImage: image)
+            imageP.tintColor = UIColor.orange
+            utilitySmallEntry.imageProvider = imageP
+            
+            entryItem = utilitySmallEntry
+            
+            
+        case .utilitarianSmallFlat:
+            
+            
+            let utilitySmallEntry = CLKComplicationTemplateUtilitarianSmallFlat()
+            utilitySmallEntry.textProvider = CLKSimpleTextProvider(text: "HLL")
+            
+            entryItem = utilitySmallEntry
+            
+        case .utilitarianLarge:
+            
+            
+            let template = CLKComplicationTemplateUtilitarianLargeFlat()
+            
+            template.textProvider = CLKSimpleTextProvider(text: "How Long Left")
+            entryItem = template
+            
+        case .circularSmall:
+            
+            let circSmallEntry = CLKComplicationTemplateCircularSmallSimpleImage()
+            let image = UIImage(named: "CircularSmallIcon")!
+            let imageP = CLKImageProvider(onePieceImage: image)
+            imageP.tintColor = UIColor.orange
+            
+            circSmallEntry.imageProvider = imageP
+            
+            entryItem = circSmallEntry
+            
+        case .extraLarge:
+            
+            let XLEntry = CLKComplicationTemplateExtraLargeSimpleImage()
+            let image = UIImage(named: "ExtraLargeIcon")!
+            let imageP = CLKImageProvider(onePieceImage: image)
+            imageP.tintColor = UIColor.orange
+            
+            XLEntry.imageProvider = imageP
+            
+            entryItem = XLEntry
+            
+        case .graphicCorner:
+            
+             let imageP = CLKFullColorImageProvider(fullColorImage: UIImage(named: "GraphicCorner_NoEvent")!)
+            
+             let temp = CLKComplicationTemplateGraphicCornerTextImage()
+             temp.textProvider = CLKSimpleTextProvider(text: "How Long Left")
+             temp.textProvider.tintColor = UIColor.orange
+             temp.imageProvider = imageP
+             entryItem = temp
+            
+            
+        case .graphicBezel:
+            
+            let circTemp = CLKComplicationTemplateGraphicCircularImage()
+            
+            circTemp.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "GraphicCircular")!)
+            let temp = CLKComplicationTemplateGraphicBezelCircularText()
+            temp.textProvider = CLKSimpleTextProvider(text: "How Long Left")
+            temp.textProvider?.tintColor = UIColor.orange
+            temp.circularTemplate = circTemp
+            
+            entryItem = temp
+            
+            
+        case .graphicCircular:
+            
+            
+            let circTemp = CLKComplicationTemplateGraphicCircularImage()
+            
+            circTemp.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "GraphicCircular")!)
+            
+            entryItem = circTemp
+            
+        case .graphicRectangular:
+            
+            let entry = CLKComplicationTemplateGraphicRectangularStandardBody()
+            entry.headerTextProvider = CLKSimpleTextProvider(text: "How Long Left")
+            
+            entry.headerTextProvider.tintColor = UIColor.orange
+            
+            entry.body1TextProvider = CLKSimpleTextProvider(text: "Tap to open")
+            
+            entry.body1TextProvider.tintColor = UIColor.white
+            
+            entryItem = entry
+            
+        @unknown default:
+            fatalError()
+        }
+        
+        let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: entryItem!)
+        
+        return timelineEntry
+        
+    }
+    
     func generateComplicationSample(complication: CLKComplication) -> CLKComplicationTemplate? {
         
         let current = HLLEvent(title: "Meeting", start: Date().addingTimeInterval(-10800), end: Date().addingTimeInterval(5400), location: nil)
@@ -788,39 +929,7 @@ class ComplicationContentsGenerator {
     }
     
     
-  /*  func generateComplicationNotPurchasedEntry(for complication: CLKComplication) -> CLKComplicationTimelineEntry {
-        
-        
-        switch complication.family {
-            
-        case .modularSmall:
-            break
-        case .modularLarge:
-            
-        case .utilitarianSmall:
-            
-        case .utilitarianSmallFlat:
-            
-        case .utilitarianLarge:
-            
-        case .circularSmall:
-            break
-        case .extraLarge:
-            break
-        case .graphicCorner:
-            
-        case .graphicBezel:
-            
-        case .graphicCircular:
-            break
-        case .graphicRectangular:
-            
-        @unknown default:
-     
-        }
-        
-    }
-     */
+   
     
     func getTimelineStartDate() -> Date? {
         
@@ -855,31 +964,6 @@ func getSoonestEndingEvent(at date: Date, from events: [HLLEvent]) -> HLLEvent? 
     return currentEvents.first
     
 }
-
-
-func getNextEvent(after event: HLLEvent, events: [HLLEvent]) -> HLLEvent? {
-    
-    if let index = events.firstIndex(of: event) {
-        
-        if events.indices.contains(index+1) {
-            
-            return events[index+1]
-            
-        } else {
-            
-            return nil
-            
-        }
-        
-    } else {
-        
-        return nil
-        
-    }
-    
-    
-}
-
 
 func getNextEventToStart(after date: Date, from events: [HLLEvent]) -> HLLEvent? {
     

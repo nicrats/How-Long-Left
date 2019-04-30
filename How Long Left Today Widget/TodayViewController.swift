@@ -21,6 +21,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     let cal = EventDataSource()
     let backgroundImageView = UIImageView()
     var current: HLLEvent?
+    let schoolAnalyser = SchoolAnalyser()
     
      let bArray = [UIImage(named: "Background_Light"), UIImage(named: "Background_Dark"), UIImage(named: "Background_Black")]
     override func viewDidLoad() {
@@ -72,7 +73,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
         
-        SchoolAnalyser.shared.analyseCalendar()
+        schoolAnalyser.analyseCalendar()
         
         current = self.cal.getCurrentEvent()
         

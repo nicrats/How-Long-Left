@@ -26,13 +26,15 @@ class EventDataSource {
     
     // read
     
-    static var accessToCalendar = calendarAccess.Unknown
+    static var accessToCalendar = calendarAccessState.Unknown
     var latestFetchSchoolMode = SchoolMode.None
     static var eventStore = EKEventStore()
     static var lastUpdatedWithCalendars = [String]()
     //static var schoolCheckDone = false
     
     static var calendarReads = 0
+    
+    var delegate: EventDataSourceDelegate?
     
     func updateEventStore() {
         EventDataSource.eventStore = EKEventStore()
@@ -51,6 +53,14 @@ class EventDataSource {
     }
     
     
+    init(with aDelegate: EventDataSourceDelegate) {
+        
+        delegate = aDelegate
+        getCalendarAccess()
+        
+        
+    }
+    
     
     func getCalendarAccess() {
         
@@ -61,10 +71,26 @@ class EventDataSource {
                 
                 EventDataSource.accessToCalendar = .Granted
                 
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7, execute: {
+                    
+                    NotificationCenter.default.post(name: Notification.Name("CalendarAllowed"), object: nil)
+                    
+                })
+                
+                
+                
                 
             } else {
                 
                 EventDataSource.accessToCalendar = .Denied
+                
+                if let safe = self.delegate {
+                    
+                    safe.calendarAccessDenied()
+                    
+                }
+                
+               
                 
             }
         
@@ -277,8 +303,8 @@ class EventDataSource {
     func fetchEventsOnDay(day: Date) -> [HLLEvent] {
         
         let start = day.midnight()
-        let end = start.addingTimeInterval(86400)
-        return getEventsFromCalendar(start: start, end: end)
+        let end = Calendar.current.date(byAdding: .day, value: 1, to: start)
+        return getEventsFromCalendar(start: start, end: end!)
         
     }
     
@@ -316,26 +342,26 @@ class EventDataSource {
                 // Return all calendar events occuring today.
                 
                 startDate = NSCalendar.current.date(from: comp)!
-                endDate = startDate!.addingTimeInterval(86400)
+                endDate = Calendar.current.date(byAdding: .day, value: 1, to: startDate!)
                 
             case .UpcomingToday:
                 
                 // Return all calendar events occuring today that have not already started.
                 
                 startDate = Date()
-                endDate = NSCalendar.current.date(from: comp)?.addingTimeInterval(86400)
+                endDate = Calendar.current.date(byAdding: .day, value: 1, to: startDate!)
                 
             case .AllTodayPlus24HoursFromNow:
                 
                 // Return all calendar events occuring in the next 24 hours.
                 
                 startDate = NSCalendar.current.date(from: comp)!
-                endDate = Date().addingTimeInterval(86400)
+                endDate = Calendar.current.date(byAdding: .day, value: 1, to: startDate!)
                 
             case .Next2Weeks:
                 
                 startDate = NSCalendar.current.date(from: comp)!
-                endDate = startDate!.addingTimeInterval(1209600)
+                endDate = Calendar.current.date(byAdding: .day, value: 14, to: startDate!)
             
                 
             case .AnalysisPeriod:
@@ -376,9 +402,9 @@ class EventDataSource {
         // Returns all calendar events that are currently in progress.
         
         let startDate = Date().midnight()
-        let endDate = startDate.addingTimeInterval(86400)
+        let endDate = Calendar.current.date(byAdding: .day, value: 1, to: startDate)
         
-        let eventsToday = getEventsFromCalendar(start: startDate, end: endDate)
+        let eventsToday = getEventsFromCalendar(start: startDate, end: endDate!)
         
         var currentEvents = [HLLEvent]()
 
@@ -430,11 +456,11 @@ class EventDataSource {
         var comp: DateComponents = NSCalendar.current.dateComponents([.year, .month, .day], from: Date())
         comp.timeZone = TimeZone.current
         var loopStart = NSCalendar.current.date(from: comp)!
-        var loopEnd = loopStart.addingTimeInterval(86400)
+        var loopEnd = Calendar.current.date(byAdding: .day, value: 1, to: loopStart)
         
         outer: for _ in 1...7 {
             
-            upEvents = getEventsFromCalendar(start: loopStart, end: loopEnd)
+            upEvents = getEventsFromCalendar(start: loopStart, end: loopEnd!)
             var notStarted = [HLLEvent]()
             
             for event in upEvents {
@@ -453,8 +479,9 @@ class EventDataSource {
             
             var comp: DateComponents = NSCalendar.current.dateComponents([.year, .month, .day], from: loopStart)
             comp.timeZone = TimeZone.current
-            loopStart = NSCalendar.current.date(from: comp)!.addingTimeInterval(86400)
-            loopEnd = loopEnd.addingTimeInterval(86400)
+            loopStart = NSCalendar.current.date(from: comp)!
+            loopStart = Calendar.current.date(byAdding: .day, value: 1, to: loopStart)!
+            loopEnd = Calendar.current.date(byAdding: .day, value: 1, to: loopEnd!)
             
         }
         
@@ -469,16 +496,34 @@ class EventDataSource {
         var comp: DateComponents = NSCalendar.current.dateComponents([.year, .month, .day], from: Date())
         comp.timeZone = TimeZone.current
         var loopStart = NSCalendar.current.date(from: comp)!
-        var loopEnd = loopStart.addingTimeInterval(86400)
+        var loopEnd = Calendar.current.date(byAdding: .day, value: 1, to: loopStart)
         
         for _ in 1...8 {
             
-            returnArray[loopStart] = getEventsFromCalendar(start: loopStart, end: loopEnd).sorted(by: { $0.startDate.compare($1.startDate) == .orderedAscending })
+            var events = getEventsFromCalendar(start: loopStart, end: loopEnd!).sorted(by: {
+                $0.startDate.compare($1.startDate) == .orderedAscending })
+
+            for event in events {
+                
+                if event.startDate.midnight() != loopStart.midnight() || event.startDate.timeIntervalSinceNow < 0 {
+                    
+                    let index = events.firstIndex(of: event)!
+                    events.remove(at: index)
+                    
+                }
+                
+            }
+            
+
+            returnArray[loopStart] = events
             var comp: DateComponents = NSCalendar.current.dateComponents([.year, .month, .day], from: loopStart)
             comp.timeZone = TimeZone.current
             //loopStart = NSCalendar.current.date(from: comp)!.addingTimeInterval(86400)
-            loopStart = loopStart.addingTimeInterval(86400)
-            loopEnd = loopEnd.addingTimeInterval(86400)
+            
+            
+            
+            loopStart = Calendar.current.date(byAdding: .day, value: 1, to: loopStart)!
+            loopEnd = Calendar.current.date(byAdding: .day, value: 1, to: loopEnd!)
             
         }
         
@@ -503,3 +548,10 @@ class EventDataSource {
     
     
     }
+
+protocol EventDataSourceDelegate {
+    
+    func calendarAccessDenied()
+    
+    
+}

@@ -366,8 +366,8 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
 			self.statusItemPreviewText.isHidden = false
 			self.previewIcon.isHidden = true
             
-            let stringGenerator = StatusItemTimerStringGenerator(isForPreview: true)
-            let data = stringGenerator.generateStringFor(event: preview)
+            let stringGenerator = CountdownStringGenerator()
+            let data = stringGenerator.generateStatusItemString(event: preview)
 			
 			self.statusItemPreviewText.stringValue = data ?? ""
             

@@ -8,28 +8,22 @@
 
 import Foundation
 
-struct SchoolHolidaysPeriod {
-    
-    init(startComp: NSDateComponents, endComp: NSDateComponents, term holidaysTerm: Int) {
-        
-        start = (NSCalendar(identifier: NSCalendar.Identifier.gregorian)?.date(from: startComp as DateComponents))!
-        end = (NSCalendar(identifier: NSCalendar.Identifier.gregorian)?.date(from: endComp as DateComponents))!
-        
-        term = holidaysTerm
-    }
-    
-    var start: Date?
-    var end: Date?
-    var term: Int
-}
-
-
 class MagdaleneSchoolHolidays {
     
     // static var SHstartDate: Date?
     // static var SHendDate: Date?
     
     var holidayPeriods = [SchoolHolidaysPeriod]()
+    
+    var currentTerm: Int? {
+    
+        get {
+        
+       return MagdaleneSchoolHolidays().getNextHolidays()?.holidaysTerm
+        
+        
+        }
+    }
     
     init() {
         
@@ -48,8 +42,8 @@ class MagdaleneSchoolHolidays {
         end.year = 2019
         end.month = 4
         end.day = 29
-        end.hour = 00
-        end.minute = 00
+        end.hour = 8
+        end.minute = 15
         end.second = 00
         holidayPeriods.append(SchoolHolidaysPeriod(startComp: start, endComp: end, term: 1))
         
@@ -65,8 +59,8 @@ class MagdaleneSchoolHolidays {
         end.year = 2019
         end.month = 7
         end.day = 22
-        end.hour = 00
-        end.minute = 00
+        end.hour = 8
+        end.minute = 15
         end.second = 00
         holidayPeriods.append(SchoolHolidaysPeriod(startComp: start, endComp: end, term: 2))
         
@@ -82,8 +76,8 @@ class MagdaleneSchoolHolidays {
         end.year = 2019
         end.month = 10
         end.day = 14
-        end.hour = 00
-        end.minute = 00
+        end.hour = 8
+        end.minute = 15
         end.second = 00
         holidayPeriods.append(SchoolHolidaysPeriod(startComp: start, endComp: end, term: 3))
         
@@ -95,6 +89,12 @@ class MagdaleneSchoolHolidays {
         return getSchoolHolidaysFrom(start: Date(), end: Date.distantFuture)
         
     }
+    
+   /* func getPreviousHolidays() -> HLLEvent? {
+        
+        
+        
+    } */
     
     func getSchoolHolidaysFrom(start: Date, end: Date) -> HLLEvent? {
         
@@ -128,4 +128,19 @@ class MagdaleneSchoolHolidays {
     
     }
     
+}
+
+struct SchoolHolidaysPeriod {
+    
+    init(startComp: NSDateComponents, endComp: NSDateComponents, term holidaysTerm: Int) {
+        
+        start = (NSCalendar(identifier: NSCalendar.Identifier.gregorian)?.date(from: startComp as DateComponents))!
+        end = (NSCalendar(identifier: NSCalendar.Identifier.gregorian)?.date(from: endComp as DateComponents))!
+        
+        term = holidaysTerm
+    }
+    
+    var start: Date?
+    var end: Date?
+    var term: Int
 }

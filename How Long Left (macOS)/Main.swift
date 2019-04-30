@@ -68,7 +68,6 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
     lazy var schoolAnalyser = SchoolAnalyser()
     lazy var milestoneNotifications = MilestoneNotifications()
     lazy var calendarData = EventDataSource()
-    lazy var statusItemTimerStringGenerator = StatusItemTimerStringGenerator(isForPreview: false)
     lazy var nextOccurStringGenerator = NextOccurenceStringGenerator()
     lazy var holidaysStringGenerator = SchoolHolidaysStringGenerator()
     lazy var eventNextOccurFinder = EventNextOccurenceFinder()
@@ -256,7 +255,7 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
                     
                     
                     
-                    if let currentEvent = countdown, currentEvent.holidaysTerm == nil, let timerString = self.statusItemTimerStringGenerator.generateStringFor(event: currentEvent) {
+                    if let currentEvent = countdown, currentEvent.holidaysTerm == nil, let timerString = self.countdownStringGenerator.generateStatusItemString(event: currentEvent) {
                         self.runStatusItemUIUpdate(event: currentEvent)
                         self.delegate?.updateStatusItem(with: timerString)
                         
@@ -315,15 +314,12 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
             
         }
         
-        let compS = ComplicationSim()
-        let _ = compS.generateComplicationItems()
-        
         
         DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
             
             
             if self.magdaleneWifiCheck.isOnMagdaleneWifi() == true, SchoolAnalyser.schoolModeIgnoringUserPreferences == SchoolMode.None, HLLDefaults.defaults.bool(forKey: "sentralPrompt") == false {
-                self.magdalenePrompts.presentSentralPrompt()
+                self.magdalenePrompts.presentSentralPrompt(reinstall: false)
                 HLLDefaults.defaults.set(true, forKey: "sentralPrompt")
                 
             }
@@ -582,6 +578,12 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
                 }
             }
             
+            if SchoolAnalyser.schoolMode == .Magdalene {
+                
+                
+                
+            }
+            
         }
         
     }
@@ -777,13 +779,13 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
         
         calUpdateQueue.async(flags: .barrier) {
         
-            SchoolAnalyser.shared.analyseCalendar()
+            self.schoolAnalyser.analyseCalendar()
             
                 let updateSource = EventDataSource()
                 updateSource.updateEventStore()
                 EventCache.currentEvents = updateSource.getCurrentEvents()
                 EventCache.upcomingEventsToday = updateSource.getUpcomingEventsToday()
-                SchoolAnalyser.shared.analyseCalendar()
+            self.schoolAnalyser.analyseCalendar()
                 EventCache.allToday = updateSource.fetchEventsFromPresetPeriod(period: .AllToday)
             
         }

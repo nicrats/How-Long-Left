@@ -27,15 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    static var launchToCurrentEvent = false {
-        
-        didSet {
-            
-            CurrentEventsTableViewController.shared?.checkLaunchToCurrent(external: true)
-            
-        }
-        
-    }
     
     var window: UIWindow?
 
@@ -46,6 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let cal = EventDataSource()
  
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        
+        
         // Override point for customization after application launch.
        sync.syncDefaultsToWatch()
         AppFunctions.shared.run()

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14490.70" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch44" orientation="portrait">
+    <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -13,7 +13,7 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="How_Long_Left_watchOS_Extension">
                     <items>
-                        <group width="134" height="132" alignment="center" verticalAlignment="center" layout="vertical" spacing="0.0" id="3Rn-fK-cOT">
+                        <group width="1" height="132" alignment="center" verticalAlignment="center" layout="vertical" spacing="0.0" id="3Rn-fK-cOT">
                             <items>
                                 <group width="1" alignment="left" layout="vertical" spacing="0.0" id="gZi-TQ-hJY">
                                     <items>
@@ -65,7 +65,7 @@
                                                 <fontDescription key="font" type="system" weight="semibold" pointSize="39"/>
                                             </variation>
                                         </timer>
-                                        <timer height="51" alignment="center" textAlignment="center" baselineAdjustment="alignCenters" minimumScaleFactor="0.40000000000000002" enabled="YES" id="vrk-bp-Pfd">
+                                        <timer height="51" alignment="center" textAlignment="center" baselineAdjustment="alignCenters" minimumScaleFactor="0.40000000000000002" enabled="YES" previewedSeconds="99999" id="vrk-bp-Pfd">
                                             <color key="textColor" red="1" green="0.57698222960000001" blue="0.16235167340000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="font" type="system" weight="semibold" pointSize="49"/>
                                             <variation key="device=watch38mm" height="38">
@@ -77,7 +77,7 @@
                                             <variation key="device=watch42mm" height="37">
                                                 <fontDescription key="font" type="system" weight="semibold" pointSize="39"/>
                                             </variation>
-                                            <variation key="device=watch44mm" height="44">
+                                            <variation key="device=watch44mm" height="39">
                                                 <fontDescription key="font" type="system" weight="semibold" pointSize="39"/>
                                             </variation>
                                         </timer>
@@ -186,7 +186,7 @@
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="font" type="system" weight="semibold" pointSize="18"/>
                                                             </label>
-                                                            <timer height="21" alignment="left" id="BzH-qp-Knw">
+                                                            <timer height="22" alignment="left" baselineAdjustment="alignCenters" enabled="YES" id="BzH-qp-Knw">
                                                                 <color key="textColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="font" type="system" weight="medium" pointSize="25"/>
                                                             </timer>
@@ -363,6 +363,7 @@
                                                     </label>
                                                     <timer alignment="left" verticalAlignment="center" minimumScaleFactor="0.69999999999999996" format="abbreviated" previewedSeconds="29000" id="JnX-K8-rne">
                                                         <fontDescription key="font" type="system" weight="semibold" pointSize="18"/>
+                                                        <calendarUnit key="units" year="YES" month="YES" day="YES" hour="YES" minute="YES" second="YES" weekOfMonth="YES"/>
                                                     </timer>
                                                 </items>
                                                 <edgeInsets key="margins" left="0.0" right="0.0" top="4" bottom="4"/>
@@ -488,7 +489,7 @@
                                                         <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                         <fontDescription key="font" type="system" weight="medium" pointSize="13"/>
                                                     </label>
-                                                    <label alignment="left" verticalAlignment="center" text="75 minutes" id="CHr-qE-rbJ">
+                                                    <label alignment="left" verticalAlignment="center" text="75 minutes" minimumScaleFactor="0.40000000000000002" id="CHr-qE-rbJ">
                                                         <fontDescription key="font" type="system" weight="semibold" pointSize="18"/>
                                                     </label>
                                                 </items>
@@ -509,7 +510,7 @@
                                                         <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                         <fontDescription key="font" type="system" weight="medium" pointSize="13"/>
                                                     </label>
-                                                    <label alignment="left" verticalAlignment="center" text="75 minutes" id="Mzy-z4-DBv">
+                                                    <label alignment="left" verticalAlignment="center" text="75 minutes" minimumScaleFactor="0.40000000000000002" id="Mzy-z4-DBv">
                                                         <fontDescription key="font" type="system" weight="semibold" pointSize="18"/>
                                                     </label>
                                                 </items>
@@ -568,20 +569,6 @@
                 </controller>
             </objects>
             <point key="canvasLocation" x="265.3478260869565" y="-84.241071428571431"/>
-        </scene>
-        <!--locationMapView-->
-        <scene sceneID="03p-Oq-Z9y">
-            <objects>
-                <controller identifier="locationMapView" id="UUT-pK-zh1" customClass="LocationMapInterfaceController" customModule="How_Long_Left_watchOS_Extension">
-                    <items>
-                        <map height="1" alignment="left" id="RV7-Ko-HS4"/>
-                    </items>
-                    <connections>
-                        <outlet property="map" destination="RV7-Ko-HS4" id="Ber-iD-EyJ"/>
-                    </connections>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="499" y="-84"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

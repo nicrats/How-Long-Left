@@ -36,6 +36,8 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
         session.activate()
     }
     
+    
+    
     func addDataSourceChangedDelegate<T>(delegate: T) where T: DataSourceChangedDelegate, T: Equatable {
         dataSourceChangedDelegates.append(delegate)
     }
@@ -92,14 +94,13 @@ extension WatchSessionManager {
                 
             }
         
-      /*  if let compStatus = data["ComplicationPurchased"]  {
+        if let compStatus = data["ComplicationPurchased"]  {
             
             let compStatusBool = compStatus as! Bool
             
-            if compStatusBool != HLLDefaults.complication.complicationPurchased {
+            if compStatusBool != HLLDefaults.defaults.bool(forKey: "ComplicationPurchased") {
             
-            HLLDefaults.complication.complicationPurchased = compStatusBool
-                
+            HLLDefaults.defaults.set(compStatusBool, forKey: "ComplicationPurchased")
                 
                 if let entries = CLKComplicationServer.sharedInstance().activeComplications {
                         
@@ -115,7 +116,7 @@ extension WatchSessionManager {
             }
             
             
-        } */
+        }
         
             self.dataSourceChangedDelegates.forEach { $0.userInfoChanged() }
         

@@ -16,6 +16,7 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
     let timerStringGenerator = EventCountdownTimerStringGenerator()
     let cal = EventDataSource()
     var event: HLLEvent?
+    let schoolAnalyser = SchoolAnalyser()
     
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
@@ -23,7 +24,7 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SchoolAnalyser.shared.analyseCalendar()
+        schoolAnalyser.analyseCalendar()
         // Do any additional setup after loading the view.
     }
         

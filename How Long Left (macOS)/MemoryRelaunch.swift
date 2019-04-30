@@ -64,9 +64,7 @@ class MemoryRelaunch {
             task.arguments = [path]
             task.launch()
             exit(0)
-        
-        #endif
-        
+
     }
     
     

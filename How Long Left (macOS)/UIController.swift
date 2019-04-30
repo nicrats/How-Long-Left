@@ -96,6 +96,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
     var clickedID: HLLEvent?
     let nextOccurGen = NextOccurenceStringGenerator()
     let nextOccurFind = EventNextOccurenceFinder()
+    let schoolAnalyser = SchoolAnalyser()
     
     var countdownMenuItemEvents: [NSMenuItem: HLLEvent] = [:]
     var nextOccurMenuItems = [NSMenuItem]()
@@ -148,7 +149,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate {
         
             self.main.mainRunLoop()
         
-        SchoolAnalyser.shared.analyseCalendar()
+        schoolAnalyser.analyseCalendar()
        // main.mainRunLoop()
         
       //  UIController.awokeAt = Date()

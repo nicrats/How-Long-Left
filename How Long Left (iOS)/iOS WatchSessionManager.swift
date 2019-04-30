@@ -41,6 +41,12 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
         
     }
     
+    func watchSupported() -> Bool {
+        
+        return WCSession.isSupported()
+        
+    }
+    
     var transfers = [WCSessionUserInfoTransfer]()
     
     static let sharedManager = WatchSessionManager()

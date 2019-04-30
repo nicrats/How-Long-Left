@@ -19,6 +19,7 @@ class AppFunctions {
     private let notoScheduler = MilestoneNotificationScheduler()
     
     private let sync = DefaultsSync()
+    let schoolAnalyser = SchoolAnalyser()
     
     init() {
         
@@ -27,25 +28,19 @@ class AppFunctions {
         let eventDatasource = EventDataSource()
         eventDatasource.getCalendarAccess()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(cloudDefaultsChanged),
-            name: NSUbiquitousKeyValueStore.didChangeExternallyNotification,
-            object: nil)
-        
-        run()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { self.run() })
+
     }
     
     func run() {
         
+        DispatchQueue.main.async {
         
         VoiceShortcutStatusChecker.shared.check()
-        donateInteraction()
+            self.donateInteraction()
         
        
-        SchoolAnalyser.shared.analyseCalendar()
+            self.schoolAnalyser.analyseCalendar()
         
         WatchSessionManager.sharedManager.startSession()
         
@@ -56,20 +51,7 @@ class AppFunctions {
         self.notoScheduler.scheduleNotificationsForUpcomingEvents()
         
         
-        
-        
-    }
-    
-    @objc private func cloudDefaultsChanged() {
-        
-    //    HLLDefaults.shared.loadDefaultsFromCloud()
-        
-    }
-    
-    @objc private func defaultsChanged() {
-        
-      //  HLLDefaults.shared.exportDefaultsToCloud()
-        
+        }
         
     }
     
@@ -92,6 +74,12 @@ class AppFunctions {
             }
         }
         
+    }
+    
+    func getPurchaseComplicationViewController() -> UIViewController {
+            
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            return mainStoryboard.instantiateViewController(withIdentifier: "PurchaseVC")
     }
     
 }

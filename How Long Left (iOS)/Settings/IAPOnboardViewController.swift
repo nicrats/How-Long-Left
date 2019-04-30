@@ -14,6 +14,7 @@ class IAPRootView: UIViewController {
     
     
     @IBOutlet weak var buyButton: UIButton!
+    @IBOutlet weak var infoText: UILabel!
     
     
     override func viewDidLoad() {
@@ -21,6 +22,9 @@ class IAPRootView: UIViewController {
    // let image = #imageLiteral(resourceName: "Background_Light")
         
       //  buyButton.setBackgroundImage(image, for: UIControl.State.normal)
+        
+        self.view.backgroundColor = AppTheme.current.plainColor
+        infoText.textColor = AppTheme.current.textColor
         
         self.buyButton.layer.cornerRadius = 8.0
         self.buyButton.layer.masksToBounds = true
@@ -43,8 +47,14 @@ class IAPRootView: UIViewController {
     
     @IBAction func buyTapped(_ sender: UIButton) {
         
-        // Initiate storekit purchase
         
+        SettingsMainTableViewController.justPurchasedComplication = true
+    
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
+            
+            self.dismiss(animated: true, completion: nil)
+            
+        })
             
     }
     

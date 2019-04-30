@@ -62,6 +62,7 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     var currentEvents = [HLLEvent]()
     var nextOccurEvent: HLLEvent?
     var combinedCurrentAndUpcoming = [HLLEvent]()
+    let schoolAnalyser = SchoolAnalyser()
 
     var arrayOfCurrentUpcomingTableIDS = [String]()
     
@@ -88,7 +89,7 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
         routine()
         
         DispatchQueue.global(qos: .default).async {
-            SchoolAnalyser.shared.analyseCalendar()
+            self.schoolAnalyser.analyseCalendar()
         }
         DispatchQueue.global(qos: .default).async {
             self.updateComplication()
@@ -184,7 +185,7 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
        // NotificationCenter.default.addObserver(self, selector: #selector(defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
         
         
-        SchoolAnalyser.shared.analyseCalendar()
+        schoolAnalyser.analyseCalendar()
         
         self.routine()
         
@@ -204,7 +205,7 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
       RunLoop.main.add(self.endCheckTimer, forMode: .common)
       
             self.eventMonitor = EventTimeRemainingMonitor(delegate: self as HLLCountdownController)
-        SchoolAnalyser.shared.addSchoolMOdeChangedDelegate(delegate: self)
+            self.schoolAnalyser.addSchoolMOdeChangedDelegate(delegate: self)
         
         
 
@@ -350,7 +351,7 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     
     DispatchQueue.global(qos: .default).async {
     
-        SchoolAnalyser.shared.analyseCalendar()
+        self.schoolAnalyser.analyseCalendar()
         
         self.routine()
     
@@ -367,7 +368,7 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
         routine()
         
         DispatchQueue.global(qos: .userInteractive).async {
-            SchoolAnalyser.shared.analyseCalendar()
+            self.schoolAnalyser.analyseCalendar()
         }
         DispatchQueue.global(qos: .default).async {
             self.updateComplication()
@@ -387,7 +388,7 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
         }
         
         DispatchQueue.global(qos: .userInteractive).async {
-            SchoolAnalyser.shared.analyseCalendar()
+            self.schoolAnalyser.analyseCalendar()
         }
         DispatchQueue.global(qos: .default).async {
             self.updateComplication()

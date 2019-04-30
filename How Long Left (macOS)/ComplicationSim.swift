@@ -12,10 +12,11 @@ import EventKit
 class ComplicationSim {
     
     let cal = EventDataSource()
+    let schoolAnalyser = SchoolAnalyser()
     
     init() {
         
-        SchoolAnalyser.shared.analyseCalendar()
+        schoolAnalyser.analyseCalendar()
         
     }
     

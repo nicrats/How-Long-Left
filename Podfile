@@ -8,6 +8,7 @@ target 'How Long Left (iOS)' do
   use_frameworks!
 pod 'CryptoSwift'
 pod 'MarqueeLabel'
+pod 'DeviceKit'
   # Pods for How Long Left (iOS)
 
 end
