@@ -15,7 +15,40 @@ class CountdownStringGenerator {
     
     let nextOccurFind = EventNextOccurenceFinder()
     
-    func generateStatusItemString(event: HLLEvent?) -> String? {
+    func generateStatusItemString(event: HLLEvent, justTimer: Bool = false) -> String? {
+            
+            var returnString = genTimerString(date: event.endDate)
+            
+            if justTimer == false {
+            
+            if HLLDefaults.statusItem.showTitle == true {
+                returnString = "\(event.shortTitle): \(returnString)"
+            }
+            
+            if HLLDefaults.statusItem.showLeftText == true {
+                returnString = "\(returnString) left"
+            }
+                
+            if HLLDefaults.statusItem.showEndTime == true, event.endDate.midnight() == Date().midnight() {
+                
+            returnString = "\(returnString) (\(event.endDate.formattedTime()))"
+                    
+            }
+            
+            if HLLDefaults.statusItem.showPercentage == true, let percent = pecentageCalc.calculatePercentageDone(event: event, ignoreDefaults: false) {
+                returnString = "\(returnString) (\(percent))"
+            }
+                
+            }
+        
+            
+        
+        
+        return returnString
+        
+    }
+    
+    func generateStatusItemMinuteModeString(event: HLLEvent?) -> String? {
         
         if let countdownEvent = event {
             
@@ -26,13 +59,13 @@ class CountdownStringGenerator {
             
             let formatter = DateComponentsFormatter()
             
-            print("secondsLeft: \(secondsLeft)")
+           
             
-            if secondsLeft+1 > 86400 {
+            if secondsLeft > 86399 {
                 
                 formatter.allowedUnits = [.day, .weekOfMonth]
                 
-            } else if secondsLeft+1 > 3599 {
+            } else if secondsLeft > 3600 {
                 
                 formatter.allowedUnits = [.hour, .minute]
                 
@@ -55,9 +88,6 @@ class CountdownStringGenerator {
                 countdownText = String(countdownText.dropLast())
             }
             
-           // let minutesLeft = Int(secondsLeft/60+1)
-           // let minText = MinutePluralizer(Minutes: minutesLeft)
-            
             returnString = "\(countdownText)"
             
             if HLLDefaults.statusItem.showTitle == true {
@@ -68,6 +98,12 @@ class CountdownStringGenerator {
             
             if HLLDefaults.statusItem.showLeftText == true {
                 returnString = "\(returnString) left"
+            }
+            
+            if HLLDefaults.statusItem.showEndTime == true, countdownEvent.endDate.midnight() == Date().midnight() {
+                
+                returnString = "\(returnString) (\(countdownEvent.endDate.formattedTime()))"
+                
             }
             
             if let percent = pecentageCalc.calculatePercentageDone(event: countdownEvent, ignoreDefaults: false), HLLDefaults.statusItem.showPercentage == true {
@@ -101,7 +137,8 @@ class CountdownStringGenerator {
                 
                 if let percent = pecentageCalc.calculatePercentageDone(event: event, ignoreDefaults: false), HLLDefaults.general.showPercentage {
                     
-                    percentText = "(\(percent) Done)"
+                    percentText = "(\(percent))"
+            
                 }
                 
                 if let allU = allUpcoming {
@@ -137,6 +174,56 @@ class CountdownStringGenerator {
         
     }
     
+    func genTimerString(date: Date) -> String {
+        
+        let secondsLeft = date.timeIntervalSince(Date()).rounded(.down)
+        
+        //print("Secs: \(secondsLeft)")
+        
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .positional
+        
+        if secondsLeft > 86399 {
+            
+            formatter.allowedUnits = [.day]
+            
+        } else if secondsLeft > 3600 {
+            
+            if HLLDefaults.statusItem.hideTimerSeconds == true {
+                
+                formatter.allowedUnits = [.hour, .minute]
+                
+                
+            } else {
+                
+                
+                formatter.allowedUnits = [.hour, .minute, .second]
+                
+            }
+            
+            
+            
+        } else {
+            
+            if HLLDefaults.statusItem.hideTimerSeconds == true {
+                
+                formatter.allowedUnits = [.hour, .minute]
+                
+            } else {
+                
+                formatter.allowedUnits = [.minute, .second]
+                
+            }
+            
+            
+        }
+        formatter.zeroFormattingBehavior = [ .dropLeading ]
+        return formatter.string(from: secondsLeft+1)!
+        
+        
+        
+    }
+    
     func generateCountdownNotificationStrings(event: HLLEvent) -> (String, String?) {
  
         return (generateRegularCountdownText(event: event), pecentageCalc.calculatePercentageDone(event: event, ignoreDefaults: false))
@@ -146,31 +233,31 @@ class CountdownStringGenerator {
     
    private func generateRegularCountdownText(event: HLLEvent) -> String {
         
-        var secondsLeft = event.endDate.timeIntervalSinceNow-1
-       // let minutesLeft = Int(secondsLeft/60+1)
-       // let minText = MinutePluralizer(Minutes: minutesLeft)
+    let secondsLeft = event.endDate.timeIntervalSinceNow
     
-        let formatter = DateComponentsFormatter()
+    let formatter = DateComponentsFormatter()
     
-        if secondsLeft+1 > 86400 {
-            secondsLeft += 86400
-            formatter.allowedUnits = [.day]
+    if secondsLeft > 86399 {
+        formatter.allowedUnits = [.day]
         
-        } else if secondsLeft+1 > 3599 {
+    } else {
         
-            formatter.allowedUnits = [.hour, .minute]
+        formatter.allowedUnits = [.hour, .minute]
         
-        } else {
-        
-            formatter.allowedUnits = [.minute]
-        
-        }
+    }
     
-        formatter.unitsStyle = .full
-        let countdownText = formatter.string(from: secondsLeft+60)!
+    formatter.unitsStyle = .full
+    let countdownText = formatter.string(from: TimeInterval(secondsLeft+59))!
     
+    if event.endDate.midnight() == Date().midnight() {
     
+        return "\(event.title) \(event.endsInString) in \(countdownText), at \(event.endDate.formattedTime())."
+        
+    } else {
+        
         return "\(event.title) \(event.endsInString) in \(countdownText)."
+        
+    }
     
     }
     

@@ -11,14 +11,16 @@ import EventKit
 
 class SchoolAnalyser {
     
+    static var calendarData = EventDataSource()
+    
     static var doneAnalysis = false
     static var isRenamerApp = false
     var delegate: SchoolModeChangedDelegate?
     
-    var searchDates = [Date]()
-    let searchWeeks = [46, 12, 36, 46]
+    static var termDates = [Date]()
+    let searchWeeks = [46, 12, 24, 35, 46]
     
-    public private(set) static var schoolModeIgnoringUserPreferences: SchoolMode = .Unknown
+    public private(set) static var privSchoolMode: SchoolMode = .Unknown
     private var schoolModeChangedDelegates = [SchoolModeChangedDelegate]()
     static var schoolCalendar: EKCalendar?
     
@@ -26,11 +28,11 @@ class SchoolAnalyser {
         
         get {
             
-            if schoolModeIgnoringUserPreferences == .Magdalene {
+            if privSchoolMode == .Magdalene {
             
             if HLLDefaults.magdalene.manuallyDisabled == false {
                 
-                return schoolModeIgnoringUserPreferences
+                return privSchoolMode
                 
             } else {
                 
@@ -40,13 +42,39 @@ class SchoolAnalyser {
                 
             } else {
                 
-                return schoolModeIgnoringUserPreferences
+                return privSchoolMode
                 
             }
             
         }
         
         
+    }
+    
+    static var isSchoolUser: Bool {
+    
+        get {
+            
+            if HLLDefaults.magdalene.manuallyDisabled == true {
+                
+                return false
+                
+            } else {
+                
+                if SchoolAnalyser.schoolMode == .Jasmine || SchoolAnalyser.schoolMode == .Magdalene {
+                    
+                    return true
+                    
+                }
+                
+                return false
+                
+                
+            }
+            
+        }
+    
+    
     }
     
     init() {
@@ -61,7 +89,7 @@ class SchoolAnalyser {
                 
             }
             
-            searchDates.append(getWednesdayFromWeek(weekNumber: week, previousYear: doPreviousYear))
+            SchoolAnalyser.termDates.append(getWednesdayFromWeek(weekNumber: week, previousYear: doPreviousYear))
             
         }
         
@@ -87,31 +115,60 @@ class SchoolAnalyser {
     }
 
     
-    let calendarData = EventDataSource()
     
-    func analyseCalendar() {
+    
+    func analyseCalendar(inputEvents: [HLLEvent]? = nil) {
         
-        let previousSchoolMode = SchoolAnalyser.schoolModeIgnoringUserPreferences
+        autoreleasepool {
         
         
-        // let isLauren = analyseForLauren(Events: events)
-        if let isMagdalene = self.analyseForMagdalene() {
+        let schoolModeAtStart = SchoolAnalyser.privSchoolMode
+        
+       // let previousSchoolMode = SchoolAnalyser.privSchoolMode
+        
+        var events = [HLLEvent]()
+        
+        if let safeInput = inputEvents {
             
-            if isMagdalene == true {
-                
-               SchoolAnalyser.schoolModeIgnoringUserPreferences = .Magdalene
-                
-            } else {
-                
-                SchoolAnalyser.schoolModeIgnoringUserPreferences = .None
-                
-            }
+            events = safeInput
             
         } else {
             
-            SchoolAnalyser.schoolModeIgnoringUserPreferences = .Unknown
+            events = SchoolAnalyser.calendarData.fetchEventsOnDays(days: SchoolAnalyser.termDates)
             
         }
+
+        if events.isEmpty {
+            
+            SchoolAnalyser.privSchoolMode = .Unknown
+            return
+            
+        }
+    
+        if events.isEmpty == false {
+        
+        print("Doing school analysis on \(events.count) events, spanning \(events.first!.startDate.formattedDate()) to \(events.last!.startDate.formattedDate())")
+            
+        }
+        
+        // let isLauren = analyseForLauren(Events: events)
+        let isMagdalene = self.analyseForMagdalene(events: events)
+        let isJasmine = self.analyseForJasmine(events: events)
+        
+        if isMagdalene == true {
+            
+            SchoolAnalyser.privSchoolMode = .Magdalene
+            
+        } else if isJasmine == true {
+            
+            SchoolAnalyser.privSchoolMode = .Jasmine
+            
+        } else {
+            
+            SchoolAnalyser.privSchoolMode = .None
+            
+        }
+        
         
         /* if isLauren == true {
          
@@ -131,35 +188,59 @@ class SchoolAnalyser {
          
          } */
         
+        if SchoolAnalyser.privSchoolMode != schoolModeAtStart {
         
-       if SchoolAnalyser.schoolMode != previousSchoolMode {
+        //delegate?.schoolModeChanged()
         
-        delegate?.schoolModeChanged()
-        
-            print("School mode is now \(SchoolAnalyser.schoolModeIgnoringUserPreferences.rawValue)")
-            schoolModeChangedDelegates.forEach {
+            print("School mode is now \(SchoolAnalyser.privSchoolMode.rawValue)")
+            /*schoolModeChangedDelegates.forEach {
                $0.schoolModeChanged()
-            }
+            } */
         
         }
         
         SchoolAnalyser.doneAnalysis = true
         
         
+        }
+    }
+    
+    func getMagdaleneTitles(from: [HLLEvent]) -> [String] {
+        
+        var titles = [String]()
+        
+        for event in from {
+            
+            if event.originalTitle.range(of:"Yr") != nil, let location = event.fullLocation, location.range(of:"Room:") != nil, titles.contains(event.originalTitle) == false {
+                
+                titles.append(event.originalTitle)
+                
+            }
+            
+            if event.originalTitle.range(of:"Study.") != nil || event.originalTitle.range(of:"SPORT:") != nil {
+                
+                titles.append(event.originalTitle)
+                
+            }
+            
+        }
+        
+        return titles
         
     }
     
-    private func analyseForMagdalene() -> Bool? {
+    private func analyseForMagdalene(events: [HLLEvent]) -> Bool {
         
         // Analyses calendar events and determines if the user goes to Magdalene or not.
         
+        let sorted = events.sorted(by: { $0.startDate.compare($1.startDate) == .orderedAscending })
+        SchoolAnalyser.schoolCalendar = sorted.last?.calendar
+        print("School cal is \(SchoolAnalyser.schoolCalendar!.title)")
         
         
-        var returnVal: Bool?
-        
-        let Events = self.calendarData.fetchEventsOnDays(days: searchDates)
-        
-        if Events.isEmpty == false {
+        var returnVal = false
+
+        if events.isEmpty == false {
             
             returnVal = false
             
@@ -170,7 +251,7 @@ class SchoolAnalyser {
         var schoolStartCondition = false
         var schoolEndCondition = false
         
-        for event in Events {
+        for event in events {
             
             
                 if event.originalTitle.range(of:"Yr") != nil {
@@ -181,19 +262,71 @@ class SchoolAnalyser {
                     roomCondtion = true
                 }
             
-                if event.startDate.formattedTime() == "8:15am" {
+                if event.startDate.formattedTimeTwelve().lowercased() == "8:15am" {
                     
                     schoolStartCondition = true
                 
                 }
             
-                if event.endDate.formattedTime() == "2:35pm" {
+                if event.endDate.formattedTimeTwelve().lowercased() == "2:35pm" {
                 
                 schoolEndCondition = true
                 
                 }
             
+           // print("SA Event: \(event.title), yr: \(yrCondition), room: \(roomCondtion), start: \(schoolStartCondition), end: \(schoolEndCondition)")
+            
             if yrCondition == true, roomCondtion == true, schoolStartCondition == true, schoolEndCondition == true {
+                returnVal = true
+                break
+                
+            }
+            
+        }
+        
+        
+       return returnVal
+        
+    }
+    
+    private func analyseForJasmine(events: [HLLEvent]) -> Bool {
+        
+        // Analyses calendar events and determines if the user is Jasmine or not.
+        
+        var returnVal = false
+        
+        
+        if events.isEmpty == false {
+            
+            returnVal = false
+            
+        }
+        
+        var yrCondition = false
+        var schoolStartCondition = false
+        var schoolEndCondition = false
+        
+        for event in events {
+            
+            
+            if event.originalTitle.range(of:"Yr") != nil {
+                yrCondition = true
+            }
+            
+            
+            if event.startDate.formattedTimeTwelve().lowercased() == "9:00am" {
+                
+                schoolStartCondition = true
+                
+            }
+            
+            if event.endDate.formattedTimeTwelve().lowercased() == "3:15pm" {
+                
+                schoolEndCondition = true
+                
+            }
+            
+            if yrCondition == true, schoolStartCondition == true, schoolEndCondition == true {
                 SchoolAnalyser.schoolCalendar = event.calendar
                 returnVal = true
                 break
@@ -202,19 +335,11 @@ class SchoolAnalyser {
             
         }
         
-      //  let analysisTime = Date().timeIntervalSince(analysisStart)
+        //  let analysisTime = Date().timeIntervalSince(analysisStart)
         
-        if Thread.isMainThread == true {
-            
-          //  print("School analysis took \(analysisTime)s on main thread")
-            
-        } else {
-            
-          //  print("School analysis took \(analysisTime)s on global thread")
-            
-        }
+
         
-       return returnVal
+        return returnVal
         
     }
     
@@ -247,7 +372,7 @@ class SchoolAnalyser {
     func getNextSchoolSearchDate() -> Date {
         
         var upcomingDates = [Date]()
-        for date in searchDates {
+        for date in SchoolAnalyser.termDates {
             if date.timeIntervalSinceNow > 0 { upcomingDates.append(date) }
         }
         upcomingDates.sort(by: { $0.compare($1) == .orderedAscending })
@@ -255,7 +380,7 @@ class SchoolAnalyser {
         
     }
     
-    private func analyseForLauren(Events: [HLLEvent]) -> Bool {
+   /* private func analyseForLauren(Events: [HLLEvent]) -> Bool {
      
      // Analyses calendar events and determines if the user is Lauren or not.
      // Might take this out since wE bRoKE uP. For now just commenting out Lauren stuff.
@@ -290,7 +415,7 @@ class SchoolAnalyser {
      
      return returnVal
         
-     }
+     } */
     
 }
 

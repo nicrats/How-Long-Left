@@ -15,12 +15,14 @@ struct TermData {
     var submenuItems = [String]()
     var onNow = false
     
-    init(nextHolidays: HLLEvent) {
+    init(nextHolidays: HLLEvent, previousHolidays: HLLEvent?) {
         
         var closeText: String?
         
         let currentEvent = nextHolidays
         let secondsLeft = currentEvent.startDate.midnight().timeIntervalSinceNow+1+86400
+        
+        var isNumber = false
         
         let formatter = DateComponentsFormatter()
         if HLLDefaults.statusItem.useFullUnits == true {
@@ -40,6 +42,8 @@ struct TermData {
            // secondsLeft += 86400
             formatter.allowedUnits = [.day, .weekOfMonth]
             formatter.unitsStyle = .full
+            isNumber = true
+            
             
         } else {
             
@@ -56,11 +60,19 @@ struct TermData {
         
         
         
-        var countdownText = "in \(formatter.string(from: secondsLeft+60)!)"
+        
+        
+        var countdownText = "\(formatter.string(from: secondsLeft+60)!)"
+        
+        if isNumber == true {
+            
+            countdownText = "in \(countdownText)"
+            
+        }
         
         if let close = closeText {
             
-            countdownText = "Starts \(close)"
+            countdownText = "Ends \(close)"
             
         }
         
@@ -72,9 +84,25 @@ struct TermData {
             countdownText = String(countdownText.dropLast())
         }
         
+        var holidaysText = "School Holidays:"
+        
         if let term = nextHolidays.holidaysTerm {
             
-            topRowItem = "Term \(term) School Holidays"
+            topRowItem = "Term \(term)"
+            
+            if let prev = previousHolidays {
+                
+                let currentTermStart = prev.endDate
+                let currentTermEnd = nextHolidays.startDate
+                
+                let secondsElapsed = Date().timeIntervalSince(currentTermStart)
+                let totalSeconds = currentTermEnd.timeIntervalSince(currentTermStart)
+                let percentOfEventComplete = Int(100*secondsElapsed/totalSeconds)
+                
+                topRowItem = "\(topRowItem) (\(percentOfEventComplete)% Done)"
+                
+                
+            }
             
             if let closeT = closeText {
                 
@@ -87,7 +115,7 @@ struct TermData {
                 
             }
             
-            
+            holidaysText = "Term \(term) School Holidays:"
             
         } else {
             
@@ -104,13 +132,42 @@ struct TermData {
             
         }
         
-        let countdownTopRow = "\(countdownText)"
+        if let prev = previousHolidays {
+            
+            let currentTermStart = prev.endDate
+            let currentTermEnd = nextHolidays.startDate
+            
+            let secondsElapsed = Date().timeIntervalSince(currentTermStart)
+            let totalSeconds = currentTermEnd.timeIntervalSince(currentTermStart)
+            let percentOfEventComplete = Int(100*secondsElapsed/totalSeconds)
+            
+            menuString = "\(menuString) (\(percentOfEventComplete)%)"
+            
+            
+        }
+        
+        var countdownTopRow: String
+        
+        if countdownText.lowercased().contains(text: "ends") {
+            
+            countdownTopRow = "\(countdownText)"
+            
+        } else {
+            
+            countdownTopRow = "Ends \(countdownText)"
+            
+        }
+        
+        
+        
         
         
         
         topRow.append(topRowItem)
-        topRow.append(countdownTopRow.capitalized)
+        topRow.append(countdownTopRow)
         
+        
+        submenuItems.append(holidaysText)
        
         submenuItems.append("Start: \(nextHolidays.startDate.formattedDate())")
         submenuItems.append("End: \(nextHolidays.endDate.formattedDate())")

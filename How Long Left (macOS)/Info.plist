@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.4.1</string>
+	<string>3.0</string>
 	<key>CFBundleVersion</key>
-	<string>119</string>
+	<string>137</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -36,12 +36,8 @@
 	</dict>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
-	<key>LSBackgroundOnly</key>
-	<true/>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
-	<key>LSUIElement</key>
-	<true/>
 	<key>NSCalendarsUsageDescription</key>
 	<string>How Long Left needs to access your calendar to get current and upcomings events so they can be displayed in the app. No data will be collected.</string>
 	<key>NSHumanReadableCopyright</key>

@@ -24,6 +24,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     let schoolAnalyser = SchoolAnalyser()
     
      let bArray = [UIImage(named: "Background_Light"), UIImage(named: "Background_Dark"), UIImage(named: "Background_Black")]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -78,42 +79,41 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         current = self.cal.getCurrentEvent()
         
         
-        timer = Timer(fire: Date(), interval: 0.5, repeats: true, block: {_ in
+        timer = Timer(fireAt: Date(), interval: 0.5, target: self, selector: #selector(timerLoop), userInfo: nil, repeats: true)
+        
+        
+        RunLoop.main.add(timer, forMode: .common)
+        
+    }
+    
+    @objc func timerLoop () {
+        
+        if let currentEvent = self.current {
             
+            self.timerLabel.isHidden = false
+            self.infoLabel.isHidden = false
+            self.noEventOnInfoLabel.isHidden = true
+            self.timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: self.timerLabel.font.pointSize, weight: .thin)
+            self.timerLabel.text = self.timerStringGenerator.generateStringFor(event: currentEvent)
+            self.infoLabel.text = "\(currentEvent.title) \(currentEvent.endsInString) in"
             
-            
-            if let currentEvent = self.current {
+            if currentEvent.endDate.timeIntervalSinceNow < 1 {
                 
-                self.timerLabel.isHidden = false
-                self.infoLabel.isHidden = false
-                self.noEventOnInfoLabel.isHidden = true
-                self.timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: self.timerLabel.font.pointSize, weight: .thin)
-                self.timerLabel.text = self.timerStringGenerator.generateStringFor(event: currentEvent)
-                self.infoLabel.text = "\(currentEvent.title) \(currentEvent.endsInString) in"
-                
-                if currentEvent.endDate.timeIntervalSinceNow < 1 {
-                    
-                    self.current = self.cal.getCurrentEvent()
-                    
-                }
-                
-            } else {
-                
-                self.timerLabel.isHidden = true
-                self.infoLabel.isHidden = true
-                self.noEventOnInfoLabel.isHidden = false
-                self.noEventOnInfoLabel.text = "No Events Are On"
-                
+                self.current = self.cal.getCurrentEvent()
                 
             }
             
+        } else {
+            
+            self.timerLabel.isHidden = true
+            self.infoLabel.isHidden = true
+            self.noEventOnInfoLabel.isHidden = false
+            self.noEventOnInfoLabel.text = "No Events Are On"
             
             
-            completionHandler(NCUpdateResult.newData)
-            
-        })
+        }
         
-        RunLoop.main.add(timer, forMode: .common)
+        //completionHandler(NCUpdateResult.newData)
         
     }
     

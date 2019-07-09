@@ -11,64 +11,17 @@ import AppKit
 import Preferences
 
 class OnboardingViewController: NSViewController {
-    
-    
-    @IBOutlet weak var visualEffectView: NSVisualEffectView!
-    
-    override func viewWillAppear() {
-        
-      
-        
-    }
-    
-    override func viewDidAppear() {
-    }
-    
+
     @IBAction func continueClicked(_ sender: NSButton) {
-        
-        self.view.window?.close()
+        self.view.window?.performClose(nil)
         
     }
     
     @IBAction func preferencesClicked(_ sender: NSButton) {
         
-        self.view.window?.close()
+        self.view.window?.performClose(nil)
         
-        var vcs: [Preferenceable] = [
-            GeneralPreferenceViewController(),
-            StatusItemPreferenceViewController()
-        ]
-        
-        if EventDataSource.accessToCalendar == .Denied {
-            
-            vcs.append(CalendarPreferenceViewControllerNoAccess())
-            
-        } else {
-            
-            vcs.append(CalendarPreferenceViewController())
-            
-        }
-        
-        vcs.append(NotificationPreferenceViewController())
-        
-        if SchoolAnalyser.schoolModeIgnoringUserPreferences == .Magdalene {
-            
-            vcs.append(MagdalenePreferenceViewController())
-            
-        }
-        
-        vcs.append(aboutViewController())
-        
-        
-        
-        UIController.preferencesWindowController.window?.close()
-        
-        UIController.preferencesWindowController = PreferencesWindowController (
-            viewControllers: vcs
-        )
-        
-        UIController.preferencesWindowController.window?.title = "How Long Left Preferences"
-        UIController.preferencesWindowController.showWindow()
+       UIController.shared?.launchPreferences()
         
     }
 }

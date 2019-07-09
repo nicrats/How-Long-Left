@@ -23,7 +23,7 @@ class DoubleEventDetector {
         
         for (index, event) in events.enumerated() {
             
-            var newEvent = event
+            let newEvent = event
             
             let nextIndex = index+1
             

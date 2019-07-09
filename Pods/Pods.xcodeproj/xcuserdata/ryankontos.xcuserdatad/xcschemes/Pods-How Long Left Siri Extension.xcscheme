@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B4DBA176BC2787378622CCC7CAA9B4F0"
+               BlueprintIdentifier = "17C561A8C06C9B9983C12FA51BE42D6E"
                BuildableName = "Pods_How_Long_Left_Siri_Extension.framework"
                BlueprintName = "Pods-How Long Left Siri Extension"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B4DBA176BC2787378622CCC7CAA9B4F0"
+            BlueprintIdentifier = "17C561A8C06C9B9983C12FA51BE42D6E"
             BuildableName = "Pods_How_Long_Left_Siri_Extension.framework"
             BlueprintName = "Pods-How Long Left Siri Extension"
             ReferencedContainer = "container:Pods.xcodeproj">

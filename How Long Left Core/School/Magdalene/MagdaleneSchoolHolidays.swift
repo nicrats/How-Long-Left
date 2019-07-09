@@ -27,6 +27,8 @@ class MagdaleneSchoolHolidays {
     
     init() {
         
+        
+        
         let start = NSDateComponents()
         let end = NSDateComponents()
         
@@ -51,7 +53,7 @@ class MagdaleneSchoolHolidays {
         
         start.year = 2019
         start.month = 7
-        start.day = 5
+        start.day = 4
         start.hour = 14
         start.minute = 35
         start.second = 00
@@ -90,11 +92,37 @@ class MagdaleneSchoolHolidays {
         
     }
     
-   /* func getPreviousHolidays() -> HLLEvent? {
+   func getPreviousHolidays() -> HLLEvent? {
+    
+    if HLLDefaults.magdalene.doHolidays == false || SchoolAnalyser.schoolMode != .Magdalene {
+        return nil
+    }
+    
+    var endedArray = [HLLEvent]()
+    
+    for holidayPeriod in holidayPeriods {
         
+        if let unwrappedSHStart = holidayPeriod.start, let unwrappedSHEnd = holidayPeriod.end {
+            
+            if unwrappedSHStart.timeIntervalSinceNow < 0 {
+                
+                let holidaysEvent = HLLEvent(title: "Holidays", start: unwrappedSHStart, end: unwrappedSHEnd, location: nil)
+                holidaysEvent.holidaysTerm = holidayPeriod.term
+                holidaysEvent.calendar = SchoolAnalyser.schoolCalendar
+                //holidaysEvent.shortTitle = "Holidays"
+                
+                endedArray.append(holidaysEvent)
+                
+            }
+            
+        }
         
+    }
+    
+    return endedArray.sorted(by: { $0.startDate.compare($1.startDate) == .orderedAscending }).last
+
         
-    } */
+    }
     
     func getSchoolHolidaysFrom(start: Date, end: Date) -> HLLEvent? {
         
@@ -110,7 +138,7 @@ class MagdaleneSchoolHolidays {
           
             if unwrappedSHStart.timeIntervalSince(end) < 0, unwrappedSHEnd.timeIntervalSince(start) > 0 {
                 
-                var holidaysEvent = HLLEvent(title: "Holidays", start: unwrappedSHStart, end: unwrappedSHEnd, location: nil)
+                let holidaysEvent = HLLEvent(title: "Holidays", start: unwrappedSHStart, end: unwrappedSHEnd, location: nil)
                 holidaysEvent.holidaysTerm = holidayPeriod.term
                 holidaysEvent.calendar = SchoolAnalyser.schoolCalendar
                 //holidaysEvent.shortTitle = "Holidays"

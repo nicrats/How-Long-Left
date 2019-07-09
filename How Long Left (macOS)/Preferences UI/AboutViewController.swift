@@ -16,9 +16,12 @@ import EventKit
 final class aboutViewController: NSViewController, Preferenceable {
     let toolbarItemTitle = "About"
     let toolbarItemIcon = NSImage(named: "logo")!
+    @IBOutlet weak var appIconButton: NSButton!
     
+    @IBOutlet weak var nameLabel: NSTextField!
     @IBOutlet weak var versionLabel: NSTextField!
     @IBOutlet weak var devLabel: NSTextField!
+    
     
     
     override var nibName: NSNib.Name? {
@@ -26,6 +29,21 @@ final class aboutViewController: NSViewController, Preferenceable {
     }
     
     override func viewWillAppear() {
+        
+        if SchoolAnalyser.privSchoolMode == .Magdalene {
+            
+            switch Edition.shared.getCurrentEdition() {
+            case .None:
+                break
+            case .Boiz:
+              //  appIconButton.isEnabled = true
+                nameLabel.stringValue = "How Long Left: The Boiz Edition"
+            case .Gay:
+                nameLabel.stringValue = "How Long Left Gay Edition"
+            }
+            
+            
+        }
         
         let version = Version.currentVersion
         
@@ -40,7 +58,7 @@ final class aboutViewController: NSViewController, Preferenceable {
         
         
         
-        if SchoolAnalyser.schoolModeIgnoringUserPreferences == .Magdalene || MagdaleneWifiCheck().isOnMagdaleneWifi() {
+        if SchoolAnalyser.privSchoolMode == .Magdalene || MagdaleneWifiCheck().isOnMagdaleneWifi() {
             
             let inYear = Date().year()-2008
             
@@ -65,6 +83,8 @@ final class aboutViewController: NSViewController, Preferenceable {
             devLabel.stringValue = "Developed by Ryan Kontos in Sydney, Australia."
             
         }
+        
+        
         
         
     }
@@ -109,5 +129,18 @@ final class aboutViewController: NSViewController, Preferenceable {
         
         
     }
+    
+    @IBAction func appIconClicked(_ sender: NSButton) {
+        
+        if Edition.shared.getCurrentEdition() == .Boiz {
+            
+            
+            
+        }
+        
+        
+    }
+    
+    
     
 }

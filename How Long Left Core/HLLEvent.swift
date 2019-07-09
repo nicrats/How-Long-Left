@@ -14,7 +14,7 @@ import CoreLocation
  * Represents an event in How Long Left. A HLLEvent can be initalized from an EKEvent or with custom data.
  */
 
-struct HLLEvent: Equatable {
+class HLLEvent: Equatable {
     
     var title: String
     var shortTitle: String
@@ -32,6 +32,8 @@ struct HLLEvent: Equatable {
     var calendar: EKCalendar?
     var isMagdaleneBreak = false
     var EKEvent: EKEvent?
+    var isSchoolEvent = false
+    var source: EventDataSource!
     var endsInString: String {
         
         get {
@@ -59,6 +61,28 @@ struct HLLEvent: Equatable {
             
         }
         
+    }
+    
+    var complationPercentage: String? {
+        
+        get {
+        
+        let calc = PercentageCalculator()
+        return calc.calculatePercentageDone(event: self, ignoreDefaults: true)
+        
+        
+        }
+    }
+    
+    var completionFraction: Double {
+        
+        get {
+            
+            let secondsElapsed = Date().timeIntervalSince(self.startDate)
+            let totalSeconds = self.endDate.timeIntervalSince(self.startDate)
+            return 100*secondsElapsed/totalSeconds
+            
+        }
     }
     
     var completionStatus: EventCompletionStatus {
@@ -95,6 +119,7 @@ struct HLLEvent: Equatable {
         
         // Init a HLLEvent from an EKEvent.
         
+        
         title = event.title
         ultraCompactTitle = event.title
         originalTitle = event.title
@@ -123,6 +148,7 @@ struct HLLEvent: Equatable {
         
     }
     
+    
     init(title inputTitle: String, start inputStart: Date, end inputEnd: Date, location inputLocation: String?) {
         
         // Init a HLLEvent from custom data.
@@ -145,6 +171,61 @@ struct HLLEvent: Equatable {
         
     }
     
+    func truncateTitle(limit: Int, postion: String.TruncationPosition) -> String {
+        
+        return title.truncated(limit: limit, position: postion, leader: "...")
+        
+        
+    }
+    
+    func refresh() -> Bool {
+        
+        var returnValue = false
+        
+        if source == nil {
+            
+            source = EventDataSource()
+            
+        }
+        
+        if let ek = self.EKEvent {
+        
+            if let event = source.findEventWithIdentifier(id: ek.eventIdentifier) {
+                
+                title = event.title
+                ultraCompactTitle = event.title
+                originalTitle = event.title
+                shortTitle = event.title.truncated(limit: 25, position: .tail, leader: "...")
+                startDate = event.startDate
+                endDate = event.endDate
+                if let loc = event.location, loc != "" {
+                    
+                    if HLLDefaults.general.showLocation {
+                        location = loc
+                        
+                        let truncatedLocation = loc.truncated(limit: 15, position: .tail, leader: "...")
+                        
+                        shortLocation = truncatedLocation
+                        
+                    }
+                    fullLocation = loc
+                    
+                }
+                
+                
+                
+                calendar = event.calendar
+                
+                
+                returnValue = true
+                
+            }
+            
+        }
+        
+        return returnValue
+        
+    }
     
     static func == (lhs: HLLEvent, rhs: HLLEvent) -> Bool {
         

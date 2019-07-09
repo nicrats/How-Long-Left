@@ -30,7 +30,8 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
     @IBOutlet weak var showTitleCheckbox: NSButton!
     @IBOutlet weak var showLeftTextCheckbox: NSButton!
     @IBOutlet weak var showPercentageCheckbox: NSButton!
-    
+	@IBOutlet weak var showEndTimeCheckbox: NSButton!
+	
     @IBOutlet weak var doneAlertsCheckbox: NSButton!
     
     @IBOutlet weak var previewIcon: NSImageView!
@@ -82,6 +83,7 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
 			self.showTitleCheckbox.isEnabled = isOff
 			self.showLeftTextCheckbox.isEnabled = isOff
 			self.showPercentageCheckbox.isEnabled = isOff
+			self.showEndTimeCheckbox.isEnabled = isOff
             self.doneAlertsCheckbox.isEnabled = isOff
 			self.updateUnitsMenu(enabled: mode == .Minute)
             
@@ -134,7 +136,21 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
         
     }
     
-    
+	@IBAction func showEndTimeClicked(_ sender: NSButton) {
+		
+		DispatchQueue.main.async {
+			
+			var state = false
+			if sender.state == .on { state = true }
+			HLLDefaults.statusItem.showEndTime = state
+			
+			self.generateStatusItemPreview()
+			
+		}
+		
+		
+	}
+	
     @IBAction func showPercentageClicked(_ sender: NSButton) {
 		
 		DispatchQueue.main.async {
@@ -225,6 +241,10 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
         var SIPercentageState = NSControl.StateValue.off
         if HLLDefaults.statusItem.showPercentage == true { SIPercentageState = .on }
         showPercentageCheckbox.state = SIPercentageState
+		
+		var SIEndState = NSControl.StateValue.off
+		if HLLDefaults.statusItem.showEndTime == true { SIEndState = .on }
+		showEndTimeCheckbox.state = SIEndState
         
         let mode = HLLDefaults.statusItem.mode
         let isOff = mode != .Off
@@ -319,7 +339,7 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
 			
 		
 		var Pevent: HLLEvent?
-		
+			
 		if let primary = EventCache.primaryEvent {
 			
 			Pevent = primary
@@ -346,6 +366,8 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
 			
 			
 		}
+			
+		
 		
 		
 		
@@ -377,7 +399,9 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
 			self.previewIcon.isHidden = true
             
             let stringGenerator = CountdownStringGenerator()
-			self.statusItemPreviewText.stringValue = stringGenerator.generateStatusItemString(event: preview)!
+			
+			
+			self.statusItemPreviewText.stringValue = stringGenerator.generateStatusItemMinuteModeString(event: preview)!
             
         }
 			

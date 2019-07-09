@@ -11,15 +11,21 @@ import Foundation
 import Intents
 import IntentsUI
 #endif
+import SystemConfiguration
+import Reachability
 
 class AppFunctions {
     
     static let shared = AppFunctions()
     
+    static var isReachable = false
+    
+    
     private let notoScheduler = MilestoneNotificationScheduler()
     
     private let sync = DefaultsSync()
     let schoolAnalyser = SchoolAnalyser()
+    let reachability = Reachability()!
     
     init() {
         
@@ -28,7 +34,38 @@ class AppFunctions {
         let eventDatasource = EventDataSource()
         eventDatasource.getCalendarAccess()
         
+        IAPHandler.shared.restorePurchase()
+        
+        reachability.whenReachable = { reachability in
+            
+            AppFunctions.isReachable = true
+            if IAPHandler.complicationPriceString == nil {
+                
+                IAPHandler.shared.fetchAvailableProducts()
+                
+            }
+            
+            if reachability.connection == .wifi {
+                print("Reachable via WiFi")
+            } else {
+                print("Reachable via Cellular")
+            }
+        }
+        reachability.whenUnreachable = { _ in
+            print("Not reachable")
+            
+            AppFunctions.isReachable = false
+            
+        }
+        
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { self.run() })
+        
 
     }
     
@@ -36,6 +73,8 @@ class AppFunctions {
         
         DispatchQueue.main.async {
         
+             IAPHandler.shared.fetchAvailableProducts()
+            
         VoiceShortcutStatusChecker.shared.check()
             self.donateInteraction()
         
@@ -54,6 +93,8 @@ class AppFunctions {
         }
         
     }
+    
+
     
    private func donateInteraction() {
         if #available(iOS 12.0, *) {
@@ -81,5 +122,7 @@ class AppFunctions {
             let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
             return mainStoryboard.instantiateViewController(withIdentifier: "PurchaseVC")
     }
+    
+    
     
 }

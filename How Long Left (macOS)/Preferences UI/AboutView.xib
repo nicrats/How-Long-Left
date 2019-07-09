@@ -8,7 +8,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="aboutViewController" customModule="How_Long_Left_macOS" customModuleProvider="target">
             <connections>
+                <outlet property="appIconButton" destination="v6r-5o-3Gb" id="x8y-Zl-2tU"/>
                 <outlet property="devLabel" destination="tuX-dt-PUv" id="AT1-yI-w9c"/>
+                <outlet property="nameLabel" destination="mBA-my-8ws" id="J8C-p6-PIh"/>
                 <outlet property="versionLabel" destination="H7h-9r-EPL" id="8Qz-JR-jWV"/>
                 <outlet property="view" destination="8Ck-Ze-rC9" id="emQ-YG-1lI"/>
             </connections>
@@ -19,13 +21,8 @@
             <rect key="frame" x="0.0" y="0.0" width="394" height="274"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="mgd-4F-fTv">
-                    <rect key="frame" x="161" y="185" width="72" height="72"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="logo" id="gJ8-5R-kLF"/>
-                </imageView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="tuX-dt-PUv">
-                    <rect key="frame" x="22" y="119" width="350" height="16"/>
+                    <rect key="frame" x="22" y="120" width="350" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Developed by Ryan Kontos in Sydney, Australia." id="KCj-gE-b9c">
                         <font key="font" metaFont="cellTitle"/>
@@ -34,7 +31,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="WL5-oH-8aE">
-                    <rect key="frame" x="142" y="95" width="110" height="22"/>
+                    <rect key="frame" x="142" y="96" width="110" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Written in Swift!" id="l2C-Iz-F58">
                         <font key="font" metaFont="cellTitle"/>
@@ -43,19 +40,10 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="H7h-9r-EPL">
-                    <rect key="frame" x="137" y="143" width="119" height="16"/>
+                    <rect key="frame" x="137" y="144" width="119" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Version X" id="2Hf-VQ-GhC">
                         <font key="font" metaFont="systemMedium" size="12"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="mBA-my-8ws">
-                    <rect key="frame" x="139" y="160" width="115" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="How Long Left" id="3Cr-91-WZ7">
-                        <font key="font" metaFont="systemMedium" size="15"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -83,7 +71,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" id="KWs-4o-yVm">
-                    <rect key="frame" x="131" y="34" width="133" height="32"/>
+                    <rect key="frame" x="131" y="33" width="133" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Twitter" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6aZ-9s-x1r">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -91,6 +79,26 @@
                     </buttonCell>
                     <connections>
                         <action selector="twitterButtonClicked:" target="-2" id="FuU-rk-tn2"/>
+                    </connections>
+                </button>
+                <textField autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="mBA-my-8ws">
+                    <rect key="frame" x="24" y="161" width="345" height="19"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="How Long Left" id="3Cr-91-WZ7">
+                        <font key="font" metaFont="systemMedium" size="15"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" id="v6r-5o-3Gb">
+                    <rect key="frame" x="157" y="182" width="81" height="81"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="logo" imagePosition="left" imageScaling="proportionallyDown" inset="2" id="H2o-CD-tAe">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="appIconClicked:" target="-2" id="s04-lg-zkk"/>
                     </connections>
                 </button>
             </subviews>

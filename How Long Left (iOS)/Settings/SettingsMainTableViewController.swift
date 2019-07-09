@@ -12,7 +12,7 @@ import Intents
 import IntentsUI
 import UserNotifications
 
-class SettingsMainTableViewController: UITableViewController, ThemeChangedDelegate {
+class SettingsMainTableViewController: UITableViewController, ThemeChangedDelegate, ScrollUpDelegate {
     
     static let themeTransitionTime = 0.0
     
@@ -35,7 +35,7 @@ class SettingsMainTableViewController: UITableViewController, ThemeChangedDelega
     
     override func viewDidLoad() {
         
-        extendedLayoutIncludesOpaqueBars = true
+       // extendedLayoutIncludesOpaqueBars = true
         updateTheme()
 
       //  self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
@@ -58,17 +58,20 @@ class SettingsMainTableViewController: UITableViewController, ThemeChangedDelega
 
     }
 
-    
     @objc func updateTheme() {
-        
-        self.tableView.backgroundColor = AppTheme.current.groupedTableViewBackgroundColor
-        self.tableView.separatorColor = AppTheme.current.tableCellSeperatorColor
-        self.navigationController?.navigationBar.barStyle = AppTheme.current.barStyle
-        self.tabBarController?.tabBar.backgroundColor = nil
-        self.tabBarController?.tabBar.barStyle = AppTheme.current.barStyle
-        self.navigationController?.navigationBar.isTranslucent = AppTheme.current.translucentBars
-        self.tabBarController?.tabBar.isTranslucent = AppTheme.current.translucentBars
+        navigationController?.navigationBar.barTintColor = AppTheme.current.plainColor
+        //navigationController?.navigationBar.barStyle = AppTheme.current.barStyle
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: AppTheme.current.textColor]
+        navigationController?.navigationBar.isTranslucent = AppTheme.current.translucentBars
+        tableView.backgroundColor = AppTheme.current.groupedTableViewBackgroundColor
+        tabBarController?.tabBar.isTranslucent = AppTheme.current.translucentBars
+        tabBarController?.tabBar.barStyle = AppTheme.current.barStyle
+        tableView.separatorColor = AppTheme.current.tableCellSeperatorColor
+        tabBarController?.tabBar.barTintColor = AppTheme.current.plainColor
+        self.navigationController?.setNeedsStatusBarAppearanceUpdate()
+        tableView.reloadData()
     }
+    
     
     
     @objc func appMovedToForeground() {
@@ -86,19 +89,22 @@ class SettingsMainTableViewController: UITableViewController, ThemeChangedDelega
         tableSections[tableSections.count] = SettingsSection.Siri
         
         if WatchSessionManager.sharedManager.watchSupported() == true {
-        //tableSections[tableSections.count] = SettingsSection.Complication
+        tableSections[tableSections.count] = SettingsSection.Complication
         }
         
-        if SchoolAnalyser.schoolModeIgnoringUserPreferences == .Magdalene {
+        if SchoolAnalyser.privSchoolMode == .Magdalene || SchoolAnalyser.privSchoolMode == .Jasmine {
         tableSections[tableSections.count] = SettingsSection.Magdalene
         }
         
         themeableCells.removeAll()
-        
-        
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        updateTheme()
+        
+        RootViewController.selectedController = self
         
         tableView.reloadData()
         
@@ -108,7 +114,8 @@ class SettingsMainTableViewController: UITableViewController, ThemeChangedDelega
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                 
-                self.showComplicationPurchasedAlert(purchasedNow: true)
+                //self.showComplicationPurchasedAlert(purchasedNow: true)
+                DefaultsSync.shared.syncDefaultsToWatch()
                 
             })
             
@@ -138,8 +145,18 @@ class SettingsMainTableViewController: UITableViewController, ThemeChangedDelega
         }
         
         if sectionType == SettingsSection.Magdalene {
-                
-            return "Enable special features for students of Magdalene Catholic College."
+            
+            switch SchoolAnalyser.privSchoolMode {
+   
+            case .Magdalene:
+                return "Enable special features for students of Magdalene Catholic College."
+            case .Jasmine:
+                return "Enable special features for Jasmine."
+            case .None:
+                return nil
+            case .Unknown:
+                return nil
+            }
             
         }
 
@@ -243,6 +260,8 @@ class SettingsMainTableViewController: UITableViewController, ThemeChangedDelega
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         let section = tableSections[indexPath.section]!
         
         if section == .General {
@@ -258,8 +277,12 @@ class SettingsMainTableViewController: UITableViewController, ThemeChangedDelega
                     
                     if let url = URL(string:UIApplication.openSettingsURLString) {
                         if UIApplication.shared.canOpenURL(url) {
-                            UIApplication.shared.open(url, options: [:], completionHandler: { success in
-                            })
+                            if #available(iOS 10.0, *) {
+                                UIApplication.shared.open(url, options: [:], completionHandler: { success in
+                                })
+                            } else {
+                                // Fallback on earlier versions
+                            }
                         }
                     }
 
@@ -348,9 +371,49 @@ class SettingsMainTableViewController: UITableViewController, ThemeChangedDelega
             
             if IAPHandler.shared.hasPurchasedComplication() == false {
             
-            let vc = AppFunctions.shared.getPurchaseComplicationViewController()
-            
-          present(vc, animated: true, completion: nil)
+                if IAPHandler.shared.canMakePurchases() == false {
+                    
+                    presentAlert(title: "In-App Purchases Disabled", message: "In-App Purchases are not allowed on this device.")
+                    return
+                    
+                }
+                
+                
+                if AppFunctions.isReachable == false {
+                    
+                    presentAlert(title: "No Internet Connection", message: "Connect to the internet to purchase this item.")
+                    return
+                    
+                }
+                
+                if IAPHandler.complicationPriceString == nil {
+                    
+                    IAPHandler.shared.fetchAvailableProducts()
+                    
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                            
+                            if IAPHandler.complicationPriceString == nil {
+                                
+                                self.presentAlert(title: "Error", message: "An error occured communicating with the App Store.")
+                                
+                            } else {
+                                
+                                self.presentComplicationPurcahseView()
+                                
+                            }
+                        
+                    })
+                    
+                    
+                } else {
+                    
+                    presentComplicationPurcahseView()
+                    
+                }
+                
+                
+           
             
             } else {
                 
@@ -360,22 +423,57 @@ class SettingsMainTableViewController: UITableViewController, ThemeChangedDelega
             
         }
         
-        tableView.deselectRow(at: indexPath, animated: true)
+        
     
 }
     
+    func presentComplicationPurcahseView() {
+        
+        let vc = AppFunctions.shared.getPurchaseComplicationViewController()
+        
+        present(vc, animated: true, completion: nil)
+        
+        
+    }
+    
+    func presentAlert(title: String, message: String) {
+        
+        DispatchQueue.main.async {
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let action1 = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(action1)
+        alertController.view.tintColor = UIColor.HLLOrange
+            self.present(alertController, animated: true, completion: nil)
+        
+        
+        
+        }
+    }
+    
     func showComplicationPurchasedAlert(purchasedNow: Bool) {
         
+        var message = "You may need to launch How Long Left on your watch to trigger changes."
         var titleText = "You've purchased the Apple Watch Complication"
         
         if purchasedNow {
             
             titleText = "Purchase Successful!"
             
+        } else {
+            
+            if SchoolAnalyser.privSchoolMode == .Magdalene {
+                
+                titleText = "Apple Watch Complication is enabled"
+                message = "As a Magdalene user, you have access to the complication for free."
+                
+            }
+            
         }
         
         
-        let alertController = UIAlertController(title: titleText, message: "You may need to launch How Long Left on your watch to trigger changes.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: titleText, message: message, preferredStyle: .alert)
         
         let action1 = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(action1)
@@ -390,7 +488,10 @@ class SettingsMainTableViewController: UITableViewController, ThemeChangedDelega
     
     func themeChanged() {
         
-        DispatchQueue.main.async {
+        NotificationCenter.default.post(name: Notification.Name("ThemeChanged"), object: nil)
+        
+         updateTheme()
+        
             
             
             for cell in self.themeableCells {
@@ -401,24 +502,24 @@ class SettingsMainTableViewController: UITableViewController, ThemeChangedDelega
                 
             }
             
-        }
         
-        updateTheme()
         
-        NotificationCenter.default.post(name: Notification.Name("ThemeChanged"), object: nil)
+       
+        
+        
         
     }
     
 
     let waitToDismiss = 0.25
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        
-        return UIStatusBarStyle.default
-        
+    func scrollUp() {
+        if self.tableView.numberOfSections != 0, self.tableView.numberOfRows(inSection: 0) > 0 {
+            
+            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            
+        }
     }
-    
-    
     
 }
 
@@ -555,29 +656,11 @@ class MainNotificationsCell: UITableViewCell, ThemeableCell {
             
         } else if HLLDefaults.notifications.milestones.isEmpty == false || HLLDefaults.notifications.Percentagemilestones.isEmpty == false {
             
-            let center = UNUserNotificationCenter.current()
             // Request permission to display alerts and play sounds.
             
-            center.requestAuthorization(options: [.alert, .sound, .badge])
-            { (granted, error) in
-                
-                DispatchQueue.main.async {
-                
-                if granted == false {
-                    
-                    self.statusLabel.text = "No Permission"
-                    self.statusLabel.textColor = UIColor.red
-                    
-                    
-                } else {
-                    
-                    self.statusLabel.text = "\(HLLDefaults.notifications.milestones.count+HLLDefaults.notifications.Percentagemilestones.count) Enabled"
-                    self.statusLabel.textColor = #colorLiteral(red: 0.5556007624, green: 0.5556976795, blue: 0.5753890276, alpha: 1)
-                    
-                }
-                    
-                }
-            }
+            self.statusLabel.text = "\(HLLDefaults.notifications.milestones.count+HLLDefaults.notifications.Percentagemilestones.count) Enabled"
+            self.statusLabel.textColor = #colorLiteral(red: 0.5556007624, green: 0.5556976795, blue: 0.5753890276, alpha: 1)
+            
             
         } else {
             
@@ -739,15 +822,61 @@ class MainSiriCell: UITableViewCell, ThemeableCell {
 class MainComplicationCell: UITableViewCell, ThemeableCell {
     
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var complicationFakeSwitch: UISwitch!
     
+    @IBOutlet weak var statusTextCell: UILabel!
     
     func setupCell() {
         
+        if IAPHandler.shared.hasPurchasedComplication() == true {
+            
+            statusTextCell.text = "Purchased"
+            
+        } else {
+            
+            if let priceString = IAPHandler.complicationPriceString {
+                
+                statusTextCell.text = priceString
+                
+            }
+            
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.gotPrice), name: Notification.Name("gotComplicationPrice"), object: nil)
+        
        themeChanged()
         
-        complicationFakeSwitch.setOn(IAPHandler.shared.hasPurchasedComplication(), animated: false)
+       // complicationFakeSwitch.setOn(IAPHandler.shared.hasPurchasedComplication(), animated: false)
         
+        
+    }
+    
+   @objc func gotPrice() {
+    
+    DispatchQueue.main.async {
+    
+    if IAPHandler.shared.hasPurchasedComplication() == false {
+        
+        if let priceString = IAPHandler.complicationPriceString {
+            
+            
+            
+            self.statusTextCell.text = priceString
+                
+                
+            
+        } else {
+            
+            self.statusTextCell.text = nil
+            
+        }
+        
+    } else {
+        
+        self.statusTextCell.text = "Purchased"
+        
+    }
+    
+    }
         
     }
     
@@ -767,13 +896,13 @@ class MainComplicationCell: UITableViewCell, ThemeableCell {
     }
 
     
-    @IBAction func complicationSwitchChanged(_ sender: UISwitch) {
+  /*  @IBAction func complicationSwitchChanged(_ sender: UISwitch) {
         IAPHandler.shared.setPurchasedStatus(sender.isOn)
         
         DefaultsSync.shared.syncDefaultsToWatch()
         
     }
-    
+    */
     
     
 }
@@ -790,6 +919,15 @@ class MainMagdaleneCell: UITableViewCell, ThemeableCell {
         themeChanged()
         enabledSwitch.setOn(!HLLDefaults.defaults.bool(forKey: "magdaleneFeaturesManuallyDisabled"), animated: false)
         
+        if SchoolAnalyser.privSchoolMode == .Jasmine {
+            
+            titleLabel.text = "Jasmine Mode"
+            
+        } else {
+            
+            titleLabel.text = "Magdalene Mode"
+            
+        }
         
     }
     

@@ -194,7 +194,7 @@ class EventTimeAdjuster {
         
         for eventItem in events {
         
-            var event = eventItem
+            let event = eventItem
             
         if event.startDate.year() < 2019 {
             

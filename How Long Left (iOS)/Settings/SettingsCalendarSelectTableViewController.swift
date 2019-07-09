@@ -33,9 +33,15 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
         super.viewDidLoad()
         
         calendars = calendar.getCalendars()
-        extendedLayoutIncludesOpaqueBars = true
+        navigationController?.navigationBar.barStyle = AppTheme.current.barStyle
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: AppTheme.current.textColor]
+        navigationController?.navigationBar.isTranslucent = AppTheme.current.translucentBars
         tableView.backgroundColor = AppTheme.current.groupedTableViewBackgroundColor
+        tabBarController?.tabBar.isTranslucent = AppTheme.current.translucentBars
+        tabBarController?.tabBar.barStyle = AppTheme.current.barStyle
         tableView.separatorColor = AppTheme.current.tableCellSeperatorColor
+        
+        tableView.reloadData()
         calendars.sort { $0.title < $1.title }
         
         if let storedIDS = defaults.stringArray(forKey: "setCalendars") {
@@ -97,6 +103,32 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
             
         }
         
+        var disabledArray = [String]()
+        
+        for cal in calendars {
+            
+            
+            
+            if setCalendars.contains(cal.calendarIdentifier) == false {
+                
+                disabledArray.append(cal.calendarIdentifier)
+                
+            }
+            
+        }
+        
+        HLLDefaults.calendar.disabledCalendars = [String]()
+        
+        
+        HLLDefaults.calendar.disabledCalendars = disabledArray
+        
+        DispatchQueue.main.async {
+            
+            self.defaultsSync.syncDefaultsToWatch()
+            
+            
+        }
+        
         defaults.set(setCalendars, forKey: "setCalendars")
         tableView.reloadData()
         
@@ -110,20 +142,28 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
             self.schoolAnalyser.analyseCalendar()
         }
         
-        if calendars.count > 0, setCalendars.count == 0 {
-            
-            defaults.set(true, forKey: "userDidTurnOffAllCalendars")
-            
-        }
             
         
+        if setCalendars.count == calendars.count {
+            
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Deselect all", style: .plain, target: self, action: #selector (selectAllButtonTapped))
+            selectAllState = false
+            
+            
+        } else {
             
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select all", style: .plain, target: self, action: #selector (selectAllButtonTapped))
             selectAllState = true
             
+            
+        }
         
         
-        defaultsSync.syncDefaultsToWatch()
+        DispatchQueue.main.async {
+        
+        self.defaultsSync.syncDefaultsToWatch()
+            
+        }
         
       //  WatchSessionManager.sharedManager.startSession()
        
@@ -176,7 +216,7 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
         
         let selectedCal = calendars[indexPath.row]
         
-        if setCalendars.contains(selectedCal.calendarIdentifier), setCalendars.count > 1 {
+        if setCalendars.contains(selectedCal.calendarIdentifier) {
             
             
             if let index = setCalendars.firstIndex(of: selectedCal.calendarIdentifier) {
@@ -210,6 +250,22 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
            
         })
         
+        var disabledArray = [String]()
+        
+        for cal in calendars {
+            
+            
+            
+            if setCalendars.contains(cal.calendarIdentifier) == false {
+                
+                disabledArray.append(cal.calendarIdentifier)
+                
+            }
+            
+        }
+        
+        HLLDefaults.calendar.disabledCalendars = disabledArray
+        
         DispatchQueue.main.async {
             
             self.defaultsSync.syncDefaultsToWatch()
@@ -217,11 +273,7 @@ class SettingsCalendarSelectTableViewController: UITableViewController {
             
         }
         
-        if calendars.count > 0, setCalendars.count == 0 {
-            
-            defaults.set(true, forKey: "userDidTurnOffAllCalendars")
-            
-        }
+        
        
         
     }

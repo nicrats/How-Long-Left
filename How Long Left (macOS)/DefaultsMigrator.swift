@@ -12,6 +12,8 @@ class DefaultsMigrator {
 
     let defaults = HLLDefaults.defaults
     
+    let cal = EventDataSource()
+    
     func migrate1XXDefaults() {
         
         if defaults.string(forKey: "setupComplete") != nil {
@@ -82,8 +84,7 @@ class DefaultsMigrator {
             
             if let setCal = defaults.string(forKey: "Calendar") {
             
-            let cal = EventDataSource()
-            cal.getCalendarAccess()
+           cal.getCalendarAccess()
             let cals = cal.getCalendars()
             
             for calendar in cals {

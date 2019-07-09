@@ -104,6 +104,15 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    func formattedTimeTwelve() -> String {
+        
+        
+        let dateFormatter  = DateFormatter()
+        dateFormatter.dateFormat = "h:mma"
+        
+        return dateFormatter.string(from: self)
+    }
+    
     func formattedDate() -> String {
         
         let dateFormatter = DateFormatter()

@@ -31,13 +31,15 @@ class TodayViewController: NSViewController, NCWidgetProviding {
         return NSNib.Name("TodayViewController")
     }
     
+    
     override func viewDidLoad() {
         
         endsInLabel.alphaValue = 0.75
         countdownLabel.alphaValue = 0.75
         
         updateEventStore()
-        
+        timer = Timer(fireAt: Date(), interval: 0.5, target: self, selector: #selector(mainRun), userInfo: nil, repeats: true)
+        RunLoop.main.add(timer, forMode: .common)
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.updateEventStore),
@@ -50,8 +52,6 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     
     @objc func updateEventStore() {
         
-        self.cal.updateEventStore()
-        
         schoolAnalyser.analyseCalendar()
         
         
@@ -60,43 +60,46 @@ class TodayViewController: NSViewController, NCWidgetProviding {
 
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
        
+        mainRun()
         
-        timer = Timer(fire: Date(), interval: 0.5, repeats: true, block: {_ in
+        completionHandler(NCUpdateResult.newData)
+        
+        
+        
+    }
+    
+    @objc func mainRun() {
+        
+        self.current = self.cal.getCurrentEvent()
+        
+        if let currentEvent = self.current {
             
-            self.current = self.cal.getCurrentEvent()
+            self.countdownLabel.isHidden = false
+            self.endsInLabel.font? = NSFont.systemFont(ofSize: self.eventFontSize, weight: NSFont.Weight.regular)
+            self.countdownLabel.font = NSFont.monospacedDigitSystemFont(ofSize: CGFloat(50), weight: NSFont.Weight.light)
+            self.countdownLabel.stringValue = self.timerStringGenerator.generateStatusItemString(event: currentEvent, justTimer: true)!
+            self.endsInLabel.stringValue = "\(currentEvent.title) \(currentEvent.endsInString) in"
             
-            if let currentEvent = self.current {
+            if currentEvent.endDate.timeIntervalSinceNow < 1 {
                 
-                self.countdownLabel.isHidden = false
-                 self.endsInLabel.font? = NSFont.systemFont(ofSize: self.eventFontSize, weight: NSFont.Weight.regular)
-                self.countdownLabel.font = NSFont.monospacedDigitSystemFont(ofSize: CGFloat(50), weight: NSFont.Weight.light)
-                self.countdownLabel.stringValue = self.timerStringGenerator.generateStatusItemString(event: currentEvent)!
-                self.endsInLabel.stringValue = "\(currentEvent.title) \(currentEvent.endsInString) in"
-                
-                if currentEvent.endDate.timeIntervalSinceNow < 1 {
-                    
-                    self.current = self.cal.getCurrentEvent()
-                    
-                }
-                
-            } else {
-                
-            self.countdownLabel.isHidden = true
-             //   self.endsInLabel.isHidden = true
-                self.endsInLabel.stringValue = "No Events Are On"
-                self.endsInLabel.font? = NSFont.systemFont(ofSize: self.noEventFontSize, weight: NSFont.Weight.regular)
-                
+                self.current = self.cal.getCurrentEvent()
                 
             }
             
+        } else {
+            
+            self.countdownLabel.isHidden = true
+            //   self.endsInLabel.isHidden = true
+            self.endsInLabel.stringValue = "No Events Are On"
+            self.endsInLabel.font? = NSFont.systemFont(ofSize: self.noEventFontSize, weight: NSFont.Weight.regular)
             
             
-            completionHandler(NCUpdateResult.newData)
-            
-        })
+        }
         
-        RunLoop.main.add(timer, forMode: .common)
+        
+        
         
     }
+
 
 }

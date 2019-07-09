@@ -15,6 +15,7 @@ class MilestoneNotifications {
     let upcomingEventStringGenerator = UpcomingEventStringGenerator()
     let eventData = EventDataSource()
     
+    
     func sendNotificationFor(milestone: Int, event: HLLEvent) {
         
        let upcomingEventText = upcomingEventStringGenerator.generateNextEventString(upcomingEvents: eventData.getUpcomingEventsToday(), currentEvents: eventData.getCurrentEvents(), isForDoneNotification: true)
@@ -41,7 +42,19 @@ class MilestoneNotifications {
             
             if let percent = countdownTuple.1 {
                 
+                
                 notification.subtitle = "(\(percent) done)"
+                
+                
+                if milestone == 60, SchoolAnalyser.schoolMode == .Magdalene {
+                    
+                    notification.subtitle = "We're in the endgame now"
+                    
+                    
+                }
+                
+                
+                
                 
             }
             
@@ -60,7 +73,6 @@ class MilestoneNotifications {
         let notification = NSUserNotification()
         if HLLDefaults.notifications.sounds == true {
         notification.soundName = "Hero"
-            print("Noto with sound")
         }
         notification.title = "\(event.title) is \(percentage)% done."
         notification.informativeText = upcomingEventText
@@ -76,7 +88,6 @@ class MilestoneNotifications {
         notification.title = "\(event.title) is starting now."
         if HLLDefaults.notifications.sounds == true {
             notification.soundName = "Hero"
-            print("Noto with sound")
         }
         notification.informativeText = upcomingEventText
         NSUserNotificationCenter.default.deliver(notification)

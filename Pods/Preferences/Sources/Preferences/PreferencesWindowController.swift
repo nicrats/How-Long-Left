@@ -4,18 +4,23 @@ public final class PreferencesWindowController: NSWindowController {
 	private let tabViewController = PreferencesTabViewController()
 
 	public init(viewControllers: [Preferenceable]) {
-		precondition(!viewControllers.isEmpty, "You need to set at least one view controller")
-
-		let window = NSWindow(
-			contentRect: (viewControllers[0] as! NSViewController).view.bounds,
-			styleMask: [
-				.titled,
-				.closable
-			],
-			backing: .buffered,
-			defer: true
-		)
-		super.init(window: window)
+        
+        precondition(!viewControllers.isEmpty, "You need to set at least one view controller")
+        
+        let window = NSWindow(
+            contentRect: (viewControllers[0] as! NSViewController).view.bounds,
+            styleMask: [
+                .titled,
+                .closable
+            ],
+            backing: .buffered,
+            defer: true
+        )
+        super.init(window: window)
+        
+        autoreleasepool {
+        
+		
 
 		window.title = String(System.localizedString(forKey: "Preferences…").dropLast())
 		window.contentView = tabViewController.view
@@ -31,10 +36,17 @@ public final class PreferencesWindowController: NSWindowController {
 		}
 		tabViewController.tabStyle = .toolbar
 		tabViewController.transitionOptions = [.crossfade, .slideDown]
+            
+        }
+            
 	}
 
 	public required init?(coder: NSCoder) {
+        
+        
 		super.init(coder: coder)
+            
+        
 	}
 
 	public func showWindow() {

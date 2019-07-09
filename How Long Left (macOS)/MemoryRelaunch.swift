@@ -14,10 +14,13 @@ class MemoryRelaunch {
         
         // In macOS 10.14 there's a bug where data from the EKEventStore is never released from memory. Since this app reads from the event store frequently and is meant to be running constantly, memory usage builds up over time. The only way I have found to resolve this is to literally relaunch once memory usage exceeds 50MB, whih takes a few hours depending on usage. Ew. I know.
     
+        #if DEBUG
+        
+        
         DispatchQueue.main.async {
             
         
-        if UIController.preferencesWindowController.window?.isVisible == false {
+        if UIController.preferencesWindowController?.window?.isVisible == false {
             
             var info = mach_task_basic_info()
             var count = mach_msg_type_number_t(MemoryLayout<mach_task_basic_info>.size)/4
@@ -35,7 +38,7 @@ class MemoryRelaunch {
                 
                 //  print("Memory in use: \(info.resident_size/100000)")
                 
-                if info.resident_size/100000 > 2000 {
+                if info.resident_size/1000000 > 2000 {
                     // Roughly idk
                     
                     print("Relaunching to resolve memory issues...")
@@ -52,6 +55,8 @@ class MemoryRelaunch {
         }
             
         }
+        
+        #endif
         
     }
     

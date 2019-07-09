@@ -130,7 +130,22 @@ func generateNextOccurenceItems(events: [HLLEvent]) -> [(String, [String])] {
         infoArray.append(infoMenuTimeInfo)
         
         
-        
+        if let ek = event.EKEvent, let notes = ek.notes {
+            
+            let lines = notes.split { $0.isNewline }
+            
+            for line in lines {
+                
+                if line.contains("Teacher") {
+                    
+                   infoArray.append(String(line))
+                    
+                }
+                
+            }
+            
+        }
+
         
         returnItems.append((rowTitle, infoArray))
         

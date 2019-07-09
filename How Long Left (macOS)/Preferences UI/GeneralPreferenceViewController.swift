@@ -26,17 +26,8 @@ final class GeneralPreferenceViewController: NSViewController, Preferenceable {
     @IBOutlet weak var showNextOccurCheckbox: NSButton!
     @IBOutlet weak var showPercentageCheckbox: NSButton!
     @IBOutlet weak var showLocationsCheckbox: NSButton!
-    @IBOutlet weak var showUpdatesButton: NSButton!
     @IBOutlet weak var use24HourTime: NSButton!
     
-    @IBAction func showUpdatesClicked(_ sender: NSButton) {
-        
-        var state = false
-        if sender.state == .on { state = true }
-        HLLDefaults.general.showUpdates = state
-        
-        
-    }
     @IBAction func launchAtLoginClicked(_ sender: NSButton) {
         
         var state = false
@@ -132,12 +123,6 @@ final class GeneralPreferenceViewController: NSViewController, Preferenceable {
             showNextEventCheckbox.state = .on
         } else {
             showNextEventCheckbox.state = .off
-        }
-        
-        if HLLDefaults.general.showUpdates == true {
-            showUpdatesButton.state = .on
-        } else {
-            showUpdatesButton.state = .off
         }
         
         if HLLDefaults.general.showUpcomingEventsSubmenu == true {

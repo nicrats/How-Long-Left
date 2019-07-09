@@ -3,14 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>files</key>
-	<dict/>
+	<dict>
+		<key>Resources/libswiftRemoteMirror.dylib</key>
+		<data>
+		Q4tOuxuyfnADvQEn7CnDVDI2fdo=
+		</data>
+	</dict>
 	<key>files2</key>
 	<dict>
 		<key>Frameworks/libswiftAppKit.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			SbBCBcC0k1V2IPZm4febLdmPgVs=
+			ZsR5A4o9SfbhG/DyFNDxLDvCKEg=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.dt.runtime.swiftAppKit" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Ryan Kontos (U7LYU2YNSN)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
@@ -19,7 +24,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			sYwCQFDFCsvHw/Is7VnmIiPenqk=
+			XZn3R40cRwhcm46WQGBBEv3LfkE=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.dt.runtime.swiftCore" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Ryan Kontos (U7LYU2YNSN)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
@@ -28,7 +33,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			JnOzihtd9fSJo00v1NspAwfBoWE=
+			vNP+nDESDQ9athzvHT4GaHr2aew=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.dt.runtime.swiftCoreData" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Ryan Kontos (U7LYU2YNSN)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
@@ -37,7 +42,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			ln7dpHFrfZz3Yv9wX4i5Z/dYUU4=
+			tnGBYMmQh+YfErrUNaCMwcALACE=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.dt.runtime.swiftCoreFoundation" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Ryan Kontos (U7LYU2YNSN)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
@@ -46,7 +51,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			5GyIc5cDP92OvWQEQ7LFrXnRhyw=
+			DayPNUNswZdqCgk7+WJdGYHrb6s=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.dt.runtime.swiftCoreGraphics" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Ryan Kontos (U7LYU2YNSN)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
@@ -55,7 +60,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			ukx5wLOXqokfZ4cvc3GsMZYq4HQ=
+			SzGJGXqUMoM6F91DsL/zZp0HOUY=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.dt.runtime.swiftCoreImage" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Ryan Kontos (U7LYU2YNSN)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
@@ -64,7 +69,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			ScTIuRwaWZg3reDdt2X4rkplA0A=
+			G42ZU1nMkVyq1/6wYGWMDlDTliQ=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.dt.runtime.swiftDarwin" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Ryan Kontos (U7LYU2YNSN)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
@@ -73,7 +78,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			CVfTg7nNW24yE62e/2ndmRae3nA=
+			hdd5pzdepF7j1bYN77kYl96r728=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.dt.runtime.swiftDispatch" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Ryan Kontos (U7LYU2YNSN)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
@@ -82,7 +87,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			ruyw3QhwgxHWbdXx/8WtIFE5tHY=
+			QXdXL7BX39CHWZ98Vsafinqhrlk=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.dt.runtime.swiftFoundation" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Ryan Kontos (U7LYU2YNSN)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
@@ -91,7 +96,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			/KX1j8MBe+x/K8IBramJ+QHDD1M=
+			HUvoHnMl/tJJTsO9EZpChKAAV30=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.dt.runtime.swiftIOKit" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Ryan Kontos (U7LYU2YNSN)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
@@ -100,7 +105,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			ByTFWkjRfBmiUGMCESeKlihH4U8=
+			nu7TiLc+sTF2Cu1szjgS1/KoUPE=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.dt.runtime.swiftMetal" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Ryan Kontos (U7LYU2YNSN)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
@@ -109,7 +114,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			LEgPeSJwWS48Pm0J0myUsVxwTDQ=
+			p110vFKn9fALERususUI2+kqWtY=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.dt.runtime.swiftObjectiveC" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Ryan Kontos (U7LYU2YNSN)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
@@ -118,16 +123,25 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			nIUENOO+AoR9i5ixbQY80+9oV8Y=
+			ffF5BI+QcAYfC++kOZmwQpdx9aM=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.dt.runtime.swiftQuartzCore" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Ryan Kontos (U7LYU2YNSN)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+		</dict>
+		<key>Frameworks/libswiftSwiftOnoneSupport.dylib</key>
+		<dict>
+			<key>cdhash</key>
+			<data>
+			d1FEJYHb/AkHJW3+UA4pfr4NOH0=
+			</data>
+			<key>requirement</key>
+			<string>identifier "com.apple.dt.runtime.swiftSwiftOnoneSupport" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Ryan Kontos (U7LYU2YNSN)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
 		</dict>
 		<key>Frameworks/libswiftXPC.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			WsKhEDcnxYaRJAzc0YSdyujTKUg=
+			4bglqFMgSVGub+4IdyUwHCwfASY=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.dt.runtime.swiftXPC" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Ryan Kontos (U7LYU2YNSN)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
@@ -136,10 +150,21 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			O1en48nHUG0WNmWsFFRCe7xKGt4=
+			0Yj+wuzCTYZxezfLe1YfO9OiFCo=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.dt.runtime.swiftos" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Ryan Kontos (U7LYU2YNSN)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+		</dict>
+		<key>Resources/libswiftRemoteMirror.dylib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Q4tOuxuyfnADvQEn7CnDVDI2fdo=
+			</data>
+			<key>hash2</key>
+			<data>
+			M+SWC5XD4iXJz+FTKh4tPQjHPjuzrmqe+RQjP/ykwJU=
+			</data>
 		</dict>
 	</dict>
 	<key>rules</key>

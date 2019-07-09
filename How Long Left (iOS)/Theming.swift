@@ -38,6 +38,8 @@ class AppTheme {
 
 class HLLDefaultTheme: HLLTheme {
     
+    var statusBarStyle: UIStatusBarStyle = .default
+    
     var plainColor: UIColor = .white
     
     var groupedTableViewBackgroundColor: UIColor = .groupTableViewBackground
@@ -54,10 +56,23 @@ class HLLDefaultTheme: HLLTheme {
     
     var secondaryTextColor: UIColor = #colorLiteral(red: 0.5741485357, green: 0.5741624236, blue: 0.574154973, alpha: 1)
     
-    var selectedCellView: UIView? = nil
+    var selectedCellView: UIView? {
+        
+        get {
+            
+            let bgColorView = UIView()
+            bgColorView.backgroundColor = #colorLiteral(red: 0.7452212881, green: 0.7452212881, blue: 0.7452212881, alpha: 0.7228970462)
+            return bgColorView
+            
+        }
+        
+    }
 }
 
 class HLLDarkTheme: HLLTheme {
+
+    
+    var statusBarStyle: UIStatusBarStyle = .lightContent
     
     var plainColor: UIColor = .black
     
@@ -67,9 +82,9 @@ class HLLDarkTheme: HLLTheme {
     
     var translucentBars: Bool = false
     
-    var tableCellSeperatorColor: UIColor = .darkGray
+    var tableCellSeperatorColor: UIColor = #colorLiteral(red: 0.2406989932, green: 0.2407459915, blue: 0.2543286979, alpha: 0.9171393408)
     
-    var tableCellBackgroundColor: UIColor = #colorLiteral(red: 0.03044098624, green: 0.03074238215, blue: 0.03074238215, alpha: 1)
+    var tableCellBackgroundColor = #colorLiteral(red: 0.109605588, green: 0.1096317843, blue: 0.1174220815, alpha: 1)
     
     var textColor: UIColor = .white
     
@@ -109,4 +124,28 @@ protocol HLLTheme {
     
     var selectedCellView: UIView? { get }
     
+    var statusBarStyle: UIStatusBarStyle { get }
+    
+}
+
+func hexStringToUIColor (hex:String) -> UIColor {
+    var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+    
+    if (cString.hasPrefix("#")) {
+        cString.remove(at: cString.startIndex)
+    }
+    
+    if ((cString.count) != 6) {
+        return UIColor.gray
+    }
+    
+    var rgbValue:UInt32 = 0
+    Scanner(string: cString).scanHexInt32(&rgbValue)
+    
+    return UIColor(
+        red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+        green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+        blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+        alpha: CGFloat(1.0)
+    )
 }

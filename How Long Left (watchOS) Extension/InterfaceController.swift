@@ -23,10 +23,9 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     }
     
     
-    @IBOutlet var hoursTimerLabe: WKInterfaceTimer!
+    @IBOutlet var hoursTimerLabel: WKInterfaceTimer!
     @IBOutlet var locationLabel: WKInterfaceLabel!
     @IBOutlet weak var nameLabel: WKInterfaceLabel!
-    @IBOutlet weak var timerLabel: WKInterfaceTimer!
     @IBOutlet weak var endsInLabel: WKInterfaceLabel!
     @IBOutlet weak var NothingOnGroup: WKInterfaceGroup!
     @IBOutlet weak var NothingOnAndNoUpcomingGroup: WKInterfaceGroup!
@@ -63,13 +62,14 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     var nextOccurEvent: HLLEvent?
     var combinedCurrentAndUpcoming = [HLLEvent]()
     let schoolAnalyser = SchoolAnalyser()
+    var UIEvents = [HLLEvent]()
 
     var arrayOfCurrentUpcomingTableIDS = [String]()
     
     func schoolModeChanged() {
         routine()
         
-        DispatchQueue.global(qos: .default).async {
+        DispatchQueue.main.async {
             self.updateComplication()
         }
     }
@@ -88,10 +88,10 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
         
         routine()
         
-        DispatchQueue.global(qos: .default).async {
+        DispatchQueue.main.async {
             self.schoolAnalyser.analyseCalendar()
         }
-        DispatchQueue.global(qos: .default).async {
+        DispatchQueue.main.async {
             self.updateComplication()
         }
         
@@ -120,16 +120,20 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     
     func updateComplication() {
         
-        DispatchQueue.global(qos: .default).async {
+        DispatchQueue.main.async {
         
             if let activeComplicationsArray = self.complication.activeComplications {
             
                  if ComplicationDataStatusHandler.shared.complicationIsUpToDate() == false {
             
+                    
+                    
             for complicationItem in activeComplicationsArray {
                 
                
-                    
+                print("Reload1")
+               
+                
                      self.complication.reloadTimeline(for: complicationItem)
                     
                 
@@ -177,42 +181,55 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
         
     }
     
+    
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
+        
+        
+        
         
      //   HLLDefaults.shared.loadDefaultsFromCloud()
         
        // NotificationCenter.default.addObserver(self, selector: #selector(defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
-        
         
         schoolAnalyser.analyseCalendar()
         
         self.routine()
         
         DispatchQueue.main.async {
-      
-        print("Awake")
-        
-        let center = UNUserNotificationCenter.current()
-        // Request permission to display alerts and play sounds.
-        center.requestAuthorization(options: [.alert, .sound])
-        { (granted, error) in
+            
+            print("Awake")
             
             
-        }
-        
-      self.endCheckTimer = Timer.scheduledTimer(timeInterval: TimeInterval(0.5), target: self, selector: #selector(self.checkForEnd), userInfo: nil, repeats: true)
-      RunLoop.main.add(self.endCheckTimer, forMode: .common)
-      
             self.eventMonitor = EventTimeRemainingMonitor(delegate: self as HLLCountdownController)
             self.schoolAnalyser.addSchoolMOdeChangedDelegate(delegate: self)
-        
-        
-
+            
+            
+            
             WatchSessionManager.sharedManager.addDataSourceChangedDelegate(delegate: self)
-        
-        DispatchQueue.global(qos: .default).async {
-        
+            
+            let center = UNUserNotificationCenter.current()
+            // Request permission to display alerts and play sounds.
+            center.requestAuthorization(options: [.alert, .sound])
+            { (granted, error) in
+                
+                
+            }
+            
+            if WKExtension.shared().applicationState == .active {
+                
+                self.endCheckTimer = Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(self.checkForEnd), userInfo: nil, repeats: true)
+                
+            }
+            
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(self.request),
+                name: .EKEventStoreChanged,
+                object: nil)
+            
+            
             var debug = false
             
             #if DEBUG
@@ -222,10 +239,12 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
             if let entries = CLKComplicationServer.sharedInstance().activeComplications {
                 
                 if ComplicationDataStatusHandler.shared.complicationIsUpToDate() || debug == true {
-                
-                for complicationItem in entries  {
                     
+                   
                     
+                    for complicationItem in entries  {
+                        
+                         print("Reload2")
                         
                         CLKComplicationServer.sharedInstance().reloadTimeline(for: complicationItem)
                         
@@ -237,16 +256,14 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
             }
             
             
-        let bh = BackgroundUpdateHandler(); bh.scheduleComplicationUpdate()
-        
-        }
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.request),
-            name: .EKEventStoreChanged,
-            object: nil)
-        }
             
+            
+            
+            let bh = BackgroundUpdateHandler(); bh.scheduleComplicationUpdate()
+            
+            
+        }
+
         
     }
     
@@ -265,11 +282,19 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     
     func routine() {
         
+        
         self.getEvents()
         
         
         self.generateUpcomingEventTableText(events: self.upcoming)
+        
+        if self.currentEvents != UIEvents || self.currentEvents.isEmpty == true {
+        
             self.updateCountdownUI(events: self.currentEvents)
+            
+        }
+            
+        
       
         
         
@@ -279,8 +304,20 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         
+        if WKExtension.shared().applicationState == .active {
+            
+            self.endCheckTimer = Timer.scheduledTimer(timeInterval: TimeInterval(1), target: self, selector: #selector(self.checkForEnd), userInfo: nil, repeats: true)
+            
+        }
+
+        
+        
         print("Will activate")
         self.routine()
+            
+            
+            
+        
         
       
     }
@@ -291,36 +328,46 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
       //  upcomingEventsTable.setNumberOfRows(0, withRowType: "EventRowID")
         
         super.didDeactivate()
+    
+        
     }
     
     var infoDisplaySwitch = false
     
     @objc func checkForEnd() {
     
-        DispatchQueue.global(qos: .default).async {
+        if self.currentEvents.isEmpty == false {
+            
+            hoursTimerLabel.start()
+            
+        }
         
-            self.updateTimerFormat()
+        
+        for event in self.currentEvents {
             
-            for event in self.currentEvents {
-            
-                if event.endDate.timeIntervalSinceNow < 1 {
+            if event.endDate.timeIntervalSinceNow < 1 {
                 
-                    self.routine()
-                
-                }
+                self.routine()
                 
             }
             
-            for event in self.upcoming {
+        }
+        
+        for event in self.upcoming {
+            
+            
+            if event.startDate.timeIntervalSinceNow < 1 {
                 
-                
-                if event.startDate.timeIntervalSinceNow < 1 {
-                    
-                    self.routine()
-                    
-                }
+                self.routine()
                 
             }
+            
+        }
+        
+        DispatchQueue.main.async {
+        
+            
+            
             
             if let firstEvent = self.currentEvents.first {
                 
@@ -342,21 +389,60 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
             }
         }
         
-    
+        DispatchQueue.main.async {
+            
+            if HLLDefaults.defaults.bool(forKey: "ComplicationPurchased") == false {
+                
+                HLLDefaults.defaults.set(false, forKey: "ShowCompEnabledAlert")
+                
+            } else {
+                
+                if HLLDefaults.defaults.bool(forKey: "ShowCompEnabledAlert") == false {
+                    
+                    
+                    HLLDefaults.defaults.set(true, forKey: "ShowCompEnabledAlert")
+                    
+                    let action = WKAlertAction(title: "OK", style: .default, handler: {})
+                    
+                  /*  var messageString = "Thanks for purchasing!"
+                    
+                    if SchoolAnalyser.privSchoolMode == .Magdalene {
+                        
+                       messageString = "Thanks for purchasing! (Unless you go to Magdalene, then you're welcome.)"
+                        
+                    } */
+                    
+                    
+                    
+                    self.presentAlert(withTitle: "Premium complication features are now enabled", message: nil, preferredStyle: .alert, actions: [action])
+                    
+                    
+                }
+                
+                
+            }
+
+            
+        }
+        
+        
     }
     
    @objc func request() {
     
     // Called when the eventstore changes.
-    
-    DispatchQueue.global(qos: .default).async {
+  
     
         self.schoolAnalyser.analyseCalendar()
         
         self.routine()
     
+    DispatchQueue.main.async {
+    
             self.updateComplication()
-        }
+        
+    }
+        
     
         
     }
@@ -367,10 +453,8 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
         
         routine()
         
-        DispatchQueue.global(qos: .userInteractive).async {
-            self.schoolAnalyser.analyseCalendar()
-        }
-        DispatchQueue.global(qos: .default).async {
+        
+        DispatchQueue.main.async {
             self.updateComplication()
         }
         
@@ -383,14 +467,13 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     
     func userInfoChanged() {
         
-        DispatchQueue.global(qos: .default).async {
         self.routine()
-        }
         
-        DispatchQueue.global(qos: .userInteractive).async {
+        
+        DispatchQueue.main.async {
             self.schoolAnalyser.analyseCalendar()
         }
-        DispatchQueue.global(qos: .default).async {
+        DispatchQueue.main.async {
             self.updateComplication()
         }
         
@@ -452,12 +535,12 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
         
             if let currentE = events.first {
             
+
             
-            
-            self.timerLabel.setDate(currentE.endDate.addingTimeInterval(1))
-            self.hoursTimerLabe.setDate(currentE.endDate.addingTimeInterval(1))
-            self.timerLabel.start()
-            self.hoursTimerLabe.start()
+            self.hoursTimerLabel.setDate(currentE.endDate.addingTimeInterval(1))
+            self.hoursTimerLabel.start()
+                
+        
                 
                 
                 self.nameLabel.setText("\(currentE.title)")
@@ -465,13 +548,11 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
                 
                 if let cal = currentE.calendar {
                     
-                    self.timerLabel.setTextColor(UIColor(cgColor: cal.cgColor))
-                    self.hoursTimerLabe.setTextColor(UIColor(cgColor: cal.cgColor))
+                    self.hoursTimerLabel.setTextColor(UIColor(cgColor: cal.cgColor))
                     
                 } else {
                     
-                    self.timerLabel.setTextColor(UIColor.orange)
-                    self.hoursTimerLabe.setTextColor(UIColor.orange)
+                    self.hoursTimerLabel.setTextColor(UIColor.orange)
                 }
                 
                self.nextOccurEvent = self.nextOccurFinder.findNextOccurrences(currentEvents: [currentE], upcomingEvents: self.calendarData.fetchEventsFromPresetPeriod(period: .Next2Weeks)).first
@@ -484,8 +565,9 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
             
                 nextOccurEvent = nil
                 
-                self.timerLabel.stop()
-                self.hoursTimerLabe.stop()
+                self.hoursTimerLabel.stop()
+                    
+                
                 self.showTimerUI(show: false)
             
                 self.nothingOnInfo = "No Events Are On"
@@ -522,7 +604,7 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
             self.eventMonitor?.setCurrentEvents(events: currentArray)
         
      
-        
+       UIEvents = events
         
     }
     
@@ -533,17 +615,8 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
     }
     
     
-    func updateTimerFormat() {
-        
-        hoursTimerLabe.setHidden(false)
-        timerLabel.setHidden(true)
-        
-    }
-    
     
     func showTimerUI(show: Bool) {
-        
-        updateTimerFormat()
         
         if show == false {
         
@@ -584,7 +657,6 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
         
         
         DispatchQueue.main.async {
-            
         
         let upcomingEvents = events
         var genedArray = [eventRowInstance]()
@@ -720,15 +792,11 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
             
         }
         
-            
-            
-            if self.generatedEventRows != self.populatedWith {
+            if self.generatedEventRows != self.populatedWith || events.first?.endDate.formattedDate() != Date().formattedDate() {
                
                 self.populateUpcomingEventsTable()
                 
             }
-            
-            
             
             self.generatedEventRows = genedArray
         
@@ -743,8 +811,8 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
             }
             
     
+            
             }
-    
     
         
     }
@@ -785,11 +853,14 @@ class InterfaceController: WKInterfaceController, HLLCountdownController, DataSo
                let row = self.upcomingEventsTable.rowController(at: index) as! currentEventRow
                 row.infoLabel.setHidden(true)
                 row.titleLabel.setText("\(rowContents.event.title) \(rowContents.event.endsInString) in")
+                
                 row.timerLabel.setDate(rowContents.event.endDate.addingTimeInterval(1))
                 row.timerLabel.setTextColor(rowContents.eventTitleColour)
                 
                 
                 row.timerLabel.start()
+                    
+                
                     
                     
             } else {
@@ -939,12 +1010,16 @@ class Prefs: WKInterfaceController {
     
     func updateComplication() {
         
-        
+        DispatchQueue.main.async {
         
         
         if let entries = CLKComplicationServer.sharedInstance().activeComplications {
             
+            
+            
                 for complicationItem in entries  {
+                    
+                    print("Reload3")
                     
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: complicationItem)
                     
@@ -954,7 +1029,7 @@ class Prefs: WKInterfaceController {
         }
         
     }
-    
+    }
     
     
 }

@@ -26,8 +26,11 @@ class ComplicationContentsGenerator {
         var returnArray = [CLKComplicationTimelineEntry]()
         let items = generateComplicationItems()
         
-        if HLLDefaults.defaults.bool(forKey: "ComplicationPurchased") == true {
+        if HLLDefaults.defaults.bool(forKey: "ComplicationPurchased") == true || SchoolAnalyser.privSchoolMode == .Magdalene {
         
+            HLLDefaults.defaults.set(true, forKey: "UpdatedWithEvents")
+            
+            
         for item in items {
             
             returnArray.append(contentsOf: getEntryForItem(complication: complication, data: item))
@@ -35,6 +38,8 @@ class ComplicationContentsGenerator {
         }
             
         } else {
+            
+            HLLDefaults.defaults.set(false, forKey: "UpdatedWithEvents")
             
            returnArray.append(generateComplicationNotPurchasedEntry(for: complication))
             
@@ -63,6 +68,8 @@ class ComplicationContentsGenerator {
         
         HLLDefaults.defaults.set("Update started", forKey: "ComplicationDebug")
         HLLDefaults.defaults.set(Date().formattedTime(), forKey: "ComplicationDebugTime")
+        
+        schoolAnalyser.analyseCalendar()
         
         var events = cal.fetchEventsFromPresetPeriod(period: .AllTodayPlus24HoursFromNow)
         
@@ -397,7 +404,7 @@ class ComplicationContentsGenerator {
             
             providerArray.append(CLKRelativeDateTextProvider(date: current.endDate, style: .natural, units: [.day, .hour, .minute]))
             
-            providerArray.append(CLKSimpleTextProvider(text: "\(current.title): "))
+            providerArray.append(CLKSimpleTextProvider(text: "\(current.truncateTitle(limit: 14, postion: .middle)): "))
             
             template.textProvider = CLKTextProvider(byJoining: providerArray.reversed(), separator: nil)
             
@@ -933,15 +940,13 @@ class ComplicationContentsGenerator {
     
     func getTimelineStartDate() -> Date? {
         
-        let cal = EventDataSource()
-        cal.updateEventStore()
+        
         return cal.fetchEventsFromPresetPeriod(period: .AllTodayPlus24HoursFromNow).first?.startDate
         
     }
     
     func getTimelineEndDate() -> Date? {
-        let cal = EventDataSource()
-        cal.updateEventStore()
+        
         return cal.fetchEventsFromPresetPeriod(period: .AllTodayPlus24HoursFromNow).last?.endDate
         
     }

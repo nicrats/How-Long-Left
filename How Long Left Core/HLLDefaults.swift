@@ -46,6 +46,31 @@ class HLLDefaults {
         
     }
     
+    struct rename {
+        
+        static var promptToRename: Bool {
+            
+            
+            get {
+                
+                return !defaults.bool(forKey: "RNDontPrompt")
+                
+            }
+            
+            set (to) {
+                
+                defaults.set(!to, forKey: "RNDontPrompt")
+                
+            }
+            
+            
+            
+            
+        }
+        
+        
+    }
+    
     struct complication {
         
         
@@ -216,6 +241,22 @@ class HLLDefaults {
             
         }
         
+        static var showEndTime: Bool {
+            
+            get {
+                
+                return defaults.bool(forKey: "showStatusItemEndTime")
+                
+            }
+            
+            set (to) {
+                
+                defaults.set(to, forKey: "showStatusItemEndTime")
+                
+            }
+            
+        }
+        
         static var showPercentage: Bool {
             
             get {
@@ -347,6 +388,22 @@ class HLLDefaults {
             set (to) {
                 
                 defaults.set(to, forKey: "setCalendars")
+                
+            }
+            
+        }
+        
+        static var disabledCalendars: [String] {
+            
+            get {
+                
+                return defaults.stringArray(forKey: "disabledCalendars") ?? [String]()
+                
+            }
+            
+            set (to) {
+                
+                defaults.set(to, forKey: "disabledCalendars")
                 
             }
             

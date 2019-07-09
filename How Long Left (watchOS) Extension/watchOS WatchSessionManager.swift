@@ -38,6 +38,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
     
     
     
+    
     func addDataSourceChangedDelegate<T>(delegate: T) where T: DataSourceChangedDelegate, T: Equatable {
         dataSourceChangedDelegates.append(delegate)
     }
@@ -103,8 +104,12 @@ extension WatchSessionManager {
             HLLDefaults.defaults.set(compStatusBool, forKey: "ComplicationPurchased")
                 
                 if let entries = CLKComplicationServer.sharedInstance().activeComplications {
-                        
+                    
+                    
+                    
                         for complicationItem in entries  {
+                            
+                            print("Reload6")
                             
                             CLKComplicationServer.sharedInstance().reloadTimeline(for: complicationItem)
                         }

@@ -23,12 +23,17 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
         
     //    let schoolAnalyser = SchoolAnalyser()
      //   schoolAnalyser.analyseCalendar()
+        DispatchQueue.main.async {
+        
         WatchSessionManager.sharedManager.startSession()
         WatchSessionManager.sharedManager.askForDefaults()
         
+        }
+            
     }
 
     func applicationDidBecomeActive() {
+        
         
      //   HLLDefaults.shared.loadDefaultsFromCloud()
         
@@ -50,6 +55,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
     
     func handleUserActivity(_ userInfo: [AnyHashable : Any]?) {
         
+        DispatchQueue.main.async {
+            
         if userInfo?[CLKLaunchedTimelineEntryDateKey] as? Date != nil {
             // Handoff from complication
             
@@ -57,10 +64,14 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
                 
                  if ComplicationDataStatusHandler.shared.complicationIsUpToDate() == false {
                 
+                    
+                    
                 for complicationItem in entries  {
                     
+                    print("Reload4")
+                    
                     CLKComplicationServer.sharedInstance().reloadTimeline(for: complicationItem)
-                    print("Reload")
+                    
                 }
             }
             
@@ -70,10 +81,16 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
         else {
             // Handoff from elsewhere
         }
+        
+        }
+        
     }
 
     func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
         // Sent when the system needs to launch the application in the background to process tasks. Tasks arrive in a set, so loop through and process each one.
+        
+        DispatchQueue.main.async {
+        
         for task in backgroundTasks {
             // Use a switch statement to check the task type
             switch task {
@@ -86,7 +103,11 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
                     
                     if ComplicationDataStatusHandler.shared.complicationIsUpToDate() == false {
                     
+                        
+                        
                     for complicationItem in entries  {
+                        
+                        print("Reload5")
                         
                         CLKComplicationServer.sharedInstance().reloadTimeline(for: complicationItem)
                         
@@ -123,7 +144,11 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
                 // make sure to complete unhandled task types
                 task.setTaskCompletedWithSnapshot(false)
             }
+            
+            }
+            
         }
+        
     }
 
 }

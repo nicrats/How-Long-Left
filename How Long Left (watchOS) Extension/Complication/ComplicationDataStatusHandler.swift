@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CryptoSwift
 
 class ComplicationDataStatusHandler {
     
@@ -21,6 +20,16 @@ class ComplicationDataStatusHandler {
     }
     
     func complicationIsUpToDate() -> Bool {
+        
+        if SchoolAnalyser.privSchoolMode != .Magdalene {
+        
+        if HLLDefaults.defaults.bool(forKey: "ComplicationPurchased") != HLLDefaults.defaults.bool(forKey: "UpdatedWithEvents") {
+            
+            return false
+            
+        }
+        
+        }
         
         if let data = HLLDefaults.defaults.string(forKey: "ComplicationUpdateData") {
             
@@ -50,7 +59,7 @@ class ComplicationDataStatusHandler {
         let dataSource = EventDataSource()
         var events = dataSource.fetchEventsFromPresetPeriod(period: .AllTodayPlus24HoursFromNow)
         events.append(contentsOf: dataSource.fetchEventsFromPresetPeriod(period: .Next2Weeks))
-        return "\(Version.currentVersion)\(Version.buildVersion)\(events.map { $0.identifier }.joined())".md5()
+        return "\(Version.currentVersion)\(Version.buildVersion)\(events.map { $0.identifier }.joined())"
         
     }
     

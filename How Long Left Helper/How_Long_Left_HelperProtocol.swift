@@ -12,7 +12,7 @@ import Foundation
     
     func updateEventStore()
     
-    func analyseScholMode(withReply reply: @escaping (SchoolMode) -> Void)
+    //func analyseScholMode(withReply reply: @escaping (SchoolMode) -> Void)
     
     func getEventsFromCalendar(start: Date, end: Date, withReply reply: @escaping ([Data]) -> Void)
     func fetchEventsFromPresetPeriod(period: EventFetchPeriod, withReply reply: @escaping ([Data]) -> Void)

@@ -20,7 +20,7 @@ class MagdalenePeriods {
         
         for eventItem in events {
         
-            var event = eventItem
+            let event = eventItem
             
         var period: String?
         

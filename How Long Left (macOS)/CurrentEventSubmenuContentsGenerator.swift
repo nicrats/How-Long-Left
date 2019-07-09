@@ -162,6 +162,14 @@ class CurrentEventSubmenuContentsGenerator {
         
         arrayTwo.append("Duration: \(countdownText)")
         
+        if let cal = event.calendar?.title {
+            
+            arrayTwo.append("Calendar: \(cal)")
+
+            
+        }
+        
+        
         return [arrayOne, arrayTwo]
         
         

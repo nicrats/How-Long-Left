@@ -22,11 +22,48 @@ class EventTitleShortener {
         
         for eventItem in events {
         
-            var event = eventItem
+            let event = eventItem
             
         var newTitle = event.title
         var ultraCompact: String?
         
+            if event.originalTitle.contains(text:"Food Technology") {
+                newTitle = "Food Tech"
+                ultraCompact = "FT"
+            }
+            
+            if event.originalTitle.contains(text:"Science") {
+                newTitle = "Science"
+                ultraCompact = "SCI"
+            }
+            
+            if event.originalTitle.contains(text:"Mathematics") {
+                newTitle = "Math"
+            }
+            
+            if event.originalTitle.contains(text:"English") {
+                newTitle = "English"
+                ultraCompact = "ENG"
+            }
+            
+        if SchoolAnalyser.schoolMode == .Jasmine {
+            
+            if event.originalTitle.contains(text:"Roll Call") {
+                newTitle = "Roll Call"
+            }
+            
+            if event.originalTitle.contains(text:"Work Education") {
+                newTitle = "Work Education"
+            }
+            
+            if event.originalTitle.contains(text:"Dance") {
+                newTitle = "Dance"
+            }
+            
+                
+                
+        } else {
+            
         if event.originalTitle.contains(text:"Pastoral Care") {
             newTitle = "Homeroom"
             ultraCompact = "PC"
@@ -64,24 +101,9 @@ class EventTitleShortener {
         if event.originalTitle.contains(text:"PASS") {
             newTitle = "PASS"
         }
-            
-        if event.originalTitle.contains(text:"Food Technology") {
-            newTitle = "Food Tech"
-            ultraCompact = "FT"
-        }
         
         if event.originalTitle.contains(text:"SPORT:") {
             newTitle = "Sport"
-        }
-        
-        if event.originalTitle.contains(text:"English") {
-            newTitle = "English"
-            ultraCompact = "ENG"
-        }
-        
-        if event.originalTitle.contains(text:"Science") {
-            newTitle = "Science"
-            ultraCompact = "SCI"
         }
         
         if event.originalTitle.contains(text:"HSIE") {
@@ -106,15 +128,15 @@ class EventTitleShortener {
             newTitle = "Math"
         }
         
-        if event.originalTitle.contains(text:"Mathematics") {
-            newTitle = "Math"
-        }
-        
         if event.originalTitle.contains(text:"PDHPE") {
             newTitle = "PDHPE"
             ultraCompact = "PDH"
         }
         
+        if event.originalTitle.contains(text:"Geography") {
+            newTitle = "Geography"
+        }
+            
         if event.originalTitle.contains(text:"Geography Elective") {
             newTitle = "GEL"
         }
@@ -177,6 +199,14 @@ class EventTitleShortener {
         if event.originalTitle.contains(text:"Legal") {
             newTitle = "Legal"
         }
+            
+        }
+            
+            if newTitle != event.originalTitle {
+                
+                event.isSchoolEvent = true
+            }
+            
             
         event.title = newTitle
         event.shortTitle = newTitle

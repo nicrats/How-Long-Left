@@ -28,9 +28,16 @@ enum IAPHandlerAlertType{
 class IAPHandler: NSObject {
     static let shared = IAPHandler()
     
+    static var unreachable = true
+    static var delegate: IAPListener?
+    
+    static var recentTransaction: SKPaymentTransaction?
+    
     fileprivate var productID = ""
     fileprivate var productsRequest = SKProductsRequest()
     fileprivate var iapProducts = [SKProduct]()
+    
+    static var complicationPriceString: String?
     
     var purchaseStatusBlock: ((IAPHandlerAlertType) -> Void)?
     
@@ -58,8 +65,9 @@ class IAPHandler: NSObject {
     }
     
     func hasPurchasedComplication() -> Bool {
+    
         
-        if SchoolAnalyser.schoolModeIgnoringUserPreferences == .Magdalene {
+        if SchoolAnalyser.privSchoolMode == .Magdalene {
             
             print("IAPCheck: Magalene user; Getting complication for free.")
             return true
@@ -118,6 +126,8 @@ class IAPHandler: NSObject {
     
     // MARK: - RESTORE PURCHASE
     func restorePurchase(){
+        
+        
         SKPaymentQueue.default().add(self)
         SKPaymentQueue.default().restoreCompletedTransactions()
     }
@@ -127,7 +137,7 @@ class IAPHandler: NSObject {
     func fetchAvailableProducts(){
         
         // Put here your IAP Products ID's
-        let productIdentifiers = NSSet(objects: "ComplicationIAP", "ConsumeTest" )
+        let productIdentifiers = NSSet(objects: "ComplicationIAPHLL")
         
         
         productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers as! Set<String>)
@@ -138,6 +148,8 @@ class IAPHandler: NSObject {
 
 extension IAPHandler: SKProductsRequestDelegate, SKPaymentTransactionObserver{
     // MARK: - REQUEST IAP PRODUCTS
+    
+    
     func productsRequest (_ request:SKProductsRequest, didReceive response:SKProductsResponse) {
         
         if (response.products.count > 0) {
@@ -148,7 +160,16 @@ extension IAPHandler: SKProductsRequestDelegate, SKPaymentTransactionObserver{
                 numberFormatter.numberStyle = .currency
                 numberFormatter.locale = product.priceLocale
                 let price1Str = numberFormatter.string(from: product.price)
-                print(product.localizedDescription + "\nfor just \(price1Str!)")
+                print("IAP: \(product.localizedDescription) costs \(price1Str!)")
+                
+                if product.productIdentifier == "ComplicationIAPHLL" {
+                    
+                    IAPHandler.complicationPriceString = price1Str
+                    
+                    NotificationCenter.default.post(name: Notification.Name("gotComplicationPrice"), object: nil)
+                    
+                }
+                
             }
         }
         
@@ -156,32 +177,66 @@ extension IAPHandler: SKProductsRequestDelegate, SKPaymentTransactionObserver{
         
     }
     
-    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
-        purchaseStatusBlock?(.restored)
-    }
     
+    
+    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+       // purchaseStatusBlock?(.restored)
+        //IAPHandler.delegate?.purchaseResult(was: .restored)
+       // setPurchasedStatus(true)
+    }
+
+    func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
+        
+        purchaseStatusBlock?(.disabled)
+        IAPHandler.delegate?.purchaseResult(was: .failed)
+        setPurchasedStatus(false)
+    }
     
     // MARK:- IAP PAYMENT QUEUE
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction:AnyObject in transactions {
             if let trans = transaction as? SKPaymentTransaction {
+                
+             IAPHandler.recentTransaction = trans
+                
                 switch trans.transactionState {
                 case .purchased:
                     print("purchased")
                     SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
                     purchaseStatusBlock?(.purchased)
+                    setPurchasedStatus(true)
+                    IAPHandler.delegate?.purchaseResult(was: .succeeded)
+                    
                     break
                     
                 case .failed:
                     print("failed")
                     SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
+                    IAPHandler.delegate?.purchaseResult(was: .failed)
                     break
+                    
                 case .restored:
-                    print("restored")
+                    
                     SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
+                    IAPHandler.delegate?.purchaseResult(was: .restored)
                     break
                     
                 default: break
                 }}}
     }
+}
+
+protocol IAPListener {
+    
+    func purchaseResult(was result: IAPPurchaseState)
+    
+    
+}
+
+enum IAPPurchaseState {
+    
+    case succeeded
+    case failed
+    case restored
+    
 }

@@ -77,11 +77,9 @@ class UpcomingEventStringGenerator {
                     secondsLeft += 86400
                     formatter.allowedUnits = [.day, .weekOfMonth]
                     
-                } else if secondsLeft+1 > 3599 {
+                } else if secondsLeft+1 > 3600 {
                     
                     formatter.allowedUnits = [.hour, .minute]
-                    
-                    secondsLeft -= 8640
                     
                 } else {
                     
@@ -136,8 +134,8 @@ class UpcomingEventStringGenerator {
             switch daysUntilUpcomingStart {
             case 0:
                 dayText = "Today"
-                menuTitle = "Upcoming Today (\(events.count)):"
-                infoItems.append("\(events.count) upcoming \(eventsPluralised) today.")
+                menuTitle = "On Today (\(events.count)):"
+                infoItems.append("\(events.count) on \(eventsPluralised) today.")
                 
                 let interval = Int(events.last!.endDate.timeIntervalSinceNow)+60
                 let formatter = DateComponentsFormatter()
@@ -172,23 +170,44 @@ class UpcomingEventStringGenerator {
         
        // var arrayOfTimesWhereEventsAreOnToday = Set<Date>()
         
-        let calendar = Calendar(identifier: .gregorian)
+       /* var numberOfMinutesWithEventsOnToday = 0
+        var numberOfElapsedMinutesWithEventsOnToday = 0
         
-        for event in events {
+        for event in EventCache.allToday {
+            
+            var date = event.startDate
             
             
-            var date = event.startDate // first date
-            let endDate = event.endDate // last date
+            print("While = \(date.timeIntervalSince(event.endDate))")
             
-            // Formatter for printing the date, adjust it according to your needs:
-            
-            
-            while date <= endDate {
-
-                date = calendar.date(byAdding: .minute, value: 1, to: date)!
+            while date.timeIntervalSince(event.endDate) < 0 {
+                
+                numberOfMinutesWithEventsOnToday += 1
+                
+                if date.timeIntervalSinceNow > 0 {
+                    
+                    numberOfElapsedMinutesWithEventsOnToday += 1
+                    
+                }
+                
+                date = date.addingTimeInterval(60)
+                
+                
             }
             
-        }
+            
+           
+            
+            
+            
+        } */
+        
+      //  print("Elapsed Event Minutes = \(numberOfElapsedMinutesWithEventsOnToday)")
+        
+       // print("Total Event Minutes = \(numberOfMinutesWithEventsOnToday)")
+        
+        
+        EventCache.fetchQueue.async(flags: .barrier) {
         
         if let first = EventCache.allToday.first, let last = EventCache.allToday.last, first.completionStatus != .NotStarted  {
             
@@ -212,6 +231,7 @@ class UpcomingEventStringGenerator {
             
         }
         
+    }
         
         
         
@@ -358,7 +378,9 @@ struct upcomingDayOfEvents {
     var menuTitle: String
     var eventStrings: [String]
     var HLLEvents: [HLLEvent]
+    var nextOccurs = [HLLEvent?]()
     var date: Date
+    
 
     
     init(rowTitle: String, eventStringItems: [String], eventsDate: Date, events: [HLLEvent]) {
@@ -367,6 +389,18 @@ struct upcomingDayOfEvents {
         eventStrings = eventStringItems
         HLLEvents = events
         date = eventsDate
+        let eventNextOccurFinder = EventNextOccurenceFinder()
+        
+        
+            for event in self.HLLEvents {
+            
+                let nextEvent = eventNextOccurFinder.findNextOccurrences(currentEvents: [event], upcomingEvents: EventCache.allUpcoming).first
+                
+                self.nextOccurs.append(nextEvent)
+    
+        }
+            
+        
         
     }
     

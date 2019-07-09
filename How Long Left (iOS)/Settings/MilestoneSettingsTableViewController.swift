@@ -173,7 +173,11 @@ class MilestoneSettingsTableViewController: UITableViewController {
             
         }
         
-        scheduler.scheduleNotificationsForUpcomingEvents()
+        DispatchQueue.main.async {
+        
+            self.scheduler.scheduleNotificationsForUpcomingEvents()
+            
+        }
         //  WatchSessionManager.sharedManager.startSession()
         
         

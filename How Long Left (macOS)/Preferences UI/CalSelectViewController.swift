@@ -12,6 +12,10 @@ import EventKit
 
 class calSelectViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, CalendarCellDelegate {
     
+    var cals = [EKCalendar]()
+    var selectedCals = [EKCalendar]()
+    let cal = EventDataSource()
+    
     override func viewDidAppear() {
         
         
@@ -117,9 +121,7 @@ class calSelectViewController: NSViewController, NSTableViewDataSource, NSTableV
     
     
     
-    var cals = [EKCalendar]()
-    var selectedCals = [EKCalendar]()
-    let cal = EventDataSource()
+    
     
     
     
@@ -166,6 +168,24 @@ class calSelectViewController: NSViewController, NSTableViewDataSource, NSTableV
             
         }
         
+        var disabledArray = [String]()
+        
+        for calendar in cals {
+            
+            if selectedCals.contains(calendar) == false {
+                
+                disabledArray.append(calendar.calendarIdentifier)
+                
+            }
+            
+            
+            
+            
+        }
+        
+        HLLDefaults.calendar.disabledCalendars = disabledArray
+        
+        
         HLLDefaults.calendar.enabledCalendars = idArray
         
           NotificationCenter.default.post(name: Notification.Name("updatedCalendars"), object: nil)
@@ -182,7 +202,7 @@ class calSelectViewController: NSViewController, NSTableViewDataSource, NSTableV
     
     @IBAction func doneClicked(_ sender: NSButton) {
         
-        self.view.window?.close()
+        self.view.window?.performClose(nil)
         
     }
     

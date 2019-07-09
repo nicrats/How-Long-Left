@@ -36,7 +36,7 @@ class EventTimeRemainingMonitor {
     
     func setCurrentEvents(events: [HLLEvent]) {
         checkqueue.async(flags: .barrier) {
-        
+        [unowned self] in
             self.countdownEvents = events
             
         }
@@ -44,17 +44,17 @@ class EventTimeRemainingMonitor {
     
     func removeAllCurrentEvents() {
         checkqueue.async(flags: .barrier) {
-        
+        [unowned self] in
             self.countdownEvents.removeAll()
             
         }
         
     }
     
-    @objc func checkCurrentEvents() {
+    func checkCurrentEvents(allToday: [HLLEvent]) {
         
         checkqueue.async(flags: .barrier) {
-        
+        [unowned self] in
         let milestones = HLLDefaults.notifications.milestones
         let percentageMilestones = HLLDefaults.notifications.Percentagemilestones
             
@@ -68,7 +68,7 @@ class EventTimeRemainingMonitor {
         #elseif os(OSX)
         
 
-        events = EventCache.currentEvents
+        //events = EventCache.currentEvents
         
         
         #endif
@@ -90,6 +90,8 @@ class EventTimeRemainingMonitor {
                             self.coolingDownPercentage.append(event)
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                
+                                [unowned self] in
                                 self.coolingDownPercentage.removeAll()
                             }
                             
@@ -122,6 +124,9 @@ class EventTimeRemainingMonitor {
                         self.coolingDown.append(event)
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            
+                            [unowned self] in
+                            
                             self.coolingDown.removeAll()
                         }
                         
@@ -146,6 +151,9 @@ class EventTimeRemainingMonitor {
                     
                 self.coolingDownEnded.append(event)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        
+                        [unowned self] in
+                        
                         self.coolingDownEnded.removeAll()
                     }
                     
@@ -155,7 +163,7 @@ class EventTimeRemainingMonitor {
             
             var startedAtEndOfEvent = false
             
-            for eventToday in EventCache.allToday {
+            for eventToday in allToday {
                 
                 if eventToday.endDate == event.startDate {
                     
@@ -173,6 +181,9 @@ class EventTimeRemainingMonitor {
                 
                 self.coolingDownStarted.append(event)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 15) {
+                    
+                    [unowned self] in
+                    
                     self.coolingDownStarted.removeAll()
                 }
                 

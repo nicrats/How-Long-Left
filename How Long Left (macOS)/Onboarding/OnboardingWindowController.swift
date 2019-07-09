@@ -13,12 +13,13 @@ class OnboardingWindowController: NSWindowController {
     
     override func windowDidLoad() {
         
-        window?.center()
-        window?.makeKeyAndOrderFront(nil)
+        NSApp.setActivationPolicy(.regular)
         NSApp.activate(ignoringOtherApps: true)
-        window?.styleMask.remove(.resizable)
-        window?.level = .floating
-        
-    }
+            self.window?.center()
+            self.window?.styleMask.remove(.resizable)
+            self.window?.level = .normal
+            self.window?.makeKeyAndOrderFront(nil)
+        }
     
 }
+

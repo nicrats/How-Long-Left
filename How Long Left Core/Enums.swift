@@ -15,6 +15,7 @@ import Foundation
     case Next2Weeks = 3
     case ThisYear = 4
     case AnalysisPeriod = 5
+    case OneMonthEachSideOfToday = 6
 }
 
 enum EventCompletionStatus {
@@ -23,10 +24,11 @@ enum EventCompletionStatus {
     case Done
 }
 
-@objc enum SchoolMode: Int {
-    case None = 0
-    case Magdalene = 1
-    case Unknown = 2
+enum SchoolMode: String {
+    case None = "None"
+    case Magdalene = "Magdalene"
+    case Jasmine = "Jasmine"
+    case Unknown = "Unknown"
 }
 
 enum EventDate {

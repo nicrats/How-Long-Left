@@ -1,7 +1,7 @@
 project 'How Long Left.xcodeproj'
 
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+# platform :ios, '10.0'
 
 target 'How Long Left (iOS)' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -9,6 +9,7 @@ target 'How Long Left (iOS)' do
 pod 'CryptoSwift'
 pod 'MarqueeLabel'
 pod 'DeviceKit'
+pod 'ReachabilitySwift'
   # Pods for How Long Left (iOS)
 
 end
@@ -19,6 +20,7 @@ target 'How Long Left (macOS)' do
   # Pods for How Long Left (macOS)
 pod 'HotKey'
 pod 'Preferences'
+pod 'lottie-ios'
 end
 
 target 'How Long Left (watchOS)' do
@@ -31,7 +33,6 @@ end
 target 'How Long Left (watchOS) Extension' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-pod 'CryptoSwift'
   # Pods for How Long Left (watchOS) Extension
 
 end

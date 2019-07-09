@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "25F0DA0C2E5DF17222B4B2AA1834B726"
+               BlueprintIdentifier = "20FF352ED6F285F1A059DF81D7C0C6E7"
                BuildableName = "Pods_How_Long_Left__watchOS_.framework"
                BlueprintName = "Pods-How Long Left (watchOS)"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "25F0DA0C2E5DF17222B4B2AA1834B726"
+            BlueprintIdentifier = "20FF352ED6F285F1A059DF81D7C0C6E7"
             BuildableName = "Pods_How_Long_Left__watchOS_.framework"
             BlueprintName = "Pods-How Long Left (watchOS)"
             ReferencedContainer = "container:Pods.xcodeproj">

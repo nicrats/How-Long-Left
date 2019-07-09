@@ -12,7 +12,6 @@ class PercentageCalculator {
     
     func calculatePercentageDone(event: HLLEvent, ignoreDefaults: Bool) -> String? {
         
-        
         if HLLDefaults.magdalene.showHolidaysPercent == false, ignoreDefaults == false {
             
             if event.holidaysTerm != nil {
@@ -35,9 +34,7 @@ class PercentageCalculator {
         let secondsElapsed = Date().timeIntervalSince(event.startDate)
         let totalSeconds = event.endDate.timeIntervalSince(event.startDate)
         let double = secondsElapsed/totalSeconds
-        
         return Float(double)
-        
         
     }
     

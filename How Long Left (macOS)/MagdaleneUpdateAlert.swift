@@ -9,28 +9,44 @@
 import Foundation
 import AppKit
 
-let version = Version()
-
 class MagdalenePrompts {
+   
+    let version = Version()
+    let showChangesPrompt = true
     
     func presentMagdaleneChangesPrompt() {
         
-        DispatchQueue.main.async {
+        if let launched = HLLDefaults.appData.launchedVersion, SchoolAnalyser.schoolMode == .Magdalene, showChangesPrompt == true {
             
-            NSApp.activate(ignoringOtherApps: true)
-            let alert: NSAlert = NSAlert()
-            alert.window.title = "How Long Left \(Version.currentVersion)"
-            alert.messageText = "New in Magdalene Mode:"
-            alert.informativeText = """
-            - Added a new submenu that displays a countdown to the School Holidays.
-
-            """
-            
-            alert.alertStyle = NSAlert.Style.informational
-            alert.addButton(withTitle: "OK")
-            alert.runModal()
+            if Version.currentVersion > launched {
+                
+                DispatchQueue.main.async {
+                    
+                    
+                    NSApp.activate(ignoringOtherApps: true)
+                    let alert: NSAlert = NSAlert()
+                    alert.window.title = "How Long Left \(Version.currentVersion)"
+                    alert.messageText = "New in Magdalene Mode:"
+                    alert.informativeText = """
+                    - Adds the option to show the end time of the current event in the menu item. You can enable this in Preferences.
+                    = Fixed an issue where Magdalene Mode would not be avaliable if you only had your Term 2 timetable installed.
+                    - Also, when there's one minute left of an event, the notification will now say "We're in the endgame now", because why not.
+                    
+                    """
+                    
+                    alert.alertStyle = NSAlert.Style.informational
+                    alert.addButton(withTitle: "Epic!")
+                    alert.runModal()
+                    
+                }
+                
+                
+            }
             
         }
+        
+        
+        
     }
     
     func presentSchoolHolidaysPrompt() {

@@ -28,6 +28,8 @@ class MagdaleneBreaks {
         
         // Check if the day's current events line up with a Magdalene timetable, if so return EKEvents of Lunch and Recess
         
+        
+        
         var returnArray = [HLLEvent]()
         
         if HLLDefaults.magdalene.showBreaks == false {
@@ -68,15 +70,12 @@ class MagdaleneBreaks {
                     let todayComponents = calendar.dateComponents([.year, .month, .day], from: today)
                     
                     
-                    
                     var recessStart: Date?
                     var recessEnd: Date?
                     var lunchStart: Date?
                     var lunchEnd: Date?
                     
                     if events[0].startDate.year() > 2018 {
-                        
-                      
                         
                         switch weekday {
                             
@@ -261,7 +260,7 @@ class MagdaleneBreaks {
                         
                         if endTimesDictionary.keys.contains(formattedRecessStart), startTimesDictionary.keys.contains(formattedRecessEnd), difFromEnd > 0 {
                             
-                            var event = HLLEvent(title: "Recess", start: uRecessStart, end: uRecessEnd, location: nil)
+                            let event = HLLEvent(title: "Recess", start: uRecessStart, end: uRecessEnd, location: nil)
                             event.isMagdaleneBreak = true
                             
                            if let startEvent = endTimesDictionary[formattedRecessStart], let endEvent = startTimesDictionary[formattedRecessEnd] {
@@ -290,7 +289,7 @@ class MagdaleneBreaks {
                         
                         if endTimesDictionary.keys.contains(formattedLunchStart), startTimesDictionary.keys.contains(formattedLunchEnd), difFromEnd > 0 {
                             
-                            var event = HLLEvent(title: "Lunch", start: uLunchStart, end: uLunchEnd, location: nil)
+                            let event = HLLEvent(title: "Lunch", start: uLunchStart, end: uLunchEnd, location: nil)
                             event.isMagdaleneBreak = true
                             
                             if let startEvent = endTimesDictionary[formattedLunchStart], let endEvent = startTimesDictionary[formattedLunchEnd] {
@@ -303,6 +302,8 @@ class MagdaleneBreaks {
                                 }
                                 
                             }
+                            
+                            
                             
                             returnArray.append(event)
                             

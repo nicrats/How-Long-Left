@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>DayRater.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>23</integer>
+		</dict>
 		<key>Event Renamer.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -67,17 +72,17 @@
 		<key>How Long Left Mac Widget.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>18</integer>
+			<integer>6</integer>
 		</dict>
 		<key>How Long Left Siri Extension.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>20</integer>
+			<integer>21</integer>
 		</dict>
 		<key>How Long Left Siri ExtensionUI.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>21</integer>
+			<integer>22</integer>
 		</dict>
 		<key>How Long Left Siri Intents.xcscheme_^#shared#^_</key>
 		<dict>
@@ -87,7 +92,7 @@
 		<key>How Long Left Today Widget.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>19</integer>
+			<integer>20</integer>
 		</dict>
 		<key>How Long Left Widget (iOS).xcscheme_^#shared#^_</key>
 		<dict>
@@ -133,6 +138,11 @@
 			<true/>
 		</dict>
 		<key>BF5D296B2174688700AC1EB6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BF6AD6BE2226731E00B62C0C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

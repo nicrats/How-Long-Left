@@ -8,40 +8,33 @@
 
 import Cocoa
 import Preferences
-import Fabric
-import Crashlytics
+//import Fabric
+//import Crashlytics
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
 
     @IBOutlet weak var window: NSWindow!
-
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
         
-      //  NSWorkspace.shared.launchApplication(withBundleIdentifier: "ryankontos.Event-Renamer", options: .newInstance, additionalEventParamDescriptor: nil, launchIdentifier: nil)
+        NSApp.activate(ignoringOtherApps: true)
         
         #if DEBUG
         print("I'm running in DEBUG mode")
         
-        
         #else
         print("I'm running in a non-DEBUG mode")
-        
-        NSUserNotificationCenter.default.delegate = self
-        Fabric.with([Crashlytics.self])
-        
-        
+
         #endif
-        
-     /*    if #available(OSX 10.14, *) {
-        NSApplication.shared.registerForRemoteNotifications()
-        } */
+
     }
     
+    func applicationWillResignActive(_ notification: Notification) {
+        
+        
+    }
     
-
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
@@ -50,10 +43,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         // TODO: Check time, if after time return false.
         
-        
         return true
     }
-    
     
     func userNotificationCenter(_ center: NSUserNotificationCenter,
                                 didActivate notification: NSUserNotification) {
@@ -74,6 +65,4 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         }
     }
 
-
 }
-
