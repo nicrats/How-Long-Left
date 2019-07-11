@@ -47,7 +47,7 @@
                 </viewController>
                 <customObject id="5z4-gE-Sa5" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="468" y="65"/>
+            <point key="canvasLocation" x="379" y="80"/>
         </scene>
         <!--Tab Controller-->
         <scene sceneID="a5m-81-P2i">
@@ -570,7 +570,7 @@ Gw
                                 </customSpacing>
                             </stackView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="kh5-gg-g9m" customClass="AnimationView" customModule="Lottie">
-                                <rect key="frame" x="207" y="93" width="241" height="154"/>
+                                <rect key="frame" x="207" y="96" width="241" height="154"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="241" id="S9O-u8-qeS"/>
                                     <constraint firstAttribute="height" constant="154" id="T4s-UQ-c9c"/>
@@ -581,7 +581,7 @@ Gw
                             <constraint firstAttribute="bottom" secondItem="mEa-cI-T8g" secondAttribute="bottom" constant="19" id="120-Ds-vmu"/>
                             <constraint firstItem="c3h-lT-WaC" firstAttribute="centerX" secondItem="h6m-q5-CQ0" secondAttribute="centerX" id="EgG-Dz-Unb"/>
                             <constraint firstItem="c3h-lT-WaC" firstAttribute="top" secondItem="h6m-q5-CQ0" secondAttribute="top" constant="14" id="cOZ-R1-fZc"/>
-                            <constraint firstItem="kh5-gg-g9m" firstAttribute="top" secondItem="c3h-lT-WaC" secondAttribute="bottom" constant="24" id="cys-5P-7V5"/>
+                            <constraint firstItem="kh5-gg-g9m" firstAttribute="top" secondItem="c3h-lT-WaC" secondAttribute="bottom" constant="21" id="cys-5P-7V5"/>
                             <constraint firstItem="mEa-cI-T8g" firstAttribute="top" secondItem="N3A-M6-LHK" secondAttribute="bottom" constant="17" id="d8A-It-e6D"/>
                             <constraint firstItem="N3A-M6-LHK" firstAttribute="centerX" secondItem="h6m-q5-CQ0" secondAttribute="centerX" id="dz1-DL-ttO"/>
                             <constraint firstItem="kh5-gg-g9m" firstAttribute="centerX" secondItem="h6m-q5-CQ0" secondAttribute="centerX" id="efC-IP-Otp"/>
@@ -596,67 +596,6 @@ Gw
                 <customObject id="Ahc-bZ-WW5" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1623.5" y="730.5"/>
-        </scene>
-        <!--Intro View Controller-->
-        <scene sceneID="x6E-Pa-atO">
-            <objects>
-                <viewController id="s7o-0q-JXg" customClass="RNUIIntroViewController" customModule="How_Long_Left_macOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="Pcc-OW-RXX">
-                        <rect key="frame" x="0.0" y="0.0" width="655" height="345"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="blz-aC-4pd">
-                                <rect key="frame" x="45" y="150" width="565" height="61"/>
-                                <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gLb-vN-Buz">
-                                        <rect key="frame" x="140" y="23" width="286" height="38"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="No events to rename" id="NwH-Og-aqJ">
-                                            <font key="font" metaFont="systemMedium" size="31"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Ycb-dU-cDM">
-                                        <rect key="frame" x="-2" y="0.0" width="569" height="17"/>
-                                        <textFieldCell key="cell" selectable="YES" alignment="center" title="How Long Left was unable to find any events to rename that match the criteria you specified. " id="d43-kC-xhc">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                </subviews>
-                                <visibilityPriorities>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                </visibilityPriorities>
-                                <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                </customSpacing>
-                            </stackView>
-                            <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="To7-le-gsI">
-                                <rect key="frame" x="290" y="13" width="75" height="32"/>
-                                <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="u3i-lL-uGF">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="continueClicked:" target="s7o-0q-JXg" id="7vo-cf-XeH"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="To7-le-gsI" secondAttribute="bottom" constant="19" id="eHe-34-cRG"/>
-                            <constraint firstItem="blz-aC-4pd" firstAttribute="leading" secondItem="Pcc-OW-RXX" secondAttribute="leading" constant="45" id="k0i-cD-IW4"/>
-                            <constraint firstAttribute="trailing" secondItem="To7-le-gsI" secondAttribute="trailing" constant="20" id="lEH-1k-d1s"/>
-                            <constraint firstItem="blz-aC-4pd" firstAttribute="top" secondItem="Pcc-OW-RXX" secondAttribute="top" constant="9" id="p9N-qv-ZJd"/>
-                            <constraint firstAttribute="trailing" secondItem="blz-aC-4pd" secondAttribute="trailing" constant="45" id="uLa-OI-10H"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <customObject id="Y0L-rq-LMH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1624" y="1149"/>
         </scene>
     </scenes>
     <resources>

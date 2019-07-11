@@ -27,27 +27,8 @@ class MagdaleneSchoolHolidays {
     
     init() {
         
-        
-        
         let start = NSDateComponents()
         let end = NSDateComponents()
-        
-        // Term 1 Holidays 2019
-        
-        start.year = 2019
-        start.month = 4
-        start.day = 12
-        start.hour = 14
-        start.minute = 35
-        start.second = 00
-       
-        end.year = 2019
-        end.month = 4
-        end.day = 29
-        end.hour = 8
-        end.minute = 15
-        end.second = 00
-        holidayPeriods.append(SchoolHolidaysPeriod(startComp: start, endComp: end, term: 1))
         
         // Term 2 Holidays 2019
         
@@ -83,6 +64,22 @@ class MagdaleneSchoolHolidays {
         end.second = 00
         holidayPeriods.append(SchoolHolidaysPeriod(startComp: start, endComp: end, term: 3))
         
+        // Term 4 Holidays 2019
+        
+        start.year = 2019
+        start.month = 12
+        start.day = 20
+        start.hour = 14
+        start.minute = 35
+        start.second = 00
+        
+        end.year = 2020
+        end.month = 1
+        end.day = 29
+        end.hour = 8
+        end.minute = 15
+        end.second = 00
+        holidayPeriods.append(SchoolHolidaysPeriod(startComp: start, endComp: end, term: 4))
         
     }
     

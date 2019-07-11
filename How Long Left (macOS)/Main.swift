@@ -193,7 +193,7 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
             
             
             
-          showOnboarding = true
+         // showOnboarding = true
             
             if showOnboarding == true {
                 

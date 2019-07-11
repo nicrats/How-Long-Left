@@ -325,15 +325,9 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate, NSWindowDelega
    func addCurrentEventRows(with strings: [(String, String?, HLLEvent?, HLLEvent?)], updateNextOccurs: Bool) {
     currentEventWindowButtons.removeAll()
     
-    var setEvents = [HLLEvent]()
     var callEvents = [HLLEvent]()
     
-    for event in countdownMenuItemEvents.values {
-        
-        setEvents.append(event)
-        
-        
-    }
+
     
     for item in strings {
         
@@ -350,7 +344,6 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate, NSWindowDelega
         }
         
         self.arrayOfCurrentEventMenuItems.removeAll()
-        self.countdownMenuItemEvents.removeAll()
     
         if self.inNoAccessMode {
         return
@@ -467,6 +460,9 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate, NSWindowDelega
             submenu.addItem(NSMenuItem.separator())
             
             let windowButton : NSMenuItem = NSMenuItem()
+            
+            
+            
             windowButton.title = "Open Countdown Window..."
             
             windowButton.action = #selector(self.countdownWindowButtonClicked(sender:))
@@ -565,8 +561,8 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate, NSWindowDelega
         
     }
     
-    var MainUIWindowControllers = [String:NSWindowController]()
-    var MainUIStoryboard = NSStoryboard(name: "HLLMainUIStoryboard", bundle: nil)
+    var EventUIWindowControllers = [String:NSWindowController]()
+    var EventUIStoryboard = NSStoryboard(name: "EventUIStoryboard", bundle: nil)
     
     @objc func countdownWindowButtonClicked(sender: NSMenuItem) {
         
@@ -584,7 +580,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate, NSWindowDelega
                 
             }
             
-            if let window = MainUIWindowControllers[id] {
+            if let window = EventUIWindowControllers[id] {
                 
                 NSApp.activate(ignoringOtherApps: true)
                 window.window?.delegate = self
@@ -592,13 +588,15 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate, NSWindowDelega
                 
             } else {
             
-            let vc = self.MainUIStoryboard.instantiateController(withIdentifier: "MainUI") as? NSWindowController
+            let vc = self.EventUIStoryboard.instantiateController(withIdentifier: "MainUI") as? NSWindowController
             vc?.window?.delegate = self
-            (vc!.contentViewController as! MainUIViewController).event = event
+                
+                
+            (vc!.contentViewController?.children.first as! EventUITabViewController).event = event
             
-            MainUIWindowControllers[id] = vc
+            EventUIWindowControllers[id] = vc
             
-            if let window = MainUIWindowControllers[id] {
+            if let window = EventUIWindowControllers[id] {
                 
                 NSApp.activate(ignoringOtherApps: true)
                 window.window?.delegate = self
@@ -1039,6 +1037,8 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate, NSWindowDelega
             vcs.removeAll()
         
             vcs.append(GeneralPreferenceViewController())
+            
+            vcs.append(StatusItemPreferenceViewController())
 
             
             
@@ -1096,12 +1096,12 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate, NSWindowDelega
     func windowShouldClose(_ sender: NSWindow) -> Bool {
         
         
-        for keyValue in MainUIWindowControllers {
+        for keyValue in EventUIWindowControllers {
             
             
             if keyValue.value == sender.windowController! {
                 
-                MainUIWindowControllers.removeValue(forKey: keyValue.key)
+                EventUIWindowControllers.removeValue(forKey: keyValue.key)
                 
             }
             

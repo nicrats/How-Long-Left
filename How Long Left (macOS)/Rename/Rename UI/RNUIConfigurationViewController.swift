@@ -279,6 +279,7 @@ class CheckCell: NSTableCellView {
     
     func setup(eventTitle: String, store: RenameablesStore, enabled: Bool) {
         
+        
         eventName = eventTitle
         delegate = store
         cellSelected = enabled

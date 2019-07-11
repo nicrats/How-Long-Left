@@ -122,9 +122,7 @@ protocol ControllableTabView {
 
 protocol ControllerTab {
 
-    
     var delegate: ControllableTabView? { get set }
     
-
-
 }
+

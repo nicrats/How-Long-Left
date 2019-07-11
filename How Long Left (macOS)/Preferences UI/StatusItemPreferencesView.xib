@@ -12,6 +12,7 @@
                 <outlet property="des2" destination="tKK-Qp-ELy" id="Vmy-o3-oSx"/>
                 <outlet property="des3" destination="AsA-7j-GPE" id="Z5H-oc-nR6"/>
                 <outlet property="des4" destination="ikn-Ty-OWZ" id="0ma-rE-761"/>
+                <outlet property="des5" destination="6vf-oJ-zPL" id="QC6-Ky-39N"/>
                 <outlet property="doneAlertsCheckbox" destination="3gp-NQ-o7K" id="NtM-go-isL"/>
                 <outlet property="modeRadio_Minute" destination="hYO-Ao-Uad" id="yAx-Kb-0AM"/>
                 <outlet property="modeRadio_Off" destination="1ll-Wl-zhv" id="Lls-Du-iQD"/>
@@ -46,7 +47,7 @@
                     <rect key="frame" x="213" y="346" width="49" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Mode:" id="pkx-Ku-Ivp">
-                        <font key="font" metaFont="system" size="14"/>
+                        <font key="font" metaFont="menu" size="14"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -85,7 +86,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" id="PAO-gf-7Mt">
-                    <rect key="frame" x="66" y="276" width="119" height="18"/>
+                    <rect key="frame" x="66" y="277" width="119" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Show event title" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="iAM-Zh-7A8">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -96,7 +97,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" id="Oc7-su-D52">
-                    <rect key="frame" x="66" y="237" width="117" height="18"/>
+                    <rect key="frame" x="66" y="238" width="117" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Show &quot;left&quot; text" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="U3d-72-fIc">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -107,7 +108,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" id="ULa-I5-d8A">
-                    <rect key="frame" x="66" y="143" width="128" height="18"/>
+                    <rect key="frame" x="66" y="144" width="128" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Show percentage" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="NQL-Z9-Fit">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -118,28 +119,28 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="0Q2-5z-Q8x">
-                    <rect key="frame" x="84" y="261" width="281" height="14"/>
+                    <rect key="frame" x="84" y="262" width="281" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" title="Show the title of the current event in the status item." id="MSA-X3-STc">
-                        <font key="font" metaFont="smallSystem"/>
+                        <font key="font" metaFont="controlContent" size="11"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="tKK-Qp-ELy">
-                    <rect key="frame" x="84" y="221" width="210" height="14"/>
+                    <rect key="frame" x="84" y="222" width="210" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" title="Show the word &quot;left&quot; in the status item." id="T4l-Na-Hj0">
-                        <font key="font" metaFont="smallSystem"/>
+                        <font key="font" metaFont="controlContent" size="11"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="AsA-7j-GPE">
-                    <rect key="frame" x="84" y="128" width="272" height="14"/>
+                    <rect key="frame" x="84" y="129" width="272" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" title="Show the percentage completed in the status item." id="h2f-YL-Iw3">
-                        <font key="font" metaFont="smallSystem"/>
+                        <font key="font" metaFont="controlContent" size="11"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -148,7 +149,7 @@
                     <rect key="frame" x="215" y="49" width="46" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Units:" id="HQo-05-Vz0">
-                        <font key="font" metaFont="system" size="14"/>
+                        <font key="font" metaFont="menu" size="14"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -189,7 +190,7 @@
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="MenuSI" id="Jcb-LU-7mc"/>
                 </imageView>
                 <button verticalHuggingPriority="750" id="3gp-NQ-o7K">
-                    <rect key="frame" x="66" y="105" width="92" height="18"/>
+                    <rect key="frame" x="66" y="106" width="92" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Done alerts" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="KrW-CK-Hct">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -200,10 +201,10 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="ikn-Ty-OWZ">
-                    <rect key="frame" x="84" y="90" width="238" height="14"/>
+                    <rect key="frame" x="84" y="91" width="238" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" title="Show when an event ends in the status item." id="D4Y-Bj-AVx">
-                        <font key="font" metaFont="smallSystem"/>
+                        <font key="font" metaFont="controlContent" size="11"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -213,7 +214,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="push" title="Use short units (hr, min)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="u44-1a-1Ew" id="OMF-dL-M4g">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="menu"/>
+                        <font key="font" metaFont="system"/>
                         <menu key="menu" id="cGm-Wz-Xpb">
                             <items>
                                 <menuItem title="Use short units (hr, min)" state="on" identifier="4" id="u44-1a-1Ew">
@@ -228,7 +229,7 @@
                     </connections>
                 </popUpButton>
                 <button verticalHuggingPriority="750" id="k3x-BH-Udg">
-                    <rect key="frame" x="66" y="197" width="112" height="18"/>
+                    <rect key="frame" x="66" y="198" width="112" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Show end time" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="N7Y-1M-lN3">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -239,10 +240,10 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="6vf-oJ-zPL">
-                    <rect key="frame" x="84" y="166" width="272" height="28"/>
+                    <rect key="frame" x="84" y="167" width="272" height="28"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" title="If the current event ends today, show the end time in the status item." id="e63-3X-GDZ">
-                        <font key="font" metaFont="smallSystem"/>
+                        <font key="font" metaFont="controlContent" size="11"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>

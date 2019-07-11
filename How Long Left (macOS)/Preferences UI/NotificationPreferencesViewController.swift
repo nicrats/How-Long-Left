@@ -34,6 +34,20 @@ final class NotificationPreferenceViewController: NSViewController, Preferenceab
     @IBOutlet weak var percentageMilestoneOptionButton_50: NSButton!
     @IBOutlet weak var percentageMilestoneOptionButton_75: NSButton!
     
+    var customStoryboard = NSStoryboard(name: "CustomNotificationsPreferences", bundle: nil)
+    var windowC: NSWindowController?
+    
+    @IBAction func customClicked(_ sender: NSButton) {
+        
+    
+        self.windowC = self.customStoryboard.instantiateController(withIdentifier: "NotoWindow") as? NSWindowController
+        self.windowC?.showWindow(nil)
+        
+        
+        
+    }
+    
+    
     override func viewWillAppear() {
         
         let milestones =  HLLDefaults.notifications.milestones

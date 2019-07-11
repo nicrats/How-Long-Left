@@ -43,9 +43,6 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
     let timerFullText = "Include seconds remaining"
 	let timerShortText = "Don't include seconds remaining"
 	
-	
-	
-	
 	let timer = RepeatingTimer(time: 0.2)
 	
 	var previewEvent: HLLEvent?
@@ -69,12 +66,14 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
 				self.des2.textColor = NSColor.disabledControlTextColor
 				self.des3.textColor = NSColor.disabledControlTextColor
                 self.des4.textColor = NSColor.disabledControlTextColor
+				self.des5.textColor = NSColor.disabledControlTextColor
 				
 			} else {
 				self.des1.textColor = NSColor.controlTextColor
 				self.des2.textColor = NSColor.controlTextColor
 				self.des3.textColor = NSColor.controlTextColor
                 self.des4.textColor = NSColor.controlTextColor
+				self.des5.textColor = NSColor.controlTextColor
 			}
 			
             let isOff = mode != .Off
@@ -217,12 +216,14 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
 			self.des2.textColor = NSColor.disabledControlTextColor
 			self.des3.textColor = NSColor.disabledControlTextColor
             self.des4.textColor = NSColor.disabledControlTextColor
+			self.des5.textColor = NSColor.disabledControlTextColor
 			
 		} else {
 			self.des1.textColor = NSColor.controlTextColor
 			self.des2.textColor = NSColor.controlTextColor
 			self.des3.textColor = NSColor.controlTextColor
             self.des4.textColor = NSColor.controlTextColor
+			self.des5.textColor = NSColor.controlTextColor
 		}
         
         var SITitleState = NSControl.StateValue.off
@@ -249,6 +250,7 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
         let mode = HLLDefaults.statusItem.mode
         let isOff = mode != .Off
         showTitleCheckbox.isEnabled = isOff
+		showEndTimeCheckbox.isEnabled = isOff
         showLeftTextCheckbox.isEnabled = isOff
         showPercentageCheckbox.isEnabled = isOff
 		doneAlertsCheckbox.isEnabled = isOff
@@ -331,6 +333,7 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
 	@IBOutlet weak var des2: NSTextField!
 	@IBOutlet weak var des3: NSTextField!
     @IBOutlet weak var des4: NSTextField!
+	@IBOutlet weak var des5: NSTextField!
 	
 	
 	func generateStatusItemPreview() {
@@ -340,11 +343,11 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
 		
 		var Pevent: HLLEvent?
 			
-		if let primary = EventCache.primaryEvent {
+		if let primary = EventCache.primaryEvent, primary.holidaysTerm == nil {
 			
 			Pevent = primary
 			
-		} else if let firstCurrent = EventCache.currentEvents.first {
+		} else if let firstCurrent = EventCache.currentEvents.first, firstCurrent.holidaysTerm == nil {
 			
 			Pevent = firstCurrent
 			
