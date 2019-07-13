@@ -29,7 +29,7 @@ class RNProcess {
         
         autoreleasepool {
             
-            Main.isRenaming = true
+            EventDataSource.isRenaming = true
             
             DispatchQueue.global(qos: .userInteractive).async {
                 
@@ -223,10 +223,21 @@ class RNProcess {
                     if let newName = renameDictionary[event.originalTitle] {
                         
                         if let oldEk = event.EKEvent {
+                            
                             oldEk.title = newName
                             oldEk.calendar = event.calendar!
                             oldEk.startDate = event.startDate
                             oldEk.endDate = event.endDate
+                            
+                            if let notes = oldEk.notes {
+                                
+                                oldEk.notes = "\(notes)\n\(RNSchoolIDStringStore.renamedString)"
+                                
+                            } else {
+                                
+                                oldEk.notes = RNSchoolIDStringStore.renamedString
+                                
+                            }
                             
                             do {
                                 try store.save(oldEk, span: .thisEvent, commit: true)
@@ -310,15 +321,14 @@ class RNProcess {
                         event.startDate = breakEvent.startDate
                         event.endDate = breakEvent.endDate
                         event.calendar = SchoolAnalyser.schoolCalendar
+                        event.notes = RNSchoolIDStringStore.createdString
                         
                         do {
                             try store.save(event, span: .thisEvent, commit: true)
-                            // try EventDataSource.eventStore.remove(oldEk, span: .thisEvent, commit: true)
                             
                         } catch {
                             print("it didn't work")
                         }
-                        
                         
                         let doubleCounter = Double(addedCount)
                         let doubleTotal = Double(breaksArray.count)
@@ -360,7 +370,7 @@ class RNProcess {
                 
                 self.UIDelegate?.processStateChanged(to: .Done)
                 store.reset()
-                Main.isRenaming = false
+                EventDataSource.isRenaming = false
                 //self.UIDelegate?.setStatusString("Renaming complete")
                 
             }

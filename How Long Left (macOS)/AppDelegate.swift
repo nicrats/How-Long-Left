@@ -13,8 +13,6 @@ import Preferences
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
-
-    @IBOutlet weak var window: NSWindow!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
@@ -30,18 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
 
     }
     
-    func applicationWillResignActive(_ notification: Notification) {
-        
-        
-    }
-    
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-    }
-    
     func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
-        
-        // TODO: Check time, if after time return false.
         
         return true
     }

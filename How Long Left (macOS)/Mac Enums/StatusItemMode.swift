@@ -1,15 +1,17 @@
 //
-//  EventUITabViewController.swift
+//  StatusItemMode.swift
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 12/7/19.
 //  Copyright © 2019 Ryan Kontos. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
-class EventUITabViewController: ControllableTabView {
-
-    var event: HLLEvent?
+enum StatusItemMode: Int {
+    
+    case Off = 2
+    case Timer = 0
+    case Minute = 1
     
 }

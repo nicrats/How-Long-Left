@@ -9,27 +9,24 @@
 import Foundation
 import Cocoa
 
-class RNUIConfigurationViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, ControllerTab {
+class RNUIConfigurationViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+    
+    var parentController: ControllableTabView!
     
     @IBOutlet weak var RNUIAddBreaks: NSButton!
     
-    func setSharedItem(to: Any) {
-    }
-    
-    
     let setup = RNDataStore()
     
-    var delegate: ControllableTabView?
     
     @IBAction func nextClicked(_ sender: NSButton) {
         
-        delegate!.nextPage()
+        parentController.nextPage()
         
     }
     
     @IBAction func backClicked(_ sender: NSButton) {
         
-        delegate?.previousPage()
+      parentController.previousPage()
         
     }
     
@@ -41,6 +38,8 @@ class RNUIConfigurationViewController: NSViewController, NSTableViewDelegate, NS
     @IBOutlet weak var table: NSTableView!
     
     override func viewDidLoad() {
+        
+        parentController = (self.parent as! ControllableTabView)
         
         if HLLDefaults.defaults.bool(forKey: "RNNoBreaks") == true {
             

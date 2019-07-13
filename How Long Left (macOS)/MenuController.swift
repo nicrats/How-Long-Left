@@ -11,9 +11,9 @@ import AppKit
 import HotKey
 import Preferences
 
-class UIController: NSObject, HLLMacUIController, NSMenuDelegate, NSWindowDelegate {
+class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindowDelegate {
     
-    static var shared: UIController?
+    static var shared: MenuController?
 
     var menuCloseTimer: Timer?
     static var awokeAt: Date?
@@ -36,7 +36,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate, NSWindowDelega
     @IBOutlet weak var termMenu: NSMenu!
     static var menuIsOpen = false
     var inNoAccessMode = false
-    lazy var main = Main(aDelegate: self as HLLMacUIController)
+    lazy var main = Main(aDelegate: self as MenuControllerProtocol)
     let version = Version()
     var arrayOfCurrentEventMenuItems = [NSMenuItem]()
     var arrayOfUpcomingEventMenuItems = [NSMenuItem]()
@@ -98,7 +98,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate, NSWindowDelega
  
         
             self.main.mainRunLoop()
-        UIController.shared = self
+        MenuController.shared = self
         
         schoolAnalyser.analyseCalendar()
         print("SA5")
@@ -121,7 +121,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate, NSWindowDelega
     func menuDidClose(_ menu: NSMenu) {
         
         if menu == mainMenu {
-        UIController.menuIsOpen = false
+        MenuController.menuIsOpen = false
             self.main.mainRunLoop()
             
             
@@ -136,7 +136,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate, NSWindowDelega
         
         
         if menu == mainMenu {
-           UIController.menuIsOpen = true
+           MenuController.menuIsOpen = true
             main.runMainMenuUIUpdate(checkOpen: true)
             
             if SchoolAnalyser.schoolMode == .Magdalene, HLLDefaults.magdalene.showEdvalButton == true {
@@ -321,212 +321,80 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate, NSWindowDelega
     
     let currentEventRowsQueue = DispatchQueue(label: "AddCurrentRows")
     
-    
-   func addCurrentEventRows(with strings: [(String, String?, HLLEvent?, HLLEvent?)], updateNextOccurs: Bool) {
-    currentEventWindowButtons.removeAll()
-    
-    var callEvents = [HLLEvent]()
-    
-
-    
-    for item in strings {
+    func setTopShelfItems(_ items: [EventMenuItem]) {
         
-        if let event = item.2 {
+        var currentCount = 0
+    
+        for item in items {
+        
+            if item.type == .current {
             
-            callEvents.append(event)
+                currentCount += 1
+            }
+    
+        }
+        
+        if currentCount < 2 {
+            
+            EventCache.primaryEvent = nil
             
         }
         
-    }
-    
         for item in self.arrayOfCurrentEventMenuItems {
             self.mainMenu.removeItem(item)
         }
         
         self.arrayOfCurrentEventMenuItems.removeAll()
-    
+        currentEventWindowButtons.removeAll()
+        
         if self.inNoAccessMode {
         return
     }
-    
-    var matchedEvent = false
-    
-    if strings.count == 1 {
-        EventCache.primaryEvent = nil
         
-        if strings[0].2 == nil {
-            
-            let menuItem : NSMenuItem = NSMenuItem()
-            menuItem.title = "No events are on right now."
-            menuItem.isEnabled = false
-            arrayOfCurrentEventMenuItems.append(menuItem)
-            self.mainMenu.insertItem(menuItem, at: 0)
-            return
-            
-        }
+    for eventMenuItem in items.reversed() {
         
+        let menuItem = eventMenuItem.item
         
-    }   
-    
-    for data in strings.reversed() {
+        if let event = eventMenuItem.event {
             
-            var titleString = data.0
+            let submenu = EventInfoSubmenuGenerator.shared.generateSubmenuContentsFor(event: event)
             
-            if let percentText = data.1 {
-                
-                titleString += " \(percentText)"
-                
-            }
-        
-            let submenu = NSMenu()
-        
-        let menuItem : NSMenuItem = NSMenuItem()
-        menuItem.title = titleString
-        
-        if let cEvent = data.2 {
-            
-        
-            let subData = EventInfoSubmenuGenerator.shared.generateSubmenuContentsFor(event: cEvent)
-            
-            for (iN, arrayItem) in subData.enumerated() {
-        
-            for subArrayItem in arrayItem {
-            
-                let smenuItem : NSMenuItem = NSMenuItem()
-                smenuItem.title = subArrayItem
-                submenu.addItem(smenuItem)
-                
-                }
-                
-                
-                    
-                            
-                
-                
-                if subData.indices.contains(iN+1) {
-            
-            let sep = NSMenuItem.separator()
-            submenu.addItem(sep)
-                    
-                }
-                
-                
-
-            
-            
-        }
-            
-            if let nextOccur = data.3, let item = nextOccurGen.generateNextOccurenceItems(events: [nextOccur]).first {
-                
-                
-                // let index = mainMenu.index(of: nextOccurRow)
-                let row = NSMenuItem(title: "\(item.0)", action: nil, keyEquivalent: "")
-                
-                if item.1.isEmpty == false {
-                    
-                    let NXOsubmenu = NSMenu()
-                    
-                    for (index, submenuItemText) in item.1.enumerated() {
-                        
-                        if index == 2 {
-                            NXOsubmenu.addItem(NSMenuItem.separator())
-                        }
-                        
-                        let submenuItem = NSMenuItem()
-                        submenuItem.title = submenuItemText
-                        submenuItem.isEnabled = false
-                        NXOsubmenu.addItem(submenuItem)
-                        
-                    }
-                    
-                    row.submenu = NXOsubmenu
-                    row.isEnabled = true
-                    
-                } else {
-                    
-                    row.isEnabled = false
-                    
-                }
-                
-                nextOccurMenuItems.append(row)
-                
+            if eventMenuItem.type == .current, event.completionStatus == .InProgress {
                 
                 submenu.addItem(NSMenuItem.separator())
+                let windowButton : NSMenuItem = NSMenuItem()
+                windowButton.title = "Open Countdown Window..."
+                windowButton.action = #selector(self.countdownWindowButtonClicked(sender:))
+                windowButton.target = self
+                windowButton.isEnabled = true
+                currentEventWindowButtons[windowButton] = event
+                submenu.addItem(windowButton)
                 
-                submenu.addItem(row)
-                
-            }
-            
-            submenu.addItem(NSMenuItem.separator())
-            
-            let windowButton : NSMenuItem = NSMenuItem()
-            
-            
-            
-            windowButton.title = "Open Countdown Window..."
-            
-            windowButton.action = #selector(self.countdownWindowButtonClicked(sender:))
-            windowButton.target = self
-            windowButton.isEnabled = true
-            
-            
-            currentEventWindowButtons[windowButton] = cEvent
-            
-            submenu.addItem(windowButton)
-            
-        menuItem.submenu = submenu
-        
-        if strings.count != 1 {
-            
-            menuItem.action = #selector(self.currentEventMenuItemClicked(sender:))
-            menuItem.target = self
-            menuItem.isEnabled = true
-            
-        } else {
-            
-           // menuItem.isEnabled = false
-        }
-        
-            if let event = EventCache.primaryEvent {
-            
-                
-                if let rowEvent = data.2 {
-                    
-                    if rowEvent == event, strings.count > 1 {
-                        
-                        menuItem.state = .on
-                        matchedEvent = true
-                    }
-                    
-                }
-                
-                
-            }
-            
-            
-        self.mainMenu.insertItem(menuItem, at: 0)
-            
-            if let event = data.2 {
-               
+                menuItem.action = #selector(self.currentEventMenuItemClicked(sender:))
+                menuItem.target = self
+                menuItem.isEnabled = true
                 self.countdownMenuItemEvents[menuItem] = event
                 
             }
             
-            
-        self.arrayOfCurrentEventMenuItems.append(menuItem)
+            menuItem.submenu = submenu
+        
+            if let primaryEvent = EventCache.primaryEvent {
+                    
+                if event == primaryEvent, items.count > 1 {
+                        
+                    menuItem.state = .on
+                    
+                }
+                
+            }
             
         }
         
-    }
-    
-    if matchedEvent == false {
-        
-      //  EventCache.primaryEvent = EventCache.currentEvents.first
+        self.arrayOfCurrentEventMenuItems.append(menuItem)
+        self.mainMenu.insertItem(menuItem, at: 0)
         
     }
-      
-    
-        
         
     }
     
@@ -758,37 +626,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate, NSWindowDelega
             
             let menuItem : NSMenuItem = NSMenuItem()
             
-            let submenuMenu = NSMenu()
-            
-            
-                
-            let items = EventInfoSubmenuGenerator.shared.generateSubmenuContentsFor(event: event)
-            
-            for (iN, arrayItem) in items.enumerated() {
-                
-                for subArrayItem in arrayItem {
-                    
-                    let smenuItem : NSMenuItem = NSMenuItem()
-                    smenuItem.title = subArrayItem
-                    
-                    submenuMenu.addItem(smenuItem)
-                }
-                
-                
-                if items.indices.contains(iN+1) {
-                    
-                    let sep = NSMenuItem.separator()
-                    submenuMenu.addItem(sep)
-                    
-                }
-                
-                
-                
-                
-            }
-            
-            menuItem.submenu = submenuMenu
-            
+            menuItem.submenu = EventInfoSubmenuGenerator.shared.generateSubmenuContentsFor(event: event)
             menuItem.title = item
                 
                 switch event.completionStatus {
@@ -884,35 +722,7 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate, NSWindowDelega
                 
                 menuItem.title = "\(String(eventString))"
                 
-               let submenuMenu = NSMenu()
-                
-               let items = EventInfoSubmenuGenerator.shared.generateSubmenuContentsFor(event: event)
-                
-                for (iN, arrayItem) in items.enumerated() {
-                    
-                    for subArrayItem in arrayItem {
-                        
-                        let smenuItem : NSMenuItem = NSMenuItem()
-                        smenuItem.title = subArrayItem
-                        
-                        submenuMenu.addItem(smenuItem)
-                    }
-                    
-                    
-                    if items.indices.contains(iN+1) {
-                        
-                        let sep = NSMenuItem.separator()
-                        submenuMenu.addItem(sep)
-                        
-                    }
-                    
-                    
-                    
-                    
-                }
-                
-                
-                menuItem.submenu = submenuMenu
+                menuItem.submenu = EventInfoSubmenuGenerator.shared.generateSubmenuContentsFor(event: event)
                 
                 eventsSubmenu.addItem(menuItem)
                 
@@ -1064,15 +874,15 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate, NSWindowDelega
         
         vcs.append(aboutViewController())
         
-        UIController.preferencesWindowController?.window?.close()
+        MenuController.preferencesWindowController?.window?.close()
         
-        UIController.preferencesWindowController = PreferencesWindowController (
+        MenuController.preferencesWindowController = PreferencesWindowController (
             viewControllers: vcs
         )
         
-        UIController.preferencesWindowController?.window?.delegate = self
-        UIController.preferencesWindowController?.window?.title = "How Long Left Preferences"
-        UIController.preferencesWindowController?.showWindow()
+        MenuController.preferencesWindowController?.window?.delegate = self
+        MenuController.preferencesWindowController?.window?.title = "How Long Left Preferences"
+        MenuController.preferencesWindowController?.showWindow()
         
         
         
@@ -1107,10 +917,10 @@ class UIController: NSObject, HLLMacUIController, NSMenuDelegate, NSWindowDelega
             
         }
         
-        if sender == UIController.preferencesWindowController?.window {
+        if sender == MenuController.preferencesWindowController?.window {
             
     
-            UIController.preferencesWindowController = nil
+            MenuController.preferencesWindowController = nil
             vcs.removeAll()
             
         }

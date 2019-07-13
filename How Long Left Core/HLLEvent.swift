@@ -14,7 +14,7 @@ import CoreLocation
  * Represents an event in How Long Left. A HLLEvent can be initalized from an EKEvent or with custom data.
  */
 
-class HLLEvent: Equatable {
+class HLLEvent: Equatable, Hashable {
     
     var title: String
     var shortTitle: String
@@ -32,6 +32,7 @@ class HLLEvent: Equatable {
     var calendar: EKCalendar?
     var isMagdaleneBreak = false
     var EKEvent: EKEvent?
+    var notes: String?
     var isSchoolEvent = false
     var source: EventDataSource!
     var endsInString: String {
@@ -126,6 +127,7 @@ class HLLEvent: Equatable {
         shortTitle = event.title.truncated(limit: 25, position: .tail, leader: "...")
         startDate = event.startDate
         endDate = event.endDate
+        notes = event.notes
         EKEvent = event
         
         if let loc = event.location, loc != "" {
@@ -234,6 +236,8 @@ class HLLEvent: Equatable {
     }
     
     
-    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
     
 }

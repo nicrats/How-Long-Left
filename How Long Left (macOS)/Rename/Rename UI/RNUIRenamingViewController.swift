@@ -9,8 +9,9 @@
 import Foundation
 import Cocoa
 
-class RNUIRenamingViewController: NSViewController, ControllerTab, RNProcessUI {
+class RNUIRenamingViewController: NSViewController, RNProcessUI {
     
+    var parentController: EventUITabViewController!
     
     func processStateChanged(to: RNProcessState) {
         
@@ -39,7 +40,7 @@ class RNUIRenamingViewController: NSViewController, ControllerTab, RNProcessUI {
     
     override func viewDidLoad() {
         
-        
+        parentController = (self.parent as! EventUITabViewController)
         
     }
     

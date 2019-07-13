@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Version { // Not Lauren lmao
+class Version {
     
     static var currentVersion: String {
         

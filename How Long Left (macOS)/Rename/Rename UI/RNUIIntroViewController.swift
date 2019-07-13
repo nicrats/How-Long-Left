@@ -9,11 +9,14 @@
 import Foundation
 import Cocoa
 
-class RNUIIntroViewController: NSViewController, ControllerTab {
+class RNUIIntroViewController: NSViewController {
     
-    var delegate: ControllableTabView?
+    var parentController: EventUITabViewController!
     
-    func setSharedItem(to: Any) {
+    override func viewDidLoad() {
+        
+        parentController = (self.parent as! EventUITabViewController)
+        
     }
     
     @IBAction func neverClicked(_ sender: NSButton) {
@@ -36,7 +39,7 @@ class RNUIIntroViewController: NSViewController, ControllerTab {
     
     @IBAction func continueClicked(_ sender: NSButton) {
         
-        delegate?.nextPage()
+        parentController.nextPage()
         
     }
     

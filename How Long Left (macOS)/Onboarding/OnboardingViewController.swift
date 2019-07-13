@@ -21,7 +21,7 @@ class OnboardingViewController: NSViewController {
         
         self.view.window?.performClose(nil)
         
-       UIController.shared?.launchPreferences()
+       MenuController.shared?.launchPreferences()
         
     }
 }

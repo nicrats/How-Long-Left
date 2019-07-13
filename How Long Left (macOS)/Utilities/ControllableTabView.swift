@@ -1,5 +1,5 @@
 //
-//  RenameTabController.swift
+//  ControllableTabView.swift
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 21/6/19.
@@ -9,8 +9,7 @@
 import Foundation
 import Cocoa
 
-class RNUITabController: NSTabViewController, ControllableTabView {
-    
+class ControllableTabView: NSTabViewController {
     
     func goToIndex(_ tabIndex: Int) {
         
@@ -81,48 +80,8 @@ class RNUITabController: NSTabViewController, ControllableTabView {
         super.viewDidLoad()
     
    NSApp.activate(ignoringOtherApps: true)
-    let items = tabViewItems
-    var newItems = [NSTabViewItem]()
-    
-    for item in items {
-        
-        let newTVItem = item
-        
-        if var newVCItem = item.viewController as? ControllerTab {
-            
-            newVCItem.delegate = self
-            newTVItem.viewController = newVCItem as? NSViewController
-            newItems.append(newTVItem)
-            
-            
-        } else {
-            
-            newItems.append(newTVItem)
-            
-        }
-        
-        
-    }
-    
-    tabViewItems = newItems
-        
-    
-    }
-    
+  
     
 }
 
-protocol ControllableTabView {
-    
-    func nextPage()
-    func previousPage()
-    func goToIndex(_ tabIndex: Int)
-    
 }
-
-protocol ControllerTab {
-
-    var delegate: ControllableTabView? { get set }
-    
-}
-

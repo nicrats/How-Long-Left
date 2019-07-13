@@ -18,19 +18,24 @@ class EventDataSource {
     
     let queue = DispatchQueue(label: "thread-safe-obj", attributes: .concurrent)
     var events = [HLLEvent]()
-    static var accessToCalendar = calendarAccessState.Unknown
+    static var accessToCalendar = CalendarAccessState.Unknown
     var latestFetchSchoolMode = SchoolMode.None
     static var eventStore = EKEventStore()
     static var lastUpdatedWithCalendars = [String]()
     static var calendarReads = 0
     var delegate: EventDataSourceDelegate?
+    static var isRenaming = false
     
     func updateEventStore() {
         
-        //EventDataSource.eventStore.reset()
-       // EventDataSource.eventStore.refreshSourcesIfNecessary()
-        //EventDataSource.re
+        if !EventDataSource.isRenaming {
+        
+        EventDataSource.eventStore.reset()
+            
+        }
+        
     }
+       
     
     init() {
         getCalendarAccess()

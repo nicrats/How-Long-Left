@@ -123,56 +123,6 @@ class CountdownStringGenerator {
         
     }
     
-    func generateCurrentEventStrings(currentEvents: [HLLEvent], nextEvents: [HLLEvent], allUpcoming: [HLLEvent]?) -> [(String, String?, HLLEvent?, HLLEvent?)] {
-        
-        var returnArray = [(String, String?, HLLEvent?, HLLEvent?)]()
-        
-        if currentEvents.isEmpty == false {
-            
-            for event in currentEvents {
-                
-                var percentText: String?
-                
-                let returnText = generateRegularCountdownText(event: event)
-                
-                if let percent = pecentageCalc.calculatePercentageDone(event: event, ignoreDefaults: false), HLLDefaults.general.showPercentage {
-                    
-                    percentText = "(\(percent))"
-            
-                }
-                
-                if let allU = allUpcoming {
-                
-                
-                if let nextOccur = nextOccurFind.findNextOccurrences(currentEvents: [event], upcomingEvents: allU).first {
-                    
-                    returnArray.append((returnText, percentText, event, nextOccur))
-                    
-                } else {
-                    
-                    returnArray.append((returnText, percentText, event, nil))
-                    
-                }
-                
-                } else {
-                    
-                    returnArray.append((returnText, percentText, event, nil))
-                    
-                }
-                
-                
-            }
-            
-            
-        } else {
-           
-            returnArray.append(("No events are on right now.", nil, nil, nil))
-            
-        }
-        
-        return returnArray
-        
-    }
     
     func genTimerString(date: Date) -> String {
         
@@ -201,7 +151,7 @@ class CountdownStringGenerator {
                 
             }
             
-            
+
             
         } else {
             
@@ -224,43 +174,70 @@ class CountdownStringGenerator {
         
     }
     
-    func generateCountdownNotificationStrings(event: HLLEvent) -> (String, String?) {
- 
-        return (generateRegularCountdownText(event: event), pecentageCalc.calculatePercentageDone(event: event, ignoreDefaults: false))
+    func generateCountdownTextFor(event: HLLEvent) -> CountdownText {
+        
+        var mainText: String
+        var percentText: String?
+        
+        let secondsLeft = event.endDate.timeIntervalSinceNow
+        
+        let formatter = DateComponentsFormatter()
+        
+        if secondsLeft > 86399 {
+            formatter.allowedUnits = [.day]
+            
+        } else {
+            
+            formatter.allowedUnits = [.hour, .minute]
+            
+        }
+        
+        formatter.unitsStyle = .full
+        let countdownText = formatter.string(from: TimeInterval(secondsLeft+59))!
+        
+        if event.endDate.midnight() == Date().midnight() {
+            
+            mainText = "\(event.title) \(event.endsInString) in \(countdownText), at \(event.endDate.formattedTime())."
+            
+        } else {
+            
+            mainText = "\(event.title) \(event.endsInString) in \(countdownText)."
+            
+        }
+        
+        
+        if let percent = event.complationPercentage, HLLDefaults.general.showPercentage {
+            
+            percentText = "(\(percent))"
+            
+        }
+        
+        return CountdownText(mainText: mainText, percentageText: percentText)
         
     }
- 
     
-   private func generateRegularCountdownText(event: HLLEvent) -> String {
-        
-    let secondsLeft = event.endDate.timeIntervalSinceNow
-    
-    let formatter = DateComponentsFormatter()
-    
-    if secondsLeft > 86399 {
-        formatter.allowedUnits = [.day]
-        
-    } else {
-        
-        formatter.allowedUnits = [.hour, .minute]
-        
-    }
-    
-    formatter.unitsStyle = .full
-    let countdownText = formatter.string(from: TimeInterval(secondsLeft+59))!
-    
-    if event.endDate.midnight() == Date().midnight() {
-    
-        return "\(event.title) \(event.endsInString) in \(countdownText), at \(event.endDate.formattedTime())."
-        
-    } else {
-        
-        return "\(event.title) \(event.endsInString) in \(countdownText)."
-        
-    }
-    
-    }
-    
+}
 
+class CountdownText {
     
+    var mainText: String
+    var percentageText: String?
+    
+    internal init(mainText: String, percentageText: String? = nil) {
+        self.mainText = mainText
+        self.percentageText = percentageText
+    }
+    
+    func combined() -> String {
+        
+        if let percentageText = self.percentageText {
+            
+            return "\(mainText) \(percentageText)"
+            
+        } else {
+            
+            return mainText
+            
+        }
+    }
 }

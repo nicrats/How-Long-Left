@@ -85,15 +85,14 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
     lazy var countdownStringGenerator = CountdownStringGenerator()
     lazy var upcomingEventStringGenerator = UpcomingEventStringGenerator()
     lazy var schoolAnalyser = SchoolAnalyser()
-    lazy var milestoneNotifications = MilestoneNotifications()
+    lazy var milestoneNotifications = MilestoneNotificationGenerator()
     lazy var calendarData = EventDataSource()
     lazy var nextOccurStringGenerator = NextOccurenceStringGenerator()
     lazy var holidaysStringGenerator = SchoolHolidaysStringGenerator()
     lazy var eventNextOccurFinder = EventNextOccurenceFinder()
     lazy var memoryRelaunch = MemoryRelaunch()
     lazy var schoolManager = SchoolFunctionsManager()
-    static var service: HLLHelperProtocol?
-    var delegate: HLLMacUIController? {
+    var delegate: MenuControllerProtocol? {
         
         didSet {
             
@@ -125,7 +124,7 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
         }
     }
     
-    init(aDelegate: HLLMacUIController) {
+    init(aDelegate: MenuControllerProtocol) {
         
      //   setupXPC()
     
@@ -148,7 +147,7 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
             
         self.delegate = aDelegate
             
-            UIController.awokeAt = Date()
+            MenuController.awokeAt = Date()
             
             self.schoolAnalyser.setLoneDelegate(to: self)
             self.schoolAnalyser.analyseCalendar()
@@ -285,7 +284,7 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
             
             NotificationCenter.default.addObserver(self, selector: #selector(self.updateGlobalTrigger), name: Notification.Name("updateCalendar"), object: nil)
             
-            print("Init took \(Date().timeIntervalSince(UIController.awokeAt!))s")
+            print("Init took \(Date().timeIntervalSince(MenuController.awokeAt!))s")
             
             
             self.updateCalendarData(doGlobal: true)
@@ -431,7 +430,7 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
                 
                 self.preciseUpdateForMinuteChangeTimer.resume()
                 
-            } else if UIController.preferencesWindowController?.window!.isVisible == false {
+            } else if MenuController.preferencesWindowController?.window!.isVisible == false {
                 self.preciseUpdateForMinuteChangeTimer.suspend()
                 
             }
@@ -557,7 +556,7 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
                 
                 [unowned self] in
                 
-                if let prefsController = UIController.preferencesWindowController {
+                if let prefsController = MenuController.preferencesWindowController {
                     
                     if prefsController.window!.isVisible, HLLDefaults.statusItem.mode != .Off {
                         
@@ -601,13 +600,12 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
             }
             
             self.memoryRelaunch.relaunchIfNeeded()
-            self.checkBetaExpiry()
             self.delegate?.setHotkey(to: HLLDefaults.notifications.hotkey)
             
             if HLLDefaults.calendar.enabledCalendars != EventDataSource.lastUpdatedWithCalendars {
                 
                 print("Update for new cal")
-
+                EventDataSource.eventStore.reset()
                 self.updateCalendarData(doGlobal: true)
                 print("Call7")
                 
@@ -712,14 +710,13 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
         
     }
     
-    static var isRenaming = false
     
     @objc func calendarDidChange() {
         
         // print("Updating calendar at \(Date()) due to calendar change")
         autoreleasepool {
         
-        if !Main.isRenaming {
+        if !EventDataSource.isRenaming {
         updateCalendarData(doGlobal: true)
         print("Updating calendar at \(Date()) due to cal change")
         }
@@ -768,22 +765,26 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
         
     }
     
+    
+    let topShelfGen = MenuTopShelfGenerator()
+    
     func runMainMenuUIUpdate(checkOpen: Bool) {
         
-        if checkOpen == true, UIController.menuIsOpen {
+        if checkOpen == true, MenuController.menuIsOpen {
             
             mainMenuOpenTimer.resume()
             
         }
         
-        let upcomingEventsToday = calendarData.getUpcomingEventsToday()
+       // let upcomingEventsToday = calendarData.getUpcomingEventsToday()
         let nextUpcomingDay = calendarData.getUpcomingEventsFromNextDayWithEvents()
         let nextUpcomingDayAll = calendarData.getUpcomingEventsFromNextDayWithEvents(includeStarted: true)
-        let allUpcoming = calendarData.fetchEventsFromPresetPeriod(period: .Next2Weeks)
+       // let allUpcoming = calendarData.fetchEventsFromPresetPeriod(period: .Next2Weeks)
         let upcomingWeek = calendarData.getArraysOfUpcomingEventsForNextSevenDays()
         
-        let countdownData = countdownStringGenerator.generateCurrentEventStrings(currentEvents: currentEvents, nextEvents: upcomingEventsToday, allUpcoming: allUpcoming)
-       
+        let topShelfItems = topShelfGen.generateTopShelfMenuItems(currentEvents: currentEvents, upcomingEventsToday: nextUpcomingDay)
+        
+        delegate?.setTopShelfItems(topShelfItems)
         
         let upcomingEventsMenuInfo = upcomingEventStringGenerator.generateUpcomingEventsMenuStrings(upcoming: nextUpcomingDayAll)
         
@@ -791,7 +792,7 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
         
         delegate?.updateNextEventItem(text: upcomingEventStringGenerator.generateNextEventString(upcomingEvents: nextUpcomingDay, currentEvents: currentEvents, isForDoneNotification: false))
         
-        delegate?.updateExistingCurrentEventRows(with: countdownData)
+       // delegate?.updateExistingCurrentEventRows(with: countdownData)
         
         let holidays = MagdaleneSchoolHolidays()
         var tData: TermData?
@@ -814,7 +815,6 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
         
         // Stuff below here is only done on menu open.
         
-         delegate?.addCurrentEventRows(with: countdownData, updateNextOccurs: false)
         
         
         
@@ -908,31 +908,21 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
     
     @objc func updateCalendarDataOld(doGlobal: Bool) {
         
-       
-        
         calUpdateQueue.async(flags: .barrier) {
         
             autoreleasepool {
             
-            
            [unowned self] in
-            
-            //self.schoolAnalyser.analyseCalendar()
-            
             
             self.updateSource.updateEventStore()
             self.currentEvents = self.updateSource.getCurrentEvents()
             
             EventCache.fetchQueue.async(flags: .barrier) {
-            
                 EventCache.currentEvents = self.currentEvents
-                
             }
-            
+        
             self.upcomingEventsToday = self.updateSource.getUpcomingEventsToday()
-            
             self.allToday = self.updateSource.fetchEventsFromPresetPeriod(period: .AllToday)
-            
             EventCache.fetchQueue.async(flags: .barrier) {
             
                 EventCache.allToday = self.allToday
@@ -940,17 +930,10 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
             }
             
             self.schoolEvents = self.updateSource.fetchEventsOnDays(days: SchoolAnalyser.termDates)
-            
-            
-            
-               // self.schoolAnalyser.analyseCalendar(inputEvents: self.schoolEvents)
-           // print("SA4")
-            
-        
-    
+            self.schoolAnalyser.analyseCalendar(inputEvents: self.schoolEvents)
         
         }
-            
+   
         }
     }
     
@@ -986,44 +969,33 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
         
         let currentEvents = self.currentEvents
         let upcomingEvents = self.upcomingEventsToday
+        var event = currentEvents.first
         
-        
-        let currentInfo = countdownStringGenerator.generateCurrentEventStrings(currentEvents: currentEvents, nextEvents: upcomingEvents, allUpcoming: nil)
-        
-        var countdownItem = currentInfo[0]
-        
-        EventCache.fetchQueue.async(flags: .barrier) {
-        
-        if let preferedCountdownEvent = EventCache.primaryEvent {
+        if let preferedEvent = EventCache.primaryEvent {
             
-            for eventItem in currentInfo {
-                
-                if let eventItemEvent = eventItem.2 {
-                    
-                    if eventItemEvent == preferedCountdownEvent {
-                        
-                        countdownItem = eventItem
-                        
-                    }
-                    
-                }
-                
-                
-            }
+            event = preferedEvent
+            
             
         }
+        
+        var notoTitle = "No events are on right now"
+        var percentText: String?
+        
+        if let event = event {
+            
+            let currentInfo = countdownStringGenerator.generateCountdownTextFor(event: event)
+            
+            notoTitle = currentInfo.mainText
+            percentText = currentInfo.percentageText
             
         }
         
         let notification = NSUserNotification()
-        notification.title = countdownItem.0
-        
-        if let percentText = countdownItem.1 {
-            notification.subtitle = percentText
-        }
-        
+        notification.title = notoTitle
+        notification.subtitle = percentText
         notification.informativeText = upcomingEventStringGenerator.generateNextEventString(upcomingEvents: upcomingEvents, currentEvents: currentEvents, isForDoneNotification: false)
-        //notification.soundName = "Hero"
+        
+        
         NSUserNotificationCenter.default.deliver(notification)
         
     }
@@ -1105,46 +1077,5 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
         
         eventEndUpdateInProgress = false
         
-    }
-    
-    func checkBetaExpiry() {
-        
-        if let expiry = self.betaExpiryDate, expiry.timeIntervalSinceNow < 0 {
-            
-            self.mainTimer?.invalidate()
-            self.statusItemTimer.suspend()
-            self.preciseUpdateForMinuteChangeTimer.suspend()
-            self.preciseUpdateForPreferencesOpenTimer.suspend()
-            
-            DispatchQueue.main.async {
-                
-                [unowned self] in
-                
-                NSApp.activate(ignoringOtherApps: true)
-                let alert: NSAlert = NSAlert()
-                alert.window.title = "How Long Left \(Version.currentVersion)"
-                alert.messageText = "This beta build of How Long Left has expired."
-                alert.informativeText = """
-                Please use a release build or obtain a newer beta.
-                """
-                
-                alert.alertStyle = NSAlert.Style.informational
-                alert.addButton(withTitle: "Quit")
-                alert.runModal()
-                NSApplication.shared.terminate(self)
-                
-            }
-            
-        }
-        
-    }
-    
-}
-
-class CEView: NSView {
-    
-    @IBOutlet weak var currentLabel: NSTextField!
-    
-    
-    
+    }    
 }

@@ -62,15 +62,6 @@ class Edition {
 }
 
 
-enum Editions {
-    
-    case None
-    case Boiz
-    case Gay
-    
-}
-
-
 class Person {
     
     var computerName: String

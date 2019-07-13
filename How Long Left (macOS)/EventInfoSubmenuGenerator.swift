@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import Cocoa
 
 class EventInfoSubmenuGenerator {
     
     static var shared = EventInfoSubmenuGenerator()
     
-    func generateSubmenuContentsFor(event: HLLEvent) -> [[String]] {
+    func generateSubmenuContentsFor(event: HLLEvent) -> NSMenu {
         
         var arrayOne = [String]()
         
@@ -220,8 +221,27 @@ class EventInfoSubmenuGenerator {
             
         }
         
+        let menu = NSMenu()
         
-        return [arrayOne, arrayTwo]
+        for item in arrayOne {
+            
+            let menuItem = NSMenuItem()
+            menuItem.title = item
+            menu.addItem(menuItem)
+            
+        }
+        
+        menu.addItem(NSMenuItem.separator())
+        
+        for item in arrayTwo {
+            
+            let menuItem = NSMenuItem()
+            menuItem.title = item
+            menu.addItem(menuItem)
+            
+        }
+        
+        return menu
         
         
     }

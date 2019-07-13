@@ -7,13 +7,15 @@
 //
 
 import Foundation
+import Cocoa
 
-protocol HLLMacUIController {
+protocol MenuControllerProtocol {
     
     func updateStatusItem(with text: String?)
     func doStatusItemAlert(with strings: [String])
-    func addCurrentEventRows(with strings: [(String, String?, HLLEvent?, HLLEvent?)], updateNextOccurs: Bool)
-    func updateExistingCurrentEventRows(with strings: [(String, String?, HLLEvent?, HLLEvent?)])
+    
+    func setTopShelfItems(_ items: [EventMenuItem])
+    
     func updateNextEventItem(text: String?)
     func updateUpcomingEventsMenu(data: upcomingDayOfEvents?)
     func updateUpcomingWeekMenu(data: [upcomingDayOfEvents])

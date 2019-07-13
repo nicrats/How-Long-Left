@@ -20,7 +20,7 @@ class MemoryRelaunch {
         DispatchQueue.main.async {
             
         
-        if UIController.preferencesWindowController?.window?.isVisible == false {
+        if MenuController.preferencesWindowController?.window?.isVisible == false {
             
             var info = mach_task_basic_info()
             var count = mach_msg_type_number_t(MemoryLayout<mach_task_basic_info>.size)/4

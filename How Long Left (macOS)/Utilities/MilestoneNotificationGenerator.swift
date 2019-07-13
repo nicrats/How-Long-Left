@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class MilestoneNotifications {
+class MilestoneNotificationGenerator {
     
     let countdownStringGenerator = CountdownStringGenerator()
     let upcomingEventStringGenerator = UpcomingEventStringGenerator()
@@ -37,10 +37,10 @@ class MilestoneNotifications {
             
         } else {
             
-            let countdownTuple = countdownStringGenerator.generateCountdownNotificationStrings(event: event)
-            notification.title = countdownTuple.0
+            let item = countdownStringGenerator.generateCountdownTextFor(event: event)
+            notification.title = item.mainText
             
-            if let percent = countdownTuple.1 {
+            if let percent = item.percentageText {
                 
                 
                 notification.subtitle = "(\(percent) done)"

@@ -12,14 +12,11 @@ import EventKit
 class SchoolAnalyser {
     
     static var calendarData = EventDataSource()
-    
     static var doneAnalysis = false
     static var isRenamerApp = false
     var delegate: SchoolModeChangedDelegate?
-    
     static var termDates = [Date]()
     let searchWeeks = [46, 12, 24, 35, 46]
-    
     public private(set) static var privSchoolMode: SchoolMode = .Unknown
     private var schoolModeChangedDelegates = [SchoolModeChangedDelegate]()
     static var schoolCalendar: EKCalendar?
@@ -170,29 +167,13 @@ class SchoolAnalyser {
         }
         
         
-        /* if isLauren == true {
-         
-         // The user is Lauren.
-         
-         SchoolAnalyser.schoolMode = .Lauren
-         
-         }
-         
-         if isLauren == true, isMagdalene == true {
-         
-         // Uh oh... The user goes to Magdalene and is also Lauren?! We'll set the schoolMode to "Conflict", and another part of the app can deal with this later.
-         
-         print("User is Both")
-         
-         SchoolAnalyser.schoolMode = .Conflict
-         
-         } */
-        
+            print("School mode is now \(SchoolAnalyser.privSchoolMode.rawValue)")
+            
         if SchoolAnalyser.privSchoolMode != schoolModeAtStart {
         
         //delegate?.schoolModeChanged()
         
-            print("School mode is now \(SchoolAnalyser.privSchoolMode.rawValue)")
+            
             /*schoolModeChangedDelegates.forEach {
                $0.schoolModeChanged()
             } */
@@ -237,7 +218,6 @@ class SchoolAnalyser {
         SchoolAnalyser.schoolCalendar = sorted.last?.calendar
         print("School cal is \(SchoolAnalyser.schoolCalendar!.title)")
         
-        
         var returnVal = false
 
         if events.isEmpty == false {
@@ -245,7 +225,8 @@ class SchoolAnalyser {
             returnVal = false
             
         }
-        
+       
+        var renameIDCondition = false
         var yrCondition = false
         var roomCondtion = false
         var schoolStartCondition = false
@@ -253,37 +234,39 @@ class SchoolAnalyser {
         
         for event in events {
             
+            if event.originalTitle.range(of:"Yr") != nil {
+                yrCondition = true
+            }
             
-                if event.originalTitle.range(of:"Yr") != nil {
-                    yrCondition = true
-                }
+            if let location = event.fullLocation, location.range(of:"Room:") != nil  {
+                roomCondtion = true
+            }
             
-                if let location = event.fullLocation, location.range(of:"Room:") != nil  {
-                    roomCondtion = true
-                }
+            if event.startDate.formattedTimeTwelve().lowercased() == "8:15am" {
+                schoolStartCondition = true
+            }
             
-                if event.startDate.formattedTimeTwelve().lowercased() == "8:15am" {
-                    
-                    schoolStartCondition = true
-                
-                }
-            
-                if event.endDate.formattedTimeTwelve().lowercased() == "2:35pm" {
-                
+            if event.endDate.formattedTimeTwelve().lowercased() == "2:35pm" {
                 schoolEndCondition = true
-                
-                }
+            }
             
-           // print("SA Event: \(event.title), yr: \(yrCondition), room: \(roomCondtion), start: \(schoolStartCondition), end: \(schoolEndCondition)")
+            if let notes = event.notes {
+                if notes.containsAnyOfThese(Strings: [RNSchoolIDStringStore.createdString, RNSchoolIDStringStore.renamedString]) {
+                    renameIDCondition = true
+                }
+            }
+            
+            if renameIDCondition == true {
+                returnVal = true
+                break
+            }
             
             if yrCondition == true, roomCondtion == true, schoolStartCondition == true, schoolEndCondition == true {
                 returnVal = true
                 break
-                
             }
             
         }
-        
         
        return returnVal
         
@@ -379,43 +362,6 @@ class SchoolAnalyser {
         return upcomingDates.first!
         
     }
-    
-   /* private func analyseForLauren(Events: [HLLEvent]) -> Bool {
-     
-     // Analyses calendar events and determines if the user is Lauren or not.
-     // Might take this out since wE bRoKE uP. For now just commenting out Lauren stuff.
-     // Move on lol
-     
-     var returnVal = false
-     var matchableEvents = ["Xb","Break","Media","English","Leave the house","It","Enrichment"]
-     var matchCounter = 0
-     
-     outer: for event in Events {
-     
-     if matchableEvents.contains(event.title) {
-     
-     matchCounter += 1
-     
-     if let index = matchableEvents.firstIndex(of: event.title) {
-     
-     matchableEvents.remove(at: index)
-     
-     }
-     
-     }
-     
-     if matchCounter > 1 {
-     
-     returnVal = true
-     break outer
-     
-     }
-     
-     }
-     
-     return returnVal
-        
-     } */
     
 }
 

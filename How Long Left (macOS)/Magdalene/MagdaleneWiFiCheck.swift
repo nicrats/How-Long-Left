@@ -18,13 +18,10 @@ func isOnMagdaleneWifi() -> Bool {
     var returnVal = false
         
         // Return whether or not the device's wifi network is Magdalene's.
-        
-        let wrappedSSID = wifiClient.interface(withName: nil)?.ssid()
     
-        if let SSID = wrappedSSID, SSID == "NARELLAN" || SSID == "Smeaton" {
+        if let SSID = wifiClient.interface(withName: nil)?.ssid(), SSID == "NARELLAN" || SSID == "Smeaton" {
             returnVal = true
         }
-    
     
     return returnVal
     

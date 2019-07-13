@@ -814,38 +814,6 @@ class HLLDefaults {
 
         
     }
-        
-  /*  func exportDefaultsToCloud() {
-        
-        for (key, value) in HLLDefaults.defaults.dictionaryRepresentation() {
-            
-            HLLDefaults.cloudDefaults.set(value, forKey: key)
-            
-        }
-        
-        HLLDefaults.cloudDefaults.synchronize()
-        
-        
-    }
-    
-    func loadDefaultsFromCloud() {
-        
-        HLLDefaults.cloudDefaults.synchronize()
-        
-        for (key, value) in HLLDefaults.cloudDefaults.dictionaryRepresentation {
-            
-            
-            HLLDefaults.defaults.set(value, forKey: key)
-            
-            
-        }
-        
-        
-        
-    } */
-    
-    
-    
     
 }
 
