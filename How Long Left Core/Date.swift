@@ -10,6 +10,32 @@ import Foundation
 
 extension Date {
     
+    func userFriendlyRelativeString() -> String {
+        
+        let daysUntilDate = self.daysUntil()
+        var dayText: String
+        
+        switch daysUntilDate {
+        case 0:
+            dayText = "Today"
+        case 1:
+            dayText = "Tomorrow"
+        default:
+            let dateFormatter  = DateFormatter()
+            dateFormatter.dateFormat = "EEEE"
+            dayText = dateFormatter.string(from: self)
+        }
+        
+        return dayText
+        
+    }
+    
+    func daysUntil() -> Int {
+        
+        return Int(self.timeIntervalSince(Date().midnight()))/60/60/24
+        
+    }
+    
     func formattedTime() -> String {
         
         

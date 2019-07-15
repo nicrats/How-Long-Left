@@ -167,7 +167,7 @@ class CountdownStringGenerator {
             
             
         }
-        formatter.zeroFormattingBehavior = [ .dropLeading ]
+        formatter.zeroFormattingBehavior = [ .pad ]
         return formatter.string(from: secondsLeft+1)!
         
         

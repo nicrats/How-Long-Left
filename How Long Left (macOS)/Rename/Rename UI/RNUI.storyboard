@@ -49,10 +49,10 @@
             </objects>
             <point key="canvasLocation" x="379" y="80"/>
         </scene>
-        <!--Tab Controller-->
+        <!--Controllable Tab View-->
         <scene sceneID="a5m-81-P2i">
             <objects>
-                <tabViewController tabStyle="unspecified" id="KtV-d0-T3K" customClass="RNUITabController" customModule="How_Long_Left_macOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController tabStyle="unspecified" id="KtV-d0-T3K" customClass="ControllableTabView" customModule="How_Long_Left_macOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem id="jc5-9y-ota"/>
                         <tabViewItem identifier="" id="BCj-sx-Hmk"/>
@@ -113,7 +113,7 @@
                                             <tableColumns>
                                                 <tableColumn identifier="0" editable="NO" width="58" minWidth="10" maxWidth="3.4028234663852886e+38" id="fI6-3Z-W1h">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Rename">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -147,7 +147,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="1" editable="NO" width="304" minWidth="40" maxWidth="1000" id="vwE-4b-yce">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Current Title">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -180,7 +180,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="2" editable="NO" width="104" minWidth="40" maxWidth="1000" id="faV-03-mGG">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="New Title">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>

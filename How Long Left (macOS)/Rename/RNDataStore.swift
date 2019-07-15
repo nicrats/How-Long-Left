@@ -14,6 +14,7 @@ class RNDataStore {
     var renameableItems = [RNEvent]()
     let schoolAnalyser = SchoolAnalyser()
     var modificationsMade = false
+    var magdaleneTitlesCount = 0
     
     var magdaleneTitles = [String]()
     
@@ -44,10 +45,12 @@ class RNDataStore {
         let source = EventDataSource()
         schoolAnalyser.analyseCalendar()
         print("SA2")
-        let yearEvents = source.fetchEventsFromPresetPeriod(period: .OneMonthEachSideOfToday)
+        let yearEvents = source.fetchEventsFromPresetPeriod(period: .ThisYear)
         
         magdaleneTitles = schoolAnalyser.getMagdaleneTitles(from: yearEvents)
         
+           magdaleneTitlesCount = magdaleneTitles.count
+            
         var matchedNames = [String]()
         
         for event in yearEvents {
@@ -104,7 +107,7 @@ class RNDataStore {
     
     func renameAvaliable() -> Bool {
         
-        return !renameableItems.isEmpty
+       return magdaleneTitlesCount == 0
         
     }
     

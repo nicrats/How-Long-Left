@@ -37,16 +37,16 @@ class DefaultsMigrator {
         }
         
         if defaults.string(forKey: "showMyDay") == "1" {
-            HLLDefaults.general.showUpcomingEventsSubmenu = true
+            HLLDefaults.general.showUpcomingWeekMenu = true
         } else {
-            HLLDefaults.general.showUpcomingEventsSubmenu = false
+            HLLDefaults.general.showUpcomingWeekMenu = false
         }
         
-        if defaults.string(forKey: "showNext") == "1" {
+      /*  if defaults.string(forKey: "showNext") == "1" {
             HLLDefaults.general.showNextEvent = true
         } else {
             HLLDefaults.general.showNextEvent = false
-        }
+        } */
         
         var milestoneArray = [Int]()
         

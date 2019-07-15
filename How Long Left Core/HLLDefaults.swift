@@ -100,22 +100,6 @@ class HLLDefaults {
     
     struct general {
         
-        static var showNextEvent: Bool {
-            
-            get {
-                
-                return !defaults.bool(forKey: "hideNext")
-                
-            }
-            
-            set (to) {
-                
-                defaults.set(!to, forKey: "hideNext")
-                
-            }
-            
-        }
-        
         static var use24HourTime: Bool {
             
             get {
@@ -132,7 +116,39 @@ class HLLDefaults {
             
         }
         
-        static var showUpcomingEventsSubmenu: Bool {
+        static var showAllDay: Bool {
+            
+            get {
+                
+                return defaults.bool(forKey: "showAllDay")
+                
+            }
+            
+            set (to) {
+                
+                defaults.set(to, forKey: "showAllDay")
+                
+            }
+            
+        }
+        
+        static var showAllDayInCurrent: Bool {
+            
+            get {
+                
+                return defaults.bool(forKey: "showAllDayInCurrent")
+                
+            }
+            
+            set (to) {
+                
+                defaults.set(to, forKey: "showAllDayInCurrent")
+                
+            }
+            
+        }
+        
+        static var showUpcomingWeekMenu: Bool {
             
             get {
                 
@@ -212,6 +228,42 @@ class HLLDefaults {
             
         }
         
+        
+    }
+    
+    struct menu {
+        
+        static var topLevelUpcoming: Bool {
+            
+            get {
+                
+                return defaults.bool(forKey: "topLevelUpcoming")
+                
+            }
+            
+            set (to) {
+                
+                defaults.set(to, forKey: "topLevelUpcoming")
+                
+            }
+            
+        }
+        
+        static var listUpcoming: Bool {
+            
+            get {
+                
+                return !defaults.bool(forKey: "hideUpcoming")
+                
+            }
+            
+            set (to) {
+                
+                defaults.set(!to, forKey: "hideUpcoming")
+                
+            }
+            
+        }
         
     }
     

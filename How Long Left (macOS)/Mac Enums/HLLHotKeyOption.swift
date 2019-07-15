@@ -10,8 +10,8 @@ import Foundation
 
 enum HLLHotKeyOption: Int {
     
-    case Off = 2
     case OptionW = 0
     case CommandT = 1
+    case Off = 2
     
 }

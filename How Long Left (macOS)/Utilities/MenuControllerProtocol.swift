@@ -13,9 +13,7 @@ protocol MenuControllerProtocol {
     
     func updateStatusItem(with text: String?)
     func doStatusItemAlert(with strings: [String])
-    
-    func setTopShelfItems(_ items: [EventMenuItem])
-    
+    func setTopShelfItems(_ items: [NSMenuItem])
     func updateNextEventItem(text: String?)
     func updateUpcomingEventsMenu(data: upcomingDayOfEvents?)
     func updateUpcomingWeekMenu(data: [upcomingDayOfEvents])

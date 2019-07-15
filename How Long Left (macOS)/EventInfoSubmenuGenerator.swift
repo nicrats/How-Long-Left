@@ -16,72 +16,50 @@ class EventInfoSubmenuGenerator {
     func generateSubmenuContentsFor(event: HLLEvent) -> NSMenu {
         
         var arrayOne = [String]()
+        var arrayTwo = [String]()
         
         switch event.completionStatus {
             
         case .NotStarted:
-            arrayOne.append("Upcoming Event: \(event.title)")
+    
+             var secondsTo = event.startDate.timeIntervalSinceNow+60
+             let formatter1 = DateComponentsFormatter()
+             if secondsTo+1 > 86400 {
+             secondsTo += 86400
+             formatter1.allowedUnits = [.day]
+             
+             } else if secondsTo+1 > 3599 {
+             
+             formatter1.allowedUnits = [.hour, .minute]
+             
+             } else {
+             
+             formatter1.allowedUnits = [.minute]
+             
+             }
+             
+             formatter1.unitsStyle = .full
+             let timeUntilStartString = formatter1.string(from: secondsTo)!
+             
+             
+             arrayOne.append("\(event.title) – in \(timeUntilStartString)")
+             
+             
+            
+            //arrayOne.append("\(event.title) (Upcoming)")
         case .InProgress:
-            arrayOne.append("On Now: \(event.title)")
+            arrayOne.append("\(event.title) (On Now)")
         case .Done:
-            arrayOne.append("Completed Event: \(event.title)")
+            arrayOne.append("\(event.title) (Done)")
         }
         
-        if event.completionStatus == .NotStarted {
+        if event.isAllDay {
             
-            var secondsTo = event.startDate.timeIntervalSinceNow+60
-            // let minutesLeft = Int(secondsLeft/60+1)
-            // let minText = MinutePluralizer(Minutes: minutesLeft)
-            
-            let formatter1 = DateComponentsFormatter()
-            
-            if secondsTo+1 > 86400 {
-                secondsTo += 86400
-                formatter1.allowedUnits = [.day]
-                
-            } else if secondsTo+1 > 3599 {
-                
-                formatter1.allowedUnits = [.hour, .minute]
-                
-            } else {
-                
-                formatter1.allowedUnits = [.minute]
-                
-            }
-            
-            formatter1.unitsStyle = .full
-            let timeUntilStartString = formatter1.string(from: secondsTo)!
-            
-            arrayOne.append("Starts in \(timeUntilStartString).")
+            arrayOne.append("All day event")
             
         }
         
-        var arrayTwo = [String]()
-        
-       
-        if event.startDate.formattedDate() != event.endDate.formattedDate() || event.startDate.formattedDate() != Date().formattedDate() {
-            
-            arrayTwo.append("Start: \(event.startDate.formattedDate()), \(event.startDate.formattedTime())")
-            arrayTwo.append("End: \(event.endDate.formattedDate()), \(event.endDate.formattedTime())")
-            
-            
-        } else {
-            
-            
-            arrayTwo.append("Start: \(event.startDate.formattedTime())")
-            arrayTwo.append("End: \(event.endDate.formattedTime())")
-            
-        }
-        
-        
-        
-        
-        if let period = event.magdalenePeriod {
-            
-            arrayTwo.append("Period: \(period)")
-            
-            
-        }
+        arrayOne.append("\(event.startDate.formattedTime())-\(event.endDate.formattedTime())")
         
         if let loc = event.location {
             
@@ -95,7 +73,55 @@ class EventInfoSubmenuGenerator {
                 
             }
             
+            
         }
+        
+        if let period = event.magdalenePeriod {
+            
+            arrayTwo.append("Period: \(period)")
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+    /*    var startText = "Start"
+        var endText = "End"
+        
+        if event.completionStatus != .NotStarted {
+            
+            startText = "Started"
+            
+        }
+        
+        if event.completionStatus == .Done {
+            
+            endText = "Ended"
+            
+        }
+        
+         
+        if event.startDate.formattedDate() != event.endDate.formattedDate() || event.startDate.formattedDate() != Date().formattedDate() {
+            
+            arrayTwo.append("\(startText) \(event.startDate.formattedDate()), \(event.startDate.formattedTime())")
+            arrayTwo.append("\(endText) \(event.endDate.formattedDate()), \(event.endDate.formattedTime())")
+            
+            
+        } else {
+            
+            
+            arrayTwo.append("\(startText) \(event.startDate.formattedTime())")
+            arrayTwo.append("\(endText) \(event.endDate.formattedTime())")
+            
+        } */
+        
+        
+        
+        
+        
         
         var secondsLeft = event.duration
         // let minutesLeft = Int(secondsLeft/60+1)
@@ -240,6 +266,18 @@ class EventInfoSubmenuGenerator {
             menu.addItem(menuItem)
             
         }
+        
+        if event.completionStatus == .InProgress {
+            
+            menu.addItem(NSMenuItem.separator())
+            let eventUIWindowButton = NSMenuItem()
+            eventUIWindowButton.title = "Open Countdown Window..."
+            eventUIWindowButton.target = EventUIWindowsManager.shared
+            eventUIWindowButton.action = #selector(EventUIWindowsManager.shared.eventUIButtonClicked(sender:))
+            EventUIWindowsManager.shared.addItemWithEvent(item: eventUIWindowButton, event: event)
+            menu.addItem(eventUIWindowButton)
+        }
+        
         
         return menu
         

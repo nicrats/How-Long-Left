@@ -105,7 +105,7 @@ class MagdaleneSchoolHolidays {
                 
                 let holidaysEvent = HLLEvent(title: "Holidays", start: unwrappedSHStart, end: unwrappedSHEnd, location: nil)
                 holidaysEvent.holidaysTerm = holidayPeriod.term
-                holidaysEvent.calendar = SchoolAnalyser.schoolCalendar
+                //holidaysEvent.calendar = SchoolAnalyser.schoolCalendar
                 //holidaysEvent.shortTitle = "Holidays"
                 
                 endedArray.append(holidaysEvent)
@@ -137,7 +137,7 @@ class MagdaleneSchoolHolidays {
                 
                 let holidaysEvent = HLLEvent(title: "Holidays", start: unwrappedSHStart, end: unwrappedSHEnd, location: nil)
                 holidaysEvent.holidaysTerm = holidayPeriod.term
-                holidaysEvent.calendar = SchoolAnalyser.schoolCalendar
+                //holidaysEvent.calendar = SchoolAnalyser.schoolCalendar
                 //holidaysEvent.shortTitle = "Holidays"
                 
                 returnEvent = holidaysEvent
@@ -152,6 +152,7 @@ class MagdaleneSchoolHolidays {
         return returnEvent
     
     }
+    
     
 }
 

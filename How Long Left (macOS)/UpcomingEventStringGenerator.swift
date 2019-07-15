@@ -15,8 +15,6 @@ class UpcomingEventStringGenerator {
     func generateNextEventString(upcomingEvents: [HLLEvent], currentEvents: [HLLEvent], isForDoneNotification: Bool) -> String? {
         
         var returnString: String?
-    
-        if HLLDefaults.general.showNextEvent == true {
         
         if upcomingEvents.isEmpty == false {
             
@@ -102,7 +100,7 @@ class UpcomingEventStringGenerator {
             
         }
             
-        }
+        
         
         return returnString
     }
@@ -288,12 +286,10 @@ class UpcomingEventStringGenerator {
                 eventsArray = dayObject.value
                 
                 for event in eventsArray {
-                    
-                    if event.startDate.midnight() == dayObject.key.midnight() {
                         
                         finalArray.append(event)
                         
-                    }
+                    
                     
                 }
                 

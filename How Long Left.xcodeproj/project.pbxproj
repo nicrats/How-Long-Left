@@ -25,6 +25,8 @@
 		BF2713D822BCE255006A4B37 /* RNUIConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2713D722BCE255006A4B37 /* RNUIConfigurationViewController.swift */; };
 		BF2713DA22BD14AA006A4B37 /* ControllableTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2713D922BD14AA006A4B37 /* ControllableTabView.swift */; };
 		BF2713DC22BD1EAF006A4B37 /* RNUIRenamingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2713DB22BD1EAF006A4B37 /* RNUIRenamingViewController.swift */; };
+		BF36185C22DCDB0400D51765 /* EventUIWindowsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF36185B22DCDB0400D51765 /* EventUIWindowsManager.swift */; };
+		BF36185E22DCDD7C00D51765 /* PrimaryEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF36185D22DCDD7C00D51765 /* PrimaryEventManager.swift */; };
 		BF38402A21F5F54F004E7FC1 /* UpcomingEventStringGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF38402921F5F54F004E7FC1 /* UpcomingEventStringGenerator.swift */; };
 		BF39595622054D160002C4FD /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF794DE721787DEE0076FA17 /* NotificationCenter.framework */; };
 		BF39596022054D160002C4FD /* How Long Left Today Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BF39595522054D160002C4FD /* How Long Left Today Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -59,9 +61,13 @@
 		BF5D29842174689000AC1EB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF5D29832174689000AC1EB6 /* Assets.xcassets */; };
 		BF5D29882174689000AC1EB6 /* How Long Left.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BF5D296C2174688700AC1EB6 /* How Long Left.app */; };
 		BF5D3C80224EF9F200AFAD74 /* LocationMapInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3C7F224EF9F200AFAD74 /* LocationMapInterfaceController.swift */; };
+		BF5F945622DA013400AB9FF3 /* MenuPreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5F945422DA013300AB9FF3 /* MenuPreferenceViewController.swift */; };
+		BF5F945722DA013400AB9FF3 /* MenuPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5F945522DA013400AB9FF3 /* MenuPreferencesView.xib */; };
+		BF5F945922DA026900AB9FF3 /* CalendarPreferencesViewNoAccess.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5F945822DA026900AB9FF3 /* CalendarPreferencesViewNoAccess.xib */; };
+		BF5F945B22DA2CEA00AB9FF3 /* EventListMenuGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5F945A22DA2CEA00AB9FF3 /* EventListMenuGenerator.swift */; };
+		BF5F945D22DA2F9400AB9FF3 /* EventMenuItemGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5F945C22DA2F9300AB9FF3 /* EventMenuItemGenerator.swift */; };
 		BF621F6022C9F7D000226E61 /* EventUIStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF621F5F22C9F7D000226E61 /* EventUIStoryboard.storyboard */; };
 		BF621F6222C9FE9A00226E61 /* EventUICountdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF621F6122C9FE9A00226E61 /* EventUICountdownViewController.swift */; };
-		BF634B8421BE93CA00C285AB /* CalendarPreferencesViewNoAccess.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF634B8321BE93C900C285AB /* CalendarPreferencesViewNoAccess.xib */; };
 		BF634B8621BE94EB00C285AB /* CalendarPreferenceViewControllerNoAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF634B8521BE94EA00C285AB /* CalendarPreferenceViewControllerNoAccess.swift */; };
 		BF6495E121B2C79E006CB6DF /* CalendarPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF6495E021B2C79D006CB6DF /* CalendarPreferencesView.xib */; };
 		BF6AD69E2226505800B62C0C /* CalSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6AD69D2226505800B62C0C /* CalSelectViewController.swift */; };
@@ -281,7 +287,7 @@
 		BFF563EE2214D39F00A93D6B /* PercentageCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF563E82214D39F00A93D6B /* PercentageCalculator.swift */; };
 		BFFA559322D8345B00575230 /* MenuTopShelfGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA559222D8345B00575230 /* MenuTopShelfGenerator.swift */; };
 		BFFA559522D83D9D00575230 /* NSMenuItemMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA559422D83D9D00575230 /* NSMenuItemMaker.swift */; };
-		BFFA559722D85ADF00575230 /* EventMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA559622D85ADF00575230 /* EventMenuItem.swift */; };
+		BFFA559722D85ADF00575230 /* EventAssociatedMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA559622D85ADF00575230 /* EventAssociatedMenuItem.swift */; };
 		BFFA559B22D8829E00575230 /* Editions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA559A22D8829D00575230 /* Editions.swift */; };
 		BFFA559E22D883B800575230 /* CalendarAccessState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA559D22D883B800575230 /* CalendarAccessState.swift */; };
 		BFFA55A022D8840A00575230 /* HLLHotKeyOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA559F22D8840A00575230 /* HLLHotKeyOption.swift */; };
@@ -472,7 +478,8 @@
 		BF2713D722BCE255006A4B37 /* RNUIConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNUIConfigurationViewController.swift; sourceTree = "<group>"; };
 		BF2713D922BD14AA006A4B37 /* ControllableTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllableTabView.swift; sourceTree = "<group>"; };
 		BF2713DB22BD1EAF006A4B37 /* RNUIRenamingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNUIRenamingViewController.swift; sourceTree = "<group>"; };
-		BF2BA6E722B0F4E10026A3EE /* CalSelectStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CalSelectStoryboard.storyboard; sourceTree = "<group>"; };
+		BF36185B22DCDB0400D51765 /* EventUIWindowsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventUIWindowsManager.swift; path = "How Long Left (macOS)/EventUIWindowsManager.swift"; sourceTree = SOURCE_ROOT; };
+		BF36185D22DCDD7C00D51765 /* PrimaryEventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryEventManager.swift; sourceTree = "<group>"; };
 		BF38402921F5F54F004E7FC1 /* UpcomingEventStringGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventStringGenerator.swift; sourceTree = "<group>"; };
 		BF39595522054D160002C4FD /* How Long Left Today Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "How Long Left Today Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF39595D22054D160002C4FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -507,9 +514,13 @@
 		BF5D29832174689000AC1EB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF5D29852174689000AC1EB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF5D3C7F224EF9F200AFAD74 /* LocationMapInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapInterfaceController.swift; sourceTree = "<group>"; };
+		BF5F945422DA013300AB9FF3 /* MenuPreferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPreferenceViewController.swift; sourceTree = "<group>"; };
+		BF5F945522DA013400AB9FF3 /* MenuPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuPreferencesView.xib; sourceTree = "<group>"; };
+		BF5F945822DA026900AB9FF3 /* CalendarPreferencesViewNoAccess.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarPreferencesViewNoAccess.xib; sourceTree = "<group>"; };
+		BF5F945A22DA2CEA00AB9FF3 /* EventListMenuGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListMenuGenerator.swift; sourceTree = "<group>"; };
+		BF5F945C22DA2F9300AB9FF3 /* EventMenuItemGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMenuItemGenerator.swift; sourceTree = "<group>"; };
 		BF621F5F22C9F7D000226E61 /* EventUIStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EventUIStoryboard.storyboard; sourceTree = "<group>"; };
 		BF621F6122C9FE9A00226E61 /* EventUICountdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventUICountdownViewController.swift; sourceTree = "<group>"; };
-		BF634B8321BE93C900C285AB /* CalendarPreferencesViewNoAccess.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CalendarPreferencesViewNoAccess.xib; path = "How Long Left (macOS)/Preferences UI/CalendarPreferencesViewNoAccess.xib"; sourceTree = SOURCE_ROOT; };
 		BF634B8521BE94EA00C285AB /* CalendarPreferenceViewControllerNoAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarPreferenceViewControllerNoAccess.swift; sourceTree = "<group>"; };
 		BF6495E021B2C79D006CB6DF /* CalendarPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarPreferencesView.xib; sourceTree = "<group>"; };
 		BF6AD69D2226505800B62C0C /* CalSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalSelectViewController.swift; sourceTree = "<group>"; };
@@ -641,7 +652,7 @@
 		BFF563E82214D39F00A93D6B /* PercentageCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageCalculator.swift; sourceTree = "<group>"; };
 		BFFA559222D8345B00575230 /* MenuTopShelfGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTopShelfGenerator.swift; sourceTree = "<group>"; };
 		BFFA559422D83D9D00575230 /* NSMenuItemMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMenuItemMaker.swift; sourceTree = "<group>"; };
-		BFFA559622D85ADF00575230 /* EventMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMenuItem.swift; sourceTree = "<group>"; };
+		BFFA559622D85ADF00575230 /* EventAssociatedMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAssociatedMenuItem.swift; sourceTree = "<group>"; };
 		BFFA559A22D8829D00575230 /* Editions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Editions.swift; sourceTree = "<group>"; };
 		BFFA559D22D883B800575230 /* CalendarAccessState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarAccessState.swift; path = "How Long Left (macOS)/Mac Enums/CalendarAccessState.swift"; sourceTree = SOURCE_ROOT; };
 		BFFA559F22D8840A00575230 /* HLLHotKeyOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLLHotKeyOption.swift; sourceTree = "<group>"; };
@@ -775,32 +786,19 @@
 			path = Rename;
 			sourceTree = "<group>";
 		};
-		BF50797321AE33DD005CD52B /* Preferences UI */ = {
+		BF50797321AE33DD005CD52B /* Preferences Window */ = {
 			isa = PBXGroup;
 			children = (
-				BF2BA6E722B0F4E10026A3EE /* CalSelectStoryboard.storyboard */,
-				BFB8EF7D223E15C50023B322 /* AboutView.xib */,
-				BFB8EF7F223E19320023B322 /* AboutViewController.swift */,
-				BF56BF1F22D49B8E00066872 /* CalSelectStoryboard.storyboard */,
-				BF56BF2122D49BD100066872 /* CustomNotificationsPreferences.storyboard */,
-				BFD2365222D4A4DA007B91E2 /* CustomNotificationsEditor.swift */,
-				BF93AEA321BDD64F0035CE7F /* GeneralPreferencesView.xib */,
-				BF8B99EF21AE7BB600F7499A /* StatusItemPreferencesView.xib */,
-				BF6495E021B2C79D006CB6DF /* CalendarPreferencesView.xib */,
-				BF634B8321BE93C900C285AB /* CalendarPreferencesViewNoAccess.xib */,
-				BFEE396121BD129F000106BD /* NotificationPreferencesView.xib */,
-				BF9688E422CDD9AB000FA86F /* RenamePreferencesView.xib */,
-				BF93AEA121BDD60B0035CE7F /* MagdalenePreferencesView.xib */,
-				BF6AD69D2226505800B62C0C /* CalSelectViewController.swift */,
-				BFDE4A6621B65FE000CD50BC /* GeneralPreferenceViewController.swift */,
-				BF9688E822CDE434000FA86F /* RenamePreferencesUI.swift */,
-				BFDE4A6821B6607800CD50BC /* StatusItemPreferenceViewController.swift */,
-				BFDE4A6A21B660AF00CD50BC /* CalendarPreferenceViewController.swift */,
-				BF634B8521BE94EA00C285AB /* CalendarPreferenceViewControllerNoAccess.swift */,
-				BFEE396321BD152B000106BD /* NotificationPreferencesViewController.swift */,
-				BF93AEA521BDD7060035CE7F /* MagdalenePreferenceViewController.swift */,
+				BF5F944C22D9FD7500AB9FF3 /* General */,
+				BF5F945322DA005400AB9FF3 /* Menu */,
+				BF5F944D22D9FD8700AB9FF3 /* Status Item */,
+				BF5F944E22D9FDB200AB9FF3 /* Calendars */,
+				BF5F944F22D9FDF200AB9FF3 /* Notifications */,
+				BF5F945022D9FE0F00AB9FF3 /* Magdalene */,
+				BF5F945122D9FE2000AB9FF3 /* Rename */,
+				BF5F945222D9FE2C00AB9FF3 /* About */,
 			);
-			path = "Preferences UI";
+			path = "Preferences Window";
 			sourceTree = "<group>";
 		};
 		BF5B6A0D228D4CAF00CA6784 /* Pastr */ = {
@@ -874,9 +872,88 @@
 			path = "How Long Left (watchOS) Extension";
 			sourceTree = "<group>";
 		};
+		BF5F944C22D9FD7500AB9FF3 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				BF93AEA321BDD64F0035CE7F /* GeneralPreferencesView.xib */,
+				BFDE4A6621B65FE000CD50BC /* GeneralPreferenceViewController.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		BF5F944D22D9FD8700AB9FF3 /* Status Item */ = {
+			isa = PBXGroup;
+			children = (
+				BF8B99EF21AE7BB600F7499A /* StatusItemPreferencesView.xib */,
+				BFDE4A6821B6607800CD50BC /* StatusItemPreferenceViewController.swift */,
+			);
+			path = "Status Item";
+			sourceTree = "<group>";
+		};
+		BF5F944E22D9FDB200AB9FF3 /* Calendars */ = {
+			isa = PBXGroup;
+			children = (
+				BF6495E021B2C79D006CB6DF /* CalendarPreferencesView.xib */,
+				BFDE4A6A21B660AF00CD50BC /* CalendarPreferenceViewController.swift */,
+				BF5F945822DA026900AB9FF3 /* CalendarPreferencesViewNoAccess.xib */,
+				BF634B8521BE94EA00C285AB /* CalendarPreferenceViewControllerNoAccess.swift */,
+				BF56BF1F22D49B8E00066872 /* CalSelectStoryboard.storyboard */,
+				BF6AD69D2226505800B62C0C /* CalSelectViewController.swift */,
+			);
+			path = Calendars;
+			sourceTree = "<group>";
+		};
+		BF5F944F22D9FDF200AB9FF3 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				BFEE396121BD129F000106BD /* NotificationPreferencesView.xib */,
+				BFEE396321BD152B000106BD /* NotificationPreferencesViewController.swift */,
+				BF56BF2122D49BD100066872 /* CustomNotificationsPreferences.storyboard */,
+				BFD2365222D4A4DA007B91E2 /* CustomNotificationsEditor.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		BF5F945022D9FE0F00AB9FF3 /* Magdalene */ = {
+			isa = PBXGroup;
+			children = (
+				BF93AEA121BDD60B0035CE7F /* MagdalenePreferencesView.xib */,
+				BF93AEA521BDD7060035CE7F /* MagdalenePreferenceViewController.swift */,
+			);
+			path = Magdalene;
+			sourceTree = "<group>";
+		};
+		BF5F945122D9FE2000AB9FF3 /* Rename */ = {
+			isa = PBXGroup;
+			children = (
+				BF9688E422CDD9AB000FA86F /* RenamePreferencesView.xib */,
+				BF9688E822CDE434000FA86F /* RenamePreferencesUI.swift */,
+			);
+			path = Rename;
+			sourceTree = "<group>";
+		};
+		BF5F945222D9FE2C00AB9FF3 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				BFB8EF7D223E15C50023B322 /* AboutView.xib */,
+				BFB8EF7F223E19320023B322 /* AboutViewController.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		BF5F945322DA005400AB9FF3 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				BF5F945522DA013400AB9FF3 /* MenuPreferencesView.xib */,
+				BF5F945422DA013300AB9FF3 /* MenuPreferenceViewController.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
 		BF621F5E22C9F79F00226E61 /* EventUI */ = {
 			isa = PBXGroup;
 			children = (
+				BF36185B22DCDB0400D51765 /* EventUIWindowsManager.swift */,
 				BF621F5F22C9F7D000226E61 /* EventUIStoryboard.storyboard */,
 				BFA6594622D793A20019239C /* EventUITabViewController.swift */,
 				BF621F6122C9FE9A00226E61 /* EventUICountdownViewController.swift */,
@@ -1076,15 +1153,16 @@
 		BFEA0CE721788D0100FAF2F1 /* How Long Left (macOS) */ = {
 			isa = PBXGroup;
 			children = (
-				BF9E963921888694002626CD /* Main.swift */,
 				BFEA0D18217891C600FAF2F1 /* MenuController.swift */,
+				BF36185D22DCDD7C00D51765 /* PrimaryEventManager.swift */,
+				BF9E963921888694002626CD /* Main.swift */,
 				BFEA0CEC21788D0B00FAF2F1 /* MainMenu.xib */,
-				BF621F5E22C9F79F00226E61 /* EventUI */,
-				BF3F876022BCBE26002BA4CD /* Rename */,
 				BFFA559122D8342900575230 /* Menu Generators */,
 				BFD812D7218A7BAA00992E23 /* String Generators */,
-				BF50797321AE33DD005CD52B /* Preferences UI */,
+				BF50797321AE33DD005CD52B /* Preferences Window */,
+				BF621F5E22C9F79F00226E61 /* EventUI */,
 				BFDE4A6121B5FF3400CD50BC /* Onboarding */,
+				BF3F876022BCBE26002BA4CD /* Rename */,
 				BFFA559922D8747600575230 /* Magdalene */,
 				BFFA559822D8746100575230 /* Utilities */,
 				BFFA55BB22D8853500575230 /* Mac Enums */,
@@ -1125,9 +1203,11 @@
 		BFFA559122D8342900575230 /* Menu Generators */ = {
 			isa = PBXGroup;
 			children = (
-				BFB5A6982231E64B0075182B /* EventInfoSubmenuGenerator.swift */,
 				BFFA559222D8345B00575230 /* MenuTopShelfGenerator.swift */,
-				BFFA559622D85ADF00575230 /* EventMenuItem.swift */,
+				BFFA559622D85ADF00575230 /* EventAssociatedMenuItem.swift */,
+				BF5F945A22DA2CEA00AB9FF3 /* EventListMenuGenerator.swift */,
+				BF5F945C22DA2F9300AB9FF3 /* EventMenuItemGenerator.swift */,
+				BFB5A6982231E64B0075182B /* EventInfoSubmenuGenerator.swift */,
 				BFFA559422D83D9D00575230 /* NSMenuItemMaker.swift */,
 			);
 			name = "Menu Generators";
@@ -1618,13 +1698,14 @@
 			files = (
 				BF6495E121B2C79E006CB6DF /* CalendarPreferencesView.xib in Resources */,
 				BFB8EF7E223E15C50023B322 /* AboutView.xib in Resources */,
-				BF634B8421BE93CA00C285AB /* CalendarPreferencesViewNoAccess.xib in Resources */,
 				BF621F6022C9F7D000226E61 /* EventUIStoryboard.storyboard in Resources */,
 				BF8B99EA21AE36CA00F7499A /* Assets.xcassets in Resources */,
 				BFEE396221BD129F000106BD /* NotificationPreferencesView.xib in Resources */,
 				BF3FFCEC22D36A7D008D6B0C /* Onboarding.storyboard in Resources */,
 				BF56BF2222D49BD100066872 /* CustomNotificationsPreferences.storyboard in Resources */,
+				BF5F945722DA013400AB9FF3 /* MenuPreferencesView.xib in Resources */,
 				BF93AEA221BDD60B0035CE7F /* MagdalenePreferencesView.xib in Resources */,
+				BF5F945922DA026900AB9FF3 /* CalendarPreferencesViewNoAccess.xib in Resources */,
 				BF9688E522CDD9AB000FA86F /* RenamePreferencesView.xib in Resources */,
 				BF3F876222BCBE57002BA4CD /* RNUI.storyboard in Resources */,
 				BF8B99F021AE7BB700F7499A /* StatusItemPreferencesView.xib in Resources */,
@@ -2086,9 +2167,11 @@
 				BFFA559522D83D9D00575230 /* NSMenuItemMaker.swift in Sources */,
 				BFFEA15722BDEABE00363360 /* RNProcess.swift in Sources */,
 				BF9688E722CDDD9E000FA86F /* RNUI Manager.swift in Sources */,
+				BF5F945622DA013400AB9FF3 /* MenuPreferenceViewController.swift in Sources */,
 				BFC4E74A2210202F00EE4A1F /* EventCache.swift in Sources */,
 				BFC4E77A2210202F00EE4A1F /* DoubleEventDetector.swift in Sources */,
 				BF3CECE622C19C2600E0D060 /* RNUIDoneViewController.swift in Sources */,
+				BF5F945B22DA2CEA00AB9FF3 /* EventListMenuGenerator.swift in Sources */,
 				BF2713DC22BD1EAF006A4B37 /* RNUIRenamingViewController.swift in Sources */,
 				BF7BB5AF22BF104C001D2E86 /* RNProcessUI.swift in Sources */,
 				BF3BE73521A103A9001AFBA8 /* MilestoneNotificationGenerator.swift in Sources */,
@@ -2109,9 +2192,11 @@
 				BFDE4A6521B60AB500CD50BC /* OnboardingViewController.swift in Sources */,
 				BFFA559322D8345B00575230 /* MenuTopShelfGenerator.swift in Sources */,
 				BFC4E7802210202F00EE4A1F /* MagdaleneUpdateAlert.swift in Sources */,
+				BF36185E22DCDD7C00D51765 /* PrimaryEventManager.swift in Sources */,
 				BFD2365322D4A4DA007B91E2 /* CustomNotificationsEditor.swift in Sources */,
 				BFB5A6992231E64B0075182B /* EventInfoSubmenuGenerator.swift in Sources */,
 				BF6AD69E2226505800B62C0C /* CalSelectViewController.swift in Sources */,
+				BF5F945D22DA2F9400AB9FF3 /* EventMenuItemGenerator.swift in Sources */,
 				BFB8EF80223E19320023B322 /* AboutViewController.swift in Sources */,
 				BFFA55AC22D8850700575230 /* EventFetchPeriod.swift in Sources */,
 				BFFA55CC22D8865400575230 /* Date.swift in Sources */,
@@ -2132,10 +2217,11 @@
 				BF26D84D21BFAD0D00C2728E /* DefaultsMigrator.swift in Sources */,
 				BF9E963A21888694002626CD /* Main.swift in Sources */,
 				BFC4E7862210202F00EE4A1F /* EventTimeAdjuster.swift in Sources */,
-				BFFA559722D85ADF00575230 /* EventMenuItem.swift in Sources */,
+				BFFA559722D85ADF00575230 /* EventAssociatedMenuItem.swift in Sources */,
 				BF621F6222C9FE9A00226E61 /* EventUICountdownViewController.swift in Sources */,
 				BFC4E7742210202F00EE4A1F /* MagdaleneBreaks.swift in Sources */,
 				BFEE396421BD152B000106BD /* NotificationPreferencesViewController.swift in Sources */,
+				BF36185C22DCDB0400D51765 /* EventUIWindowsManager.swift in Sources */,
 				BFC4E7442210202F00EE4A1F /* EventTimeRemainingMonitor.swift in Sources */,
 				BFDB6B2F21B1508D00AF0673 /* NextOccurenceStringGenerator.swift in Sources */,
 				BFC4E78C2210202F00EE4A1F /* MagdalenePeriods.swift in Sources */,

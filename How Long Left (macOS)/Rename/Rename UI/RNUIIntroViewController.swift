@@ -11,11 +11,11 @@ import Cocoa
 
 class RNUIIntroViewController: NSViewController {
     
-    var parentController: EventUITabViewController!
+    var parentController: ControllableTabView!
     
     override func viewDidLoad() {
         
-        parentController = (self.parent as! EventUITabViewController)
+        parentController = (self.parent as! ControllableTabView)
         
     }
     

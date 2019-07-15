@@ -16,6 +16,7 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
     static var shared: MenuController?
 
     var menuCloseTimer: Timer?
+    var windowVisTimer: Timer?
     static var awokeAt: Date?
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     let SIAttribute = [ NSAttributedString.Key.font: NSFont(name: "Helvetica Neue", size: 14.0)!]
@@ -38,8 +39,7 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
     var inNoAccessMode = false
     lazy var main = Main(aDelegate: self as MenuControllerProtocol)
     let version = Version()
-    var arrayOfCurrentEventMenuItems = [NSMenuItem]()
-    var arrayOfUpcomingEventMenuItems = [NSMenuItem]()
+    var topShelfItems = [NSMenuItem]()
     var doingStatusItemAlert = false
     var currentStatusItemText: String?
     var statusItemIsEmpty = false
@@ -94,10 +94,11 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
         return Date()
     }
     
-    override func awakeFromNib() {
  
+    
+    override func awakeFromNib() {
         
-            self.main.mainRunLoop()
+        self.main.mainRunLoop()
         MenuController.shared = self
         
         schoolAnalyser.analyseCalendar()
@@ -321,203 +322,19 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
     
     let currentEventRowsQueue = DispatchQueue(label: "AddCurrentRows")
     
-    func setTopShelfItems(_ items: [EventMenuItem]) {
+    func setTopShelfItems(_ items: [NSMenuItem]) {
         
-        var currentCount = 0
-    
-        for item in items {
-        
-            if item.type == .current {
-            
-                currentCount += 1
-            }
-    
+        for menuItem in topShelfItems {
+            self.mainMenu.removeItem(menuItem)
         }
         
-        if currentCount < 2 {
-            
-            EventCache.primaryEvent = nil
-            
-        }
+        topShelfItems.removeAll()
         
-        for item in self.arrayOfCurrentEventMenuItems {
-            self.mainMenu.removeItem(item)
-        }
-        
-        self.arrayOfCurrentEventMenuItems.removeAll()
-        currentEventWindowButtons.removeAll()
-        
-        if self.inNoAccessMode {
-        return
-    }
-        
-    for eventMenuItem in items.reversed() {
-        
-        let menuItem = eventMenuItem.item
-        
-        if let event = eventMenuItem.event {
-            
-            let submenu = EventInfoSubmenuGenerator.shared.generateSubmenuContentsFor(event: event)
-            
-            if eventMenuItem.type == .current, event.completionStatus == .InProgress {
-                
-                submenu.addItem(NSMenuItem.separator())
-                let windowButton : NSMenuItem = NSMenuItem()
-                windowButton.title = "Open Countdown Window..."
-                windowButton.action = #selector(self.countdownWindowButtonClicked(sender:))
-                windowButton.target = self
-                windowButton.isEnabled = true
-                currentEventWindowButtons[windowButton] = event
-                submenu.addItem(windowButton)
-                
-                menuItem.action = #selector(self.currentEventMenuItemClicked(sender:))
-                menuItem.target = self
-                menuItem.isEnabled = true
-                self.countdownMenuItemEvents[menuItem] = event
-                
-            }
-            
-            menuItem.submenu = submenu
-        
-            if let primaryEvent = EventCache.primaryEvent {
-                    
-                if event == primaryEvent, items.count > 1 {
-                        
-                    menuItem.state = .on
-                    
-                }
-                
-            }
-            
-        }
-        
-        self.arrayOfCurrentEventMenuItems.append(menuItem)
+        for menuItem in items.reversed() {
+        topShelfItems.append(menuItem)
         self.mainMenu.insertItem(menuItem, at: 0)
-        
-    }
-        
-    }
-    
-    func updateExistingCurrentEventRows(with strings: [(String, String?, HLLEvent?, HLLEvent?)]) {
-        
-        for string in strings {
-            
-            
-            for item in countdownMenuItemEvents {
-                
-                if item.value == string.2 {
-                    
-                    var text = string.0
-                    
-                    if let percent = string.1 {
-                        
-                        text += " \(percent)"
-                        
-                    }
-                    
-                    
-                    item.key.title = text
-                    
-                    
-                    
-                }
-                
-                
-            }
-            
         }
         
-    }
-    
-    var EventUIWindowControllers = [String:NSWindowController]()
-    var EventUIStoryboard = NSStoryboard(name: "EventUIStoryboard", bundle: nil)
-    
-    @objc func countdownWindowButtonClicked(sender: NSMenuItem) {
-        
-        if let event = currentEventWindowButtons[sender] {
-            
-            var id: String
-            
-            if let ekID = event.EKEvent?.eventIdentifier {
-                
-                id = ekID
-                
-            } else {
-                
-                id = event.identifier
-                
-            }
-            
-            if let window = EventUIWindowControllers[id] {
-                
-                NSApp.activate(ignoringOtherApps: true)
-                window.window?.delegate = self
-                window.showWindow(self)
-                
-            } else {
-            
-            let vc = self.EventUIStoryboard.instantiateController(withIdentifier: "MainUI") as? NSWindowController
-            vc?.window?.delegate = self
-                
-                
-            (vc!.contentViewController?.children.first as! EventUITabViewController).event = event
-            
-            EventUIWindowControllers[id] = vc
-            
-            if let window = EventUIWindowControllers[id] {
-                
-                NSApp.activate(ignoringOtherApps: true)
-                window.window?.delegate = self
-                window.showWindow(self)
-
-                
-            }
-            
-            }
-            
-        } else {
-            
-            print("No match")
-            
-        }
-        
-        
-    }
-    
-    @objc func currentEventMenuItemClicked(sender: NSMenuItem) {
-        
-        if sender.state == .on {
-            
-            EventCache.primaryEvent = nil
-            
-            
-        } else {
-
-            if let eventForSender = countdownMenuItemEvents[sender], let selected = EventCache.primaryEvent {
-            
-            if selected == eventForSender {
-                
-                sender.state = .off
-                
-            } else {
-                
-                clickedID = countdownMenuItemEvents[sender]
-                EventCache.primaryEvent = self.countdownMenuItemEvents[sender]
-                
-            }
-            
-            
-        } else {
-                
-                clickedID = countdownMenuItemEvents[sender]
-                EventCache.primaryEvent = self.countdownMenuItemEvents[sender]
-                
-            
-        }
-        
-    }
-        
-        self.main.mainRunLoop()
         
     }
     
@@ -575,7 +392,7 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
     
     func updateUpcomingEventsMenu(data: upcomingDayOfEvents?) {
         
-        if HLLDefaults.general.showNextEvent == false {
+        if HLLDefaults.menu.listUpcoming == false || HLLDefaults.menu.topLevelUpcoming == true {
             upcomingEventsRow.isHidden = true
             return
         } else {
@@ -677,9 +494,11 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
         }
     }
     
+    let eventMenuGen = EventListMenuGenerator()
+    
     func updateUpcomingWeekMenu(data: [upcomingDayOfEvents]) {
         
-        if HLLDefaults.general.showUpcomingEventsSubmenu == false {
+        if HLLDefaults.general.showUpcomingWeekMenu == false {
             upcomingFutureRow.isHidden = true
             return
         } else {
@@ -696,41 +515,15 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
         
         for (dataIndex, item) in data.enumerated() {
             
+            let eventsSubmenu = eventMenuGen.generateEventListMenu(for: item.HLLEvents, includeDayHeader: false)
             
-            
-            let eventsSubmenu = NSMenu()
-            
-            for (index, eventString) in item.eventStrings.enumerated() {
-                
-                let event = item.HLLEvents[index]
-                
-                let menuItem : NSMenuItem = NSMenuItem()
-                
-                switch event.completionStatus {
-                    
-                  
-                case .NotStarted:
-                  //  doneStatus = ""
-                    break
-                case .InProgress:
-                   // doneStatus = "- In Progress"
-                    menuItem.state = .mixed
-                case .Done:
-                  //  doneStatus = "- Done"
-                    menuItem.state = .on
-                }
-                
-                menuItem.title = "\(String(eventString))"
-                
-                menuItem.submenu = EventInfoSubmenuGenerator.shared.generateSubmenuContentsFor(event: event)
-                
-                eventsSubmenu.addItem(menuItem)
-                
-            }
             
             let dayMenuItem : NSMenuItem = NSMenuItem()
             dayMenuItem.title = item.menuTitle
             dayMenuItem.submenu = eventsSubmenu
+            
+            
+            
             dayMenuItem.isEnabled = !item.eventStrings.isEmpty
             
             upcomingFutureMenu.addItem(dayMenuItem)
@@ -848,6 +641,8 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
         
             vcs.append(GeneralPreferenceViewController())
             
+            vcs.append(MenuPreferenceViewController())
+            
             vcs.append(StatusItemPreferenceViewController())
 
             
@@ -905,21 +700,8 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
     
     func windowShouldClose(_ sender: NSWindow) -> Bool {
         
-        
-        for keyValue in EventUIWindowControllers {
-            
-            
-            if keyValue.value == sender.windowController! {
-                
-                EventUIWindowControllers.removeValue(forKey: keyValue.key)
-                
-            }
-            
-        }
-        
         if sender == MenuController.preferencesWindowController?.window {
             
-    
             MenuController.preferencesWindowController = nil
             vcs.removeAll()
             

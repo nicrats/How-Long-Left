@@ -27,7 +27,7 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
         print("Cal2")
     }
     
-    
+    static var shared: Main?
     let updateInterval = 5
     let fastUpdateInterval = 0.5
     let minUpdateInterval = 0.5
@@ -129,6 +129,8 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
      //   setupXPC()
     
         super.init()
+        
+        Main.shared = self
 
       /*  self.MainUIStoryboard = NSStoryboard(name: "HLLMainUIStoryboard", bundle: nil)
         
@@ -232,7 +234,7 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
                     var countdown: HLLEvent?
                 
                 
-                    if let top = EventCache.primaryEvent {
+                    if let top = PrimaryEventManager.primaryEvent {
                         
                         countdown = top
                         
@@ -481,7 +483,7 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
             let allUpcoming = self.upcomingEventsToday
             
             
-            var topEvent = EventCache.primaryEvent
+            var topEvent = PrimaryEventManager.primaryEvent
                 
             
             
@@ -575,12 +577,12 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
             
             EventCache.fetchQueue.async(flags: .barrier) {
             
-            if let top = EventCache.primaryEvent {
+            if let top = PrimaryEventManager.primaryEvent {
                 var match = false
                 for event in self.currentEvents {
                     
                     if event == top {
-                            EventCache.primaryEvent = event
+                            PrimaryEventManager.primaryEvent = event
                             match = true
                         
                         
@@ -591,7 +593,7 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
                 
                 if match == false {
                     EventCache.fetchQueue.async(flags: .barrier) {
-                        EventCache.primaryEvent = self.currentEvents.first
+                        PrimaryEventManager.primaryEvent = self.currentEvents.first
                     }
                 }
                 
@@ -695,7 +697,7 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
                 
                 if HLLDefaults.rename.promptToRename {
                 
-             //  self.checkForRename()
+                    self.checkForRename()
                     
                 }
                 
@@ -737,7 +739,7 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
         
         EventCache.fetchQueue.async(flags: .barrier) {
         
-        if let primary = EventCache.primaryEvent {
+        if let primary = PrimaryEventManager.primaryEvent {
             
             var match = false
             
@@ -754,7 +756,7 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
             if match == false {
                 
                 EventCache.fetchQueue.async(flags: .barrier) {
-                    EventCache.primaryEvent = nil
+                    PrimaryEventManager.primaryEvent = nil
                 }
             }
             
@@ -777,12 +779,13 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
         }
         
        // let upcomingEventsToday = calendarData.getUpcomingEventsToday()
+        //let upcomingToday = calendarData.getUpcomingEventsToday()
         let nextUpcomingDay = calendarData.getUpcomingEventsFromNextDayWithEvents()
-        let nextUpcomingDayAll = calendarData.getUpcomingEventsFromNextDayWithEvents(includeStarted: true)
+        let nextUpcomingDayAll = calendarData.getUpcomingEventsFromNextDayWithEvents(includeStarted: false)
        // let allUpcoming = calendarData.fetchEventsFromPresetPeriod(period: .Next2Weeks)
         let upcomingWeek = calendarData.getArraysOfUpcomingEventsForNextSevenDays()
         
-        let topShelfItems = topShelfGen.generateTopShelfMenuItems(currentEvents: currentEvents, upcomingEventsToday: nextUpcomingDay)
+        let topShelfItems = topShelfGen.generateTopShelfMenuItems(currentEvents: currentEvents, upcomingEventsToday: nextUpcomingDayAll)
         
         delegate?.setTopShelfItems(topShelfItems)
         
@@ -813,18 +816,7 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
             
         }
         
-        // Stuff below here is only done on menu open.
-        
-        
-        
-        
         let upcomingWeekItems = upcomingEventStringGenerator.generateUpcomingDayItems(days: upcomingWeek)
-        
-     //   let nextOccurEvents = eventNextOccurFinder.findNextOccurrences(currentEvents: currentEvents, upcomingEvents: allUpcoming)
-        
-       // let nextOccurItems = nextOccurStringGenerator.generateNextOccurenceItems(events: nextOccurEvents)
-        
-      //  delegate?.addNextOccurRows(items: nextOccurItems)
         
         delegate?.updateUpcomingWeekMenu(data: upcomingWeekItems)
         
@@ -971,7 +963,7 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
         let upcomingEvents = self.upcomingEventsToday
         var event = currentEvents.first
         
-        if let preferedEvent = EventCache.primaryEvent {
+        if let preferedEvent = PrimaryEventManager.primaryEvent {
             
             event = preferedEvent
             
@@ -1046,7 +1038,7 @@ class Main: NSObject, HLLCountdownController, SchoolModeChangedDelegate, NSWindo
             
             EventCache.fetchQueue.async(flags: .barrier) {
             
-            if let topEvent = EventCache.primaryEvent {
+            if let topEvent = PrimaryEventManager.primaryEvent {
                 
                 
                 if event == topEvent {

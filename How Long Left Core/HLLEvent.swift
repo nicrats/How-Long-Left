@@ -33,6 +33,7 @@ class HLLEvent: Equatable, Hashable {
     var isMagdaleneBreak = false
     var EKEvent: EKEvent?
     var notes: String?
+    var isAllDay = false
     var isSchoolEvent = false
     var source: EventDataSource!
     var endsInString: String {
@@ -90,6 +91,7 @@ class HLLEvent: Equatable, Hashable {
         
         get {
             
+            
             if self.startDate.timeIntervalSinceNow > 0 {
                 return .NotStarted
             } else if self.endDate.timeIntervalSinceNow < 1 {
@@ -119,15 +121,28 @@ class HLLEvent: Equatable, Hashable {
     init(event: EKEvent) {
         
         // Init a HLLEvent from an EKEvent.
+       // print("Creating event \(event.title)")
+        
+        if let safeTitle = event.title {
+        
+            title = safeTitle
+            
+            
+        } else {
+            
+            title = "Nil"
+            
+        }
+        
+        ultraCompactTitle = title
+        originalTitle = title
+        shortTitle = title.truncated(limit: 25, position: .tail, leader: "...")
         
         
-        title = event.title
-        ultraCompactTitle = event.title
-        originalTitle = event.title
-        shortTitle = event.title.truncated(limit: 25, position: .tail, leader: "...")
         startDate = event.startDate
         endDate = event.endDate
         notes = event.notes
+        isAllDay = event.isAllDay
         EKEvent = event
         
         if let loc = event.location, loc != "" {

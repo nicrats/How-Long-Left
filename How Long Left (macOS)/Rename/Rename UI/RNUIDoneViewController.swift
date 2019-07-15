@@ -12,7 +12,7 @@ import Lottie
 class RNUIDoneViewController: NSViewController {
     @IBOutlet weak var infoLabel: NSTextField!
     
-    var parentController: EventUITabViewController!
+    var parentController: ControllableTabView!
     @IBOutlet weak var doneAnimationView: AnimationView!
     
     func playDoneAnimation() {
@@ -27,7 +27,7 @@ class RNUIDoneViewController: NSViewController {
     }
     
     override func viewDidLoad() {
-        parentController = (self.parent as! EventUITabViewController)
+        parentController = (self.parent as! ControllableTabView)
         playDoneAnimation()
         
         super.viewDidLoad()

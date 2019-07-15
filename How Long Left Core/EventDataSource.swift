@@ -249,7 +249,9 @@ class EventDataSource {
             
         }
         
+        DispatchQueue.main.async {
         EventDataSource.lastUpdatedWithCalendars = HLLDefaults.calendar.enabledCalendars
+        }
         self.latestFetchSchoolMode = SchoolAnalyser.schoolMode
         
         
@@ -269,7 +271,11 @@ class EventDataSource {
         
         for event in EKevents {
             
-            if event.isAllDay == false {
+            if HLLDefaults.general.showAllDay == true {
+                
+                returnArray.append(HLLEvent(event: event))
+                
+            } else if event.isAllDay == false {
                 
                 returnArray.append(HLLEvent(event: event))
                 
@@ -423,7 +429,21 @@ class EventDataSource {
         
         for event in eventsToday {
             
-            if event.startDate.timeIntervalSinceNow < 1, event.endDate.timeIntervalSinceNow > 0 {
+            var allow = true
+            
+            if event.isAllDay == true {
+                
+                allow = false
+                
+            }
+            
+            if HLLDefaults.general.showAllDayInCurrent == true {
+                
+                allow = true
+                
+            }
+            
+            if event.startDate.timeIntervalSinceNow < 1, event.endDate.timeIntervalSinceNow > 0, allow == true {
                 
                 currentEvents.append(event)
                 
@@ -470,7 +490,7 @@ class EventDataSource {
             
             for event in upEvents {
                 
-                if event.startDate.timeIntervalSinceNow > 0 || includeStarted == true {
+                if event.startDate.timeIntervalSinceNow > 0 || includeStarted == true, event.startDate.midnight() == loopStart.midnight() {
                     
                     notStarted.append(event)
                     
@@ -510,7 +530,7 @@ class EventDataSource {
             
             for event in events {
                 
-                if event.startDate.midnight() != loopStart.midnight() || event.startDate.timeIntervalSinceNow < 0 {
+                if event.startDate.midnight() != loopStart.midnight(), event.holidaysTerm != nil {
                     
                     let index = events.firstIndex(of: event)!
                     events.remove(at: index)

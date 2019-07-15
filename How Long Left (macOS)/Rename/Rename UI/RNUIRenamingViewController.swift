@@ -11,7 +11,7 @@ import Cocoa
 
 class RNUIRenamingViewController: NSViewController, RNProcessUI {
     
-    var parentController: EventUITabViewController!
+    var parentController: ControllableTabView!
     
     func processStateChanged(to: RNProcessState) {
         
@@ -22,14 +22,13 @@ class RNUIRenamingViewController: NSViewController, RNProcessUI {
         case .Failed:
             break
         case .Done:
-            self.delegate?.goToIndex(3)
+            self.parentController?.goToIndex(3)
         }
         
     }
     
 
     @IBOutlet var verboseTextView: NSTextView!
-    var delegate: ControllableTabView?
     
     @IBOutlet weak var label: NSTextField!
     
@@ -40,7 +39,7 @@ class RNUIRenamingViewController: NSViewController, RNProcessUI {
     
     override func viewDidLoad() {
         
-        parentController = (self.parent as! EventUITabViewController)
+        parentController = (self.parent as! ControllableTabView)
         
     }
     
@@ -76,7 +75,7 @@ class RNUIRenamingViewController: NSViewController, RNProcessUI {
     
     @IBAction func canClicked(_ sender: Any) {
         renamer?.cancelled = true
-        delegate?.previousPage()
+        parentController?.previousPage()
         
         
     }
