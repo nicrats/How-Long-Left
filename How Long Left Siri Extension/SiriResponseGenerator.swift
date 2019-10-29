@@ -10,7 +10,7 @@ import Foundation
 
 class SiriResponseGenerator {
     
-    let calendar = EventDataSource()
+    var calendar = HLLEventSource()
     
     
     
@@ -26,7 +26,7 @@ class SiriResponseGenerator {
             
             let eventOnResponses = [
                 
-            "\(title) \(currentEvent.endsInString) in \(remaining).",
+            "\(title) ends in \(remaining).",
                 
             "There's \(remaining) left of \(title).",
                 

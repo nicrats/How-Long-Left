@@ -11,17 +11,16 @@ import Cocoa
 
 class EventMenuItemGenerator {
     
-    let helper = NSMenuHelper()
-    let eventSubmenuGenerator = EventInfoSubmenuGenerator()
+    let eventSubmenuGenerator = DetailSubmenuGenerator()
     let countdownStringGenerator = CountdownStringGenerator()
     
-    func makeEventMenuItem(for event: HLLEvent, needsDateContextInTitle: Bool) -> NSMenuItem {
+    func makeEventInfoMenuItem(for event: HLLEvent, needsDateContextInTitle: Bool) -> NSMenuItem {
         
         var title: String
         
         if event.isAllDay == true {
             
-            title = "All Day: \(event.title)"
+            title = "\(event.title) (All Day)"
             
         } else {
             
@@ -39,30 +38,67 @@ class EventMenuItemGenerator {
             
         }
         
-        let submenu = eventSubmenuGenerator.generateSubmenuContentsFor(event: event)
-        return helper.makeItem(title: title, submenu: submenu, state: .off)
+        
+        let submenu = eventSubmenuGenerator.generateInfoSubmenuFor(event: event)
+        let item = NSMenuItem()
+        
+        item.title = title
+        item.submenu = submenu
+        item.state = .off
+        
+        if event.completionStatus != .Done, HLLMain.proUser {
+        item.target = SelectedEventManager.shared
+        item.action = #selector(SelectedEventManager.shared.selectEventFromMenuItem(sender:))
+        SelectedEventManager.shared.addItemWithEvent(item: item, event: event)
+        }
+        
+        if SelectedEventManager.selectedEvent == event {
+            
+            item.state = .on
+        }
+        
+        return item
         
     }
     
-    func makeCurrentEventMenuItem(for event: HLLEvent) -> NSMenuItem {
+    func makeCountdownMenuItem(for event: HLLEvent) -> NSMenuItem {
         
-        let title = countdownStringGenerator.generateCountdownTextFor(event: event)
-        let submenu = eventSubmenuGenerator.generateSubmenuContentsFor(event: event)
-        let item = helper.makeItem(title: title.combined(), submenu: submenu, state: .off, action: #selector(PrimaryEventManager.shared.currentEventMenuItemClicked(sender:)), target: PrimaryEventManager.shared)
-        PrimaryEventManager.shared.addItemWithEvent(item: item, event: event)
+        let title = countdownStringGenerator.generateCountdownTextFor(event: event, showEndTime: false)
+        let submenu = eventSubmenuGenerator.generateInfoSubmenuFor(event: event)
+        let item = NSMenuItem()
+        
+        
+        item.title = title.combined()
+        item.submenu = submenu
+        item.state = .off
+        
+        if SelectedEventManager.selectedEvent == event {
+            
+            item.state = .on
+            
+        }
+        
+        if HLLMain.proUser {
+            
+        item.action = #selector(SelectedEventManager.shared.selectEventFromMenuItem(sender:))
+        item.target = SelectedEventManager.shared
+        SelectedEventManager.shared.addItemWithEvent(item: item, event: event)
+            
+        }
+        
         return item
         
     }
     
     func makeNoEventOnMenuItem() -> NSMenuItem {
         
-        return helper.makeItem(title: "No Current Events")
+        return NSMenuItem.makeItem(title: "No Current Events")
         
     }
     
     func makeNoUpcomingMenuItem() -> NSMenuItem {
         
-        return helper.makeItem(title: "No Upcoming Events")
+        return NSMenuItem.makeItem(title: "No Upcoming Events")
         
     }
     

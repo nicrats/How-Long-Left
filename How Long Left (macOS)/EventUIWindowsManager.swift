@@ -29,46 +29,56 @@ class EventUIWindowsManager: NSObject, NSWindowDelegate {
         
     }
     
+    
+    
     @objc func eventUIButtonClicked(sender: NSMenuItem) {
         
         if let event = existingEventUIButtons[sender] {
             
-            var id: String
+          launchWindowFor(event: event)
             
-            if let ekID = event.EKEvent?.eventIdentifier {
-                
-                id = ekID
-                
-            } else {
-                
-                id = event.identifier
-                
-            }
+        }
+        
+    }
+    
+    func launchWindowFor(event: HLLEvent) {
+        
+        var id: String
+        
+        if let ekID = event.EKEvent?.eventIdentifier {
+            
+            id = ekID
+            
+        } else {
+            
+            id = event.identifier
+            
+        }
+        
+        
+        if let window = eventUIWindowControllers[id] {
+            
+            NSApp.activate(ignoringOtherApps: true)
+            window.window?.delegate = self
+            window.showWindow(self)
+            
+        } else {
+            
+            let vc = self.eventUIStoryboard.instantiateController(withIdentifier: "MainUI") as? NSWindowController
+            vc?.window?.delegate = self
+            
+            
+            (vc!.contentViewController?.children.first as! EventUITabViewController).event = event
+            
+            eventUIWindowControllers[id] = vc
             
             if let window = eventUIWindowControllers[id] {
                 
                 NSApp.activate(ignoringOtherApps: true)
                 window.window?.delegate = self
                 window.showWindow(self)
+                window.window?.center()
                 
-            } else {
-                
-                let vc = self.eventUIStoryboard.instantiateController(withIdentifier: "MainUI") as? NSWindowController
-                vc?.window?.delegate = self
-                
-                
-                (vc!.contentViewController?.children.first as! EventUITabViewController).event = event
-                
-                eventUIWindowControllers[id] = vc
-                
-                if let window = eventUIWindowControllers[id] {
-                    
-                    NSApp.activate(ignoringOtherApps: true)
-                    window.window?.delegate = self
-                    window.showWindow(self)
-                    
-                    
-                }
                 
             }
             

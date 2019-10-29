@@ -11,20 +11,13 @@ import ClockKit
 import EventKit
 
 class ComplicationContentsGenerator {
-
-    let cal = EventDataSource()
-    let schoolAnalyser = SchoolAnalyser()
-    
-    init() {
-        
-        schoolAnalyser.analyseCalendar()
-        
-    }
     
     func generateComplicationEntries(complication: CLKComplication) -> [CLKComplicationTimelineEntry] {
         
         var returnArray = [CLKComplicationTimelineEntry]()
         let items = generateComplicationItems()
+        
+        HLLDefaults.defaults.set(false, forKey: "ComplicationPurchased")
         
         if HLLDefaults.defaults.bool(forKey: "ComplicationPurchased") == true || SchoolAnalyser.privSchoolMode == .Magdalene {
         
@@ -69,19 +62,15 @@ class ComplicationContentsGenerator {
         HLLDefaults.defaults.set("Update started", forKey: "ComplicationDebug")
         HLLDefaults.defaults.set(Date().formattedTime(), forKey: "ComplicationDebugTime")
         
-        schoolAnalyser.analyseCalendar()
+        var events = HLLEventSource.shared.eventPool
+        events.sort(by: { $0.startDate.compare($1.startDate) == .orderedAscending })
         
-        var events = cal.fetchEventsFromPresetPeriod(period: .AllTodayPlus24HoursFromNow)
-        
-        let upcomingEvents = cal.fetchEventsFromPresetPeriod(period: .Next2Weeks)
-        
-        var startDatesArray = [Date]()
-        var endDatesArray = [Date]()
+        var entryDates = [Date]()
         
         for event in events {
             
-            startDatesArray.append(event.startDate)
-            endDatesArray.append(event.endDate)
+            entryDates.append(event.startDate)
+            entryDates.append(event.endDate)
             
             if event.completionStatus == .Done {
                 
@@ -94,10 +83,7 @@ class ComplicationContentsGenerator {
             }
             
         }
-        
-        events.sort(by: { $0.startDate.compare($1.startDate) == .orderedAscending })
-        
-        
+
         
         if events.isEmpty {
             
@@ -109,87 +95,55 @@ class ComplicationContentsGenerator {
             
         }
         
-        //    var processedEvents = [HLLEvent]()
         
         var dictOfAdded = [Date:HLLEvent]()
         
         var returnItems = [HLLComplicationEntry]()
         
-        for item in events {
+        for date in entryDates {
             
-            
-            
-            if let start = getSoonestEndingEvent(at: item.startDate, from: events) {
+            if let current = getSoonestEndingEvent(at: date, from: events) {
                 
-                let next = getNextEventToStart(after: start.startDate, from: upcomingEvents)
+                let next = getNextEventToStart(after: current.startDate, from: events)
                 
-                print("CompSim1: \(item.startDate.formattedDate()) \(item.startDate.formattedTime()): \(start.title), Next: \(String(describing: next?.title))")
+                print("CompSim1: \(date.formattedDate()) \(date.formattedTime()): \(current.title), Next: \(String(describing: next?.title))")
                 
-                let entry = HLLComplicationEntry(date: item.startDate, event: start, next: next)
+                let entry = HLLComplicationEntry(date: date, event: current, next: next)
                 
-                if getSoonestEndingEvent(at: start.startDate.addingTimeInterval(600), from: events) != start {
+                if getSoonestEndingEvent(at: current.startDate.addingTimeInterval(600), from: events) != current {
                     
                     entry.switchToNext = false
                     
                 }
                 
                 returnItems.append(entry)
-                dictOfAdded[item.startDate] = start
+                dictOfAdded[date] = current
                 
                 
                 
                 
             } else {
                 
-                let nextEv = getNextEventToStart(after: item.startDate, from: upcomingEvents)
-                print("CompSim2: \(item.endDate.formattedDate()) \(item.endDate.formattedTime()): No events are on")
-                returnItems.append(HLLComplicationEntry(date: item.endDate, event: nil, next: nextEv))
+                let nextEv = getNextEventToStart(after: date, from: events)
+                print("CompSim2: \(date.formattedDate()) \(date.formattedTime()): No events are on")
+                returnItems.append(HLLComplicationEntry(date: date, event: nil, next: nextEv))
                 
             }
             
-            if let end = getSoonestEndingEvent(at: item.endDate, from: events) {
-                
-                
-                let next = getNextEventToStart(after: end.startDate, from: upcomingEvents)
-                
-                print("CompSim3: \(item.endDate.formattedDate()) \(item.endDate.formattedTime()): No event is on, Next: \(next?.title ?? "None")")
-                
-                let entry = HLLComplicationEntry(date: item.endDate, event: end, next: next)
-                
-                if getSoonestEndingEvent(at: end.startDate.addingTimeInterval(600), from: events) != end {
-                    
-                    entry.switchToNext = false
-                    
-                }
-                
-                returnItems.append(entry)
-                
-                dictOfAdded[item.endDate] = end
-                
-            } else {
-                
-                let nextEv = getNextEventToStart(after: item.endDate, from: upcomingEvents)
-                print("CompSim4: \(item.endDate.formattedDate()) \(item.endDate.formattedTime()): No event is on, Next: \(nextEv?.title ?? "None")")
-                returnItems.append(HLLComplicationEntry(date: item.endDate, event: nil, next: nextEv))
-                
-                
-            }
+        }
+        
+        if HLLEventSource.shared.getCurrentEvents().isEmpty == true {
             
-            if cal.getCurrentEvents().isEmpty == true {
-                
-                let nextEv = getNextEventToStart(after: Date(), from: upcomingEvents)
-                
-                print("CompSim5: \(Date().formattedDate()) \(Date().formattedTime()): No event is on, Next: \(nextEv?.title ?? "None")")
-                returnItems.append(HLLComplicationEntry(date: Date(), event: nil, next: nextEv))
-                
-            }
+            let nextEv = getNextEventToStart(after: Date(), from: events)
             
+            print("CompSim5: \(Date().formattedDate()) \(Date().formattedTime()): No event is on, Next: \(nextEv?.title ?? "None")")
+            returnItems.append(HLLComplicationEntry(date: Date(), event: nil, next: nextEv))
             
         }
         
         if returnItems.isEmpty == true {
             
-            let nextEv = getNextEventToStart(after: Date(), from: upcomingEvents)
+            let nextEv = getNextEventToStart(after: Date(), from: events)
             
             print("CompSim6: \(Date().formattedDate()) \(Date().formattedTime()): No event is on, Next: \(nextEv?.title ?? "None")")
             returnItems.append(HLLComplicationEntry(date: Date(), event: nil, next: nextEv))
@@ -198,65 +152,10 @@ class ComplicationContentsGenerator {
         
         returnItems.sort(by: { $0.showAt.compare($1.showAt) == .orderedAscending })
         
-        ComplicationDataStatusHandler.shared.didComplicationUpdate()
+        ComplicationUpdateHandler.shared.didComplicationUpdate()
         
         return returnItems
     }
-    
-    func getCurrentEntry(for complication: CLKComplication) -> CLKComplicationTimelineEntry? {
-        
-        var events = cal.fetchEventsFromPresetPeriod(period: .AllTodayPlus24HoursFromNow)
-        events.sort(by: { $0.startDate.compare($1.startDate) == .orderedAscending })
-        
-        var startDatesArray = [Date]()
-        var endDatesArray = [Date]()
-        
-        for event in events {
-            
-            startDatesArray.append(event.startDate)
-            endDatesArray.append(event.endDate)
-            
-            if event.completionStatus == .Done {
-                
-                if let index = events.firstIndex(of: event) {
-                    
-                    events.remove(at: index)
-                    
-                }
-                
-            }
-            
-        }
-        
-       
-         var next = getNextEventToStart(after: Date(), from: events)
-        var entry = HLLComplicationEntry(date: Date(), event: nil, next: next)
-    
-        if let event = getSoonestEndingEvent(at: Date(), from: events) {
-            
-            if event.startDate.timeIntervalSinceNow < 1 {
-                 next = getNextEventToStart(after: event.startDate, from: events)
-                entry = HLLComplicationEntry(date: event.startDate, event: event, next: next)
-                
-            }
-            
-            
-        }
-        
-        if entry.event == nil {
-            
-            return generateNoEventOnComlicationText(complication: complication, data: entry).last
-            
-        } else {
-            
-            return generateEventOnComlicationText(complication: complication, data: entry).last
-            
-        }
-        
-        
-        
-    }
-    
     
     private func generateEventOnComlicationText(complication: CLKComplication, data: HLLComplicationEntry) -> [CLKComplicationTimelineEntry] {
         
@@ -308,7 +207,7 @@ class ComplicationContentsGenerator {
                 template.body1TextProvider.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
                 template.body2TextProvider?.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
                 
-                template.headerTextProvider = CLKSimpleTextProvider(text: "\(current.title) \(current.endsInString) in")
+                template.headerTextProvider = CLKSimpleTextProvider(text: "\(current.title) \(current.countdownStringEnd) in")
                 
                 template.body1TextProvider = CLKRelativeDateTextProvider(date: current.endDate, style: .natural, units: [.day, .hour, .minute])
                 
@@ -365,7 +264,7 @@ class ComplicationContentsGenerator {
                 
                 let template = CLKComplicationTemplateModularLargeTallBody()
                 
-                template.headerTextProvider = CLKSimpleTextProvider(text: "\(current.title) \(current.endsInString) in")
+                template.headerTextProvider = CLKSimpleTextProvider(text: "\(current.title) \(current.countdownStringEnd) in")
                 template.headerTextProvider.tintColor = eventTint
                 template.bodyTextProvider = CLKRelativeDateTextProvider(date: current.endDate, style: .natural, units: [.day, .hour, .minute])
                 
@@ -476,7 +375,7 @@ class ComplicationContentsGenerator {
             
             if let loc = current.location, loc != "" {
                 let template = CLKComplicationTemplateGraphicRectangularStandardBody()
-                template.headerTextProvider = CLKSimpleTextProvider(text: "\(current.title) \(current.endsInString) in")
+                template.headerTextProvider = CLKSimpleTextProvider(text: "\(current.title) \(current.countdownStringEnd) in")
                 template.body1TextProvider = CLKRelativeDateTextProvider(date: current.endDate, style: .natural, units: [.day, .hour, .minute])
                 
                 
@@ -490,7 +389,7 @@ class ComplicationContentsGenerator {
                 
                 
                 let template2 = CLKComplicationTemplateGraphicRectangularTextGauge()
-                template2.headerTextProvider = CLKSimpleTextProvider(text: "\(current.title) \(current.endsInString) in")
+                template2.headerTextProvider = CLKSimpleTextProvider(text: "\(current.title) \(current.countdownStringEnd) in")
                 template2.headerTextProvider.tintColor = eventTint
                 template2.body1TextProvider.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                 template2.body1TextProvider = CLKRelativeDateTextProvider(date: current.endDate, style: .natural, units: [.day, .hour, .minute])
@@ -505,7 +404,7 @@ class ComplicationContentsGenerator {
                 
             } else {
                 let template2 = CLKComplicationTemplateGraphicRectangularTextGauge()
-                template2.headerTextProvider = CLKSimpleTextProvider(text: "\(current.title) \(current.endsInString) in")
+                template2.headerTextProvider = CLKSimpleTextProvider(text: "\(current.title) \(current.countdownStringEnd) in")
                 template2.headerTextProvider.tintColor = eventTint
                 template2.body1TextProvider.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                 template2.body1TextProvider = CLKRelativeDateTextProvider(date: current.endDate, style: .natural, units: [.day, .hour, .minute])
@@ -666,7 +565,7 @@ class ComplicationContentsGenerator {
             if let nex = data.nextEvent {
                
                 let nextTemp = CLKComplicationTemplateGraphicCornerStackText()
-                nextTemp.innerTextProvider = CLKSimpleTextProvider(text: "\(nex.title) starts in")
+                nextTemp.innerTextProvider = CLKSimpleTextProvider(text: "\(nex.title) \(nex.countdownStringStart) in")
                 
                 if let col = nex.calendar?.cgColor {
                     
@@ -941,13 +840,13 @@ class ComplicationContentsGenerator {
     func getTimelineStartDate() -> Date? {
         
         
-        return cal.fetchEventsFromPresetPeriod(period: .AllTodayPlus24HoursFromNow).first?.startDate
+        return HLLEventSource.shared.eventPool.first?.startDate
         
     }
     
     func getTimelineEndDate() -> Date? {
         
-        return cal.fetchEventsFromPresetPeriod(period: .AllTodayPlus24HoursFromNow).last?.endDate
+        return HLLEventSource.shared.eventPool.last?.startDate
         
     }
 

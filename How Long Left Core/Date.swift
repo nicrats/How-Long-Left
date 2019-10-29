@@ -10,29 +10,120 @@ import Foundation
 
 extension Date {
     
+    func idString() -> String {
+        
+        return "\(self.formattedDate()), \(self.formattedTime())"
+        
+    }
+    
     func userFriendlyRelativeString() -> String {
         
         let daysUntilDate = self.daysUntil()
         var dayText: String
         
+        let dateFormatter  = DateFormatter()
+        if self.year() == Date().year() {
+            
+            dateFormatter.dateFormat = "d MMM"
+            
+        } else {
+            
+            dateFormatter.dateFormat = "d MMM YYYY"
+            
+        }
+        
+        let dateString = dateFormatter.string(from: self)
+        
+        if daysUntilDate < -1 {
+            
+           return dateString
+            
+        }
+        
         switch daysUntilDate {
+        case -1:
+            dayText = "Yesterday"
         case 0:
             dayText = "Today"
         case 1:
             dayText = "Tomorrow"
         default:
+            
+            if daysUntilDate < 7 {
+            
             let dateFormatter  = DateFormatter()
             dateFormatter.dateFormat = "EEEE"
             dayText = dateFormatter.string(from: self)
+                
+            } else if daysUntilDate < 15 {
+                
+                let dateFormatter  = DateFormatter()
+                dateFormatter.dateFormat = "EEEE"
+                dayText = dateFormatter.string(from: self)
+                dayText = "\(dayText) (Next Week)"
+                
+               return dayText
+                
+            } else {
+                
+                return dateString
+                
+            }
         }
         
         return dayText
         
     }
     
+    var hasOccured: Bool {
+        
+        get {
+            
+            if self.timeIntervalSinceNow > 0 {
+                return false
+            } else {
+                return true
+            }
+            
+        }
+        
+    }
+    
     func daysUntil() -> Int {
         
-        return Int(self.timeIntervalSince(Date().midnight()))/60/60/24
+        return Int(self.startOfDay().timeIntervalSince(Date().startOfDay()))/60/60/24
+        
+    }
+    
+    func getDayOfWeekName(returnTodayIfToday: Bool) -> String {
+        
+        var returnText: String
+        
+        let dateFormatter  = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        returnText = dateFormatter.string(from: self)
+        
+        if self.daysUntil() == 0, returnTodayIfToday {
+            
+            returnText = "Today"
+            
+        }
+        
+        if self.daysUntil() == 1, returnTodayIfToday {
+            
+            returnText = "Tomorrow"
+            
+        }
+        
+        return returnText
+        
+    }
+    
+    func weekOfYear() -> Int {
+        
+        let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        return calendar.components([.weekOfYear], from: self).weekOfYear!
+        
         
     }
     
@@ -53,10 +144,17 @@ extension Date {
     func formattedTimeTwelve() -> String {
         
         
-        let dateFormatter  = DateFormatter()
-        dateFormatter.dateFormat = "h:mma"
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_AU")
+        formatter.dateFormat = "h:mma"
+        formatter.amSymbol = "am"
+        formatter.pmSymbol = "pm"
         
-        return dateFormatter.string(from: self)
+        let r = formatter.string(from: self)
+        
+        print("FTT: \(r)")
+        
+        return r
     }
     
     func formattedDate() -> String {
@@ -76,10 +174,16 @@ extension Date {
         
     }
     
-    func midnight() -> Date {
+    func startOfDay() -> Date {
         
         let cal = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
         return cal.startOfDay(for: self)
+        
+    }
+    
+    func endOfDay() -> Date {
+        
+        return self.startOfDay().addingTimeInterval(86400)
         
     }
     

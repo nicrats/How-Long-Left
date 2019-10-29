@@ -11,6 +11,8 @@ import ClockKit
 
 class ComplicationController: NSObject, CLKComplicationDataSource {
     
+    
+    
     // MARK: - Timeline Configuration
 
     let Generator = ComplicationContentsGenerator()
@@ -38,18 +40,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     // MARK: - Timeline Population
     
-    func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
-        // Call the handler with the current timeline entry
-        DispatchQueue.main.async {
-            
-             print("entries2")
-        
-        handler(self.Generator.getCurrentEntry(for: complication))
-        
-        }
-            
-    }
-    
     func getTimelineEntries(for complication: CLKComplication, before date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
         // Call the handler with the timeline entries prior to the given date
         
@@ -59,20 +49,12 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
         // Call the handler with the timeline entries after to the given date
         
-        print("entries1")
-        
-     //   WatchSessionManager.sharedManager.sendUpdatedComplicationMessage()
-        
-        DispatchQueue.main.async {
-            
-        
-            handler(self.Generator.generateComplicationEntries(complication: complication))
-            
-        }
-        
-        
+        handler(self.Generator.generateComplicationEntries(complication: complication))
+ 
+    }
     
-        
+    func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
+        handler(self.Generator.generateComplicationEntries(complication: complication).first)
     }
     
     

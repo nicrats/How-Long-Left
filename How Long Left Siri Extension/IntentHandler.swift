@@ -29,12 +29,8 @@ class IntentHandler: INExtension {
 @available(iOS 12.0, *)
 class HowLongLeftIntentHandler: NSObject, HowLongLeftIntentHandling {
     
-    let schoolAnalyser = SchoolAnalyser()
     
-    override init() {
-        schoolAnalyser.analyseCalendar()
-    }
-    
+   
     func confirm(intent: HowLongLeftIntent, completion: @escaping (HowLongLeftIntentResponse) -> Void) {
         let responseGen = SiriResponseGenerator()
         completion(HowLongLeftIntentResponse.success(countdownString: responseGen.generateResponseForCurrentEvent()))

@@ -11,8 +11,6 @@ import UserNotifications
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenterDelegate {
     
-    let calendarData = EventDataSource()
-    
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler(.sound)
     }
@@ -21,20 +19,31 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
         
-    //    let schoolAnalyser = SchoolAnalyser()
-     //   schoolAnalyser.analyseCalendar()
-        DispatchQueue.main.async {
+        while HLLEventSource.shared.access == .Unknown {}
         
+        if HLLEventSource.shared.access == .Granted {
+        while HLLEventSource.shared.neverUpdatedEventPool {}
+        }
+        
+        DispatchQueue.global(qos: .default).async {
         WatchSessionManager.sharedManager.startSession()
-        WatchSessionManager.sharedManager.askForDefaults()
-        
+        HLLDefaultsTransfer.shared.addTransferHandler(WatchSessionManager.sharedManager)
+    
+
         }
             
     }
 
+  
+
     func applicationDidBecomeActive() {
         
-        
+
+        DispatchQueue.global(qos: .default).async {
+        HLLDefaultsTransfer.shared.triggerDefaultsTransfer()
+        ComplicationUpdateHandler.shared.updateComplication()
+        }
+
      //   HLLDefaults.shared.loadDefaultsFromCloud()
         
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
@@ -57,39 +66,23 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
         
         DispatchQueue.main.async {
             
+            print("Trig9")
+            
         if userInfo?[CLKLaunchedTimelineEntryDateKey] as? Date != nil {
             // Handoff from complication
-            
-            if let entries = CLKComplicationServer.sharedInstance().activeComplications {
-                
-                 if ComplicationDataStatusHandler.shared.complicationIsUpToDate() == false {
-                
-                    
-                    
-                for complicationItem in entries  {
-                    
-                    print("Reload4")
-                    
-                    CLKComplicationServer.sharedInstance().reloadTimeline(for: complicationItem)
-                    
-                }
-            }
-            
-            }
+            ComplicationUpdateHandler.shared.updateComplication()
             
         }
         else {
             // Handoff from elsewhere
         }
         
-        }
         
+        }
     }
 
     func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
         // Sent when the system needs to launch the application in the background to process tasks. Tasks arrive in a set, so loop through and process each one.
-        
-        DispatchQueue.main.async {
         
         for task in backgroundTasks {
             // Use a switch statement to check the task type
@@ -97,25 +90,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
                 // Be sure to complete the background task once you’re done.
                 
-                
-                
-                if let entries = CLKComplicationServer.sharedInstance().activeComplications {
-                    
-                    if ComplicationDataStatusHandler.shared.complicationIsUpToDate() == false {
-                    
-                        
-                        
-                    for complicationItem in entries  {
-                        
-                        print("Reload5")
-                        
-                        CLKComplicationServer.sharedInstance().reloadTimeline(for: complicationItem)
-                        
-                    }
-                        
-                    }
-                }
-                
+                ComplicationUpdateHandler.shared.updateComplication()
                 
                 let bh = BackgroundUpdateHandler(); bh.scheduleComplicationUpdate()
                 
@@ -147,7 +122,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
             
             }
             
-        }
+        
         
     }
 

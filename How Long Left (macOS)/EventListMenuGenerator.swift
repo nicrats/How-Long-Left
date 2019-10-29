@@ -12,7 +12,6 @@ import Cocoa
 class EventListMenuGenerator {
     
     let eventItemGen = EventMenuItemGenerator()
-    let helper = NSMenuHelper()
     
     func generateEventListMenu(for events: [HLLEvent], includeDayHeader: Bool) -> NSMenu {
         
@@ -20,35 +19,45 @@ class EventListMenuGenerator {
         
         var items = [NSMenuItem]()
         
+        var previous: HLLEvent?
+        
         for event in events {
+            
+            if let prev = previous, prev.completionStatus == .Done, event.completionStatus != .Done {
+                
+                items.append(NSMenuItem.separator())
+                
+            }
+            
+            previous = event
             
             if includeDayHeader == true {
             
-            if dateOfLastEvent != event.startDate.midnight() {
+            if dateOfLastEvent != event.startDate.startOfDay() {
                 
                 var title = event.startDate.userFriendlyRelativeString()
                 
-                if event.startDate.midnight() == Date().midnight() {
+                if event.startDate.startOfDay() == Date().startOfDay() {
                     
                     title = "Upcoming \(title)"
                     
                 }
                 
-                let menuItem = helper.makeItem(title: "\(title):")
+                let menuItem = NSMenuItem.makeItem(title: "\(title):")
                 items.append(menuItem)
                 
                 }
                 
             }
             
-            let menuItem = eventItemGen.makeEventMenuItem(for: event, needsDateContextInTitle: true)
+            let menuItem = eventItemGen.makeEventInfoMenuItem(for: event, needsDateContextInTitle: true)
             items.append(menuItem)
             
-            dateOfLastEvent = event.startDate.midnight()
+            dateOfLastEvent = event.startDate.startOfDay()
             
         }
         
-        return helper.makeMenu(items: items)
+        return NSMenu.makeMenu(items: items)
     }
     
     

@@ -13,8 +13,8 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
     
     var currentEvent: HLLEvent?
     var timer = Timer()
-    let timerStringGenerator = EventCountdownTimerStringGenerator()
-    let cal = EventDataSource()
+    let timerStringGenerator = CountdownStringGenerator()
+    var cal = HLLEventSource()
     var event: HLLEvent?
     let schoolAnalyser = SchoolAnalyser()
     
@@ -24,7 +24,6 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        schoolAnalyser.analyseCalendar()
         // Do any additional setup after loading the view.
     }
         
@@ -57,8 +56,8 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
                         self.timerLabel.isHidden = false
                        self.infoLabel.isHidden = false
                         self.doneInfoLabel.isHidden = true
-                        self.timerLabel.text = self.timerStringGenerator.generateStringFor(event: loopEvent)
-                        self.infoLabel.text = "\(loopEvent.title) \(loopEvent.endsInString) in"
+                        self.timerLabel.text = self.timerStringGenerator.generatePositionalCountdown(event: loopEvent)
+                        self.infoLabel.text = "\(loopEvent.title) ends in"
                         
                         
                     }

@@ -13,15 +13,12 @@ import WatchConnectivity
 import UserNotifications
 
 class WatchSessionManager: NSObject, WCSessionDelegate {
-    
+
     let defaults = HLLDefaults.defaults
     let complication = CLKComplicationServer.sharedInstance()
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
     }
-    
-   
-    
     
     static let sharedManager = WatchSessionManager()
     private override init() {
@@ -32,18 +29,16 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
     private let session: WCSession = WCSession.default
     
     func startSession() {
+        
+        HLLDefaultsTransfer.shared.addTransferHandler(self)
+        
         session.delegate = self
         session.activate()
     }
-    
-    
-    
-    
+
     func addDataSourceChangedDelegate<T>(delegate: T) where T: DataSourceChangedDelegate, T: Equatable {
         dataSourceChangedDelegates.append(delegate)
     }
-    
-    
     
     func removeDataSourceChangedDelegate<T>(delegate: T) where T: DataSourceChangedDelegate, T: Equatable {
         for (index, dataSourceDelegate) in dataSourceChangedDelegates.enumerated() {
@@ -59,71 +54,31 @@ extension WatchSessionManager {
     
     // Receiver
     
-    
-    func askForDefaults() {
-      session.activate()
-        session.sendMessage(["SendDefaults": "Please?"], replyHandler: nil, errorHandler: nil)
+    func sendData(_ data: [String:Any]) {
+        
+        
+        print("Start8")
+            self.session.sendMessage(data, replyHandler: nil, errorHandler: nil)
+            self.session.transferUserInfo(data)
+        
+        do {
+        
+            try self.session.updateApplicationContext(data)
+                
+        } catch {
+            
+           print("Error updating application context")
+            
+        }
+        
         
     }
     
     func gotData(data: [String : Any]) {
         
-        for item in data {
-            
-            print("\(item.key), \(item.value)")
-            
-        }
+
+        HLLDefaultsTransfer.shared.gotNewPreferences(data)
         
-        
-            if let rArray = data["SelectedCalendars"] {
-                
-                let calArray = rArray as! [String]
-                
-                print(calArray.count)
-                
-                self.defaults.set(calArray, forKey: "setCalendars")
-                
-                
-                
-            }
-        
-        if let rArray = data["MagdaleneManualSettingChanged"]  {
-                
-                let setting = rArray as! Bool
-                
-                self.defaults.set(setting, forKey: "magdaleneFeaturesManuallyDisabled")
-                
-            }
-        
-        if let compStatus = data["ComplicationPurchased"]  {
-            
-            let compStatusBool = compStatus as! Bool
-            
-            if compStatusBool != HLLDefaults.defaults.bool(forKey: "ComplicationPurchased") {
-            
-            HLLDefaults.defaults.set(compStatusBool, forKey: "ComplicationPurchased")
-                
-                if let entries = CLKComplicationServer.sharedInstance().activeComplications {
-                    
-                    
-                    
-                        for complicationItem in entries  {
-                            
-                            print("Reload6")
-                            
-                            CLKComplicationServer.sharedInstance().reloadTimeline(for: complicationItem)
-                        }
-                    
-                    
-                }
-            
-                
-            }
-            
-            
-        }
-        
-            self.dataSourceChangedDelegates.forEach { $0.userInfoChanged() }
         
     }
     
@@ -146,8 +101,17 @@ extension WatchSessionManager {
         gotData(data: userInfo)
     }
 }
+
+extension WatchSessionManager: DefaultsTransferHandler {
+    
+    func transferDefaultsDictionary(_ defaultsToTransfer: [String : Any]) {
+        self.sendData(defaultsToTransfer)
+    }
+    
+    
+}
+
 protocol DataSourceChangedDelegate {
     func userInfoChanged()
 }
-
 

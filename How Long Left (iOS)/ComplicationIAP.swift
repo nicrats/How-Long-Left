@@ -128,6 +128,7 @@ class IAPHandler: NSObject {
     func restorePurchase(){
         
         
+        print("Restore called")
         SKPaymentQueue.default().add(self)
         SKPaymentQueue.default().restoreCompletedTransactions()
     }
@@ -135,6 +136,8 @@ class IAPHandler: NSObject {
     
     // MARK: - FETCH AVAILABLE IAP PRODUCTS
     func fetchAvailableProducts(){
+        
+        print("Fetch called")
         
         // Put here your IAP Products ID's
         let productIdentifiers = NSSet(objects: "ComplicationIAPHLL")

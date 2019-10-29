@@ -9,7 +9,7 @@
 import Foundation
 
 enum EventCompletionStatus {
-    case NotStarted
-    case InProgress
+    case Upcoming
+    case Current
     case Done
 }

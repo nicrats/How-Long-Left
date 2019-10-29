@@ -20,7 +20,7 @@ struct TermData {
         var closeText: String?
         
         let currentEvent = nextHolidays
-        let secondsLeft = currentEvent.startDate.midnight().timeIntervalSinceNow+1+86400
+        let secondsLeft = currentEvent.startDate.startOfDay().timeIntervalSinceNow+1+86400
         
         var isNumber = false
         

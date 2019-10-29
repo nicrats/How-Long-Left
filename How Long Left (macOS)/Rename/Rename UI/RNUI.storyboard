@@ -80,10 +80,10 @@
             </objects>
             <point key="canvasLocation" x="1037" y="87"/>
         </scene>
-        <!--Configuration View Controller-->
+        <!--Configuration-->
         <scene sceneID="FBu-lI-qIH">
             <objects>
-                <viewController id="NrV-5m-WEF" customClass="RNUIConfigurationViewController" customModule="How_Long_Left_macOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Configuration" id="NrV-5m-WEF" customClass="RNUIConfigurationViewController" customModule="How_Long_Left_macOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hCx-Vf-zuh">
                         <rect key="frame" x="0.0" y="0.0" width="655" height="345"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
@@ -113,7 +113,7 @@
                                             <tableColumns>
                                                 <tableColumn identifier="0" editable="NO" width="58" minWidth="10" maxWidth="3.4028234663852886e+38" id="fI6-3Z-W1h">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Rename">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -147,7 +147,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="1" editable="NO" width="304" minWidth="40" maxWidth="1000" id="vwE-4b-yce">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Current Title">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -180,7 +180,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="2" editable="NO" width="104" minWidth="40" maxWidth="1000" id="faV-03-mGG">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="New Title">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -246,7 +246,7 @@
                                     </textField>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ioY-Ld-pW2">
                                         <rect key="frame" x="-2" y="0.0" width="549" height="17"/>
-                                        <textFieldCell key="cell" selectable="YES" alignment="center" title="Scroll through the table below to select which events to rename and adjust the new titles." id="RWf-Ne-pt6">
+                                        <textFieldCell key="cell" alignment="center" title="Scroll through the table below to select which events to rename and adjust the new titles." id="RWf-Ne-pt6">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -307,11 +307,11 @@
             </objects>
             <point key="canvasLocation" x="1623.5" y="-116.5"/>
         </scene>
-        <!--Renaming View Controller-->
+        <!--Process View Controller-->
         <scene sceneID="8Tm-wi-jHk">
             <objects>
                 <customObject id="me8-0F-RTI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController id="SMt-dE-GqJ" customClass="RNUIRenamingViewController" customModule="How_Long_Left_macOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="SMt-dE-GqJ" customClass="RNUIRNProcessViewController" customModule="How_Long_Left_macOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="OFY-mJ-yRa">
                         <rect key="frame" x="0.0" y="0.0" width="715" height="345"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -440,7 +440,7 @@ Gw
                                     </textField>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Iy0-Wl-KZe">
                                         <rect key="frame" x="-2" y="0.0" width="569" height="34"/>
-                                        <textFieldCell key="cell" selectable="YES" alignment="center" id="CzN-5I-vrH">
+                                        <textFieldCell key="cell" alignment="center" id="CzN-5I-vrH">
                                             <font key="font" metaFont="system"/>
                                             <string key="title">This tool will modify your calendar to shorten the titles of events to just the subject name instead of the long, complicated Sentral format.</string>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -539,12 +539,15 @@ Gw
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="promptClicked:" target="pSH-Qd-dm3" id="aKh-EN-dc9"/>
+                                </connections>
                             </button>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c3h-lT-WaC">
-                                <rect key="frame" x="98" y="271" width="459" height="60"/>
+                                <rect key="frame" x="268" y="271" width="120" height="60"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xxa-cx-ycR">
-                                        <rect key="frame" x="168" y="24" width="124" height="36"/>
+                                        <rect key="frame" x="-2" y="24" width="124" height="36"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="All Done!" id="858-9V-S7E">
                                             <font key="font" metaFont="systemMedium" size="30"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -552,8 +555,8 @@ Gw
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="X6N-P3-WwI">
-                                        <rect key="frame" x="-2" y="0.0" width="463" height="19"/>
-                                        <textFieldCell key="cell" selectable="YES" alignment="center" title="500 events have been renamed, and 100 breaks have been added." id="AfP-xj-DBR">
+                                        <rect key="frame" x="56" y="0.0" width="8" height="19"/>
+                                        <textFieldCell key="cell" alignment="center" id="AfP-xj-DBR">
                                             <font key="font" metaFont="system" size="15"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -589,6 +592,7 @@ Gw
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="automaticallyPromptButton" destination="N3A-M6-LHK" id="dEy-no-B1A"/>
                         <outlet property="doneAnimationView" destination="kh5-gg-g9m" id="ZsB-0J-kjy"/>
                         <outlet property="infoLabel" destination="X6N-P3-WwI" id="rDF-9r-Rc5"/>
                     </connections>

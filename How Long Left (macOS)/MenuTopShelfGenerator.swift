@@ -12,33 +12,73 @@ import Cocoa
 class MenuTopShelfGenerator {
     
     let eventItemGen = EventMenuItemGenerator()
-    let submenuGen = EventInfoSubmenuGenerator()
-    let helper = NSMenuHelper()
+    let submenuGen = DetailSubmenuGenerator()
+    let upcomingSectionGen = UpcomingSoonMenuGenerator()
     
     func generateTopShelfMenuItems(currentEvents: [HLLEvent], upcomingEventsToday: [HLLEvent]) -> [NSMenuItem] {
+        
+        let upcomingWillBeShown = HLLDefaults.menu.listUpcoming == true && HLLDefaults.menu.topLevelUpcoming == true
+        
+        let topLevelUpcoming = upcomingWillBeShown && HLLMain.proUser
         
         var items = [NSMenuItem]()
         
         EventUIWindowsManager.shared.removeItems()
-        PrimaryEventManager.shared.removeItems()
+        SelectedEventManager.shared.removeItems()
         
-        let listMode = HLLDefaults.menu.listUpcoming == true && HLLDefaults.menu.topLevelUpcoming == true
+        if let selected = SelectedEventManager.selectedEvent, selected != FeaturedEventsStore.featuredEvent {
+          
+        var show = true
+            
+            if !currentEvents.contains(selected) {
+            
+                if upcomingEventsToday.contains(selected) {
+                    
+                    if upcomingWillBeShown == true {
+                        
+                        show = false
+                        
+                    }
+                    
+                }
+                
+            } else {
+                
+                show = false
+                
+            }
+         
+        if show == true {
+            
+        let item = eventItemGen.makeEventInfoMenuItem(for: selected, needsDateContextInTitle: true)
+        item.title = "Selected: \(item.title)"
+        items.append(item)
+        items.append(NSMenuItem.separator())
+                
+        }
+            
+            
+        }
+        
+        if let featured = FeaturedEventsStore.featuredEvent, featured.completionStatus == .Upcoming {
+            
+            let item = eventItemGen.makeCountdownMenuItem(for: featured)
+            items.append(item)
+            items.append(NSMenuItem.separator())
+            
+        }
         
         if currentEvents.isEmpty == false {
             
-            if listMode {
+            /*if topLevelUpcoming {
                 
-                items.append(helper.makeItem(title: "Current"))
+                items.append(NSMenuItem.makeItem(title: "Current:"))
                 
-            }
+            }*/
             
             for event in currentEvents {
                 
-                let item = eventItemGen.makeCurrentEventMenuItem(for: event)
-                if PrimaryEventManager.primaryEvent == event {
-                    item.state = .on
-                }
-                
+                let item = eventItemGen.makeCountdownMenuItem(for: event)
                 items.append(item)
                 
             }
@@ -49,46 +89,34 @@ class MenuTopShelfGenerator {
             
         }
         
-        if listMode {
+        if topLevelUpcoming {
             
             items.append(NSMenuItem.separator())
+            items.append(contentsOf: upcomingSectionGen.generateUpcomingSoonMenuItems(for: upcomingEventsToday))
+        
+        } else if HLLDefaults.menu.listUpcoming == true {
+           
+            items.append(NSMenuItem.separator())
+            items.append(upcomingSectionGen.generateUpcomingSoonMenuItemWithSubmenu(for: upcomingEventsToday))
             
         }
         
-        if upcomingEventsToday.isEmpty == false, listMode {
+        if HLLDefaults.calendar.enabledCalendars.isEmpty {
             
-            var dateOfLastEvent = Date()
+            items.removeAll()
+            let item = NSMenuItem()
+            item.title = "You haven't selected any calendars to use with How Long Left..."
+            items.append(item)
+            let item2 = NSMenuItem()
+            item2.title = "No events will be found until you fix this in Preferences."
+            items.append(item2)
             
-            for event in upcomingEventsToday {
-                    
-                    if dateOfLastEvent != event.startDate.midnight() {
-                        
-                        var title = event.startDate.userFriendlyRelativeString()
-                        
-                        if event.startDate.midnight() == Date().midnight() {
-                            
-                            title = "Upcoming \(title)"
-                            
-                        }
-                        
-                        items.append(helper.makeItem(title: title))
-                        
-                    }
-                
-                items.append(eventItemGen.makeEventMenuItem(for: event, needsDateContextInTitle: true))
-                dateOfLastEvent = event.startDate.midnight()
-                
-            }
-            
-            
-        } else if listMode {
-
-            items.append(eventItemGen.makeNoUpcomingMenuItem())
             
         }
 
         return items
         
     }
+    
     
 }

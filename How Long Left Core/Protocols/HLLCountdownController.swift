@@ -18,4 +18,5 @@ protocol HLLCountdownController {
     func milestoneReached(milestone seconds: Int, event: HLLEvent)
     func percentageMilestoneReached(milestone percentage: Int, event: HLLEvent)
     func eventStarted(event: HLLEvent)
+    
 }

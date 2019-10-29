@@ -15,12 +15,10 @@ protocol MenuControllerProtocol {
     func doStatusItemAlert(with strings: [String])
     func setTopShelfItems(_ items: [NSMenuItem])
     func updateNextEventItem(text: String?)
-    func updateUpcomingEventsMenu(data: upcomingDayOfEvents?)
-    func updateUpcomingWeekMenu(data: [upcomingDayOfEvents])
     func setHotkey(to: HLLHotKeyOption)
     func noCalendarAccessUIState(enabled: Bool)
     func setUpdateAvaliableState(version: String?)
     func addHolidaysCountToRow(string: String?)
-    func updateTermDataMenu(termData: TermData?)
+    //func updateTermDataMenu(termData: TermData?)
     
 }

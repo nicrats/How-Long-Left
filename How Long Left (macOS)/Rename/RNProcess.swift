@@ -18,18 +18,18 @@ class RNProcess {
     }
     
     var previousProgress: Int?
-    
-    var UIDelegate: RNProcessUI?
-    
-    let access = EventDataSource()
-    
+    var UIDelegate: RNProcessUIProtocol?
+    var renameEventSource = HLLEventSource()
     let renameStorage = RNDataStore()
+    let schoolEventModifier = SchoolEventModifier()
     
     func run() {
         
         autoreleasepool {
             
-            EventDataSource.isRenaming = true
+            
+            HLLEventSource.isRenaming = true
+            renameEventSource.addBreaks = false
             
             DispatchQueue.global(qos: .userInteractive).async {
                 
@@ -55,14 +55,16 @@ class RNProcess {
                     
                 }
                 
-                SchoolAnalyser().analyseCalendar()
                 print("SA1")
-                EventDataSource.eventStore.reset()
-                let events = self.access.fetchEventsFromPresetPeriod(period: .ThisYear)
+                
+                let startDate = Calendar.current.date(from: Calendar.current.dateComponents([.year], from: Calendar.current.startOfDay(for: Date())))!
+                
+                let endDate = Calendar.current.date(byAdding: DateComponents(year: 1), to: startDate)!
+                
+                var events = self.renameEventSource.getEventsFromCalendar(start: startDate, end: endDate)
+                events = self.schoolEventModifier.modify(events: events, addBreaks: false)
                 
                 self.UIDelegate?.log("Found \(events.count) events")
-                
-                let store = EventDataSource.eventStore
                 
                 var renameEvents = [HLLEvent]()
                 
@@ -83,123 +85,29 @@ class RNProcess {
                 self.UIDelegate?.log("doBreaks is \(doBreaks)")
                 
                 var breaksArray = [HLLEvent]()
-                var dictOfDateArrays = [Date:[HLLEvent]]()
-                
-                var blockedLunchDates = [Date]()
-                var blockedRecessDates = [Date]()
-                
-                for event in events {
-                    
-                    if event.title == "Lunch" {
-                        
-                        blockedLunchDates.append(event.startDate.midnight())
-                        
-                    }
-                    
-                    if event.title == "Recess" {
-                        
-                        blockedRecessDates.append(event.startDate.midnight())
-                        
-                    }
-                    
-                    if event.isSchoolEvent {
-                        
-                        if dictOfDateArrays.keys.contains(event.startDate.midnight()) {
-                            
-                            dictOfDateArrays[event.startDate.midnight()]!.append(event)
-                            
-                            
-                        } else {
-                            
-                            dictOfDateArrays[event.startDate.midnight()] = [event]
-                            
-                        }
-                        
-                    }
-                }
-                
-                
                 
                 if doBreaks {
                     
                     let breaks = MagdaleneBreaks()
-                    
-                    for item in dictOfDateArrays {
-                        
-                       let titles = item.value.map { $0.title }
-                        
-                        if titles.contains("Lunch") || titles.contains("Recess") == false {
-                        
-                            var dayBreaks = breaks.getBreaks(events: item.value)
-                            
-                            for breakEvent in dayBreaks {
-                                
-                                if breakEvent.title == "Lunch" {
-                                    
-                                    if blockedLunchDates.contains(breakEvent.startDate.midnight()) {
-                                        
-                                        if let index = dayBreaks.firstIndex(of: breakEvent) {
-                                            
-                                            dayBreaks.remove(at: index)
-                                            
-                                        }
-                                        
-                                    }
-                                    
-                                }
-                                
-                                if breakEvent.title == "Recess" {
-                                    
-                                    if blockedRecessDates.contains(breakEvent.startDate.midnight()) {
-                                        
-                                        if let index = dayBreaks.firstIndex(of: breakEvent) {
-                                            
-                                            dayBreaks.remove(at: index)
-                                            
-                                        }
-                                        
-                                    }
-                                    
-                                }
-
-                                
-                            }
-                            
-                        breaksArray.append(contentsOf: dayBreaks)
-                        
-                        print("Breaks: \(breaksArray.count)")
-                            
-                        }
-                        
-                    }
+                    breaksArray = breaks.getBreaks(events: events, overrideDefaults: true)
                     
                     self.UIDelegate?.log("There are \(breaksArray.count) breaks to be created")
                     
-                }
-                
-               
-                
-                if self.cancelled == true {
-                    
-                    store.reset()
-                    print("Cancelling")
-                    return
+                    for event in breaksArray {
+                        
+                        print("Break: \(event.title), \(event.startDate.formattedDate()), \(event.startDate.formattedTime())")
+                        
+                    }
                     
                 }
                 
                 if renameEvents.isEmpty == false {
+                
+                var renamingStatusString = "Renaming \(renameEvents.count) events..."
                     
-                
-                let renamingStatusString: String
-                
                 if breaksArray.isEmpty == false {
                     
-                    renamingStatusString = "Step 1/2: Renaming \(renameEvents.count) events..."
-                    
-                    
-                } else {
-                    
-                    renamingStatusString = "Renaming \(renameEvents.count) events..."
+                    renamingStatusString = "Step 1/2: \(renamingStatusString)"
                     
                 }
                 
@@ -228,28 +136,13 @@ class RNProcess {
                             oldEk.calendar = event.calendar!
                             oldEk.startDate = event.startDate
                             oldEk.endDate = event.endDate
-                            
-                            if let notes = oldEk.notes {
-                                
-                                oldEk.notes = "\(notes)\n\(RNSchoolIDStringStore.renamedString)"
-                                
-                            } else {
-                                
-                                oldEk.notes = RNSchoolIDStringStore.renamedString
-                                
-                            }
-                            
+                        
                             do {
-                                try store.save(oldEk, span: .thisEvent, commit: true)
-                                //try store.remove(oldEk, span: .thisEvent, commit: true)
-                                
+                                try self.renameEventSource.eventStore.save(oldEk, span: .thisEvent, commit: true)
                             } catch {
                                 
                                 print("it didn't work because \(error)")
                             }
-                            
-                            
-                            
                             
                             let doubleCounter = Double(renamedCount)
                             let doubleTotal = Double(renameEvents.count)
@@ -260,15 +153,9 @@ class RNProcess {
                             HLLDefaults.defaults.set(renamedCount, forKey: "RenamedEvents")
                             self.UIDelegate?.setProgress(progress)
                             
-                            
                         }
                         
-                        
-                        
                     }
-                    
-                    
-                    
                     
                 }
                     
@@ -289,7 +176,7 @@ class RNProcess {
                 
                 if self.cancelled == true {
                     
-                     store.reset()
+                    self.renameEventSource.eventStore.reset()
                     print("Cancelling")
                     return
                     
@@ -297,17 +184,15 @@ class RNProcess {
                 
                 if breaksArray.isEmpty == false {
                     
-                    if renameEvents.isEmpty {
+                    var breaksStatusString = "Adding \(breaksArray.count) breaks..."
+                    
+                    if !renameEvents.isEmpty {
                         
-                        self.UIDelegate?.setStatusString("Adding breaks...")
-                        
-                    } else {
-                        
-                        self.UIDelegate?.setStatusString("Step 2/2: Adding breaks...")
+                        breaksStatusString = "Step 2/2: \(breaksStatusString)"
                         
                     }
                     
-                    
+                    self.UIDelegate?.setStatusString(breaksStatusString)
                     //self.UIDelegate?.setProgress(0.0)
                     
                     HLLDefaults.defaults.set(0, forKey: "AddedBreaks")
@@ -316,18 +201,18 @@ class RNProcess {
                         
                         let addedCount = index+1
                         
-                        let event = EKEvent(eventStore: store)
+                        let event = EKEvent(eventStore: self.renameEventSource.eventStore)
                         event.title = breakEvent.title
                         event.startDate = breakEvent.startDate
                         event.endDate = breakEvent.endDate
-                        event.calendar = SchoolAnalyser.schoolCalendar
-                        event.notes = RNSchoolIDStringStore.createdString
+                        event.calendar = breakEvent.associatedCalendar
                         
                         do {
-                            try store.save(event, span: .thisEvent, commit: true)
+                            try self.renameEventSource.eventStore.save(event, span: .thisEvent, commit: true)
                             
                         } catch {
-                            print("it didn't work")
+                            
+                            print("Break didn't work cuz \(error)")
                         }
                         
                         let doubleCounter = Double(addedCount)
@@ -362,15 +247,15 @@ class RNProcess {
                 
                 if self.cancelled == true {
                     
-                     store.reset()
+                    self.renameEventSource.eventStore.reset()
                     print("Cancelling")
                     return
                     
                 }
                 
                 self.UIDelegate?.processStateChanged(to: .Done)
-                store.reset()
-                EventDataSource.isRenaming = false
+                self.renameEventSource.eventStore.reset()
+                HLLEventSource.isRenaming = false
                 //self.UIDelegate?.setStatusString("Renaming complete")
                 
             }

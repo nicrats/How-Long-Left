@@ -18,6 +18,10 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
         
     }
     
+    func sessionWatchStateDidChange(_ session: WCSession) {
+        
+    }
+        
     func sessionDidDeactivate(_ session: WCSession) {
         
     }
@@ -26,20 +30,6 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
     }
     
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        
-        DispatchQueue.main.async {
-            
-            if let updatedDate = message["UpdatedComplication"] as? Date {
-                
-                self.dataSourceChangedDelegates.forEach { $0.userInfoChanged(date: updatedDate) }
-                
-            }
-            
-        }
-        
-        
-    }
     
     func watchSupported() -> Bool {
         
@@ -73,6 +63,8 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
     
     func startSession() {
         
+        HLLDefaultsTransfer.shared.addTransferHandler(self)
+        
         if session?.activationState != WCSessionActivationState.activated {
         
         session?.delegate = self
@@ -80,113 +72,85 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
             
         }
     }
-    
-    private var dataSourceChangedDelegates = [DataSourceChangedDelegate]()
-    
-    func addDataSourceChangedDelegate<T>(delegate: T) where T: DataSourceChangedDelegate, T: Equatable {
-        dataSourceChangedDelegates.append(delegate)
-    }
-    
-    
-    
-    func removeDataSourceChangedDelegate<T>(delegate: T) where T: DataSourceChangedDelegate, T: Equatable {
-        for (index, dataSourceDelegate) in dataSourceChangedDelegates.enumerated() {
-            if let dataSourceDelegate = dataSourceDelegate as? T, dataSourceDelegate == delegate {
-                dataSourceChangedDelegates.remove(at: index)
-                break
-            }
-        }
-    }
+
     
 }
 
 extension WatchSessionManager {
     
-    // Sender
+    // Receiver
     
-    func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
-        DefaultsSync.shared.syncDefaultsToWatch()
+    func gotData(data: [String : Any]) {
+           
+        HLLDefaultsTransfer.shared.gotNewPreferences(data)
+        
+           
     }
     
-    func updateComplication() {
+    func sendData(_ data: [String:Any]) {
         
-      //  validSession?.transferCurrentComplicationUserInfo(["UpdateComplication" : ""])
+        if let unwrappedSession = validSession {
+            
+            for transfer in unwrappedSession.outstandingFileTransfers {
+                
+                transfer.cancel()
+                
+            }
+            
+            for transfer in unwrappedSession.outstandingUserInfoTransfers {
+                
+                transfer.cancel()
+                
+            }
+            
+            
+        }
         
-    }
-    
-    
-    
-    func sendMessage(info: [String : Any]) {
-    
-        WatchSessionManager.sharedManager.startSession()
+        
+        
+        print("Sendd")
+            print("Start3")
+            self.validSession?.sendMessage(data, replyHandler: nil, errorHandler: nil)
+            self.validSession?.transferUserInfo(data)
         
         do {
-            
-            try self.validSession?.updateApplicationContext(info)
-            
+        
+            try self.validSession?.updateApplicationContext(data)
+                
         } catch {
             
-        //    print("Failed")
+           print("Error updating application context")
             
         }
         
-        if session?.isReachable == true {
-        
-        validSession?.sendMessage(info, replyHandler: nil, errorHandler: { Error in
-            
-            do {
-                
-                try self.validSession?.updateApplicationContext(info)
-                
-            } catch {
-                
-             //   print("Failed")
-                
-            }
-            
-            
-        })
-        
-        }
-            
-            
-            let _ = validSession?.transferUserInfo(info)
-            
         
     }
     
     
-    func transferUserInfo(userInfo: [String : Any]) -> WCSessionUserInfoTransfer? {
-        return validSession?.transferUserInfo(userInfo)
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         
+        gotData(data: message)
+        
+    }
+    
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        
+        gotData(data: applicationContext)
     }
     
     
     
-    func updateContext(userInfo: [String : Any]) {
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
         
-        
-        
-            validSession?.sendMessage(userInfo, replyHandler: nil, errorHandler: { Error in
-                
-                do {
-                    
-                    try self.validSession?.updateApplicationContext(userInfo)
-                    
-                } catch {
-                    
-                 //   print("Failed")
-                    
-                }
-
-                
-            })
-        
-        
-            }
-    
-    
+        gotData(data: userInfo)
+    }
 }
-protocol DataSourceChangedDelegate {
-    func userInfoChanged(date: Date)
+
+extension WatchSessionManager: DefaultsTransferHandler {
+    
+    func transferDefaultsDictionary(_ defaultsToTransfer: [String : Any]) {
+        self.sendData(defaultsToTransfer)
+    }
+    
+    
 }

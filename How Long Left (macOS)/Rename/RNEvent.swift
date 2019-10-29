@@ -18,7 +18,7 @@ class RNEvent {
     }
     
     var selected = true
-    var oldName = ""
-    var newName = ""
+    var oldName: String
+    var newName: String
     
 }

@@ -12,6 +12,7 @@ import Lottie
 class RNUIDoneViewController: NSViewController {
     @IBOutlet weak var infoLabel: NSTextField!
     
+    @IBOutlet weak var automaticallyPromptButton: NSButton!
     var parentController: ControllableTabView!
     @IBOutlet weak var doneAnimationView: AnimationView!
     
@@ -28,7 +29,7 @@ class RNUIDoneViewController: NSViewController {
     
     override func viewDidLoad() {
         parentController = (self.parent as! ControllableTabView)
-        playDoneAnimation()
+        
         
         super.viewDidLoad()
         // Do view setup here.
@@ -74,13 +75,36 @@ class RNUIDoneViewController: NSViewController {
             
             self.infoLabel.stringValue = infoString
             
+            if HLLDefaults.rename.promptToRename {
+                
+                self.automaticallyPromptButton.state = .on
+                
+            } else {
+                
+                self.automaticallyPromptButton.state = .off
+            }
+            
         }
             
         
-            
+       playDoneAnimation()
         
         
     }
+    
+    @IBAction func promptClicked(_ sender: NSButton) {
+        
+        if sender.state == .on {
+            HLLDefaults.rename.promptToRename = true
+            
+        } else {
+            
+           HLLDefaults.rename.promptToRename = false
+        }
+        
+        
+    }
+    
     
     @IBAction func doneClicked(_ sender: NSButton) {
         

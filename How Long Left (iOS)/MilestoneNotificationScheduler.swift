@@ -1,5 +1,5 @@
 //
-//  MilestoneNotificationScheduler.swift
+//  EventNotificationScheduler.swift
 //  How Long Left (iOS)
 //
 //  Created by Ryan Kontos on 4/2/19.
@@ -11,15 +11,11 @@ import UIKit
 import UserNotifications
 
 class MilestoneNotificationScheduler {
-
-    let cal = EventDataSource()
+    
     var hasPermission = true
-    let schoolAnalyser = SchoolAnalyser()
     
     init() {
-        
         getAccess()
-        
     }
     
     func getAccess() {
@@ -71,7 +67,7 @@ class MilestoneNotificationScheduler {
         center.requestAuthorization(options: [.alert, .sound, .badge])
         { (granted, error) in
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
             
             self.hasPermission = granted
             
@@ -81,10 +77,8 @@ class MilestoneNotificationScheduler {
             
               //  print("Scheduling notifications with milestones \(HLLDefaults.notifications.milestones)")
                 
-                self.cal.updateEventStore()
-                self.schoolAnalyser.analyseCalendar()
-                var eventsArray = self.cal.getCurrentEvents()
-                eventsArray.append(contentsOf: self.cal.getUpcomingEventsToday())
+                var eventsArray = HLLEventSource.shared.getCurrentEvents()
+                eventsArray.append(contentsOf: HLLEventSource.shared.getUpcomingEventsToday())
             
           UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
             
@@ -112,7 +106,7 @@ class MilestoneNotificationScheduler {
                             
                         }
                         
-                        content.title = "\(event.title) \(event.endsInString) in \(milestoneMin) \(minText)."
+                        content.title = "\(event.title) \(event.countdownStringEnd) in \(milestoneMin) \(minText)."
                         
                     }
                                     
@@ -234,7 +228,7 @@ class MilestoneNotificationScheduler {
             
             }
         
-        }
+            }
             
         }
         

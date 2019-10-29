@@ -36,13 +36,17 @@ class UpcomingEventStringGenerator {
                     
                     if nextEvent.title.containsAnyOfThese(Strings: ["Recess","Lunch"]), SchoolAnalyser.schoolMode == .Magdalene {
                         
-                        if let afterNextEvent = upcomingEvents[safe: 1] {
+                        if upcomingEvents.indices.contains(1) {
+                     
+                            let afterNextEvent = upcomingEvents[1] 
                             
                             nextNonBreakEvent = afterNextEvent
                             
                             returnString = "\(returnString!), then \(afterNextEvent.title)"
                             
-                        }
+                        
+                        
+                    }
                         
                     } else {
                         

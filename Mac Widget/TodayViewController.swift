@@ -19,23 +19,30 @@ class TodayViewController: NSViewController, NCWidgetProviding {
     
     var timer = Timer()
     let timerStringGenerator = CountdownStringGenerator()
-    let cal = EventDataSource()
+    var cal = EventDataSource()
     var current: HLLEvent?
     
-    @IBOutlet weak var endsInLabel: NSTextField!
-    @IBOutlet weak var countdownLabel: NSTextField!
+    @IBOutlet weak var label: NSTextField!
     
-    
+    var newNibName: String?
     
     override var nibName: NSNib.Name? {
-        return NSNib.Name("TodayViewController")
+        
+        if let new = newNibName {
+            
+            return NSNib.Name(new)
+            
+        } else {
+            
+             return NSNib.Name("TodayViewController")
+            
+        }
+        
+       
     }
     
     
     override func viewDidLoad() {
-        
-        endsInLabel.alphaValue = 0.75
-        countdownLabel.alphaValue = 0.75
         
         updateEventStore()
         timer = Timer(fireAt: Date(), interval: 0.5, target: self, selector: #selector(mainRun), userInfo: nil, repeats: true)
@@ -46,7 +53,7 @@ class TodayViewController: NSViewController, NCWidgetProviding {
             name: .EKEventStoreChanged,
             object: nil)
         
-        
+
         
     }
     
@@ -57,13 +64,29 @@ class TodayViewController: NSViewController, NCWidgetProviding {
         
         
     }
+    
+    func changeView() {
+        
+        
+        DispatchQueue.main.async {
+            
+            if self.newNibName != "NoEventOn" {
+                
+                
+                self.newNibName = "NoEventOn"
+                self.loadView()
+                
+                
+            }
+        
+    }
+        
+    }
 
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
        
         mainRun()
-        
         completionHandler(NCUpdateResult.newData)
-        
         
         
     }
@@ -72,34 +95,11 @@ class TodayViewController: NSViewController, NCWidgetProviding {
         
         self.current = self.cal.getCurrentEvent()
         
-        if let currentEvent = self.current {
-            
-            self.countdownLabel.isHidden = false
-            self.endsInLabel.font? = NSFont.systemFont(ofSize: self.eventFontSize, weight: NSFont.Weight.regular)
-            self.countdownLabel.font = NSFont.monospacedDigitSystemFont(ofSize: CGFloat(50), weight: NSFont.Weight.light)
-            self.countdownLabel.stringValue = self.timerStringGenerator.generateStatusItemString(event: currentEvent, justTimer: true)!
-            self.endsInLabel.stringValue = "\(currentEvent.title) \(currentEvent.endsInString) in"
-            
-            if currentEvent.endDate.timeIntervalSinceNow < 1 {
-                
-                self.current = self.cal.getCurrentEvent()
-                
-            }
-            
-        } else {
-            
-            self.countdownLabel.isHidden = true
-            //   self.endsInLabel.isHidden = true
-            self.endsInLabel.stringValue = "No Events Are On"
-            self.endsInLabel.font? = NSFont.systemFont(ofSize: self.noEventFontSize, weight: NSFont.Weight.regular)
+       changeView()
             
             
         }
-        
-        
-        
-        
-    }
+    
 
 
 }

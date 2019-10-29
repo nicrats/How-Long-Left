@@ -11,23 +11,64 @@ import AppKit
 import HotKey
 import Preferences
 
-class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindowDelegate {
+class MenuController: NSObject, NSMenuDelegate, NSWindowDelegate {
     
     static var shared: MenuController?
-
     var menuCloseTimer: Timer?
     var windowVisTimer: Timer?
     static var awokeAt: Date?
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     let SIAttribute = [ NSAttributedString.Key.font: NSFont(name: "Helvetica Neue", size: 14.0)!]
-    let icon = NSImage(named: "statusIcon")!
+    let basicIcon = NSImage(named: "statusIcon")!
+    let colourIcon = NSImage(named: "ColourSI")!
+    
+    @IBOutlet weak var selectionTipMenuItem: NSMenuItem!
+    
+    var useColour = true
+    
+    var icon: NSImage {
+        
+        get {
+            
+            if HLLDefaults.statusItem.appIconStatusItem {
+                
+                return colourIcon
+                
+            } else {
+                
+                return basicIcon
+                
+            }
+            
+            
+        }
+        
+        
+    }
+    
+    var SITemplate: Bool {
+        
+        get {
+            
+            if HLLDefaults.statusItem.appIconStatusItem {
+                
+                return false
+                
+            } else {
+                
+                return true
+                
+            }
+            
+            
+        }
+        
+        
+    }
+    
     @IBOutlet weak var mainMenu: NSMenu!
     @IBOutlet weak var upcomingFutureRow: NSMenuItem!
-    @IBOutlet weak var upcomingEventsRow: NSMenuItem!
-    @IBOutlet weak var upcomingEventsMenu: NSMenu!
-    @IBOutlet weak var holidaysCountToRow: NSMenuItem!
     @IBOutlet weak var upcomingFutureMenu: NSMenu!
-    @IBOutlet weak var nextOccurRow: NSMenuItem!
     @IBOutlet weak var noCalAccessInfo: NSMenuItem!
     @IBOutlet weak var noCalAccessButton: NSMenuItem!
     @IBOutlet weak var edvalButton: NSMenuItem!
@@ -37,20 +78,19 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
     @IBOutlet weak var termMenu: NSMenu!
     static var menuIsOpen = false
     var inNoAccessMode = false
-    lazy var main = Main(aDelegate: self as MenuControllerProtocol)
+    lazy var main = HLLMain(aDelegate: self)
     let version = Version()
     var topShelfItems = [NSMenuItem]()
     var doingStatusItemAlert = false
     var currentStatusItemText: String?
     var statusItemIsEmpty = false
-    var clickedID: HLLEvent?
-    let nextOccurGen = NextOccurenceStringGenerator()
-    let nextOccurFind = EventNextOccurenceFinder()
     let schoolAnalyser = SchoolAnalyser()
     var countdownMenuItemEvents: [NSMenuItem: HLLEvent] = [:]
     var currentEventWindowButtons: [NSMenuItem: HLLEvent] = [:]
     var nextOccurMenuItems = [NSMenuItem]()
 
+    
+    
     private var hotKey: HotKey? {
         didSet {
             
@@ -79,8 +119,8 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
                 
             }
         }
+        
     }
-    
     
     var hotKeyState = HLLHotKeyOption.Off
     
@@ -94,28 +134,41 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
         return Date()
     }
     
- 
-    
     override func awakeFromNib() {
         
-        self.main.mainRunLoop()
+        self.statusItem.isVisible = true
+        self.statusItem.button?.imagePosition = .imageLeft
+        
+        DispatchQueue.main.async {
+        
         MenuController.shared = self
         
-        schoolAnalyser.analyseCalendar()
+            
+           // self.statusItem.behavior = .
+            
+            self.main = HLLMain(aDelegate: self)
         print("SA5")
         
             let currentVersion = Version.currentVersion
         
         let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
         
+            if #available(OSX 10.14, *) {
+            
+                self.statusItem.button?.image = self.icon
+            
+            } else {
+                
+                self.statusItem.image = self.icon
+                
+            }
             self.appInfoRow.title = "How Long Left \(currentVersion) (\(build!))"
-        
-        
             self.statusItem.menu = self.mainMenu
-            self.icon.isTemplate = true
-            self.statusItem.image = self.icon
+            self.icon.isTemplate = self.SITemplate
             self.mainMenu.removeItem(at: 0)
             self.mainMenu.delegate = self as NSMenuDelegate
+            
+        }
         
     }
     
@@ -130,15 +183,36 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
         
     }
     
-
+    
+    @IBAction func clearSelected(_ sender: NSMenuItem) {
+        
+        SelectedEventManager.selectedEvent = nil
+        
+    }
     
     
     func menuWillOpen(_ menu: NSMenu) {
         
-        
         if menu == mainMenu {
            MenuController.menuIsOpen = true
+            
             main.runMainMenuUIUpdate(checkOpen: true)
+            
+          
+            
+            let key = "ShownSelectionTip"
+            
+            
+            if HLLDefaults.defaults.bool(forKey: key) {
+                
+                selectionTipMenuItem.isHidden = true
+                
+            } else {
+                
+                HLLDefaults.defaults.set(true, forKey: key)
+                selectionTipMenuItem.isHidden = false
+                
+            }
             
             if SchoolAnalyser.schoolMode == .Magdalene, HLLDefaults.magdalene.showEdvalButton == true {
                 
@@ -153,22 +227,15 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
             
             if NSEvent.modifierFlags.contains(NSEvent.ModifierFlags.option) {
                 
-                
                 appInfoRow.isHidden = false
-                
-                
-                
                 
             } else {
                 
                 appInfoRow.isHidden = true
             }
             
-            if EventDataSource.accessToCalendar == .Denied {
+            if HLLEventSource.accessToCalendar == .Denied {
             
-                upcomingEventsRow.isHidden = true
-                nextOccurRow.isHidden = true
-                upcomingFutureRow.isHidden = true
                 noCalAccessInfo.isHidden = false
                 noCalAccessButton.isHidden = false
                 
@@ -178,6 +245,22 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
                 noCalAccessButton.isHidden = true
                 
             }
+            
+            
+            
+            
+            upcomingFutureRow.isHidden = true
+            
+            if HLLDefaults.calendar.enabledCalendars.isEmpty || HLLEventSource.accessToCalendar == .Denied {
+                
+                 upcomingFutureRow.isHidden = true
+                
+            } else if HLLDefaults.general.showUpcomingWeekMenu {
+                
+                upcomingFutureRow.isHidden = false
+                
+            }
+            
             
             if HLLDefaults.general.showUpdates == false {
                 
@@ -192,9 +275,7 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
     var settingHotKey = false
     
     func setHotkey(to: HLLHotKeyOption) {
-        
-       
-        
+
         if to != hotKeyState, settingHotKey == false {
         settingHotKey = true
             
@@ -236,8 +317,7 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
         
     }
     
-    func updateStatusItem(with text: String?) {
-        
+    func updateStatusItem(with text: String?, selected: Bool = false) {
         
         
         if self.doingStatusItemAlert == false {
@@ -248,14 +328,50 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
                     
                     [unowned self] in
                     
-                self.statusItem.image = nil
-                self.statusItem.attributedTitle = NSAttributedString(string: unwrappedText, attributes: self.SIAttribute)
-                self.currentStatusItemText = unwrappedText
-                self.statusItemIsEmpty = false
+                    if selected {
+                        
+                        if #available(OSX 10.14, *) {
+                        
+                            self.statusItem.button?.image = NSImage(named: NSImage.menuOnStateTemplateName)
+                            
+                        } else {
+                            
+                            self.statusItem.image = NSImage(named: NSImage.menuOnStateTemplateName)
+                            
+                            
+                        }
+                        
+                        self.icon.isTemplate = true
+                        
+                    } else {
+                        
+                        if #available(OSX 10.14, *) {
+                        
+                            self.statusItem.button?.image = nil
+                            
+                        } else {
+                            
+                            self.statusItem.image = nil
+                            
+                        }
+                        self.icon.isTemplate = self.SITemplate
+                        
+                    }
+                    
+                if #available(OSX 10.14, *) {
                 
+                    self.statusItem.button?.attributedTitle = NSAttributedString(string: unwrappedText, attributes: self.SIAttribute)
+                
+                } else {
+                    
+                    self.statusItem.attributedTitle = NSAttributedString(string: unwrappedText, attributes: self.SIAttribute)
+
                 }
-                
-            
+                    
+                    self.currentStatusItemText = unwrappedText
+                    self.statusItemIsEmpty = false
+                    
+                }
         
         } else {
                 
@@ -263,13 +379,29 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
             
                 [unowned self] in
                 
-            if self.statusItem.title != nil {
+            if #available(OSX 10.14, *) {
+                
+                if self.statusItem.button?.title != nil {
             
-            self.statusItemIsEmpty = true
-            self.statusItem.attributedTitle = nil
-            self.statusItem.image = self.icon
+                self.statusItemIsEmpty = true
+                self.statusItem.button?.title = ""
+                self.statusItem.button?.image = self.icon
+                self.icon.isTemplate = self.SITemplate
                 
             }
+                
+        } else {
+                
+            if self.statusItem.title != nil {
+                
+                self.statusItemIsEmpty = true
+                self.statusItem.attributedTitle = nil
+                self.statusItem.image = self.icon
+                self.icon.isTemplate = self.SITemplate
+                    
+        }
+                
+        }
                 
             }
             
@@ -281,10 +413,14 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
             
     }
     
-    func doStatusItemAlert(with strings: [String]) {
+    var currentAlertRequestDate = Date()
+    
+    func doStatusItemAlert(with strings: [String], showEachItemFor: Double = 1.5) {
         
-        let waitTime = 1.5
         // Set how long each text item should show.
+        let requestDate = Date()
+        currentAlertRequestDate = requestDate
+        
         
         if HLLDefaults.statusItem.mode != .Off {
         
@@ -299,19 +435,34 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + scheduledCycle) {
                         
-                        let myAttrString = NSAttributedString(string: item, attributes: self.SIAttribute)
+                        if requestDate == self.currentAlertRequestDate {
                         
-                            self.statusItem.image = nil
-                            self.statusItem.attributedTitle = myAttrString
+                        let attributedString = NSAttributedString(string: item, attributes: self.SIAttribute)
+                        
+                            if #available(OSX 10.14, *) {
+                                
+                                self.statusItem.button?.image = nil
+                                self.statusItem.button?.isTransparent = self.SITemplate
+                                self.statusItem.button?.attributedTitle = attributedString
+                                
+                            } else {
+                                
+                                self.statusItem.image = nil
+                                self.icon.isTemplate = self.SITemplate
+                                self.statusItem.attributedTitle = attributedString
+                                
+                            }
+                            
+                        }
                     }
                     
-                    scheduledCycle += waitTime
+                    scheduledCycle += showEachItemFor
                     
                 }
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + scheduledCycle) {
                     self.doingStatusItemAlert = false
-                    self.main.updateCalendarData(doGlobal: false)
+                    self.main.mainRunLoop()
                 }
                 
             }
@@ -330,240 +481,25 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
         
         topShelfItems.removeAll()
         
+        if inNoAccessMode {
+            return
+        }
+        
         for menuItem in items.reversed() {
         topShelfItems.append(menuItem)
         self.mainMenu.insertItem(menuItem, at: 0)
         }
         
-        
     }
-    
-    func updateNextEventItem(text: String?) {
         
-        if let unwrappedText = text {
-         upcomingEventsRow.title = unwrappedText
-            
-        }
-        
-    }
-    
-    func updateTermDataMenu(termData: TermData?) {
-        
-        termRow.isHidden = true
-        
-        if let data = termData, HLLDefaults.magdalene.doHolidays == true, data.onNow == false {
-            
-            let submenu = NSMenu()
-            
-            for item in data.topRow {
-                
-                let menuItem = NSMenuItem()
-                menuItem.title = item
-                menuItem.isEnabled = false
-                submenu.addItem(menuItem)
-                
-            }
-            submenu.addItem(NSMenuItem.separator())
-            
-            for item in data.submenuItems {
-                
-                let menuItem = NSMenuItem()
-                menuItem.title = item
-                menuItem.isEnabled = false
-                submenu.addItem(menuItem)
-                
-            }
-            
-            termRow.title = data.menuString
-            termRow.submenu = submenu
-            termRow.isHidden = false
-            
-        } else {
-            
-            termRow.isHidden = true
-            
-        }
-        
-        
-        
-        
-    }
-    
-    
-    func updateUpcomingEventsMenu(data: upcomingDayOfEvents?) {
-        
-        if HLLDefaults.menu.listUpcoming == false || HLLDefaults.menu.topLevelUpcoming == true {
-            upcomingEventsRow.isHidden = true
-            return
-        } else {
-            upcomingEventsRow.isHidden = false
-        }
-        
-        
-        if let safeData = data {
-            
-        
-        if safeData.eventStrings.isEmpty == true {
-            
-            upcomingEventsRow.isHidden = true
-            return
-        }
-        
-
-        upcomingEventsMenu.removeAllItems()
-            
-            if safeData.headerStrings.isEmpty == false {
-                
-                for item in safeData.headerStrings {
-                    
-                    let menuItem : NSMenuItem = NSMenuItem()
-                    
-                    menuItem.title = item
-                    
-                        menuItem.isEnabled = false
-
-                    
-                    upcomingEventsMenu.addItem(menuItem)
-                    
-                    
-                    
-                }
-                
-                
-            }
-            
-            
-            let topSep = NSMenuItem.separator()
-            upcomingEventsMenu.addItem(topSep)
-            
-            for (index, itemData) in safeData.HLLEvents.enumerated() {
-            
-            let item = safeData.eventStrings[index]
-            let event = itemData
-            
-            let menuItem : NSMenuItem = NSMenuItem()
-            
-            menuItem.submenu = EventInfoSubmenuGenerator.shared.generateSubmenuContentsFor(event: event)
-            menuItem.title = item
-                
-                switch event.completionStatus {
-                    
-                case .NotStarted:
-                    menuItem.state = .off
-                case .InProgress:
-                    menuItem.state = .mixed
-                case .Done:
-                    menuItem.state = .on
-                }
-            
-            upcomingEventsMenu.addItem(menuItem)
-            
-        }
-        
-            
-            let bottomSep = NSMenuItem.separator()
-            upcomingEventsMenu.addItem(bottomSep)
-            
-            if safeData.footerStrings.isEmpty == false {
-                
-                for item in safeData.footerStrings {
-                    
-                    let menuItem : NSMenuItem = NSMenuItem()
-                    
-                    menuItem.title = item
-                    
-                    menuItem.isEnabled = false
-                    
-                    
-                    upcomingEventsMenu.addItem(menuItem)
-                    
-                    
-                    
-                }
-                
-                
-            }
-            
-        upcomingEventsRow.isEnabled = !safeData.HLLEvents.isEmpty
-        
-        } else {
-            
-            upcomingEventsRow.isHidden = true
-            return
-            
-        }
-    }
-    
     let eventMenuGen = EventListMenuGenerator()
     
-    func updateUpcomingWeekMenu(data: [upcomingDayOfEvents]) {
+    func updateUpcomingWeekMenu(with item: NSMenuItem) {
         
-        if HLLDefaults.general.showUpcomingWeekMenu == false {
-            upcomingFutureRow.isHidden = true
-            return
-        } else {
-            upcomingFutureRow.isHidden = false
-        }
-        
-        if data.isEmpty == true {
-            
-           upcomingFutureRow.isHidden = true
-            
-        }
-        
-        upcomingFutureMenu.removeAllItems()
-        
-        for (dataIndex, item) in data.enumerated() {
-            
-            let eventsSubmenu = eventMenuGen.generateEventListMenu(for: item.HLLEvents, includeDayHeader: false)
-            
-            
-            let dayMenuItem : NSMenuItem = NSMenuItem()
-            dayMenuItem.title = item.menuTitle
-            dayMenuItem.submenu = eventsSubmenu
-            
-            
-            
-            dayMenuItem.isEnabled = !item.eventStrings.isEmpty
-            
-            upcomingFutureMenu.addItem(dayMenuItem)
-            
-            if data.indices.contains(dataIndex+1) {
-                
-                if data[dataIndex].menuTitle.contains("Sunday"), data[dataIndex+1].menuTitle.contains("Monday") {
-                    
-                 
-                    
-                }
-                
-            }
-            
-            
-            if dataIndex == 0 {
-                
-               let seperator = NSMenuItem.separator()
-               upcomingFutureMenu.addItem(seperator)
-                
-            }
-            
-        }
-    }
-    
-    
-    func addHolidaysCountToRow(string: String?) {
-        
-        if let countToString = string {
-            
-            holidaysCountToRow.isHidden = false
-            holidaysCountToRow.title = countToString
-            
-            
-        } else {
-            
-            holidaysCountToRow.isHidden = true
-            
-        }
-        
+        upcomingFutureRow.title = item.title
+        upcomingFutureRow.submenu = item.submenu
+        upcomingFutureRow.isEnabled = item.isEnabled
+        upcomingFutureRow.state = item.state
     }
     
     func noCalendarAccessUIState(enabled: Bool) {
@@ -573,9 +509,7 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
         
         if enabled == true {
             inNoAccessMode = true
-            updateStatusItem(with: "⚠️")
-            
-            
+            updateStatusItem(with: "⚠️ No Cal Access")
             
         } else {
           inNoAccessMode = false
@@ -636,28 +570,17 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
         
         autoreleasepool {
         
+          NSApp.activate(ignoringOtherApps: true)
+            
+            
             
             vcs.removeAll()
         
             vcs.append(GeneralPreferenceViewController())
-            
             vcs.append(MenuPreferenceViewController())
-            
             vcs.append(StatusItemPreferenceViewController())
-
-            
-            
-        if EventDataSource.accessToCalendar == .Denied {
-            
-            vcs.append(CalendarPreferenceViewControllerNoAccess())
-            
-        } else {
-            
             vcs.append(CalendarPreferenceViewController())
-            
-        }
-        
-        vcs.append(NotificationPreferenceViewController())
+            vcs.append(NotificationPreferenceViewController())
         
         if SchoolAnalyser.privSchoolMode == .Magdalene {
             
@@ -675,11 +598,13 @@ class MenuController: NSObject, MenuControllerProtocol, NSMenuDelegate, NSWindow
             viewControllers: vcs
         )
         
-        MenuController.preferencesWindowController?.window?.delegate = self
+       
+           
+            MenuController.preferencesWindowController?.window?.delegate = self
         MenuController.preferencesWindowController?.window?.title = "How Long Left Preferences"
         MenuController.preferencesWindowController?.showWindow()
         
-        
+         MenuController.preferencesWindowController?.window?.collectionBehavior = [.fullScreenNone]
         
         
         }

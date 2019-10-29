@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol RNProcessUI {
+protocol RNProcessUIProtocol {
     
     func log(_ string: String)
     func setProgress(_ to: Double)

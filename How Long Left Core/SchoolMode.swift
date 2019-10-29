@@ -11,6 +11,5 @@ import Foundation
 enum SchoolMode: String {
     case None = "None"
     case Magdalene = "Magdalene"
-    case Jasmine = "Jasmine"
     case Unknown = "Unknown"
 }

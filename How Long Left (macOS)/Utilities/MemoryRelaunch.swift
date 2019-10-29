@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Cocoa
 
 class MemoryRelaunch {
     
@@ -20,7 +21,7 @@ class MemoryRelaunch {
         DispatchQueue.main.async {
             
         
-        if MenuController.preferencesWindowController?.window?.isVisible == false {
+        if NSApp.activationPolicy() != .regular {
             
             var info = mach_task_basic_info()
             var count = mach_msg_type_number_t(MemoryLayout<mach_task_basic_info>.size)/4

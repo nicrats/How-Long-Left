@@ -20,7 +20,7 @@ class RNDataStore {
     
     init() {
         
-        //EventDataSource.eventStore = EKEventStore()
+        //HLLEventSource.eventStore = EKEventStore()
         
         autoreleasepool {
         
@@ -42,11 +42,18 @@ class RNDataStore {
             
         }
     
-        let source = EventDataSource()
-        schoolAnalyser.analyseCalendar()
         print("SA2")
-        let yearEvents = source.fetchEventsFromPresetPeriod(period: .ThisYear)
+        let yearEvents = HLLEventSource.shared.fetchEventsFromPresetPeriod(period: .ThisYear)
         
+            for event in yearEvents {
+                
+                print("\(event.title)")
+                
+                
+            }
+            
+            print("Initing RNDS with \(yearEvents.count)")
+            
         magdaleneTitles = schoolAnalyser.getMagdaleneTitles(from: yearEvents)
         
            magdaleneTitlesCount = magdaleneTitles.count
@@ -107,7 +114,7 @@ class RNDataStore {
     
     func renameAvaliable() -> Bool {
         
-       return magdaleneTitlesCount == 0
+       return magdaleneTitlesCount != 0
         
     }
     
@@ -148,12 +155,10 @@ class RNDataStore {
         
         for item in oldNewDict {
             
-            if magdaleneTitles.contains(item.key) {
-            
             let event = RNEvent(old: item.key, new: item.value as! String)
             tempRE.append(event)
             
-            }
+            
         }
         
         

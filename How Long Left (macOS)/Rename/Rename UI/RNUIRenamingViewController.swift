@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class RNUIRenamingViewController: NSViewController, RNProcessUI {
+class RNUIRNProcessViewController: NSViewController, RNProcessUIProtocol {
     
     var parentController: ControllableTabView!
     
@@ -96,7 +96,9 @@ class RNUIRenamingViewController: NSViewController, RNProcessUI {
             
         }
         
-            self.verboseTextView.scrollToEndOfDocument(self)
+            if (NSMaxY(self.verboseTextView.visibleRect) - NSMaxY(self.verboseTextView.bounds) == 0.0) {
+                self.verboseTextView.scrollToEndOfDocument(nil)
+            }
             
         }
         
@@ -131,6 +133,8 @@ class RNUIRenamingViewController: NSViewController, RNProcessUI {
     
     func log(_ string: String) {
         
+        print("RNProcess: \(string)")
+        
         addLineToTextView(string)
         
     }
@@ -142,3 +146,4 @@ class RNUIRenamingViewController: NSViewController, RNProcessUI {
     
     
 }
+

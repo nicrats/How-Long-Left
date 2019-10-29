@@ -6,9 +6,6 @@ project 'How Long Left.xcodeproj'
 target 'How Long Left (iOS)' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-pod 'CryptoSwift'
-pod 'MarqueeLabel'
-pod 'DeviceKit'
 pod 'ReachabilitySwift'
   # Pods for How Long Left (iOS)
 

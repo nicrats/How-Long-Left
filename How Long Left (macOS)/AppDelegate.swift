@@ -8,15 +8,19 @@
 
 import Cocoa
 import Preferences
-//import Fabric
-//import Crashlytics
+import CloudKit
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
+
+        
         NSApp.activate(ignoringOtherApps: true)
+        
+        NSUserNotificationCenter.default.delegate = self
+        //aFabric.with([Crashlytics.self])
         
         #if DEBUG
         print("I'm running in DEBUG mode")
@@ -49,7 +53,37 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 NSWorkspace.shared.launchApplication("System Preferences")
             }
-        }
-    }
+        }    }
 
+    
+    func application(_ application: NSApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([NSUserActivityRestoring]) -> Void) -> Bool {
+        
+        DispatchQueue.main.async {
+            
+            if let id = userActivity.userInfo?["EventID"] as? String {
+                
+                print("Launching with \(id)")
+                
+                if let event = HLLEventSource.shared.findEventWithAppIdentifier(id: id) {
+                    
+                    EventUIWindowsManager.shared.launchWindowFor(event: event)
+                    
+                }
+                
+            }
+            
+            
+            
+        }
+        
+        
+        return true
+        
+    }
+    
+    func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String : Any]) {
+        
+        
+    }
+    
 }

@@ -42,7 +42,7 @@ func generateNextOccurenceItems(events: [HLLEvent]) -> [(String, [String])] {
         let infoMenuTimeInfo = "Time: \(eventTimeInfo)"
         var infoMenuPeriodInfo: String?
         
-        if let period = event.magdalenePeriod {
+        if let period = event.period {
             
             eventTimeInfo = "Period \(period)"
             infoMenuPeriodInfo = "Period: \(period)"

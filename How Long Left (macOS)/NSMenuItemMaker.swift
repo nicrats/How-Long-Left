@@ -9,9 +9,9 @@
 import Foundation
 import Cocoa
 
-class NSMenuHelper {
+extension NSMenuItem {
     
-    func makeItem(title: String, submenu: NSMenu? = nil, state: NSControl.StateValue = NSControl.StateValue.off, action: Selector? = nil, target: AnyObject? = nil) -> NSMenuItem {
+    class func makeItem(title: String, submenu: NSMenu? = nil, state: NSControl.StateValue = NSControl.StateValue.off, action: Selector? = nil, target: AnyObject? = nil) -> NSMenuItem {
         
         let item = NSMenuItem()
         item.title = title
@@ -19,28 +19,27 @@ class NSMenuHelper {
         item.state = state
         
         if action != nil {
-        
         item.action = action
-            
         }
         
         if target != nil {
-            
-            item.target = target
-            
+        item.target = target
         }
         
         if submenu != nil {
-            
         item.isEnabled = true
-            
         }
         
         return item
         
     }
     
-    func makeMenu(items: [NSMenuItem]) -> NSMenu {
+}
+
+
+extension NSMenu {
+    
+    class func makeMenu(items: [NSMenuItem]) -> NSMenu {
         
         let menu = NSMenu()
         for item in items {
@@ -53,6 +52,3 @@ class NSMenuHelper {
     
     
 }
-
-
-
