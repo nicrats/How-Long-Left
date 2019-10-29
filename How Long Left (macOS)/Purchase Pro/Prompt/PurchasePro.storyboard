@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="5fC-U9-eE6">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Controllable Tab View-->
+        <scene sceneID="D1M-ac-eUa">
+            <objects>
+                <tabViewController tabStyle="unspecified" id="T2U-89-M0M" customClass="ControllableTabView" customModule="How_Long_Left_macOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem id="Gmw-f1-agA"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="kAW-79-T5n">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="system"/>
+                        <connections>
+                            <outlet property="delegate" destination="T2U-89-M0M" id="fcb-Oc-rOy"/>
+                        </connections>
+                    </tabView>
+                    <connections>
+                        <outlet property="tabView" destination="kAW-79-T5n" id="lnh-4S-Ulk"/>
+                        <segue destination="bPS-K0-WsW" kind="relationship" relationship="tabItems" id="StE-WI-jdZ"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="qhy-MB-mBc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-586" y="284"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="el2-xt-mYh">
+            <objects>
+                <windowController storyboardIdentifier="PurchasePro" id="5fC-U9-eE6" sceneMemberID="viewController">
+                    <window key="window" title="How Long Left Pro" allowsToolTipsWhenApplicationIsInactive="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="X93-Wb-NMJ">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
+                        <rect key="contentRect" x="129" y="180" width="750" height="466"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+                        <value key="minSize" type="size" width="750" height="466"/>
+                        <value key="maxSize" type="size" width="750" height="466"/>
+                        <connections>
+                            <outlet property="delegate" destination="5fC-U9-eE6" id="zYW-F7-YwW"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="T2U-89-M0M" kind="relationship" relationship="window.shadowedContentViewController" id="EOw-E5-CAc"/>
+                    </connections>
+                </windowController>
+                <customObject id="LHC-7q-GLq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="216" y="-39"/>
+        </scene>
+        <!--Purchase Pro View Controller-->
+        <scene sceneID="3sZ-iS-5it">
+            <objects>
+                <customObject id="ABy-nQ-nni" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <viewController id="bPS-K0-WsW" customClass="PurchaseProViewController" customModule="How_Long_Left_macOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="5QN-QN-h9m">
+                        <rect key="frame" x="0.0" y="0.0" width="750" height="466"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BOq-9F-d3T">
+                                <rect key="frame" x="180" y="402" width="390" height="57"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="How Long Left Pro" id="JQu-CN-hrS">
+                                    <font key="font" metaFont="systemMedium" size="48"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="udp-qx-Sdh">
+                                <rect key="frame" x="411" y="127" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="ePU-h5-skF"/>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OTF-rU-tLb">
+                                <rect key="frame" x="253" y="85" width="244" height="245"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="245" id="3C4-DM-oxb"/>
+                                    <constraint firstAttribute="width" constant="244" id="4hV-54-iYE"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Pro Icon" id="lYy-uF-cTP"/>
+                            </imageView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IIl-Ag-uYV">
+                                <rect key="frame" x="34" y="10" width="104" height="32"/>
+                                <buttonCell key="cell" type="push" title="3 Day Trial" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Yfx-eD-SU4">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t6f-Ap-sjl">
+                                <rect key="frame" x="465" y="17" width="245" height="21"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gdY-rZ-Puh">
+                                        <rect key="frame" x="-6" y="-7" width="102" height="32"/>
+                                        <buttonCell key="cell" type="push" title="No thanks" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YHn-Xg-ke8">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aQ9-N3-yuh">
+                                        <rect key="frame" x="96" y="-7" width="155" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Purchase for $1.99" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZzA-ao-Ddi">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="purchaseClicked:" target="bPS-K0-WsW" id="uyD-cn-A77"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <box horizontalHuggingPriority="249" verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="D05-WH-7JR">
+                                <rect key="frame" x="40" y="46" width="670" height="5"/>
+                            </box>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a5z-zW-xEs">
+                                <rect key="frame" x="51" y="62" width="649" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="This purchase is completely optional. You're free to keep using How Long Left as is if you're not interested!" id="1ra-Fs-Vw9">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="114-5O-vcL">
+                                <rect key="frame" x="35" y="325" width="681" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="677" id="3Fr-Td-3Iz"/>
+                                    <constraint firstAttribute="height" constant="72" id="F5Z-cm-87Q"/>
+                                </constraints>
+                                <textFieldCell key="cell" alignment="center" id="vgb-YN-xPE">
+                                    <font key="font" metaFont="system" size="17"/>
+                                    <string key="title">Purchase to enable premium features, like the abilty to click any event in the menu to count it down (or count down to it), event countdown windows with progress bars, a more informative main menu, and more.</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="IIl-Ag-uYV" firstAttribute="leading" secondItem="5QN-QN-h9m" secondAttribute="leading" constant="40" id="1fE-6s-Xef"/>
+                            <constraint firstItem="D05-WH-7JR" firstAttribute="centerX" secondItem="5QN-QN-h9m" secondAttribute="centerX" id="2wB-mN-8SL"/>
+                            <constraint firstAttribute="bottom" secondItem="IIl-Ag-uYV" secondAttribute="bottom" constant="17" id="Aq8-qm-cbI"/>
+                            <constraint firstAttribute="trailing" secondItem="OTF-rU-tLb" secondAttribute="trailing" constant="253" id="B4M-E0-gM0"/>
+                            <constraint firstAttribute="bottom" secondItem="t6f-Ap-sjl" secondAttribute="bottom" constant="17" id="J1C-eZ-x5g"/>
+                            <constraint firstItem="BOq-9F-d3T" firstAttribute="centerX" secondItem="5QN-QN-h9m" secondAttribute="centerX" id="LXX-Qh-hog"/>
+                            <constraint firstItem="114-5O-vcL" firstAttribute="centerX" secondItem="5QN-QN-h9m" secondAttribute="centerX" id="QJ7-N0-et8"/>
+                            <constraint firstItem="OTF-rU-tLb" firstAttribute="top" secondItem="BOq-9F-d3T" secondAttribute="bottom" constant="72" id="crk-Qm-1xr"/>
+                            <constraint firstItem="D05-WH-7JR" firstAttribute="top" secondItem="a5z-zW-xEs" secondAttribute="bottom" constant="13" id="f2n-Tg-W04"/>
+                            <constraint firstAttribute="trailing" secondItem="D05-WH-7JR" secondAttribute="trailing" constant="40" id="gny-f3-4YK"/>
+                            <constraint firstItem="IIl-Ag-uYV" firstAttribute="top" secondItem="D05-WH-7JR" secondAttribute="bottom" constant="10" id="jEu-Gk-zgN"/>
+                            <constraint firstItem="BOq-9F-d3T" firstAttribute="top" secondItem="5QN-QN-h9m" secondAttribute="top" constant="7" id="oku-oV-ZsI"/>
+                            <constraint firstItem="a5z-zW-xEs" firstAttribute="centerX" secondItem="5QN-QN-h9m" secondAttribute="centerX" id="omU-g2-gw9"/>
+                            <constraint firstAttribute="trailing" secondItem="t6f-Ap-sjl" secondAttribute="trailing" constant="40" id="qKH-Yv-Pa8"/>
+                            <constraint firstItem="OTF-rU-tLb" firstAttribute="leading" secondItem="5QN-QN-h9m" secondAttribute="leading" constant="253" id="rck-Wp-jKY"/>
+                            <constraint firstItem="114-5O-vcL" firstAttribute="top" secondItem="BOq-9F-d3T" secondAttribute="bottom" constant="5" id="vCA-xu-hED"/>
+                            <constraint firstItem="IIl-Ag-uYV" firstAttribute="top" secondItem="D05-WH-7JR" secondAttribute="bottom" constant="10" id="vjn-M0-6YA"/>
+                            <constraint firstItem="D05-WH-7JR" firstAttribute="leading" secondItem="5QN-QN-h9m" secondAttribute="leading" constant="40" id="ygB-9s-ez9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="purchaseButton" destination="aQ9-N3-yuh" id="hAQ-RM-scx"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="227" y="573"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Pro Icon" width="1024" height="1024"/>
+    </resources>
+</document>

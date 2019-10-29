@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="MenuPreferenceViewController" customModule="How_Long_Left_macOS" customModuleProvider="target">
+            <connections>
+                <outlet property="listUpcomingButton" destination="uOS-Db-JpP" id="xRf-Wa-skc"/>
+                <outlet property="showNextOccurencesButton" destination="j0m-m9-7Bo" id="wIU-YZ-Wx6"/>
+                <outlet property="showUpcomingWeekButton" destination="xHT-cR-7QU" id="IrS-Rt-xum"/>
+                <outlet property="upcomingTypePopup" destination="6n4-dw-xAs" id="Pdz-I1-bV7"/>
+                <outlet property="view" destination="0CW-dO-GEY" id="7Fu-R4-NRj"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView identifier="MenuPreferenceView" id="0CW-dO-GEY">
+            <rect key="frame" x="0.0" y="0.0" width="466" height="170"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <popUpButton verticalHuggingPriority="750" id="6n4-dw-xAs">
+                    <rect key="frame" x="37" y="102" width="183" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <popUpButtonCell key="cell" type="push" title="In a dedicated submenu" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="yUs-20-6R7" id="pEb-GM-Oet">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" id="5Ng-hu-cqo">
+                            <items>
+                                <menuItem title="In the top level menu" id="XUB-iV-eKX">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                                <menuItem title="In a dedicated submenu" state="on" id="yUs-20-6R7"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <action selector="listUpcomingPopupClicked:" target="-2" id="mpf-Po-zrg"/>
+                    </connections>
+                </popUpButton>
+                <button verticalHuggingPriority="750" id="xHT-cR-7QU">
+                    <rect key="frame" x="18" y="79" width="214" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Show upcoming week submenu" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="j8p-Gt-N0q">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="showUpcomingWeekClicked:" target="-2" id="31Z-4E-4vw"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="LAl-Mc-wt3">
+                    <rect key="frame" x="37" y="62" width="327" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" title="Show a submenu containing all events within the next 7 days." id="6qC-z7-mQX">
+                        <font key="font" metaFont="message" size="11"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" id="j0m-m9-7Bo">
+                    <rect key="frame" x="18" y="39" width="187" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Show following occurences" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="pBb-Hk-ytR">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="showNextOccurencesClicked:" target="-2" id="Lra-tV-cE9"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="paI-RN-LWH">
+                    <rect key="frame" x="37" y="24" width="329" height="14"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" title="Show the following occurence of an event in its submenu." id="i89-Ti-pJk">
+                        <font key="font" metaFont="message" size="11"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" id="uOS-Db-JpP">
+                    <rect key="frame" x="18" y="130" width="151" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="List upcoming events" bezelStyle="regularSquare" imagePosition="left" continuous="YES" state="on" inset="2" id="iJl-Fh-Q2p">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="listUpcomingClicked:" target="-2" id="gvy-ab-Ugo"/>
+                    </connections>
+                </button>
+            </subviews>
+            <point key="canvasLocation" x="55" y="88"/>
+        </customView>
+    </objects>
+</document>

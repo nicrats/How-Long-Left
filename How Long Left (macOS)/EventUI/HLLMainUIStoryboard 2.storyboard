@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="PT7-yJ-VUT">
+            <objects>
+                <windowController storyboardIdentifier="MainUI" id="7Yu-bl-Y3O" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="QEv-Ww-JeY">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="249" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+                        <connections>
+                            <outlet property="delegate" destination="7Yu-bl-Y3O" id="cfk-QC-e5s"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="udZ-Tf-Tob" kind="relationship" relationship="window.shadowedContentViewController" id="A8m-qH-8Cg"/>
+                    </connections>
+                </windowController>
+                <customObject id="tyc-xQ-qZV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="834" y="-424"/>
+        </scene>
+        <!--MainUI View Controller-->
+        <scene sceneID="fMv-ET-2bC">
+            <objects>
+                <viewController id="udZ-Tf-Tob" customClass="MainUIViewController" customModule="How_Long_Left_macOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="OO0-Dl-sNw">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="400"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="Foa-8k-fqd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="974" y="42"/>
+        </scene>
+        <!--MainUI View Controller-->
+        <scene sceneID="zLh-U4-ZoL">
+            <objects>
+                <viewController id="ABA-BE-mZm" customClass="MainUIViewController" customModule="How_Long_Left_macOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="lec-c7-229">
+                        <rect key="frame" x="0.0" y="0.0" width="501" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="scz-st-5Cb">
+                                <rect key="frame" x="217" y="134" width="66" height="31"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="CFj-GQ-q4p">
+                                    <font key="font" metaFont="system" size="26"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="titleLabel" destination="scz-st-5Cb" id="XXZ-x8-NyY"/>
+                    </connections>
+                </viewController>
+                <customObject id="4Pu-bl-4kQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="99" y="399"/>
+        </scene>
+    </scenes>
+</document>
