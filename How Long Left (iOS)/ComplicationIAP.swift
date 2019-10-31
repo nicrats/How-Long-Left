@@ -8,7 +8,6 @@
 
 import Foundation
 import StoreKit
-import CryptoSwift
 
 enum IAPHandlerAlertType{
     case disabled
@@ -48,7 +47,7 @@ class IAPHandler: NSObject {
             let ID = UIDevice().identifierForVendor!
             let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
             let salt = String((0..<6).map{ _ in letters.randomElement()! })
-            let hash = "\(ID)-\(salt)".sha256()
+            let hash = "\(ID)-\(salt)"
             
             HLLDefaults.defaults.set(salt, forKey: "ComplicationSalt")
             HLLDefaults.defaults.set(hash, forKey: "ComplicationHash")
@@ -79,7 +78,7 @@ class IAPHandler: NSObject {
         if let storedSalt = HLLDefaults.defaults.string(forKey: "ComplicationSalt"), let storedHash = HLLDefaults.defaults.string(forKey: "ComplicationHash") {
             
             let ID = UIDevice().identifierForVendor!
-            let newHash = "\(ID)-\(storedSalt)".sha256()
+            let newHash = "\(ID)-\(storedSalt)"
             
             if newHash == storedHash {
                 

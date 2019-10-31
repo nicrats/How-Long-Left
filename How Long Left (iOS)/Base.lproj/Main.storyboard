@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lm0-bw-XeS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lm0-bw-XeS">
     <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -166,7 +166,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="RzC-lQ-Cml">
                                             <rect key="frame" x="24.000000000000007" y="13.666666666666664" width="122.66666666666669" height="73"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Holidays" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YgJ-Oa-N7w" customClass="MarqueeLabel">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Holidays" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YgJ-Oa-N7w">
                                                     <rect key="frame" x="0.0" y="0.0" width="122.66666666666667" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="26" id="Tf1-Mg-o0v"/>
@@ -200,11 +200,11 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <connections>
-                                    <outlet property="colourBar" destination="Wqh-IV-h5B" id="lZU-LU-z6c"/>
-                                    <outlet property="colourBarBackground" destination="U2t-Re-S4p" id="En2-vh-hrY"/>
-                                    <outlet property="colourBarHeight" destination="3gE-bI-tPu" id="wmx-Tm-H1E"/>
-                                    <outlet property="countdownLabel" destination="E9N-SJ-uxq" id="hhg-KF-gr8"/>
-                                    <outlet property="titleLabel" destination="YgJ-Oa-N7w" id="QWP-V0-6WG"/>
+                                    <outlet property="countdownLabel" destination="E9N-SJ-uxq" id="4KR-W9-BAG"/>
+                                    <outlet property="progressBarBottom" destination="U2t-Re-S4p" id="AN1-2S-QBj"/>
+                                    <outlet property="progressBarHeight" destination="3gE-bI-tPu" id="yXl-dT-HyH"/>
+                                    <outlet property="progressBarTop" destination="Wqh-IV-h5B" id="yEz-U0-DIM"/>
+                                    <outlet property="titleLabel" destination="YgJ-Oa-N7w" id="ph4-6V-uCa"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -246,13 +246,13 @@
                                                         <constraint firstAttribute="width" constant="2" id="vdc-XK-0Qp"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Englishhahgfggggg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Opa-kx-IKi" customClass="MarqueeLabel">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Englishhahgfggggg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Opa-kx-IKi">
                                                     <rect key="frame" x="94.666666666666671" y="6" width="224.33333333333331" height="23"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room: 10g" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7a-Mi-Ig0" customClass="MarqueeLabel">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room: 10g" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7a-Mi-Ig0">
                                                     <rect key="frame" x="94.666666666666671" y="35.333333333333336" width="224.33333333333331" height="15.666666666666664"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
@@ -448,14 +448,14 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SiriCell" id="qxF-WJ-B7W" customClass="MainSiriCell" customModule="How_Long_Left_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="186.33333587646484" width="375" height="45"/>
+                                <rect key="frame" x="0.0" y="186.33333587646484" width="375" height="45.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qxF-WJ-B7W" id="OgE-oS-3Ka">
-                                    <rect key="frame" x="0.0" y="0.0" width="348" height="45"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="348" height="45.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add to Siri" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bxc-uZ-fMp">
-                                            <rect key="frame" x="16" y="12" width="92" height="21"/>
+                                            <rect key="frame" x="16" y="12.000000000000002" width="92" height="21.666666666666671"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="92" id="rNW-Ag-JXd"/>
                                             </constraints>
@@ -464,7 +464,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;How Long Left&quot;" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mGG-cy-wYm">
-                                            <rect key="frame" x="168" y="11.666666666666664" width="170" height="22"/>
+                                            <rect key="frame" x="168" y="11.666666666666666" width="170" height="22.666666666666671"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="FxR-Q6-cb0"/>
                                             </constraints>
@@ -490,7 +490,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ComplicationCell" id="twX-0h-fMD" customClass="MainComplicationCell" customModule="How_Long_Left_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="231.33333587646484" width="375" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="232.00000381469727" width="375" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="twX-0h-fMD" id="WnC-Bo-k2n">
                                     <rect key="frame" x="0.0" y="0.0" width="348" height="43.666667938232422"/>
@@ -532,7 +532,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MagdaleneCell" id="mmf-3u-dI3" customClass="MainMagdaleneCell" customModule="How_Long_Left_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="275.00000381469727" width="375" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="275.66667175292969" width="375" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mmf-3u-dI3" id="w4K-xZ-99W">
                                     <rect key="frame" x="0.0" y="0.0" width="348" height="43.666667938232422"/>
@@ -574,7 +574,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SyncCell" id="IGb-ro-p62" customClass="CloudSyncCell" customModule="How_Long_Left_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="318.66667175292969" width="375" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="319.33333969116211" width="375" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IGb-ro-p62" id="mBk-81-gij">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
@@ -872,7 +872,7 @@
                                             <outlet property="topLabel" destination="gcm-UD-sb3" id="c7B-1F-kYI"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="RegularHeightEventInfoItemCell" rowHeight="43" id="CYS-hp-Yjz" customClass="RegularHeightEventInfoItemCell" customModule="How_Long_Left_iOS" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="InfoItemCell" rowHeight="43" id="CYS-hp-Yjz" customClass="InfoItemCell" customModule="How_Long_Left_iOS" customModuleProvider="target">
                                         <rect key="frame" x="15" y="305.33333206176758" width="345" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CYS-hp-Yjz" id="moO-DJ-MaK">
@@ -901,11 +901,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="info" destination="i93-2L-R0g" id="2UA-Rm-yNA"/>
-                                            <outlet property="label" destination="hou-kf-U9d" id="eom-L5-U3v"/>
+                                            <outlet property="infoLabel" destination="i93-2L-R0g" id="H6q-Ea-6Xy"/>
+                                            <outlet property="typeLabel" destination="hou-kf-U9d" id="UBF-vn-tKy"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DoubleHeightEventInfoItemCell" rowHeight="69" id="QeX-TT-KgY" customClass="DoubleHeightEventInfoItemCell" customModule="How_Long_Left_iOS" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="StackedEventInfoItemCell" rowHeight="69" id="QeX-TT-KgY" customClass="StackedInfoItemCell" customModule="How_Long_Left_iOS" customModuleProvider="target">
                                         <rect key="frame" x="15" y="348.33333206176758" width="345" height="69"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QeX-TT-KgY" id="8G7-pZ-mVF">
@@ -937,8 +937,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="info" destination="Lqg-mA-V6G" id="xi2-kw-WsJ"/>
-                                            <outlet property="label" destination="Evv-tl-62e" id="rg0-p7-K4h"/>
+                                            <outlet property="infoLabel" destination="Lqg-mA-V6G" id="6Md-BK-ifi"/>
+                                            <outlet property="typeLabel" destination="Evv-tl-62e" id="AcU-1e-scz"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -960,39 +960,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BYB-ll-sel" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="RegularHeightEventInfoItemCell" rowHeight="43" id="L8Q-LV-pmw" customClass="RegularHeightEventInfoItemCell" customModule="How_Long_Left_iOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="345" height="43"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="L8Q-LV-pmw" id="sGF-pG-cD7">
-                        <rect key="frame" x="0.0" y="0.0" width="345" height="43"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NT9-T3-7gb">
-                                <rect key="frame" x="288.33333333333331" y="11.333333333333334" width="41.666666666666686" height="20.333333333333329"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3b-kL-9bo">
-                                <rect key="frame" x="14.999999999999996" y="11.333333333333334" width="41.666666666666657" height="20.333333333333329"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="N3b-kL-9bo" firstAttribute="centerY" secondItem="sGF-pG-cD7" secondAttribute="centerY" id="3BL-gq-cpR"/>
-                            <constraint firstItem="NT9-T3-7gb" firstAttribute="centerY" secondItem="sGF-pG-cD7" secondAttribute="centerY" id="IEb-DF-VAM"/>
-                            <constraint firstItem="NT9-T3-7gb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="N3b-kL-9bo" secondAttribute="trailing" constant="8" symbolic="YES" id="KiY-sW-vE0"/>
-                            <constraint firstAttribute="trailing" secondItem="NT9-T3-7gb" secondAttribute="trailing" constant="15" id="eHC-yM-QzU"/>
-                            <constraint firstItem="N3b-kL-9bo" firstAttribute="leading" secondItem="sGF-pG-cD7" secondAttribute="leading" constant="15" id="ert-w1-fGb"/>
-                        </constraints>
-                    </tableViewCellContentView>
-                    <connections>
-                        <outlet property="info" destination="NT9-T3-7gb" id="cmD-HE-5Vh"/>
-                        <outlet property="label" destination="N3b-kL-9bo" id="6s8-gk-KmL"/>
-                    </connections>
-                </tableViewCell>
             </objects>
             <point key="canvasLocation" x="-2228" y="1265.7635467980297"/>
         </scene>

@@ -62,7 +62,7 @@ class CurrentEventsTableViewController: UITableViewController {
             
             if let currentCell = cell as? CurrentEventCell {
                 
-                if currentCell.rowEvent.completionStatus == .Current {
+                if currentCell.event.completionStatus == .Current {
                     
                     currentCell.updateCell()
                     
@@ -89,7 +89,7 @@ class CurrentEventsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrentEventCell", for: indexPath) as! CurrentEventCell
-        cell.generate(from: events[indexPath.section])
+        cell.setup(with: events[indexPath.section])
         
         if RootViewController.hasFadedIn == false {
         

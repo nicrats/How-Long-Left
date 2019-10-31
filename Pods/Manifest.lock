@@ -1,47 +1,28 @@
 PODS:
-  - CryptoSwift (0.13.1)
-  - DeviceKit (1.11.0)
   - HotKey (0.1.1)
   - lottie-ios (3.1.0)
-  - MarqueeLabel (3.2.0):
-    - MarqueeLabel/ObjC (= 3.2.0)
-  - MarqueeLabel/ObjC (3.2.0)
   - Preferences (0.2.1)
   - ReachabilitySwift (4.3.0)
-  - SwipeableTabBarController (2.1.1)
 
 DEPENDENCIES:
-  - CryptoSwift
-  - DeviceKit
   - HotKey
   - lottie-ios
-  - MarqueeLabel
   - Preferences
   - ReachabilitySwift
-  - SwipeableTabBarController
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - CryptoSwift
-    - DeviceKit
     - HotKey
     - lottie-ios
-    - MarqueeLabel
     - Preferences
     - ReachabilitySwift
-  trunk:
-    - SwipeableTabBarController
 
 SPEC CHECKSUMS:
-  CryptoSwift: ff68c35a53e03177d31aaa2c1e8b3e010aeed6cb
-  DeviceKit: a3a86f8dddbe1317a9a243cdf9646858bf135dce
   HotKey: 0be143fd015544a63c51be6dc2066dbf455ced72
   lottie-ios: 9467723922dfff46f6d4e3019c32594a62440b7c
-  MarqueeLabel: 440a502b91a9179bd98f9fff00ba1150650a1c0e
   Preferences: 5543bfd757a2485a310683da977d661c0ae509a9
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
-  SwipeableTabBarController: 8f7f04275f510c5babb630f7be1161b5f28567e0
 
-PODFILE CHECKSUM: 9d39fc57d411dcd870e89d7843ad5bd08924bcb0
+PODFILE CHECKSUM: 50ccb1eec3abdbc5c6831e001044c21c88f05351
 
 COCOAPODS: 1.8.4

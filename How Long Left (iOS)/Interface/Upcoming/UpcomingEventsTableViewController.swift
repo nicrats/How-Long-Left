@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import MarqueeLabel
     
 class UpcomingEventsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ScrollUpDelegate, EventPoolUpdateObserver {
     
@@ -315,8 +314,8 @@ class upcomingCell: UITableViewCell {
     
     @IBOutlet weak var endLabel: UILabel!
     @IBOutlet weak var startLabel: UILabel!
-    @IBOutlet weak var titleLabel: MarqueeLabel!
-    @IBOutlet weak var locationLabel: MarqueeLabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var startsInTimer: UILabel!
     var rowEvent: HLLEvent!
     let gradient = CAGradientLayer()
@@ -369,32 +368,7 @@ class upcomingCell: UITableViewCell {
         
         calColBAr.backgroundColor = event.uiColor
         
-        titleLabel.fadeLength = 10
-        locationLabel.fadeLength = 10
-        
        
-        
-        
-        DispatchQueue.main.async {
-            
-            self.titleLabel.marqueeType = .MLContinuous
-            self.titleLabel.animationDelay = 6
-            self.titleLabel.scrollDuration = 15
-            
-            self.titleLabel.trailingBuffer = 20
-            
-            
-            self.locationLabel.marqueeType = .MLContinuous
-            self.locationLabel.animationDelay = 6
-            self.locationLabel.scrollDuration = 15
-            
-            self.locationLabel.trailingBuffer = 20
-            
-            self.titleLabel.triggerScrollStart()
-            self.locationLabel.triggerScrollStart()
-            
-        }
-        
         
     }
  

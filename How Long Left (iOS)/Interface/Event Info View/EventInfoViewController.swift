@@ -190,16 +190,16 @@ class EventInfoViewController: UIViewController, UITableViewDataSource, UITableV
         
         if pair.type == .nextOccurence {
             
-            let id = "DoubleHeightEventInfoItemCell"
-            let cell = tableView.dequeueReusableCell(withIdentifier: id, for: indexPath) as! DoubleHeightEventInfoItemCell
-            cell.setUp(infoType: pair.title, infoString: pair.info)
+            let id = "StackedEventInfoItemCell"
+            let cell = tableView.dequeueReusableCell(withIdentifier: id, for: indexPath) as! StackedInfoItemCell
+            cell.setup(type: pair.title, info: pair.info)
             return cell
             
         } else {
             
-           let id = "RegularHeightEventInfoItemCell"
-            let cell = tableView.dequeueReusableCell(withIdentifier: id, for: indexPath) as! RegularHeightEventInfoItemCell
-            cell.setUp(infoType: pair.title, infoString: pair.info)
+           let id = "InfoItemCell"
+            let cell = tableView.dequeueReusableCell(withIdentifier: id, for: indexPath) as! InfoItemCell
+            cell.setup(type: pair.title, info: pair.info)
             return cell
             
         }

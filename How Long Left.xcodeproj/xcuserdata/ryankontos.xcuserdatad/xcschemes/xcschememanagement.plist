@@ -32,7 +32,7 @@
 		<key>How Long Left (iOS) USA.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>22</integer>
+			<integer>8</integer>
 		</dict>
 		<key>How Long Left (iOS).xcscheme</key>
 		<dict>
@@ -82,7 +82,7 @@
 		<key>How Long Left Siri Extension.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>24</integer>
+			<integer>20</integer>
 		</dict>
 		<key>How Long Left Siri Intents.xcscheme_^#shared#^_</key>
 		<dict>
@@ -137,7 +137,7 @@
 		<key>WIdget (iOS).xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>23</integer>
+			<integer>19</integer>
 		</dict>
 		<key>iOS WIdget.xcscheme_^#shared#^_</key>
 		<dict>
