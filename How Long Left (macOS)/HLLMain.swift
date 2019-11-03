@@ -8,6 +8,7 @@
 import Foundation
 import HotKey
 import AppKit
+import StoreKit
 
 class HLLMain: NSObject, HLLCountdownController, NSWindowDelegate, EventPoolUpdateObserver {
     func eventPoolUpdated() {
@@ -30,27 +31,49 @@ class HLLMain: NSObject, HLLCountdownController, NSWindowDelegate, EventPoolUpda
             
         }
         
+        if doneLaunchEventPoolChecks == false {
+        
+            if self.magdaleneWifiCheck.isOnMagdaleneWifi() == true, SchoolAnalyser.privSchoolMode == SchoolMode.None, HLLDefaults.defaults.bool(forKey: "doneWifiSentralPrompt") != true {
+                
+                self.magdalenePrompts.presentSentralPrompt(reinstall: false)
+                HLLDefaults.defaults.set(true, forKey: "doneWifiSentralPrompt")
+                
+            } else if SchoolAnalyser.privSchoolMode == .Magdalene {
+                
+                HLLDefaults.defaults.set(false, forKey: "doneWifiSentralPrompt")
+                
+            }
+        
+            
+        self.magdalenePrompts.presentMagdaleneChangesPrompt()
+        HLLDefaults.appData.launchedVersion = Version.currentVersion
+         
+            doneLaunchEventPoolChecks = true
+            
+        }
+        
         updateCalendarData()
     }
     
     static var proUser = true
     
     static var shared: HLLMain?
-    lazy var updateInterval = 5
-    lazy var fastUpdateInterval = 0.30
-    lazy var minUpdateInterval = 0.75
-    lazy var calUpdateQueue = DispatchQueue(label: "calendarUpdate")
-    lazy var version = Version()
-    lazy var magdaleneWifiCheck = MagdaleneWifiCheck()
-    lazy var magdalenePrompts = MagdalenePrompts()
+    var doneLaunchEventPoolChecks = false
+    var updateInterval = 5
+    var fastUpdateInterval = 0.30
+    var minUpdateInterval = 0.75
+    var calUpdateQueue = DispatchQueue(label: "calendarUpdate")
+    var version = Version()
+    var magdaleneWifiCheck = MagdaleneWifiCheck()
+    var magdalenePrompts = MagdalenePrompts()
     var nextEventToStart: HLLEvent?
-    lazy var lastTotalCalendars = 0
+    var lastTotalCalendars = 0
     var CDUIWindowController : NSWindowController?
-    lazy var CDUIStoryboard = NSStoryboard()
+    var CDUIStoryboard = NSStoryboard()
     var MainUIWindowController : NSWindowController?
-    lazy var MainUIStoryboard = NSStoryboard()
+    var MainUIStoryboard = NSStoryboard()
     var welcomeWindowController : NSWindowController?
-    lazy var welcomeStoryboard = NSStoryboard()
+    var welcomeStoryboard = NSStoryboard()
     var mainTimer: Timer?
     var windowCheckTimer: Timer?
     var dataUpdateTimer: Timer!
@@ -59,28 +82,27 @@ class HLLMain: NSObject, HLLCountdownController, NSWindowDelegate, EventPoolUpda
     var lastCalendarUpdate: Date?
     let calendar = NSCalendar.current
     let schoolHolidays = SchoolHolidayEventFetcher()
-    lazy var eventEndUpdateInProgress = false
-    lazy var calendarUpdateInProgress = false
-    lazy var beenTooLongWithoutUpdate = false
-    lazy var updatingStatusItemTimer = false
-    lazy var fastTimerMode = false
-    lazy var statusItemTimerRunning = false
-    lazy var shownUpdateNotification = false
-    lazy var shownNoCalAccessNotification = false
-    lazy var shownBetaExpiredNoto = false
+    var eventEndUpdateInProgress = false
+    var calendarUpdateInProgress = false
+    var beenTooLongWithoutUpdate = false
+    var updatingStatusItemTimer = false
+    var fastTimerMode = false
+    var statusItemTimerRunning = false
+    var shownUpdateNotification = false
+    var shownNoCalAccessNotification = false
+    var shownBetaExpiredNoto = false
     var updateCalID: String?
-    lazy var confirmedPassedOnboarding = false
+    var confirmedPassedOnboarding = false
     lazy var preciseUpdateForMinuteChangeTimer = RepeatingTimer(time: minUpdateInterval)
     lazy var statusItemTimer = RepeatingTimer(time: fastUpdateInterval)
     lazy var eventMilestoneTracker = EventTimeRemainingMonitor(delegate: self)
-    lazy var defaults = HLLDefaults()
-    lazy var countdownStringGenerator = CountdownStringGenerator()
-    lazy var upcomingEventStringGenerator = UpcomingEventStringGenerator()
-    lazy var schoolAnalyser = SchoolAnalyser()
-    lazy var milestoneNotifications = MilestoneNotificationGenerator()
-    lazy var nextOccurStringGenerator = NextOccurenceStringGenerator()
-    lazy var holidaysStringGenerator = SchoolHolidaysStringGenerator()
-    lazy var memoryRelaunch = MemoryRelaunch()
+    var defaults = HLLDefaults()
+    var countdownStringGenerator = CountdownStringGenerator()
+    var upcomingEventStringGenerator = UpcomingEventStringGenerator()
+    var schoolAnalyser = SchoolAnalyser()
+    var milestoneNotifications = MilestoneNotificationGenerator()
+    
+    var memoryRelaunch = MemoryRelaunch()
     let topShelfGen = MenuTopShelfGenerator()
     let upcomingWeekGen = UpcomingWeekMenuGenerator()
     var nextUpcomingDayAll = [HLLEvent]()
@@ -170,7 +192,12 @@ class HLLMain: NSObject, HLLCountdownController, NSWindowDelegate, EventPoolUpda
     
     init(aDelegate: MenuController) {
         
+        
         super.init()
+        
+        self.welcomeStoryboard = NSStoryboard(name: "Onboarding", bundle: nil)
+        self.welcomeWindowController = self.welcomeStoryboard.instantiateController(withIdentifier: "Onboard1") as? NSWindowController
+        self.welcomeWindowController!.showWindow(self)
         
         HLLMain.shared = self
         self.getLinks()
@@ -215,8 +242,7 @@ class HLLMain: NSObject, HLLCountdownController, NSWindowDelegate, EventPoolUpda
                 
                     
                 
-                    let defaultsMigrator = DefaultsMigrator()
-                    defaultsMigrator.migrate1XXDefaults()
+                  
                     
                     self.welcomeStoryboard = NSStoryboard(name: "Onboarding", bundle: nil)
                     
@@ -242,6 +268,8 @@ class HLLMain: NSObject, HLLCountdownController, NSWindowDelegate, EventPoolUpda
             
             DispatchQueue.main.async {
            
+                
+                
             self.statusItemTimer.resume()
             self.preciseUpdateForMinuteChangeTimer.eventHandler = { self.preciseMainRunLoopTrigger() }
                 self.setupTimers()
@@ -263,19 +291,8 @@ class HLLMain: NSObject, HLLCountdownController, NSWindowDelegate, EventPoolUpda
             self.mainRunLoop()
             self.irregularLowPriorityUpdate()
         
-            if self.magdaleneWifiCheck.isOnMagdaleneWifi() == true, SchoolAnalyser.privSchoolMode == SchoolMode.None, HLLDefaults.defaults.bool(forKey: "doneWifiSentralPrompt") != true {
-                
-                self.magdalenePrompts.presentSentralPrompt(reinstall: false)
-                HLLDefaults.defaults.set(true, forKey: "doneWifiSentralPrompt")
-                
-            } else if SchoolAnalyser.privSchoolMode == .Magdalene {
-                
-                HLLDefaults.defaults.set(false, forKey: "doneWifiSentralPrompt")
-                
-            }
         
-        self.magdalenePrompts.presentMagdaleneChangesPrompt()
-        HLLDefaults.appData.launchedVersion = Version.currentVersion
+    
         
     }
     

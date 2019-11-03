@@ -35,7 +35,7 @@ class HLLEventInfoItemGenerator {
         
             if event.completionStatus == .Current {
             titleString = "Completion"
-            infoString = percentageCalculator.calculatePercentageDone(event: event, ignoreDefaults: true)
+            infoString = percentageCalculator.calculatePercentageDone(for: event)
             }
             
         case .location:

@@ -15,6 +15,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, EventPoolUpdateO
     @IBOutlet weak var colourBar: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var noEventsLabel: UILabel!
     
     var timer: Timer!
     var event: HLLEvent?
@@ -24,16 +25,23 @@ class TodayViewController: UIViewController, NCWidgetProviding, EventPoolUpdateO
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+   
         self.colourBar.layer.cornerRadius = 2.0
         self.colourBar.layer.masksToBounds = true
         
         self.colourBar.isHidden = true
         self.titleLabel.isHidden = true
         self.timerLabel.isHidden = true
+        self.noEventsLabel.isHidden = true
         
         HLLEventSource.shared.addEventPoolObserver(self)
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        DispatchQueue.global(qos: .default).async {
+            HLLEventSource.shared.updateEventPool()
+        }
     }
     
     @objc func updateTimer() {
@@ -45,7 +53,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, EventPoolUpdateO
             self.colourBar.isHidden = false
             self.titleLabel.isHidden = false
             self.timerLabel.isHidden = false
-            
+            self.noEventsLabel.isHidden = true
+                
             self.titleLabel.text = "\(unwrappedEvent.title) \(unwrappedEvent.countdownTypeString) in"
             
             let countdownString = self.countdownStringGenerator.generatePositionalCountdown(event: unwrappedEvent)
@@ -60,7 +69,10 @@ class TodayViewController: UIViewController, NCWidgetProviding, EventPoolUpdateO
             
         } else {
             
-            
+            self.colourBar.isHidden = true
+            self.titleLabel.isHidden = true
+            self.timerLabel.isHidden = true
+            self.noEventsLabel.isHidden = false
             
             
         }
@@ -75,13 +87,20 @@ class TodayViewController: UIViewController, NCWidgetProviding, EventPoolUpdateO
         // If an error is encountered, use NCUpdateResult.Failed
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
-        
+        updateTimer()
         completionHandler(NCUpdateResult.newData)
     }
     
     func eventPoolUpdated() {
     
-        self.event = HLLEventSource.shared.getCurrentEvents(includeHidden: true).first
+        self.event = HLLEventSource.shared.getCurrentAndUpcomingTodayOrdered().first
+       
+        if let selectedID = HLLDefaults.general.selectedEventID, let selectedEvent = HLLEventSource.shared.eventPool.first(where: {$0.identifier == selectedID}) {
+            
+            self.event = selectedEvent
+            
+        }
+        
         
         updateTimer()
         

@@ -157,9 +157,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     let notoGen = MilestoneNotificationScheduler()
-    
-    let sync = DefaultsSync()
-
 
 }
 

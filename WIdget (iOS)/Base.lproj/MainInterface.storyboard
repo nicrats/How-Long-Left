@@ -26,7 +26,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="c2i-ha-qR2">
                                 <rect key="frame" x="32" y="17.5" width="275" height="75"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event ends iny" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGa-WD-4eQ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event ends in" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGa-WD-4eQ">
                                         <rect key="frame" x="0.0" y="0.0" width="275" height="27"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="27" id="5Pw-Ww-0Pv"/>
@@ -46,14 +46,22 @@
                                     <constraint firstAttribute="height" constant="75" id="mTr-p6-6Gj"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lHf-kp-bcg">
+                                <rect key="frame" x="10" y="38" width="300" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="5lf-eP-aei" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="17" id="1kP-sT-KvS"/>
                             <constraint firstItem="c2i-ha-qR2" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" id="1uN-Ia-vgi"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="lHf-kp-bcg" secondAttribute="trailing" constant="10" id="G13-EW-p9v"/>
+                            <constraint firstItem="lHf-kp-bcg" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="10" id="PLt-xl-kcb"/>
                             <constraint firstItem="5lf-eP-aei" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" id="YRF-4R-Re7"/>
                             <constraint firstItem="5lf-eP-aei" firstAttribute="height" secondItem="c2i-ha-qR2" secondAttribute="height" id="fkO-fD-FBu"/>
                             <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="c2i-ha-qR2" secondAttribute="trailing" constant="13" id="fpC-mQ-Tyx"/>
+                            <constraint firstItem="lHf-kp-bcg" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" constant="-7" id="iOV-mA-Gcy"/>
                             <constraint firstItem="c2i-ha-qR2" firstAttribute="leading" secondItem="5lf-eP-aei" secondAttribute="trailing" constant="11" id="rBy-xL-z9Y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ssy-KU-ocm"/>
@@ -66,6 +74,7 @@
                     <size key="freeformSize" width="320" height="110"/>
                     <connections>
                         <outlet property="colourBar" destination="5lf-eP-aei" id="KXe-AE-evp"/>
+                        <outlet property="noEventsLabel" destination="lHf-kp-bcg" id="yvI-V5-Xgn"/>
                         <outlet property="timerLabel" destination="BLp-me-2Rz" id="cjt-EI-hgn"/>
                         <outlet property="titleLabel" destination="wGa-WD-4eQ" id="Jhx-Dd-61b"/>
                     </connections>

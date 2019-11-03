@@ -47,7 +47,7 @@ class PrimaryEventRowController: NSObject, EventRow {
                    
             } else {
                    
-                if let percent = percentageCalculator.calculatePercentageDone(event: event, ignoreDefaults: true) {
+                if let percent = percentageCalculator.calculatePercentageDone(for: event) {
                     
                     var infoString = "(\(percent) Done)"
                     

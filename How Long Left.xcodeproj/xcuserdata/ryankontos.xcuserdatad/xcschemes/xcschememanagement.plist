@@ -82,7 +82,7 @@
 		<key>How Long Left Siri Extension.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>20</integer>
+			<integer>22</integer>
 		</dict>
 		<key>How Long Left Siri Intents.xcscheme_^#shared#^_</key>
 		<dict>
@@ -137,7 +137,7 @@
 		<key>WIdget (iOS).xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>19</integer>
+			<integer>21</integer>
 		</dict>
 		<key>iOS WIdget.xcscheme_^#shared#^_</key>
 		<dict>

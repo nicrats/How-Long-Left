@@ -42,11 +42,52 @@ class EventInfoInterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
     
+    
     func updateTables() {
+        
+        
         
         infoSource = HLLEventInfoItemGenerator(event)
         updateCountdownTable()
         updateInfoTable()
+        
+        DispatchQueue.main.async {
+        
+            self.clearAllMenuItems()
+            if let visibilityString = self.event.visibilityString?.rawValue {
+            
+                self.addMenuItem(with: UIImage(named: "eye.slash.fill") ?? UIImage(), title: visibilityString, action: #selector(self.toggleVisibilty))
+   
+        }
+            
+            /*if HLLDefaults.general.selectedEventID == self.event.identifier {
+                               self.addMenuItem(with: UIImage(named: "eye.slash.fill") ?? UIImage(), title: "Deselect", action: #selector(self.select))
+                           } else {
+                               self.addMenuItem(with: UIImage(named: "eye.slash.fill") ?? UIImage(), title: "Select", action: #selector(self.select))
+                           }*/
+            
+        }
+        
+    }
+    
+    @objc func toggleVisibilty() {
+        
+        if let visibilityString = event.visibilityString {
+            EventVisibiltyActionHandler.shared.disableVisbiltyFor(visibilityString)
+        }
+    }
+    
+    @objc func select() {
+        
+        if HLLDefaults.general.selectedEventID == nil {
+            HLLDefaults.general.selectedEventID = event.identifier
+        } else {
+            HLLDefaults.general.selectedEventID = nil
+        }
+        
+        updateTables()
+        ComplicationUpdateHandler.shared.updateComplication(force: true)
+        HLLDefaultsTransfer.shared.userModifiedPrferences()
         
     }
     

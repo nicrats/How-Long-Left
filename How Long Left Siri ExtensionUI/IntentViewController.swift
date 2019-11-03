@@ -9,21 +9,32 @@
 import IntentsUI
 
 
-class IntentViewController: UIViewController, INUIHostedViewControlling {
+class IntentViewController: UIViewController, INUIHostedViewControlling, EventPoolUpdateObserver {
     
-    var currentEvent: HLLEvent?
-    var timer = Timer()
-    let timerStringGenerator = CountdownStringGenerator()
-    var cal = HLLEventSource()
-    var event: HLLEvent?
-    let schoolAnalyser = SchoolAnalyser()
-    
+    @IBOutlet weak var colourBar: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
-    @IBOutlet weak var infoLabel: UILabel!
-    @IBOutlet weak var doneInfoLabel: UILabel!
+    @IBOutlet weak var noEventsLabel: UILabel!
+    
+    var timer: Timer!
+    var event: HLLEvent?
+    
+    let countdownStringGenerator = CountdownStringGenerator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        timer = Timer(timeInterval: 0.5, target: self, selector: #selector(updateView), userInfo: nil, repeats: true)
+        RunLoop.main.add(timer, forMode: .common)
+        
+        self.colourBar.layer.cornerRadius = 2.0
+        self.colourBar.layer.masksToBounds = true
+        
+        self.colourBar.isHidden = true
+        self.titleLabel.isHidden = true
+        self.timerLabel.isHidden = true
+        self.noEventsLabel.isHidden = true
+        
         // Do any additional setup after loading the view.
     }
         
@@ -32,62 +43,60 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
     // Prepare your view controller for the interaction to handle.
     func configureView(for parameters: Set<INParameter>, of interaction: INInteraction, interactiveBehavior: INUIInteractiveBehavior, context: INUIHostedViewContext, completion: @escaping (Bool, Set<INParameter>, CGSize) -> Void) {
         // Do configuration here, including preparing views and calculating a desired size for presentation.
-        
     
-        if let currentEvent = cal.getCurrentEvent() {
-            
-                self.event = currentEvent
-            
-            
-            timer = Timer(fire: Date(), interval: 0.1, repeats: true, block: {_ in
-                
-                if let loopEvent = self.event {
-                    
-                    if loopEvent.endDate.timeIntervalSinceNow < 0 {
-                        
-                        self.timerLabel.isHidden = true
-                        self.infoLabel.isHidden = true
-                        self.doneInfoLabel.isHidden = false
-                        self.doneInfoLabel.text = "\(loopEvent.title) is done"
-                        
-                    } else {
-                      
-                        self.timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: self.timerLabel.font.pointSize, weight: .thin)
-                        self.timerLabel.isHidden = false
-                       self.infoLabel.isHidden = false
-                        self.doneInfoLabel.isHidden = true
-                        self.timerLabel.text = self.timerStringGenerator.generatePositionalCountdown(event: loopEvent)
-                        self.infoLabel.text = "\(loopEvent.title) ends in"
-                        
-                        
-                    }
-                    
-                    
-                    
-                    
-                    
-                }
-                
-            })
-            
-            RunLoop.main.add(timer, forMode: .common)
-            
-            
-            
-        } else {
-            
-            self.timerLabel.isHidden = true
-            self.infoLabel.isHidden = true
-            self.doneInfoLabel.isHidden = false
-            self.doneInfoLabel.text = "No events are on"
-            
-        }
         
+        HLLEventSource.shared.addEventPoolObserver(self)
+        HLLEventSource.shared.updateEventPool()
+        setup()
         
         completion(true, parameters, self.desiredSize)
     }
     
+    func setup() {
+        
+        self.event = HLLEventSource.shared.getCurrentAndUpcomingTodayOrdered().first
+        updateView()
+        
+    }
     
+    @objc func updateView() {
+        
+        if let unwrappedEvent = self.event {
+            
+            self.colourBar.isHidden = false
+            self.titleLabel.isHidden = false
+            self.timerLabel.isHidden = false
+            self.noEventsLabel.isHidden = true
+                
+            self.titleLabel.text = "\(unwrappedEvent.title) \(unwrappedEvent.countdownTypeString) in"
+            
+            let countdownString = self.countdownStringGenerator.generatePositionalCountdown(event: unwrappedEvent)
+                self.timerLabel.text = countdownString
+            
+            if let calendar = unwrappedEvent.associatedCalendar {
+                
+                self.colourBar.backgroundColor = UIColor(cgColor: calendar.cgColor)
+                
+            }
+            
+            
+        } else {
+            
+            self.colourBar.isHidden = true
+            self.titleLabel.isHidden = true
+            self.timerLabel.isHidden = true
+            self.noEventsLabel.isHidden = false
+            
+            
+        }
+        
+    }
+    
+    func eventPoolUpdated() {
+        DispatchQueue.main.async {
+            self.setup()
+        }
+    }
     
     var desiredSize: CGSize {
         return CGSize(width: 282, height: 105)

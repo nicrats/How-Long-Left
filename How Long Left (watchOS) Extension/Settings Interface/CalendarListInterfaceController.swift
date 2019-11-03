@@ -13,6 +13,7 @@ import EventKit
 class CalendarListInterfaceController: WKInterfaceController, DefaultsTransferObserver, SwitchListController {
 
     @IBOutlet weak var table: WKInterfaceTable!
+    @IBOutlet weak var useNewCalendarsSwitch: WKInterfaceSwitch!
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -30,6 +31,8 @@ class CalendarListInterfaceController: WKInterfaceController, DefaultsTransferOb
     
     func setup() {
         
+        useNewCalendarsSwitch.setOn(HLLDefaults.calendar.useNewCalendars)
+        
         let calendars = HLLEventSource.shared.getCalendars()
         
         table.setNumberOfRows(calendars.count, withRowType: "CalendarRow")
@@ -38,6 +41,7 @@ class CalendarListInterfaceController: WKInterfaceController, DefaultsTransferOb
             
             let row = table.rowController(at: index) as! CalendarRow
             row.setup(calendar, delegate: self)
+            row.rowSwitch.setColor(UIColor(cgColor: calendar.cgColor))
             
         }
         
@@ -97,6 +101,18 @@ class CalendarListInterfaceController: WKInterfaceController, DefaultsTransferOb
         setupMenuItem()
         
     }
+    
+    @IBAction func useNewCalendarsSwitched(_ value: Bool) {
+        
+        HLLDefaults.calendar.useNewCalendars = value
+        
+        DispatchQueue.global().async {
+            HLLEventSource.shared.updateEventPool()
+            HLLDefaultsTransfer.shared.userModifiedPrferences()
+        }
+        
+    }
+    
 
 }
 

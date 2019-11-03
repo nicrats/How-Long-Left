@@ -43,7 +43,7 @@ class InterfaceController: WKInterfaceController, EventPoolUpdateObserver, Defau
 
     override func willActivate() {
         
-        self.updateRows()
+        //self.updateRows(async: false)
         if doneInitalLaunch == false {
         
             updateTable()
@@ -53,12 +53,14 @@ class InterfaceController: WKInterfaceController, EventPoolUpdateObserver, Defau
             
             
             DispatchQueue.global(qos: .default).async {
-                self.updateTable()
                 self.updateRows()
+                self.updateTable()
                 HLLEventSource.shared.updateEventPool()
             }
             
         }
+        
+        setupMenuItems()
         
     }
 
@@ -83,8 +85,6 @@ class InterfaceController: WKInterfaceController, EventPoolUpdateObserver, Defau
             }
             
         }
-        
-        DispatchQueue.main.async {
         
         if fetchedEvents.isEmpty == false {
 
@@ -152,7 +152,7 @@ class InterfaceController: WKInterfaceController, EventPoolUpdateObserver, Defau
             }
         }
             
-        }
+        
             
         
     }
@@ -165,7 +165,7 @@ class InterfaceController: WKInterfaceController, EventPoolUpdateObserver, Defau
         
     }
     
-    @objc func updateRows() {
+    @objc func updateRows(async: Bool = true) {
         
         let count = self.eventsTable.numberOfRows
         
@@ -177,8 +177,16 @@ class InterfaceController: WKInterfaceController, EventPoolUpdateObserver, Defau
     
                         let countdownText = self.countdownStringGenerator.generatePositionalCountdown(event: event)
                         
-                        DispatchQueue.main.async {
+                        if async {
+                            
+                            DispatchQueue.main.async {
+                                row.updateTimer(countdownText)
+                            }
+                            
+                        } else {
+                            
                             row.updateTimer(countdownText)
+                            
                         }
                         
                         if event.completionStatus != row.rowCompletionStatus {
@@ -231,13 +239,29 @@ class InterfaceController: WKInterfaceController, EventPoolUpdateObserver, Defau
         }
     }
     
-    
-    @IBAction func settingsMenuTapped() {
-        settingsButtonPressed()
+    func setupMenuItems() {
+        
+        self.clearAllMenuItems()
+        self.addMenuItem(with: UIImage(), title: "Settings", action: #selector(settingsButtonPressed))
+        
+        /*if HLLDefaults.general.selectedEventID != nil {
+            
+            self.addMenuItem(with: UIImage(), title: "Clear Selection", action: #selector(clearSelection))
+            
+        }*/
+        
     }
     
-    
-    func settingsButtonPressed() {
+    @objc func clearSelection() {
+        
+        HLLDefaults.general.selectedEventID = nil
+        setupMenuItems()
+        ComplicationUpdateHandler.shared.updateComplication(force: true)
+        HLLDefaultsTransfer.shared.userModifiedPrferences()
+        
+    }
+ 
+    @objc func settingsButtonPressed() {
         
         self.pushController(withName: "SettingsMain", context: nil)
         

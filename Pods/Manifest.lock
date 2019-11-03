@@ -1,12 +1,14 @@
 PODS:
   - HotKey (0.1.1)
   - lottie-ios (3.1.0)
+  - MBCircularProgressBar (0.3.5)
   - Preferences (0.2.1)
   - ReachabilitySwift (4.3.0)
 
 DEPENDENCIES:
   - HotKey
   - lottie-ios
+  - MBCircularProgressBar
   - Preferences
   - ReachabilitySwift
 
@@ -16,13 +18,16 @@ SPEC REPOS:
     - lottie-ios
     - Preferences
     - ReachabilitySwift
+  trunk:
+    - MBCircularProgressBar
 
 SPEC CHECKSUMS:
   HotKey: 0be143fd015544a63c51be6dc2066dbf455ced72
   lottie-ios: 9467723922dfff46f6d4e3019c32594a62440b7c
+  MBCircularProgressBar: 0b795b722a5eb5b0923822f90474e2576a1a7855
   Preferences: 5543bfd757a2485a310683da977d661c0ae509a9
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
 
-PODFILE CHECKSUM: 50ccb1eec3abdbc5c6831e001044c21c88f05351
+PODFILE CHECKSUM: 88015adda93f55f3af4a829e76a4d25bbfbc1fa7
 
 COCOAPODS: 1.8.4

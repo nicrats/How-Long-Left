@@ -46,6 +46,7 @@ class EventInfoViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewWillAppear(_ animated: Bool) {
         
+        //self.navigationController?.navigationBar.tintColor = self.event.uiColor
         super.viewWillAppear(animated)
         updateInfoRows()
         cellUpdateTimer = Timer(timeInterval: 0.25, target: self, selector: #selector(updateInfoRows), userInfo: nil, repeats: true)

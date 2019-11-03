@@ -19,7 +19,8 @@ class FollowingOccurenceStore {
     
     func updateNextOccurenceDictionary(events: [HLLEvent]) {
         
-        self.nextOccurDictionary.removeAll()
+        
+        var returnDict = [String:HLLEvent]()
         
         if HLLDefaults.general.showNextOccurItems == false {
             return
@@ -33,18 +34,20 @@ class FollowingOccurenceStore {
             
             for innerEvent in sorted {
                 
-                
-                
                 let difFromEvent = innerEvent.endDate.timeIntervalSince(outerEvent.startDate)
                 
-                if innerEvent.title == outerEvent.title, nextOccurDictionary.keys.contains(innerEvent.identifier) == false, dif < 0, innerEvent.startDate != outerEvent.startDate, difFromEvent < 0, outerEvent.completionStatus == .Upcoming {
-                        self.nextOccurDictionary[innerEvent.identifier] = outerEvent
+                if innerEvent.title == outerEvent.title, returnDict.keys.contains(innerEvent.identifier) == false, dif < 0, innerEvent.startDate != outerEvent.startDate, difFromEvent < 0, outerEvent.completionStatus == .Upcoming {
+                        returnDict[innerEvent.identifier] = outerEvent
 
                 }
                 
             }
                 
         }
+           
+            self.nextOccurDictionary = returnDict
+            
+        
         
     }
     

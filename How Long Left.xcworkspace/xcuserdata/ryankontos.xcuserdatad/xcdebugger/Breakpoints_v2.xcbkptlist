@@ -195,7 +195,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "471"
             endingLineNumber = "471"
-            landmarkName = "hideTimerSeconds"
+            landmarkName = "showPercentage"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
@@ -211,7 +211,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "477"
             endingLineNumber = "477"
-            landmarkName = "hideTimerSeconds"
+            landmarkName = "showTitle"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
@@ -243,8 +243,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "484"
             endingLineNumber = "484"
-            landmarkName = "statusItem"
-            landmarkType = "14">
+            landmarkName = "showTitle"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -321,9 +321,9 @@
             filePath = "WIdget (iOS)/TodayViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "eventPoolUpdated()"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "widgetPerformUpdate(completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -337,9 +337,9 @@
             filePath = "WIdget (iOS)/TodayViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "eventPoolUpdated()"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "widgetPerformUpdate(completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -353,10 +353,10 @@
             filePath = "WIdget (iOS)/TodayViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "updateTimer()"
-            landmarkType = "7">
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "TodayViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -417,8 +417,8 @@
             filePath = "How Long Left (iOS)/Interface/Event Info View/EventInfoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
             landmarkName = "EventInfoViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -433,8 +433,8 @@
             filePath = "How Long Left (iOS)/Interface/Event Info View/EventInfoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "getInfoItemFor(indexPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -465,8 +465,8 @@
             filePath = "How Long Left (iOS)/Interface/Event Info View/EventInfoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "getSections()"
             landmarkType = "7">
          </BreakpointContent>
@@ -611,7 +611,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "179"
             endingLineNumber = "179"
-            landmarkName = "updateRows()"
+            landmarkName = "updateRows(async:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -627,7 +627,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "185"
             endingLineNumber = "185"
-            landmarkName = "updateRows()"
+            landmarkName = "updateRows(async:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -707,7 +707,39 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "157"
             endingLineNumber = "157"
-            landmarkName = "formattedTimeTwelve()"
+            landmarkName = "Date"
+            landmarkType = "21">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DE50BC69-7488-410A-B3CF-4E232BC6E29D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "How Long Left Siri ExtensionUI/IntentViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "30A3BB1D-EF9C-4E37-9F18-F7E06E3299FC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "How Long Left Core/School/Event Modifiers/EventTimeAdjuster.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "adjustTime(events:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

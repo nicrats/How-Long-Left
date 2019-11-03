@@ -66,9 +66,7 @@ class IAPRootView: UIViewController, IAPListener {
         
         restoreActivityIndicator.stopAnimating()
         
-        DispatchQueue.main.async {
-            DefaultsSync.shared.syncDefaultsToWatch()
-        }
+
         
         switch result {
             

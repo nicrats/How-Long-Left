@@ -9,17 +9,29 @@
 import Foundation
 import AppKit
 
-class OnboardingWindowController: NSWindowController {
+class OnboardingWindowController: NSWindowController, NSWindowDelegate {
     
     override func windowDidLoad() {
         
         NSApp.setActivationPolicy(.regular)
         NSApp.activate(ignoringOtherApps: true)
             self.window?.center()
-            self.window?.styleMask.remove(.resizable)
+           
             self.window?.level = .normal
             self.window?.makeKeyAndOrderFront(nil)
+            self.window?.delegate = self
         }
+    
+    func windowDidEndLiveResize(_ notification: Notification) {
+        if let w = self.window {
+            
+            let width = w.frame.width
+            let height = w.frame.height
+            
+            print("Window: \(width)*\(height)")
+            
+        }
+    }
     
 }
 

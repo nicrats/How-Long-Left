@@ -26,7 +26,7 @@ class MenuTopShelfGenerator {
         EventUIWindowsManager.shared.removeItems()
         SelectedEventManager.shared.removeItems()
         
-        if let selected = SelectedEventManager.selectedEvent, selected != FeaturedEventsStore.featuredEvent {
+        if let selected = SelectedEventManager.selectedEvent {
           
         var show = true
             
@@ -60,13 +60,7 @@ class MenuTopShelfGenerator {
             
         }
         
-        if let featured = FeaturedEventsStore.featuredEvent, featured.completionStatus == .Upcoming {
-            
-            let item = eventItemGen.makeCountdownMenuItem(for: featured)
-            items.append(item)
-            items.append(NSMenuItem.separator())
-            
-        }
+      
         
         if currentEvents.isEmpty == false {
             

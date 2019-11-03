@@ -10,7 +10,7 @@ import Foundation
 
 class PercentageCalculator {
     
-    func calculatePercentageDone(event: HLLEvent, ignoreDefaults: Bool) -> String? {
+    func calculatePercentageDone(for event: HLLEvent, at date: Date = Date()) -> String? {
         
         if event.completionStatus == .Upcoming {
             
@@ -18,7 +18,7 @@ class PercentageCalculator {
             
         }
         
-        let secondsElapsed = Date().timeIntervalSince(event.startDate)
+        let secondsElapsed = date.timeIntervalSince(event.startDate)
         let totalSeconds = event.endDate.timeIntervalSince(event.startDate)
         var percentOfEventComplete = Int(100*secondsElapsed/totalSeconds)
         

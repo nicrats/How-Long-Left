@@ -76,6 +76,10 @@ class SettingsMainTableViewController: UITableViewController, ScrollUpDelegate, 
         tableSections[tableSections.count] = SettingsSection.Magdalene
         }
         
+        if WatchSessionManager.sharedManager.watchSupported() == true {
+            tableSections[tableSections.count] = SettingsSection.Sync
+        }
+        
         themeableCells.removeAll()
     
     }
@@ -91,20 +95,8 @@ class SettingsMainTableViewController: UITableViewController, ScrollUpDelegate, 
             
             SettingsMainTableViewController.justPurchasedComplication = false
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                
-                //self.showComplicationPurchasedAlert(purchasedNow: true)
-                DefaultsSync.shared.syncDefaultsToWatch()
-                
-            })
-            
-            
-            
-            
         }
-        
-        
-        
+  
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -145,7 +137,7 @@ class SettingsMainTableViewController: UITableViewController, ScrollUpDelegate, 
         
         if sectionType == .Sync {
             
-            return "Share your How Long Left preferences across all your iOS, iPadOS, watchOS, and macOS devices with iCloud."
+            return "Sync How Long Left preferences between your iPhone and Apple Watch."
             
         }
 
@@ -168,7 +160,7 @@ class SettingsMainTableViewController: UITableViewController, ScrollUpDelegate, 
         switch sectionType {
             
         case .General:
-            return 2
+            return 3
         case .Siri:
             return 1
         case .Complication:
@@ -197,11 +189,17 @@ class SettingsMainTableViewController: UITableViewController, ScrollUpDelegate, 
                 cell.setupCell()
                 return cell
                 
-            } else {
+            } else if row == 1 {
                 
                 let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationsCell", for: indexPath) as! MainNotificationsCell
                 
                 cell.setupCell()
+                return cell
+                
+            } else {
+                
+               let cell = tableView.dequeueReusableCell(withIdentifier: "EventInfoCell", for: indexPath)
+                
                 return cell
                 
             }
@@ -227,9 +225,20 @@ class SettingsMainTableViewController: UITableViewController, ScrollUpDelegate, 
             cell.setupCell()
             return cell
         case .Sync:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SyncCell", for: indexPath) as! CloudSyncCell
-
-            cell.setupCell()
+            
+            tableView.register(UINib(nibName: "SwitchCell", bundle: nil), forCellReuseIdentifier: "SwitchCell")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SwitchCell") as! SwitchCell
+            
+            cell.label = "Sync Preferences"
+            cell.getAction = { return HLLDefaults.general.syncPreferences }
+            cell.setAction = { value in HLLDefaults.general.syncPreferences = value
+                
+                DispatchQueue.global(qos: .default).async {
+                    HLLDefaultsTransfer.shared.userModifiedPrferences()
+                }
+                
+            }
+            
             return cell
         }
         
@@ -275,6 +284,12 @@ class SettingsMainTableViewController: UITableViewController, ScrollUpDelegate, 
             if indexPath.row == 1 {
                 
                 performSegue(withIdentifier: "MilestonesSegue", sender: nil)
+                
+            }
+            
+            if indexPath.row == 2 {
+                
+                performSegue(withIdentifier: "EventInfoSegue", sender: nil)
                 
             }
             

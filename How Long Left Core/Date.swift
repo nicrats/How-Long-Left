@@ -151,9 +151,7 @@ extension Date {
         formatter.pmSymbol = "pm"
         
         let r = formatter.string(from: self)
-        
-        print("FTT: \(r)")
-        
+             
         return r
     }
     

@@ -16,7 +16,6 @@ class MagdalenePrompts {
     
     func presentMagdaleneChangesPrompt() {
         
-        
         if let launched = HLLDefaults.appData.launchedVersion, SchoolAnalyser.schoolMode == .Magdalene, showChangesPrompt == true {
             
             

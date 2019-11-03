@@ -51,11 +51,15 @@ class HLLDefaultsTransfer {
      
     let prefsQueue = DispatchQueue(label: "PreferencesLoadQueue")
     
+  
+    
      func gotNewPreferences(_ newPreferences: [String:Any]) {
 
+
         
-        prefsQueue.async {
-             
+        DispatchQueue.global().async {
+          
+            
          print("Downloaded new preferences from paired device")
          
          if let newModificationDate = newPreferences["preferencesLastModifiedByUser"] as? Date {
@@ -79,12 +83,16 @@ class HLLDefaultsTransfer {
                      
                      
                  }
-                 
+                
+              
+                
                  DispatchQueue.main.async {
                      self.transferObservers.forEach { $0.defaultsUpdatedRemotely() }
                  }
                  HLLEventSource.shared.updateEventPool()
                  print("PoolC4")
+                    
+                
                  
              } else {
                  
@@ -101,11 +109,34 @@ class HLLDefaultsTransfer {
         }
          
      }
+    
+    func createDictionaryOfUserDefaultsStringValues() -> [String:String] {
+        
+        var returnDict = [String:String]()
+        
+        let rep = HLLDefaults.defaults.dictionaryRepresentation()
+        
+        for item in rep {
+            
+            if let value = item.value as? String {
+                
+                returnDict[item.key] = value
+                
+            }
+            
+        }
+        
+        return returnDict
+        
+    }
      
      func triggerDefaultsTransfer() {
          
+        
          DispatchQueue.global(qos: .default).async {
          
+        
+            
          var transferDictionary = [String:Any]()
          
          let defaultsDictionary = HLLDefaults.defaults.dictionaryRepresentation()

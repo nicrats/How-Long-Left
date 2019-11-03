@@ -72,7 +72,7 @@ class ComplicationContentsGenerator {
             entryDates.append(event.startDate)
             entryDates.append(event.endDate)
             
-            if event.completionStatus == .Done {
+            if event.completionStatus == .Done || event.isHidden {
                 
                 if let index = events.firstIndex(of: event) {
                     

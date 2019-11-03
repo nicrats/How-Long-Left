@@ -64,7 +64,9 @@ class CurrentEventsTableViewController: UITableViewController {
                 
                 if currentCell.event.completionStatus == .Current {
                     
+                    DispatchQueue.main.async {
                     currentCell.updateCell()
+                    }
                     
                 } else {
                     
@@ -76,7 +78,8 @@ class CurrentEventsTableViewController: UITableViewController {
                 
             }
             
-        (cell as! CurrentEventCell).updateCell()
+            
+
             
         }
         

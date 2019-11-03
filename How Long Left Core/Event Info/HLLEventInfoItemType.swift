@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum HLLEventInfoItemType {
+enum HLLEventInfoItemType: String, CaseIterable {
     
     case countdown
     case completion

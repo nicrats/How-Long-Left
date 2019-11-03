@@ -27,6 +27,7 @@ class CalendarSelectTableViewController: UITableViewController, DefaultsTransfer
     
     override func viewDidLoad() {
         
+        self.navigationItem.title = "Calendars"
         HLLDefaultsTransfer.shared.addTransferObserver(self)
         super.viewDidLoad()
         tableView.delegate = self
@@ -92,21 +93,43 @@ class CalendarSelectTableViewController: UITableViewController, DefaultsTransfer
     }
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allCalendars.count
+        
+        if section == 0 {
+            return allCalendars.count
+        } else {
+            return 1
+        }
+        
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        return "Select Calendars to use"
+        if section == 0 {
+           return "Select Calendars to use"
+        }
+        
+        return nil
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        
+        if section == 1 {
+            return "Automatically enable new calendars as they are created."
+        }
+        
+        return nil
         
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.section == 0 {
         
         let calendarItem = allCalendars[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "CalendarItemCell", for: indexPath) as! SettingsCalendarItemCell
@@ -117,11 +140,35 @@ class CalendarSelectTableViewController: UITableViewController, DefaultsTransfer
         } else {
             cell.accessoryType = .none
         }
-
+           
         return cell
+            
+        } else {
+            
+            tableView.register(UINib(nibName: "SwitchCell", bundle: nil), forCellReuseIdentifier: "SwitchCell")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SwitchCell") as! SwitchCell
+            
+            cell.label = "Use New Calendars"
+            cell.getAction = { return HLLDefaults.calendar.useNewCalendars }
+            cell.setAction = { value in
+                
+                HLLDefaults.calendar.useNewCalendars = value
+                DispatchQueue.global(qos: .default).async {
+                    HLLEventSource.shared.updateEventPool()
+                }
+            
+            }
+            
+            return cell
+            
+        }
+
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.section == 0 {
         
         if #available(iOS 10.0, *) {
             let lightImpactFeedbackGenerator = UISelectionFeedbackGenerator()
@@ -156,6 +203,8 @@ class CalendarSelectTableViewController: UITableViewController, DefaultsTransfer
                 HLLDefaults.calendar.disabledCalendars.append(selectedCalendar)
             }
            
+        }
+            
         }
         
         setupData()

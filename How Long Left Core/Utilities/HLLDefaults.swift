@@ -119,6 +119,80 @@ class HLLDefaults {
     
     struct general {
         
+        static var selectedEventID: String? {
+            
+            get {
+                
+                return HLLDefaults.defaults.string(forKey: "SelectedEvent")
+                
+                
+            }
+            
+            set (to) {
+                
+                HLLDefaults.defaults.set(to, forKey: "SelectedEvent")
+                
+            }
+            
+            
+        }
+        
+        static var eventInfoOrdering: [[HLLEventInfoItemType]] {
+                   
+                   get {
+                       
+                       var returnDict = [[HLLEventInfoItemType]]()
+                       
+                       if let test = HLLDefaults.defaults.object(forKey: "InfoItemOrdering") as? [[String]] {
+                           
+                           for item in test {
+                               
+                               var array = [HLLEventInfoItemType]()
+                               
+                               for subItem in item {
+                                   
+                                   if let type = HLLEventInfoItemType(rawValue: subItem) {
+                                       
+                                       array.append(type)
+                                       
+                                   }
+                                   
+                               }
+                               
+                               returnDict.append(array)
+                               
+                           }
+                           
+                       }
+                    
+                    return returnDict
+                       
+                   }
+                   
+                   set (to) {
+                       
+                    var final = [[String]]()
+                    
+                    for item in to {
+                        
+                        var array = [String]()
+                        
+                        for subItem in item {
+                            
+                            array.append(subItem.rawValue)
+                            
+                        }
+                        
+                        final.append(array)
+                    
+                    }
+                    
+                       defaults.set(final, forKey: "InfoItemOrdering")
+                       
+                   }
+                   
+               }
+        
         static var use24HourTime: Bool {
             
             get {
@@ -178,6 +252,22 @@ class HLLDefaults {
             set (to) {
                 
                 defaults.set(!to, forKey: "hideUpcomingSubmenu")
+                
+            }
+            
+        }
+        
+        static var syncPreferences: Bool {
+            
+            get {
+                
+                return !defaults.bool(forKey: "syncPreferences")
+                
+            }
+            
+            set (to) {
+                
+                defaults.set(!to, forKey: "syncPreferences")
                 
             }
             
@@ -283,6 +373,8 @@ class HLLDefaults {
             }
             
         }
+        
+       
         
     }
     

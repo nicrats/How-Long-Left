@@ -78,6 +78,13 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, Calend
     
     override func viewDidLoad() {
         
+        let array: [HLLEventInfoItemType] = [HLLEventInfoItemType.calendar, HLLEventInfoItemType.completion, HLLEventInfoItemType.countdown]
+        let arrayTwo: [HLLEventInfoItemType] = [HLLEventInfoItemType.start, HLLEventInfoItemType.end]
+        
+        let multi = [array, arrayTwo]
+        
+        HLLDefaults.general.eventInfoOrdering = multi
+        
         super.viewDidLoad()
         
         if #available(iOS 13.0, *) {

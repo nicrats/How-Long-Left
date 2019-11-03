@@ -238,7 +238,7 @@ struct HLLEvent: Equatable, Hashable {
         get {
         
         let calc = PercentageCalculator()
-        return calc.calculatePercentageDone(event: self, ignoreDefaults: true)
+        return calc.calculatePercentageDone(for: self)
         
         
         }

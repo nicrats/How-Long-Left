@@ -225,7 +225,7 @@ class CountdownStringGenerator {
             
         }
         
-        if HLLDefaults.statusItem.showPercentage == true, let percent = pecentageCalc.calculatePercentageDone(event: event, ignoreDefaults: false), event.completionStatus != .Upcoming {
+        if HLLDefaults.statusItem.showPercentage == true, let percent = pecentageCalc.calculatePercentageDone(for: event), event.completionStatus != .Upcoming {
             returnString = "\(returnString) (\(percent))"
         }
         

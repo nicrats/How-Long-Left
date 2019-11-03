@@ -32,7 +32,7 @@ class PercentRow: NSObject {
     @objc func calcPercent(){
         
         if let e = event {
-            percentLabel.setText(percentageCalc.calculatePercentageDone(event: e, ignoreDefaults: false))
+            percentLabel.setText(percentageCalc.calculatePercentageDone(for: e))
         }
         
     }

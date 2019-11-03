@@ -77,13 +77,13 @@ class EventUICountdownViewController: NSViewController {
         
         if let currentEvent = self.parentController.event?.refresh() {
     
-            eventText.stringValue = "\(currentEvent.title) \(currentEvent.countdownTypeString) in"
+            eventText.stringValue = "\(currentEvent.title) \(currentEvent.countdownTypeString) in:"
             
             self.timerLabel.stringValue = self.timerStringGenerator.generatePositionalCountdown(event: currentEvent, allowFullUnits: true)
             
-            progressBar.doubleValue = currentEvent.completionFraction
+            self.timerLabel.textColor = currentEvent.nsColor
             
-            print(currentEvent.completionFraction)
+            progressBar.doubleValue = currentEvent.completionFraction
             
             if currentEvent.completionFraction > 0 {
                 
@@ -91,27 +91,10 @@ class EventUICountdownViewController: NSViewController {
                 
                 if let completionPercent =  currentEvent.completionPercentage {
                    
-                    
-                    let secondsElapsed = Date().timeIntervalSince(currentEvent.startDate)
-                    let totalSeconds = currentEvent.endDate.timeIntervalSince(currentEvent.startDate)
-                    let percentOfEventComplete = Int(100*secondsElapsed/totalSeconds)
-                    
-                    if percentOfEventComplete == 69, UserGrouping.shared.getCurrentGroup() == .Boiz {
-                        
-                        percentLabel.stringValue = "69% (Nice)"
-                        
-                    } else {
-                        
-                        percentLabel.stringValue = completionPercent
-                        
-                    }
-                    
-                    
+                    percentLabel.stringValue = completionPercent
                     
                 }
-                
-                
-                
+
             } else {
                 
                 percentLabel.isHidden = true

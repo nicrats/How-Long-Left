@@ -92,6 +92,7 @@ class EventUIWindowsManager: NSObject, NSWindowDelegate {
             
             if keyValue.value == sender.windowController! {
                 
+                
                 eventUIWindowControllers.removeValue(forKey: keyValue.key)
                 
             }

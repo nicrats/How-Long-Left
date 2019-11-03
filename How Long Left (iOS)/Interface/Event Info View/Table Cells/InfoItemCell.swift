@@ -22,3 +22,18 @@ class InfoItemCell: UITableViewCell {
     
     
 }
+
+class SelectableInfoItemCell: UITableViewCell {
+
+    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
+    
+    func setup(type: String, info: String) {
+        
+        typeLabel.text = type
+        infoLabel.text = info
+        
+    }
+    
+    
+}

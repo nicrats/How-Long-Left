@@ -21,15 +21,13 @@ class ComplicationUpdateHandler: EventPoolUpdateObserver {
     }
     
     
-    func updateComplication() {
+    func updateComplication(force: Bool = false) {
         
         DispatchQueue.global(qos: .default).async {
         
         if let entries = CLKComplicationServer.sharedInstance().activeComplications {
             
-             if ComplicationUpdateHandler.shared.complicationIsUpToDate() == false {
-            
-                
+             if ComplicationUpdateHandler.shared.complicationIsUpToDate() == false || force {
                 
             for complicationItem in entries  {
                 

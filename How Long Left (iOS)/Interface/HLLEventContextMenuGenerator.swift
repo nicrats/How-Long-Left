@@ -17,7 +17,32 @@ class HLLEventContextMenuGenerator {
     
     func generateContextMenuForEvent(_ event: HLLEvent) -> UIMenu? {
         
+        
         var actions = [UIAction]()
+        
+        /*if HLLDefaults.general.selectedEventID == event.identifier {
+            
+            let deSelectAction = UIAction(title: "Clear Selection", image: UIImage(systemName: "pin.slash.fill"), identifier: nil, discoverabilityTitle: nil, state: .off, handler: { _ in
+
+                HLLDefaults.general.selectedEventID = nil
+
+            })
+            
+            actions.append(deSelectAction)
+            
+        } else {
+          
+            
+            let selectAction = UIAction(title: "Select", image: UIImage(systemName: "pin.fill"), identifier: nil, discoverabilityTitle: nil, state: .off, handler: { _ in
+
+                HLLDefaults.general.selectedEventID = event.identifier
+
+            })
+            
+            actions.append(selectAction)
+            
+        }*/
+
         
         if let calendarEvent = event.EKEvent {
             
