@@ -60,7 +60,6 @@ class MenuTopShelfGenerator {
             
         }
         
-      
         
         if currentEvents.isEmpty == false {
             

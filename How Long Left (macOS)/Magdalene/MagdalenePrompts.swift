@@ -26,10 +26,12 @@ class MagdalenePrompts {
             
             if Version.currentVersion > launched {
                 
-                DispatchQueue.main.async {
+                
                     
                     
                     NSApp.activate(ignoringOtherApps: true)
+                
+                
                     let alert: NSAlert = NSAlert()
                     alert.window.title = "How Long Left \(Version.currentVersion)"
                     alert.messageText = "New in Magdalene Mode:"
@@ -40,15 +42,69 @@ class MagdalenePrompts {
                     
                     alert.alertStyle = NSAlert.Style.informational
                     alert.addButton(withTitle: "OK")
+                    alert.window.collectionBehavior = .canJoinAllSpaces
+                    alert.window.level = .floating
+                    NSApp.activate(ignoringOtherApps: true)
                     alert.runModal()
-                    
-                }
+
+                
                 
                 
             }
             
         }
         
+        
+        
+    }
+    
+    func presentShowStudyAsSportPrompt() {
+        
+        let year = Date().year()
+        let nextYearString = String(year+1)
+        let currentYearString = String(year)
+        
+        if SchoolAnalyser.schoolMode == .Magdalene, HLLDefaults.magdalene.showSportAsStudy == false, HLLDefaults.defaults.bool(forKey: "PromptedToShowSportAsStudy") == false, let deviceName = Host.current().localizedName, deviceName.containsAnyOfThese(Strings: [currentYearString, nextYearString])  {
+            
+               
+                HLLDefaults.defaults.set(true, forKey: "PromptedToShowSportAsStudy")
+                
+                NSApp.activate(ignoringOtherApps: true)
+                let alert: NSAlert = NSAlert()
+                alert.window.title = "How Long Left"
+                alert.messageText = "Would you like How Long Left to show your Tuesday sport period as \"Study\"?"
+                alert.informativeText = "This is useful if you do study during sport."
+            
+                alert.alertStyle = NSAlert.Style.informational
+                
+                
+                alert.addButton(withTitle: "Yes")
+                alert.addButton(withTitle: "No")
+                alert.window.collectionBehavior = .canJoinAllSpaces
+                alert.window.level = .floating
+                
+                NSApp.activate(ignoringOtherApps: true)
+                let button = alert.runModal()
+                
+                
+                if button == NSApplication.ModalResponse.alertFirstButtonReturn {
+                    
+                    HLLDefaults.magdalene.showSportAsStudy = true
+                    
+                        
+                        HLLEventSource.shared.updateEventPool()
+                        
+                    
+                   
+                    
+                }
+                
+                
+            
+            
+            
+            
+        }
         
         
     }
@@ -64,12 +120,15 @@ class MagdalenePrompts {
             alert.informativeText = """
             How Long Left will count down to the start of next term. You can disable this in Magdalene preferences.
             
-            Have a great holiday! Thanks for using How Long Left. 😁
+            Thanks for using How Long Left. 😁
             
             """
             
             alert.alertStyle = NSAlert.Style.informational
             alert.addButton(withTitle: "OK")
+            alert.window.collectionBehavior = .canJoinAllSpaces
+            alert.window.level = .floating
+            NSApp.activate(ignoringOtherApps: true)
             alert.runModal()
             
         }
@@ -80,9 +139,9 @@ class MagdalenePrompts {
         
         DispatchQueue.main.async {
             
-            let installInstructions = "You can do this by logging in, navigating to the \"My Timetable\" section, and clicking \"Export as iCal\""
+            let installInstructions = "You can do this by logging in, navigating to the \"My Timetable\" section, and clicking the blue \"Export as iCal\" button"
             
-            var titleText = "Magdalene Timetable not installed"
+            var titleText = "Please download your timetable from Sentral"
             var infoText = """
             To use How Long Left with your Magdalene classes, please download your timetable from Sentral. \(installInstructions).
             
@@ -90,7 +149,7 @@ class MagdalenePrompts {
             
             if reinstall == true {
                 
-            titleText = "Please download your timetable."
+            titleText = "Please download your timetable from Sentral"
                 
             infoText = """
             Your timetable must be reinstalled from Sentral each term. \(installInstructions).
@@ -110,8 +169,12 @@ class MagdalenePrompts {
             
             alert.addButton(withTitle: "Open Sentral")
             alert.addButton(withTitle: "Ignore")
+            alert.window.collectionBehavior = .canJoinAllSpaces
+            alert.window.level = .floating
             
+            NSApp.activate(ignoringOtherApps: true)
             let button = alert.runModal()
+            
             
             if button == NSApplication.ModalResponse.alertFirstButtonReturn {
                 

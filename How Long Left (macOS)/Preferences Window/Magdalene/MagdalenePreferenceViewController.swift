@@ -38,6 +38,7 @@ final class MagdalenePreferenceViewController: NSViewController, Preferenceable 
     @IBOutlet weak var edvalButton: NSButton!
     @IBOutlet weak var magdaleneModeDescription: NSTextField!
     @IBOutlet weak var termButton: NSButton!
+    @IBOutlet weak var showSportAsStudyButton: NSButton!
 
     
     override func viewDidLoad() {
@@ -54,6 +55,12 @@ final class MagdalenePreferenceViewController: NSViewController, Preferenceable 
             termButton.state = .on
         } else {
             termButton.state = .off
+        }
+        
+        if HLLDefaults.magdalene.showSportAsStudy == true {
+            showSportAsStudyButton.state = .on
+        } else {
+            showSportAsStudyButton.state = .off
         }
         
         if HLLDefaults.magdalene.showBreaks == true {
@@ -169,6 +176,22 @@ final class MagdalenePreferenceViewController: NSViewController, Preferenceable 
         if sender.state == .on { state = true }
         HLLDefaults.magdalene.doHolidays = state
         NotificationCenter.default.post(name: Notification.Name("updateCalendar"), object: nil)
+        
+        }
+            
+    }
+    
+    @IBAction func showSportAsStudyClicked(_ sender: NSButton) {
+        
+         DispatchQueue.main.async {
+        
+        var state = false
+        if sender.state == .on { state = true }
+        HLLDefaults.magdalene.showSportAsStudy = state
+            
+            DispatchQueue.global().async {
+                HLLEventSource.shared.updateEventPool()
+            }
         
         }
             

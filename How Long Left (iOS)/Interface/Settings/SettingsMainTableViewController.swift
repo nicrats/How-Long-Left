@@ -287,11 +287,7 @@ class SettingsMainTableViewController: UITableViewController, ScrollUpDelegate, 
                 
             }
             
-            if indexPath.row == 2 {
-                
-                performSegue(withIdentifier: "EventInfoSegue", sender: nil)
-                
-            }
+            
             
             
             

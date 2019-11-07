@@ -10,7 +10,7 @@
         <scene sceneID="PT7-yJ-VUT">
             <objects>
                 <windowController storyboardIdentifier="MainUI" id="7Yu-bl-Y3O" sceneMemberID="viewController">
-                    <window key="window" title="How Long Left" allowsToolTipsWhenApplicationIsInactive="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="" titlebarAppearsTransparent="YES" id="QEv-Ww-JeY">
+                    <window key="window" title="How Long Left" allowsToolTipsWhenApplicationIsInactive="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="" id="QEv-Ww-JeY">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -66,20 +66,20 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1jG-aa-Kbe">
-                                <rect key="frame" x="13" y="120" width="560" height="56"/>
+                                <rect key="frame" x="13" y="115" width="560" height="60"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="center" title="00:00" id="EcN-a1-oKb">
-                                    <font key="font" metaFont="systemLight" size="48"/>
+                                    <font key="font" metaFont="systemLight" size="51"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3XL-zI-xfp">
-                                <rect key="frame" x="28" y="179" width="530" height="33"/>
+                                <rect key="frame" x="28" y="178" width="530" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="526" id="g0a-Bs-26K"/>
                                 </constraints>
                                 <textFieldCell key="cell" lineBreakMode="truncatingHead" alignment="center" title="Event ends in" id="sD6-7u-Z9k">
-                                    <font key="font" metaFont="systemLight" size="28"/>
+                                    <font key="font" metaFont="system" size="30"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>

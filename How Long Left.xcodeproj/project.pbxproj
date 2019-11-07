@@ -283,7 +283,6 @@
 		BF8D07C42250C62F006B8E85 /* UpcomingEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D07C32250C62F006B8E85 /* UpcomingEventsTableViewController.swift */; };
 		BF8D75C12340F732007A3638 /* HLLCloudKitPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D75BF2340F606007A3638 /* HLLCloudKitPreferences.swift */; };
 		BF8D75C22340F733007A3638 /* HLLCloudKitPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D75BF2340F606007A3638 /* HLLCloudKitPreferences.swift */; };
-		BF8D75C52340FAA1007A3638 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8D75C42340FAA1007A3638 /* CloudKit.framework */; };
 		BF8D940D2340BCEE00470F1F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8D940C2340BCEE00470F1F /* CloudKit.framework */; };
 		BF8D94102340C34400470F1F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8D940F2340C34400470F1F /* CloudKit.framework */; };
 		BF8D94172340CCBE00470F1F /* CKError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D94162340CCBE00470F1F /* CKError.swift */; };
@@ -309,6 +308,8 @@
 		BF93AEA421BDD64F0035CE7F /* GeneralPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF93AEA321BDD64F0035CE7F /* GeneralPreferencesView.xib */; };
 		BF93AEA621BDD7060035CE7F /* MagdalenePreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF93AEA521BDD7060035CE7F /* MagdalenePreferenceViewController.swift */; };
 		BF948EAA227BF8E90011290E /* UserGrouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF948EA9227BF8E90011290E /* UserGrouping.swift */; };
+		BF94F01F236FB67B00B26702 /* LaunchAtLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFB4D534235EA7F200F8C0EA /* LaunchAtLogin.framework */; };
+		BF94F020236FB67B00B26702 /* LaunchAtLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFB4D534235EA7F200F8C0EA /* LaunchAtLogin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF9688E522CDD9AB000FA86F /* RenamePreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF9688E422CDD9AB000FA86F /* RenamePreferencesView.xib */; };
 		BF9688E722CDDD9E000FA86F /* RNUI Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9688E622CDDD9E000FA86F /* RNUI Manager.swift */; };
 		BF9688E922CDE434000FA86F /* RenamePreferencesUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9688E822CDE434000FA86F /* RenamePreferencesUI.swift */; };
@@ -453,8 +454,6 @@
 		BFEA0CE921788D0100FAF2F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA0CE821788D0100FAF2F1 /* AppDelegate.swift */; };
 		BFEA0CEE21788D0B00FAF2F1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFEA0CEC21788D0B00FAF2F1 /* MainMenu.xib */; };
 		BFEA0D19217891C600FAF2F1 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA0D18217891C600FAF2F1 /* MenuController.swift */; };
-		BFEDBF4B23681BC5005E87FD /* LaunchAtLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFB4D534235EA7F200F8C0EA /* LaunchAtLogin.framework */; };
-		BFEDBF4C23681BC5005E87FD /* LaunchAtLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFB4D534235EA7F200F8C0EA /* LaunchAtLogin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BFEE396221BD129F000106BD /* NotificationPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFEE396121BD129F000106BD /* NotificationPreferencesView.xib */; };
 		BFEE396421BD152B000106BD /* NotificationPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEE396321BD152B000106BD /* NotificationPreferencesViewController.swift */; };
 		BFF05EDA21E9DE4F0044F049 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFF05ED121E9DE4E0044F049 /* Assets.xcassets */; };
@@ -606,6 +605,17 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BF94F021236FB67B00B26702 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BF94F020236FB67B00B26702 /* LaunchAtLogin.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BFD68FA5220EAA0700265672 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -615,17 +625,6 @@
 				BF1646D122FC410600D07BC3 /* How Long Left (macOS Widget).appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BFEDBF4D23681BC5005E87FD /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				BFEDBF4C23681BC5005E87FD /* LaunchAtLogin.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -696,9 +695,6 @@
 		BF3F876122BCBE57002BA4CD /* RNUI.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RNUI.storyboard; sourceTree = "<group>"; };
 		BF44590F233F7CD700DA1B21 /* HLLEventInfoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLLEventInfoItem.swift; sourceTree = "<group>"; };
 		BF445911233F7CED00DA1B21 /* HLLEventInfoItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLLEventInfoItemType.swift; sourceTree = "<group>"; };
-		BF469CC522FACC7800EB72F0 /* PurchaseProViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseProViewController.swift; sourceTree = "<group>"; };
-		BF469CC822FACD8E00EB72F0 /* ProPurchaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProPurchaseHandler.swift; sourceTree = "<group>"; };
-		BF469CCA22FAEF3000EB72F0 /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
 		BF4ABBD922F849DA00E23B45 /* Rickroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rickroll.swift; sourceTree = SOURCE_ROOT; };
 		BF4AEFEC2207A63E00FEE4BC /* MilestoneNotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneNotificationScheduler.swift; sourceTree = "<group>"; };
 		BF4F6B5F233689D00015826E /* PrimaryEventRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryEventRowController.swift; sourceTree = "<group>"; };
@@ -707,7 +703,6 @@
 		BF4F6B6523368A2E0015826E /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
 		BF52D4C3235B2A5B00914BC4 /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
 		BF52D4C5235B2AE700914BC4 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
-		BF54CB6622FAB213000B5E9E /* PurchasePro.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PurchasePro.storyboard; sourceTree = "<group>"; };
 		BF55FF8B234C9F2700FD1DE9 /* How Long Left.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "How Long Left.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF55FF8E234C9F2700FD1DE9 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		BF55FF91234C9F2700FD1DE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -776,6 +771,7 @@
 		BF93AEA321BDD64F0035CE7F /* GeneralPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralPreferencesView.xib; sourceTree = "<group>"; };
 		BF93AEA521BDD7060035CE7F /* MagdalenePreferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagdalenePreferenceViewController.swift; sourceTree = "<group>"; };
 		BF948EA9227BF8E90011290E /* UserGrouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGrouping.swift; sourceTree = "<group>"; };
+		BF94F01E236FB52300B26702 /* How Long Left.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "How Long Left.entitlements"; sourceTree = "<group>"; };
 		BF9688E422CDD9AB000FA86F /* RenamePreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RenamePreferencesView.xib; sourceTree = "<group>"; };
 		BF9688E622CDDD9E000FA86F /* RNUI Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RNUI Manager.swift"; sourceTree = "<group>"; };
 		BF9688E822CDE434000FA86F /* RenamePreferencesUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenamePreferencesUI.swift; sourceTree = "<group>"; };
@@ -786,7 +782,6 @@
 		BF9E963921888694002626CD /* HLLMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLLMain.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		BF9EA1A121FB0431008BC1C5 /* iOS WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iOS WatchSessionManager.swift"; sourceTree = "<group>"; };
 		BF9EA1A321FB0605008BC1C5 /* watchOS WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "watchOS WatchSessionManager.swift"; sourceTree = "<group>"; };
-		BF9EBCE122C6629600BF0C14 /* How Long Left.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "How Long Left.entitlements"; sourceTree = "<group>"; };
 		BF9F166E2175FC5B000D8809 /* ComplicationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationGenerator.swift; sourceTree = "<group>"; };
 		BFA26495222B553200045CF4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		BFA6594622D793A20019239C /* EventUITabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventUITabViewController.swift; path = "How Long Left (macOS)/Rename/Rename UI/EventUITabViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -959,9 +954,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF8D75C52340FAA1007A3638 /* CloudKit.framework in Frameworks */,
+				BF94F01F236FB67B00B26702 /* LaunchAtLogin.framework in Frameworks */,
 				2E3EDB547A8EFD14A9696D59 /* Pods_How_Long_Left__macOS_.framework in Frameworks */,
-				BFEDBF4B23681BC5005E87FD /* LaunchAtLogin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1022,15 +1016,6 @@
 			path = "Event Info";
 			sourceTree = "<group>";
 		};
-		BF469CC722FACD5F00EB72F0 /* Prompt */ = {
-			isa = PBXGroup;
-			children = (
-				BF54CB6622FAB213000B5E9E /* PurchasePro.storyboard */,
-				BF469CC522FACC7800EB72F0 /* PurchaseProViewController.swift */,
-			);
-			path = Prompt;
-			sourceTree = "<group>";
-		};
 		BF50797321AE33DD005CD52B /* Preferences Window */ = {
 			isa = PBXGroup;
 			children = (
@@ -1044,15 +1029,6 @@
 				BF5F945222D9FE2C00AB9FF3 /* About */,
 			);
 			path = "Preferences Window";
-			sourceTree = "<group>";
-		};
-		BF54CB6522FAB1E5000B5E9E /* Purchase Pro */ = {
-			isa = PBXGroup;
-			children = (
-				BF469CC822FACD8E00EB72F0 /* ProPurchaseHandler.swift */,
-				BF469CC722FACD5F00EB72F0 /* Prompt */,
-			);
-			path = "Purchase Pro";
 			sourceTree = "<group>";
 		};
 		BF55FF8D234C9F2700FD1DE9 /* WIdget (iOS) */ = {
@@ -1609,6 +1585,7 @@
 		BFEA0CE721788D0100FAF2F1 /* How Long Left (macOS) */ = {
 			isa = PBXGroup;
 			children = (
+				BF94F01E236FB52300B26702 /* How Long Left.entitlements */,
 				BFEA0CEC21788D0B00FAF2F1 /* MainMenu.xib */,
 				BF9E963921888694002626CD /* HLLMain.swift */,
 				BFB9896122F97F85003EAA4F /* ProIAP.swift */,
@@ -1623,7 +1600,6 @@
 				BFD812D7218A7BAA00992E23 /* String Generators */,
 				BF50797321AE33DD005CD52B /* Preferences Window */,
 				BF621F5E22C9F79F00226E61 /* EventUI */,
-				BF54CB6522FAB1E5000B5E9E /* Purchase Pro */,
 				BFDE4A6121B5FF3400CD50BC /* Onboarding */,
 				BF3F876022BCBE26002BA4CD /* Rename */,
 				BFFA559922D8747600575230 /* Magdalene */,
@@ -1746,9 +1722,7 @@
 			children = (
 				BFEA0CE821788D0100FAF2F1 /* AppDelegate.swift */,
 				BF3E066522CB5C40002859D5 /* DoneAnimation.json */,
-				BF469CCA22FAEF3000EB72F0 /* music.mp3 */,
 				BFEA0CEF21788D0B00FAF2F1 /* Info.plist */,
-				BF9EBCE122C6629600BF0C14 /* How Long Left.entitlements */,
 				BF8B99E921AE36CA00F7499A /* Assets.xcassets */,
 			);
 			name = "Supporting Files";
@@ -1899,7 +1873,7 @@
 				BFEA0CE421788D0100FAF2F1 /* Resources */,
 				8F5B8421FAE221CDC429D0E6 /* [CP] Embed Pods Frameworks */,
 				BFD68FA5220EAA0700265672 /* Embed App Extensions */,
-				BFEDBF4D23681BC5005E87FD /* Embed Frameworks */,
+				BF94F021236FB67B00B26702 /* Embed Frameworks */,
 				BFB6DC3822B9BE1A00335CA8 /* ShellScript */,
 			);
 			buildRules = (
@@ -2964,7 +2938,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 143;
+				CURRENT_PROJECT_VERSION = 146;
 				DEVELOPMENT_TEAM = 5AMFX8X5ZN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "How Long Left (macOS Widget)/Info.plist";
@@ -2973,8 +2947,8 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 3.0.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "ryankontos.How-Long-Left-Mac.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -2990,7 +2964,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 143;
+				CURRENT_PROJECT_VERSION = 146;
 				DEVELOPMENT_TEAM = 5AMFX8X5ZN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "How Long Left (macOS Widget)/Info.plist";
@@ -2999,8 +2973,8 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 3.0.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "ryankontos.How-Long-Left-Mac.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -3519,7 +3493,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 143;
+				CURRENT_PROJECT_VERSION = 146;
 				DEVELOPMENT_TEAM = 5AMFX8X5ZN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3595,8 +3569,8 @@
 					"@executable_path/../Frameworks",
 					"$(PROJECT_DIR)/How\\ Long\\ Left\\ (macOS)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 3.0.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "ryankontos.How-Long-Left-Mac";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)_macOS";
 				PRODUCT_NAME = "How Long Left";
@@ -3626,7 +3600,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 143;
+				CURRENT_PROJECT_VERSION = 146;
 				DEVELOPMENT_TEAM = 5AMFX8X5ZN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3702,8 +3676,8 @@
 					"@executable_path/../Frameworks",
 					"$(PROJECT_DIR)/How\\ Long\\ Left\\ (macOS)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 3.0.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "ryankontos.How-Long-Left-Mac";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)_macOS";
 				PRODUCT_NAME = "How Long Left";

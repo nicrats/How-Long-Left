@@ -18,6 +18,7 @@ class EventInfoViewController: UIViewController, UITableViewDataSource, UITableV
     var distanceFromRootOccurence = 0
     var cellUpdateTimer: Timer!
     var infoItemGenerator: HLLEventInfoItemGenerator!
+    var willClose = false
     
     //var activity: NSUserActivity?
     
@@ -68,13 +69,14 @@ class EventInfoViewController: UIViewController, UITableViewDataSource, UITableV
         infoItemGenerator = HLLEventInfoItemGenerator(self.event)
         
         var sections = [[HLLEventInfoItem]]()
+        sections.append(infoItemGenerator.getInfoItems(for: [.completion, .location, .period, .start, .end, .elapsed, .duration, .nextOccurence]))
         
-        sections.append(infoItemGenerator.getInfoItems(for: [.completion]))
+        /*sections.append(infoItemGenerator.getInfoItems(for: [.completion]))
         sections.append(infoItemGenerator.getInfoItems(for: [.location, .period]))
         sections.append(infoItemGenerator.getInfoItems(for: [.start, .end]))
         sections.append(infoItemGenerator.getInfoItems(for: [.elapsed, .duration]))
-        sections.append(infoItemGenerator.getInfoItems(for: [.calendar, .teacher]))
-        sections.append(infoItemGenerator.getInfoItems(for: [.nextOccurence]))
+        //sections.append(infoItemGenerator.getInfoItems(for: [.calendar, .teacher]))
+        sections.append(infoItemGenerator.getInfoItems(for: [.nextOccurence]))*/
         
         self.sections = sections.filter({ !$0.isEmpty })
         
@@ -124,7 +126,19 @@ class EventInfoViewController: UIViewController, UITableViewDataSource, UITableV
             self.setup()
         }
         
+            if self.event.completionStatus == .Done {
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                    
+                    self.navigationController?.popViewController(animated: true)
+                    
+                })
+                
+            }
+            
         }
+        
+    
         
     }
     

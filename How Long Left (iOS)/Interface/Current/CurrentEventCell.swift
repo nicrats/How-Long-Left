@@ -32,14 +32,12 @@ class CurrentEventCell: UITableViewCell {
     }
     
     func updateCell() {
-        
-
             
             self.titleLabel.text = "\(self.event.title) \(self.event.countdownTypeString) in"
             self.countdownLabel.text = self.countdownStringGenerator.generatePositionalCountdown(event: self.event)
             
-            self.progressBarTop.backgroundColor = self.event.uiColor.catalystAdjusted()
-            self.progressBarBottom.backgroundColor = self.event.uiColor.catalystAdjusted().withAlphaComponent(0.25)
+            self.progressBarTop.backgroundColor = self.event.uiColor
+            self.progressBarBottom.backgroundColor = self.event.uiColor.withAlphaComponent(0.25)
             
             let completion = self.event.completionFraction*100
             let totalHeight = self.progressBarBottom.frame.size.height

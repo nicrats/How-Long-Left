@@ -44,9 +44,14 @@ class HLLMain: NSObject, HLLCountdownController, NSWindowDelegate, EventPoolUpda
                 
             }
         
-            
+        DispatchQueue.main.async {
+
         self.magdalenePrompts.presentMagdaleneChangesPrompt()
         HLLDefaults.appData.launchedVersion = Version.currentVersion
+            
+        self.magdalenePrompts.presentShowStudyAsSportPrompt()
+            
+        }
          
             doneLaunchEventPoolChecks = true
             
@@ -195,10 +200,6 @@ class HLLMain: NSObject, HLLCountdownController, NSWindowDelegate, EventPoolUpda
         
         super.init()
         
-        self.welcomeStoryboard = NSStoryboard(name: "Onboarding", bundle: nil)
-        self.welcomeWindowController = self.welcomeStoryboard.instantiateController(withIdentifier: "Onboard1") as? NSWindowController
-        self.welcomeWindowController!.showWindow(self)
-        
         HLLMain.shared = self
         self.getLinks()
         HLLEventSource.shared.addEventPoolObserver(self)
@@ -249,6 +250,8 @@ class HLLMain: NSObject, HLLCountdownController, NSWindowDelegate, EventPoolUpda
                     self.welcomeWindowController = self.welcomeStoryboard.instantiateController(withIdentifier: "Onboard1") as? NSWindowController
                     
                     self.welcomeWindowController!.window!.delegate = self
+                    welcomeWindowController!.window!.collectionBehavior = .canJoinAllSpaces
+                    welcomeWindowController!.window!.level = .floating
                     self.welcomeWindowController!.showWindow(self)
                 
             } else {
@@ -1018,7 +1021,7 @@ class HLLMain: NSObject, HLLCountdownController, NSWindowDelegate, EventPoolUpda
                     
                     if let link = URL(string: String(line)) {
                         
-                        print("Link! \(line)")
+
                         returnArray.append(link)
                         
                     }

@@ -26,6 +26,8 @@
 	<true/>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>LSUIElement</key>
+	<true/>
 	<key>NSCalendarsUsageDescription</key>
 	<string>How Long Left needs to access your calendar to get current and upcomings events so they can be displayed in the app. No data will be collected.</string>
 	<key>NSHumanReadableCopyright</key>

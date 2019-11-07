@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" initialViewController="5fC-U9-eE6">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="5fC-U9-eE6">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -37,10 +37,10 @@
                     <window key="window" title="Welcome" allowsToolTipsWhenApplicationIsInactive="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="X93-Wb-NMJ">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
-                        <rect key="contentRect" x="129" y="180" width="750" height="449"/>
+                        <rect key="contentRect" x="129" y="180" width="745" height="394"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
-                        <value key="minSize" type="size" width="750" height="449"/>
-                        <value key="maxSize" type="size" width="750" height="449"/>
+                        <value key="minSize" type="size" width="745" height="394"/>
+                        <value key="maxSize" type="size" width="745" height="394"/>
                         <connections>
                             <outlet property="delegate" destination="5fC-U9-eE6" id="zYW-F7-YwW"/>
                         </connections>
@@ -58,35 +58,15 @@
             <objects>
                 <viewController id="bPS-K0-WsW" customClass="OnboardingViewController" customModule="How_Long_Left_macOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="5QN-QN-h9m">
-                        <rect key="frame" x="0.0" y="0.0" width="750" height="449"/>
+                        <rect key="frame" x="0.0" y="0.0" width="745" height="394"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <box horizontalHuggingPriority="248" verticalHuggingPriority="750" boxType="separator" id="i7L-od-GY9">
+                            <box horizontalHuggingPriority="248" verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="i7L-od-GY9">
                                 <rect key="frame" x="25" y="59" width="700" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="7AY-aT-x4T">
-                                <rect key="frame" x="140" y="80" width="470" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Do you want to use the default settings or open Preferences?" id="IbV-BF-O1J">
-                                    <font key="font" size="17" name="HelveticaNeue"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" id="ksi-No-nXK">
-                                <rect key="frame" x="613" y="13" width="118" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Use Defaults" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Gun-By-0RA">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="continueClicked:" target="bPS-K0-WsW" id="vFH-T4-rra"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" id="DIC-FA-dqg">
-                                <rect key="frame" x="19" y="13" width="161" height="32"/>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DIC-FA-dqg">
+                                <rect key="frame" x="16" y="13" width="161" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Open Preferences..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0Gb-5c-qzi">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -96,13 +76,8 @@
                                     <action selector="preferencesClicked:" target="bPS-K0-WsW" id="iIR-oj-pSn"/>
                                 </connections>
                             </button>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="itx-Or-3MU">
-                                <rect key="frame" x="245" y="126" width="261" height="239"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="logo" id="GtQ-il-4kD"/>
-                            </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="3Se-i0-pS7">
-                                <rect key="frame" x="60" y="388" width="630" height="42"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Se-i0-pS7">
+                                <rect key="frame" x="60" y="332" width="630" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Thanks for downloading How Long Left!" id="9Q1-el-CjF">
                                     <font key="font" metaFont="systemSemibold" size="35"/>
@@ -110,15 +85,43 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EXe-mF-4qA">
+                                <rect key="frame" x="312" y="301" width="126" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Launch At Login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Tw3-Ug-Dfv">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="menu" size="14"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="launchAtLoginClicked:" target="bPS-K0-WsW" id="5eK-lL-t3e"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ksi-No-nXK">
+                                <rect key="frame" x="566" y="13" width="165" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Use Default Settings" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Gun-By-0RA">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="continueClicked:" target="bPS-K0-WsW" id="vFH-T4-rra"/>
+                                </connections>
+                            </button>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="itx-Or-3MU">
+                                <rect key="frame" x="195" y="77" width="355" height="211"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="logo" id="GtQ-il-4kD"/>
+                            </imageView>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="icon" destination="itx-Or-3MU" id="dpc-Pv-eWV"/>
+                        <outlet property="launchAtLoginButton" destination="EXe-mF-4qA" id="fIS-LE-NL3"/>
                     </connections>
                 </viewController>
                 <customObject id="ABy-nQ-nni" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="211" y="664"/>
+            <point key="canvasLocation" x="208.5" y="636"/>
         </scene>
     </scenes>
     <resources>

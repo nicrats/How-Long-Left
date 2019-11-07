@@ -191,7 +191,7 @@ class InterfaceController: WKInterfaceController, EventPoolUpdateObserver, Defau
                         
                         if event.completionStatus != row.rowCompletionStatus {
                             
-                            DispatchQueue.global(qos: .default).async {
+                            DispatchQueue.main.async {
                                 self.updateTable()
                             }
                             
@@ -228,13 +228,13 @@ class InterfaceController: WKInterfaceController, EventPoolUpdateObserver, Defau
     
     func eventPoolUpdated() {
         print("WDB: Eventpool changed called")
-        DispatchQueue.global(qos: .default).async {
+        DispatchQueue.main.async {
             self.updateTable()
         }
     }
     
     func defaultsUpdatedRemotely() {
-        DispatchQueue.global(qos: .default).async {
+        DispatchQueue.main.async {
             self.updateTable()
         }
     }

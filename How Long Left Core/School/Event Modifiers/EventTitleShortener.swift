@@ -198,6 +198,10 @@ class EventTitleShortener {
         }
             
         
+        if event.period == "S", HLLDefaults.magdalene.showSportAsStudy {
+            newTitle = "Study"
+        }
+                
             
             if newTitle != event.originalTitle {
                 
@@ -205,6 +209,9 @@ class EventTitleShortener {
             }
             
             
+              
+                
+                
         event.title = newTitle
         event.shortTitle = newTitle
             

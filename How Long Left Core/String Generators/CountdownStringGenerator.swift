@@ -12,7 +12,6 @@ class CountdownStringGenerator {
     
     let pecentageCalc = PercentageCalculator()
     
-    
     func generateStatusItemString(event: HLLEvent?, mode: StatusItemMode) -> String? {
         
         var returnVal: String?

@@ -132,6 +132,10 @@ class TodayViewController: NSViewController, NCWidgetProviding, EventPoolUpdateO
   
     }
     
+    override func viewDidAppear() {
+        HLLEventSource.shared.updateEventPool()
+    }
+    
    
     func eventPoolUpdated() {
         

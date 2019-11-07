@@ -36,7 +36,7 @@ extension UIColor {
         
         #if targetEnvironment(macCatalyst)
         
-        returnCol = returnCol.adjust(by: 25.0)!
+        returnCol = returnCol.adjust(by: 20.0)!
         
         #endif
         

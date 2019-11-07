@@ -136,7 +136,9 @@ class MenuController: NSObject, NSMenuDelegate, NSWindowDelegate {
     
     override func awakeFromNib() {
         
-        self.statusItem.isVisible = true
+        if #available(OSX 10.12, *) {
+            self.statusItem.isVisible = true
+        }
         self.statusItem.button?.imagePosition = .imageLeft
         
         DispatchQueue.main.async {
