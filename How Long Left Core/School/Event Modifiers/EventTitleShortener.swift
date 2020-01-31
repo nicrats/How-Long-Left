@@ -3,7 +3,7 @@
 //  How Long Left
 //
 //  Created by Ryan Kontos on 16/10/18.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -20,12 +20,17 @@ class EventTitleShortener {
             
             var event = eventItem
             
-            if event.hasMagdalenePeriod == true {
+        if event.isSchoolEvent == true {
             
         var newTitle = event.title
         var ultraCompact: String?
         
             if event.originalTitle.contains(text:"Food Technology") {
+                newTitle = "Food Tech"
+                ultraCompact = "FT"
+            }
+                
+            if event.originalTitle.contains(text:"FTH") {
                 newTitle = "Food Tech"
                 ultraCompact = "FT"
             }
@@ -70,8 +75,16 @@ class EventTitleShortener {
             newTitle = "Commerce"
             ultraCompact = "Cmrce"
         }
+                
+        if event.originalTitle.contains(text:"COM") {
+            newTitle = "Commerce"
+        }
             
         if event.originalTitle.contains(text:"Arts") {
+            newTitle = "Art"
+        }
+                
+        if event.originalTitle.contains(text:"ART") {
             newTitle = "Art"
         }
             
@@ -79,7 +92,7 @@ class EventTitleShortener {
             newTitle = "Drama"
         }
             
-        if event.originalTitle.contains(text:"PASS") {
+        if event.originalTitle.contains(text:"PAS") {
             newTitle = "PASS"
         }
         
@@ -112,6 +125,10 @@ class EventTitleShortener {
         if event.originalTitle.contains(text:"Music") {
             newTitle = "Music"
         }
+                
+        if event.originalTitle.contains(text:"MUS") {
+            newTitle = "Music"
+        }
         
         if event.originalTitle.contains(text:"Maths") {
             newTitle = "Math"
@@ -141,6 +158,10 @@ class EventTitleShortener {
         if event.originalTitle.contains(text:"CAFS") {
             newTitle = "CAFS"
         }
+                
+        if event.originalTitle.contains(text:"CAF") {
+            newTitle = "CAFS"
+        }
             
         if event.originalTitle.contains(text:"SAC") {
             newTitle = "SAC"
@@ -154,6 +175,14 @@ class EventTitleShortener {
         if event.originalTitle.contains(text:"Business Services") {
             newTitle = "Business"
             ultraCompact = "BS"
+        }
+            
+        if event.originalTitle.contains(text:"BST") {
+            newTitle = "Business Studies"
+        }
+                
+        if event.originalTitle.contains(text:"BSE") {
+            newTitle = "Business Services"
         }
             
         if event.originalTitle.contains(text:"IST") {
@@ -188,6 +217,10 @@ class EventTitleShortener {
         if event.originalTitle.contains(text:"Study") {
             newTitle = "Study"
         }
+                
+        if event.originalTitle.contains(text:"STUDY") {
+            newTitle = "Study"
+        }
         
         if event.originalTitle.contains(text:"Drama") {
             newTitle = "Drama"
@@ -196,21 +229,122 @@ class EventTitleShortener {
         if event.originalTitle.contains(text:"Legal") {
             newTitle = "Legal"
         }
+                
+        if event.originalTitle.contains(text:"SDD") {
+            newTitle = "SDD"
+        }
+                
+        if event.originalTitle.contains(text:"IPT") {
+            newTitle = "IPT"
+        }
+                
+        if event.originalTitle.contains(text:"MS") {
+            newTitle = "Math"
+        }
+                
+        if event.originalTitle.contains(text:"EN") {
+            newTitle = "English"
+        }
+                
+        if event.originalTitle.contains(text:"MHI") {
+            newTitle = "Modern History"
+        }
+                
+        if event.originalTitle.contains(text:"AHI") {
+            newTitle = "Ancient History"
+        }
+                
+        if event.originalTitle.contains(text:"PHO") {
+            newTitle = "Photography"
+        }
+                
+        if event.originalTitle.contains(text:"SR") {
+            newTitle = "Religion"
+        }
+                
+        if event.originalTitle.contains(text:"PDH") {
+            newTitle = "PDH"
+        }
+                
+        if event.originalTitle.contains(text:"BIO") {
+            newTitle = "Biology"
+        }
+                
+        if event.originalTitle.contains(text:"PHY") {
+            newTitle = "Physics"
+        }
+                
+        if event.originalTitle.contains(text:"PHS") {
+            newTitle = "Physics"
+        }
+                
+        if event.originalTitle.contains(text:"CHE") {
+            newTitle = "Chemistry"
+        }
+                
+        if event.originalTitle.contains(text:"EEC") {
+            newTitle = "EEC"
+        }
             
+        if event.originalTitle.contains(text:"DAT") {
+            newTitle = "D&T"
+        }
+                
+        if event.originalTitle.contains(text:"D&T") {
+            newTitle = "D&T"
+        }
+                
+        if event.originalTitle.contains(text:"DES") {
+            newTitle = "D&T"
+        }
+                
+        if event.originalTitle.contains(text:"DRA") {
+            newTitle = "Drama"
+        }
+        
+        if event.originalTitle.contains(text:"DMA") {
+                newTitle = "Drama"
+        }
+                
+        if event.originalTitle.contains(text:"SCI") {
+            newTitle = "Science"
+        }
+                
+        if event.originalTitle.contains(text:"CS") {
+            newTitle = "Catholic Studies"
+        }
+            
+        if event.originalTitle.contains(text:"MEX") {
+            newTitle = "Catholic Studies"
+        }
+                
+        if event.period == "H" {
+            newTitle = "Homeroom"
+        }
+          
         
         if event.period == "S", HLLDefaults.magdalene.showSportAsStudy {
             newTitle = "Study"
         }
                 
-            
-            if newTitle != event.originalTitle {
+        if let dict = HLLDefaults.defaults.object(forKey: "NamesDictionary") as? [String:String] {
                 
-                event.isSchoolEvent = true
+            for item in dict {
+            
+                if event.originalTitle.lowercased().contains(text: item.key.lowercased()) {
+                    
+                    if item.value == "*" {
+                        newTitle = event.originalTitle
+                    } else {
+                        newTitle = item.value
+                    }
+                    
+                }
+                
             }
-            
-            
-              
                 
+        }
+            
                 
         event.title = newTitle
         event.shortTitle = newTitle

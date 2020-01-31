@@ -20,6 +20,7 @@
 		BF0E3C85231DF1AD00552B87 /* ExamsEventFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0E3C7F231DF1A900552B87 /* ExamsEventFetcher.swift */; };
 		BF0E3C86231DF1AE00552B87 /* ExamsEventFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0E3C7F231DF1A900552B87 /* ExamsEventFetcher.swift */; };
 		BF0FBCBC236C377A00F55B81 /* EventInfoOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0FBCBB236C377A00F55B81 /* EventInfoOrderTableViewController.swift */; };
+		BF106B1723DEF55B0056CFEC /* HotKeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF106B1623DEF55B0056CFEC /* HotKeyHandler.swift */; };
 		BF12AAFE234F5BD5002FF488 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF12AAFD234F5BD5002FF488 /* RootViewController.swift */; };
 		BF16469B22FC250A00D07BC3 /* CountdownText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF16469A22FC250A00D07BC3 /* CountdownText.swift */; };
 		BF1646C322FC410600D07BC3 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF794DE721787DEE0076FA17 /* NotificationCenter.framework */; };
@@ -27,7 +28,28 @@
 		BF1646C922FC410600D07BC3 /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF1646C722FC410600D07BC3 /* TodayViewController.xib */; };
 		BF1646CD22FC410600D07BC3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF1646CB22FC410600D07BC3 /* InfoPlist.strings */; };
 		BF1646D122FC410600D07BC3 /* How Long Left (macOS Widget).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BF1646C222FC410600D07BC3 /* How Long Left (macOS Widget).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BF166AF723D9545400509256 /* EventLocationIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF166AF623D9545300509256 /* EventLocationIndexer.swift */; };
+		BF166AF823D9545600509256 /* EventLocationIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF166AF623D9545300509256 /* EventLocationIndexer.swift */; };
+		BF166AF923D9545700509256 /* EventLocationIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF166AF623D9545300509256 /* EventLocationIndexer.swift */; };
+		BF166AFA23D9545700509256 /* EventLocationIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF166AF623D9545300509256 /* EventLocationIndexer.swift */; };
+		BF166AFB23D9545800509256 /* EventLocationIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF166AF623D9545300509256 /* EventLocationIndexer.swift */; };
+		BF166AFC23D9545800509256 /* EventLocationIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF166AF623D9545300509256 /* EventLocationIndexer.swift */; };
+		BF166AFD23D9545900509256 /* EventLocationIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF166AF623D9545300509256 /* EventLocationIndexer.swift */; };
+		BF166AFF23D95DF600509256 /* MapMenuItemHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF166AFE23D95DF600509256 /* MapMenuItemHandler.swift */; };
+		BF166B0223D962DA00509256 /* HideCalendarMenuItemHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF166B0123D962DA00509256 /* HideCalendarMenuItemHandler.swift */; };
+		BF166B0423D988E800509256 /* MenuItemClosureHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF166B0323D988E800509256 /* MenuItemClosureHandler.swift */; };
+		BF166B0623D9C3EA00509256 /* ActionableNSMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF166B0523D9C3EA00509256 /* ActionableNSMenuItem.swift */; };
+		BF1977952393A0E300EDEB02 /* InterfaceSettingsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1977942393A0E300EDEB02 /* InterfaceSettingsInterfaceController.swift */; };
 		BF19CF9622438AEA0088B196 /* RelativeTextInterpolater.m in Sources */ = {isa = PBXBuildFile; fileRef = BF19CF9522438AEA0088B196 /* RelativeTextInterpolater.m */; };
+		BF23B30F238E584100F98F6D /* SchoolEventFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23B30E238E584100F98F6D /* SchoolEventFetcher.swift */; };
+		BF23B310238E599300F98F6D /* SchoolEventFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23B30E238E584100F98F6D /* SchoolEventFetcher.swift */; };
+		BF23B311238E599400F98F6D /* SchoolEventFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23B30E238E584100F98F6D /* SchoolEventFetcher.swift */; };
+		BF23B312238E599500F98F6D /* SchoolEventFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23B30E238E584100F98F6D /* SchoolEventFetcher.swift */; };
+		BF23B313238E599600F98F6D /* SchoolEventFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23B30E238E584100F98F6D /* SchoolEventFetcher.swift */; };
+		BF23B314238E599600F98F6D /* SchoolEventFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23B30E238E584100F98F6D /* SchoolEventFetcher.swift */; };
+		BF23B315238E599700F98F6D /* SchoolEventFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23B30E238E584100F98F6D /* SchoolEventFetcher.swift */; };
+		BF23D6CB23A1E1CE008E3BB7 /* DockIconVisibilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23D6CA23A1E1CE008E3BB7 /* DockIconVisibilityManager.swift */; };
+		BF23D6CD23A1E407008E3BB7 /* UtilityRunLoopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23D6CC23A1E407008E3BB7 /* UtilityRunLoopManager.swift */; };
 		BF2713D822BCE255006A4B37 /* RNUIConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2713D722BCE255006A4B37 /* RNUIConfigurationViewController.swift */; };
 		BF2713DA22BD14AA006A4B37 /* ControllableTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2713D922BD14AA006A4B37 /* ControllableTabView.swift */; };
 		BF2713DC22BD1EAF006A4B37 /* RNUIRenamingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2713DB22BD1EAF006A4B37 /* RNUIRenamingViewController.swift */; };
@@ -60,6 +82,8 @@
 		BF2FA5F122EB37FC00E7FA0E /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FA5EC22EB37FC00E7FA0E /* Weekday.swift */; };
 		BF2FA5F222EB37FC00E7FA0E /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FA5EC22EB37FC00E7FA0E /* Weekday.swift */; };
 		BF2FA5F322EB37FC00E7FA0E /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FA5EC22EB37FC00E7FA0E /* Weekday.swift */; };
+		BF303FD5237397FC0080BFCC /* EventInfoSubmenuConfiguration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF303FD4237397FC0080BFCC /* EventInfoSubmenuConfiguration.storyboard */; };
+		BF303FD7237399070080BFCC /* EventInfoSubmenuConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF303FD6237399070080BFCC /* EventInfoSubmenuConfigurationViewController.swift */; };
 		BF3149B622DD9A68002BAF0D /* UpcomingSoonMenuGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3149B522DD9A68002BAF0D /* UpcomingSoonMenuGenerator.swift */; };
 		BF3149B822DDAC8B002BAF0D /* UpcomingWeekMenuGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3149B722DDAC8B002BAF0D /* UpcomingWeekMenuGenerator.swift */; };
 		BF3149BA22DDB3D7002BAF0D /* DateOfEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3149B922DDB3D7002BAF0D /* DateOfEvents.swift */; };
@@ -81,6 +105,7 @@
 		BF3149CF22DDEF7B002BAF0D /* CalendarAccessState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA559D22D883B800575230 /* CalendarAccessState.swift */; };
 		BF36185C22DCDB0400D51765 /* EventUIWindowsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF36185B22DCDB0400D51765 /* EventUIWindowsManager.swift */; };
 		BF36185E22DCDD7C00D51765 /* SelectedEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF36185D22DCDD7C00D51765 /* SelectedEventManager.swift */; };
+		BF3810AA23D2CE3000B82333 /* EventDetailChangesModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3810A923D2CE3000B82333 /* EventDetailChangesModifier.swift */; };
 		BF3836BE234DC80C00FA94BA /* HLLEventSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7072210202F00EE4A1F /* HLLEventSource.swift */; };
 		BF3836BF234DC81400FA94BA /* HLLCloudKitPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D75BF2340F606007A3638 /* HLLCloudKitPreferences.swift */; };
 		BF3836C0234DC81800FA94BA /* HLLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E70E2210202F00EE4A1F /* HLLEvent.swift */; };
@@ -132,14 +157,63 @@
 		BF38EF98235B01B000614B0A /* EventVisibiltyActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF38EF92235B01B000614B0A /* EventVisibiltyActionHandler.swift */; };
 		BF38EF99235B01B000614B0A /* EventVisibiltyActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF38EF92235B01B000614B0A /* EventVisibiltyActionHandler.swift */; };
 		BF38EF9B235B04C400614B0A /* HLLEventContextMenuGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF38EF9A235B04C400614B0A /* HLLEventContextMenuGenerator.swift */; };
+		BF3970A9238DEFBA00612187 /* DebugMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3970A8238DEFBA00612187 /* DebugMenuTableViewController.swift */; };
 		BF3A4EB5235C198B001A2200 /* LaunchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3A4EB4235C198B001A2200 /* LaunchingViewController.swift */; };
 		BF3AAB0A2267836E00EE06C4 /* HLLComplicationEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3AAB092267836E00EE06C4 /* HLLComplicationEntry.swift */; };
 		BF3AAB0C2267839100EE06C4 /* ComplicationUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3AAB0B2267839100EE06C4 /* ComplicationUpdateHandler.swift */; };
+		BF3B310A23E001AA0070CECA /* MagdaleneExtraEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B310923E001AA0070CECA /* MagdaleneExtraEvents.swift */; };
+		BF3B310B23E001B00070CECA /* MagdaleneExtraEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B310923E001AA0070CECA /* MagdaleneExtraEvents.swift */; };
+		BF3B310C23E001B10070CECA /* MagdaleneExtraEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B310923E001AA0070CECA /* MagdaleneExtraEvents.swift */; };
+		BF3B310E23E001B20070CECA /* MagdaleneExtraEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B310923E001AA0070CECA /* MagdaleneExtraEvents.swift */; };
+		BF3B310F23E001B30070CECA /* MagdaleneExtraEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B310923E001AA0070CECA /* MagdaleneExtraEvents.swift */; };
+		BF3B311023E001B30070CECA /* MagdaleneExtraEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B310923E001AA0070CECA /* MagdaleneExtraEvents.swift */; };
+		BF3B311123E001B30070CECA /* MagdaleneExtraEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3B310923E001AA0070CECA /* MagdaleneExtraEvents.swift */; };
+		BF3BCD1E23E031C400639D5F /* Pastr.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD1C23E031C300639D5F /* Pastr.swift */; };
+		BF3BCD1F23E031C400639D5F /* PastebinFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD1D23E031C400639D5F /* PastebinFormats.swift */; };
+		BF3BCD2123E0326500639D5F /* TextUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD2023E0326500639D5F /* TextUploader.swift */; };
+		BF3BCD2223E0372000639D5F /* TextUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD2023E0326500639D5F /* TextUploader.swift */; };
+		BF3BCD2323E0372100639D5F /* TextUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD2023E0326500639D5F /* TextUploader.swift */; };
+		BF3BCD2423E0372200639D5F /* TextUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD2023E0326500639D5F /* TextUploader.swift */; };
+		BF3BCD2523E0372300639D5F /* TextUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD2023E0326500639D5F /* TextUploader.swift */; };
+		BF3BCD2623E0372300639D5F /* TextUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD2023E0326500639D5F /* TextUploader.swift */; };
+		BF3BCD2723E0372400639D5F /* TextUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD2023E0326500639D5F /* TextUploader.swift */; };
+		BF3BCD2823E0372700639D5F /* Pastr.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD1C23E031C300639D5F /* Pastr.swift */; };
+		BF3BCD2923E0372800639D5F /* Pastr.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD1C23E031C300639D5F /* Pastr.swift */; };
+		BF3BCD2A23E0372800639D5F /* Pastr.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD1C23E031C300639D5F /* Pastr.swift */; };
+		BF3BCD2B23E0372900639D5F /* Pastr.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD1C23E031C300639D5F /* Pastr.swift */; };
+		BF3BCD2C23E0372A00639D5F /* Pastr.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD1C23E031C300639D5F /* Pastr.swift */; };
+		BF3BCD2D23E0372A00639D5F /* Pastr.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD1C23E031C300639D5F /* Pastr.swift */; };
+		BF3BCD2E23E0372D00639D5F /* PastebinFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD1D23E031C400639D5F /* PastebinFormats.swift */; };
+		BF3BCD2F23E0372E00639D5F /* PastebinFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD1D23E031C400639D5F /* PastebinFormats.swift */; };
+		BF3BCD3023E0372E00639D5F /* PastebinFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD1D23E031C400639D5F /* PastebinFormats.swift */; };
+		BF3BCD3123E0372F00639D5F /* PastebinFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD1D23E031C400639D5F /* PastebinFormats.swift */; };
+		BF3BCD3223E0372F00639D5F /* PastebinFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD1D23E031C400639D5F /* PastebinFormats.swift */; };
+		BF3BCD3323E0373000639D5F /* PastebinFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD1D23E031C400639D5F /* PastebinFormats.swift */; };
+		BF3BCD3523E037EB00639D5F /* MagdaleneEventDataUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD3423E037EB00639D5F /* MagdaleneEventDataUploader.swift */; };
+		BF3BCD3723E0734500639D5F /* NameConversionsDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD3623E0734400639D5F /* NameConversionsDownloader.swift */; };
+		BF3BCD3923E07F3C00639D5F /* EventTeacherAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD3823E07F3C00639D5F /* EventTeacherAdder.swift */; };
+		BF3BCD3A23E081ED00639D5F /* EventTeacherAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD3823E07F3C00639D5F /* EventTeacherAdder.swift */; };
+		BF3BCD3B23E081EE00639D5F /* EventTeacherAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD3823E07F3C00639D5F /* EventTeacherAdder.swift */; };
+		BF3BCD3C23E081EF00639D5F /* EventTeacherAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD3823E07F3C00639D5F /* EventTeacherAdder.swift */; };
+		BF3BCD3D23E081F000639D5F /* EventTeacherAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD3823E07F3C00639D5F /* EventTeacherAdder.swift */; };
+		BF3BCD3E23E081F000639D5F /* EventTeacherAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD3823E07F3C00639D5F /* EventTeacherAdder.swift */; };
+		BF3BCD3F23E081F000639D5F /* EventTeacherAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD3823E07F3C00639D5F /* EventTeacherAdder.swift */; };
 		BF3BE73521A103A9001AFBA8 /* MilestoneNotificationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BE73421A103A9001AFBA8 /* MilestoneNotificationGenerator.swift */; };
+		BF3C673723DC7C0500036D7A /* RNNeededEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3C673623DC7C0500036D7A /* RNNeededEvaluator.swift */; };
+		BF3C673923DC838E00036D7A /* RNBackgroundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3C673823DC838E00036D7A /* RNBackgroundManager.swift */; };
 		BF3C8DBB236AA16F00CFDEFD /* StackedInfoItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0B2884236A9F16009FE120 /* StackedInfoItemCell.swift */; };
 		BF3C8DBD236AA26B00CFDEFD /* InfoItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3C8DBC236AA26B00CFDEFD /* InfoItemCell.swift */; };
 		BF3C8DBF236AA4D900CFDEFD /* CurrentEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3C8DBE236AA4D900CFDEFD /* CurrentEventCell.swift */; };
+		BF3CB2D5239273E400A56F65 /* NotificationTriggerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3CB2D4239273E400A56F65 /* NotificationTriggerType.swift */; };
+		BF3CB2D72392742B00A56F65 /* NotificationTriggerTypeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3CB2D62392742B00A56F65 /* NotificationTriggerTypeSection.swift */; };
+		BF3CB2D92392744500A56F65 /* EventStatusTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3CB2D82392744500A56F65 /* EventStatusTrigger.swift */; };
+		BF3CB2DC2392746700A56F65 /* TimeRemainingNotificationTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3CB2DB2392746700A56F65 /* TimeRemainingNotificationTrigger.swift */; };
+		BF3CB2DE239274C200A56F65 /* PercentageNotificationTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3CB2DD239274C200A56F65 /* PercentageNotificationTrigger.swift */; };
+		BF3CB2E0239274D900A56F65 /* EventStatusNotificationTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3CB2DF239274D900A56F65 /* EventStatusNotificationTrigger.swift */; };
+		BF3CB2E2239274F200A56F65 /* HLLNotificationTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3CB2E1239274F200A56F65 /* HLLNotificationTrigger.swift */; };
+		BF3CB2E42392754B00A56F65 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3CB2E32392754B00A56F65 /* SettingsCell.swift */; };
 		BF3CECE622C19C2600E0D060 /* RNUIDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3CECE422C19C2600E0D060 /* RNUIDoneViewController.swift */; };
+		BF3D533923DB0E420053195A /* MagdaleneModeSetupPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D533823DB0E420053195A /* MagdaleneModeSetupPresentationManager.swift */; };
 		BF3D6D77233E08A5006EE765 /* DurationStringGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D6D76233E08A5006EE765 /* DurationStringGenerator.swift */; };
 		BF3D6D78233E092B006EE765 /* DurationStringGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D6D76233E08A5006EE765 /* DurationStringGenerator.swift */; };
 		BF3D6D79233E092C006EE765 /* DurationStringGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D6D76233E08A5006EE765 /* DurationStringGenerator.swift */; };
@@ -153,8 +227,10 @@
 		BF3D6D84233E0A43006EE765 /* HLLEventInfoItemGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D6D7E233E0A32006EE765 /* HLLEventInfoItemGenerator.swift */; };
 		BF3D6D85233E0A44006EE765 /* HLLEventInfoItemGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D6D7E233E0A32006EE765 /* HLLEventInfoItemGenerator.swift */; };
 		BF3D6D86233E1C92006EE765 /* FollowingOccurenceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7052210202F00EE4A1F /* FollowingOccurenceStore.swift */; };
+		BF3DA2BC23DAB2CA00009A3A /* SchoolEventDownloadNeededEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3DA2BB23DAB2CA00009A3A /* SchoolEventDownloadNeededEvaluator.swift */; };
 		BF3DB1482345EB86007D54A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3DB1472345EB86007D54A4 /* SceneDelegate.swift */; };
 		BF3E066622CB5C41002859D5 /* DoneAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = BF3E066522CB5C40002859D5 /* DoneAnimation.json */; };
+		BF3E6DF923DEB2F900722CBD /* StatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3E6DF823DEB2F900722CBD /* StatusItemController.swift */; };
 		BF3F5ADD22D3996D00BAAE61 /* RNUIIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3F5ADC22D3996D00BAAE61 /* RNUIIntroViewController.swift */; };
 		BF3F876222BCBE57002BA4CD /* RNUI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF3F876122BCBE57002BA4CD /* RNUI.storyboard */; };
 		BF445910233F7CD700DA1B21 /* HLLEventInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44590F233F7CD700DA1B21 /* HLLEventInfoItem.swift */; };
@@ -169,12 +245,15 @@
 		BF44591B233F7D0500DA1B21 /* HLLEventInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44590F233F7CD700DA1B21 /* HLLEventInfoItem.swift */; };
 		BF44591D233F7D0600DA1B21 /* HLLEventInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44590F233F7CD700DA1B21 /* HLLEventInfoItem.swift */; };
 		BF44591E233F7D0600DA1B21 /* HLLEventInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44590F233F7CD700DA1B21 /* HLLEventInfoItem.swift */; };
+		BF447017237D6C45008FD751 /* SiriAndWidgetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF447016237D6C45008FD751 /* SiriAndWidgetTableViewController.swift */; };
 		BF4ABBDA22F849DA00E23B45 /* Rickroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4ABBD922F849DA00E23B45 /* Rickroll.swift */; };
-		BF4AEFED2207A63E00FEE4BC /* MilestoneNotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4AEFEC2207A63E00FEE4BC /* MilestoneNotificationScheduler.swift */; };
+		BF4AEFED2207A63E00FEE4BC /* EventNotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4AEFEC2207A63E00FEE4BC /* EventNotificationScheduler.swift */; };
 		BF4F6B60233689D00015826E /* PrimaryEventRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F6B5F233689D00015826E /* PrimaryEventRowController.swift */; };
 		BF4F6B62233689E50015826E /* CurrentEventRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F6B61233689E50015826E /* CurrentEventRowController.swift */; };
 		BF4F6B64233689FF0015826E /* UpcomingEventRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F6B63233689FF0015826E /* UpcomingEventRowController.swift */; };
 		BF4F6B6623368A2E0015826E /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F6B6523368A2E0015826E /* EventRow.swift */; };
+		BF50E18B2397253800E708C4 /* NotificationsTriggersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF50E18A2397253800E708C4 /* NotificationsTriggersViewController.xib */; };
+		BF50E18F23972ADF00E708C4 /* NotificationTriggerDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF50E18E23972ADE00E708C4 /* NotificationTriggerDefaultsHelper.swift */; };
 		BF510172230F76AA0025D11F /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCAF89422FC231600D81B48 /* TimeInterval.swift */; };
 		BF510173230F76AB0025D11F /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCAF89422FC231600D81B48 /* TimeInterval.swift */; };
 		BF510175230F76AB0025D11F /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCAF89422FC231600D81B48 /* TimeInterval.swift */; };
@@ -193,12 +272,14 @@
 		BF510187230F76C90025D11F /* TermEventFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF27197422E324C500FB6B11 /* TermEventFetcher.swift */; };
 		BF52D4C4235B2A5B00914BC4 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF52D4C3235B2A5B00914BC4 /* SwitchCell.xib */; };
 		BF52D4C6235B2AE700914BC4 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF52D4C5235B2AE700914BC4 /* SwitchCell.swift */; };
+		BF53EB9E237701BE00861A4D /* TitleDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF53EB9C237701BD00861A4D /* TitleDetailCell.swift */; };
+		BF53EB9F237701BE00861A4D /* TitleDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF53EB9D237701BD00861A4D /* TitleDetailCell.xib */; };
+		BF53EBA3237704B300861A4D /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF53EBA2237704B300861A4D /* SettingsTableViewController.swift */; };
 		BF55FF8C234C9F2700FD1DE9 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF794DE721787DEE0076FA17 /* NotificationCenter.framework */; };
 		BF55FF8F234C9F2700FD1DE9 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF55FF8E234C9F2700FD1DE9 /* TodayViewController.swift */; };
 		BF55FF92234C9F2700FD1DE9 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF55FF90234C9F2700FD1DE9 /* MainInterface.storyboard */; };
 		BF55FF96234C9F2700FD1DE9 /* How Long Left.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BF55FF8B234C9F2700FD1DE9 /* How Long Left.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BF56BF2022D49B8E00066872 /* CalSelectStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF56BF1F22D49B8E00066872 /* CalSelectStoryboard.storyboard */; };
-		BF56BF2222D49BD100066872 /* CustomNotificationsPreferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF56BF2122D49BD100066872 /* CustomNotificationsPreferences.storyboard */; };
 		BF5887D1233F80CB00A976A2 /* EventInfoTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5887D0233F80CB00A976A2 /* EventInfoTableRow.swift */; };
 		BF5AC4B022D7A25B00159498 /* EventUIDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5AC4AF22D7A25B00159498 /* EventUIDoneViewController.swift */; };
 		BF5ADE5323368C2800DF8EA9 /* WatchResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5ADE5223368C2800DF8EA9 /* WatchResolution.swift */; };
@@ -215,12 +296,26 @@
 		BF5F945922DA026900AB9FF3 /* CalendarPreferencesViewNoAccess.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5F945822DA026900AB9FF3 /* CalendarPreferencesViewNoAccess.xib */; };
 		BF5F945B22DA2CEA00AB9FF3 /* EventListMenuGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5F945A22DA2CEA00AB9FF3 /* EventListMenuGenerator.swift */; };
 		BF5F945D22DA2F9400AB9FF3 /* EventMenuItemGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5F945C22DA2F9300AB9FF3 /* EventMenuItemGenerator.swift */; };
+		BF617CFB2387729A00973D7E /* HLLNotificationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF617CFA2387729A00973D7E /* HLLNotificationContent.swift */; };
+		BF617CFC2387729A00973D7E /* HLLNotificationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF617CFA2387729A00973D7E /* HLLNotificationContent.swift */; };
+		BF617CFD2387729A00973D7E /* HLLNotificationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF617CFA2387729A00973D7E /* HLLNotificationContent.swift */; };
 		BF621F6022C9F7D000226E61 /* EventUIStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF621F5F22C9F7D000226E61 /* EventUIStoryboard.storyboard */; };
 		BF621F6222C9FE9A00226E61 /* EventUICountdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF621F6122C9FE9A00226E61 /* EventUICountdownViewController.swift */; };
+		BF629489237A53EE0091B1F9 /* RenameIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF629488237A53EE0091B1F9 /* RenameIntroViewController.swift */; };
 		BF634B8621BE94EB00C285AB /* CalendarPreferenceViewControllerNoAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF634B8521BE94EA00C285AB /* CalendarPreferenceViewControllerNoAccess.swift */; };
 		BF6495E121B2C79E006CB6DF /* CalendarPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF6495E021B2C79D006CB6DF /* CalendarPreferencesView.xib */; };
+		BF654B5423E2AA4E00E72B79 /* OldRoomInfoAdder .swift in Sources */ = {isa = PBXBuildFile; fileRef = BF654B5323E2AA4E00E72B79 /* OldRoomInfoAdder .swift */; };
+		BF654B5523E2B29400E72B79 /* OldRoomInfoAdder .swift in Sources */ = {isa = PBXBuildFile; fileRef = BF654B5323E2AA4E00E72B79 /* OldRoomInfoAdder .swift */; };
+		BF654B5623E2B29400E72B79 /* OldRoomInfoAdder .swift in Sources */ = {isa = PBXBuildFile; fileRef = BF654B5323E2AA4E00E72B79 /* OldRoomInfoAdder .swift */; };
+		BF654B5723E2B29600E72B79 /* OldRoomInfoAdder .swift in Sources */ = {isa = PBXBuildFile; fileRef = BF654B5323E2AA4E00E72B79 /* OldRoomInfoAdder .swift */; };
+		BF654B5823E2B29700E72B79 /* OldRoomInfoAdder .swift in Sources */ = {isa = PBXBuildFile; fileRef = BF654B5323E2AA4E00E72B79 /* OldRoomInfoAdder .swift */; };
+		BF654B5923E2B29700E72B79 /* OldRoomInfoAdder .swift in Sources */ = {isa = PBXBuildFile; fileRef = BF654B5323E2AA4E00E72B79 /* OldRoomInfoAdder .swift */; };
+		BF654B5A23E2B29800E72B79 /* OldRoomInfoAdder .swift in Sources */ = {isa = PBXBuildFile; fileRef = BF654B5323E2AA4E00E72B79 /* OldRoomInfoAdder .swift */; };
 		BF67E2DC233FD95600EB1522 /* CalendarListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF67E2DB233FD95600EB1522 /* CalendarListInterfaceController.swift */; };
 		BF6AD69E2226505800B62C0C /* CalSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6AD69D2226505800B62C0C /* CalSelectViewController.swift */; };
+		BF71C63D23854D6A00576A81 /* EventInfoViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF71C63C23854D6A00576A81 /* EventInfoViewPresenter.swift */; };
+		BF72C68D2395DF9100244F86 /* CustomNotificationPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD2365222D4A4DA007B91E2 /* CustomNotificationPreferencesViewController.swift */; };
+		BF72C68F239607D400244F86 /* MinutesRemainingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF72C68E239607D400244F86 /* MinutesRemainingCell.swift */; };
 		BF7754F722FC499A00A9370C /* HLLEventSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7072210202F00EE4A1F /* HLLEventSource.swift */; };
 		BF7754F822FC499C00A9370C /* SchoolAnalyser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E71A2210202F00EE4A1F /* SchoolAnalyser.swift */; };
 		BF7754F922FC499F00A9370C /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7082210202F00EE4A1F /* Version.swift */; };
@@ -257,7 +352,12 @@
 		BF7B9BBF21760BFF00E44CCF /* BackgroundUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B9BBE21760BFF00E44CCF /* BackgroundUpdateHandler.swift */; };
 		BF7BB5AD22BE4923001D2E86 /* RNEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BB5AC22BE4923001D2E86 /* RNEvent.swift */; };
 		BF7BB5AF22BF104C001D2E86 /* RNProcessUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BB5AE22BF104C001D2E86 /* RNProcessUI.swift */; };
+		BF7DA37B237BF9E80036B499 /* MUEventListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DA37A237BF9E80036B499 /* MUEventListInterfaceController.swift */; };
 		BF8229B9233FD1500050C526 /* SettingsListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8229B8233FD1500050C526 /* SettingsListInterfaceController.swift */; };
+		BF82CD1623E3078600EF9EED /* NameConversionsDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD3623E0734400639D5F /* NameConversionsDownloader.swift */; };
+		BF82CD1723E3078800EF9EED /* NameConversionsDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD3623E0734400639D5F /* NameConversionsDownloader.swift */; };
+		BF82CD1823E3078900EF9EED /* NameConversionsDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BCD3623E0734400639D5F /* NameConversionsDownloader.swift */; };
+		BF856C3623B0B627002D8E86 /* BGRefreshModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF856C3423B0B627002D8E86 /* BGRefreshModel.xcdatamodeld */; };
 		BF8686FA235D51C100EF931E /* CalendarDefaultsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8686F9235D51C100EF931E /* CalendarDefaultsModifier.swift */; };
 		BF8686FB235D51C100EF931E /* CalendarDefaultsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8686F9235D51C100EF931E /* CalendarDefaultsModifier.swift */; };
 		BF8686FC235D51C100EF931E /* CalendarDefaultsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8686F9235D51C100EF931E /* CalendarDefaultsModifier.swift */; };
@@ -266,8 +366,6 @@
 		BF8686FF235D51C100EF931E /* CalendarDefaultsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8686F9235D51C100EF931E /* CalendarDefaultsModifier.swift */; };
 		BF868700235D51C100EF931E /* CalendarDefaultsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8686F9235D51C100EF931E /* CalendarDefaultsModifier.swift */; };
 		BF876A09220C0EEE007D2EFF /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF876A08220C0EEE007D2EFF /* MainInterface.storyboard */; };
-		BF876A0B220C15F7007D2EFF /* MilestoneSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF876A0A220C15F7007D2EFF /* MilestoneSettingsTableViewController.swift */; };
-		BF876A0D220C3226007D2EFF /* MilestoneSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF876A0C220C3226007D2EFF /* MilestoneSettingsCell.swift */; };
 		BF89B8982347B74E00437A75 /* EKEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF89B8972347B74E00437A75 /* EKEvent.swift */; };
 		BF89B8992347B74E00437A75 /* EKEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF89B8972347B74E00437A75 /* EKEvent.swift */; };
 		BF89B89A2347B74E00437A75 /* EKEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF89B8972347B74E00437A75 /* EKEvent.swift */; };
@@ -275,12 +373,15 @@
 		BF89B89D2347B74E00437A75 /* EKEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF89B8972347B74E00437A75 /* EKEvent.swift */; };
 		BF89B89E2347B74E00437A75 /* EKEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF89B8972347B74E00437A75 /* EKEvent.swift */; };
 		BF8A4F0D21CDD6D200EC12B6 /* macOSExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A4F0C21CDD6D200EC12B6 /* macOSExtensions.swift */; };
+		BF8A701F2397BCB000F2F3D7 /* CustomNotificationPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF8A701E2397BCB000F2F3D7 /* CustomNotificationPreferencesView.xib */; };
 		BF8B99EA21AE36CA00F7499A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF8B99E921AE36CA00F7499A /* Assets.xcassets */; };
 		BF8B99F021AE7BB700F7499A /* StatusItemPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF8B99EF21AE7BB600F7499A /* StatusItemPreferencesView.xib */; };
 		BF8BFF3922607ACA00B17C39 /* HLL iOS App Icon No Background.png in Resources */ = {isa = PBXBuildFile; fileRef = BF8BFF3822607AC900B17C39 /* HLL iOS App Icon No Background.png */; };
 		BF8C21FF2326030900CAA3ED /* EventVisibilityButtonsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF847E6231E5D1E0075E733 /* EventVisibilityButtonsManager.swift */; };
 		BF8D07C22250C47D006B8E85 /* CurrentEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D07C12250C47D006B8E85 /* CurrentEventsTableViewController.swift */; };
 		BF8D07C42250C62F006B8E85 /* UpcomingEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D07C32250C62F006B8E85 /* UpcomingEventsTableViewController.swift */; };
+		BF8D2257237BE0D100BE98F4 /* PreviousEventRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D2256237BE0D100BE98F4 /* PreviousEventRowController.swift */; };
+		BF8D225A237BF37900BE98F4 /* MUWeekListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D2259237BF37900BE98F4 /* MUWeekListInterfaceController.swift */; };
 		BF8D75C12340F732007A3638 /* HLLCloudKitPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D75BF2340F606007A3638 /* HLLCloudKitPreferences.swift */; };
 		BF8D75C22340F733007A3638 /* HLLCloudKitPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D75BF2340F606007A3638 /* HLLCloudKitPreferences.swift */; };
 		BF8D940D2340BCEE00470F1F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8D940C2340BCEE00470F1F /* CloudKit.framework */; };
@@ -288,6 +389,11 @@
 		BF8D94172340CCBE00470F1F /* CKError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D94162340CCBE00470F1F /* CKError.swift */; };
 		BF8D941C2340E8DF00470F1F /* CKError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D94162340CCBE00470F1F /* CKError.swift */; };
 		BF8D941D2340E8E000470F1F /* CKError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8D94162340CCBE00470F1F /* CKError.swift */; };
+		BF9015C423DD5DB9006A642C /* MagdaleneModeSetupDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9015C323DD5DB9006A642C /* MagdaleneModeSetupDoneViewController.swift */; };
+		BF9015C823DD6C3C006A642C /* NotSetUpMagdalenePreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF9015C623DD6C3C006A642C /* NotSetUpMagdalenePreferencesView.xib */; };
+		BF9015C923DD6C3C006A642C /* NotSetupMagdalenePreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9015C723DD6C3C006A642C /* NotSetupMagdalenePreferenceViewController.swift */; };
+		BF90D43823E09CAB00864D8C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF90D43723E09CAA00864D8C /* GoogleService-Info.plist */; };
+		BF90D43923E09CAB00864D8C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF90D43723E09CAA00864D8C /* GoogleService-Info.plist */; };
 		BF91C2762353145100572449 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAEE94A2258D36A0012BA81 /* UIColor.swift */; };
 		BF91C277235314D300572449 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAEE94A2258D36A0012BA81 /* UIColor.swift */; };
 		BF91C278235314D300572449 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAEE94A2258D36A0012BA81 /* UIColor.swift */; };
@@ -313,15 +419,27 @@
 		BF9688E522CDD9AB000FA86F /* RenamePreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF9688E422CDD9AB000FA86F /* RenamePreferencesView.xib */; };
 		BF9688E722CDDD9E000FA86F /* RNUI Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9688E622CDDD9E000FA86F /* RNUI Manager.swift */; };
 		BF9688E922CDE434000FA86F /* RenamePreferencesUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9688E822CDE434000FA86F /* RenamePreferencesUI.swift */; };
+		BF968C9323B228D900BC2E54 /* WatchInterfaceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF968C9223B228D900BC2E54 /* WatchInterfaceTableViewController.swift */; };
 		BF986109233F1D23007D866D /* EventInfoInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF986108233F1D23007D866D /* EventInfoInterfaceController.swift */; };
-		BF98F48A23671BB5006AD1F6 /* EventInfoCountdownTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98F48923671BB5006AD1F6 /* EventInfoCountdownTableRow.swift */; };
 		BF9927BD2335193D00E9C1E1 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9927BC2335193D00E9C1E1 /* InterfaceController.swift */; };
+		BF99A6DD23D53C6D0070D3C2 /* MagdaleneModeSetupIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF99A6DC23D53C6D0070D3C2 /* MagdaleneModeSetupIntroViewController.swift */; };
+		BF99A6DF23D53EE70070D3C2 /* MagdaleneModeSetupAwaitingSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF99A6DE23D53EE70070D3C2 /* MagdaleneModeSetupAwaitingSetupViewController.swift */; };
 		BF9E963821888093002626CD /* CountdownStringGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9E963721888093002626CD /* CountdownStringGenerator.swift */; };
-		BF9E963A21888694002626CD /* HLLMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9E963921888694002626CD /* HLLMain.swift */; };
 		BF9EA1A221FB0431008BC1C5 /* iOS WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9EA1A121FB0431008BC1C5 /* iOS WatchSessionManager.swift */; };
 		BF9EA1A421FB0605008BC1C5 /* watchOS WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9EA1A321FB0605008BC1C5 /* watchOS WatchSessionManager.swift */; };
 		BF9F166F2175FC5B000D8809 /* ComplicationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F166E2175FC5B000D8809 /* ComplicationGenerator.swift */; };
+		BFA1ABCD239377340008E867 /* UpcomingEventsTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA1ABCC239377340008E867 /* UpcomingEventsTableRow.swift */; };
+		BFA24ED023E14A13003EE71A /* WindowActivationWorkaround.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA24ECF23E14A13003EE71A /* WindowActivationWorkaround.swift */; };
 		BFA26496222B553200045CF4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFA26495222B553200045CF4 /* StoreKit.framework */; };
+		BFA3FD1623D41297009BA759 /* EventDetailChangesModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3810A923D2CE3000B82333 /* EventDetailChangesModifier.swift */; };
+		BFA3FD1723D41299009BA759 /* EventDetailChangesModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3810A923D2CE3000B82333 /* EventDetailChangesModifier.swift */; };
+		BFA3FD1823D41299009BA759 /* EventDetailChangesModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3810A923D2CE3000B82333 /* EventDetailChangesModifier.swift */; };
+		BFA3FD1923D4129A009BA759 /* EventDetailChangesModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3810A923D2CE3000B82333 /* EventDetailChangesModifier.swift */; };
+		BFA3FD1A23D4129B009BA759 /* EventDetailChangesModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3810A923D2CE3000B82333 /* EventDetailChangesModifier.swift */; };
+		BFA3FD1B23D4129B009BA759 /* EventDetailChangesModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3810A923D2CE3000B82333 /* EventDetailChangesModifier.swift */; };
+		BFA3FD1D23D41A3E009BA759 /* SchoolEventChangesMenuItemGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA3FD1C23D41A3E009BA759 /* SchoolEventChangesMenuItemGenerator.swift */; };
+		BFA3FD2023D456AF009BA759 /* MagdaleneModeSetupStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFA3FD1F23D456AF009BA759 /* MagdaleneModeSetupStoryboard.storyboard */; };
+		BFA577BE23CF155500BB4A4D /* PreferencePaneIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA577BD23CF155500BB4A4D /* PreferencePaneIdentifiers.swift */; };
 		BFA6594722D793A20019239C /* EventUITabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA6594622D793A20019239C /* EventUITabViewController.swift */; };
 		BFADC12123584E2D00298C58 /* MagdaleneSettingsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFADC12023584E2D00298C58 /* MagdaleneSettingsInterfaceController.swift */; };
 		BFAEE94B2258D36A0012BA81 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAEE94A2258D36A0012BA81 /* UIColor.swift */; };
@@ -339,6 +457,11 @@
 		BFB8EF7C223E10010023B322 /* MagdaleneWiFiCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8EF7B223E10000023B322 /* MagdaleneWiFiCheck.swift */; };
 		BFB8EF7E223E15C50023B322 /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFB8EF7D223E15C50023B322 /* AboutView.xib */; };
 		BFB8EF80223E19320023B322 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8EF7F223E19320023B322 /* AboutViewController.swift */; };
+		BFBEAFA323AC8FC600317A01 /* AppleWatchSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEAFA223AC8FC600317A01 /* AppleWatchSettingsTableViewController.swift */; };
+		BFBEC856238B733E00BBE877 /* EventNotificationContentGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEC855238B733E00BBE877 /* EventNotificationContentGenerator.swift */; };
+		BFBEC858238B735700BBE877 /* EventNotificationContentGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEC855238B733E00BBE877 /* EventNotificationContentGenerator.swift */; };
+		BFBEC85C238B7EB300BBE877 /* MacEventNotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEC85B238B7EB300BBE877 /* MacEventNotificationScheduler.swift */; };
+		BFC01ED823DED36100A8DBA2 /* CompassLaunchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC01ED723DED36100A8DBA2 /* CompassLaunchHandler.swift */; };
 		BFC0C4B721FEB17600D041DA /* HLLIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BFC0C4B621FEB17600D041DA /* HLLIntents.intentdefinition */; };
 		BFC0C4F821FEB6EF00D041DA /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC0C4D521FEB6C100D041DA /* IntentsUI.framework */; };
 		BFC0C4FB21FEB6EF00D041DA /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC0C4FA21FEB6EF00D041DA /* IntentViewController.swift */; };
@@ -428,16 +551,28 @@
 		BFC4E7922210202F00EE4A1F /* SchoolAnalyser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E71A2210202F00EE4A1F /* SchoolAnalyser.swift */; };
 		BFC962CC221C0BEF00FA4C59 /* EventInfoViewRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC962CB221C0BEF00FA4C59 /* EventInfoViewRows.swift */; };
 		BFCAF89522FC231600D81B48 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCAF89422FC231600D81B48 /* TimeInterval.swift */; };
+		BFCB01DF23C30823009F982D /* GeneralSettingsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCB01DE23C30823009F982D /* GeneralSettingsInterfaceController.swift */; };
 		BFCD6D98234F559E00DCABE3 /* EventInfoViewGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCD6D97234F559E00DCABE3 /* EventInfoViewGenerator.swift */; };
 		BFCD6D9F234F56C500DCABE3 /* TimerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCD6D9E234F56C500DCABE3 /* TimerCell.swift */; };
 		BFCD6DA1234F592200DCABE3 /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCD6DA0234F592200DCABE3 /* EventInfoViewController.swift */; };
 		BFCFBD512228B786002DDCDA /* ComplicationIAP.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFBD502228B786002DDCDA /* ComplicationIAP.swift */; };
 		BFD24C2C22144306000DC93F /* HLLEventSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E7072210202F00EE4A1F /* HLLEventSource.swift */; };
+		BFD2819B2377AD4E000B48E4 /* SplitRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD2819A2377AD4D000B48E4 /* SplitRootViewController.swift */; };
+		BFD2819D2377DFCC000B48E4 /* NotificationConfigurationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD2819C2377DFCC000B48E4 /* NotificationConfigurationTableViewController.swift */; };
 		BFD812D9218A7BFF00992E23 /* UpcomingEventStringGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD812D8218A7BFF00992E23 /* UpcomingEventStringGenerator.swift */; };
 		BFD946532353DC0A004CABD4 /* HLLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E70E2210202F00EE4A1F /* HLLEvent.swift */; };
 		BFD946542353DC0C004CABD4 /* HLLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E70E2210202F00EE4A1F /* HLLEvent.swift */; };
 		BFD946552353DC0E004CABD4 /* HLLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC4E70E2210202F00EE4A1F /* HLLEvent.swift */; };
 		BFD96268225229FF00060FFF /* BackgroundFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD96267225229FF00060FFF /* BackgroundFunctions.swift */; };
+		BFDB9C3A238C906000EE080E /* EventNotificationContentGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEC855238B733E00BBE877 /* EventNotificationContentGenerator.swift */; };
+		BFDB9C3B238C906000EE080E /* EventNotificationContentGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEC855238B733E00BBE877 /* EventNotificationContentGenerator.swift */; };
+		BFDB9C3C238C906000EE080E /* EventNotificationContentGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEC855238B733E00BBE877 /* EventNotificationContentGenerator.swift */; };
+		BFDB9C3D238C906000EE080E /* EventNotificationContentGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEC855238B733E00BBE877 /* EventNotificationContentGenerator.swift */; };
+		BFDB9C3E238C906000EE080E /* EventNotificationContentGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEC855238B733E00BBE877 /* EventNotificationContentGenerator.swift */; };
+		BFDB9C40238C914000EE080E /* HLLNotificationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF617CFA2387729A00973D7E /* HLLNotificationContent.swift */; };
+		BFDB9C41238C914100EE080E /* HLLNotificationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF617CFA2387729A00973D7E /* HLLNotificationContent.swift */; };
+		BFDB9C42238C914200EE080E /* HLLNotificationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF617CFA2387729A00973D7E /* HLLNotificationContent.swift */; };
+		BFDB9C43238C914300EE080E /* HLLNotificationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF617CFA2387729A00973D7E /* HLLNotificationContent.swift */; };
 		BFDC141C22618E2100F618A8 /* IAPOnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDC141B22618E2100F618A8 /* IAPOnboardViewController.swift */; };
 		BFDE4A6321B5FF5600CD50BC /* OnboardingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDE4A6221B5FF5600CD50BC /* OnboardingWindowController.swift */; };
 		BFDE4A6521B60AB500CD50BC /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDE4A6421B60AB500CD50BC /* OnboardingViewController.swift */; };
@@ -445,15 +580,35 @@
 		BFDE4A6921B6607800CD50BC /* StatusItemPreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDE4A6821B6607800CD50BC /* StatusItemPreferenceViewController.swift */; };
 		BFDE4A6B21B660AF00CD50BC /* CalendarPreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDE4A6A21B660AF00CD50BC /* CalendarPreferenceViewController.swift */; };
 		BFDE4A6D21B67E3C00CD50BC /* MemoryRelaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDE4A6C21B67E3C00CD50BC /* MemoryRelaunch.swift */; };
+		BFE4460823CEED6500924F5D /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE4460723CEED6500924F5D /* UIImage.swift */; };
+		BFE4460C23CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE4460B23CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift */; };
+		BFE4460D23CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE4460B23CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift */; };
+		BFE4460E23CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE4460B23CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift */; };
+		BFE4460F23CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE4460B23CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift */; };
+		BFE4461023CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE4460B23CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift */; };
+		BFE4461123CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE4460B23CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift */; };
+		BFE4461223CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE4460B23CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift */; };
 		BFE6F3B52328CE4100F54759 /* VisibilityString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6F3B42328CE4100F54759 /* VisibilityString.swift */; };
 		BFE6F3B62328CE4100F54759 /* VisibilityString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6F3B42328CE4100F54759 /* VisibilityString.swift */; };
 		BFE6F3B72328CE4100F54759 /* VisibilityString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6F3B42328CE4100F54759 /* VisibilityString.swift */; };
 		BFE6F3B82328CE4100F54759 /* VisibilityString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6F3B42328CE4100F54759 /* VisibilityString.swift */; };
 		BFE6F3BA2328CE4100F54759 /* VisibilityString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6F3B42328CE4100F54759 /* VisibilityString.swift */; };
 		BFE6F3BB2328CE4100F54759 /* VisibilityString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6F3B42328CE4100F54759 /* VisibilityString.swift */; };
+		BFE917612373AB0D00A66F40 /* MenuUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE917602373AB0D00A66F40 /* MenuUpdateHandler.swift */; };
+		BFE917632373BB3900A66F40 /* StatusItemUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE917622373BB3900A66F40 /* StatusItemUpdateHandler.swift */; };
+		BFE917652373C18B00A66F40 /* HotKeyNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE917642373C18B00A66F40 /* HotKeyNotificationHandler.swift */; };
+		BFE917672373C2D800A66F40 /* SelectionMenuItemHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE917662373C2D800A66F40 /* SelectionMenuItemHandler.swift */; };
+		BFE917682373C35A00A66F40 /* SelectedEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF36185D22DCDD7C00D51765 /* SelectedEventManager.swift */; };
+		BFE917692373C35A00A66F40 /* SelectedEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF36185D22DCDD7C00D51765 /* SelectedEventManager.swift */; };
+		BFE9176A2373C35B00A66F40 /* SelectedEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF36185D22DCDD7C00D51765 /* SelectedEventManager.swift */; };
+		BFE9176B2373C35B00A66F40 /* SelectedEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF36185D22DCDD7C00D51765 /* SelectedEventManager.swift */; };
+		BFE9176C2373C35C00A66F40 /* SelectedEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF36185D22DCDD7C00D51765 /* SelectedEventManager.swift */; };
+		BFE9176D2373C35C00A66F40 /* SelectedEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF36185D22DCDD7C00D51765 /* SelectedEventManager.swift */; };
 		BFEA0CE921788D0100FAF2F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA0CE821788D0100FAF2F1 /* AppDelegate.swift */; };
 		BFEA0CEE21788D0B00FAF2F1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFEA0CEC21788D0B00FAF2F1 /* MainMenu.xib */; };
 		BFEA0D19217891C600FAF2F1 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA0D18217891C600FAF2F1 /* MenuController.swift */; };
+		BFEC4FDC239DED2200EF8F6D /* LaunchFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEC4FDB239DED2200EF8F6D /* LaunchFunctions.swift */; };
+		BFEC4FDE239DEF7300EF8F6D /* OnboardingWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEC4FDD239DEF7300EF8F6D /* OnboardingWindowManager.swift */; };
 		BFEE396221BD129F000106BD /* NotificationPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFEE396121BD129F000106BD /* NotificationPreferencesView.xib */; };
 		BFEE396421BD152B000106BD /* NotificationPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEE396321BD152B000106BD /* NotificationPreferencesViewController.swift */; };
 		BFF05EDA21E9DE4F0044F049 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFF05ED121E9DE4E0044F049 /* Assets.xcassets */; };
@@ -465,7 +620,12 @@
 		BFF563EB2214D39F00A93D6B /* PercentageCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF563E82214D39F00A93D6B /* PercentageCalculator.swift */; };
 		BFF563ED2214D39F00A93D6B /* PercentageCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF563E82214D39F00A93D6B /* PercentageCalculator.swift */; };
 		BFF563EE2214D39F00A93D6B /* PercentageCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF563E82214D39F00A93D6B /* PercentageCalculator.swift */; };
+		BFF7FEDD23B1F63A009330A7 /* ComplicationSettingsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7FEDC23B1F63A009330A7 /* ComplicationSettingsInterfaceController.swift */; };
 		BFF847E7231E5D1E0075E733 /* EventVisibilityButtonsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF847E6231E5D1E0075E733 /* EventVisibilityButtonsManager.swift */; };
+		BFF8F57023861E7900E6F91E /* GeneralSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8F56F23861E7900E6F91E /* GeneralSettingsTableViewController.swift */; };
+		BFFA2BEE23B070E2002861DA /* UniversalMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA2BED23B070E2002861DA /* UniversalMenuItem.swift */; };
+		BFFA2BF023B0727C002861DA /* HLLEventUniversalMenuItemGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA2BEF23B0727C002861DA /* HLLEventUniversalMenuItemGenerator.swift */; };
+		BFFA2BF623B07D1B002861DA /* HLLEventActionSheetGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA2BF523B07D1B002861DA /* HLLEventActionSheetGenerator.swift */; };
 		BFFA559322D8345B00575230 /* MenuTopShelfGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA559222D8345B00575230 /* MenuTopShelfGenerator.swift */; };
 		BFFA559522D83D9D00575230 /* NSMenuItemMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA559422D83D9D00575230 /* NSMenuItemMaker.swift */; };
 		BFFA559722D85ADF00575230 /* EventAssociatedMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA559622D85ADF00575230 /* EventAssociatedMenuItem.swift */; };
@@ -504,6 +664,15 @@
 		BFFA55DE22D8886F00575230 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA55C922D8860900575230 /* String.swift */; };
 		BFFA55E022D8887000575230 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA55C922D8860900575230 /* String.swift */; };
 		BFFA55E122D8887000575230 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA55C922D8860900575230 /* String.swift */; };
+		BFFCCA15238CC57A00AC091A /* Pluraliser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFCCA14238CC57A00AC091A /* Pluraliser.swift */; };
+		BFFCCA16238CC6A000AC091A /* Pluraliser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFCCA14238CC57A00AC091A /* Pluraliser.swift */; };
+		BFFCCA17238CC6A000AC091A /* Pluraliser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFCCA14238CC57A00AC091A /* Pluraliser.swift */; };
+		BFFCCA18238CC6A200AC091A /* Pluraliser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFCCA14238CC57A00AC091A /* Pluraliser.swift */; };
+		BFFCCA19238CC6A300AC091A /* Pluraliser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFCCA14238CC57A00AC091A /* Pluraliser.swift */; };
+		BFFCCA1A238CC6A400AC091A /* Pluraliser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFCCA14238CC57A00AC091A /* Pluraliser.swift */; };
+		BFFCCA1B238CC6A500AC091A /* Pluraliser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFCCA14238CC57A00AC091A /* Pluraliser.swift */; };
+		BFFCCA1E238D064B00AC091A /* PreferencesWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFCCA1C238D045600AC091A /* PreferencesWindowManager.swift */; };
+		BFFCCA20238D095800AC091A /* TerminationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFCCA1F238D095800AC091A /* TerminationHandler.swift */; };
 		BFFE8B89236D7F4D0081D980 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFFE8B88236D7F4D0081D980 /* Onboarding.storyboard */; };
 		BFFEA0E722BDD76000363360 /* RNDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFEA0E622BDD76000363360 /* RNDataStore.swift */; };
 		BFFEA15722BDEABE00363360 /* RNProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFEA15622BDEABE00363360 /* RNProcess.swift */; };
@@ -648,6 +817,7 @@
 		BF0B2884236A9F16009FE120 /* StackedInfoItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedInfoItemCell.swift; sourceTree = "<group>"; };
 		BF0E3C7F231DF1A900552B87 /* ExamsEventFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamsEventFetcher.swift; sourceTree = "<group>"; };
 		BF0FBCBB236C377A00F55B81 /* EventInfoOrderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoOrderTableViewController.swift; sourceTree = "<group>"; };
+		BF106B1623DEF55B0056CFEC /* HotKeyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyHandler.swift; sourceTree = "<group>"; };
 		BF12AAFD234F5BD5002FF488 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		BF146C912202E6CB00EDD452 /* How Long Left Siri ExtensionUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "How Long Left Siri ExtensionUI.entitlements"; sourceTree = "<group>"; };
 		BF146C922202E6D900EDD452 /* How Long Left Siri Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "How Long Left Siri Extension.entitlements"; sourceTree = "<group>"; };
@@ -658,10 +828,18 @@
 		BF1646CA22FC410600D07BC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF1646CC22FC410600D07BC3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BF1646CE22FC410600D07BC3 /* How_Long_Left__macOS_Widget_.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = How_Long_Left__macOS_Widget_.entitlements; sourceTree = "<group>"; };
+		BF166AF623D9545300509256 /* EventLocationIndexer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLocationIndexer.swift; sourceTree = "<group>"; };
+		BF166AFE23D95DF600509256 /* MapMenuItemHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMenuItemHandler.swift; sourceTree = "<group>"; };
+		BF166B0123D962DA00509256 /* HideCalendarMenuItemHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideCalendarMenuItemHandler.swift; sourceTree = "<group>"; };
+		BF166B0323D988E800509256 /* MenuItemClosureHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemClosureHandler.swift; sourceTree = "<group>"; };
+		BF166B0523D9C3EA00509256 /* ActionableNSMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionableNSMenuItem.swift; sourceTree = "<group>"; };
+		BF1977942393A0E300EDEB02 /* InterfaceSettingsInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceSettingsInterfaceController.swift; sourceTree = "<group>"; };
 		BF19CF9322438AE90088B196 /* How Long Left (watchOS) Extension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "How Long Left (watchOS) Extension-Bridging-Header.h"; sourceTree = "<group>"; };
 		BF19CF9422438AEA0088B196 /* RelativeTextInterpolater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RelativeTextInterpolater.h; sourceTree = "<group>"; };
 		BF19CF9522438AEA0088B196 /* RelativeTextInterpolater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RelativeTextInterpolater.m; sourceTree = "<group>"; };
-		BF26D84C21BFAD0C00C2728E /* DefaultsMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsMigrator.swift; sourceTree = "<group>"; };
+		BF23B30E238E584100F98F6D /* SchoolEventFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolEventFetcher.swift; sourceTree = "<group>"; };
+		BF23D6CA23A1E1CE008E3BB7 /* DockIconVisibilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockIconVisibilityManager.swift; sourceTree = "<group>"; };
+		BF23D6CC23A1E407008E3BB7 /* UtilityRunLoopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityRunLoopManager.swift; sourceTree = "<group>"; };
 		BF2713D722BCE255006A4B37 /* RNUIConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNUIConfigurationViewController.swift; sourceTree = "<group>"; };
 		BF2713D922BD14AA006A4B37 /* ControllableTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllableTabView.swift; sourceTree = "<group>"; };
 		BF2713DB22BD1EAF006A4B37 /* RNUIRenamingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNUIRenamingViewController.swift; sourceTree = "<group>"; };
@@ -672,46 +850,75 @@
 		BF2C3E6D2359DE9900FC79F7 /* CalendarEventFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventFetcher.swift; sourceTree = "<group>"; };
 		BF2C3E752359E06000FC79F7 /* InternalEventFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalEventFetcher.swift; sourceTree = "<group>"; };
 		BF2FA5EC22EB37FC00E7FA0E /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
+		BF303FD4237397FC0080BFCC /* EventInfoSubmenuConfiguration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EventInfoSubmenuConfiguration.storyboard; sourceTree = "<group>"; };
+		BF303FD6237399070080BFCC /* EventInfoSubmenuConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoSubmenuConfigurationViewController.swift; sourceTree = "<group>"; };
 		BF3149B522DD9A68002BAF0D /* UpcomingSoonMenuGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingSoonMenuGenerator.swift; sourceTree = "<group>"; };
 		BF3149B722DDAC8B002BAF0D /* UpcomingWeekMenuGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingWeekMenuGenerator.swift; sourceTree = "<group>"; };
 		BF3149B922DDB3D7002BAF0D /* DateOfEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateOfEvents.swift; sourceTree = "<group>"; };
 		BF36185B22DCDB0400D51765 /* EventUIWindowsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventUIWindowsManager.swift; path = "How Long Left (macOS)/EventUIWindowsManager.swift"; sourceTree = SOURCE_ROOT; };
 		BF36185D22DCDD7C00D51765 /* SelectedEventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedEventManager.swift; sourceTree = "<group>"; };
+		BF3810A923D2CE3000B82333 /* EventDetailChangesModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailChangesModifier.swift; sourceTree = "<group>"; };
 		BF38402921F5F54F004E7FC1 /* UpcomingEventStringGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventStringGenerator.swift; sourceTree = "<group>"; };
 		BF38EF92235B01B000614B0A /* EventVisibiltyActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventVisibiltyActionHandler.swift; sourceTree = "<group>"; };
 		BF38EF9A235B04C400614B0A /* HLLEventContextMenuGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLLEventContextMenuGenerator.swift; sourceTree = "<group>"; };
+		BF3970A8238DEFBA00612187 /* DebugMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuTableViewController.swift; sourceTree = "<group>"; };
 		BF3A4EB4235C198B001A2200 /* LaunchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchingViewController.swift; sourceTree = "<group>"; };
 		BF3AAB092267836E00EE06C4 /* HLLComplicationEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLLComplicationEntry.swift; sourceTree = "<group>"; };
 		BF3AAB0B2267839100EE06C4 /* ComplicationUpdateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationUpdateHandler.swift; sourceTree = "<group>"; };
+		BF3B310923E001AA0070CECA /* MagdaleneExtraEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagdaleneExtraEvents.swift; sourceTree = "<group>"; };
+		BF3BCD1B23E031C300639D5F /* Pastr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pastr.h; sourceTree = "<group>"; };
+		BF3BCD1C23E031C300639D5F /* Pastr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pastr.swift; sourceTree = "<group>"; };
+		BF3BCD1D23E031C400639D5F /* PastebinFormats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastebinFormats.swift; sourceTree = "<group>"; };
+		BF3BCD2023E0326500639D5F /* TextUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextUploader.swift; sourceTree = "<group>"; };
+		BF3BCD3423E037EB00639D5F /* MagdaleneEventDataUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagdaleneEventDataUploader.swift; sourceTree = "<group>"; };
+		BF3BCD3623E0734400639D5F /* NameConversionsDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameConversionsDownloader.swift; sourceTree = "<group>"; };
+		BF3BCD3823E07F3C00639D5F /* EventTeacherAdder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTeacherAdder.swift; sourceTree = "<group>"; };
 		BF3BE73421A103A9001AFBA8 /* MilestoneNotificationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneNotificationGenerator.swift; sourceTree = "<group>"; };
+		BF3C673623DC7C0500036D7A /* RNNeededEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNNeededEvaluator.swift; sourceTree = "<group>"; };
+		BF3C673823DC838E00036D7A /* RNBackgroundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNBackgroundManager.swift; sourceTree = "<group>"; };
 		BF3C8DBC236AA26B00CFDEFD /* InfoItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoItemCell.swift; sourceTree = "<group>"; };
 		BF3C8DBE236AA4D900CFDEFD /* CurrentEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentEventCell.swift; sourceTree = "<group>"; };
+		BF3CB2D4239273E400A56F65 /* NotificationTriggerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTriggerType.swift; sourceTree = "<group>"; };
+		BF3CB2D62392742B00A56F65 /* NotificationTriggerTypeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTriggerTypeSection.swift; sourceTree = "<group>"; };
+		BF3CB2D82392744500A56F65 /* EventStatusTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStatusTrigger.swift; sourceTree = "<group>"; };
+		BF3CB2DB2392746700A56F65 /* TimeRemainingNotificationTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRemainingNotificationTrigger.swift; sourceTree = "<group>"; };
+		BF3CB2DD239274C200A56F65 /* PercentageNotificationTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageNotificationTrigger.swift; sourceTree = "<group>"; };
+		BF3CB2DF239274D900A56F65 /* EventStatusNotificationTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStatusNotificationTrigger.swift; sourceTree = "<group>"; };
+		BF3CB2E1239274F200A56F65 /* HLLNotificationTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLLNotificationTrigger.swift; sourceTree = "<group>"; };
+		BF3CB2E32392754B00A56F65 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		BF3CECE422C19C2600E0D060 /* RNUIDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNUIDoneViewController.swift; sourceTree = "<group>"; };
+		BF3D533823DB0E420053195A /* MagdaleneModeSetupPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagdaleneModeSetupPresentationManager.swift; sourceTree = "<group>"; };
 		BF3D6D76233E08A5006EE765 /* DurationStringGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationStringGenerator.swift; sourceTree = "<group>"; };
 		BF3D6D7E233E0A32006EE765 /* HLLEventInfoItemGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLLEventInfoItemGenerator.swift; sourceTree = "<group>"; };
+		BF3DA2BB23DAB2CA00009A3A /* SchoolEventDownloadNeededEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolEventDownloadNeededEvaluator.swift; sourceTree = "<group>"; };
 		BF3DB1472345EB86007D54A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BF3E066522CB5C40002859D5 /* DoneAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DoneAnimation.json; sourceTree = "<group>"; };
+		BF3E6DF823DEB2F900722CBD /* StatusItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemController.swift; sourceTree = "<group>"; };
 		BF3F5ADC22D3996D00BAAE61 /* RNUIIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNUIIntroViewController.swift; sourceTree = "<group>"; };
 		BF3F876122BCBE57002BA4CD /* RNUI.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RNUI.storyboard; sourceTree = "<group>"; };
 		BF44590F233F7CD700DA1B21 /* HLLEventInfoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLLEventInfoItem.swift; sourceTree = "<group>"; };
 		BF445911233F7CED00DA1B21 /* HLLEventInfoItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLLEventInfoItemType.swift; sourceTree = "<group>"; };
+		BF447016237D6C45008FD751 /* SiriAndWidgetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriAndWidgetTableViewController.swift; sourceTree = "<group>"; };
 		BF4ABBD922F849DA00E23B45 /* Rickroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rickroll.swift; sourceTree = SOURCE_ROOT; };
-		BF4AEFEC2207A63E00FEE4BC /* MilestoneNotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneNotificationScheduler.swift; sourceTree = "<group>"; };
+		BF4AEFEC2207A63E00FEE4BC /* EventNotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventNotificationScheduler.swift; sourceTree = "<group>"; };
 		BF4F6B5F233689D00015826E /* PrimaryEventRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryEventRowController.swift; sourceTree = "<group>"; };
 		BF4F6B61233689E50015826E /* CurrentEventRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentEventRowController.swift; sourceTree = "<group>"; };
 		BF4F6B63233689FF0015826E /* UpcomingEventRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventRowController.swift; sourceTree = "<group>"; };
 		BF4F6B6523368A2E0015826E /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
+		BF50E18A2397253800E708C4 /* NotificationsTriggersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationsTriggersViewController.xib; sourceTree = "<group>"; };
+		BF50E18E23972ADE00E708C4 /* NotificationTriggerDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTriggerDefaultsHelper.swift; sourceTree = "<group>"; };
 		BF52D4C3235B2A5B00914BC4 /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
 		BF52D4C5235B2AE700914BC4 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		BF53EB9C237701BD00861A4D /* TitleDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleDetailCell.swift; sourceTree = "<group>"; };
+		BF53EB9D237701BD00861A4D /* TitleDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TitleDetailCell.xib; sourceTree = "<group>"; };
+		BF53EBA2237704B300861A4D /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		BF55FF8B234C9F2700FD1DE9 /* How Long Left.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "How Long Left.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF55FF8E234C9F2700FD1DE9 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		BF55FF91234C9F2700FD1DE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		BF55FF93234C9F2700FD1DE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF56BF1F22D49B8E00066872 /* CalSelectStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CalSelectStoryboard.storyboard; sourceTree = "<group>"; };
-		BF56BF2122D49BD100066872 /* CustomNotificationsPreferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomNotificationsPreferences.storyboard; sourceTree = "<group>"; };
 		BF57E84C21ABC4EA00B021DD /* MenuControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuControllerProtocol.swift; sourceTree = "<group>"; };
 		BF5887D0233F80CB00A976A2 /* EventInfoTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoTableRow.swift; sourceTree = "<group>"; };
-		BF59A22721C0B38000038C58 /* SchoolHolidaysStringGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolHolidaysStringGenerator.swift; sourceTree = "<group>"; };
 		BF5AC4AF22D7A25B00159498 /* EventUIDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventUIDoneViewController.swift; sourceTree = "<group>"; };
 		BF5ADE5223368C2800DF8EA9 /* WatchResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchResolution.swift; sourceTree = "<group>"; };
 		BF5ADE5523368C5100DF8EA9 /* WKInterfaceDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKInterfaceDevice.swift; sourceTree = "<group>"; };
@@ -733,14 +940,19 @@
 		BF5F945822DA026900AB9FF3 /* CalendarPreferencesViewNoAccess.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarPreferencesViewNoAccess.xib; sourceTree = "<group>"; };
 		BF5F945A22DA2CEA00AB9FF3 /* EventListMenuGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListMenuGenerator.swift; sourceTree = "<group>"; };
 		BF5F945C22DA2F9300AB9FF3 /* EventMenuItemGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMenuItemGenerator.swift; sourceTree = "<group>"; };
+		BF617CFA2387729A00973D7E /* HLLNotificationContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLLNotificationContent.swift; sourceTree = "<group>"; };
 		BF621F5F22C9F7D000226E61 /* EventUIStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EventUIStoryboard.storyboard; sourceTree = "<group>"; };
 		BF621F6122C9FE9A00226E61 /* EventUICountdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventUICountdownViewController.swift; sourceTree = "<group>"; };
+		BF629488237A53EE0091B1F9 /* RenameIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenameIntroViewController.swift; sourceTree = "<group>"; };
 		BF634B8521BE94EA00C285AB /* CalendarPreferenceViewControllerNoAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarPreferenceViewControllerNoAccess.swift; sourceTree = "<group>"; };
 		BF6495E021B2C79D006CB6DF /* CalendarPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarPreferencesView.xib; sourceTree = "<group>"; };
+		BF654B5323E2AA4E00E72B79 /* OldRoomInfoAdder .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OldRoomInfoAdder .swift"; sourceTree = "<group>"; };
 		BF67E2DB233FD95600EB1522 /* CalendarListInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarListInterfaceController.swift; sourceTree = "<group>"; };
 		BF6AD69D2226505800B62C0C /* CalSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalSelectViewController.swift; sourceTree = "<group>"; };
 		BF6AD69F2226514100B62C0C /* Pods_How_Long_Left__macOS_.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_How_Long_Left__macOS_.framework; path = "../../../../../Developer/Xcode/DerivedData/How_Long_Left-gaurjomfkshszzgwkqgckwyxbfxk/Build/Products/Debug-iphoneos/Pods_How_Long_Left__macOS_.framework"; sourceTree = "<group>"; };
 		BF719907225454A00008814F /* How Long Left WatchKit Extension.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "How Long Left WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		BF71C63C23854D6A00576A81 /* EventInfoViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoViewPresenter.swift; sourceTree = "<group>"; };
+		BF72C68E239607D400244F86 /* MinutesRemainingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinutesRemainingCell.swift; sourceTree = "<group>"; };
 		BF77551A22FC502A00A9370C /* How Long Left (macOS Widget).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "How Long Left (macOS Widget).entitlements"; sourceTree = "<group>"; };
 		BF78DEBE235B4AEF00A5855E /* EKEventViewControllerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKEventViewControllerManager.swift; sourceTree = "<group>"; };
 		BF78DEC0235B51D300A5855E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -748,24 +960,31 @@
 		BF7B9BBE21760BFF00E44CCF /* BackgroundUpdateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundUpdateHandler.swift; sourceTree = "<group>"; };
 		BF7BB5AC22BE4923001D2E86 /* RNEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNEvent.swift; sourceTree = "<group>"; };
 		BF7BB5AE22BF104C001D2E86 /* RNProcessUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNProcessUI.swift; sourceTree = "<group>"; };
+		BF7DA37A237BF9E80036B499 /* MUEventListInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUEventListInterfaceController.swift; sourceTree = "<group>"; };
 		BF8229B8233FD1500050C526 /* SettingsListInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListInterfaceController.swift; sourceTree = "<group>"; };
+		BF856C3523B0B627002D8E86 /* BGRefreshModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BGRefreshModel.xcdatamodel; sourceTree = "<group>"; };
 		BF8686F9235D51C100EF931E /* CalendarDefaultsModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDefaultsModifier.swift; sourceTree = "<group>"; };
 		BF876A08220C0EEE007D2EFF /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
-		BF876A0A220C15F7007D2EFF /* MilestoneSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneSettingsTableViewController.swift; sourceTree = "<group>"; };
-		BF876A0C220C3226007D2EFF /* MilestoneSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneSettingsCell.swift; sourceTree = "<group>"; };
 		BF89B8972347B74E00437A75 /* EKEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKEvent.swift; sourceTree = "<group>"; };
 		BF8A4F0C21CDD6D200EC12B6 /* macOSExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOSExtensions.swift; sourceTree = "<group>"; };
+		BF8A701E2397BCB000F2F3D7 /* CustomNotificationPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomNotificationPreferencesView.xib; sourceTree = "<group>"; };
 		BF8B99E921AE36CA00F7499A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF8B99EF21AE7BB600F7499A /* StatusItemPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusItemPreferencesView.xib; sourceTree = "<group>"; };
 		BF8BFF3822607AC900B17C39 /* HLL iOS App Icon No Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HLL iOS App Icon No Background.png"; sourceTree = "<group>"; };
 		BF8D07C12250C47D006B8E85 /* CurrentEventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentEventsTableViewController.swift; sourceTree = "<group>"; };
 		BF8D07C32250C62F006B8E85 /* UpcomingEventsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventsTableViewController.swift; sourceTree = "<group>"; };
+		BF8D2256237BE0D100BE98F4 /* PreviousEventRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousEventRowController.swift; sourceTree = "<group>"; };
+		BF8D2259237BF37900BE98F4 /* MUWeekListInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUWeekListInterfaceController.swift; sourceTree = "<group>"; };
 		BF8D75BF2340F606007A3638 /* HLLCloudKitPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLLCloudKitPreferences.swift; sourceTree = "<group>"; };
 		BF8D75C42340FAA1007A3638 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		BF8D940C2340BCEE00470F1F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		BF8D940E2340C33F00470F1F /* How Long Left.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "How Long Left.entitlements"; sourceTree = "<group>"; };
 		BF8D940F2340C34400470F1F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS6.0.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		BF8D94162340CCBE00470F1F /* CKError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKError.swift; sourceTree = "<group>"; };
+		BF9015C323DD5DB9006A642C /* MagdaleneModeSetupDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagdaleneModeSetupDoneViewController.swift; sourceTree = "<group>"; };
+		BF9015C623DD6C3C006A642C /* NotSetUpMagdalenePreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotSetUpMagdalenePreferencesView.xib; sourceTree = "<group>"; };
+		BF9015C723DD6C3C006A642C /* NotSetupMagdalenePreferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotSetupMagdalenePreferenceViewController.swift; sourceTree = "<group>"; };
+		BF90D43723E09CAA00864D8C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BF92B689236856B7008DE795 /* HLLComplicationEntryTimelineGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLLComplicationEntryTimelineGenerator.swift; sourceTree = SOURCE_ROOT; };
 		BF93AEA121BDD60B0035CE7F /* MagdalenePreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MagdalenePreferencesView.xib; sourceTree = "<group>"; };
 		BF93AEA321BDD64F0035CE7F /* GeneralPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralPreferencesView.xib; sourceTree = "<group>"; };
@@ -775,17 +994,22 @@
 		BF9688E422CDD9AB000FA86F /* RenamePreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RenamePreferencesView.xib; sourceTree = "<group>"; };
 		BF9688E622CDDD9E000FA86F /* RNUI Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RNUI Manager.swift"; sourceTree = "<group>"; };
 		BF9688E822CDE434000FA86F /* RenamePreferencesUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenamePreferencesUI.swift; sourceTree = "<group>"; };
+		BF968C9223B228D900BC2E54 /* WatchInterfaceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchInterfaceTableViewController.swift; sourceTree = "<group>"; };
 		BF986108233F1D23007D866D /* EventInfoInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoInterfaceController.swift; sourceTree = "<group>"; };
-		BF98F48923671BB5006AD1F6 /* EventInfoCountdownTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoCountdownTableRow.swift; sourceTree = "<group>"; };
 		BF9927BC2335193D00E9C1E1 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		BF99A6DC23D53C6D0070D3C2 /* MagdaleneModeSetupIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagdaleneModeSetupIntroViewController.swift; sourceTree = "<group>"; };
+		BF99A6DE23D53EE70070D3C2 /* MagdaleneModeSetupAwaitingSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagdaleneModeSetupAwaitingSetupViewController.swift; sourceTree = "<group>"; };
 		BF9E963721888093002626CD /* CountdownStringGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownStringGenerator.swift; sourceTree = "<group>"; };
-		BF9E963921888694002626CD /* HLLMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLLMain.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		BF9EA1A121FB0431008BC1C5 /* iOS WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iOS WatchSessionManager.swift"; sourceTree = "<group>"; };
 		BF9EA1A321FB0605008BC1C5 /* watchOS WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "watchOS WatchSessionManager.swift"; sourceTree = "<group>"; };
 		BF9F166E2175FC5B000D8809 /* ComplicationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationGenerator.swift; sourceTree = "<group>"; };
+		BFA1ABCC239377340008E867 /* UpcomingEventsTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventsTableRow.swift; sourceTree = "<group>"; };
+		BFA24ECF23E14A13003EE71A /* WindowActivationWorkaround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowActivationWorkaround.swift; sourceTree = "<group>"; };
 		BFA26495222B553200045CF4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		BFA3FD1C23D41A3E009BA759 /* SchoolEventChangesMenuItemGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolEventChangesMenuItemGenerator.swift; sourceTree = "<group>"; };
+		BFA3FD1F23D456AF009BA759 /* MagdaleneModeSetupStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MagdaleneModeSetupStoryboard.storyboard; sourceTree = "<group>"; };
+		BFA577BD23CF155500BB4A4D /* PreferencePaneIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencePaneIdentifiers.swift; sourceTree = "<group>"; };
 		BFA6594622D793A20019239C /* EventUITabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventUITabViewController.swift; path = "How Long Left (macOS)/Rename/Rename UI/EventUITabViewController.swift"; sourceTree = SOURCE_ROOT; };
-		BFAB46E6224466B400A5C942 /* TermData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermData.swift; sourceTree = "<group>"; };
 		BFADC12023584E2D00298C58 /* MagdaleneSettingsInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagdaleneSettingsInterfaceController.swift; sourceTree = "<group>"; };
 		BFAEE94A2258D36A0012BA81 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		BFAF4BFA21AF7154006C6E55 /* Preferences.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Preferences.framework; sourceTree = "<group>"; };
@@ -796,6 +1020,10 @@
 		BFB8EF7D223E15C50023B322 /* AboutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutView.xib; sourceTree = "<group>"; };
 		BFB8EF7F223E19320023B322 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		BFB9896122F97F85003EAA4F /* ProIAP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProIAP.swift; sourceTree = SOURCE_ROOT; };
+		BFBEAFA223AC8FC600317A01 /* AppleWatchSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleWatchSettingsTableViewController.swift; sourceTree = "<group>"; };
+		BFBEC855238B733E00BBE877 /* EventNotificationContentGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventNotificationContentGenerator.swift; sourceTree = "<group>"; };
+		BFBEC85B238B7EB300BBE877 /* MacEventNotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacEventNotificationScheduler.swift; sourceTree = "<group>"; };
+		BFC01ED723DED36100A8DBA2 /* CompassLaunchHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassLaunchHandler.swift; sourceTree = "<group>"; };
 		BFC0C4B621FEB17600D041DA /* HLLIntents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = HLLIntents.intentdefinition; sourceTree = "<group>"; };
 		BFC0C4D521FEB6C100D041DA /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		BFC0C4EE21FEB6EF00D041DA /* How Long Left Siri Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "How Long Left Siri Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -828,18 +1056,20 @@
 		BFC962CB221C0BEF00FA4C59 /* EventInfoViewRows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoViewRows.swift; sourceTree = "<group>"; };
 		BFCAF89222FC1EAE00D81B48 /* CountdownText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownText.swift; sourceTree = "<group>"; };
 		BFCAF89422FC231600D81B48 /* TimeInterval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
+		BFCB01DE23C30823009F982D /* GeneralSettingsInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsInterfaceController.swift; sourceTree = "<group>"; };
 		BFCD6D97234F559E00DCABE3 /* EventInfoViewGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoViewGenerator.swift; sourceTree = "<group>"; };
 		BFCD6D9E234F56C500DCABE3 /* TimerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCell.swift; sourceTree = "<group>"; };
 		BFCD6DA0234F592200DCABE3 /* EventInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
 		BFCFBD502228B786002DDCDA /* ComplicationIAP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationIAP.swift; sourceTree = "<group>"; };
-		BFD2365222D4A4DA007B91E2 /* CustomNotificationsEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNotificationsEditor.swift; sourceTree = "<group>"; };
+		BFD2365222D4A4DA007B91E2 /* CustomNotificationPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNotificationPreferencesViewController.swift; sourceTree = "<group>"; };
+		BFD2819A2377AD4D000B48E4 /* SplitRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitRootViewController.swift; sourceTree = "<group>"; };
+		BFD2819C2377DFCC000B48E4 /* NotificationConfigurationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationConfigurationTableViewController.swift; sourceTree = "<group>"; };
 		BFD68FAB220EAA6E00265672 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		BFD68FAD220EAA6F00265672 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		BFD68FE8220EB1AC00265672 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		BFD812D8218A7BFF00992E23 /* UpcomingEventStringGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventStringGenerator.swift; sourceTree = "<group>"; };
 		BFD812DF218B2F9B00992E23 /* HotKey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HotKey.framework; sourceTree = "<group>"; };
 		BFD96267225229FF00060FFF /* BackgroundFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundFunctions.swift; sourceTree = "<group>"; };
-		BFDB6B2E21B1508D00AF0673 /* NextOccurenceStringGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextOccurenceStringGenerator.swift; sourceTree = "<group>"; };
 		BFDBB96322C5EE0A0041DB75 /* How Long Left.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "How Long Left.entitlements"; sourceTree = "<group>"; };
 		BFDC141B22618E2100F618A8 /* IAPOnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPOnboardViewController.swift; sourceTree = "<group>"; };
 		BFDE4A6221B5FF5600CD50BC /* OnboardingWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWindowController.swift; sourceTree = "<group>"; };
@@ -849,12 +1079,20 @@
 		BFDE4A6A21B660AF00CD50BC /* CalendarPreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPreferenceViewController.swift; sourceTree = "<group>"; };
 		BFDE4A6C21B67E3C00CD50BC /* MemoryRelaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryRelaunch.swift; sourceTree = "<group>"; };
 		BFE183E7235EADA300BD0E2C /* LaunchAtLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LaunchAtLogin.framework; path = ../Desktop/LaunchAtLogin.framework; sourceTree = "<group>"; };
+		BFE4460723CEED6500924F5D /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		BFE4460B23CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolEventDetailIndexBuilder.swift; sourceTree = "<group>"; };
 		BFE6F3B42328CE4100F54759 /* VisibilityString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibilityString.swift; sourceTree = "<group>"; };
+		BFE917602373AB0D00A66F40 /* MenuUpdateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuUpdateHandler.swift; sourceTree = "<group>"; };
+		BFE917622373BB3900A66F40 /* StatusItemUpdateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemUpdateHandler.swift; sourceTree = "<group>"; };
+		BFE917642373C18B00A66F40 /* HotKeyNotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyNotificationHandler.swift; sourceTree = "<group>"; };
+		BFE917662373C2D800A66F40 /* SelectionMenuItemHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionMenuItemHandler.swift; sourceTree = "<group>"; };
 		BFEA0CE621788D0100FAF2F1 /* How Long Left.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "How Long Left.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFEA0CE821788D0100FAF2F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFEA0CED21788D0B00FAF2F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		BFEA0CEF21788D0B00FAF2F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFEA0D18217891C600FAF2F1 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		BFEC4FDB239DED2200EF8F6D /* LaunchFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchFunctions.swift; sourceTree = "<group>"; };
+		BFEC4FDD239DEF7300EF8F6D /* OnboardingWindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWindowManager.swift; sourceTree = "<group>"; };
 		BFEE396121BD129F000106BD /* NotificationPreferencesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationPreferencesView.xib; sourceTree = "<group>"; };
 		BFEE396321BD152B000106BD /* NotificationPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPreferencesViewController.swift; sourceTree = "<group>"; };
 		BFF05ED121E9DE4E0044F049 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -863,7 +1101,12 @@
 		BFF05ED721E9DE4E0044F049 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "../New Group/AppDelegate.swift"; sourceTree = "<group>"; };
 		BFF05ED821E9DE4F0044F049 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFF563E82214D39F00A93D6B /* PercentageCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageCalculator.swift; sourceTree = "<group>"; };
+		BFF7FEDC23B1F63A009330A7 /* ComplicationSettingsInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationSettingsInterfaceController.swift; sourceTree = "<group>"; };
 		BFF847E6231E5D1E0075E733 /* EventVisibilityButtonsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventVisibilityButtonsManager.swift; sourceTree = "<group>"; };
+		BFF8F56F23861E7900E6F91E /* GeneralSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsTableViewController.swift; sourceTree = "<group>"; };
+		BFFA2BED23B070E2002861DA /* UniversalMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalMenuItem.swift; sourceTree = "<group>"; };
+		BFFA2BEF23B0727C002861DA /* HLLEventUniversalMenuItemGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLLEventUniversalMenuItemGenerator.swift; sourceTree = "<group>"; };
+		BFFA2BF523B07D1B002861DA /* HLLEventActionSheetGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLLEventActionSheetGenerator.swift; sourceTree = "<group>"; };
 		BFFA559222D8345B00575230 /* MenuTopShelfGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTopShelfGenerator.swift; sourceTree = "<group>"; };
 		BFFA559422D83D9D00575230 /* NSMenuItemMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMenuItemMaker.swift; sourceTree = "<group>"; };
 		BFFA559622D85ADF00575230 /* EventAssociatedMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAssociatedMenuItem.swift; sourceTree = "<group>"; };
@@ -878,6 +1121,9 @@
 		BFFA55AB22D8850700575230 /* EventFetchPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFetchPeriod.swift; sourceTree = "<group>"; };
 		BFFA55C922D8860900575230 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		BFFA55CB22D8865400575230 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Date.swift; path = "How Long Left Core/Date.swift"; sourceTree = SOURCE_ROOT; };
+		BFFCCA14238CC57A00AC091A /* Pluraliser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pluraliser.swift; sourceTree = "<group>"; };
+		BFFCCA1C238D045600AC091A /* PreferencesWindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowManager.swift; sourceTree = "<group>"; };
+		BFFCCA1F238D095800AC091A /* TerminationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminationHandler.swift; sourceTree = "<group>"; };
 		BFFE8B88236D7F4D0081D980 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		BFFEA0E622BDD76000363360 /* RNDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNDataStore.swift; sourceTree = "<group>"; };
 		BFFEA15622BDEABE00363360 /* RNProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNProcess.swift; sourceTree = "<group>"; };
@@ -994,9 +1240,64 @@
 			path = "How Long Left (macOS Widget)";
 			sourceTree = "<group>";
 		};
+		BF166B0023D962A700509256 /* Menu Item Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				BFE917662373C2D800A66F40 /* SelectionMenuItemHandler.swift */,
+				BF166B0323D988E800509256 /* MenuItemClosureHandler.swift */,
+				BF166AFE23D95DF600509256 /* MapMenuItemHandler.swift */,
+				BF166B0123D962DA00509256 /* HideCalendarMenuItemHandler.swift */,
+			);
+			path = "Menu Item Handlers";
+			sourceTree = "<group>";
+		};
+		BF3BCD1A23E031AD00639D5F /* Pastr */ = {
+			isa = PBXGroup;
+			children = (
+				BF3BCD1D23E031C400639D5F /* PastebinFormats.swift */,
+				BF3BCD1B23E031C300639D5F /* Pastr.h */,
+				BF3BCD1C23E031C300639D5F /* Pastr.swift */,
+				BF3BCD2023E0326500639D5F /* TextUploader.swift */,
+			);
+			name = Pastr;
+			sourceTree = "<group>";
+		};
+		BF3CB2D2239273BE00A56F65 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				BFD2819C2377DFCC000B48E4 /* NotificationConfigurationTableViewController.swift */,
+				BF3CB2DA2392745900A56F65 /* Triggers */,
+				BF3CB2D3239273D400A56F65 /* Enums */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		BF3CB2D3239273D400A56F65 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				BF3CB2D4239273E400A56F65 /* NotificationTriggerType.swift */,
+				BF3CB2D82392744500A56F65 /* EventStatusTrigger.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		BF3CB2DA2392745900A56F65 /* Triggers */ = {
+			isa = PBXGroup;
+			children = (
+				BF3CB2D62392742B00A56F65 /* NotificationTriggerTypeSection.swift */,
+				BF3CB2E1239274F200A56F65 /* HLLNotificationTrigger.swift */,
+				BF3CB2DB2392746700A56F65 /* TimeRemainingNotificationTrigger.swift */,
+				BF3CB2DD239274C200A56F65 /* PercentageNotificationTrigger.swift */,
+				BF3CB2DF239274D900A56F65 /* EventStatusNotificationTrigger.swift */,
+			);
+			path = Triggers;
+			sourceTree = "<group>";
+		};
 		BF3F876022BCBE26002BA4CD /* Rename */ = {
 			isa = PBXGroup;
 			children = (
+				BF3C673623DC7C0500036D7A /* RNNeededEvaluator.swift */,
+				BF3C673823DC838E00036D7A /* RNBackgroundManager.swift */,
 				BF7BB5AB22BE48AB001D2E86 /* Rename UI */,
 				BFFEA15622BDEABE00363360 /* RNProcess.swift */,
 				BF7BB5AC22BE4923001D2E86 /* RNEvent.swift */,
@@ -1016,9 +1317,23 @@
 			path = "Event Info";
 			sourceTree = "<group>";
 		};
+		BF447015237D6922008FD751 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				BF3CB2E32392754B00A56F65 /* SettingsCell.swift */,
+				BF53EB9C237701BD00861A4D /* TitleDetailCell.swift */,
+				BF53EB9D237701BD00861A4D /* TitleDetailCell.xib */,
+				BF52D4C3235B2A5B00914BC4 /* SwitchCell.xib */,
+				BF52D4C5235B2AE700914BC4 /* SwitchCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		BF50797321AE33DD005CD52B /* Preferences Window */ = {
 			isa = PBXGroup;
 			children = (
+				BFFCCA1C238D045600AC091A /* PreferencesWindowManager.swift */,
+				BFA577BD23CF155500BB4A4D /* PreferencePaneIdentifiers.swift */,
 				BF5F944C22D9FD7500AB9FF3 /* General */,
 				BF5F945322DA005400AB9FF3 /* Menu */,
 				BF5F944D22D9FD8700AB9FF3 /* Status Item */,
@@ -1047,8 +1362,10 @@
 			children = (
 				BF5887CB233F7F2700A976A2 /* School Holidays */,
 				BF0E3C7F231DF1A900552B87 /* ExamsEventFetcher.swift */,
+				BF23B30E238E584100F98F6D /* SchoolEventFetcher.swift */,
 				BF27197422E324C500FB6B11 /* TermEventFetcher.swift */,
 				BFC4E7152210202F00EE4A1F /* MagdaleneBreaks.swift */,
+				BF3B310923E001AA0070CECA /* MagdaleneExtraEvents.swift */,
 			);
 			path = "Event Fetchers";
 			sourceTree = "<group>";
@@ -1057,6 +1374,10 @@
 			isa = PBXGroup;
 			children = (
 				BFC4E7142210202F00EE4A1F /* EventTitleShortener.swift */,
+				BF654B5323E2AA4E00E72B79 /* OldRoomInfoAdder .swift */,
+				BF3BCD3823E07F3C00639D5F /* EventTeacherAdder.swift */,
+				BF3BCD3623E0734400639D5F /* NameConversionsDownloader.swift */,
+				BF3810A923D2CE3000B82333 /* EventDetailChangesModifier.swift */,
 				BFC4E7182210202F00EE4A1F /* EventTimeAdjuster.swift */,
 				BFC4E7192210202F00EE4A1F /* MagdalenePeriods.swift */,
 			);
@@ -1086,15 +1407,15 @@
 		BF5887CD233F7F8000A976A2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				BFC4E70D2210202F00EE4A1F /* HLLDefaults.swift */,
 				BF38EF92235B01B000614B0A /* EventVisibiltyActionHandler.swift */,
-				BF2C3E652359D3A000FC79F7 /* HLLDefaultsTransfer.swift */,
+				BF166AF623D9545300509256 /* EventLocationIndexer.swift */,
 				BFC4E7052210202F00EE4A1F /* FollowingOccurenceStore.swift */,
 				BFC4E70B2210202F00EE4A1F /* EventTimeRemainingMonitor.swift */,
 				BFC4E7082210202F00EE4A1F /* Version.swift */,
 				BFC4E70F2210202F00EE4A1F /* RepeatingTimer.swift */,
 				BF2FA5EC22EB37FC00E7FA0E /* Weekday.swift */,
 				BFE6F3B42328CE4100F54759 /* VisibilityString.swift */,
+				BFFCCA14238CC57A00AC091A /* Pluraliser.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1102,9 +1423,9 @@
 		BF5887CE233F807800A976A2 /* HLLEvent */ = {
 			isa = PBXGroup;
 			children = (
-				BF8686F9235D51C100EF931E /* CalendarDefaultsModifier.swift */,
-				BFC4E70E2210202F00EE4A1F /* HLLEvent.swift */,
 				BFC4E7072210202F00EE4A1F /* HLLEventSource.swift */,
+				BFC4E70E2210202F00EE4A1F /* HLLEvent.swift */,
+				BF8686F9235D51C100EF931E /* CalendarDefaultsModifier.swift */,
 				BF2C3E6D2359DE9900FC79F7 /* CalendarEventFetcher.swift */,
 				BF2C3E752359E06000FC79F7 /* InternalEventFetcher.swift */,
 			);
@@ -1115,7 +1436,6 @@
 			isa = PBXGroup;
 			children = (
 				BF5887D0233F80CB00A976A2 /* EventInfoTableRow.swift */,
-				BF98F48923671BB5006AD1F6 /* EventInfoCountdownTableRow.swift */,
 			);
 			path = "Table Rows";
 			sourceTree = "<group>";
@@ -1124,19 +1444,20 @@
 			isa = PBXGroup;
 			children = (
 				BF9927BC2335193D00E9C1E1 /* InterfaceController.swift */,
-				BF5ADE5023368BF600DF8EA9 /* Table Rows */,
+				BF5ADE5023368BF600DF8EA9 /* Row Controllers */,
 			);
 			path = "Main Interface";
 			sourceTree = "<group>";
 		};
-		BF5ADE5023368BF600DF8EA9 /* Table Rows */ = {
+		BF5ADE5023368BF600DF8EA9 /* Row Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				BF4F6B5F233689D00015826E /* PrimaryEventRowController.swift */,
+				BF8D2256237BE0D100BE98F4 /* PreviousEventRowController.swift */,
 				BF4F6B61233689E50015826E /* CurrentEventRowController.swift */,
 				BF4F6B63233689FF0015826E /* UpcomingEventRowController.swift */,
 			);
-			path = "Table Rows";
+			path = "Row Controllers";
 			sourceTree = "<group>";
 		};
 		BF5ADE5123368C0900DF8EA9 /* Protocols */ = {
@@ -1159,6 +1480,7 @@
 			isa = PBXGroup;
 			children = (
 				BF5ADE5523368C5100DF8EA9 /* WKInterfaceDevice.swift */,
+				BFE4460723CEED6500924F5D /* UIImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1220,6 +1542,7 @@
 			isa = PBXGroup;
 			children = (
 				BF5ADE4F23368BE200DF8EA9 /* Main Interface */,
+				BF8D2258237BF33A00BE98F4 /* More Upcoming Interface */,
 				BF986107233F1C89007D866D /* Event Info Interface */,
 				BFADC11F2358432E00298C58 /* Settings Interface */,
 				BF5ADE5423368C3000DF8EA9 /* Enums */,
@@ -1272,10 +1595,12 @@
 		BF5F944F22D9FDF200AB9FF3 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				BF8A701E2397BCB000F2F3D7 /* CustomNotificationPreferencesView.xib */,
+				BF50E18A2397253800E708C4 /* NotificationsTriggersViewController.xib */,
 				BFEE396121BD129F000106BD /* NotificationPreferencesView.xib */,
 				BFEE396321BD152B000106BD /* NotificationPreferencesViewController.swift */,
-				BF56BF2122D49BD100066872 /* CustomNotificationsPreferences.storyboard */,
-				BFD2365222D4A4DA007B91E2 /* CustomNotificationsEditor.swift */,
+				BFD2365222D4A4DA007B91E2 /* CustomNotificationPreferencesViewController.swift */,
+				BF72C68E239607D400244F86 /* MinutesRemainingCell.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -1285,6 +1610,7 @@
 			children = (
 				BF93AEA121BDD60B0035CE7F /* MagdalenePreferencesView.xib */,
 				BF93AEA521BDD7060035CE7F /* MagdalenePreferenceViewController.swift */,
+				BF9015C523DD6C1E006A642C /* Not Set Up View */,
 			);
 			path = Magdalene;
 			sourceTree = "<group>";
@@ -1311,6 +1637,8 @@
 			isa = PBXGroup;
 			children = (
 				BF5F945522DA013400AB9FF3 /* MenuPreferencesView.xib */,
+				BF303FD4237397FC0080BFCC /* EventInfoSubmenuConfiguration.storyboard */,
+				BF303FD6237399070080BFCC /* EventInfoSubmenuConfigurationViewController.swift */,
 				BF5F945422DA013300AB9FF3 /* MenuPreferenceViewController.swift */,
 			);
 			path = Menu;
@@ -1367,12 +1695,38 @@
 			path = "Rename UI";
 			sourceTree = "<group>";
 		};
+		BF8D2258237BF33A00BE98F4 /* More Upcoming Interface */ = {
+			isa = PBXGroup;
+			children = (
+				BF8D2259237BF37900BE98F4 /* MUWeekListInterfaceController.swift */,
+				BF7DA37A237BF9E80036B499 /* MUEventListInterfaceController.swift */,
+			);
+			path = "More Upcoming Interface";
+			sourceTree = "<group>";
+		};
 		BF8D94112340CC0200470F1F /* CloudKit Preferences */ = {
 			isa = PBXGroup;
 			children = (
 				BF8D75BF2340F606007A3638 /* HLLCloudKitPreferences.swift */,
 			);
 			path = "CloudKit Preferences";
+			sourceTree = "<group>";
+		};
+		BF9015C523DD6C1E006A642C /* Not Set Up View */ = {
+			isa = PBXGroup;
+			children = (
+				BF9015C623DD6C3C006A642C /* NotSetUpMagdalenePreferencesView.xib */,
+				BF9015C723DD6C3C006A642C /* NotSetupMagdalenePreferenceViewController.swift */,
+			);
+			path = "Not Set Up View";
+			sourceTree = "<group>";
+		};
+		BF968C9123B2289F00BC2E54 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				BF968C9223B228D900BC2E54 /* WatchInterfaceTableViewController.swift */,
+			);
+			path = Interface;
 			sourceTree = "<group>";
 		};
 		BF986107233F1C89007D866D /* Event Info Interface */ = {
@@ -1382,6 +1736,18 @@
 				BF5887CF233F80B700A976A2 /* Table Rows */,
 			);
 			path = "Event Info Interface";
+			sourceTree = "<group>";
+		};
+		BFA3FD1E23D45643009BA759 /* Magdalene Mode Setup */ = {
+			isa = PBXGroup;
+			children = (
+				BFA3FD1F23D456AF009BA759 /* MagdaleneModeSetupStoryboard.storyboard */,
+				BF3D533823DB0E420053195A /* MagdaleneModeSetupPresentationManager.swift */,
+				BF99A6DC23D53C6D0070D3C2 /* MagdaleneModeSetupIntroViewController.swift */,
+				BF99A6DE23D53EE70070D3C2 /* MagdaleneModeSetupAwaitingSetupViewController.swift */,
+				BF9015C323DD5DB9006A642C /* MagdaleneModeSetupDoneViewController.swift */,
+			);
+			path = "Magdalene Mode Setup";
 			sourceTree = "<group>";
 		};
 		BFA7F86F2366CF99009EF6BB /* Extension */ = {
@@ -1397,9 +1763,65 @@
 			children = (
 				BF8229B8233FD1500050C526 /* SettingsListInterfaceController.swift */,
 				BFADC12023584E2D00298C58 /* MagdaleneSettingsInterfaceController.swift */,
+				BF1977942393A0E300EDEB02 /* InterfaceSettingsInterfaceController.swift */,
+				BFCB01DE23C30823009F982D /* GeneralSettingsInterfaceController.swift */,
 				BF67E2DB233FD95600EB1522 /* CalendarListInterfaceController.swift */,
+				BFF7FEDC23B1F63A009330A7 /* ComplicationSettingsInterfaceController.swift */,
 			);
 			path = "Settings Interface";
+			sourceTree = "<group>";
+		};
+		BFBEAF9C23AC8EE500317A01 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				BFF8F56F23861E7900E6F91E /* GeneralSettingsTableViewController.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		BFBEAF9D23AC8EF100317A01 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				BF3970A8238DEFBA00612187 /* DebugMenuTableViewController.swift */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		BFBEAF9E23AC8EFC00317A01 /* Siri & Widget */ = {
+			isa = PBXGroup;
+			children = (
+				BF447016237D6C45008FD751 /* SiriAndWidgetTableViewController.swift */,
+				BFC0C54321FF19A200D041DA /* VoiceShortcutStatusChecker.swift */,
+			);
+			path = "Siri & Widget";
+			sourceTree = "<group>";
+		};
+		BFBEAF9F23AC8F4000317A01 /* Magdalene */ = {
+			isa = PBXGroup;
+			children = (
+				BF629488237A53EE0091B1F9 /* RenameIntroViewController.swift */,
+				BFB084B7235B125800670E42 /* MagdaleneTableViewController.swift */,
+			);
+			path = Magdalene;
+			sourceTree = "<group>";
+		};
+		BFBEAFA023AC8F5900317A01 /* Apple Watch */ = {
+			isa = PBXGroup;
+			children = (
+				BFBEAFA223AC8FC600317A01 /* AppleWatchSettingsTableViewController.swift */,
+				BFDC141B22618E2100F618A8 /* IAPOnboardViewController.swift */,
+				BF968C9123B2289F00BC2E54 /* Interface */,
+			);
+			path = "Apple Watch";
+			sourceTree = "<group>";
+		};
+		BFBEAFA123AC8F6F00317A01 /* Calendars */ = {
+			isa = PBXGroup;
+			children = (
+				BFC2646621F9EB51003298AA /* CalendarSelectTableViewController.swift */,
+				BFC2646821F9EBB5003298AA /* SettingsCalendarItemCell.swift */,
+			);
+			path = Calendars;
 			sourceTree = "<group>";
 		};
 		BFC0C4EF21FEB6EF00D041DA /* How Long Left Siri Extension */ = {
@@ -1429,12 +1851,14 @@
 			isa = PBXGroup;
 			children = (
 				BF92B689236856B7008DE795 /* HLLComplicationEntryTimelineGenerator.swift */,
-				BF8D94112340CC0200470F1F /* CloudKit Preferences */,
 				BF5887CE233F807800A976A2 /* HLLEvent */,
+				BFF5041023AA27E5009EBDEF /* HLLDefaults */,
 				BFC4E7122210202F00EE4A1F /* School */,
 				BF5887CC233F7F5400A976A2 /* String Generators */,
 				BF44590E233F7CB600DA1B21 /* Event Info */,
+				BFDB9C3F238C906E00EE080E /* Notifications */,
 				BF5887CD233F7F8000A976A2 /* Utilities */,
+				BF8D94112340CC0200470F1F /* CloudKit Preferences */,
 				BFFA55BC22D885A700575230 /* Extensions */,
 				BFFA559C22D8838F00575230 /* Enums */,
 				BFFA55DB22D886CA00575230 /* Protocols */,
@@ -1446,6 +1870,8 @@
 			isa = PBXGroup;
 			children = (
 				BFC4E71A2210202F00EE4A1F /* SchoolAnalyser.swift */,
+				BF3DA2BB23DAB2CA00009A3A /* SchoolEventDownloadNeededEvaluator.swift */,
+				BFE4460B23CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift */,
 				BFC4E7112210202F00EE4A1F /* SchoolEventModifier.swift */,
 				BF5887CA233F7ECD00A976A2 /* Event Modifiers */,
 				BF5887C9233F7E8400A976A2 /* Event Fetchers */,
@@ -1479,12 +1905,12 @@
 		BFCD6D8B234F519800DCABE3 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				BF38EF9A235B04C400614B0A /* HLLEventContextMenuGenerator.swift */,
-				BF78DEBE235B4AEF00A5855E /* EKEventViewControllerManager.swift */,
+				BFFA2BF423B07CA0002861DA /* Event Menu */,
 				BFCD6D8D234F520C00DCABE3 /* Root */,
 				BFCD6D8C234F51B200DCABE3 /* Current */,
 				BFCD6D8E234F521B00DCABE3 /* Upcoming */,
 				BFD0F2AE2224072000B14D9F /* Settings */,
+				BFC2646421F9E493003298AA /* SettingsMainTableViewController.swift */,
 				BFCD6D8F234F526600DCABE3 /* Event Info View */,
 			);
 			path = Interface;
@@ -1503,6 +1929,7 @@
 			isa = PBXGroup;
 			children = (
 				BF12AAFD234F5BD5002FF488 /* RootViewController.swift */,
+				BFD2819A2377AD4D000B48E4 /* SplitRootViewController.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -1511,6 +1938,7 @@
 			isa = PBXGroup;
 			children = (
 				BF8D07C32250C62F006B8E85 /* UpcomingEventsTableViewController.swift */,
+				BFA1ABCC239377340008E867 /* UpcomingEventsTableRow.swift */,
 			);
 			path = Upcoming;
 			sourceTree = "<group>";
@@ -1538,16 +1966,15 @@
 		BFD0F2AE2224072000B14D9F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				BF52D4C3235B2A5B00914BC4 /* SwitchCell.xib */,
-				BF52D4C5235B2AE700914BC4 /* SwitchCell.swift */,
-				BFB084B7235B125800670E42 /* MagdaleneTableViewController.swift */,
-				BFC2646421F9E493003298AA /* SettingsMainTableViewController.swift */,
-				BFDC141B22618E2100F618A8 /* IAPOnboardViewController.swift */,
-				BFC2646621F9EB51003298AA /* CalendarSelectTableViewController.swift */,
-				BF876A0A220C15F7007D2EFF /* MilestoneSettingsTableViewController.swift */,
-				BF876A0C220C3226007D2EFF /* MilestoneSettingsCell.swift */,
-				BFC2646821F9EBB5003298AA /* SettingsCalendarItemCell.swift */,
-				BFC0C54321FF19A200D041DA /* VoiceShortcutStatusChecker.swift */,
+				BF53EBA2237704B300861A4D /* SettingsTableViewController.swift */,
+				BFBEAF9C23AC8EE500317A01 /* General */,
+				BFBEAFA123AC8F6F00317A01 /* Calendars */,
+				BF3CB2D2239273BE00A56F65 /* Notifications */,
+				BFBEAF9E23AC8EFC00317A01 /* Siri & Widget */,
+				BFBEAFA023AC8F5900317A01 /* Apple Watch */,
+				BFBEAF9F23AC8F4000317A01 /* Magdalene */,
+				BFBEAF9D23AC8EF100317A01 /* Debug */,
+				BF447015237D6922008FD751 /* Cells */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1557,8 +1984,6 @@
 			children = (
 				BF16469A22FC250A00D07BC3 /* CountdownText.swift */,
 				BFD812D8218A7BFF00992E23 /* UpcomingEventStringGenerator.swift */,
-				BFDB6B2E21B1508D00AF0673 /* NextOccurenceStringGenerator.swift */,
-				BF59A22721C0B38000038C58 /* SchoolHolidaysStringGenerator.swift */,
 			);
 			name = "String Generators";
 			sourceTree = "<group>";
@@ -1572,9 +1997,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BFDB9C3F238C906E00EE080E /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				BFBEC855238B733E00BBE877 /* EventNotificationContentGenerator.swift */,
+				BF50E18E23972ADE00E708C4 /* NotificationTriggerDefaultsHelper.swift */,
+				BF617CFA2387729A00973D7E /* HLLNotificationContent.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		BFDE4A6121B5FF3400CD50BC /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				BFEC4FDD239DEF7300EF8F6D /* OnboardingWindowManager.swift */,
 				BFDE4A6221B5FF5600CD50BC /* OnboardingWindowController.swift */,
 				BFDE4A6421B60AB500CD50BC /* OnboardingViewController.swift */,
 				BFFE8B88236D7F4D0081D980 /* Onboarding.storyboard */,
@@ -1587,21 +2023,32 @@
 			children = (
 				BF94F01E236FB52300B26702 /* How Long Left.entitlements */,
 				BFEA0CEC21788D0B00FAF2F1 /* MainMenu.xib */,
-				BF9E963921888694002626CD /* HLLMain.swift */,
+				BFEA0D18217891C600FAF2F1 /* MenuController.swift */,
+				BF3E6DF823DEB2F900722CBD /* StatusItemController.swift */,
+				BFEC4FDB239DED2200EF8F6D /* LaunchFunctions.swift */,
+				BFE917642373C18B00A66F40 /* HotKeyNotificationHandler.swift */,
+				BF106B1623DEF55B0056CFEC /* HotKeyHandler.swift */,
+				BFE917622373BB3900A66F40 /* StatusItemUpdateHandler.swift */,
+				BF23D6CC23A1E407008E3BB7 /* UtilityRunLoopManager.swift */,
+				BF23D6CA23A1E1CE008E3BB7 /* DockIconVisibilityManager.swift */,
 				BFB9896122F97F85003EAA4F /* ProIAP.swift */,
 				BF4ABBD922F849DA00E23B45 /* Rickroll.swift */,
 				BF01357022F30D500070E9C8 /* NSImage.swift */,
-				BFEA0D18217891C600FAF2F1 /* MenuController.swift */,
 				BF3149B922DDB3D7002BAF0D /* DateOfEvents.swift */,
 				BF36185D22DCDD7C00D51765 /* SelectedEventManager.swift */,
 				BFCAF89222FC1EAE00D81B48 /* CountdownText.swift */,
 				BFF847E6231E5D1E0075E733 /* EventVisibilityButtonsManager.swift */,
+				BFBEC85B238B7EB300BBE877 /* MacEventNotificationScheduler.swift */,
+				BFC01ED723DED36100A8DBA2 /* CompassLaunchHandler.swift */,
+				BFA24ECF23E14A13003EE71A /* WindowActivationWorkaround.swift */,
+				BF166B0023D962A700509256 /* Menu Item Handlers */,
 				BFFA559122D8342900575230 /* Menu Generators */,
 				BFD812D7218A7BAA00992E23 /* String Generators */,
 				BF50797321AE33DD005CD52B /* Preferences Window */,
 				BF621F5E22C9F79F00226E61 /* EventUI */,
 				BFDE4A6121B5FF3400CD50BC /* Onboarding */,
 				BF3F876022BCBE26002BA4CD /* Rename */,
+				BFA3FD1E23D45643009BA759 /* Magdalene Mode Setup */,
 				BFFA559922D8747600575230 /* Magdalene */,
 				BFFA559822D8746100575230 /* Utilities */,
 				BFFA55BB22D8853500575230 /* Mac Enums */,
@@ -1621,30 +2068,56 @@
 				BFCD6D8A234F514900DCABE3 /* Delegates */,
 				BFA7F86F2366CF99009EF6BB /* Extension */,
 				BFD96267225229FF00060FFF /* BackgroundFunctions.swift */,
-				BF4AEFEC2207A63E00FEE4BC /* MilestoneNotificationScheduler.swift */,
+				BFFA2BED23B070E2002861DA /* UniversalMenuItem.swift */,
+				BF4AEFEC2207A63E00FEE4BC /* EventNotificationScheduler.swift */,
 				BF38402921F5F54F004E7FC1 /* UpcomingEventStringGenerator.swift */,
 				BF9EA1A121FB0431008BC1C5 /* iOS WatchSessionManager.swift */,
 				BFCFBD502228B786002DDCDA /* ComplicationIAP.swift */,
+				BF71C63C23854D6A00576A81 /* EventInfoViewPresenter.swift */,
 				BFF05ED121E9DE4E0044F049 /* Assets.xcassets */,
 				BFDBB96322C5EE0A0041DB75 /* How Long Left.entitlements */,
 				BFF05ED821E9DE4F0044F049 /* Info.plist */,
 				BF8BFF3822607AC900B17C39 /* HLL iOS App Icon No Background.png */,
 				BFF05ED221E9DE4E0044F049 /* LaunchScreen.storyboard */,
+				BF856C3423B0B627002D8E86 /* BGRefreshModel.xcdatamodeld */,
 			);
 			path = "How Long Left (iOS)";
 			sourceTree = SOURCE_ROOT;
 		};
+		BFF5041023AA27E5009EBDEF /* HLLDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				BFC4E70D2210202F00EE4A1F /* HLLDefaults.swift */,
+				BF2C3E652359D3A000FC79F7 /* HLLDefaultsTransfer.swift */,
+			);
+			path = HLLDefaults;
+			sourceTree = "<group>";
+		};
+		BFFA2BF423B07CA0002861DA /* Event Menu */ = {
+			isa = PBXGroup;
+			children = (
+				BFFA2BEF23B0727C002861DA /* HLLEventUniversalMenuItemGenerator.swift */,
+				BF38EF9A235B04C400614B0A /* HLLEventContextMenuGenerator.swift */,
+				BFFA2BF523B07D1B002861DA /* HLLEventActionSheetGenerator.swift */,
+				BF78DEBE235B4AEF00A5855E /* EKEventViewControllerManager.swift */,
+			);
+			path = "Event Menu";
+			sourceTree = "<group>";
+		};
 		BFFA559122D8342900575230 /* Menu Generators */ = {
 			isa = PBXGroup;
 			children = (
+				BFE917602373AB0D00A66F40 /* MenuUpdateHandler.swift */,
 				BFFA559222D8345B00575230 /* MenuTopShelfGenerator.swift */,
 				BF3149B522DD9A68002BAF0D /* UpcomingSoonMenuGenerator.swift */,
 				BF3149B722DDAC8B002BAF0D /* UpcomingWeekMenuGenerator.swift */,
+				BFA3FD1C23D41A3E009BA759 /* SchoolEventChangesMenuItemGenerator.swift */,
 				BFFA559622D85ADF00575230 /* EventAssociatedMenuItem.swift */,
 				BF5F945A22DA2CEA00AB9FF3 /* EventListMenuGenerator.swift */,
 				BF5F945C22DA2F9300AB9FF3 /* EventMenuItemGenerator.swift */,
 				BFB5A6982231E64B0075182B /* DetailSubmenuGenerator.swift */,
 				BFFA559422D83D9D00575230 /* NSMenuItemMaker.swift */,
+				BF166B0523D9C3EA00509256 /* ActionableNSMenuItem.swift */,
 			);
 			name = "Menu Generators";
 			sourceTree = "<group>";
@@ -1653,12 +2126,12 @@
 			isa = PBXGroup;
 			children = (
 				BF2713D922BD14AA006A4B37 /* ControllableTabView.swift */,
+				BFFCCA1F238D095800AC091A /* TerminationHandler.swift */,
 				BF3BE73421A103A9001AFBA8 /* MilestoneNotificationGenerator.swift */,
 				BF948EA9227BF8E90011290E /* UserGrouping.swift */,
 				BF57E84C21ABC4EA00B021DD /* MenuControllerProtocol.swift */,
 				BFDE4A6C21B67E3C00CD50BC /* MemoryRelaunch.swift */,
 				BF8A4F0C21CDD6D200EC12B6 /* macOSExtensions.swift */,
-				BF26D84C21BFAD0C00C2728E /* DefaultsMigrator.swift */,
 				BF5B6A0D228D4CAF00CA6784 /* Pastr */,
 			);
 			path = Utilities;
@@ -1667,8 +2140,8 @@
 		BFFA559922D8747600575230 /* Magdalene */ = {
 			isa = PBXGroup;
 			children = (
-				BFAB46E6224466B400A5C942 /* TermData.swift */,
 				BFC4E7172210202F00EE4A1F /* MagdalenePrompts.swift */,
+				BF3BCD3423E037EB00639D5F /* MagdaleneEventDataUploader.swift */,
 				BFB8EF7B223E10000023B322 /* MagdaleneWiFiCheck.swift */,
 			);
 			path = Magdalene;
@@ -1720,6 +2193,8 @@
 		BFFA55E222D888FD00575230 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BF90D43723E09CAA00864D8C /* GoogleService-Info.plist */,
+				BF3BCD1A23E031AD00639D5F /* Pastr */,
 				BFEA0CE821788D0100FAF2F1 /* AppDelegate.swift */,
 				BF3E066522CB5C40002859D5 /* DoneAnimation.json */,
 				BFEA0CEF21788D0B00FAF2F1 /* Info.plist */,
@@ -2064,6 +2539,7 @@
 			files = (
 				BF1646C922FC410600D07BC3 /* TodayViewController.xib in Resources */,
 				BF1646CD22FC410600D07BC3 /* InfoPlist.strings in Resources */,
+				BF90D43923E09CAB00864D8C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2082,6 +2558,7 @@
 				BFF05EDC21E9DE4F0044F049 /* Main.storyboard in Resources */,
 				BFF05EDA21E9DE4F0044F049 /* Assets.xcassets in Resources */,
 				BFF05EDB21E9DE4F0044F049 /* LaunchScreen.storyboard in Resources */,
+				BF53EB9F237701BE00861A4D /* TitleDetailCell.xib in Resources */,
 				BF8BFF3922607ACA00B17C39 /* HLL iOS App Icon No Background.png in Resources */,
 				BF52D4C4235B2A5B00914BC4 /* SwitchCell.xib in Resources */,
 			);
@@ -2123,23 +2600,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF9015C823DD6C3C006A642C /* NotSetUpMagdalenePreferencesView.xib in Resources */,
 				BF6495E121B2C79E006CB6DF /* CalendarPreferencesView.xib in Resources */,
 				BFB8EF7E223E15C50023B322 /* AboutView.xib in Resources */,
+				BF8A701F2397BCB000F2F3D7 /* CustomNotificationPreferencesView.xib in Resources */,
 				BF621F6022C9F7D000226E61 /* EventUIStoryboard.storyboard in Resources */,
 				BF8B99EA21AE36CA00F7499A /* Assets.xcassets in Resources */,
 				BFEE396221BD129F000106BD /* NotificationPreferencesView.xib in Resources */,
-				BF56BF2222D49BD100066872 /* CustomNotificationsPreferences.storyboard in Resources */,
 				BF5F945722DA013400AB9FF3 /* MenuPreferencesView.xib in Resources */,
+				BF50E18B2397253800E708C4 /* NotificationsTriggersViewController.xib in Resources */,
 				BF93AEA221BDD60B0035CE7F /* MagdalenePreferencesView.xib in Resources */,
 				BF5F945922DA026900AB9FF3 /* CalendarPreferencesViewNoAccess.xib in Resources */,
 				BF9688E522CDD9AB000FA86F /* RenamePreferencesView.xib in Resources */,
+				BF303FD5237397FC0080BFCC /* EventInfoSubmenuConfiguration.storyboard in Resources */,
 				BFFE8B89236D7F4D0081D980 /* Onboarding.storyboard in Resources */,
 				BF3F876222BCBE57002BA4CD /* RNUI.storyboard in Resources */,
 				BF8B99F021AE7BB700F7499A /* StatusItemPreferencesView.xib in Resources */,
 				BF93AEA421BDD64F0035CE7F /* GeneralPreferencesView.xib in Resources */,
 				BF3E066622CB5C41002859D5 /* DoneAnimation.json in Resources */,
 				BF56BF2022D49B8E00066872 /* CalSelectStoryboard.storyboard in Resources */,
+				BF90D43823E09CAB00864D8C /* GoogleService-Info.plist in Resources */,
 				BFEA0CEE21788D0B00FAF2F1 /* MainMenu.xib in Resources */,
+				BFA3FD2023D456AF009BA759 /* MagdaleneModeSetupStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2336,34 +2818,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFA3FD1623D41297009BA759 /* EventDetailChangesModifier.swift in Sources */,
 				BF8686FB235D51C100EF931E /* CalendarDefaultsModifier.swift in Sources */,
 				BF77551522FC4AA200A9370C /* CountdownStringGenerator.swift in Sources */,
 				BF77550622FC49C400A9370C /* TermEventFetcher.swift in Sources */,
 				BF77551922FC4C2E00A9370C /* HLLHotKeyOption.swift in Sources */,
 				BF7754F722FC499A00A9370C /* HLLEventSource.swift in Sources */,
+				BFE917682373C35A00A66F40 /* SelectedEventManager.swift in Sources */,
 				BF77550822FC49C900A9370C /* MagdaleneBreaks.swift in Sources */,
 				BF77551622FC4BC300A9370C /* StatusItemMode.swift in Sources */,
 				BF2C3E6F2359DE9A00FC79F7 /* CalendarEventFetcher.swift in Sources */,
 				BF2C3E772359E06000FC79F7 /* InternalEventFetcher.swift in Sources */,
 				BF38EF94235B01B000614B0A /* EventVisibiltyActionHandler.swift in Sources */,
+				BF3BCD2E23E0372D00639D5F /* PastebinFormats.swift in Sources */,
 				BF7754FA22FC49A200A9370C /* EventTimeRemainingMonitor.swift in Sources */,
 				BF7754F922FC499F00A9370C /* Version.swift in Sources */,
+				BF3B310B23E001B00070CECA /* MagdaleneExtraEvents.swift in Sources */,
 				BF77551022FC49DE00A9370C /* EventCompletionStatus.swift in Sources */,
+				BF3BCD2823E0372700639D5F /* Pastr.swift in Sources */,
 				BF77550722FC49C600A9370C /* EventTitleShortener.swift in Sources */,
 				BF1646C622FC410600D07BC3 /* TodayViewController.swift in Sources */,
 				BF7754FE22FC49AC00A9370C /* HLLDefaults.swift in Sources */,
 				BF445919233F7D0300DA1B21 /* HLLEventInfoItem.swift in Sources */,
 				BF3D6D78233E092B006EE765 /* DurationStringGenerator.swift in Sources */,
 				BF0E3C81231DF1AB00552B87 /* ExamsEventFetcher.swift in Sources */,
+				BFFCCA16238CC6A000AC091A /* Pluraliser.swift in Sources */,
 				BF3D6D80233E0A3F006EE765 /* HLLEventInfoItemGenerator.swift in Sources */,
 				BF7754F822FC499C00A9370C /* SchoolAnalyser.swift in Sources */,
 				BF7754FC22FC49A600A9370C /* PercentageCalculator.swift in Sources */,
 				BF89B8992347B74E00437A75 /* EKEvent.swift in Sources */,
+				BF3BCD2223E0372000639D5F /* TextUploader.swift in Sources */,
 				BF77551722FC4BCE00A9370C /* DateOfEvents.swift in Sources */,
 				BF77550B22FC49D000A9370C /* MagdalenePeriods.swift in Sources */,
 				BFD946542353DC0C004CABD4 /* HLLEvent.swift in Sources */,
 				BF77551822FC4BD700A9370C /* CalendarAccessState.swift in Sources */,
 				BF77550122FC49B300A9370C /* Weekday.swift in Sources */,
+				BF82CD1623E3078600EF9EED /* NameConversionsDownloader.swift in Sources */,
+				BF654B5723E2B29600E72B79 /* OldRoomInfoAdder .swift in Sources */,
+				BF23B311238E599400F98F6D /* SchoolEventFetcher.swift in Sources */,
 				BF77550E22FC49D800A9370C /* String.swift in Sources */,
 				BF445913233F7CFD00DA1B21 /* HLLEventInfoItemType.swift in Sources */,
 				BF77550F22FC49DC00A9370C /* EventFetchPeriod.swift in Sources */,
@@ -2372,17 +2864,22 @@
 				BF2C3E672359D3A000FC79F7 /* HLLDefaultsTransfer.swift in Sources */,
 				BF77550D22FC49D600A9370C /* TimeInterval.swift in Sources */,
 				BF3D6D86233E1C92006EE765 /* FollowingOccurenceStore.swift in Sources */,
+				BF166AF823D9545600509256 /* EventLocationIndexer.swift in Sources */,
 				BFE6F3B62328CE4100F54759 /* VisibilityString.swift in Sources */,
 				BF77551422FC4A9E00A9370C /* CountdownText.swift in Sources */,
 				BF92B692236856F1008DE795 /* HLLComplicationEntry.swift in Sources */,
+				BF3BCD3A23E081ED00639D5F /* EventTeacherAdder.swift in Sources */,
 				BF77550522FC49C200A9370C /* SchoolHolidaysPeriod.swift in Sources */,
 				BF77551322FC49E800A9370C /* HLLCountdownController.swift in Sources */,
 				BF77550422FC49BD00A9370C /* MagdaleneSchoolHolidays.swift in Sources */,
 				BF77550C22FC49D300A9370C /* Date.swift in Sources */,
+				BFDB9C3C238C906000EE080E /* EventNotificationContentGenerator.swift in Sources */,
 				BF77551222FC49E400A9370C /* EventDate.swift in Sources */,
 				BF77551122FC49E100A9370C /* SchoolMode.swift in Sources */,
+				BFE4460D23CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift in Sources */,
 				BF8C21FF2326030900CAA3ED /* EventVisibilityButtonsManager.swift in Sources */,
 				BF77550322FC49BA00A9370C /* SchoolHolidayEventFetcher.swift in Sources */,
+				BFDB9C40238C914000EE080E /* HLLNotificationContent.swift in Sources */,
 				BF77550022FC49B100A9370C /* SchoolEventModifier.swift in Sources */,
 				BF77550A22FC49CE00A9370C /* EventTimeAdjuster.swift in Sources */,
 			);
@@ -2392,32 +2889,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF3B310E23E001B20070CECA /* MagdaleneExtraEvents.swift in Sources */,
 				BF3836E8234DC9C300FA94BA /* SchoolMode.swift in Sources */,
 				BF3836E3234DC9BE00FA94BA /* CKError.swift in Sources */,
 				BF3836BE234DC80C00FA94BA /* HLLEventSource.swift in Sources */,
 				BF38EF96235B01B000614B0A /* EventVisibiltyActionHandler.swift in Sources */,
 				BF91C2762353145100572449 /* UIColor.swift in Sources */,
+				BF166AFA23D9545700509256 /* EventLocationIndexer.swift in Sources */,
 				BF3836E1234DC9BE00FA94BA /* Date.swift in Sources */,
 				BF92B68D236856B7008DE795 /* HLLComplicationEntryTimelineGenerator.swift in Sources */,
 				BF3836C3234DC94000FA94BA /* EventTitleShortener.swift in Sources */,
 				BF3836EC234DD1F400FA94BA /* HLLHotKeyOption.swift in Sources */,
 				BF3836CF234DC99300FA94BA /* HLLEventInfoItemGenerator.swift in Sources */,
 				BF3836E2234DC9BE00FA94BA /* EKEvent.swift in Sources */,
+				BFE9176A2373C35B00A66F40 /* SelectedEventManager.swift in Sources */,
 				BF3836EB234DD1D500FA94BA /* StatusItemMode.swift in Sources */,
 				BF55FF8F234C9F2700FD1DE9 /* TodayViewController.swift in Sources */,
+				BF3BCD3B23E081EE00639D5F /* EventTeacherAdder.swift in Sources */,
+				BF23B312238E599500F98F6D /* SchoolEventFetcher.swift in Sources */,
 				BF3836D1234DC99A00FA94BA /* HLLEventInfoItem.swift in Sources */,
 				BF8686FD235D51C100EF931E /* CalendarDefaultsModifier.swift in Sources */,
+				BF3BCD2423E0372200639D5F /* TextUploader.swift in Sources */,
 				BF3836DB234DC9BA00FA94BA /* FollowingOccurenceStore.swift in Sources */,
+				BFA3FD1723D41299009BA759 /* EventDetailChangesModifier.swift in Sources */,
 				BF3836DA234DC9BA00FA94BA /* HLLDefaults.swift in Sources */,
 				BF3836E4234DC9BE00FA94BA /* TimeInterval.swift in Sources */,
+				BF3BCD2923E0372800639D5F /* Pastr.swift in Sources */,
 				BF3836D0234DC99700FA94BA /* HLLEventInfoItemType.swift in Sources */,
 				BF3836C8234DC95600FA94BA /* SchoolHolidayEventFetcher.swift in Sources */,
 				BF3836D7234DC9B300FA94BA /* HLLCountdownController.swift in Sources */,
+				BFE4460F23CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift in Sources */,
+				BF654B5623E2B29400E72B79 /* OldRoomInfoAdder .swift in Sources */,
 				BF3836E5234DC9BE00FA94BA /* String.swift in Sources */,
 				BF3836C1234DC93900FA94BA /* SchoolAnalyser.swift in Sources */,
 				BF3836E6234DC9C300FA94BA /* EventFetchPeriod.swift in Sources */,
 				BF3836BF234DC81400FA94BA /* HLLCloudKitPreferences.swift in Sources */,
 				BF3836ED234DD20100FA94BA /* DateOfEvents.swift in Sources */,
+				BF3BCD3023E0372E00639D5F /* PastebinFormats.swift in Sources */,
 				BF3836C7234DC95300FA94BA /* SchoolHolidaysPeriod.swift in Sources */,
 				BF2C3E712359DE9A00FC79F7 /* CalendarEventFetcher.swift in Sources */,
 				BF3836CB234DC98400FA94BA /* MagdaleneBreaks.swift in Sources */,
@@ -2426,8 +2934,10 @@
 				BF3836C4234DC94700FA94BA /* EventTimeAdjuster.swift in Sources */,
 				BF92B694236856F2008DE795 /* HLLComplicationEntry.swift in Sources */,
 				BF3836CE234DC98F00FA94BA /* DurationStringGenerator.swift in Sources */,
+				BFDB9C3D238C906000EE080E /* EventNotificationContentGenerator.swift in Sources */,
 				BF3836DC234DC9BA00FA94BA /* EventTimeRemainingMonitor.swift in Sources */,
 				BF3836DD234DC9BA00FA94BA /* Version.swift in Sources */,
+				BFFCCA18238CC6A200AC091A /* Pluraliser.swift in Sources */,
 				BF3836CD234DC98C00FA94BA /* CountdownStringGenerator.swift in Sources */,
 				BF3836E0234DC9BA00FA94BA /* VisibilityString.swift in Sources */,
 				BF3836E9234DC9C300FA94BA /* EventDate.swift in Sources */,
@@ -2442,7 +2952,9 @@
 				BF3836EA234DD1CB00FA94BA /* CalendarAccessState.swift in Sources */,
 				BF3836CA234DC98100FA94BA /* TermEventFetcher.swift in Sources */,
 				BF3836E7234DC9C300FA94BA /* EventCompletionStatus.swift in Sources */,
+				BF82CD1823E3078900EF9EED /* NameConversionsDownloader.swift in Sources */,
 				BF3836C2234DC93C00FA94BA /* SchoolEventModifier.swift in Sources */,
+				BFDB9C41238C914100EE080E /* HLLNotificationContent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2450,11 +2962,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF23B30F238E584100F98F6D /* SchoolEventFetcher.swift in Sources */,
 				BFFA55AE22D8851300575230 /* SchoolMode.swift in Sources */,
+				BFA1ABCD239377340008E867 /* UpcomingEventsTableRow.swift in Sources */,
 				BFC2646921F9EBB5003298AA /* SettingsCalendarItemCell.swift in Sources */,
 				BF510172230F76AA0025D11F /* TimeInterval.swift in Sources */,
 				BFC4E7692210202F00EE4A1F /* EventTitleShortener.swift in Sources */,
 				BFC4E7872210202F00EE4A1F /* MagdalenePeriods.swift in Sources */,
+				BFE917692373C35A00A66F40 /* SelectedEventManager.swift in Sources */,
 				BFB084B8235B125800670E42 /* MagdaleneTableViewController.swift in Sources */,
 				BFC4E7272210202F00EE4A1F /* HLLEventSource.swift in Sources */,
 				BFCFBD512228B786002DDCDA /* ComplicationIAP.swift in Sources */,
@@ -2464,15 +2979,24 @@
 				BF3149BB22DDB4D6002BAF0D /* DateOfEvents.swift in Sources */,
 				BFF05EDD21E9DE4F0044F049 /* AppDelegate.swift in Sources */,
 				BFFA55CE22D8865400575230 /* Date.swift in Sources */,
+				BF654B5523E2B29400E72B79 /* OldRoomInfoAdder .swift in Sources */,
 				BF8686FC235D51C100EF931E /* CalendarDefaultsModifier.swift in Sources */,
 				BF3149C122DDEF39002BAF0D /* StatusItemMode.swift in Sources */,
+				BF166AF923D9545700509256 /* EventLocationIndexer.swift in Sources */,
 				BFDC141C22618E2100F618A8 /* IAPOnboardViewController.swift in Sources */,
 				BF2C3E702359DE9A00FC79F7 /* CalendarEventFetcher.swift in Sources */,
+				BF3CB2D5239273E400A56F65 /* NotificationTriggerType.swift in Sources */,
 				BFC4E76F2210202F00EE4A1F /* MagdaleneBreaks.swift in Sources */,
+				BF53EBA3237704B300861A4D /* SettingsTableViewController.swift in Sources */,
 				BFCD6D98234F559E00DCABE3 /* EventInfoViewGenerator.swift in Sources */,
+				BF968C9323B228D900BC2E54 /* WatchInterfaceTableViewController.swift in Sources */,
 				BFFA55C422D885BC00575230 /* EventFetchPeriod.swift in Sources */,
+				BF3BCD3C23E081EF00639D5F /* EventTeacherAdder.swift in Sources */,
 				BFFA55DD22D8886E00575230 /* String.swift in Sources */,
 				BFCD6D9F234F56C500DCABE3 /* TimerCell.swift in Sources */,
+				BF53EB9E237701BE00861A4D /* TitleDetailCell.swift in Sources */,
+				BFA3FD1823D41299009BA759 /* EventDetailChangesModifier.swift in Sources */,
+				BF3CB2DC2392746700A56F65 /* TimeRemainingNotificationTrigger.swift in Sources */,
 				BF52D4C6235B2AE700914BC4 /* SwitchCell.swift in Sources */,
 				BF38EF95235B01B000614B0A /* EventVisibiltyActionHandler.swift in Sources */,
 				BF2C3E782359E06000FC79F7 /* InternalEventFetcher.swift in Sources */,
@@ -2480,57 +3004,82 @@
 				BF9EA1A221FB0431008BC1C5 /* iOS WatchSessionManager.swift in Sources */,
 				BFC4E72D2210202F00EE4A1F /* Version.swift in Sources */,
 				BF78DEBF235B4AEF00A5855E /* EKEventViewControllerManager.swift in Sources */,
-				BF4AEFED2207A63E00FEE4BC /* MilestoneNotificationScheduler.swift in Sources */,
+				BF4AEFED2207A63E00FEE4BC /* EventNotificationScheduler.swift in Sources */,
+				BF3970A9238DEFBA00612187 /* DebugMenuTableViewController.swift in Sources */,
 				BF3A4EB5235C198B001A2200 /* LaunchingViewController.swift in Sources */,
-				BF876A0B220C15F7007D2EFF /* MilestoneSettingsTableViewController.swift in Sources */,
 				BFC4E78D2210202F00EE4A1F /* SchoolAnalyser.swift in Sources */,
+				BFF8F57023861E7900E6F91E /* GeneralSettingsTableViewController.swift in Sources */,
 				BF510179230F76BB0025D11F /* SchoolHolidayEventFetcher.swift in Sources */,
+				BFFCCA17238CC6A000AC091A /* Pluraliser.swift in Sources */,
 				BFC2646721F9EB51003298AA /* CalendarSelectTableViewController.swift in Sources */,
 				BFC2646521F9E493003298AA /* SettingsMainTableViewController.swift in Sources */,
 				BF44591A233F7D0400DA1B21 /* HLLEventInfoItem.swift in Sources */,
 				BF3D6D79233E092C006EE765 /* DurationStringGenerator.swift in Sources */,
 				BF3DB1482345EB86007D54A4 /* SceneDelegate.swift in Sources */,
+				BFD2819B2377AD4E000B48E4 /* SplitRootViewController.swift in Sources */,
+				BF3CB2E2239274F200A56F65 /* HLLNotificationTrigger.swift in Sources */,
+				BF3BCD2F23E0372E00639D5F /* PastebinFormats.swift in Sources */,
+				BFBEAFA323AC8FC600317A01 /* AppleWatchSettingsTableViewController.swift in Sources */,
 				BF2FA5F222EB37FC00E7FA0E /* Weekday.swift in Sources */,
+				BF3CB2DE239274C200A56F65 /* PercentageNotificationTrigger.swift in Sources */,
 				BFC4E7812210202F00EE4A1F /* EventTimeAdjuster.swift in Sources */,
 				BF92B68C236856B7008DE795 /* HLLComplicationEntryTimelineGenerator.swift in Sources */,
 				BF3C8DBD236AA26B00CFDEFD /* InfoItemCell.swift in Sources */,
+				BF82CD1723E3078800EF9EED /* NameConversionsDownloader.swift in Sources */,
 				BFFA55B522D8851A00575230 /* EventDate.swift in Sources */,
 				BF8D07C22250C47D006B8E85 /* CurrentEventsTableViewController.swift in Sources */,
+				BF3CB2E42392754B00A56F65 /* SettingsCell.swift in Sources */,
 				BF12AAFE234F5BD5002FF488 /* RootViewController.swift in Sources */,
+				BF3BCD2323E0372100639D5F /* TextUploader.swift in Sources */,
 				BF0FBCBC236C377A00F55B81 /* EventInfoOrderTableViewController.swift in Sources */,
 				BF3C8DBB236AA16F00CFDEFD /* StackedInfoItemCell.swift in Sources */,
+				BF617CFC2387729A00973D7E /* HLLNotificationContent.swift in Sources */,
 				BFFA55BE22D885B200575230 /* EventCompletionStatus.swift in Sources */,
+				BF447017237D6C45008FD751 /* SiriAndWidgetTableViewController.swift in Sources */,
 				BF3149CB22DDEF79002BAF0D /* CalendarAccessState.swift in Sources */,
 				BFE6F3B72328CE4100F54759 /* VisibilityString.swift in Sources */,
 				BFC0C53D21FEB82100D041DA /* SiriResponseGenerator.swift in Sources */,
 				BFD96268225229FF00060FFF /* BackgroundFunctions.swift in Sources */,
 				BFC4E71B2210202F00EE4A1F /* FollowingOccurenceStore.swift in Sources */,
 				BFB47F062336493D0080CAD2 /* CountdownText.swift in Sources */,
+				BF3BCD2A23E0372800639D5F /* Pastr.swift in Sources */,
+				BF3CB2D92392744500A56F65 /* EventStatusTrigger.swift in Sources */,
 				BF8D07C42250C62F006B8E85 /* UpcomingEventsTableViewController.swift in Sources */,
 				BF3149C622DDEF67002BAF0D /* HLLHotKeyOption.swift in Sources */,
 				BFC4E74B2210202F00EE4A1F /* HLLDefaults.swift in Sources */,
 				BF8D75C12340F732007A3638 /* HLLCloudKitPreferences.swift in Sources */,
 				BF3C8DBF236AA4D900CFDEFD /* CurrentEventCell.swift in Sources */,
 				BFC4E73F2210202F00EE4A1F /* EventTimeRemainingMonitor.swift in Sources */,
+				BFFA2BEE23B070E2002861DA /* UniversalMenuItem.swift in Sources */,
 				BF445914233F7CFD00DA1B21 /* HLLEventInfoItemType.swift in Sources */,
 				BFB47F01233646B10080CAD2 /* CountdownStringGenerator.swift in Sources */,
 				BF89B89A2347B74E00437A75 /* EKEvent.swift in Sources */,
+				BFD2819D2377DFCC000B48E4 /* NotificationConfigurationTableViewController.swift in Sources */,
 				BF510183230F76C70025D11F /* TermEventFetcher.swift in Sources */,
 				BFC4E75D2210202F00EE4A1F /* SchoolEventModifier.swift in Sources */,
 				BFC4E7572210202F00EE4A1F /* RepeatingTimer.swift in Sources */,
+				BFFA2BF023B0727C002861DA /* HLLEventUniversalMenuItemGenerator.swift in Sources */,
 				BF51017E230F76C10025D11F /* SchoolHolidaysPeriod.swift in Sources */,
 				BFAEE94B2258D36A0012BA81 /* UIColor.swift in Sources */,
 				BFC4E7332210202F00EE4A1F /* HLLCountdownController.swift in Sources */,
+				BF3CB2E0239274D900A56F65 /* EventStatusNotificationTrigger.swift in Sources */,
 				BF38EF9B235B04C400614B0A /* HLLEventContextMenuGenerator.swift in Sources */,
+				BF629489237A53EE0091B1F9 /* RenameIntroViewController.swift in Sources */,
+				BFBEC858238B735700BBE877 /* EventNotificationContentGenerator.swift in Sources */,
 				BFC0C4B721FEB17600D041DA /* HLLIntents.intentdefinition in Sources */,
+				BF71C63D23854D6A00576A81 /* EventInfoViewPresenter.swift in Sources */,
 				BF38402A21F5F54F004E7FC1 /* UpcomingEventStringGenerator.swift in Sources */,
-				BF876A0D220C3226007D2EFF /* MilestoneSettingsCell.swift in Sources */,
 				BF0E3C82231DF1AB00552B87 /* ExamsEventFetcher.swift in Sources */,
 				BFC4E7632210202F00EE4A1F /* MagdaleneSchoolHolidays.swift in Sources */,
 				BFD946552353DC0E004CABD4 /* HLLEvent.swift in Sources */,
 				BF3D6D81233E0A40006EE765 /* HLLEventInfoItemGenerator.swift in Sources */,
 				BFC0C54421FF19A200D041DA /* VoiceShortcutStatusChecker.swift in Sources */,
+				BF856C3623B0B627002D8E86 /* BGRefreshModel.xcdatamodeld in Sources */,
+				BFE4460E23CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift in Sources */,
+				BF3B310C23E001B10070CECA /* MagdaleneExtraEvents.swift in Sources */,
 				BFF563EA2214D39F00A93D6B /* PercentageCalculator.swift in Sources */,
+				BF3CB2D72392742B00A56F65 /* NotificationTriggerTypeSection.swift in Sources */,
+				BFFA2BF623B07D1B002861DA /* HLLEventActionSheetGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2538,33 +3087,45 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFF7FEDD23B1F63A009330A7 /* ComplicationSettingsInterfaceController.swift in Sources */,
+				BFCB01DF23C30823009F982D /* GeneralSettingsInterfaceController.swift in Sources */,
 				BFFA55DE22D8886F00575230 /* String.swift in Sources */,
 				BF3D6D82233E0A41006EE765 /* HLLEventInfoItemGenerator.swift in Sources */,
 				BF2C3E6A2359D3A000FC79F7 /* HLLDefaultsTransfer.swift in Sources */,
 				BF510173230F76AB0025D11F /* TimeInterval.swift in Sources */,
 				BF5D29802174688F00AC1EB6 /* ExtensionDelegate.swift in Sources */,
+				BF3BCD2523E0372300639D5F /* TextUploader.swift in Sources */,
+				BF3BCD2B23E0372900639D5F /* Pastr.swift in Sources */,
 				BF44591B233F7D0500DA1B21 /* HLLEventInfoItem.swift in Sources */,
 				BFFA55AF22D8851400575230 /* SchoolMode.swift in Sources */,
 				BF2C3E7A2359E06000FC79F7 /* InternalEventFetcher.swift in Sources */,
 				BF2FA5ED22EB37FC00E7FA0E /* Weekday.swift in Sources */,
 				BFC962CC221C0BEF00FA4C59 /* EventInfoViewRows.swift in Sources */,
 				BFB47F02233646B20080CAD2 /* CountdownStringGenerator.swift in Sources */,
+				BF8D225A237BF37900BE98F4 /* MUWeekListInterfaceController.swift in Sources */,
+				BFFCCA1B238CC6A500AC091A /* Pluraliser.swift in Sources */,
+				BF3BCD3123E0372F00639D5F /* PastebinFormats.swift in Sources */,
 				BF5ADE5323368C2800DF8EA9 /* WatchResolution.swift in Sources */,
 				BFC4E7822210202F00EE4A1F /* EventTimeAdjuster.swift in Sources */,
 				BF38EF97235B01B000614B0A /* EventVisibiltyActionHandler.swift in Sources */,
+				BF1977952393A0E300EDEB02 /* InterfaceSettingsInterfaceController.swift in Sources */,
 				BF9EA1A421FB0605008BC1C5 /* watchOS WatchSessionManager.swift in Sources */,
+				BF8D2257237BE0D100BE98F4 /* PreviousEventRowController.swift in Sources */,
+				BF617CFD2387729A00973D7E /* HLLNotificationContent.swift in Sources */,
 				BF4F6B62233689E50015826E /* CurrentEventRowController.swift in Sources */,
 				BF92B68E236856B7008DE795 /* HLLComplicationEntryTimelineGenerator.swift in Sources */,
 				BFFA55B622D8851B00575230 /* EventDate.swift in Sources */,
 				BFC4E7642210202F00EE4A1F /* MagdaleneSchoolHolidays.swift in Sources */,
+				BFE9176B2373C35B00A66F40 /* SelectedEventManager.swift in Sources */,
 				BF510184230F76C80025D11F /* TermEventFetcher.swift in Sources */,
+				BFA3FD1923D4129A009BA759 /* EventDetailChangesModifier.swift in Sources */,
 				BFF563EB2214D39F00A93D6B /* PercentageCalculator.swift in Sources */,
 				BFC4E72E2210202F00EE4A1F /* Version.swift in Sources */,
+				BF166AFB23D9545800509256 /* EventLocationIndexer.swift in Sources */,
 				BF3AAB0A2267836E00EE06C4 /* HLLComplicationEntry.swift in Sources */,
 				BF0E3C83231DF1AD00552B87 /* ExamsEventFetcher.swift in Sources */,
 				BFC4E7342210202F00EE4A1F /* HLLCountdownController.swift in Sources */,
 				BF4F6B60233689D00015826E /* PrimaryEventRowController.swift in Sources */,
-				BF98F48A23671BB5006AD1F6 /* EventInfoCountdownTableRow.swift in Sources */,
 				BF445915233F7CFE00DA1B21 /* HLLEventInfoItemType.swift in Sources */,
 				BFC4E71C2210202F00EE4A1F /* FollowingOccurenceStore.swift in Sources */,
 				BF2C3E722359DE9A00FC79F7 /* CalendarEventFetcher.swift in Sources */,
@@ -2580,8 +3141,12 @@
 				BFADC12123584E2D00298C58 /* MagdaleneSettingsInterfaceController.swift in Sources */,
 				BF89B89B2347B74E00437A75 /* EKEvent.swift in Sources */,
 				BF8229B9233FD1500050C526 /* SettingsListInterfaceController.swift in Sources */,
+				BFDB9C3B238C906000EE080E /* EventNotificationContentGenerator.swift in Sources */,
 				BF3AAB0C2267839100EE06C4 /* ComplicationUpdateHandler.swift in Sources */,
+				BF654B5823E2B29700E72B79 /* OldRoomInfoAdder .swift in Sources */,
+				BF3BCD3D23E081F000639D5F /* EventTeacherAdder.swift in Sources */,
 				BF8D941C2340E8DF00470F1F /* CKError.swift in Sources */,
+				BF3B310F23E001B30070CECA /* MagdaleneExtraEvents.swift in Sources */,
 				BF9F166F2175FC5B000D8809 /* ComplicationGenerator.swift in Sources */,
 				BF8686FE235D51C100EF931E /* CalendarDefaultsModifier.swift in Sources */,
 				BFC4E7282210202F00EE4A1F /* HLLEventSource.swift in Sources */,
@@ -2597,14 +3162,18 @@
 				BF986109233F1D23007D866D /* EventInfoInterfaceController.swift in Sources */,
 				BFC4E7702210202F00EE4A1F /* MagdaleneBreaks.swift in Sources */,
 				BFB47F072336493E0080CAD2 /* CountdownText.swift in Sources */,
+				BFE4460823CEED6500924F5D /* UIImage.swift in Sources */,
 				BFFA55C522D885BD00575230 /* EventFetchPeriod.swift in Sources */,
+				BF23B313238E599600F98F6D /* SchoolEventFetcher.swift in Sources */,
 				BF3149CC22DDEF79002BAF0D /* CalendarAccessState.swift in Sources */,
+				BF7DA37B237BF9E80036B499 /* MUEventListInterfaceController.swift in Sources */,
 				BF3D6D7A233E092D006EE765 /* DurationStringGenerator.swift in Sources */,
 				BF3149C722DDEF67002BAF0D /* HLLHotKeyOption.swift in Sources */,
 				BF8D75C22340F733007A3638 /* HLLCloudKitPreferences.swift in Sources */,
 				BFC4E7882210202F00EE4A1F /* MagdalenePeriods.swift in Sources */,
 				BF67E2DC233FD95600EB1522 /* CalendarListInterfaceController.swift in Sources */,
 				BFFA55CF22D8865400575230 /* Date.swift in Sources */,
+				BFE4461023CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift in Sources */,
 				BFFA55C022D885B300575230 /* EventCompletionStatus.swift in Sources */,
 				BF4F6B64233689FF0015826E /* UpcomingEventRowController.swift in Sources */,
 				BF5ADE5623368C5100DF8EA9 /* WKInterfaceDevice.swift in Sources */,
@@ -2616,32 +3185,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF3B311023E001B30070CECA /* MagdaleneExtraEvents.swift in Sources */,
 				BF89B89D2347B74E00437A75 /* EKEvent.swift in Sources */,
 				BFB47F04233646B20080CAD2 /* CountdownStringGenerator.swift in Sources */,
 				BFC4E71F2210202F00EE4A1F /* FollowingOccurenceStore.swift in Sources */,
 				BFC4E74F2210202F00EE4A1F /* HLLDefaults.swift in Sources */,
 				BF38EF98235B01B000614B0A /* EventVisibiltyActionHandler.swift in Sources */,
+				BF166AFC23D9545800509256 /* EventLocationIndexer.swift in Sources */,
 				BF91C277235314D300572449 /* UIColor.swift in Sources */,
 				BF3149C422DDEF3C002BAF0D /* StatusItemMode.swift in Sources */,
 				BF92B68F236856B7008DE795 /* HLLComplicationEntryTimelineGenerator.swift in Sources */,
 				BFC4E70322101FAC00EE4A1F /* IntentHandler.swift in Sources */,
 				BFC4E7612210202F00EE4A1F /* SchoolEventModifier.swift in Sources */,
 				BFFA55B822D8851C00575230 /* EventDate.swift in Sources */,
+				BFE9176C2373C35C00A66F40 /* SelectedEventManager.swift in Sources */,
 				BFF563EE2214D39F00A93D6B /* PercentageCalculator.swift in Sources */,
 				BFC4E75B2210202F00EE4A1F /* RepeatingTimer.swift in Sources */,
+				BF3BCD3E23E081F000639D5F /* EventTeacherAdder.swift in Sources */,
+				BF23B314238E599600F98F6D /* SchoolEventFetcher.swift in Sources */,
 				BFC0C53921FEB78700D041DA /* SiriResponseGenerator.swift in Sources */,
 				BF8686FF235D51C100EF931E /* CalendarDefaultsModifier.swift in Sources */,
+				BF3BCD2623E0372300639D5F /* TextUploader.swift in Sources */,
 				BF3D6D84233E0A43006EE765 /* HLLEventInfoItemGenerator.swift in Sources */,
+				BFA3FD1A23D4129B009BA759 /* EventDetailChangesModifier.swift in Sources */,
 				BF3149BF22DDB4D9002BAF0D /* DateOfEvents.swift in Sources */,
 				BFC4E7732210202F00EE4A1F /* MagdaleneBreaks.swift in Sources */,
+				BF3BCD2C23E0372A00639D5F /* Pastr.swift in Sources */,
 				BF2FA5EF22EB37FC00E7FA0E /* Weekday.swift in Sources */,
 				BFB47F092336493F0080CAD2 /* CountdownText.swift in Sources */,
 				BFC4E78B2210202F00EE4A1F /* MagdalenePeriods.swift in Sources */,
+				BFE4461123CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift in Sources */,
+				BF654B5A23E2B29800E72B79 /* OldRoomInfoAdder .swift in Sources */,
 				BF510186230F76C90025D11F /* TermEventFetcher.swift in Sources */,
 				BFC4E72B2210202F00EE4A1F /* HLLEventSource.swift in Sources */,
 				BFC4E7912210202F00EE4A1F /* SchoolAnalyser.swift in Sources */,
 				BFC4E7432210202F00EE4A1F /* EventTimeRemainingMonitor.swift in Sources */,
 				BFFA55C722D885C000575230 /* EventFetchPeriod.swift in Sources */,
+				BF3BCD3223E0372F00639D5F /* PastebinFormats.swift in Sources */,
 				BF445917233F7CFF00DA1B21 /* HLLEventInfoItemType.swift in Sources */,
 				BF2C3E732359DE9A00FC79F7 /* CalendarEventFetcher.swift in Sources */,
 				BF510181230F76C40025D11F /* SchoolHolidaysPeriod.swift in Sources */,
@@ -2650,8 +3230,10 @@
 				BF0E3C85231DF1AD00552B87 /* ExamsEventFetcher.swift in Sources */,
 				BF92B695236856F3008DE795 /* HLLComplicationEntry.swift in Sources */,
 				BFC4E76D2210202F00EE4A1F /* EventTitleShortener.swift in Sources */,
+				BFDB9C3E238C906000EE080E /* EventNotificationContentGenerator.swift in Sources */,
 				BFE6F3BA2328CE4100F54759 /* VisibilityString.swift in Sources */,
 				BF3D6D7C233E092E006EE765 /* DurationStringGenerator.swift in Sources */,
+				BFFCCA19238CC6A300AC091A /* Pluraliser.swift in Sources */,
 				BF510176230F76AC0025D11F /* TimeInterval.swift in Sources */,
 				BFFA55E022D8887000575230 /* String.swift in Sources */,
 				BFC4E7312210202F00EE4A1F /* Version.swift in Sources */,
@@ -2667,6 +3249,7 @@
 				BFC0C51021FEB71700D041DA /* HLLIntents.intentdefinition in Sources */,
 				BF44591D233F7D0600DA1B21 /* HLLEventInfoItem.swift in Sources */,
 				BFC4E7852210202F00EE4A1F /* EventTimeAdjuster.swift in Sources */,
+				BFDB9C42238C914200EE080E /* HLLNotificationContent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2681,28 +3264,35 @@
 				BF3D6D85233E0A44006EE765 /* HLLEventInfoItemGenerator.swift in Sources */,
 				BF445918233F7CFF00DA1B21 /* HLLEventInfoItemType.swift in Sources */,
 				BFFA55C122D885B400575230 /* EventCompletionStatus.swift in Sources */,
+				BF3BCD2D23E0372A00639D5F /* Pastr.swift in Sources */,
 				BF510175230F76AB0025D11F /* TimeInterval.swift in Sources */,
+				BFDB9C43238C914300EE080E /* HLLNotificationContent.swift in Sources */,
 				BFC4E74E2210202F00EE4A1F /* HLLDefaults.swift in Sources */,
 				BFFA55E122D8887000575230 /* String.swift in Sources */,
+				BF3BCD3323E0373000639D5F /* PastebinFormats.swift in Sources */,
 				BFC0C4FB21FEB6EF00D041DA /* IntentViewController.swift in Sources */,
 				BFC4E7602210202F00EE4A1F /* SchoolEventModifier.swift in Sources */,
+				BFE4461223CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift in Sources */,
 				BF3149C522DDEF3D002BAF0D /* StatusItemMode.swift in Sources */,
 				BF89B89E2347B74E00437A75 /* EKEvent.swift in Sources */,
 				BFF563ED2214D39F00A93D6B /* PercentageCalculator.swift in Sources */,
 				BFC4E75A2210202F00EE4A1F /* RepeatingTimer.swift in Sources */,
 				BFC4E7722210202F00EE4A1F /* MagdaleneBreaks.swift in Sources */,
+				BFA3FD1B23D4129B009BA759 /* EventDetailChangesModifier.swift in Sources */,
 				BF510182230F76C40025D11F /* SchoolHolidaysPeriod.swift in Sources */,
 				BF92B696236856F3008DE795 /* HLLComplicationEntry.swift in Sources */,
 				BFC4E78A2210202F00EE4A1F /* MagdalenePeriods.swift in Sources */,
 				BF2FA5F122EB37FC00E7FA0E /* Weekday.swift in Sources */,
 				BFC4E72A2210202F00EE4A1F /* HLLEventSource.swift in Sources */,
 				BF51017D230F76BD0025D11F /* SchoolHolidayEventFetcher.swift in Sources */,
+				BFFCCA1A238CC6A400AC091A /* Pluraliser.swift in Sources */,
 				BF868700235D51C100EF931E /* CalendarDefaultsModifier.swift in Sources */,
 				BF3149C022DDB4DA002BAF0D /* DateOfEvents.swift in Sources */,
 				BFC4E7902210202F00EE4A1F /* SchoolAnalyser.swift in Sources */,
 				BF510187230F76C90025D11F /* TermEventFetcher.swift in Sources */,
 				BFC4E7422210202F00EE4A1F /* EventTimeRemainingMonitor.swift in Sources */,
 				BFC4E7542210202F00EE4A1F /* HLLEvent.swift in Sources */,
+				BFDB9C3A238C906000EE080E /* EventNotificationContentGenerator.swift in Sources */,
 				BFE6F3BB2328CE4100F54759 /* VisibilityString.swift in Sources */,
 				BF3149CA22DDEF69002BAF0D /* HLLHotKeyOption.swift in Sources */,
 				BF91C278235314D300572449 /* UIColor.swift in Sources */,
@@ -2714,16 +3304,23 @@
 				BFC4E7302210202F00EE4A1F /* Version.swift in Sources */,
 				BF92B690236856B7008DE795 /* HLLComplicationEntryTimelineGenerator.swift in Sources */,
 				BFC4E7362210202F00EE4A1F /* HLLCountdownController.swift in Sources */,
+				BFE9176D2373C35C00A66F40 /* SelectedEventManager.swift in Sources */,
 				BF2C3E6C2359D3A000FC79F7 /* HLLDefaultsTransfer.swift in Sources */,
+				BF23B315238E599700F98F6D /* SchoolEventFetcher.swift in Sources */,
 				BF2C3E7C2359E06000FC79F7 /* InternalEventFetcher.swift in Sources */,
 				BFC4E7662210202F00EE4A1F /* MagdaleneSchoolHolidays.swift in Sources */,
 				BFC0C51121FEB71800D041DA /* HLLIntents.intentdefinition in Sources */,
 				BFC4E7842210202F00EE4A1F /* EventTimeAdjuster.swift in Sources */,
 				BF38EF99235B01B000614B0A /* EventVisibiltyActionHandler.swift in Sources */,
 				BF3D6D7D233E092F006EE765 /* DurationStringGenerator.swift in Sources */,
+				BF3BCD3F23E081F000639D5F /* EventTeacherAdder.swift in Sources */,
 				BFFA55D222D8865400575230 /* Date.swift in Sources */,
+				BF654B5923E2B29700E72B79 /* OldRoomInfoAdder .swift in Sources */,
 				BFB47F0A2336493F0080CAD2 /* CountdownText.swift in Sources */,
 				BFFA55B922D8851D00575230 /* EventDate.swift in Sources */,
+				BF3B311123E001B30070CECA /* MagdaleneExtraEvents.swift in Sources */,
+				BF3BCD2723E0372400639D5F /* TextUploader.swift in Sources */,
+				BF166AFD23D9545900509256 /* EventLocationIndexer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2732,37 +3329,59 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF2713D822BCE255006A4B37 /* RNUIConfigurationViewController.swift in Sources */,
+				BF9015C923DD6C3C006A642C /* NotSetupMagdalenePreferenceViewController.swift in Sources */,
+				BFE917672373C2D800A66F40 /* SelectionMenuItemHandler.swift in Sources */,
 				BFFA559E22D883B800575230 /* CalendarAccessState.swift in Sources */,
 				BFFA55A022D8840A00575230 /* HLLHotKeyOption.swift in Sources */,
 				BFEA0D19217891C600FAF2F1 /* MenuController.swift in Sources */,
 				BF3149BA22DDB3D7002BAF0D /* DateOfEvents.swift in Sources */,
 				BF92B68A236856B7008DE795 /* HLLComplicationEntryTimelineGenerator.swift in Sources */,
+				BFFCCA1E238D064B00AC091A /* PreferencesWindowManager.swift in Sources */,
 				BF27197722E324FB00FB6B11 /* SchoolHolidaysPeriod.swift in Sources */,
+				BF23B310238E599300F98F6D /* SchoolEventFetcher.swift in Sources */,
+				BF617CFB2387729A00973D7E /* HLLNotificationContent.swift in Sources */,
+				BF166AF723D9545400509256 /* EventLocationIndexer.swift in Sources */,
 				BF27197522E324C600FB6B11 /* TermEventFetcher.swift in Sources */,
+				BFE917632373BB3900A66F40 /* StatusItemUpdateHandler.swift in Sources */,
 				BFFA559522D83D9D00575230 /* NSMenuItemMaker.swift in Sources */,
 				BF0E3C80231DF1A900552B87 /* ExamsEventFetcher.swift in Sources */,
+				BF99A6DD23D53C6D0070D3C2 /* MagdaleneModeSetupIntroViewController.swift in Sources */,
+				BF3BCD2123E0326500639D5F /* TextUploader.swift in Sources */,
+				BF72C68D2395DF9100244F86 /* CustomNotificationPreferencesViewController.swift in Sources */,
+				BF3C673723DC7C0500036D7A /* RNNeededEvaluator.swift in Sources */,
 				BFFEA15722BDEABE00363360 /* RNProcess.swift in Sources */,
 				BF4ABBDA22F849DA00E23B45 /* Rickroll.swift in Sources */,
 				BF9688E722CDDD9E000FA86F /* RNUI Manager.swift in Sources */,
+				BFA577BE23CF155500BB4A4D /* PreferencePaneIdentifiers.swift in Sources */,
 				BF5F945622DA013400AB9FF3 /* MenuPreferenceViewController.swift in Sources */,
 				BF3CECE622C19C2600E0D060 /* RNUIDoneViewController.swift in Sources */,
 				BF5F945B22DA2CEA00AB9FF3 /* EventListMenuGenerator.swift in Sources */,
 				BF2713DC22BD1EAF006A4B37 /* RNUIRenamingViewController.swift in Sources */,
 				BF7BB5AF22BF104C001D2E86 /* RNProcessUI.swift in Sources */,
+				BF99A6DF23D53EE70070D3C2 /* MagdaleneModeSetupAwaitingSetupViewController.swift in Sources */,
 				BF8686FA235D51C100EF931E /* CalendarDefaultsModifier.swift in Sources */,
+				BFEC4FDC239DED2200EF8F6D /* LaunchFunctions.swift in Sources */,
 				BF3BE73521A103A9001AFBA8 /* MilestoneNotificationGenerator.swift in Sources */,
 				BF7BB5AD22BE4923001D2E86 /* RNEvent.swift in Sources */,
 				BFFA559B22D8829E00575230 /* UserGroup.swift in Sources */,
+				BF9015C423DD5DB9006A642C /* MagdaleneModeSetupDoneViewController.swift in Sources */,
+				BF3810AA23D2CE3000B82333 /* EventDetailChangesModifier.swift in Sources */,
 				BFDE4A6321B5FF5600CD50BC /* OnboardingWindowController.swift in Sources */,
 				BF2FA5F322EB37FC00E7FA0E /* Weekday.swift in Sources */,
+				BF303FD7237399070080BFCC /* EventInfoSubmenuConfigurationViewController.swift in Sources */,
+				BF166AFF23D95DF600509256 /* MapMenuItemHandler.swift in Sources */,
+				BF166B0623D9C3EA00509256 /* ActionableNSMenuItem.swift in Sources */,
 				BF01357122F30D500070E9C8 /* NSImage.swift in Sources */,
 				BF5AC4B022D7A25B00159498 /* EventUIDoneViewController.swift in Sources */,
 				BF3D6D7F233E0A32006EE765 /* HLLEventInfoItemGenerator.swift in Sources */,
 				BF9688E922CDE434000FA86F /* RenamePreferencesUI.swift in Sources */,
+				BF106B1723DEF55B0056CFEC /* HotKeyHandler.swift in Sources */,
 				BF445910233F7CD700DA1B21 /* HLLEventInfoItem.swift in Sources */,
 				BFFA55A422D8848500575230 /* StatusItemMode.swift in Sources */,
 				BFDE4A6721B65FE000CD50BC /* GeneralPreferenceViewController.swift in Sources */,
+				BFBEC856238B733E00BBE877 /* EventNotificationContentGenerator.swift in Sources */,
 				BF92B691236856F1008DE795 /* HLLComplicationEntry.swift in Sources */,
+				BF3BCD1E23E031C400639D5F /* Pastr.swift in Sources */,
 				BFF847E7231E5D1E0075E733 /* EventVisibilityButtonsManager.swift in Sources */,
 				BF93AEA621BDD7060035CE7F /* MagdalenePreferenceViewController.swift in Sources */,
 				BFC4E76E2210202F00EE4A1F /* EventTitleShortener.swift in Sources */,
@@ -2770,12 +3389,19 @@
 				BFC4E7202210202F00EE4A1F /* FollowingOccurenceStore.swift in Sources */,
 				BFD946532353DC0A004CABD4 /* HLLEvent.swift in Sources */,
 				BFDE4A6521B60AB500CD50BC /* OnboardingViewController.swift in Sources */,
+				BF166B0423D988E800509256 /* MenuItemClosureHandler.swift in Sources */,
 				BF445912233F7CED00DA1B21 /* HLLEventInfoItemType.swift in Sources */,
+				BF3B310A23E001AA0070CECA /* MagdaleneExtraEvents.swift in Sources */,
 				BFFA559322D8345B00575230 /* MenuTopShelfGenerator.swift in Sources */,
+				BF3D533923DB0E420053195A /* MagdaleneModeSetupPresentationManager.swift in Sources */,
+				BFA24ED023E14A13003EE71A /* WindowActivationWorkaround.swift in Sources */,
 				BFCAF89522FC231600D81B48 /* TimeInterval.swift in Sources */,
 				BFC4E7802210202F00EE4A1F /* MagdalenePrompts.swift in Sources */,
+				BF3BCD1F23E031C400639D5F /* PastebinFormats.swift in Sources */,
+				BFE917612373AB0D00A66F40 /* MenuUpdateHandler.swift in Sources */,
 				BF2C3E6E2359DE9A00FC79F7 /* CalendarEventFetcher.swift in Sources */,
 				BF36185E22DCDD7C00D51765 /* SelectedEventManager.swift in Sources */,
+				BF3BCD3923E07F3C00639D5F /* EventTeacherAdder.swift in Sources */,
 				BFB5A6992231E64B0075182B /* DetailSubmenuGenerator.swift in Sources */,
 				BF6AD69E2226505800B62C0C /* CalSelectViewController.swift in Sources */,
 				BF5F945D22DA2F9400AB9FF3 /* EventMenuItemGenerator.swift in Sources */,
@@ -2788,21 +3414,33 @@
 				BFC4E7382210202F00EE4A1F /* HLLCountdownController.swift in Sources */,
 				BF8A4F0D21CDD6D200EC12B6 /* macOSExtensions.swift in Sources */,
 				BFC4E7922210202F00EE4A1F /* SchoolAnalyser.swift in Sources */,
+				BF50E18F23972ADF00E708C4 /* NotificationTriggerDefaultsHelper.swift in Sources */,
+				BF3BCD3723E0734500639D5F /* NameConversionsDownloader.swift in Sources */,
+				BF3DA2BC23DAB2CA00009A3A /* SchoolEventDownloadNeededEvaluator.swift in Sources */,
 				BFFEA0E722BDD76000363360 /* RNDataStore.swift in Sources */,
+				BF23D6CB23A1E1CE008E3BB7 /* DockIconVisibilityManager.swift in Sources */,
+				BFBEC85C238B7EB300BBE877 /* MacEventNotificationScheduler.swift in Sources */,
 				BF16469B22FC250A00D07BC3 /* CountdownText.swift in Sources */,
 				BFC4E7622210202F00EE4A1F /* SchoolEventModifier.swift in Sources */,
+				BF3BCD3523E037EB00639D5F /* MagdaleneEventDataUploader.swift in Sources */,
+				BF166B0223D962DA00509256 /* HideCalendarMenuItemHandler.swift in Sources */,
 				BF3D6D77233E08A5006EE765 /* DurationStringGenerator.swift in Sources */,
 				BFC4E7682210202F00EE4A1F /* MagdaleneSchoolHolidays.swift in Sources */,
+				BF72C68F239607D400244F86 /* MinutesRemainingCell.swift in Sources */,
 				BFC4E7502210202F00EE4A1F /* HLLDefaults.swift in Sources */,
 				BFFA55A822D884CB00575230 /* SchoolMode.swift in Sources */,
+				BF3C673923DC838E00036D7A /* RNBackgroundManager.swift in Sources */,
 				BFC4E75C2210202F00EE4A1F /* RepeatingTimer.swift in Sources */,
+				BFA3FD1D23D41A3E009BA759 /* SchoolEventChangesMenuItemGenerator.swift in Sources */,
 				BF38EF93235B01B000614B0A /* EventVisibiltyActionHandler.swift in Sources */,
 				BF3149B822DDAC8B002BAF0D /* UpcomingWeekMenuGenerator.swift in Sources */,
 				BFE6F3B52328CE4100F54759 /* VisibilityString.swift in Sources */,
 				BFFA55A222D8846000575230 /* StatusItemUnitsFormat.swift in Sources */,
+				BF23D6CD23A1E407008E3BB7 /* UtilityRunLoopManager.swift in Sources */,
 				BFEA0CE921788D0100FAF2F1 /* AppDelegate.swift in Sources */,
+				BFFCCA15238CC57A00AC091A /* Pluraliser.swift in Sources */,
 				BFFA55AA22D884F200575230 /* EventCompletionStatus.swift in Sources */,
-				BF9E963A21888694002626CD /* HLLMain.swift in Sources */,
+				BFEC4FDE239DEF7300EF8F6D /* OnboardingWindowManager.swift in Sources */,
 				BFC4E7862210202F00EE4A1F /* EventTimeAdjuster.swift in Sources */,
 				BF3149B622DD9A68002BAF0D /* UpcomingSoonMenuGenerator.swift in Sources */,
 				BF2C3E662359D3A000FC79F7 /* HLLDefaultsTransfer.swift in Sources */,
@@ -2816,6 +3454,7 @@
 				BFC4E78C2210202F00EE4A1F /* MagdalenePeriods.swift in Sources */,
 				BF27197B22E3251B00FB6B11 /* SchoolHolidayEventFetcher.swift in Sources */,
 				BFC4E7322210202F00EE4A1F /* Version.swift in Sources */,
+				BFE917652373C18B00A66F40 /* HotKeyNotificationHandler.swift in Sources */,
 				BF3F5ADD22D3996D00BAAE61 /* RNUIIntroViewController.swift in Sources */,
 				BFF563E92214D39F00A93D6B /* PercentageCalculator.swift in Sources */,
 				BFDE4A6B21B660AF00CD50BC /* CalendarPreferenceViewController.swift in Sources */,
@@ -2828,7 +3467,12 @@
 				BF2713DA22BD14AA006A4B37 /* ControllableTabView.swift in Sources */,
 				BF2C3E762359E06000FC79F7 /* InternalEventFetcher.swift in Sources */,
 				BFDE4A6921B6607800CD50BC /* StatusItemPreferenceViewController.swift in Sources */,
+				BFC01ED823DED36100A8DBA2 /* CompassLaunchHandler.swift in Sources */,
+				BF654B5423E2AA4E00E72B79 /* OldRoomInfoAdder .swift in Sources */,
+				BF3E6DF923DEB2F900722CBD /* StatusItemController.swift in Sources */,
 				BFA6594722D793A20019239C /* EventUITabViewController.swift in Sources */,
+				BFFCCA20238D095800AC091A /* TerminationHandler.swift in Sources */,
+				BFE4460C23CF006C00924F5D /* SchoolEventDetailIndexBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2938,7 +3582,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 146;
+				CURRENT_PROJECT_VERSION = 153;
 				DEVELOPMENT_TEAM = 5AMFX8X5ZN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "How Long Left (macOS Widget)/Info.plist";
@@ -2947,8 +3591,8 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 3.1;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 3.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "ryankontos.How-Long-Left-Mac.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -2964,7 +3608,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 146;
+				CURRENT_PROJECT_VERSION = 153;
 				DEVELOPMENT_TEAM = 5AMFX8X5ZN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "How Long Left (macOS Widget)/Info.plist";
@@ -2973,8 +3617,8 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 3.1;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 3.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "ryankontos.How-Long-Left-Mac.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -2998,7 +3642,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryankontos.How-Long-Left.WIdget--iOS-";
 				PRODUCT_NAME = "How Long Left";
 				SKIP_INSTALL = YES;
@@ -3022,7 +3666,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryankontos.How-Long-Left.WIdget--iOS-";
 				PRODUCT_NAME = "How Long Left";
 				SKIP_INSTALL = YES;
@@ -3175,12 +3819,12 @@
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "How Long Left (iOS)/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryankontos.How-Long-Left";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)_iOS";
 				PRODUCT_NAME = "How Long Left";
@@ -3216,12 +3860,12 @@
 				);
 				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = "How Long Left (iOS)/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryankontos.How-Long-Left";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)_iOS";
 				PRODUCT_NAME = "How Long Left";
@@ -3254,7 +3898,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryankontos.How-Long-Left.watchkit.extension";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)_watchOS_Extension";
 				PRODUCT_NAME = "How Long Left";
@@ -3287,7 +3931,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryankontos.How-Long-Left.watchkit.extension";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)_watchOS_Extension";
 				PRODUCT_NAME = "How Long Left";
@@ -3319,7 +3963,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryankontos.How-Long-Left.watchkit";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)_watchOS";
 				PRODUCT_NAME = "How Long Left";
@@ -3350,7 +3994,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryankontos.How-Long-Left.watchkit";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)_watchOS";
 				PRODUCT_NAME = "How Long Left";
@@ -3379,7 +4023,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryankontos.How-Long-Left.How-Long-Left-Siri-ExtensionUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -3408,7 +4052,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryankontos.How-Long-Left.How-Long-Left-Siri-ExtensionUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -3436,7 +4080,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryankontos.How-Long-Left.How-Long-Left-Siri-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -3465,7 +4109,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryankontos.How-Long-Left.How-Long-Left-Siri-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -3493,7 +4137,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 146;
+				CURRENT_PROJECT_VERSION = 153;
 				DEVELOPMENT_TEAM = 5AMFX8X5ZN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3569,8 +4213,8 @@
 					"@executable_path/../Frameworks",
 					"$(PROJECT_DIR)/How\\ Long\\ Left\\ (macOS)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 3.1;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 3.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "ryankontos.How-Long-Left-Mac";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)_macOS";
 				PRODUCT_NAME = "How Long Left";
@@ -3600,7 +4244,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 146;
+				CURRENT_PROJECT_VERSION = 153;
 				DEVELOPMENT_TEAM = 5AMFX8X5ZN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3676,8 +4320,8 @@
 					"@executable_path/../Frameworks",
 					"$(PROJECT_DIR)/How\\ Long\\ Left\\ (macOS)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 3.1;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 3.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "ryankontos.How-Long-Left-Mac";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)_macOS";
 				PRODUCT_NAME = "How Long Left";
@@ -3776,6 +4420,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BF856C3423B0B627002D8E86 /* BGRefreshModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BF856C3523B0B627002D8E86 /* BGRefreshModel.xcdatamodel */,
+			);
+			currentVersion = BF856C3523B0B627002D8E86 /* BGRefreshModel.xcdatamodel */;
+			path = BGRefreshModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BF5D294D2174679500AC1EB6 /* Project object */;
 }

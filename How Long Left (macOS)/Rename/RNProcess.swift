@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 22/6/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -18,7 +18,7 @@ class RNProcess {
     }
     
     var previousProgress: Int?
-    var UIDelegate: RNProcessUIProtocol?
+    var delegate: RNProcessDelegate?
     var renameEventSource = HLLEventSource()
     let renameStorage = RNDataStore()
     let schoolEventModifier = SchoolEventModifier()
@@ -36,8 +36,8 @@ class RNProcess {
                 HLLDefaults.defaults.set(0, forKey: "RenamedEvents")
                 HLLDefaults.defaults.set(0, forKey: "AddedBreaks")
                 
-                self.UIDelegate?.setStatusString("Finding events to rename...")
-                self.UIDelegate?.log("Starting RNProcess")
+                self.delegate?.setStatusString("Finding events to rename...")
+                self.delegate?.log("Starting RNProcess")
                 let renameItems = self.renameStorage.readEnabledItemsFromDefaults()
                 var renameDictionary = [String:String]()
                 
@@ -47,11 +47,11 @@ class RNProcess {
                     
                 }
                 
-                self.UIDelegate?.log("renameDictionary has \(renameDictionary.count) values")
+                self.delegate?.log("renameDictionary has \(renameDictionary.count) values")
                 
                 if renameDictionary.count == 0 {
                     
-                    self.UIDelegate?.log("(That may be a problem)")
+                    self.delegate?.log("(That may be a problem)")
                     
                 }
                 
@@ -64,7 +64,7 @@ class RNProcess {
                 var events = self.renameEventSource.getEventsFromCalendar(start: startDate, end: endDate)
                 events = self.schoolEventModifier.modify(events: events, addBreaks: false)
                 
-                self.UIDelegate?.log("Found \(events.count) events")
+                self.delegate?.log("Found \(events.count) events")
                 
                 var renameEvents = [HLLEvent]()
                 
@@ -78,11 +78,11 @@ class RNProcess {
                     
                 }
                 
-                self.UIDelegate?.log("Matched \(renameEvents.count) found events to a renameDictionaryItem")
+                self.delegate?.log("Matched \(renameEvents.count) found events to a renameDictionaryItem")
                 
                 let doBreaks = !HLLDefaults.defaults.bool(forKey: "RNNoBreaks")
 
-                self.UIDelegate?.log("doBreaks is \(doBreaks)")
+                self.delegate?.log("doBreaks is \(doBreaks)")
                 
                 var breaksArray = [HLLEvent]()
                 
@@ -91,7 +91,7 @@ class RNProcess {
                     let breaks = MagdaleneBreaks()
                     breaksArray = breaks.getBreaks(events: events, overrideDefaults: true)
                     
-                    self.UIDelegate?.log("There are \(breaksArray.count) breaks to be created")
+                    self.delegate?.log("There are \(breaksArray.count) breaks to be created")
                     
                     for event in breaksArray {
                         
@@ -111,10 +111,10 @@ class RNProcess {
                     
                 }
                 
-                self.UIDelegate?.setStatusString(renamingStatusString)
+                self.delegate?.setStatusString(renamingStatusString)
                 
                 
-                self.UIDelegate?.log("Renaming \(renameEvents.count) events from \(renameEvents.first!.startDate.formattedDate()) to \(renameEvents.last!.endDate.formattedDate())")
+                self.delegate?.log("Renaming \(renameEvents.count) events from \(renameEvents.first!.startDate.formattedDate()) to \(renameEvents.last!.endDate.formattedDate())")
                 
                 
                 for (index, event) in renameEvents.enumerated() {
@@ -149,9 +149,9 @@ class RNProcess {
                             
                             let progress = doubleCounter/doubleTotal*100
                             
-                            self.UIDelegate?.log("Renamed \(renamedCount)/\(renameEvents.count) events: \(newName)")
+                            self.delegate?.log("Renamed \(renamedCount)/\(renameEvents.count) events: \(newName)")
                             HLLDefaults.defaults.set(renamedCount, forKey: "RenamedEvents")
-                            self.UIDelegate?.setProgress(progress)
+                            self.delegate?.setProgress(progress)
                             
                         }
                         
@@ -161,13 +161,13 @@ class RNProcess {
                     
                 } else {
                     
-                    self.UIDelegate?.setProgress(100)
-                    self.UIDelegate?.setStatusString("No events to rename")
-                    self.UIDelegate?.log("Aborting rename stage because there are no events to rename")
+                    self.delegate?.setProgress(100)
+                    self.delegate?.setStatusString("No events to rename")
+                    self.delegate?.log("Aborting rename stage because there are no events to rename")
                     
                     if breaksArray.isEmpty == false {
                         
-                        self.UIDelegate?.log("Will still continue to add breaks")
+                        self.delegate?.log("Will still continue to add breaks")
                         
                     }
                     
@@ -192,7 +192,7 @@ class RNProcess {
                         
                     }
                     
-                    self.UIDelegate?.setStatusString(breaksStatusString)
+                    self.delegate?.setStatusString(breaksStatusString)
                     //self.UIDelegate?.setProgress(0.0)
                     
                     HLLDefaults.defaults.set(0, forKey: "AddedBreaks")
@@ -220,7 +220,7 @@ class RNProcess {
                         
                         let progress = doubleCounter/doubleTotal*100
                         
-                        self.UIDelegate?.log("Added \(addedCount)/\(breaksArray.count) breaks: \(breakEvent.title)")
+                        self.delegate?.log("Added \(addedCount)/\(breaksArray.count) breaks: \(breakEvent.title)")
                         HLLDefaults.defaults.set(addedCount, forKey: "AddedBreaks")
                         
                         let DBIProgress = Int(progress)
@@ -229,13 +229,13 @@ class RNProcess {
                             
                             if DBIProgress > prev {
                                 
-                                self.UIDelegate?.setProgress(Double(DBIProgress))
+                                self.delegate?.setProgress(Double(DBIProgress))
                                 
                             }
                             
                         } else {
                             
-                            self.UIDelegate?.setProgress(Double(DBIProgress))
+                            self.delegate?.setProgress(Double(DBIProgress))
                             
                         }
                         
@@ -253,7 +253,7 @@ class RNProcess {
                     
                 }
                 
-                self.UIDelegate?.processStateChanged(to: .Done)
+                self.delegate?.processStateChanged(to: .Done)
                 self.renameEventSource.eventStore.reset()
                 HLLEventSource.isRenaming = false
                 //self.UIDelegate?.setStatusString("Renaming complete")

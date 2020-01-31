@@ -3,7 +3,7 @@
 //  How Long Left
 //
 //  Created by Ryan Kontos on 21/10/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -61,5 +61,62 @@ class CalendarDefaultsModifier {
         }
         
     }
+    
+    func setState(enabled: Bool, calendar: EKCalendar) {
+        
+        if enabled == true {
+            setEnabled(calendar: calendar)
+        } else {
+            setDisabled(calendar: calendar)
+        }
+        
+    }
+    
+    func setState(enabled: Bool, identifier: String) {
+        
+        if enabled == true {
+            setEnabledWith(identifier: identifier)
+        } else {
+            setDisabledWith(identifier: identifier)
+        }
+        
+    }
+    
+    func setAllEnabled() {
+        
+        for calendar in HLLEventSource.shared.getCalendars() {
+            setEnabled(calendar: calendar)
+        }
+        
+    }
+    
+    func setAllDisabled() {
+        
+        for calendar in HLLEventSource.shared.getCalendars() {
+            setDisabled(calendar: calendar)
+        }
+        
+    }
+    
+    func toggleAllCalendars() {
+        
+        if allCalendarsEnabled() {
+            setAllDisabled()
+        } else {
+            setAllEnabled()
+        }
+        
+    }
+    
+    func allCalendarsEnabled() -> Bool {
+        
+        if HLLDefaults.calendar.enabledCalendars.count == HLLEventSource.shared.getCalendarIDS().count {
+            return true
+        } else {
+            return false
+        }
+        
+    }
+    
     
 }

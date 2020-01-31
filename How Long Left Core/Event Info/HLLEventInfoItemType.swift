@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 28/9/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -13,6 +13,8 @@ enum HLLEventInfoItemType: String, CaseIterable {
     case countdown
     case completion
     case location
+    case oldLocationName
+    case originalLocation
     case period
     case start
     case end
@@ -20,6 +22,7 @@ enum HLLEventInfoItemType: String, CaseIterable {
     case duration
     case calendar
     case teacher
+    case originalTeacher
     case nextOccurence
     
 }

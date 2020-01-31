@@ -3,14 +3,14 @@
 //  How Long Left (iOS)
 //
 //  Created by Ryan Kontos on 4/4/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import UIKit
 import StoreKit
 import EventKit
 
-class RootViewController: UITabBarController, UITabBarControllerDelegate, CalendarAccessStateDelegate {
+class RootViewController: UITabBarController, UITabBarControllerDelegate, CalendarAccessStateDelegate, EventPoolUpdateObserver {
     
     static var shared: RootViewController?
     static var selectedController: UIViewController?
@@ -22,14 +22,38 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, Calend
         didSet {
             
           if let launch = RootViewController.launchPage {
-                
-                RootViewController.shared?.setSelectedPage(to: launch)
             
-            
+            RootViewController.shared?.setSelectedPage(to: launch)
             (RootViewController.shared?.selectedViewController as? UINavigationController)?.popToRootViewController(animated: false)
                 
             }
             
+            
+        }
+        
+    }
+    
+    static var launchEvent: String? {
+        
+        didSet {
+            
+            if RootViewController.launchEvent != nil {
+                RootViewController.shared?.checkLaunchEvent()
+            }
+            
+            
+            
+        }
+        
+    }
+    
+    static var launchToFirstTimelineEventInfoView = false {
+        
+        didSet {
+            
+            if RootViewController.launchToFirstTimelineEventInfoView {
+                RootViewController.shared?.presentFirstTimelineEventInfoView()
+            }
             
         }
         
@@ -78,6 +102,8 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, Calend
     
     override func viewDidLoad() {
         
+        HLLEventSource.shared.addEventPoolObserver(self)
+        IAPHandler.shared.fetchAvailableProducts()
         let array: [HLLEventInfoItemType] = [HLLEventInfoItemType.calendar, HLLEventInfoItemType.completion, HLLEventInfoItemType.countdown]
         let arrayTwo: [HLLEventInfoItemType] = [HLLEventInfoItemType.start, HLLEventInfoItemType.end]
         
@@ -112,6 +138,7 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, Calend
         if let launchPage = RootViewController.launchPage {
             
             setSelectedPage(to: launchPage)
+            //(RootViewController.shared?.selectedViewController as? UINavigationController)?.popToRootViewController(animated: false)
             
             
         } else if currentIsEmpty, upcomingIsEmpty == false {
@@ -126,6 +153,15 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, Calend
             
         }
         
+        DispatchQueue.main.async {
+            self.checkLaunchEvent()
+            
+            
+            
+        }
+        
+        presentFirstTimelineEventInfoView()
+        
         print("IDB: Root view loaded")
         
     }
@@ -133,18 +169,18 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, Calend
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(true)
+        checkLaunchEvent()
         //HLLDefaultsTransfer.shared.triggerDefaultsTransfer()
         //print("Trig7")
     }
     
     @objc func showIAPSuggestion() {
- 
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                 
-                if HLLEventSource.accessToCalendar == .Granted {
+                if HLLEventSource.shared.neverUpdatedEventPool == false {
                 
-                if let safeSession = WatchSessionManager.sharedManager.validSession, safeSession.isPaired == true {
+                    if WatchSessionManager.sharedManager.userHasAppleWatch() {
                 
                 
                 if IAPHandler.shared.hasPurchasedComplication() == false, HLLDefaults.defaults.bool(forKey: "ShownIAPSuggestion") == false, IAPHandler.complicationPriceString != nil {
@@ -195,7 +231,6 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, Calend
     func setSelectedPage(to page: TabBarPage) {
         
         self.selectedIndex = page.rawValue
-        
         
         
         
@@ -320,6 +355,254 @@ class RootViewController: UITabBarController, UITabBarControllerDelegate, Calend
         
     }
 
+   
+    
+    func presentFirstTimelineEventInfoView() {
+        
+        if RootViewController.launchToFirstTimelineEventInfoView {
+            HLLDefaults.defaults.set(true, forKey: "LTT")
+        } else {
+            HLLDefaults.defaults.set(false, forKey: "LTT")
+            return
+        }
+        
+            DispatchQueue.main.async {
+            
+            if HLLEventSource.shared.neverUpdatedEventPool {
+                HLLEventSource.shared.updateEventPool()
+            }
+            
+            if let event = HLLEventSource.shared.getTimeline().first {
+                
+                
+                switch event.completionStatus {
+                    
+                case .Upcoming:
+                    self.setSelectedPage(to: .Upcoming)
+                case .Current:
+                    self.setSelectedPage(to: .Current)
+                case .Done:
+                    self.setSelectedPage(to: .Current)
+                }
+                
+                  
+                
+                if let selectedController = self.selectedViewController as? UINavigationController {
+                        
+                    print("NotoLaunch 1")
+                        
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                            
+                        var matchingEventController: UIViewController?
+                            
+                        for view in selectedController.viewControllers {
+                                
+                                if let eventInfoView = view as? EventInfoViewController {
+                                    
+                                    if eventInfoView.event == event {
+                                        
+                                        matchingEventController = eventInfoView
+                     
+                                        
+                                    }
+                                    
+                                }
+                                
+                            }
+                            
+                            if let safeController = matchingEventController {
+                                
+                                selectedController.popToViewController(safeController, animated: true)
+                                
+                            } else {
+                                
+                                let newView = EventInfoViewGenerator.shared.generateEventInfoView(for: event)
+                                selectedController.popToRootViewController(animated: true)
+                                selectedController.pushViewController(newView, animated: true)
+                                
+                            }
+                            
+                            
+                        })
+                        
+                    }
+                    
+                    
+                
+                
+            }
+            
+            RootViewController.launchEvent = nil
+            
+        }
+
+        
+    }
+    
+    func checkLaunchEvent() {
+        
+        DispatchQueue.main.async {
+        
+        if HLLEventSource.shared.neverUpdatedEventPool {
+            HLLEventSource.shared.updateEventPool()
+        }
+        
+        if let id = RootViewController.launchEvent, let event = HLLEventSource.shared.findEventWithIdentifier(id: id) {
+            
+            print("NotoLaunch Match")
+            
+            var isValid = false
+            
+            switch event.completionStatus {
+                
+            case .Upcoming:
+                self.setSelectedPage(to: .Upcoming)
+                isValid = true
+            case .Current:
+                self.setSelectedPage(to: .Current)
+                isValid = true
+            case .Done:
+                isValid = true
+                self.setSelectedPage(to: .Current)
+            }
+            
+            if isValid {
+                
+                print("NotoLaunch Is Valid")
+                
+                print("NotoLaunch Selected DBD: \(self.selectedViewController.debugDescription)")
+                
+                if let selectedController = self.selectedViewController as? UINavigationController {
+                    
+                    print("NotoLaunch 1")
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
+                        
+                        var matchingEventController: UIViewController?
+                        
+                        for view in selectedController.viewControllers {
+                            
+                            if let eventInfoView = view as? EventInfoViewController {
+                                
+                                if eventInfoView.event == event {
+                                    
+                                    matchingEventController = eventInfoView
+                                    print("NotoLaunch 2")
+                                    
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                        if let safeController = matchingEventController {
+                            
+                            selectedController.popToViewController(safeController, animated: true)
+                            
+                        } else {
+                            
+                            print("NotoLaunch 3")
+                            let newView = EventInfoViewGenerator.shared.generateEventInfoView(for: event)
+                            selectedController.popToRootViewController(animated: true)
+                            selectedController.pushViewController(newView, animated: true)
+                            
+                        }
+                        
+                        
+                    })
+                    
+                }
+                
+                
+            }
+            
+        }
+        
+        RootViewController.launchEvent = nil
+        
+    }
+        
+    }
+    
+    func doNotificationOnboarding() {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            
+            if HLLDefaults.notifications.doneNotificationOnboarding == false, HLLDefaults.notifications.presentedNotificationOnboarding == false {
+                
+                HLLDefaults.notifications.presentedNotificationOnboarding = true
+                
+                let alertController = UIAlertController(title: "Event Notifications", message: "Would you like to enable and configure notifications for your events?", preferredStyle: .alert)
+                
+                let action1 = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+                    
+                    HLLDefaults.notifications.enabled = true
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) {
+                        
+                        self.setSelectedPage(to: .Settings)
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                        
+                        if let selectedController = self.selectedViewController as? UINavigationController {
+                            
+                            HLLDefaults.notifications.enabled = true
+                            
+                            var tableViewType = UITableView.Style.grouped
+                            if #available(iOS 13.0, *) {
+                                tableViewType = .insetGrouped
+                            }
+                            
+                            
+                            let notificationsViewController = NotificationConfigurationTableViewController(style: tableViewType)
+                            selectedController.pushViewController(notificationsViewController, animated: true)
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                                
+                                
+                                HLLDefaults.notifications.doneNotificationOnboarding = true
+                                EventNotificationScheduler.shared.getAccess()
+                                
+                            })
+                            
+                        }
+
+                        }
+                        
+                    }
+                    
+                    
+                }
+                
+                let action2 = UIAlertAction(title: "Not Now", style: .cancel) { (action:UIAlertAction) in
+                    HLLDefaults.notifications.doneNotificationOnboarding = true
+                    
+                }
+                
+                alertController.addAction(action1)
+                alertController.addAction(action2)
+                alertController.view.tintColor = UIColor.HLLOrange
+                self.present(alertController, animated: true, completion: nil)
+                
+                
+            }
+            
+        }
+        
+        
+        
+    }
+    
+    func eventPoolUpdated() {
+ 
+        if HLLEventSource.shared.neverUpdatedEventPool == false {
+        self.doNotificationOnboarding()
+        }
+            
+        checkLaunchEvent()
+            
+    }
+       
 
 }
 

@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 14/7/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -14,45 +14,81 @@ class EventMenuItemGenerator {
     let eventSubmenuGenerator = DetailSubmenuGenerator()
     let countdownStringGenerator = CountdownStringGenerator()
     
-    func makeEventInfoMenuItem(for event: HLLEvent, needsDateContextInTitle: Bool) -> NSMenuItem {
+    func makeEventInfoMenuItem(for event: HLLEvent, needsDateContextInTitle: Bool, isFollowingOccurence: Bool = false) -> NSMenuItem {
         
-        var title: String
+        let title = event.title.truncated(limit: 30, position: .middle, leader: "...")
         
-        if event.isAllDay == true {
+        var text = title
+        
+        if let location = event.location?.truncated(limit: 30, position: .middle, leader: "...") {
             
-            title = "\(event.title) (All Day)"
+            var locationString = location
             
-        } else {
-            
-            if let loc = event.location {
+            if location.contains(text: "Room: ") {
                 
-                title = "\(event.title) (\(loc))"
+                let justRoom = location.components(separatedBy: "Room: ").last!
+                locationString = "\(justRoom)"
                 
-            } else {
-                
-                title = "\(event.title)"
                 
             }
             
+            if event.roomChange != nil {
+                
+                locationString = "Changed: \(locationString)"
+                
+            } else {
+                
+                locationString = "Room: \(locationString)"
+                
+            }
             
+            text += " (\(locationString))"
+
+        }
+        
+        if event.isAllDay == true {
+            
+            text = "\(title) (All-Day)"
             
         }
         
+        if isFollowingOccurence {
+            
+            var relativeDateText = event.startDate.userFriendlyRelativeString()
+            
+            if let period = event.period {
+                
+                relativeDateText += ", Period \(period)"
+                
+            }
+            
+            text = "\(title) (\(relativeDateText))"
+        }
         
-        let submenu = eventSubmenuGenerator.generateInfoSubmenuFor(event: event)
+
         let item = NSMenuItem()
         
-        item.title = title
-        item.submenu = submenu
+        item.title = text
         item.state = .off
+        item.submenu = NSMenu()
         
-        if event.completionStatus != .Done, HLLMain.proUser {
-        item.target = SelectedEventManager.shared
-        item.action = #selector(SelectedEventManager.shared.selectEventFromMenuItem(sender:))
-        SelectedEventManager.shared.addItemWithEvent(item: item, event: event)
+        DispatchQueue.global(qos: .default).async {
+            
+            let submenu = self.eventSubmenuGenerator.generateInfoSubmenuFor(event: event, isWithinFollowingOccurenceSubmenu: isFollowingOccurence)
+            
+            DispatchQueue.main.async {
+              item.submenu = submenu
+            }
+            
         }
         
-        if SelectedEventManager.selectedEvent == event {
+        if event.completionStatus != .Done {
+        item.target = SelectionMenuItemHandler.shared
+        item.action = #selector(SelectionMenuItemHandler.shared.selectEventFromMenuItem(sender:))
+        SelectionMenuItemHandler.shared.addItemWithEvent(item: item, event: event)
+        }
+        
+        if SelectedEventManager.shared.selectedEvent == event {
             
             item.state = .on
         }
@@ -64,27 +100,32 @@ class EventMenuItemGenerator {
     func makeCountdownMenuItem(for event: HLLEvent) -> NSMenuItem {
         
         let title = countdownStringGenerator.generateCountdownTextFor(event: event, showEndTime: false)
-        let submenu = eventSubmenuGenerator.generateInfoSubmenuFor(event: event)
         let item = NSMenuItem()
         
-        
         item.title = title.combined()
-        item.submenu = submenu
         item.state = .off
         
-        if SelectedEventManager.selectedEvent == event {
+        item.submenu = NSMenu()
+        
+        DispatchQueue.global(qos: .default).async {
             
-            item.state = .on
+            let submenu = self.eventSubmenuGenerator.generateInfoSubmenuFor(event: event)
+            
+            DispatchQueue.main.async {
+              item.submenu = submenu
+            }
             
         }
         
-        if HLLMain.proUser {
-            
-        item.action = #selector(SelectedEventManager.shared.selectEventFromMenuItem(sender:))
-        item.target = SelectedEventManager.shared
-        SelectedEventManager.shared.addItemWithEvent(item: item, event: event)
-            
+        if event.isSelected {
+            item.state = .on
         }
+            
+        item.action = #selector(SelectionMenuItemHandler.shared.selectEventFromMenuItem(sender:))
+        item.target = SelectionMenuItemHandler.shared
+        SelectionMenuItemHandler.shared.addItemWithEvent(item: item, event: event)
+            
+        
         
         return item
         

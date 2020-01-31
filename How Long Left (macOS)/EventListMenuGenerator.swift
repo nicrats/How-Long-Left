@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 14/7/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -13,7 +13,7 @@ class EventListMenuGenerator {
     
     let eventItemGen = EventMenuItemGenerator()
     
-    func generateEventListMenu(for events: [HLLEvent], includeDayHeader: Bool) -> NSMenu {
+    func generateEventListMenu(for events: [HLLEvent], includeDayHeader: Bool, isFollowingOccurence: Bool = false) -> NSMenu {
         
         var dateOfLastEvent = Date()
         
@@ -50,7 +50,7 @@ class EventListMenuGenerator {
                 
             }
             
-            let menuItem = eventItemGen.makeEventInfoMenuItem(for: event, needsDateContextInTitle: true)
+            let menuItem = eventItemGen.makeEventInfoMenuItem(for: event, needsDateContextInTitle: true, isFollowingOccurence: isFollowingOccurence)
             items.append(menuItem)
             
             dateOfLastEvent = event.startDate.startOfDay()

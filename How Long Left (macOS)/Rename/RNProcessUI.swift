@@ -3,12 +3,12 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 23/6/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
 
-protocol RNProcessUIProtocol {
+protocol RNProcessDelegate {
     
     func log(_ string: String)
     func setProgress(_ to: Double)

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,27 +20,27 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView identifier="AboutView" id="8Ck-Ze-rC9">
             <rect key="frame" x="0.0" y="0.0" width="466" height="324"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="tuX-dt-PUv">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tuX-dt-PUv">
                     <rect key="frame" x="58" y="152" width="350" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Developed by Ryan Kontos in Sydney, Australia." id="KCj-gE-b9c">
-                        <font key="font" metaFont="cellTitle"/>
+                        <font key="font" metaFont="label" size="12"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="WL5-oH-8aE">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WL5-oH-8aE">
                     <rect key="frame" x="178" y="128" width="110" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Written in Swift!" id="l2C-Iz-F58">
-                        <font key="font" metaFont="cellTitle"/>
+                        <font key="font" metaFont="label" size="12"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="H7h-9r-EPL">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H7h-9r-EPL">
                     <rect key="frame" x="173" y="178" width="119" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Version X" id="2Hf-VQ-GhC">
@@ -49,7 +49,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button verticalHuggingPriority="750" id="o6V-Ew-uVM">
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o6V-Ew-uVM">
                     <rect key="frame" x="166" y="44" width="133" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="GitHub" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="A0c-ML-wNe">
@@ -60,7 +60,7 @@
                         <action selector="githubButtonClicked:" target="-2" id="mrk-j0-71c"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" id="01E-dt-27m">
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="01E-dt-27m">
                     <rect key="frame" x="166" y="92" width="133" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Review" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KTD-DD-qTR">
@@ -71,7 +71,7 @@
                         <action selector="writeReviewClicked:" target="-2" id="WoW-W4-mbE"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" id="KWs-4o-yVm">
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KWs-4o-yVm">
                     <rect key="frame" x="166" y="20" width="133" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Twitter" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6aZ-9s-x1r">
@@ -82,7 +82,7 @@
                         <action selector="twitterButtonClicked:" target="-2" id="FuU-rk-tn2"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" id="upU-S1-ZUt">
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="upU-S1-ZUt">
                     <rect key="frame" x="166" y="68" width="133" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Email Me" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zUf-GZ-VBy">
@@ -93,7 +93,7 @@
                         <action selector="emailMeClicked:" target="-2" id="x21-Ic-UVd"/>
                     </connections>
                 </button>
-                <textField autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="mBA-my-8ws">
+                <textField autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mBA-my-8ws">
                     <rect key="frame" x="60" y="195" width="345" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="How Long Left" id="3Cr-91-WZ7">
@@ -102,7 +102,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button verticalHuggingPriority="750" imageHugsTitle="YES" id="v6r-5o-3Gb">
+                <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v6r-5o-3Gb">
                     <rect key="frame" x="192" y="217" width="80" height="81"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="logo" imagePosition="only" imageScaling="proportionallyDown" inset="2" id="H2o-CD-tAe">

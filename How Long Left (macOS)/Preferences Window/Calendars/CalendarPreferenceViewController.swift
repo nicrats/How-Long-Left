@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 4/12/18.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -13,7 +13,16 @@ import LaunchAtLogin
 import EventKit
 
 
-final class CalendarPreferenceViewController: NSViewController, Preferenceable, NSTableViewDelegate, NSTableViewDataSource, CalendarCellDelegate {
+final class CalendarPreferenceViewController: NSViewController, PreferencePane, NSTableViewDelegate, NSTableViewDataSource, CalendarCellDelegate, EventPoolUpdateObserver {
+    
+    func eventPoolUpdated() {
+        DispatchQueue.main.async {
+        self.table.reloadData()
+        }
+    }
+    
+    let preferencePaneIdentifier = PreferencePane.Identifier.calendars
+    var preferencePaneTitle: String = "Calendars"
     
     let toolbarItemTitle = "Calendars"
     let toolbarItemIcon = NSImage(named: "CalIcon")!
@@ -21,7 +30,6 @@ final class CalendarPreferenceViewController: NSViewController, Preferenceable, 
     var calSelectStoryboard = NSStoryboard()
     
    
-    var timer: Timer!
     var cals = [EKCalendar]()
     var selectedCals = [EKCalendar]()
     
@@ -72,19 +80,27 @@ final class CalendarPreferenceViewController: NSViewController, Preferenceable, 
     
     override func viewWillAppear() {
         
-            self.setupCals()
-            self.updateSelectAllButton()
+        
+        
+        PreferencesWindowManager.shared.currentIdentifier = preferencePaneIdentifier
+        
+        self.setupCals()
+        self.updateSelectAllButton()
         table.delegate = self
         table.dataSource = self
-            self.table.reloadData()
+        self.table.reloadData()
+       
         
         
     }
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         
+        HLLEventSource.shared.addEventPoolObserver(self)
+        
+        super.viewDidLoad()
+        self.preferredContentSize = CGSize(width: 466, height: 348)
         
         table.delegate = self
         table.dataSource = self
@@ -148,9 +164,7 @@ final class CalendarPreferenceViewController: NSViewController, Preferenceable, 
     
     override func viewWillDisappear() {
         
-        NotificationCenter.default.removeObserver(self, name: Notification.Name("updateCalendar"), object: nil)
         
-        NotificationCenter.default.post(name: Notification.Name("closingCalPrefsWindow"), object: nil)
         
         
     }
@@ -223,12 +237,12 @@ final class CalendarPreferenceViewController: NSViewController, Preferenceable, 
         
         if selectedCals.count == cals.count {
             
-            selectAllButton.title = "Deselect All"
+            selectAllButton.title = "Disable All"
             saState = false
             
         } else {
             
-            selectAllButton.title = "Select All"
+            selectAllButton.title = "Enable All"
             saState = true
         }
         
@@ -267,12 +281,12 @@ final class CalendarPreferenceViewController: NSViewController, Preferenceable, 
         
         HLLDefaults.calendar.enabledCalendars = idArray
         
-        NotificationCenter.default.post(name: Notification.Name("updateCalendar"), object: nil)
-        //HLLEventSource.shared.updateEnabledCalendars()
+        HLLEventSource.shared.asyncUpdateEventPool()
 
         
     }
     
 
+    
     
 }

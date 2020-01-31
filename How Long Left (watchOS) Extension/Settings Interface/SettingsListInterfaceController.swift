@@ -3,7 +3,7 @@
 //  How Long Left (watchOS) Extension
 //
 //  Created by Ryan Kontos on 29/9/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import WatchKit
@@ -53,6 +53,12 @@ class SettingsListInterfaceController: WKInterfaceController, DefaultsTransferOb
         
         let type = tableRows[rowIndex]
         
+        if type == .General {
+            
+            self.pushController(withName: "GeneralSettings", context: nil)
+            
+        }
+        
         if type == .Calendars {
             
             self.pushController(withName: "CalendarList", context: nil)
@@ -62,6 +68,18 @@ class SettingsListInterfaceController: WKInterfaceController, DefaultsTransferOb
         if type == .Magdalene {
             
             self.pushController(withName: "MagdaleneSettings", context: nil)
+            
+        }
+        
+        if type == .Interface {
+            
+            self.pushController(withName: "InterfaceSettings", context: nil)
+            
+        }
+        
+        if type == .Complication {
+            
+            self.pushController(withName: "ComplicationSettingsView", context: nil)
             
         }
         
@@ -87,7 +105,10 @@ class SettingsListRow: NSObject {
 
 enum SettingsListRowType: String, CaseIterable {
     
+    case General = "General"
+    case Interface = "Interface"
     case Calendars = "Calendars"
+    case Complication = "Complication"
     case Magdalene = "Magdalene"
     
     

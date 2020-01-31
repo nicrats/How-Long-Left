@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,7 +16,7 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="214" y="249" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
-                        <value key="minSize" type="size" width="480" height="270"/>
+                        <value key="minSize" type="size" width="450" height="235"/>
                         <value key="maxSize" type="size" width="850" height="350"/>
                         <connections>
                             <outlet property="delegate" destination="7Yu-bl-Y3O" id="cfk-QC-e5s"/>
@@ -66,20 +66,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1jG-aa-Kbe">
-                                <rect key="frame" x="13" y="115" width="560" height="60"/>
+                                <rect key="frame" x="13" y="122" width="560" height="55"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="center" title="00:00" id="EcN-a1-oKb">
-                                    <font key="font" metaFont="systemLight" size="51"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3XL-zI-xfp">
-                                <rect key="frame" x="28" y="178" width="530" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="526" id="g0a-Bs-26K"/>
-                                </constraints>
-                                <textFieldCell key="cell" lineBreakMode="truncatingHead" alignment="center" title="Event ends in" id="sD6-7u-Z9k">
-                                    <font key="font" metaFont="system" size="30"/>
+                                    <font key="font" metaFont="systemLight" size="47"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -87,9 +76,20 @@
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ik4-AD-uvS">
                                 <rect key="frame" x="141" y="38" width="304" height="39"/>
                                 <subviews>
-                                    <progressIndicator wantsLayer="YES" maxValue="100" doubleValue="68" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="nGv-Df-T2e">
-                                        <rect key="frame" x="14" y="20" width="276" height="20"/>
-                                    </progressIndicator>
+                                    <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="-17" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s5V-YO-gg9">
+                                        <rect key="frame" x="14" y="21" width="276" height="18"/>
+                                        <subviews>
+                                            <progressIndicator wantsLayer="YES" maxValue="100" doubleValue="68" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="nGv-Df-T2e">
+                                                <rect key="frame" x="0.0" y="-1" width="276" height="20"/>
+                                            </progressIndicator>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PO7-Z3-QeD">
                                         <rect key="frame" x="135" y="0.0" width="34" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="68%" id="CPW-A8-10k">
@@ -111,17 +111,41 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9pe-SE-h6i">
+                                <rect key="frame" x="222" y="179" width="143" height="33"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3XL-zI-xfp">
+                                        <rect key="frame" x="-2" y="0.0" width="147" height="33"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="iuo-Jf-K1N"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" lineBreakMode="truncatingMiddle" alignment="center" title="Eventtttttttt" id="sD6-7u-Z9k">
+                                            <font key="font" metaFont="system" size="28"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="TH3-bG-qO2"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="1jG-aa-Kbe" secondAttribute="trailing" constant="15" id="1f6-vx-JEv"/>
-                            <constraint firstItem="1jG-aa-Kbe" firstAttribute="top" secondItem="3XL-zI-xfp" secondAttribute="bottom" constant="3" id="AAG-Z3-UCE"/>
+                            <constraint firstItem="9pe-SE-h6i" firstAttribute="centerX" secondItem="OO0-Dl-sNw" secondAttribute="centerX" id="Fb4-FG-3g2"/>
                             <constraint firstAttribute="bottom" secondItem="Ik4-AD-uvS" secondAttribute="bottom" constant="38" id="Mdp-xX-uAr"/>
                             <constraint firstItem="Ik4-AD-uvS" firstAttribute="centerX" secondItem="OO0-Dl-sNw" secondAttribute="centerX" id="Ytl-cG-AT7"/>
-                            <constraint firstAttribute="trailing" secondItem="3XL-zI-xfp" secondAttribute="trailing" constant="30" id="b05-kD-BHk"/>
+                            <constraint firstItem="9pe-SE-h6i" firstAttribute="centerY" secondItem="OO0-Dl-sNw" secondAttribute="centerY" constant="-50" id="ZDf-mx-cTE"/>
                             <constraint firstItem="1jG-aa-Kbe" firstAttribute="leading" relation="lessThanOrEqual" secondItem="OO0-Dl-sNw" secondAttribute="leading" constant="15" id="iIP-Th-3IJ"/>
-                            <constraint firstItem="3XL-zI-xfp" firstAttribute="leading" secondItem="OO0-Dl-sNw" secondAttribute="leading" constant="30" id="mDD-HW-jBh"/>
                             <constraint firstItem="1jG-aa-Kbe" firstAttribute="centerX" secondItem="OO0-Dl-sNw" secondAttribute="centerX" id="rUw-ih-jJ7"/>
-                            <constraint firstItem="3XL-zI-xfp" firstAttribute="centerY" secondItem="OO0-Dl-sNw" secondAttribute="centerY" constant="-50" id="xLa-Ou-uG1"/>
+                            <constraint firstItem="1jG-aa-Kbe" firstAttribute="top" secondItem="9pe-SE-h6i" secondAttribute="bottom" constant="2" id="sga-6N-Oy0"/>
                         </constraints>
                     </view>
                     <connections>
@@ -133,7 +157,7 @@
                 </viewController>
                 <customObject id="Foa-8k-fqd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="974" y="471"/>
+            <point key="canvasLocation" x="961" y="471"/>
         </scene>
         <!--EventUI Tab View Controller-->
         <scene sceneID="0sf-sa-WeV">
@@ -148,7 +172,7 @@
                     <tabView key="tabView" type="noTabsNoBorder" id="zuP-rK-Zme">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="message"/>
                         <connections>
                             <outlet property="delegate" destination="pQq-Na-8f3" id="4z9-zn-yjB"/>
                         </connections>
@@ -192,7 +216,7 @@
                                         <rect key="frame" x="83" y="-7" width="75" height="32"/>
                                         <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WPX-o2-qj3">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" metaFont="message"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="closeClicked:" target="3zi-uJ-tnI" id="1vX-mQ-WjA"/>

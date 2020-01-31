@@ -3,11 +3,12 @@
 //  How Long Left
 //
 //  Created by Ryan Kontos on 16/11/18.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
 import EventKit
+
 
 #if canImport(UIKit)
 import UIKit
@@ -29,10 +30,14 @@ struct HLLEvent: Equatable, Hashable {
     var startDate: Date
     var endDate: Date
     var location: String?
+    var secondaryRoomName: String?
+    var oldLocationSetting = OldRoomNamesSetting.doNotShow
+    var newRoomName: String?
     var fullLocation: String?
     var shortLocation: String?
     var holidaysTerm: Int?
     var period: String?
+    var teacher: String?
     var calendarID: String?
     var calendar: EKCalendar?
     var associatedCalendar: EKCalendar?
@@ -50,7 +55,13 @@ struct HLLEvent: Equatable, Hashable {
     var source: HLLEventSource!
     var titleReferencesMultipleEvents = false
     var visibilityString: VisibilityString?
+    let calc = PercentageCalculator()
     
+    var roomChange: String?
+    var teacherChange: String?
+    
+    var usualRoom: String?
+    var usualTeacher: String?
     
     #if os(macOS)
     
@@ -233,11 +244,11 @@ struct HLLEvent: Equatable, Hashable {
         
     }
     
-    var completionPercentage: String? {
+    var completionPercentage: String {
         
         get {
         
-        let calc = PercentageCalculator()
+        
         return calc.calculatePercentageDone(for: self)
         
         
@@ -259,16 +270,20 @@ struct HLLEvent: Equatable, Hashable {
         
         get {
             
-            if self.startDate.timeIntervalSinceNow > 0 {
-                return .Upcoming
-            } else if self.endDate.timeIntervalSinceNow < 0 {
-                return .Done
-            } else {
-                return .Current
-            }
+            return self.completionStatus(at: Date())
                 
         }
             
+    }
+    
+    var isSelected: Bool {
+        
+        get {
+            
+            return self == SelectedEventManager.shared.selectedEvent
+            
+        }
+        
     }
     
     var compactInfoText: String {
@@ -300,8 +315,8 @@ struct HLLEvent: Equatable, Hashable {
         get {
             
            
-            let id =  "\(title) \(startDate) \(endDate) \(calendarID ?? "nil") \(location ?? "nil")"
-            return id.replacingOccurrences(of: " ", with: "")
+            let id = "\(title) \(startDate) \(endDate) \(calendarID ?? "nil") \(location ?? "nil")"
+            return "EID\(id)"
             
             
         }
@@ -331,6 +346,32 @@ struct HLLEvent: Equatable, Hashable {
         
     }
     
+    var schoolEventIdentifier: String {
+        
+        get {
+            
+            var returnString = ""
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "EE"
+            returnString = dateFormatter.string(from: self.startDate)
+
+            if Calendar.current.component(.weekOfYear, from: self.startDate) % 2 == 0 {
+                returnString += "A"
+            } else {
+                returnString += "B"
+            }
+            
+            dateFormatter.dateFormat = "HH:mm"
+            
+            returnString += " \(dateFormatter.string(from: self.startDate))"
+            returnString += " \(dateFormatter.string(from: self.endDate))"
+            
+            return returnString
+        }
+        
+    }
+    
     init(event: EKEvent) {
         
         // Init a HLLEvent from an EKEvent.
@@ -338,7 +379,7 @@ struct HLLEvent: Equatable, Hashable {
         
         if let safeTitle = event.title {
         
-            title = safeTitle
+            title = safeTitle.components(separatedBy: " (").first!
             
             
         } else {
@@ -358,10 +399,48 @@ struct HLLEvent: Equatable, Hashable {
         isAllDay = event.isAllDay
         EKEvent = event
         
-        if let loc = event.location, loc != "" {
+        if let notes = event.notes {
+            if notes.contains(text: "Attending Staff :") {
+                isSchoolEvent = true
+                
+            }
+        }
+        
+        if var loc = event.location, loc != "" {
+            
+            if isSchoolEvent {
+                loc = "Room: \(loc)"
+            }
+            
             
             if HLLDefaults.general.showLocation {
                 location = loc
+                
+                if self.isSchoolEvent {
+                
+                oldLocationSetting = HLLDefaults.magdalene.oldRoomNames
+                          if let oldLocation = OldRoomInfoAdder.shared.getOldRoom(for: loc) {
+                              
+                              let setting = oldLocationSetting
+                              
+                              switch setting {
+
+                              case .doNotShow:
+                                  break
+                              case .showInSubmenu:
+                                  
+                                  secondaryRoomName = oldLocation
+                                  
+                              case .replace:
+                                  
+                                    secondaryRoomName = loc
+                                    location = oldLocation
+                                
+                              }
+  
+                            
+                    }
+                          }
                 
                 let truncatedLocation = loc.truncated(limit: 15, position: .tail, leader: "...")
                 
@@ -369,6 +448,8 @@ struct HLLEvent: Equatable, Hashable {
                 
             }
             fullLocation = loc
+            
+            
             
         }
         
@@ -383,9 +464,23 @@ struct HLLEvent: Equatable, Hashable {
         
         
         isBirthday = event.birthdayContactIdentifier != nil
+            
+        if let notes = event.notes {
         
+            let lines = notes.split { $0.isNewline }
         
-        
+            for line in lines {
+            
+                if line.contains("Attending Staff : "), let justTeacher = line.components(separatedBy: "Attending Staff : ").last {
+                
+                    self.teacher = EventTeacherAdder.shared.replaceTeacherString(of: justTeacher)
+                
+                }
+            
+            }
+            
+        }
+   
     }
     
     
@@ -412,10 +507,22 @@ struct HLLEvent: Equatable, Hashable {
         
     }
     
-    func truncateTitle(limit: Int, postion: String.TruncationPosition) -> String {
+    func truncatedTitle(_ limit: Int = 20) -> String {
         
-        return title.truncated(limit: limit, position: postion, leader: "...")
+        return title.truncated(limit: limit, position: .middle, leader: "...")
         
+        
+    }
+    
+    func completionStatus(at: Date) -> EventCompletionStatus {
+        
+        if self.startDate.timeIntervalSinceNow > 0 {
+            return .Upcoming
+        } else if self.endDate.timeIntervalSinceNow < 0 {
+            return .Done
+        } else {
+            return .Current
+        }
         
     }
     
@@ -451,6 +558,8 @@ struct HLLEvent: Equatable, Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(identifier)
     }
+    
+   
    
   /*  func relationTo(_ event: HLLEvent) -> HLLEventTimeRelation {
         

@@ -3,15 +3,18 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 4/7/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
 import Cocoa
 import Preferences
 
-final class RenamePreferenceViewController: NSViewController, Preferenceable {
-    let toolbarItemTitle = "Rename"
+final class RenamePreferenceViewController: NSViewController, PreferencePane {
+    
+    let preferencePaneIdentifier = PreferencePane.Identifier.rename
+    var preferencePaneTitle: String = "Rename"
+    
     let toolbarItemIcon = NSImage(named: "RenameIcon")!
     
     override var nibName: NSNib.Name? {
@@ -22,8 +25,15 @@ final class RenamePreferenceViewController: NSViewController, Preferenceable {
     @IBOutlet weak var launchButton: NSButton!
     @IBOutlet weak var autoPromptButton: NSButton!
     
+    override func viewWillAppear() {
+        
+        PreferencesWindowManager.shared.currentIdentifier = preferencePaneIdentifier
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.preferredContentSize = CGSize(width: 470, height: 174)
         
         spinner.isHidden = true
         

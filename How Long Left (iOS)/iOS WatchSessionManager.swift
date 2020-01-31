@@ -3,7 +3,7 @@
 //  How Long Left (iOS)
 //
 //  Created by Ryan Kontos on 25/1/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -73,6 +73,18 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
         }
     }
 
+    
+    func userHasAppleWatch() -> Bool {
+        
+        startSession()
+        
+        if let session = session, session.isPaired == true {
+            return true
+        } else {
+            return false
+        }
+        
+    }
     
 }
 

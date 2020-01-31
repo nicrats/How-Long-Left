@@ -3,7 +3,7 @@
 //  How Long Left (watchOS) Extension
 //
 //  Created by Ryan Kontos on 15/10/18.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import WatchKit
@@ -19,11 +19,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
         
-        while HLLEventSource.shared.access == .Unknown {}
-        
-        if HLLEventSource.shared.access == .Granted {
-        while HLLEventSource.shared.neverUpdatedEventPool {}
-        }
+       
         
         DispatchQueue.global(qos: .default).async {
         WatchSessionManager.sharedManager.startSession()
@@ -43,23 +39,16 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
         HLLDefaultsTransfer.shared.triggerDefaultsTransfer()
         ComplicationUpdateHandler.shared.updateComplication()
         }
-
-     //   HLLDefaults.shared.loadDefaultsFromCloud()
-        
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-     /*   DispatchQueue.global(qos: .default).async {
-      let bh = BackgroundUpdateHandler(); bh.scheduleComplicationUpdate()
-        }
-        
-        
-        
-        print("Became active") */
-        
+    
     }
 
     func applicationWillResignActive() {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, etc.
+        
+        DispatchQueue.global(qos: .default).async {
+        HLLDefaultsTransfer.shared.triggerDefaultsTransfer()
+        ComplicationUpdateHandler.shared.updateComplication()
+        }
+        
     }
     
     func handleUserActivity(_ userInfo: [AnyHashable : Any]?) {

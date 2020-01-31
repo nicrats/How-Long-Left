@@ -3,7 +3,7 @@
 //  How Long Left
 //
 //  Created by Ryan Kontos on 1/12/18.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -97,7 +97,7 @@ class MagdaleneBreaks {
                 
                 //print("Endtimescount \(endTimes.count)")
                 
-                if endTimes.contains(recessEvent.startDate.idString()), startTimes.contains(recessEvent.endDate.idString()), !startTimes.contains(recessEvent.startDate.idString()), !endTimes.contains(recessEvent.endDate.idString()) {
+                if (endTimes.contains(recessEvent.startDate.idString()) || startTimes.contains(recessEvent.endDate.idString())), !startTimes.contains(recessEvent.startDate.idString()), !endTimes.contains(recessEvent.endDate.idString()) {
                 
                     
                     returnArray.append(recessEvent)
@@ -114,7 +114,7 @@ class MagdaleneBreaks {
                     lunchEvent.associatedCalendar = checkEvents[index-1].calendar
                 }
                 
-                if endTimes.contains(lunchEvent.startDate.idString()), startTimes.contains(lunchEvent.endDate.idString()), !startTimes.contains(lunchEvent.startDate.idString()), !endTimes.contains(lunchEvent.endDate.idString()) {
+                if (endTimes.contains(lunchEvent.startDate.idString()) || startTimes.contains(lunchEvent.endDate.idString())), !startTimes.contains(lunchEvent.startDate.idString()), !endTimes.contains(lunchEvent.endDate.idString()) {
                     
                     returnArray.append(lunchEvent)
                     addedLunchDates.append(startMidnight)

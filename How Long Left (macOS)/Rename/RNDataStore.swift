@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 22/6/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -54,7 +54,7 @@ class RNDataStore {
             
             print("Initing RNDS with \(yearEvents.count)")
             
-        magdaleneTitles = schoolAnalyser.getMagdaleneTitles(from: yearEvents)
+        magdaleneTitles = schoolAnalyser.magdaleneTitles(from: yearEvents)
         
            magdaleneTitlesCount = magdaleneTitles.count
             
@@ -161,8 +161,6 @@ class RNDataStore {
             
         }
         
-        
-        
         for item in oldEnabledDict {
             
             for tempItem in tempRE {
@@ -180,11 +178,10 @@ class RNDataStore {
             
         }
         
-        
         tempEnabled = tempEnabled.sorted { $0.oldName < $1.oldName }
-        
             
         }
+        
         return tempEnabled
         
     }

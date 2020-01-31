@@ -3,7 +3,7 @@
 //  How Long Left (watchOS) Extension
 //
 //  Created by Ryan Kontos on 29/9/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import WatchKit
@@ -41,7 +41,7 @@ class CalendarListInterfaceController: WKInterfaceController, DefaultsTransferOb
             
             let row = table.rowController(at: index) as! CalendarRow
             row.setup(calendar, delegate: self)
-            row.rowSwitch.setColor(UIColor(cgColor: calendar.cgColor))
+            //row.rowSwitch.setColor(UIColor(cgColor: calendar.cgColor))
             
         }
         
@@ -56,10 +56,13 @@ class CalendarListInterfaceController: WKInterfaceController, DefaultsTransferOb
         let allCalendarIDS = HLLEventSource.shared.getCalendarIDS()
         let enabledCalendarIDS = HLLDefaults.calendar.enabledCalendars
         
+        let minusIcon = UIImage(named: "calendar.badge.minus")!
+        let plusIcon = UIImage(named: "calendar.badge.plus")!
+        
         if allCalendarIDS == enabledCalendarIDS {
-            self.addMenuItem(with: UIImage(), title: "Deselect All", action: #selector(toggleAll))
+            self.addMenuItem(with: minusIcon, title: "Disable All", action: #selector(toggleAll))
         } else {
-            self.addMenuItem(with: UIImage(), title: "Select All", action: #selector(toggleAll))
+            self.addMenuItem(with: plusIcon, title: "Enable All", action: #selector(toggleAll))
         }
         
     }

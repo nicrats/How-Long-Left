@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 17/3/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -11,6 +11,8 @@ import CoreWLAN
 
 class MagdaleneWifiCheck {
 
+static var shared = MagdaleneWifiCheck()
+    
 let wifiClient = CWWiFiClient()
 
 func isOnMagdaleneWifi() -> Bool {

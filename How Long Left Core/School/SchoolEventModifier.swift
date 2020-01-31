@@ -3,7 +3,7 @@
 //  How Long Left
 //
 //  Created by Ryan Kontos on 18/10/18.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -17,6 +17,9 @@ class SchoolEventModifier {
         let timeAdjuster = EventTimeAdjuster()
         let periods = MagdalenePeriods()
         let breaks = MagdaleneBreaks()
+        let eventDetails = EventDetailChangesModifier()
+        let tuesdayEvents = MagdaleneTuesdayEvents()
+        
         
         var returnArray = [HLLEvent]()
             
@@ -24,16 +27,24 @@ class SchoolEventModifier {
         
         case .Magdalene:
             
-            var tempArray = [HLLEvent]()
+            var tempArray = events
             
-            tempArray = timeAdjuster.adjustTime(events: events)
+            
+            tempArray = eventDetails.addChangesTo(events: tempArray)
+            
+            tempArray = timeAdjuster.adjustTime(events: tempArray)
             
             if addBreaks {
             tempArray.append(contentsOf: breaks.getBreaks(events: tempArray))
+            tempArray.append(contentsOf: tuesdayEvents.getTuesdayEvents(events: tempArray))
             }
             
+            
             tempArray = periods.magdalenePeriodFor(events: tempArray)
+            
+            if HLLDefaults.magdalene.useSubjectNames {
             tempArray = magdaleneEventTitleShortener.shortenTitle(events: tempArray)
+            }
            
             returnArray = tempArray
             

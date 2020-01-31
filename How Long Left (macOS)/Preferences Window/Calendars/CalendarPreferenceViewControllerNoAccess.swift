@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 4/12/18.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -13,8 +13,11 @@ import LaunchAtLogin
 import EventKit
 
 
-final class CalendarPreferenceViewControllerNoAccess: NSViewController, Preferenceable {
-    let toolbarItemTitle = "Calendars"
+final class CalendarPreferenceViewControllerNoAccess: NSViewController, PreferencePane {
+    
+    let preferencePaneIdentifier = PreferencePane.Identifier.calendarsNoAccess
+    var preferencePaneTitle: String = "Calendars"
+    
     let toolbarItemIcon = NSImage(named: "CalIcon")!
     
     
@@ -25,7 +28,7 @@ final class CalendarPreferenceViewControllerNoAccess: NSViewController, Preferen
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.preferredContentSize = CGSize(width: 466, height: 142)
         
         // Setup stuff here
     }

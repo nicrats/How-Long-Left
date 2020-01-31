@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 4/12/18.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -12,9 +12,11 @@ import Preferences
 import LaunchAtLogin
 import EventKit
 
-final class StatusItemPreferenceViewController: NSViewController, Preferenceable {
+final class StatusItemPreferenceViewController: NSViewController, PreferencePane {
 	
-	let toolbarItemTitle = "Status Item"
+	let preferencePaneIdentifier = PreferencePane.Identifier.statusItem
+    var preferencePaneTitle: String = "Status Item"
+	
     let toolbarItemIcon = NSImage(named: "MenuSI")!
     
     override var nibName: NSNib.Name? {
@@ -51,12 +53,26 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
     let timerFullText = "Include seconds"
 	let timerShortText = "Don't include seconds"
 	
-	let timer = RepeatingTimer(time: 0.2)
-	
+	var timer: Timer?
+
 	var previewEvent: HLLEvent?
+	
+	override func viewWillAppear() {
+        
+		
+        PreferencesWindowManager.shared.currentIdentifier = preferencePaneIdentifier
+        
+    }
+	
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		self.preferredContentSize = CGSize(width: 764, height: 331)
+		
+		timer = Timer(timeInterval: 0.2, target: self, selector: #selector(generateStatusItemPreview), userInfo: nil, repeats: true)
+			RunLoop.main.add(timer!, forMode: .common)
+		
 		
 		desArray = [des1, des2, des3, des4, includeTitle, moreOptionsTitle]
 		
@@ -120,26 +136,7 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
 		
 		self.generateStatusItemPreview()
 		
-		
-		
-		timer.eventHandler = {
-			
-			
-			self.timer.eventHandler = {
-				
-				DispatchQueue.main.async {
-					
-					self.generateStatusItemPreview()
-					
-				}
-				
-			}
-			
-		}
-		
-		timer.resume()
 	}
-	
 	
 	func createPreviewEvent() -> HLLEvent {
 		
@@ -425,7 +422,7 @@ final class StatusItemPreferenceViewController: NSViewController, Preferenceable
     @IBOutlet weak var des4: NSTextField!
 	
 	
-	func generateStatusItemPreview() {
+	@objc func generateStatusItemPreview() {
 		
 		if previewEvent == nil {
 			

@@ -3,7 +3,7 @@
 //  How Long Left (iOS)
 //
 //  Created by Ryan Kontos on 31/3/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import UIKit
@@ -31,12 +31,17 @@ class CurrentEventsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        self.tableView.reloadData()
         updateEvents()
         RootViewController.selectedController = self
         
        DispatchQueue.main.async {
+        
+
             BackgroundFunctions.shared.run()
         }
+        
+        
         
         
     }
@@ -89,10 +94,30 @@ class CurrentEventsTableViewController: UITableViewController {
         return 1
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if HLLDefaults.currentEventView.showPercentageLabels {
+            return 125
+        } else {
+            return 105
+        }
+        
+        
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CurrentEventCell", for: indexPath) as! CurrentEventCell
-        cell.setup(with: events[indexPath.section])
+        var cellID = "DefaultCurrentEventCell"
+        if HLLDefaults.currentEventView.showPercentageLabels {
+            cellID = "DetailCurrentEventCell"
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+        (cell as! CurrentEventCell).setup(with: events[indexPath.section])
+        
+        #if targetEnvironment(macCatalyst)
+        cell.selectionStyle = .blue
+        #endif
         
         if RootViewController.hasFadedIn == false {
         
@@ -108,9 +133,9 @@ class CurrentEventsTableViewController: UITableViewController {
         
     }
     
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         
-      
        setupBackground()
         
         return events.count
@@ -120,12 +145,19 @@ class CurrentEventsTableViewController: UITableViewController {
         
         DispatchQueue.main.async {
         
+            
             let event = self.events[indexPath.section]
             let viewController = EventInfoViewGenerator.shared.generateEventInfoView(for: event)
-            self.navigationController?.pushViewController(viewController, animated: true)
-        
-            tableView.deselectRow(at: indexPath, animated: true)
             
+            if let split = self.splitViewController {
+                
+                split.viewControllers = [self, viewController]
+                
+            } else {
+                self.navigationController?.pushViewController(viewController, animated: true)
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
+    
         }
     }
     
@@ -138,10 +170,16 @@ class CurrentEventsTableViewController: UITableViewController {
                } else {
                    
                 RootViewController.hasFadedIn = true
-                   var text = "No Current Events"
-                   if HLLEventSource.shared.access != .Granted {
-                       text = "No Calendar Access"
-                   }
+                var text = "No Current Events"
+                
+                if HLLDefaults.calendar.enabledCalendars.count == 0 {
+                    text = "No Enabled Calendars"
+                }
+            
+                if HLLEventSource.shared.access != .Granted {
+                    text = "No Calendar Access"
+                }
+                    
                    
                    let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
                    noDataLabel.text          = text
@@ -164,6 +202,69 @@ class CurrentEventsTableViewController: UITableViewController {
         }
     }
     
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        .none
+    }
+    
+}
+
+@available(iOS 11.0, *)
+extension CurrentEventsTableViewController {
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        var actions = [UIContextualAction]()
+        
+        let event = self.events[indexPath.section]
+        
+         
+         let action = UIContextualAction(style: .normal, title: "Options",
+           handler: { (action, view, completionHandler) in
+             
+             let alertController = HLLEventActionSheetGenerator.shared.generateActionSheet(for: event, isFollowingOccurence: event.followingOccurence != nil)
+             self.present(alertController, animated: true, completion: nil)
+             
+           
+           completionHandler(true)
+             
+         })
+         
+         action.image = UIImage(named: "ellipsis.circle.fill")
+            action.backgroundColor = .systemGray
+         
+         actions.append(action)
+        
+        var title = "Show Percent"
+        if HLLDefaults.currentEventView.showPercentageLabels {
+          title = "Hide Percent"
+        }
+        
+        let percentagesAction = UIContextualAction(style: .normal, title: title,
+                  handler: { (action, view, completionHandler) in
+                    
+                    HLLDefaults.currentEventView.showPercentageLabels = !HLLDefaults.currentEventView.showPercentageLabels
+                    HLLDefaultsTransfer.shared.userModifiedPrferences()
+                    completionHandler(true)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                        tableView.reloadData()
+                    }
+                    
+                })
+                
+                percentagesAction.image = UIImage(named: "percent")
+            percentagesAction.backgroundColor = .systemBlue
+                
+                actions.append(percentagesAction)
+         
+        
+         
+         let configuration = UISwipeActionsConfiguration(actions: actions)
+
+         return configuration
+        
+    }
+    
 }
 
 extension CurrentEventsTableViewController: EventPoolUpdateObserver {
@@ -179,6 +280,18 @@ extension CurrentEventsTableViewController: EventPoolUpdateObserver {
             
             
         }
+    }
+    
+}
+
+extension CurrentEventsTableViewController: EventInfoViewPresenter {
+    
+    func presentEventInfoView(for event: HLLEvent) {
+        
+        self.navigationController?.popViewController(animated: true)
+        let viewController = EventInfoViewGenerator.shared.generateEventInfoView(for: event)
+        self.navigationController?.pushViewController(viewController, animated: true)
+    
     }
     
 }

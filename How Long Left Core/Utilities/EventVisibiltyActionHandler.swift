@@ -3,7 +3,7 @@
 //  How Long Left
 //
 //  Created by Ryan Kontos on 19/10/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -21,7 +21,7 @@ class EventVisibiltyActionHandler {
         case .term:
             HLLDefaults.magdalene.doTerm = false
         case .holidays:
-            HLLDefaults.magdalene.doTerm = false
+            HLLDefaults.magdalene.doHolidays = false
         case .breaks:
             HLLDefaults.magdalene.showBreaks = false
         }

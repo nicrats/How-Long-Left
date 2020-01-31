@@ -3,7 +3,7 @@
 //  How Long Left (watchOS) Extension
 //
 //  Created by Ryan Kontos on 21/9/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import WatchKit
@@ -13,12 +13,23 @@ class InterfaceController: WKInterfaceController, EventPoolUpdateObserver, Defau
     
     @IBOutlet weak var eventsTable: WKInterfaceTable!
     @IBOutlet weak var noTableLabel: WKInterfaceLabel!
+    @IBOutlet weak var moreUpcomingButton: WKInterfaceButton!
     
     var events = [HLLEvent]()
     
+    var tableFetchedEvents = [HLLEvent]()
+    
+    var largeCellConfiguration = true
+    var showUpcomingConfiguration = true
+    var showCurrentFirstConfiguration = false
+    var hideExtrasConfiguration = false
+    var showOneEventOnlyConfiguration = false
+    
     var rowUpdateTimer: Timer?
+    
     var doneInitalLaunch = false
     
+    let previousRowType = "PreviousEventRow"
     let primaryRowType = "PrimaryEventRow"
     let currentRowType = "CurrentEventRow"
     let upcomingRowType = "UpcomingEventRow"
@@ -31,30 +42,27 @@ class InterfaceController: WKInterfaceController, EventPoolUpdateObserver, Defau
         
         HLLEventSource.shared.addEventPoolObserver(self)
         HLLDefaultsTransfer.shared.addTransferObserver(self)
-        self.updateRows()
         
-        self.rowUpdateTimer = Timer(timeInterval: 0.5, target: self, selector: #selector(self.asyncUpdateRows), userInfo: nil, repeats: true)
+        self.rowUpdateTimer = Timer(timeInterval: 1, target: self, selector: #selector(self.asyncUpdateRows), userInfo: nil, repeats: true)
         RunLoop.main.add(self.rowUpdateTimer!, forMode: .common)
-        
-            
-        
-        
+         
     }
 
     override func willActivate() {
         
         //self.updateRows(async: false)
-        if doneInitalLaunch == false {
         
+        if doneInitalLaunch == false {
             updateTable()
             doneInitalLaunch = true
             
         } else {
             
+            updateRows()
+            self.updateTable()
             
             DispatchQueue.global(qos: .default).async {
-                self.updateRows()
-                self.updateTable()
+                
                 HLLEventSource.shared.updateEventPool()
             }
             
@@ -69,9 +77,44 @@ class InterfaceController: WKInterfaceController, EventPoolUpdateObserver, Defau
     }
     
     func updateTable() {
-
-        var fetchedEvents = HLLEventSource.shared.getCurrentAndUpcomingTodayOrdered()
         
+        print("WDB: Updating table")
+        var fetchedEvents = HLLEventSource.shared.getTimeline(includeUpcoming: HLLDefaults.watch.showUpcoming, chronological: !HLLDefaults.watch.showCurrentFirst)
+
+        moreUpcomingButton.setHidden(fetchedEvents.filter({$0.completionStatus == EventCompletionStatus.Upcoming}).isEmpty)
+        
+             if fetchedEvents.isEmpty == false {
+
+                 self.setNoTableText(nil)
+                 
+             } else if HLLEventSource.shared.neverUpdatedEventPool == false {
+                 
+                 if HLLEventSource.shared.access == .Denied {
+                     self.setNoTableText("No Calendar Access")
+                 } else {
+                     self.setNoTableText("No Events Found")
+                 }
+                 
+                 return
+                 
+             }
+        
+        if fetchedEvents != self.tableFetchedEvents || largeCellConfiguration != HLLDefaults.watch.largeCell || showUpcomingConfiguration != HLLDefaults.watch.showUpcoming || showCurrentFirstConfiguration != HLLDefaults.watch.showCurrentFirst || hideExtrasConfiguration != HLLDefaults.magdalene.hideExtras || showCurrentFirstConfiguration != HLLDefaults.watch.showOneEvent {
+            
+            self.tableFetchedEvents = fetchedEvents
+            self.largeCellConfiguration = HLLDefaults.watch.largeCell
+            self.showUpcomingConfiguration = HLLDefaults.watch.showUpcoming
+            self.showCurrentFirstConfiguration = HLLDefaults.watch.showCurrentFirst
+            self.hideExtrasConfiguration = HLLDefaults.magdalene.hideExtras
+            self.showCurrentFirstConfiguration = HLLDefaults.watch.showOneEvent
+            
+            if HLLDefaults.watch.showOneEvent {
+                if let first = fetchedEvents.first {
+                    fetchedEvents = [first]
+                }
+            }
+            
+            
         if HLLDefaults.magdalene.hideExtras {
             
             for (index, event) in fetchedEvents.enumerated() {
@@ -85,120 +128,114 @@ class InterfaceController: WKInterfaceController, EventPoolUpdateObserver, Defau
             }
             
         }
-        
-        if fetchedEvents.isEmpty == false {
-
-            self.setNoTableText(nil)
-            
-        } else {
-            
-            if HLLEventSource.shared.access == .Denied {
-                self.setNoTableText("No Calendar Access")
-            } else {
-                self.setNoTableText("No Events Found")
-            }
-            
-            return
-            
-        }
-        
-        if fetchedEvents != self.events {
+         
             
             self.events = fetchedEvents
             
-            if fetchedEvents.count == 1 {
-                self.eventsTable.setVerticalAlignment(.center)
-            } else {
-                self.eventsTable.setVerticalAlignment(.top)
-            }
             
             var rowTypes = [String]()
+            var addedPrimary = false
             
-            for (index, event) in fetchedEvents.enumerated() {
+            //let numberOfEnded = fetchedEvents.filter {$0.completionStatus == .Done}.count
+            
+            for event in fetchedEvents {
                 
-                if index == 0 {
+                if event.completionStatus != .Done, addedPrimary == false {
                     
-                    rowTypes.append(self.primaryRowType)
+                   if HLLDefaults.watch.largeCell {
+                        rowTypes.append(self.primaryRowType)
                     
-                    if event.completionStatus == .Upcoming {
-                        
-                        rowTypes.append(self.upcomingRowType)
-                        fetchedEvents.insert(event, at: 0)
-                        
+                       /* if event.completionStatus == .Upcoming {
+                            rowTypes.append(self.upcomingRowType)
+                            fetchedEvents.insert(event, at: numberOfEnded)
+                        }*/
+                    
+                    } else {
+                        rowTypes.append(self.currentRowType)
                     }
                     
-                } else if event.completionStatus == .Current {
-                        
-                    rowTypes.append(self.currentRowType)
-                        
+                    addedPrimary = true
+                    
+                    
                 } else {
                         
-                    rowTypes.append(self.upcomingRowType)
+                    switch event.completionStatus {
+                        
+                    case .Upcoming:
+                        rowTypes.append(self.upcomingRowType)
+                    case .Current:
+                        rowTypes.append(self.currentRowType)
+                    case .Done:
+                        rowTypes.append(self.previousRowType)
+                        
+                    }
                         
                 }
             }
             
             self.eventsTable.setRowTypes(rowTypes)
             
+            if fetchedEvents.count == 1, rowTypes.contains(self.primaryRowType) {
+                self.eventsTable.setVerticalAlignment(.center)
+            } else {
+                self.eventsTable.setVerticalAlignment(.top)
+            }
+            
             for (index, event) in fetchedEvents.enumerated() {
                   
                 let row = self.eventsTable.rowController(at: index) as! EventRow
                 row.setup(event: event)
-        
-                let countdownText = self.countdownStringGenerator.generatePositionalCountdown(event: event)
-                row.updateTimer(countdownText)
-                
+                row.updateRow()
                 
             }
+            
         }
-            
         
+    }
+    
+    func updateRows() {
+        
+        let count = self.eventsTable.numberOfRows
+        
+        for index in 0..<count {
+        
+            if let row = self.eventsTable.rowController(at: index) as? EventRow {
+                row.updateRow()
+                
+                if row.rowCompletionStatus != row.event.completionStatus {
+                    DispatchQueue.main.async {
+                        self.updateTable()
+                    }
+                }
+            }
             
+        }
         
     }
     
     @objc func asyncUpdateRows() {
         
         DispatchQueue.global(qos: .userInteractive).async {
-            self.updateRows()
-        }
-        
-    }
-    
-    @objc func updateRows(async: Bool = true) {
         
         let count = self.eventsTable.numberOfRows
         
-            for index in 0..<count {
+        for index in 0..<count {
             
-                if let row = self.eventsTable.rowController(at: index) as? EventRow {
+            if let row = self.eventsTable.rowController(at: index) as? EventRow {
                 
-                    if let event = row.event {
-    
-                        let countdownText = self.countdownStringGenerator.generatePositionalCountdown(event: event)
-                        
-                        if async {
-                            
-                            DispatchQueue.main.async {
-                                row.updateTimer(countdownText)
-                            }
-                            
-                        } else {
-                            
-                            row.updateTimer(countdownText)
-                            
-                        }
-                        
-                        if event.completionStatus != row.rowCompletionStatus {
-                            
-                            DispatchQueue.main.async {
-                                self.updateTable()
-                            }
-                            
-                        }
+                row.updateRow()
+                
+                if row.rowCompletionStatus != row.event.completionStatus {
+                    DispatchQueue.main.async {
+                        self.updateTable()
                     }
                 }
+                
             }
+                
+            }
+            
+        }
         
     }
     
@@ -234,21 +271,28 @@ class InterfaceController: WKInterfaceController, EventPoolUpdateObserver, Defau
     }
     
     func defaultsUpdatedRemotely() {
+        print("WDB: Defaults changed called")
         DispatchQueue.main.async {
             self.updateTable()
         }
     }
     
+    func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
+        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+    
     func setupMenuItems() {
         
         self.clearAllMenuItems()
-        self.addMenuItem(with: UIImage(), title: "Settings", action: #selector(settingsButtonPressed))
         
-        /*if HLLDefaults.general.selectedEventID != nil {
-            
-            self.addMenuItem(with: UIImage(), title: "Clear Selection", action: #selector(clearSelection))
-            
-        }*/
+        let image =  UIImage(named: "gear")!
+        let resizedImage = imageWithImage(image: image, scaledToSize: CGSize(width: 30, height: 30))
+        
+        self.addMenuItem(with: resizedImage, title: "Settings", action: #selector(settingsButtonPressed))
         
     }
     
@@ -261,6 +305,12 @@ class InterfaceController: WKInterfaceController, EventPoolUpdateObserver, Defau
         
     }
  
+    @IBAction func moreUpcomingButtonTapped() {
+        
+        self.pushController(withName: "MoreUpcomingView", context: nil)
+        
+    }
+    
     @objc func settingsButtonPressed() {
         
         self.pushController(withName: "SettingsMain", context: nil)

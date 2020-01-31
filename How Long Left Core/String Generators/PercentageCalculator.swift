@@ -3,20 +3,14 @@
 //  How Long Left
 //
 //  Created by Ryan Kontos on 14/2/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
 
 class PercentageCalculator {
     
-    func calculatePercentageDone(for event: HLLEvent, at date: Date = Date()) -> String? {
-        
-        if event.completionStatus == .Upcoming {
-            
-            return nil
-            
-        }
+    func calculatePercentageDone(for event: HLLEvent, at date: Date = Date()) -> String {
         
         let secondsElapsed = date.timeIntervalSince(event.startDate)
         let totalSeconds = event.endDate.timeIntervalSince(event.startDate)

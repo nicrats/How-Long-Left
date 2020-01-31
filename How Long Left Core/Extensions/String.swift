@@ -3,10 +3,11 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 12/7/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
+import CommonCrypto
 
 extension String {
     
@@ -58,7 +59,15 @@ extension String {
     }
     
     func truncated(limit: Int, position: TruncationPosition = .tail, leader: String = "...") -> String {
+        
+        var returnString = self
+        
+        if limit == 0 {
+            return self
+        }
+        
         guard self.count > limit else { return self }
+        
         
         switch position {
         case .head:
@@ -68,13 +77,27 @@ extension String {
             
             let tailCharactersCount = Int(floor(Float(limit - leader.count) / 2.0))
             
-            return "\(self.prefix(headCharactersCount))\(leader)\(self.suffix(tailCharactersCount))"
+            returnString = "\(self.prefix(headCharactersCount))\(leader)\(self.suffix(tailCharactersCount))"
         case .tail:
-            return self.prefix(limit) + leader
+            returnString = self.prefix(limit) + leader
         }
+        
+        returnString = returnString.replacingOccurrences(of: " \(leader)", with: leader)
+        returnString = returnString.replacingOccurrences(of: "\(leader) ", with: leader)
+        
+        return returnString
+        
     }
     
-  
+    var hashed: String {
+        let data = Data(self.utf8)
+        let hash = data.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) -> [UInt8] in
+            var hash = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
+            CC_SHA256(bytes.baseAddress, CC_LONG(data.count), &hash)
+            return hash
+        }
+        return hash.map { String(format: "%02x", $0) }.joined()
+    }
     
 }
 

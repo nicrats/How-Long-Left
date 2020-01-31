@@ -3,7 +3,7 @@
 //  How Long Left (iOS)
 //
 //  Created by Ryan Kontos on 31/3/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -118,7 +118,7 @@ class UpcomingEventsTableViewController: UIViewController, UITableViewDelegate, 
             }
             
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: iden, for: indexPath) as! upcomingCell            
+            let cell = tableView.dequeueReusableCell(withIdentifier: iden, for: indexPath) as! UpcomingEventsTableRow            
             cell.generate(from: event)
             
             if RootViewController.hasFadedIn == false {
@@ -180,6 +180,11 @@ class UpcomingEventsTableViewController: UIViewController, UITableViewDelegate, 
                 
                 var text = "No Upcoming Events"
                 
+                
+                if HLLDefaults.calendar.enabledCalendars.count == 0 {
+                    text = "No Enabled Calendars"
+                }
+                
                 if HLLEventSource.shared.access != .Granted {
                     
                     text = "No Calendar Access"
@@ -207,9 +212,42 @@ class UpcomingEventsTableViewController: UIViewController, UITableViewDelegate, 
                
                let viewController = EventInfoViewGenerator.shared.generateEventInfoView(for: event)
                
-               self.navigationController?.pushViewController(viewController, animated: true)
-               
-               tableView.deselectRow(at: indexPath, animated: true)
+            
+              if let split = self.splitViewController {
+                   
+                var push = false
+                
+                if split.viewControllers.indices.contains(1) {
+                    
+                    if let detailView = split.viewControllers[1] as? UINavigationController {
+                        
+                        if detailView.viewControllers.count > 1 {
+                            
+                            detailView.pushViewController(viewController, animated: true)
+                            push = true
+                            
+                        }
+                        
+                    }
+                    
+                    
+                }
+                
+                if push == false {
+                    
+                    let nav = UINavigationController(rootViewController: viewController)
+                    nav.navigationBar.isHidden = true
+                    split.viewControllers = [self, nav]
+                    
+                }
+                
+                
+                   
+                   
+               } else {
+                   self.navigationController?.pushViewController(viewController, animated: true)
+                   tableView.deselectRow(at: indexPath, animated: true)
+               }
            }
            
     func scrollUp() {
@@ -261,6 +299,44 @@ class UpcomingEventsTableViewController: UIViewController, UITableViewDelegate, 
         }
     }
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        .none
+    }
+    
+}
+
+@available(iOS 11.0, *)
+extension UpcomingEventsTableViewController {
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        var actions = [UIContextualAction]()
+        
+        let event = eventDates[indexPath.section].events[indexPath.row]
+        
+     
+        let action = UIContextualAction(style: .normal, title: "Options",
+          handler: { (action, view, completionHandler) in
+            
+            let alertController = HLLEventActionSheetGenerator.shared.generateActionSheet(for: event, isFollowingOccurence: event.followingOccurence != nil)
+            self.present(alertController, animated: true, completion: nil)
+            
+          
+          completionHandler(true)
+            
+        })
+        
+        action.image = UIImage(named: "ellipsis.circle.fill")
+        action.backgroundColor = .systemGray
+        
+        actions.append(action)
+        
+       
+        
+        let configuration = UISwipeActionsConfiguration(actions: actions)
+        return configuration
+        
+    }
     
 }
 
@@ -305,72 +381,18 @@ extension UpcomingEventsTableViewController {
         
     }
     
+    
+    
 }
-    
 
-class upcomingCell: UITableViewCell {
+extension UpcomingEventsTableViewController: EventInfoViewPresenter {
     
-    var timer: Timer!
+    func presentEventInfoView(for event: HLLEvent) {
+        
+        self.navigationController?.popViewController(animated: true)
+        let viewController = EventInfoViewGenerator.shared.generateEventInfoView(for: event)
+        self.navigationController?.pushViewController(viewController, animated: true)
     
-    @IBOutlet weak var endLabel: UILabel!
-    @IBOutlet weak var startLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var startsInTimer: UILabel!
-    var rowEvent: HLLEvent!
-    let gradient = CAGradientLayer()
-    
-    @IBOutlet weak var calColBAr: UIView!
-    
-    func generate(from event: HLLEvent) {
-        
-       
-        rowEvent = event
-        titleLabel.text = event.title
-        startLabel.text = event.startDate.formattedTime()
-        endLabel.text = event.endDate.formattedTime()
-        
-        if event.startDate.formattedDate() != event.endDate.formattedDate() {
-            
-            endLabel.text = " "
-            
-        }
-    
-        var infoText: String?
-        
-        if let period = rowEvent.period {
-            
-            infoText = "Period \(period)"
-            locationLabel.isHidden = false
-            
-            if let location = rowEvent.location {
-                
-                infoText = "\(infoText!) - \(location)"
-                locationLabel.isHidden = false
-                
-            }
-            
-        } else if let location = rowEvent.location {
-                
-                infoText = location
-                locationLabel.isHidden = false
-                
-            } else {
-                
-                locationLabel.isHidden = true
-                
-            }
-        
-            
-            locationLabel.text = infoText
-            
-        
-        
-        calColBAr.backgroundColor = event.uiColor
-        
-       
-        
     }
- 
     
 }

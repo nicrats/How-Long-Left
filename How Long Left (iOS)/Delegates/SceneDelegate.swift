@@ -3,7 +3,7 @@
 //  How Long Left (iOS)
 //
 //  Created by Ryan Kontos on 3/10/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -16,6 +16,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
       
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let root = RootViewController()
+        let currentViewController = storyboard.instantiateViewController(withIdentifier: "CurrentView") as! CurrentEventsTableViewController
+        let upcomingViewController = storyboard.instantiateViewController(withIdentifier: "UpcomingView") as! UpcomingEventsTableViewController
+        
+        let settingsViewController = storyboard.instantiateViewController(withIdentifier: "SettingsView") as! SettingsTableViewController
+               
+        let currentImage = UIImage(named: "CountdownGylph")
+        let upcomingImage = UIImage(named: "UpcomingEventsGlyph")
+        let settingsImage = UIImage(named: "SettingsGlyph")
+        
+        let currentNavigationController = UINavigationController(rootViewController: currentViewController)
+    
+        let upcomingNavigationController = UINavigationController(rootViewController: upcomingViewController)
+           
+        let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
+        
+        currentNavigationController.tabBarItem = UITabBarItem(title: "Current", image: currentImage, selectedImage: currentImage)
+        
+        upcomingNavigationController.tabBarItem = UITabBarItem(title: "Upcoming", image: upcomingImage, selectedImage: upcomingImage)
+        
+        settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: settingsImage, selectedImage: settingsImage)
+               
+        
+        window?.tintColor = UIColor.orange
+        root.viewControllers = [currentNavigationController, upcomingNavigationController, settingsNavigationController]
+        
+        
+        window?.rootViewController = root
        
         #if !targetEnvironment(macCatalyst)
         
@@ -47,6 +76,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let _ = (scene as? UIWindowScene) else { return }
         self.window?.makeKeyAndVisible()
+        
+        if let url = connectionOptions.urlContexts.first?.url {
+            
+            handleLaunchURL(url)
+            
+        }
+        
     }
     
 
@@ -58,6 +94,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
+        
+        EventNotificationScheduler.shared.getAccess()
+        
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
     }
@@ -84,6 +123,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
     }
     
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        
+        if let id = userActivity.userInfo?["EventID"] as? String {
+              
+            RootViewController.launchEvent = id
+                      
+        }
+        
+    }
+    
     private func handleShortcut(_ item: UIApplicationShortcutItem) {
         
        if let shortcutItem = ApplicationShortcut(rawValue: item.type) {
@@ -103,6 +152,63 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
         
     }
+
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        
+        
+        
+        if let url = URLContexts.first?.url {
+            
+           handleLaunchURL(url)
+
+        }
+        
+      
+    }
+    
+    
+    func handleLaunchURL(_ url: URL) {
+       
+        HLLDefaults.defaults.set(HLLDefaults.defaults.integer(forKey: "LFW")+1, forKey: "LFW")
+        
+        if let scheme = url.scheme,
+                       scheme.localizedCaseInsensitiveCompare("howlongleft") == .orderedSame, let host = url.host {
+                       
+                       if host == "current" {
+                           RootViewController.launchPage = .Current
+                       } else if host == "upcoming" {
+                           RootViewController.launchPage = .Upcoming
+                       } else if host == "settings" {
+                           RootViewController.launchPage = .Settings
+                       }
+                       
+                       if host.contains(text: "EID") {
+                           RootViewController.launchEvent = host
+                       }
+                       
+                       if host == "widgetlaunch" {
+                           
+                           RootViewController.launchToFirstTimelineEventInfoView = true
+                           
+                       }
+            
+            DispatchQueue.main.async {
+                         
+                      guard let window: UIWindow = self.window , var topVC = window.rootViewController?.presentedViewController else {return}
+                         while topVC.presentedViewController != nil  {
+                             topVC = topVC.presentedViewController!
+                         }
+                         if topVC.isKind(of: UIAlertController.self) {
+                             topVC.dismiss(animated: false, completion: nil)
+                         }
+                             
+                         }
+                    
+                   }
+        
+    }
+    
     
 }
 
@@ -124,7 +230,20 @@ extension SceneDelegate: NSToolbarDelegate {
         print("testGroup selection changed to index: \(sender.selectedIndex)")
         
         let rootViewController = window?.rootViewController as? UITabBarController
-        rootViewController?.selectedIndex = sender.selectedIndex
+        
+        if rootViewController?.selectedIndex == sender.selectedIndex {
+            
+            if let selected = rootViewController?.selectedViewController as? UINavigationController {
+                
+                selected.popToRootViewController(animated: true)
+                
+            }
+            
+        } else {
+            rootViewController?.selectedIndex = sender.selectedIndex
+        }
+        
+        
     }
     
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {

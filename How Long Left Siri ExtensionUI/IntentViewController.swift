@@ -3,7 +3,7 @@
 //  How Long Left Siri ExtensionUI
 //
 //  Created by Ryan Kontos on 28/1/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import IntentsUI
@@ -54,7 +54,7 @@ class IntentViewController: UIViewController, INUIHostedViewControlling, EventPo
     
     func setup() {
         
-        self.event = HLLEventSource.shared.getCurrentAndUpcomingTodayOrdered().first
+        self.event = HLLEventSource.shared.getTimeline().first
         updateView()
         
     }

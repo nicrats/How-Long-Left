@@ -3,39 +3,50 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 18/10/18.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Cocoa
 import Preferences
 import CloudKit
+import UserNotifications
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
     
+    let statusItemController = StatusItemController()
+    let notificationScheduler = MacEventNotificationScheduler()
+    let utilityRunLoopManager = UtilityRunLoopManager()
+    let uploader = MagdaleneEventDataUploader()
+    
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
 
-        
-        NSApp.activate(ignoringOtherApps: true)
-        
+        DispatchQueue.main.async {
+     
         NSUserNotificationCenter.default.delegate = self
-        //aFabric.with([Crashlytics.self])
-        
-        #if DEBUG
-        print("I'm running in DEBUG mode")
-        
-        #else
-        print("I'm running in a non-DEBUG mode")
+        if #available(OSX 10.14, *) {
+            UNUserNotificationCenter.current().delegate = self
+        }
 
-        #endif
-
+    
+            
+        HLLEventSource.shared.asyncUpdateEventPool()
+        LaunchFunctions.shared.runLaunchFunctions()
+        MagdaleneModeSetupPresentationManager.shared = MagdaleneModeSetupPresentationManager()
+        HotKeyHandler.shared = HotKeyHandler()
+            
+        
+            
+        }
+    
     }
     
     func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
         
         return true
     }
+    
     
     func userNotificationCenter(_ center: NSUserNotificationCenter,
                                 didActivate notification: NSUserNotification) {
@@ -81,9 +92,41 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
     }
     
-    func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String : Any]) {
+    
+}
+
+@available(OSX 10.14, *)
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
-        
+      // show the notification alert (banner), and with sound
+      completionHandler([.alert, .sound])
     }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        let notificationInfo = response.notification.request.content.userInfo
+               
+           if let type = notificationInfo["Type"] as? String {
+               
+            if type == "Cal" {
+            
+            if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Calendars"),
+                
+                NSWorkspace.shared.open(url) {
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                NSWorkspace.shared.launchApplication("System Preferences")
+            }
+
+            }
+               
+           }
+    
+           completionHandler()
+         }
+
     
 }

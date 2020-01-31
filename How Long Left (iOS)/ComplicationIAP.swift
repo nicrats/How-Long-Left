@@ -3,7 +3,7 @@
 //  How Long Left (iOS)
 //
 //  Created by Ryan Kontos on 1/3/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -32,6 +32,8 @@ class IAPHandler: NSObject {
     
     static var recentTransaction: SKPaymentTransaction?
     
+    var complicationPriceCell: TitleDetailCell?
+    
     fileprivate var productID = ""
     fileprivate var productsRequest = SKProductsRequest()
     fileprivate var iapProducts = [SKProduct]()
@@ -51,6 +53,8 @@ class IAPHandler: NSObject {
             
             HLLDefaults.defaults.set(salt, forKey: "ComplicationSalt")
             HLLDefaults.defaults.set(hash, forKey: "ComplicationHash")
+            HLLDefaults.complication.complicationPurchased = true
+            HLLDefaults.complication.overrideComplicationPurchased = false
             
             
         } else {
@@ -60,16 +64,27 @@ class IAPHandler: NSObject {
             
         }
         
+        HLLDefaultsTransfer.shared.userModifiedPrferences()
         
     }
     
     func hasPurchasedComplication() -> Bool {
-    
+        
+        if HLLDefaults.complication.overrideComplicationPurchased {
+            return HLLDefaults.complication.overridenComplicationPurchasedStatus
+        }
         
         if SchoolAnalyser.privSchoolMode == .Magdalene {
             
             print("IAPCheck: Magalene user; Getting complication for free.")
             return true
+            
+        }
+        
+        if isReceiptPresent() == false {
+            
+            setPurchasedStatus(false)
+            return false
             
         }
         
@@ -83,18 +98,18 @@ class IAPHandler: NSObject {
             if newHash == storedHash {
                 
                 returnValue = true
-                print("IAPCheck: Hashes did match")
+                //print("IAPCheck: Hashes did match")
                 
             } else {
                 
-                print("IAPCheck: Hashes did not match")
+                //print("IAPCheck: Hashes did not match")
                 
             }
             
             
         } else {
             
-            print("IAPCheck: Defaults contained nil, didn't check hashes")
+            //print("IAPCheck: Defaults contained nil, didn't check hashes")
             
         }
         
@@ -146,6 +161,18 @@ class IAPHandler: NSObject {
         productsRequest.delegate = self
         productsRequest.start()
     }
+    
+   func isReceiptPresent() -> Bool {
+     if let receiptUrl = Bundle.main.appStoreReceiptURL,
+       let canReach = try? receiptUrl.checkResourceIsReachable(),
+       canReach {
+       return true
+     }
+     
+     return false
+   }
+    
+    
 }
 
 extension IAPHandler: SKProductsRequestDelegate, SKPaymentTransactionObserver{
@@ -167,7 +194,9 @@ extension IAPHandler: SKProductsRequestDelegate, SKPaymentTransactionObserver{
                 if product.productIdentifier == "ComplicationIAPHLL" {
                     
                     IAPHandler.complicationPriceString = price1Str
-                    
+                    DispatchQueue.main.async {
+                        self.complicationPriceCell?.detailLabel.text = price1Str
+                    }
                     NotificationCenter.default.post(name: Notification.Name("gotComplicationPrice"), object: nil)
                     
                 }

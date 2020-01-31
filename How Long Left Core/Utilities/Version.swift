@@ -3,12 +3,14 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 11/12/18.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
 
 class Version {
+    
+    
     
     static var currentVersion: String {
         
@@ -26,6 +28,7 @@ class Version {
         get {
             
            return (Bundle.main.infoDictionary?["CFBundleVersion"] as? String)!
+            
             
         }
         

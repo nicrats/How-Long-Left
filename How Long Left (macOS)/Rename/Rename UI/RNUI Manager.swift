@@ -3,24 +3,34 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 4/7/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
 import Cocoa
 
 class RNUIManager: NSObject, NSWindowDelegate {
-    
+
     static var shared = RNUIManager()
     
     var renameWindowController : NSWindowController?
     var renameStoryboard = NSStoryboard()
+    var promptedToRename = false
+    
+    func promptToRenameIfNeeded() {
+        
+        if HLLDefaults.rename.promptToRename, promptedToRename == false {
+            
+            promptedToRename = true
+            present()
+ 
+        }
+        
+    }
     
     func present() {
         
-        DispatchQueue.main.async {
-        
-            [unowned self] in
+        DispatchQueue.main.async { [unowned self] in
             
         NSApp.setActivationPolicy(.regular)
         NSApp.activate(ignoringOtherApps: true)
@@ -32,15 +42,12 @@ class RNUIManager: NSObject, NSWindowDelegate {
                 
             }
             
-
-            self.renameWindowController!.window!.center()
-                NSApp.activate(ignoringOtherApps: true)
-            
-            
+            NSApp.activate(ignoringOtherApps: true)
             self.renameWindowController?.window!.makeMain()
             self.renameWindowController?.window!.makeKey()
             self.renameWindowController!.window!.delegate = self
             self.renameWindowController!.showWindow(self)
+            self.renameWindowController!.window!.center()
             
             print("Can be key \(self.renameWindowController!.window!.canBecomeKey)")
             print("Can be main \(self.renameWindowController!.window!.canBecomeMain)")

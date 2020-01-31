@@ -3,7 +3,7 @@
 //  How Long Left (watchOS) Extension
 //
 //  Created by Ryan Kontos on 17/10/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import WatchKit
@@ -35,7 +35,6 @@ class MagdaleneSettingsInterfaceController: WKInterfaceController, DefaultsTrans
         showSchoolHolidaysSwitch.setOn(HLLDefaults.magdalene.doHolidays)
         showSportAsStudySwitch.setOn(HLLDefaults.magdalene.showSportAsStudy)
         breaksAndHomeroomSwitch.setOn(HLLDefaults.magdalene.hideExtras)
-        
     }
 
     override func didDeactivate() {
@@ -88,15 +87,14 @@ class MagdaleneSettingsInterfaceController: WKInterfaceController, DefaultsTrans
     
     func update() {
         
-        DispatchQueue.global().async {
         HLLDefaultsTransfer.shared.userModifiedPrferences()
             
-        }
+        
         
     }
     
     func defaultsUpdatedRemotely() {
-        DispatchQueue.main.async {
+        DispatchQueue.global(qos: .default).async {
             self.setup()
         }
     }

@@ -3,13 +3,13 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 22/6/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
 import Cocoa
 
-class RNUIRNProcessViewController: NSViewController, RNProcessUIProtocol {
+class RNUIRNProcessViewController: NSViewController, RNProcessDelegate {
     
     var parentController: ControllableTabView!
     
@@ -59,7 +59,7 @@ class RNUIRNProcessViewController: NSViewController, RNProcessUIProtocol {
             
             self.renamer = RNProcess()
             
-            self.renamer!.UIDelegate = self
+            self.renamer!.delegate = self
             
             self.renamer!.run()
             // label.stringValue = dummy.varText

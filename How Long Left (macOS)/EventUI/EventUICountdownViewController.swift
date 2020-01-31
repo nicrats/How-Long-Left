@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 1/7/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Cocoa
@@ -15,7 +15,7 @@ class EventUICountdownViewController: NSViewController {
     @IBOutlet weak var timerLabel: NSTextField!
     @IBOutlet weak var progressBar: NSProgressIndicator!
     
-    //var activity: NSUserActivity?
+    var activity: NSUserActivity?
     
     @IBOutlet weak var percentLabel: NSTextField!
     var event: HLLEvent?
@@ -40,7 +40,9 @@ class EventUICountdownViewController: NSViewController {
         // Do view setup here.
     }
     
+  
     override func viewWillAppear() {
+        
         
         mainRun()
         
@@ -54,7 +56,7 @@ class EventUICountdownViewController: NSViewController {
             timer = Timer(fireAt: Date(), interval: 0.5, target: self, selector: #selector(mainRun), userInfo: nil, repeats: true)
             RunLoop.main.add(timer, forMode: .common)
             
-           /* let activityObject = NSUserActivity(activityType: "com.ryankontos.how-long-left.viewEventActivity")
+           let activityObject = NSUserActivity(activityType: "com.ryankontos.how-long-left.viewEventActivity")
                  activityObject.title = safeEvent.title
                  
                 let id = safeEvent.identifier
@@ -64,7 +66,7 @@ class EventUICountdownViewController: NSViewController {
                  activityObject.addUserInfoEntries(from: ["EventID":id])
                  activityObject.isEligibleForHandoff = true
                  activityObject.becomeCurrent()
-                 self.activity = activityObject*/
+                 self.activity = activityObject
                  
             
             
@@ -73,11 +75,15 @@ class EventUICountdownViewController: NSViewController {
         
     }
     
+    override func viewWillDisappear() {
+        self.activity?.invalidate()
+    }
+    
     @objc func mainRun() {
         
         if let currentEvent = self.parentController.event?.refresh() {
     
-            eventText.stringValue = "\(currentEvent.title) \(currentEvent.countdownTypeString) in:"
+            eventText.stringValue = "\(currentEvent.title) \(currentEvent.countdownTypeString) in"
             
             self.timerLabel.stringValue = self.timerStringGenerator.generatePositionalCountdown(event: currentEvent, allowFullUnits: true)
             
@@ -88,12 +94,10 @@ class EventUICountdownViewController: NSViewController {
             if currentEvent.completionFraction > 0 {
                 
                 percentLabel.isHidden = false
-                
-                if let completionPercent =  currentEvent.completionPercentage {
-                   
-                    percentLabel.stringValue = completionPercent
+
+                percentLabel.stringValue = currentEvent.completionPercentage
                     
-                }
+                
 
             } else {
                 

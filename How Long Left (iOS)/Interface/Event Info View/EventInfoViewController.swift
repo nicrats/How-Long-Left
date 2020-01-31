@@ -3,7 +3,7 @@
 //  How Long Left (iOS)
 //
 //  Created by Ryan Kontos on 10/10/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import UIKit
@@ -19,36 +19,50 @@ class EventInfoViewController: UIViewController, UITableViewDataSource, UITableV
     var cellUpdateTimer: Timer!
     var infoItemGenerator: HLLEventInfoItemGenerator!
     var willClose = false
-    
-    //var activity: NSUserActivity?
+    var isFollowingOccurence = false
+    var activity: NSUserActivity?
     
     override func viewDidLoad() {
+
         
-        self.navigationItem.title = self.event.title
+        var title = "\(self.event.title) Info"
+        
+        if let count = self.navigationController?.viewControllers.count {
+            if count > 2 {
+                title = "\(title) (\(count-1))"
+            }
+        }
+        
+        self.navigationItem.title = title
         self.getSections()
         tableView.delegate = self
         tableView.dataSource = self
-        
-        /*let activityObject = NSUserActivity(activityType: "com.ryankontos.how-long-left.viewEventActivity")
-        activityObject.title = event.title
-        
-        let id = event.identifier
-        activityObject.addUserInfoEntries(from: ["EventID":id])
-        //activityObject.persistentIdentifier = "ViewEvent"
-        activityObject.isEligibleForHandoff = true
-        
-        activityObject.becomeCurrent()
-        self.activity = activityObject*/
-        
         
         super.viewDidLoad()
        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+       
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ellipsis"), style: .plain, target: self, action: #selector(presentEventMenu))
+        
+        if let navigationController = self.navigationController, self.splitViewController != nil {
+            
+            if navigationController.viewControllers.count > 1 {
+                navigationController.navigationBar.isHidden = false
+            } else {
+                navigationController.navigationBar.isHidden = true
+            }
+            
+            
+        } else {
+            self.navigationController?.navigationBar.isHidden = false
+        }
         
         //self.navigationController?.navigationBar.tintColor = self.event.uiColor
         super.viewWillAppear(animated)
+        self.getSections()
         updateInfoRows()
         cellUpdateTimer = Timer(timeInterval: 0.25, target: self, selector: #selector(updateInfoRows), userInfo: nil, repeats: true)
         RunLoop.main.add(cellUpdateTimer, forMode: .common)
@@ -57,35 +71,62 @@ class EventInfoViewController: UIViewController, UITableViewDataSource, UITableV
             self.navigationController?.popToRootViewController(animated: true)
             
         }
+        
+        let activityObject = NSUserActivity(activityType: "com.ryankontos.how-long-left.viewEventActivity")
+             activityObject.title = event.title
+             
+            let id = event.identifier
+        
+                print("Activity id = \(id)")
+        
+             activityObject.addUserInfoEntries(from: ["EventID":id])
+             activityObject.isEligibleForHandoff = true
+             activityObject.becomeCurrent()
+             self.activity = activityObject
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        //self.activity?.resignCurrent()
-        cellUpdateTimer.invalidate()
+        self.activity?.invalidate()
     }
     
     func getSections() {
         
         infoItemGenerator = HLLEventInfoItemGenerator(self.event)
         
-        var sections = [[HLLEventInfoItem]]()
-        sections.append(infoItemGenerator.getInfoItems(for: [.completion, .location, .period, .start, .end, .elapsed, .duration, .nextOccurence]))
+        
         
         /*sections.append(infoItemGenerator.getInfoItems(for: [.completion]))
-        sections.append(infoItemGenerator.getInfoItems(for: [.location, .period]))
-        sections.append(infoItemGenerator.getInfoItems(for: [.start, .end]))
-        sections.append(infoItemGenerator.getInfoItems(for: [.elapsed, .duration]))
+        sections.append(infoItemGenerator.getInfoItems(for: [.location]))
+        sections.append(infoItemGenerator.getInfoItems(for: [.period]))
+        sections.append(infoItemGenerator.getInfoItems(for: [.start]))
+        sections.append(infoItemGenerator.getInfoItems(for: [.end]))
+        sections.append(infoItemGenerator.getInfoItems(for: [.elapsed]))
+        sections.append(infoItemGenerator.getInfoItems(for: [.duration]))
         //sections.append(infoItemGenerator.getInfoItems(for: [.calendar, .teacher]))
         sections.append(infoItemGenerator.getInfoItems(for: [.nextOccurence]))*/
         
-        self.sections = sections.filter({ !$0.isEmpty })
+        var newSections = [[HLLEventInfoItem]]()
+        
+        newSections.append(infoItemGenerator.getInfoItems(for: [.completion]))
+        newSections.append(infoItemGenerator.getInfoItems(for: [.location, .oldLocationName, .originalLocation]))
+        newSections.append(infoItemGenerator.getInfoItems(for: [.start, .end, .period]))
+        newSections.append(infoItemGenerator.getInfoItems(for: [.elapsed, .duration]))
+        newSections.append(infoItemGenerator.getInfoItems(for: [.teacher]))
+        if HLLDefaults.general.showNextOccurItems {
+        newSections.append(infoItemGenerator.getInfoItems(for: [.nextOccurence]))
+        }
+        
+        
+        
+        self.sections = newSections.filter({ !$0.isEmpty })
         
     }
     
     func setup() {
         
         DispatchQueue.main.async {
-            self.navigationItem.title = self.event.title
+            self.navigationItem.title = "\(self.event.title) Info"
             self.getSections()
             self.tableView.reloadData()
         }
@@ -94,8 +135,16 @@ class EventInfoViewController: UIViewController, UITableViewDataSource, UITableV
     
     @objc func updateInfoRows() {
         
+
         DispatchQueue.global(qos: .default).async {
         
+        let previousSections = self.sections
+        self.getSections()
+               
+        if self.sections != previousSections || self.sections.count != previousSections.count {
+            self.setup()
+        }
+            
         let previousEvent = self.event
             
         if let event = self.event.refresh() {
@@ -114,21 +163,23 @@ class EventInfoViewController: UIViewController, UITableViewDataSource, UITableV
             // Matching event no longer exists
             
             DispatchQueue.main.async {
+                
                 self.navigationController?.popViewController(animated: true)
             }
             
         }
   
-        let previousSections = self.sections
-        self.getSections()
-           
-        if self.sections != previousSections {
-            self.setup()
-        }
+        
         
             if self.event.completionStatus == .Done {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                    
+                    if let split = self.splitViewController {
+                        
+                        split.viewControllers.removeAll(where: {$0 == self})
+                        
+                    }
                     
                     self.navigationController?.popViewController(animated: true)
                     
@@ -226,11 +277,16 @@ class EventInfoViewController: UIViewController, UITableViewDataSource, UITableV
         
         if let item = getInfoItemFor(indexPath: indexPath), item.type == .nextOccurence, let next = event.followingOccurence {
             
-            let distance = self.distanceFromRootOccurence+1
-            
-            let infoView = EventInfoViewGenerator.shared.generateEventInfoView(for: next, distanceFromRootOccurence: distance)
+            let infoView = EventInfoViewGenerator.shared.generateEventInfoView(for: next, isFollowingOccurence: true)
     
-            self.navigationController?.pushViewController(infoView, animated: true)
+            if let navigationController = self.navigationController {
+                navigationController.pushViewController(infoView, animated: true)
+            } else {
+                infoView.modalPresentationStyle = .pageSheet
+                self.present(infoView, animated: true, completion: nil)
+            }
+            
+            
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -256,6 +312,13 @@ class EventInfoViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
+    @objc func presentEventMenu() {
+    
+        let alertController = HLLEventActionSheetGenerator.shared.generateActionSheet(for: self.event, isFollowingOccurence: self.isFollowingOccurence)
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
 }
 
 @available(iOS 13.0, *)
@@ -267,17 +330,16 @@ extension EventInfoViewController {
         
         if let followingOccurence = self.event.followingOccurence, sections.indices.contains(realSection), sections[realSection].indices.contains(indexPath.row), sections[realSection][indexPath.row].type == .nextOccurence {
 
-            let distance = self.distanceFromRootOccurence+1
-            
+           
             let config = UIContextMenuConfiguration(identifier: NSString("FollowingOccurence"),
                                               previewProvider: {
                                                 
                                                 
-                                                  return EventInfoViewGenerator.shared.generateEventInfoView(for: followingOccurence, distanceFromRootOccurence: distance)
+                                                return EventInfoViewGenerator.shared.generateEventInfoView(for: followingOccurence, isFollowingOccurence: true)
                                                 
             },
                                                 actionProvider: { _ in
-                                                return HLLEventContextMenuGenerator.shared.generateContextMenuForEvent(followingOccurence)  })
+                                                return HLLEventContextMenuGenerator.shared.generateContextMenuForEvent(followingOccurence, isFollowingOccurence: true)  })
             
         return config
             
@@ -295,9 +357,8 @@ extension EventInfoViewController {
             
             if let followingOccurence = self.event.followingOccurence {
             
-                let distance = self.distanceFromRootOccurence+1
-            
-                let viewController = EventInfoViewGenerator.shared.generateEventInfoView(for: followingOccurence, distanceFromRootOccurence: distance)
+             
+                let viewController = EventInfoViewGenerator.shared.generateEventInfoView(for: followingOccurence, isFollowingOccurence: true)
                 
                 self.navigationController?.pushViewController(viewController, animated: true)
 

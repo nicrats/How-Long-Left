@@ -3,7 +3,7 @@
 //  How Long Left
 //
 //  Created by Ryan Kontos on 30/11/18.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -19,10 +19,10 @@ class FollowingOccurenceStore {
     
     func updateNextOccurenceDictionary(events: [HLLEvent]) {
         
-        
         var returnDict = [String:HLLEvent]()
         
         if HLLDefaults.general.showNextOccurItems == false {
+            self.nextOccurDictionary.removeAll()
             return
         }
         
@@ -45,9 +45,8 @@ class FollowingOccurenceStore {
                 
         }
            
-            self.nextOccurDictionary = returnDict
-            
-        
+        self.nextOccurDictionary = returnDict
+
         
     }
     

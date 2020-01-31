@@ -3,7 +3,7 @@
 //  How Long Left (iOS)
 //
 //  Created by Ryan Kontos on 1/4/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -18,26 +18,27 @@ class BackgroundFunctions {
     
     static let shared = BackgroundFunctions()
     static var isReachable = false
-    private let notoScheduler = MilestoneNotificationScheduler()
+    private let notoScheduler = EventNotificationScheduler()
 
-    let reachability = Reachability()!
+    var rb: Reachability?
     
     init() {
         
+        do
+        {
+            self.rb = try Reachability()
+        }
+        catch let error as NSError
+        {
+            print(error.localizedDescription)
+        }
+        
         DispatchQueue.global(qos: .default).async {
-        
-            NotificationCenter.default.addObserver(self, selector: #selector(self.defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
-    
-        
-        
         
         VoiceShortcutStatusChecker.shared.check()
 
         
-        
-       // IAPHandler.shared.restorePurchase()
-        
-            self.reachability.whenReachable = { reachability in
+            self.rb?.whenReachable = { reachability in
             
             BackgroundFunctions.isReachable = true
             if IAPHandler.complicationPriceString == nil {
@@ -52,18 +53,18 @@ class BackgroundFunctions {
                 print("Reachable via Cellular")
             }
         }
-            self.reachability.whenUnreachable = { _ in
+            self.rb?.whenUnreachable = { _ in
             print("Not reachable")
             
             BackgroundFunctions.isReachable = false
             
         }
         
-       /* do {
-            try reachability.startNotifier()
+        do {
+            try self.rb?.startNotifier()
         } catch {
             print("Unable to start notifier")
-        } */
+        }
         
         self.run()
     }
@@ -91,15 +92,6 @@ class BackgroundFunctions {
         
     }
     
-    @objc func defaultsChanged() {
-        
-      
-        
-        //DefaultsSync.shared.syncDefaultsToWatch()
-        
-        
-    }
-    
    private func donateInteraction() {
         if #available(iOS 12.0, *) {
             let intent = HowLongLeftIntent()
@@ -121,10 +113,13 @@ class BackgroundFunctions {
         
     }
     
-    func getPurchaseComplicationViewController() -> UIViewController {
+    func getPurchaseComplicationViewController(with tableView: UITableViewController? = nil, preview: Bool = false) -> UIViewController {
             
             let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            return mainStoryboard.instantiateViewController(withIdentifier: "PurchaseVC")
+            let viewController = mainStoryboard.instantiateViewController(withIdentifier: "PurchaseVC") as! IAPRootView
+            viewController.delegateTable = tableView
+            viewController.configureForPreview = preview
+            return viewController
     }
     
     

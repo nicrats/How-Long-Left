@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 21/6/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -48,8 +48,6 @@ class ControllableTabView: NSTabViewController {
     func nextPage() {
         
         DispatchQueue.main.async {
-        
-            
             
             [unowned self] in
             

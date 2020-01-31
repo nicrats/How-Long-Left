@@ -3,7 +3,7 @@
 //  WIdget (iOS)
 //
 //  Created by Ryan Kontos on 8/10/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import UIKit
@@ -20,27 +20,33 @@ class TodayViewController: UIViewController, NCWidgetProviding, EventPoolUpdateO
     var timer: Timer!
     var event: HLLEvent?
     
+    var hasLoaded = false
+    
     let countdownStringGenerator = CountdownStringGenerator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-   
+        self.view.isHidden = true
         self.colourBar.layer.cornerRadius = 2.0
         self.colourBar.layer.masksToBounds = true
-        
         self.colourBar.isHidden = true
         self.titleLabel.isHidden = true
         self.timerLabel.isHidden = true
         self.noEventsLabel.isHidden = true
         
+        HLLEventSource.shared.updateEventPool()
         HLLEventSource.shared.addEventPoolObserver(self)
+        eventPoolUpdated()
+        hasLoaded = true
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        if hasLoaded == true {
         DispatchQueue.global(qos: .default).async {
             HLLEventSource.shared.updateEventPool()
+        }
         }
     }
     
@@ -49,11 +55,20 @@ class TodayViewController: UIViewController, NCWidgetProviding, EventPoolUpdateO
         DispatchQueue.main.async {
         
             if let unwrappedEvent = self.event {
-            
-            self.colourBar.isHidden = false
-            self.titleLabel.isHidden = false
-            self.timerLabel.isHidden = false
-            self.noEventsLabel.isHidden = true
+                    
+                
+                
+                self.colourBar.isHidden = false
+                self.titleLabel.isHidden = false
+                self.timerLabel.isHidden = false
+                self.noEventsLabel.isHidden = true
+                    
+                UIView.animate(withDuration: 0.25, animations: {
+                    
+                    self.view.isHidden = false
+                    
+                })
+                
                 
             self.titleLabel.text = "\(unwrappedEvent.title) \(unwrappedEvent.countdownTypeString) in"
             
@@ -67,14 +82,21 @@ class TodayViewController: UIViewController, NCWidgetProviding, EventPoolUpdateO
             }
             
             
-        } else {
+            } else if HLLEventSource.shared.neverUpdatedEventPool == false {
             
-            self.colourBar.isHidden = true
-            self.titleLabel.isHidden = true
-            self.timerLabel.isHidden = true
-            self.noEventsLabel.isHidden = false
-            
-            
+                
+                    
+                    self.colourBar.isHidden = true
+                    self.titleLabel.isHidden = true
+                    self.timerLabel.isHidden = true
+                    self.noEventsLabel.isHidden = false
+                
+                UIView.animate(withDuration: 0.25, animations: {
+                    
+                    self.view.isHidden = false
+                    
+                })
+
         }
             
         }
@@ -93,13 +115,19 @@ class TodayViewController: UIViewController, NCWidgetProviding, EventPoolUpdateO
     
     func eventPoolUpdated() {
     
-        self.event = HLLEventSource.shared.getCurrentAndUpcomingTodayOrdered().first
-       
-        if let selectedID = HLLDefaults.general.selectedEventID, let selectedEvent = HLLEventSource.shared.eventPool.first(where: {$0.identifier == selectedID}) {
+        self.event = HLLEventSource.shared.getTimeline().filter { event in
             
-            self.event = selectedEvent
+            if HLLDefaults.appExtensions.showUpcoming {
+                return true
+            }
             
-        }
+            if event.completionStatus != .Upcoming {
+                return true
+            } else {
+                return false
+            }
+            
+        }.first
         
         
         updateTimer()
@@ -111,12 +139,12 @@ class TodayViewController: UIViewController, NCWidgetProviding, EventPoolUpdateO
     
     @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
         
-        if let url = URL(string: "howlongleft://") {
-            
-            self.extensionContext?.open(url, completionHandler: nil)
-            
-        }
+        let url = URL(string: "howlongleft://widgetlaunch")!
         
+      
+            
+        self.extensionContext?.open(url, completionHandler: nil)
+
     }
     
 }

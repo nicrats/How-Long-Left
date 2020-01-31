@@ -3,39 +3,37 @@
 //  How Long Left (iOS)
 //
 //  Created by Ryan Kontos on 15/10/18.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import UIKit
 import UserNotifications
 import CloudKit
 import BackgroundTasks
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
  
+     let nameConversionsDownloader = NameConversionsDownloader()
+    
     let taskID = "com.ryankontos.How-Long-Left.refresh"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    
-       /* let date = Date()
-        
-        while HLLEventSource.shared.access == .Unknown && date.timeIntervalSinceNow < 1 {}
-       
-        if HLLEventSource.shared.access == .Granted {
-        while HLLEventSource.shared.neverUpdatedEventPool && date.timeIntervalSinceNow < 1  {}
-        }*/
-        
-        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
-            
-            self.handleShortcut(shortcutItem)
-            
-        }
 
         
+        
+        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+            self.handleShortcut(shortcutItem)
+        }
+        
+        DispatchQueue.main.async {
+        
+        UNUserNotificationCenter.current().delegate = self
         application.registerForRemoteNotifications()
-        // Override point for customization after application launch.
         WatchSessionManager.sharedManager.startSession()
+            
+        }
         
         if #available(iOS 13.0, *) {
             
@@ -54,7 +52,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             scheduleAppRefresh()
         }
         
+        if #available(iOS 13.0, *) {} else {
         
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+            
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let root = RootViewController()
+            let currentViewController = storyboard.instantiateViewController(withIdentifier: "CurrentView") as! CurrentEventsTableViewController
+            let upcomingViewController = storyboard.instantiateViewController(withIdentifier: "UpcomingView") as! UpcomingEventsTableViewController
+            
+            let settingsViewController = storyboard.instantiateViewController(withIdentifier: "SettingsView") as! SettingsTableViewController
+                   
+            let currentImage = UIImage(named: "CountdownGylph")
+            let upcomingImage = UIImage(named: "UpcomingEventsGlyph")
+            let settingsImage = UIImage(named: "SettingsGlyph")
+            
+            let currentNavigationController = UINavigationController(rootViewController: currentViewController)
+        
+            let upcomingNavigationController = UINavigationController(rootViewController: upcomingViewController)
+               
+            let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
+            
+            currentNavigationController.tabBarItem = UITabBarItem(title: "Current", image: currentImage, selectedImage: currentImage)
+            
+            upcomingNavigationController.tabBarItem = UITabBarItem(title: "Upcoming", image: upcomingImage, selectedImage: upcomingImage)
+            
+            settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: settingsImage, selectedImage: settingsImage)
+                   
+            
+            window?.tintColor = UIColor.orange
+            root.viewControllers = [currentNavigationController, upcomingNavigationController, settingsNavigationController]
+            
+            
+            window?.rootViewController = root
+        
+            window?.makeKeyAndVisible()
+            
+        }
         
         return true
     }
@@ -81,6 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func runBackgroundTasks() {
         
+        nameConversionsDownloader.downloadNames()
         
            notoGen.scheduleNotificationsForUpcomingEvents()
            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
@@ -116,9 +151,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        
+        DispatchQueue.main.async {
+        
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         HLLDefaultsTransfer.shared.triggerDefaultsTransfer()
+        EventNotificationScheduler.shared.scheduleNotificationsForUpcomingEvents()
         print("Trig6")
+            
+        }
         
     }
 
@@ -128,10 +169,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         
+        if let id = userActivity.userInfo?["EventID"] as? String {
+              
+            RootViewController.launchEvent = id
+                      
+        }
+        
         print("Got activity")
-        return false
+        return true
         
     }
+    
+  
     
     private func handleShortcut(_ item: UIApplicationShortcutItem) {
         
@@ -153,10 +202,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
+ 
     
     var window: UIWindow?
 
-    let notoGen = MilestoneNotificationScheduler()
+    let notoGen = EventNotificationScheduler()
 
 }
 
@@ -175,27 +225,63 @@ extension AppDelegate {
     func scheduleAppRefresh() {
         
         BGTaskScheduler.shared.cancelAllTaskRequests()
-        
         let request = BGAppRefreshTaskRequest(identifier: taskID)
-        request.earliestBeginDate = Date(timeIntervalSinceNow: 120)
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 300)
         
         do {
             try BGTaskScheduler.shared.submit(request)
         } catch {
             print("Could not schedule app refresh: \(error)")
         }
+            
+        
     }
     
     func handleAppRefreshTask(task: BGAppRefreshTask) {
 
+        DispatchQueue.global().async {
+        
         task.expirationHandler = {
             
         }
         
-        runBackgroundTasks()
-        scheduleAppRefresh()
-        task.setTaskCompleted(success: true)
+            let count = HLLDefaults.defaults.integer(forKey: "BGCount")+1
+            HLLDefaults.defaults.set(count, forKey: "BGCount")
+            
+            self.runBackgroundTasks()
+            self.scheduleAppRefresh()
+            task.setTaskCompleted(success: true)
+            
+        }
     }
 
     
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate{
+
+  // This function will be called when the app receive notification
+  func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+      
+    // show the notification alert (banner), and with sound
+    completionHandler([.alert, .sound])
+  }
+    
+  // This function will be called right after user tap on the notification
+  func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+      
+    // tell the app that we have finished processing the user’s action / response
+    let notificationInfo = response.notification.request.content.userInfo
+        
+    if let eventID = notificationInfo["eventidentifier"] as? String {
+        
+        RootViewController.launchEvent = eventID
+        
+    }
+        
+    
+    
+    
+    completionHandler()
+  }
 }

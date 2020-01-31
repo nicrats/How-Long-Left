@@ -3,7 +3,7 @@
 //  How Long Left (macOS Widget)
 //
 //  Created by Ryan Kontos on 8/8/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Cocoa

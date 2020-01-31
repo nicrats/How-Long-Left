@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15505" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lBG-tw-tR2">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15702" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lBG-tw-tR2">
     <device id="watch42"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15501"/>
     </dependencies>
     <scenes>
@@ -30,6 +30,7 @@
                                                         <fontDescription key="font" type="system" weight="medium" pointSize="18"/>
                                                     </label>
                                                     <label width="1" height="47" alignment="center" verticalAlignment="center" text="00:00" textAlignment="center" baselineAdjustment="alignCenters" minimumScaleFactor="0.0" id="gjz-gz-AZp">
+                                                        <accessibilityTraits key="accessibilityTraits" staticText="YES" updatesFrequently="YES"/>
                                                         <fontDescription key="font" type="system" weight="semibold" pointSize="30"/>
                                                         <variation key="device=watch38mm">
                                                             <fontDescription key="font" type="system" weight="semibold" pointSize="36"/>
@@ -61,16 +62,18 @@
                                     </connections>
                                 </tableRow>
                                 <tableRow identifier="CurrentEventRow" id="lXb-85-PJR" customClass="CurrentEventRowController" customModule="How_Long_Left_watchOS_Extension">
-                                    <group key="rootItem" width="1" height="58" alignment="left" layout="vertical" spacing="0.0" id="gV6-8h-7yd">
+                                    <group key="rootItem" width="1" height="63" alignment="left" layout="vertical" spacing="0.0" id="gV6-8h-7yd">
                                         <items>
                                             <group width="1" alignment="center" verticalAlignment="center" layout="vertical" spacing="0.0" id="mop-D9-jAE">
                                                 <items>
-                                                    <label width="1" alignment="left" text="Secondary ends in" minimumScaleFactor="0.5" id="W2z-Pf-ygZ">
+                                                    <label width="1" alignment="left" verticalAlignment="center" text="Secondary ends in" minimumScaleFactor="0.5" id="W2z-Pf-ygZ">
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="font" type="system" weight="medium" pointSize="17"/>
                                                     </label>
                                                 </items>
                                             </group>
                                             <label width="1" alignment="left" verticalAlignment="center" text="00:00" baselineAdjustment="alignCenters" minimumScaleFactor="0.5" id="ViJ-mK-Hvk">
+                                                <accessibilityTraits key="accessibilityTraits" staticText="YES" updatesFrequently="YES"/>
                                                 <fontDescription key="font" type="system" weight="medium" pointSize="27"/>
                                             </label>
                                         </items>
@@ -81,14 +84,14 @@
                                     </connections>
                                 </tableRow>
                                 <tableRow identifier="UpcomingEventRow" id="8JU-dB-roJ" customClass="UpcomingEventRowController" customModule="How_Long_Left_watchOS_Extension">
-                                    <group key="rootItem" width="1" height="50" alignment="left" layout="vertical" id="cvn-ZQ-2u8">
+                                    <group key="rootItem" width="1" height="54" alignment="left" layout="vertical" id="cvn-ZQ-2u8">
                                         <items>
-                                            <group width="1" alignment="center" verticalAlignment="center" layout="vertical" spacing="2" id="kwG-XC-fx7">
+                                            <group width="136" alignment="center" verticalAlignment="center" layout="vertical" spacing="2" id="kwG-XC-fx7">
                                                 <items>
-                                                    <label width="1" alignment="left" text="Upcoming" baselineAdjustment="alignCenters" minimumScaleFactor="0.5" id="oXU-eI-Fum">
+                                                    <label width="1" alignment="left" verticalAlignment="center" text="Upcoming" baselineAdjustment="alignCenters" minimumScaleFactor="0.5" id="oXU-eI-Fum">
                                                         <fontDescription key="font" type="system" weight="medium" pointSize="19"/>
                                                     </label>
-                                                    <label width="1" height="15" alignment="left" text="12:00am | Room: 10" baselineAdjustment="alignCenters" minimumScaleFactor="0.5" id="GSw-41-glI">
+                                                    <label width="1" height="15" alignment="left" verticalAlignment="center" text="12:00am | Room: 10" baselineAdjustment="alignCenters" minimumScaleFactor="0.5" id="GSw-41-glI">
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="font" type="system" weight="medium" pointSize="13"/>
                                                     </label>
@@ -103,14 +106,20 @@
                                 </tableRow>
                             </items>
                         </table>
+                        <button width="1" height="43" alignment="center" verticalAlignment="bottom" title="More Upcoming" id="uZ5-D0-lBV">
+                            <connections>
+                                <action selector="moreUpcomingButtonTapped" destination="lBG-tw-tR2" id="5p5-mm-xtT"/>
+                            </connections>
+                        </button>
                     </items>
                     <connections>
                         <outlet property="eventsTable" destination="iDl-47-6gP" id="EDa-B7-xwZ"/>
+                        <outlet property="moreUpcomingButton" destination="uZ5-D0-lBV" id="Yqx-U6-OYM"/>
                         <outlet property="noTableLabel" destination="1yz-y1-Oir" id="KeO-gE-zXn"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="-5.9130434782608692" y="-88.794642857142861"/>
+            <point key="canvasLocation" x="-6.1025641025641031" y="-88.051282051282058"/>
         </scene>
         <!--Settings-->
         <scene sceneID="x8m-Tk-Mwo">
@@ -137,12 +146,12 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="-90"/>
+            <point key="canvasLocation" x="227" y="-178"/>
         </scene>
         <!--Calendars-->
         <scene sceneID="n5r-H7-T1R">
             <objects>
-                <controller identifier="CalendarList" title="Calendars" id="yl3-uq-tdM" customClass="CalendarListInterfaceController" customModule="How_Long_Left_watchOS_Extension">
+                <controller identifier="CalendarList" title="Calendars" alwaysBounce="YES" id="yl3-uq-tdM" customClass="CalendarListInterfaceController" customModule="How_Long_Left_watchOS_Extension">
                     <items>
                         <table alignment="left" id="w74-fM-Ihu">
                             <items>
@@ -185,12 +194,113 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="455.94871794871796" y="-90.230769230769241"/>
+            <point key="canvasLocation" x="478" y="-161"/>
+        </scene>
+        <!--Interface-->
+        <scene sceneID="W9h-0o-AoT">
+            <objects>
+                <controller identifier="InterfaceSettings" title="Interface" alwaysBounce="YES" id="Xcm-Lx-WVx" customClass="InterfaceSettingsInterfaceController" customModule="How_Long_Left_watchOS_Extension">
+                    <items>
+                        <switch width="1" height="53" alignment="left" title="Large Countdown" id="zpT-Ey-Aky">
+                            <connections>
+                                <action selector="largeCountdownTapped:" destination="Xcm-Lx-WVx" id="feD-YZ-XRG"/>
+                            </connections>
+                        </switch>
+                        <label width="136" height="49" alignment="left" text="Show a large countdown at the top of the events table." baselineAdjustment="alignCenters" numberOfLines="0" id="amf-S4-0a5">
+                            <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                            <fontDescription key="font" type="system" pointSize="13"/>
+                        </label>
+                        <group width="1" height="7" alignment="left" id="UI6-iO-kh7"/>
+                        <switch width="1" height="53" alignment="left" title="Show One Event Only" id="mU1-h8-ihA">
+                            <connections>
+                                <action selector="showOneEventTapped:" destination="Xcm-Lx-WVx" id="TgV-r1-axe"/>
+                            </connections>
+                        </switch>
+                        <label width="136" height="49" alignment="left" text="Show only the top event instead of a list of events." baselineAdjustment="alignCenters" numberOfLines="0" id="ScS-VY-wHe">
+                            <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                            <fontDescription key="font" type="system" pointSize="13"/>
+                        </label>
+                        <group width="1" height="7" alignment="left" id="hba-bA-IDz"/>
+                        <switch width="1" height="75" alignment="left" title="Show Upcoming Events" id="X8o-7p-QEj">
+                            <connections>
+                                <action selector="showUpcomingTapped:" destination="Xcm-Lx-WVx" id="AEu-ob-FcI"/>
+                            </connections>
+                        </switch>
+                        <switch width="1" height="78" alignment="left" title="Show Current Events First" id="m1f-lp-VcX">
+                            <connections>
+                                <action selector="showCurrentEventsFirstTapped:" destination="Xcm-Lx-WVx" id="Z3E-AT-BQ3"/>
+                            </connections>
+                        </switch>
+                        <label width="136" height="65" alignment="left" text="List current events above all upcoming events, instead of in chronological order." baselineAdjustment="alignCenters" numberOfLines="0" id="5Po-a7-K2a">
+                            <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                            <fontDescription key="font" type="system" pointSize="13"/>
+                        </label>
+                    </items>
+                    <connections>
+                        <outlet property="largeCountdownButton" destination="zpT-Ey-Aky" id="q2F-rq-vwM"/>
+                        <outlet property="showCurrentFirstSwitch" destination="m1f-lp-VcX" id="F9d-GJ-8Ym"/>
+                        <outlet property="showOneEventSwitch" destination="mU1-h8-ihA" id="4iU-Z7-9Pt"/>
+                        <outlet property="showUpcomingSwitch" destination="X8o-7p-QEj" id="oXR-f7-b0H"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="714" y="-147.33333333333334"/>
+        </scene>
+        <!--General-->
+        <scene sceneID="fab-dI-ltb">
+            <objects>
+                <controller identifier="GeneralSettings" title="General" alwaysBounce="YES" id="QYC-aq-Zee" customClass="GeneralSettingsInterfaceController" customModule="How_Long_Left_watchOS_Extension">
+                    <items>
+                        <group width="1" height="7" alignment="left" id="DW5-GJ-qEe"/>
+                        <label alignment="left" text="LOCATIONS" id="Y8S-dD-gum">
+                            <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                            <fontDescription key="font" type="system" pointSize="13"/>
+                        </label>
+                        <switch width="1" height="54" alignment="left" value="YES" title="Show Event Locations" id="46w-uZ-7pW">
+                            <connections>
+                                <action selector="showLocationsToggled:" destination="QYC-aq-Zee" id="F1S-C1-V1w"/>
+                            </connections>
+                        </switch>
+                        <group width="1" height="7" alignment="left" id="0Ro-7o-b2d"/>
+                        <label alignment="left" text="ALL-DAY EVENTS" id="rr2-2q-sMC">
+                            <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                            <fontDescription key="font" type="system" pointSize="13"/>
+                        </label>
+                        <switch width="1" height="54" alignment="left" value="YES" title="Show All-Day Events" id="M0p-hk-OIP">
+                            <connections>
+                                <action selector="showAllDayEventsToggled:" destination="QYC-aq-Zee" id="UJd-E1-7jm"/>
+                            </connections>
+                        </switch>
+                        <switch width="1" height="72" alignment="left" value="YES" title="Include in Current Events" id="O60-Fz-PPc">
+                            <connections>
+                                <action selector="showAllDayEventsInCurrentToggled:" destination="QYC-aq-Zee" id="Sgd-Kh-ZHT"/>
+                            </connections>
+                        </switch>
+                        <group width="1" height="7" alignment="left" id="0X2-Bh-rWT"/>
+                        <label alignment="left" text="EVENT INFO VIEW" id="wNi-j0-ERc">
+                            <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                            <fontDescription key="font" type="system" pointSize="13"/>
+                        </label>
+                        <switch width="1" height="72" alignment="left" value="YES" title="Show Following Occurences" id="5Jx-da-S9h">
+                            <connections>
+                                <action selector="showFollowingOccurencesToggled:" destination="QYC-aq-Zee" id="Uio-Gz-ZRB"/>
+                            </connections>
+                        </switch>
+                    </items>
+                    <connections>
+                        <outlet property="includeAllDayEventsInCurrentSwitch" destination="O60-Fz-PPc" id="gBb-VK-hkx"/>
+                        <outlet property="showAllDayEventsSwitch" destination="M0p-hk-OIP" id="qQ0-kR-Yvm"/>
+                        <outlet property="showEventLocationsSwitch" destination="46w-uZ-7pW" id="m8F-xv-a86"/>
+                        <outlet property="showFollowingOccurencesSwitch" destination="5Jx-da-S9h" id="2Jm-h5-N6z"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="944.15384615384619" y="-154.74358974358975"/>
         </scene>
         <!--Magdalene-->
         <scene sceneID="JNV-i1-vv4">
             <objects>
-                <controller identifier="MagdaleneSettings" title="Magdalene" id="SCN-Bd-Ejb" customClass="MagdaleneSettingsInterfaceController" customModule="How_Long_Left_watchOS_Extension">
+                <controller identifier="MagdaleneSettings" title="Magdalene" alwaysBounce="YES" id="SCN-Bd-Ejb" customClass="MagdaleneSettingsInterfaceController" customModule="How_Long_Left_watchOS_Extension">
                     <items>
                         <switch width="1" height="55" alignment="left" value="YES" title="Magdalene Mode" id="oWo-pu-4hG">
                             <fontDescription key="font" type="system" pointSize="16"/>
@@ -332,7 +442,63 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="456" y="350"/>
+            <point key="canvasLocation" x="456" y="403"/>
+        </scene>
+        <!--Complication-->
+        <scene sceneID="6DR-XO-XjT">
+            <objects>
+                <controller identifier="ComplicationSettingsView" title="Complication" id="daE-9J-D6l" customClass="ComplicationSettingsInterfaceController" customModule="How_Long_Left_watchOS_Extension">
+                    <items>
+                        <switch width="1" height="46" alignment="left" value="YES" title="Show Events" id="L2G-Vo-wQT">
+                            <connections>
+                                <action selector="showEventsToggled:" destination="daE-9J-D6l" id="igO-UL-2sc"/>
+                            </connections>
+                        </switch>
+                        <label height="65" alignment="left" text="Show a countdown for the current or upcoming event on your watch face." baselineAdjustment="alignCenters" numberOfLines="0" id="wCp-vU-urK">
+                            <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                            <fontDescription key="font" type="system" pointSize="13"/>
+                        </label>
+                    </items>
+                    <connections>
+                        <outlet property="showEventsToggle" destination="L2G-Vo-wQT" id="bsJ-f3-sAq"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="714" y="282.89743589743591"/>
+        </scene>
+        <!--MoreUpcomingView-->
+        <scene sceneID="96h-Tp-w2i">
+            <objects>
+                <controller identifier="MoreUpcomingView" alwaysBounce="YES" id="FDB-9Q-Mgd" customClass="MUWeekListInterfaceController" customModule="How_Long_Left_watchOS_Extension">
+                    <items>
+                        <table alignment="left" id="XVv-ws-0EB">
+                            <items>
+                                <tableRow identifier="DayRow" id="b19-sE-3yZ" customClass="DayRow" customModule="How_Long_Left_watchOS_Extension">
+                                    <group key="rootItem" width="1" height="49" alignment="left" layout="vertical" spacing="1" id="zYq-kb-llp">
+                                        <items>
+                                            <label alignment="left" verticalAlignment="center" text="Monday" id="VLt-0K-4za">
+                                                <fontDescription key="font" type="system" pointSize="17"/>
+                                            </label>
+                                            <label alignment="left" verticalAlignment="center" text="7 Events" id="YKR-QR-DLF">
+                                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                <fontDescription key="font" type="system" pointSize="13"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="mainLabel" destination="VLt-0K-4za" id="6ey-hg-ned"/>
+                                        <outlet property="secondaryLabel" destination="YKR-QR-DLF" id="cls-CA-tC3"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="table" destination="XVv-ws-0EB" id="kZs-GQ-ht0"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-6" y="259"/>
         </scene>
         <!--EventInfoView-->
         <scene sceneID="IVq-T8-f3q">
@@ -375,7 +541,7 @@
                                                         <fontDescription key="font" type="system" pointSize="15"/>
                                                     </label>
                                                     <label alignment="left" verticalAlignment="center" text="Today, 9:00am" textAlignment="left" baselineAdjustment="alignCenters" minimumScaleFactor="0.5" id="VWK-nA-LeA">
-                                                        <fontDescription key="font" type="system" weight="medium" pointSize="18"/>
+                                                        <fontDescription key="font" type="system" weight="medium" pointSize="17"/>
                                                     </label>
                                                 </items>
                                             </group>
@@ -395,7 +561,45 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="-6.1025641025641031" y="237.56410256410257"/>
+            <point key="canvasLocation" x="227" y="259"/>
+        </scene>
+        <!--MUEventListView-->
+        <scene sceneID="pzJ-os-eMN">
+            <objects>
+                <controller identifier="MUEventListView" alwaysBounce="YES" id="rLu-e9-eBW" customClass="MUEventListInterfaceController" customModule="How_Long_Left_watchOS_Extension">
+                    <items>
+                        <table alignment="center" spacing="6" id="lMZ-71-Meo">
+                            <items>
+                                <tableRow identifier="MUEventRow" id="yrc-o8-x80" customClass="MUEventRow" customModule="How_Long_Left_watchOS_Extension">
+                                    <group key="rootItem" width="1" height="50" alignment="left" layout="vertical" id="Bu3-cp-CUa">
+                                        <items>
+                                            <group width="136" alignment="center" verticalAlignment="center" layout="vertical" spacing="2" id="9Dv-XH-5Gd">
+                                                <items>
+                                                    <label width="1" alignment="left" text="Upcoming" baselineAdjustment="alignCenters" minimumScaleFactor="0.5" id="ut0-UE-liS">
+                                                        <fontDescription key="font" type="system" weight="medium" pointSize="19"/>
+                                                    </label>
+                                                    <label width="1" height="15" alignment="left" text="12:00am | Room: 10" baselineAdjustment="alignCenters" minimumScaleFactor="0.5" id="Ddx-UX-Quh">
+                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="font" type="system" weight="medium" pointSize="13"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="infoLabel" destination="Ddx-UX-Quh" id="ixx-H8-Vru"/>
+                                        <outlet property="titleLabel" destination="ut0-UE-liS" id="RfB-Vm-jRY"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="table" destination="lMZ-71-Meo" id="1g6-eN-6Ks"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-6" y="547"/>
         </scene>
     </scenes>
 </document>

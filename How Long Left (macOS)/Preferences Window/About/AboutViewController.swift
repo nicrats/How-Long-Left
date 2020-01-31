@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 4/12/18.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -13,8 +13,11 @@ import LaunchAtLogin
 import EventKit
 
 
-final class aboutViewController: NSViewController, Preferenceable {
-    let toolbarItemTitle = "About"
+final class aboutViewController: NSViewController, PreferencePane {
+    
+    let preferencePaneIdentifier = PreferencePane.Identifier.about
+    var preferencePaneTitle: String = "About"
+    
     let toolbarItemIcon = NSImage(named: "logo")!
     @IBOutlet weak var appIconButton: NSButton!
     
@@ -42,17 +45,17 @@ final class aboutViewController: NSViewController, Preferenceable {
         return Date()
     }
     
+    override func viewDidLoad() {
+        
+        self.preferredContentSize = CGSize(width: 466, height: 324)
+        
+    }
+    
     override func viewWillAppear() {
-        
+            
+        PreferencesWindowManager.shared.currentIdentifier = preferencePaneIdentifier
+    
         buildDateLabel.stringValue = "Written in Swift!"
-        
-        
-        DispatchQueue.main.async {
-            
-            HLLMain.shared?.getLinks()
-            
-        }
-        
         
         var titleString = "How Long Left"
             
@@ -166,43 +169,7 @@ final class aboutViewController: NSViewController, Preferenceable {
     
     @IBAction func appIconClicked(_ sender: NSButton) {
      
-        if SchoolAnalyser.schoolMode == .Magdalene {
-            
-            DispatchQueue.main.async {
                 
-                HLLMain.shared?.getLinks()
-                
-            }
-    
-            if currentLinks.isEmpty {
-                
-                currentLinks = HLLMain.boizLinks
-                sourceLinks = HLLMain.boizLinks
-                
-            }
-            
-            if HLLMain.boizLinks != self.sourceLinks {
-                
-                currentLinks = HLLMain.boizLinks
-                sourceLinks = HLLMain.boizLinks
-                
-            }
-            
-            if let element = currentLinks.randomElement(), let index = currentLinks.firstIndex(of: element) {
-                
-                currentLinks.remove(at: index)
-                    
-                    NSWorkspace.shared.open(element)
-                    
-                
-            }
-            
-            
-            
-            
-        }
-        
-        
     }
     
     

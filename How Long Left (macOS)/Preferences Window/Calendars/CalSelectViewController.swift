@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 27/2/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -105,12 +105,12 @@ class calSelectViewController: NSViewController, NSTableViewDataSource, NSTableV
         
         if selectedCals.count == cals.count {
             
-            selectAllButton.title = "Deselect All"
+            selectAllButton.title = "Enable All"
             saState = false
             
         } else {
             
-            selectAllButton.title = "Select All"
+            selectAllButton.title = "Disable All"
             saState = true
         }
         

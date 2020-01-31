@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 16/7/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -54,7 +54,7 @@ class UpcomingSoonMenuGenerator {
             
             for event in events {
                 
-                if SelectedEventManager.selectedEvent == event {
+                if SelectedEventManager.shared.selectedEvent == event {
                     
                     menuItem.state = .mixed
                     

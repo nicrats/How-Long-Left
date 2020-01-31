@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 9/12/18.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -11,8 +11,11 @@ import AppKit
 import Preferences
 
 
-final class NotificationPreferenceViewController: NSViewController, Preferenceable {
-    let toolbarItemTitle = "Notifications"
+final class NotificationPreferenceViewController: NSViewController, PreferencePane {
+    
+    let preferencePaneIdentifier = PreferencePane.Identifier.notifications
+    var preferencePaneTitle: String = "Notifications"
+    
     let toolbarItemIcon = NSImage(named: "NotificationsIcon")!
     
     override var nibName: NSNib.Name? {
@@ -34,21 +37,17 @@ final class NotificationPreferenceViewController: NSViewController, Preferenceab
     @IBOutlet weak var percentageMilestoneOptionButton_50: NSButton!
     @IBOutlet weak var percentageMilestoneOptionButton_75: NSButton!
     
-    var customStoryboard = NSStoryboard(name: "CustomNotificationsPreferences", bundle: nil)
+   
     var windowC: NSWindowController?
     
-    @IBAction func customClicked(_ sender: NSButton) {
-        
-    
-        self.windowC = self.customStoryboard.instantiateController(withIdentifier: "NotoWindow") as? NSWindowController
-        self.windowC?.showWindow(nil)
-        
-        
-        
+    override func viewDidLoad() {
+        self.preferredContentSize = CGSize(width: 513, height: 360)
     }
     
-    
     override func viewWillAppear() {
+            
+    PreferencesWindowManager.shared.currentIdentifier = preferencePaneIdentifier
+            
         
         let milestones =  HLLDefaults.notifications.milestones
         let percentageMilestones = HLLDefaults.notifications.Percentagemilestones
@@ -97,7 +96,7 @@ final class NotificationPreferenceViewController: NSViewController, Preferenceab
             
         }
         
-        if milestones.contains(0) {
+        if HLLDefaults.notifications.endNotifications {
             
             if milestoneOptionButton_Ends.state == .off {
                 milestoneOptionButton_Ends.setNextState()
@@ -211,6 +210,19 @@ final class NotificationPreferenceViewController: NSViewController, Preferenceab
         
     }
     
+    @IBAction func endsClicked(_ sender: NSButton) {
+        
+        if sender.state == .on {
+            
+            HLLDefaults.notifications.endNotifications = true
+            
+        } else {
+            
+            HLLDefaults.notifications.endNotifications = false
+            
+        }
+        
+    }
     
     @IBAction func soundsButtonClicked(_ sender: NSButton) {
         
@@ -231,6 +243,8 @@ final class NotificationPreferenceViewController: NSViewController, Preferenceab
         DispatchQueue.main.async {
         
         HLLDefaults.notifications.hotkey = HLLHotKeyOption(rawValue: Int(sender.identifier!.rawValue)!)!
+            
+            HotKeyHandler.shared.setHotkey(to: HLLDefaults.notifications.hotkey)
             
         }
         
@@ -256,9 +270,6 @@ final class NotificationPreferenceViewController: NSViewController, Preferenceab
             milestoneArray.append(60)
         }
         
-            if self.milestoneOptionButton_Ends.state == .on {
-            milestoneArray.append(0)
-        }
             
         if self.percentageMIlestoneOptionButton_25.state == .on {
             percentageMilestoneArray.append(25)

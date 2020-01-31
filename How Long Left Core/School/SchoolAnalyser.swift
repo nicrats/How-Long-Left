@@ -3,7 +3,7 @@
 //  How Long Left
 //
 //  Created by Ryan Kontos on 18/10/18.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -11,17 +11,26 @@ import EventKit
 
 struct SchoolAnalyser {
     
-    
     static var doneAnalysis = false
     static var isRenamerApp = false
     var delegate: SchoolModeChangedDelegate?
     static var termDates = [Date]()
     let searchWeeks = [46, 12, 24, 35, 46]
     public private(set) static var privSchoolMode: SchoolMode = .Unknown
-    
-    
     private var schoolModeChangedDelegates = [SchoolModeChangedDelegate]()
-    static var schoolCalendar: EKCalendar?
+    static var schoolCalendar: EKCalendar? {
+        
+        get {
+            
+            if let title = HLLDefaults.defaults.string(forKey: "SchoolCalendar") {
+                return HLLEventSource.shared.eventStore.calendars(for: .event).filter({$0.title == title}).first
+            }
+            
+            return nil
+            
+        }
+        
+    }
     
     static var schoolMode: SchoolMode {
         
@@ -123,8 +132,6 @@ struct SchoolAnalyser {
     
     func analyseCalendar(inputEvents: [HLLEvent]) {
         
-            
-     
         let events = inputEvents.sorted(by: { $0.startDate.compare($1.startDate) == .orderedDescending })
         
 
@@ -152,121 +159,94 @@ struct SchoolAnalyser {
         
     }
     
-    func getMagdaleneTitles(from: [HLLEvent], includeRenamed: Bool = false) -> [String] {
-        
-        var titles = [String]()
-        
-        let sorted = from.sorted(by: { $0.startDate.compare($1.startDate) == .orderedAscending })
-        
-        for event in sorted {
-            
-            if event.originalTitle.range(of:"Yr") != nil, let location = event.fullLocation, location.range(of:"Room:") != nil, titles.contains(event.originalTitle) == false {
-                
-                titles.append(event.originalTitle)
-                
-            }
-            
-            if event.originalTitle.range(of:"Study.") != nil || event.originalTitle.range(of:"SPORT:") != nil {
-                
-                titles.append(event.originalTitle)
-                
-            }
-            
-            if includeRenamed {
-                
-                if let notes = event.notes {
-                    
-                    if notes.contains(text: "Period:") {
-                        
-                        titles.append(event.originalTitle)
-                        SchoolAnalyser.schoolCalendar = event.calendar
-                        
-                    }
-                    
-                }
-                
-            }
-            
-        }
-        
-        //print("GSMT: \(titles.count)")
-        
-        return titles
-        
-    }
-    
     private func analyseForMagdalene(events: [HLLEvent]) -> Bool {
         
         // Analyses calendar events and determines if the user goes to Magdalene or not.
         
+        
+        
         var returnVal = false
-
-        if events.isEmpty == false {
-            returnVal = false
-        }
         
-        var periodCondition = false
-        var roomCondtion = false
+        var startDates = [String]()
+        var endDates = [String]()
         
-        let _ = self.getMagdaleneTitles(from: events, includeRenamed: true)
-        
-        for event in events.reversed() {
+        for event in events {
             
-            if let location = event.fullLocation, location.range(of:"Room:") != nil  {
-                roomCondtion = true
-            }
-            
-            if let notes = event.notes {
-                
-                
-                if notes.contains(text: "Period:") {
-                    
-                    periodCondition = true
-                    
-                }
-                
-                
-            }
-            
-            if periodCondition, roomCondtion {
-                
-                returnVal = true
-                
-                break
-            }
+            startDates.append(event.startDate.formattedTimeTwelve())
+            endDates.append(event.endDate.formattedTimeTwelve())
+           
             
         }
         
-        /*#if os(watchOS)
+        let titles = self.magdaleneTitles(from: events, includeRenamed: true)
         
-            print("Checking Watch MM")
-            print("Defaults: \(HLLDefaults.magdalene.magdaleneModeWasEnabled)")
+        if titles.isEmpty == false, startDates.contains("8:15am"), endDates.contains("2:35pm") {
+            returnVal = true
+        }
         
-        
-            if HLLDefaults.magdalene.magdaleneModeWasEnabled, returnVal == false {
-                returnVal = true
-            }
-        
-        returnVal = false
-        
-        #else
-            
-            print("Setting Magdalene mode default to \(returnVal)")
-        
-        
-            HLLDefaults.magdalene.magdaleneModeWasEnabled = returnVal
-            HLLDefaultsTransfer.shared.triggerDefaultsTransfer()
-            print("Trig1")
-        
-        
-        #endif*/
         
         #if targetEnvironment(simulator)
         returnVal = true
         #endif
         
+        #if !os(watchOS)
+        
+        let previousValue = HLLDefaults.defaults.bool(forKey: "MagdaleneModeiOS")
+        
+        if returnVal != previousValue {
+            HLLDefaults.defaults.set(returnVal, forKey: "MagdaleneModeiOS")
+            HLLDefaultsTransfer.shared.userModifiedPrferences()
+        }
+        
+        #else
+        
+        if HLLDefaults.defaults.bool(forKey: "MagdaleneModeiOS") {
+            return true
+        }
+        
+        #endif
+        
         return returnVal
         
+    }
+    
+    func magdaleneTitles(from events: [HLLEvent], includeRenamed: Bool = false) -> [String] {
+           
+            var titles = [String]()
+           
+            var schoolCalendar: EKCalendar?
+            
+           let sorted = events.sorted(by: { $0.startDate.compare($1.startDate) == .orderedAscending })
+           
+           for event in sorted {
+ 
+            
+            if event.isSchoolEvent {
+                    
+                  titles.append(event.originalTitle)
+                schoolCalendar = event.calendar
+            
+            }
+
+
+               
+           }
+        
+        if let calendar = schoolCalendar {
+        
+        if HLLDefaults.defaults.string(forKey: "SchoolCalendar") != calendar.title {
+            HLLDefaults.defaults.set(calendar.title, forKey: "SchoolCalendar")
+            HLLDefaultsTransfer.shared.userModifiedPrferences()
+        }
+            
+        }
+           
+           return titles
+           
+       }
+    
+    func hasMagdaleneTitles(in events: [HLLEvent], includeRenamed: Bool) -> Bool {
+        return !magdaleneTitles(from: events, includeRenamed: includeRenamed).isEmpty
     }
     
     func getWednesdayFromWeek(weekNumber: Int, previousYear: Bool) -> Date {

@@ -3,7 +3,7 @@
 //  How Long Left (iOS)
 //
 //  Created by Ryan Kontos on 10/10/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -13,11 +13,11 @@ class EventInfoViewGenerator {
     
     static var shared = EventInfoViewGenerator()
     
-    func generateEventInfoView(for event: HLLEvent, distanceFromRootOccurence: Int = 0) -> UIViewController {
+    func generateEventInfoView(for event: HLLEvent, isFollowingOccurence: Bool = false) -> UIViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let view = storyboard.instantiateViewController(withIdentifier: "EventInfoView") as! EventInfoViewController
-        view.distanceFromRootOccurence = distanceFromRootOccurence
+        view.isFollowingOccurence = isFollowingOccurence
         view.event = event
         return view
         

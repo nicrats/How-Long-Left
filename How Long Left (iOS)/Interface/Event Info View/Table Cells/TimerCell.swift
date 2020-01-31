@@ -3,7 +3,7 @@
 //  How Long Left (iOS)
 //
 //  Created by Ryan Kontos on 10/10/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import UIKit
@@ -51,7 +51,7 @@ class TimerCell: UITableViewCell {
             
             if event.completionStatus != .Done {
             
-                topLabel.text = "\(event.title) \(event.countdownTypeString) in"
+                topLabel.text = "\(event.truncatedTitle(15)) \(event.countdownTypeString) in"
                 let countdownString = self.timerStringGenerator.generatePositionalCountdown(event: event)
                 self.mainLabel.text = "\(countdownString)"
                 

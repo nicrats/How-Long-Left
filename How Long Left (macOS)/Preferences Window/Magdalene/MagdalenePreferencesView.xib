@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MagdalenePreferenceViewController" customModule="How_Long_Left_macOS" customModuleProvider="target">
             <connections>
+                <outlet property="compassButton" destination="Acf-Xu-mR1" id="g9t-IC-OPs"/>
                 <outlet property="countDownSchoolHolidaysButton" destination="CpK-La-TR4" id="6Oa-Zi-rae"/>
-                <outlet property="edvalButton" destination="Acf-Xu-mR1" id="g9t-IC-OPs"/>
                 <outlet property="magdaleneFeaturesButton" destination="uOS-Db-JpP" id="2LF-VX-ht6"/>
                 <outlet property="magdaleneModeDescription" destination="veA-EV-e1d" id="VlM-XO-h3m"/>
+                <outlet property="oldRoomNamesButton" destination="5Wl-Ce-J28" id="0x7-GS-ypt"/>
                 <outlet property="showBreaksButton" destination="ZQ0-jm-Tcb" id="XS0-QO-M7s"/>
+                <outlet property="showRoomChanges" destination="OQY-fo-RCD" id="ioW-BD-ko1"/>
                 <outlet property="showSportAsStudyButton" destination="HHn-BJ-5rg" id="SpP-EZ-LpY"/>
+                <outlet property="showSubjectNamesButton" destination="SCb-Rj-6sD" id="mT4-aK-hQ8"/>
                 <outlet property="termButton" destination="Bts-l4-Gqk" id="8vX-mG-7os"/>
                 <outlet property="view" destination="0CW-dO-GEY" id="7Fu-R4-NRj"/>
             </connections>
@@ -21,22 +24,26 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView identifier="MagdalenePreferenceView" id="0CW-dO-GEY">
-            <rect key="frame" x="0.0" y="0.0" width="466" height="261"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <rect key="frame" x="0.0" y="0.0" width="466" height="386"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Xc5-nb-dyB">
+                    <rect key="frame" x="28" y="275" width="418" height="5"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </box>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uOS-Db-JpP">
-                    <rect key="frame" x="26" y="226" width="127" height="18"/>
+                    <rect key="frame" x="26" y="354" width="127" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Magdalene Mode" bezelStyle="regularSquare" imagePosition="left" continuous="YES" state="on" inset="2" id="iJl-Fh-Q2p">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="message"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <action selector="magdaleneFeaturesButtonClicked:" target="-2" id="qj6-On-uTF"/>
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="veA-EV-e1d">
-                    <rect key="frame" x="45" y="169" width="355" height="56"/>
+                    <rect key="frame" x="45" y="295" width="339" height="56"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <gestureRecognizers>
                         <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="JYh-EF-ra4">
@@ -46,73 +53,151 @@
                         </clickGestureRecognizer>
                     </gestureRecognizers>
                     <textFieldCell key="cell" id="RIy-vp-Jf9">
-                        <font key="font" metaFont="controlContent" size="11"/>
-                        <string key="title">Enable features useful for Magdalene users, including subject name adjustments, bell-accurate countdown times, Lunch &amp; Recess events, current Term/School Holidays countdown, Rename, and more.</string>
+                        <font key="font" metaFont="menu" size="11"/>
+                        <string key="title">Enable features useful for Magdalene users, including indicated room &amp; teacher changes, subject name adjustments, bell-accurate countdown times, Lunch &amp; Recess events, current Term/School Holidays countdown, and more.</string>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Xc5-nb-dyB">
-                    <rect key="frame" x="28" y="150" width="418" height="5"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                </box>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ0-jm-Tcb">
-                    <rect key="frame" x="26" y="118" width="147" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Add Lunch &amp; Recess" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="dpq-VW-cfN">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="message"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="showBreaksButtonClicked:" target="-2" id="H5H-n7-H7z"/>
-                    </connections>
-                </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CpK-La-TR4">
-                    <rect key="frame" x="26" y="68" width="156" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Show School Holidays" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="BfL-zT-Pd2">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="message"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="showSchoolHolidaysButtonClicked:" target="-2" id="bL0-hB-xsR"/>
-                    </connections>
-                </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bts-l4-Gqk">
-                    <rect key="frame" x="26" y="93" width="96" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Show Terms" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="TQ9-Dn-8pO">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="message"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="showCurrentTerm:" target="-2" id="dLR-tf-eKq"/>
-                    </connections>
-                </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Acf-Xu-mR1">
-                    <rect key="frame" x="26" y="43" width="136" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Show Edval Button" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="6Qf-3F-KTw">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="message"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="edvalButtonButtonClicked:" target="-2" id="zpz-pP-t1Z"/>
-                    </connections>
-                </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HHn-BJ-5rg">
-                    <rect key="frame" x="26" y="18" width="160" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Show Sport as &quot;Study&quot;" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="iZG-k6-dA7">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="message"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="showSportAsStudyClicked:" target="-2" id="crt-UW-C0g"/>
-                    </connections>
-                </button>
+                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w9M-2h-IEB">
+                    <rect key="frame" x="28" y="25" width="334" height="225"/>
+                    <subviews>
+                        <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" rowSpacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="vYx-03-sdE">
+                            <rect key="frame" x="0.0" y="37" width="334" height="188"/>
+                            <rows>
+                                <gridRow id="oht-1i-zYd"/>
+                                <gridRow id="O3T-uM-qFo"/>
+                                <gridRow id="8NT-Qh-f96"/>
+                                <gridRow id="4Yr-kN-rDr"/>
+                                <gridRow id="SML-f4-TPT"/>
+                                <gridRow id="Kmk-e0-SSP"/>
+                                <gridRow id="DWo-Me-ycW"/>
+                            </rows>
+                            <columns>
+                                <gridColumn id="VbD-M9-jjF"/>
+                            </columns>
+                            <gridCells>
+                                <gridCell row="oht-1i-zYd" column="VbD-M9-jjF" id="v2U-BH-gsK">
+                                    <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SCb-Rj-6sD">
+                                        <rect key="frame" x="-2" y="172" width="151" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Show Subject Names" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="TUJ-HL-i4B">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="showSubjectNamesClicked:" target="-2" id="7gj-49-KYV"/>
+                                        </connections>
+                                    </button>
+                                </gridCell>
+                                <gridCell row="O3T-uM-qFo" column="VbD-M9-jjF" id="JVV-Cc-NrH">
+                                    <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OQY-fo-RCD">
+                                        <rect key="frame" x="-2" y="143" width="231" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Indicate Room &amp; Teacher Changes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Nek-lv-GpU">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="showChangesClicked:" target="-2" id="rEe-kP-cVI"/>
+                                        </connections>
+                                    </button>
+                                </gridCell>
+                                <gridCell row="8NT-Qh-f96" column="VbD-M9-jjF" id="EOe-uR-S9Q">
+                                    <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ0-jm-Tcb">
+                                        <rect key="frame" x="-2" y="114" width="285" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Show Lunch, Recess, Homeroom and Sport" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="dpq-VW-cfN">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="showBreaksButtonClicked:" target="-2" id="H5H-n7-H7z"/>
+                                        </connections>
+                                    </button>
+                                </gridCell>
+                                <gridCell row="4Yr-kN-rDr" column="VbD-M9-jjF" id="IOn-mI-iMZ">
+                                    <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bts-l4-Gqk">
+                                        <rect key="frame" x="-2" y="85" width="139" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Show Current Term" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="TQ9-Dn-8pO">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="showCurrentTerm:" target="-2" id="dLR-tf-eKq"/>
+                                        </connections>
+                                    </button>
+                                </gridCell>
+                                <gridCell row="SML-f4-TPT" column="VbD-M9-jjF" id="ZIN-Vm-Mng">
+                                    <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CpK-La-TR4">
+                                        <rect key="frame" x="-2" y="56" width="156" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Show School Holidays" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="BfL-zT-Pd2">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="showSchoolHolidaysButtonClicked:" target="-2" id="bL0-hB-xsR"/>
+                                        </connections>
+                                    </button>
+                                </gridCell>
+                                <gridCell row="Kmk-e0-SSP" column="VbD-M9-jjF" id="eH3-eN-3ke">
+                                    <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Acf-Xu-mR1">
+                                        <rect key="frame" x="-2" y="27" width="160" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Show Compass Button" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="6Qf-3F-KTw">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="compassButtonClicked:" target="-2" id="zpz-pP-t1Z"/>
+                                        </connections>
+                                    </button>
+                                </gridCell>
+                                <gridCell row="DWo-Me-ycW" column="VbD-M9-jjF" id="IgM-hh-fww">
+                                    <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HHn-BJ-5rg">
+                                        <rect key="frame" x="-2" y="-2" width="160" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Show Sport as &quot;Study&quot;" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="iZG-k6-dA7">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="showSportAsStudyClicked:" target="-2" id="crt-UW-C0g"/>
+                                        </connections>
+                                    </button>
+                                </gridCell>
+                            </gridCells>
+                        </gridView>
+                        <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Sit-iu-8o3">
+                            <rect key="frame" x="-2" y="-3" width="339" height="25"/>
+                            <popUpButtonCell key="cell" type="push" title="Show Old Room Names In Event Submenus" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="SS4-HI-blC" id="5Wl-Ce-J28">
+                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                                <menu key="menu" id="h7k-lz-f4e">
+                                    <items>
+                                        <menuItem title="Show Old Room Names In Event Submenus" state="on" id="SS4-HI-blC"/>
+                                        <menuItem title="Replace New Room Names with Old Room Names" id="qE0-u4-xaH">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Don't Show Old Room Names" id="mUT-KS-PTC"/>
+                                    </items>
+                                </menu>
+                                <connections>
+                                    <action selector="roomNameButtonClicked:" target="-2" id="vSw-sB-s0B"/>
+                                </connections>
+                            </popUpButtonCell>
+                        </popUpButton>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
             </subviews>
-            <point key="canvasLocation" x="47" y="192.5"/>
+            <constraints>
+                <constraint firstItem="w9M-2h-IEB" firstAttribute="leading" secondItem="0CW-dO-GEY" secondAttribute="leading" constant="28" id="Ycy-eb-U3T"/>
+                <constraint firstAttribute="bottom" secondItem="w9M-2h-IEB" secondAttribute="bottom" constant="25" id="pwf-Cf-gUV"/>
+            </constraints>
+            <point key="canvasLocation" x="49" y="224"/>
         </customView>
     </objects>
 </document>

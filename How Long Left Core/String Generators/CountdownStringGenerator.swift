@@ -3,7 +3,7 @@
 //  How Long Left
 //
 //  Created by Ryan Kontos on 30/10/18.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -86,6 +86,7 @@ class CountdownStringGenerator {
                 
                 formatter.allowedUnits = [.hour]
                 secondsLeft += TimeInterval.minute
+                formatter.unitsStyle = .abbreviated
                 
             } else {
                 
@@ -107,6 +108,7 @@ class CountdownStringGenerator {
             
         }
             
+            
         }
         
         if allowFullUnits, !formatter.allowedUnits.contains(.second), !formatter.allowedUnits.contains(.minute), !formatter.allowedUnits.contains(.hour) {
@@ -114,6 +116,7 @@ class CountdownStringGenerator {
             formatter.unitsStyle = .full
             
         }
+        
         
         return formatter.string(from: secondsLeft)!
     
@@ -202,7 +205,7 @@ class CountdownStringGenerator {
         }
         
         if HLLDefaults.statusItem.showTitle == true {
-            returnString = "\(event.shortTitle): \(returnString)"
+            returnString = "\(event.title.truncated(limit: 15, position: .middle, leader: "...")): \(returnString)"
         }
         
         if HLLDefaults.statusItem.showLeftText == true, event.completionStatus != .Upcoming {
@@ -224,7 +227,8 @@ class CountdownStringGenerator {
             
         }
         
-        if HLLDefaults.statusItem.showPercentage == true, let percent = pecentageCalc.calculatePercentageDone(for: event), event.completionStatus != .Upcoming {
+        if HLLDefaults.statusItem.showPercentage == true, event.completionStatus != .Upcoming {
+            let percent = pecentageCalc.calculatePercentageDone(for: event)
             returnString = "\(returnString) (\(percent))"
         }
         
@@ -315,19 +319,22 @@ class CountdownStringGenerator {
         formatter.unitsStyle = .full
         let countdownText = formatter.string(from: TimeInterval(secondsLeft))!
         
+        let title = event.title.truncated(limit: 25, position: .middle, leader: "...")
+        
         if event.endDate.startOfDay() == Date().startOfDay(), showEndTime == true {
             
-            mainText = "\(event.title) \(event.countdownTypeString) in \(countdownText), at \(event.endDate.formattedTime())."
+            mainText = "\(title) \(event.countdownTypeString) in \(countdownText), at \(event.endDate.formattedTime())."
             
         } else {
             
-            mainText = "\(event.title) \(event.countdownTypeString) in \(countdownText)."
+            mainText = "\(title) \(event.countdownTypeString) in \(countdownText)."
             
         }
         
         
-        if let percent = event.completionPercentage, HLLDefaults.general.showPercentage {
+        if HLLDefaults.general.showPercentage {
             
+            let percent = event.completionPercentage
             percentText = "\(percent)"
             
         }

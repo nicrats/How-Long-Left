@@ -3,7 +3,7 @@
 //  How Long Left
 //
 //  Created by Ryan Kontos on 12/7/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -54,15 +54,6 @@ extension Date {
             let dateFormatter  = DateFormatter()
             dateFormatter.dateFormat = "EEEE"
             dayText = dateFormatter.string(from: self)
-                
-            } else if daysUntilDate < 15 {
-                
-                let dateFormatter  = DateFormatter()
-                dateFormatter.dateFormat = "EEEE"
-                dayText = dateFormatter.string(from: self)
-                dayText = "\(dayText) (Next Week)"
-                
-               return dayText
                 
             } else {
                 

@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 16/7/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -58,9 +58,10 @@ class EventUIWindowsManager: NSObject, NSWindowDelegate {
         
         if let window = eventUIWindowControllers[id] {
             
-            NSApp.activate(ignoringOtherApps: true)
             window.window?.delegate = self
             window.showWindow(self)
+            WindowActivationWorkaround.shared.runWorkaroundFor(for: window.window)
+            
             
         } else {
             
@@ -74,10 +75,11 @@ class EventUIWindowsManager: NSObject, NSWindowDelegate {
             
             if let window = eventUIWindowControllers[id] {
                 
-                NSApp.activate(ignoringOtherApps: true)
-                window.window?.delegate = self
+                 window.window?.center()
+                WindowActivationWorkaround.shared.runWorkaroundFor(for: window.window)
                 window.showWindow(self)
-                window.window?.center()
+                window.window?.delegate = self
+               
                 
                 
             }
@@ -104,3 +106,5 @@ class EventUIWindowsManager: NSObject, NSWindowDelegate {
     }
     
 }
+
+

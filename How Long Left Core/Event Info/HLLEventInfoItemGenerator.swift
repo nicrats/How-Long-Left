@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 27/9/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -50,8 +50,14 @@ class HLLEventInfoItemGenerator {
                     
                     if let justRoom = location.components(separatedBy: "Room: ").last {
                         
-                        infoString = "Room \(justRoom)"
-                        titleString = "Room"
+                        infoString = "\(justRoom)"
+                        
+                        if event.roomChange != nil {
+                            titleString = "Room Change"
+                        } else {
+                            titleString = "Room"
+                        }
+                        
                         
                     }
                     
@@ -120,23 +126,17 @@ class HLLEventInfoItemGenerator {
             
         case .teacher:
             
-            titleString = "Teacher"
+            if event.teacherChange != nil {
+                titleString = "Sub"
+            } else {
+                titleString = "Teacher"
+            }
             
             if SchoolAnalyser.schoolMode == .Magdalene {
             
-                if let ek = event.EKEvent, let notes = ek.notes {
-                    
-                    let lines = notes.split { $0.isNewline }
-                
-                    for line in lines {
-                    
-                        if line.contains("Teacher: "), let justTeacher = line.components(separatedBy: "Teacher: ").last {
-                        
-                            infoString = justTeacher.capitalized
-                        
-                        }
-                    
-                    }
+                if let teacher = event.teacher {
+                   
+                    infoString = teacher
                 
                 }
                 
@@ -145,6 +145,10 @@ class HLLEventInfoItemGenerator {
         case .nextOccurence:
             
             titleString = "Following Occurrence"
+            
+            if HLLDefaults.general.showNextOccurItems == false {
+                return nil
+            }
             
             if let nextOccur = event.followingOccurence {
             
@@ -170,6 +174,65 @@ class HLLEventInfoItemGenerator {
             
             titleString = "\(event.countdownTypeString.capitalizingFirstLetter()) in"
             infoString = countdwonStringGenerator.generatePositionalCountdown(event: event)
+                
+            }
+            
+        case .originalLocation:
+            
+            if let originalRoom = event.usualRoom, event.roomChange != nil {
+                
+                titleString = "Usual Room"
+                
+                infoString = originalRoom
+                
+                if let justRoom = originalRoom.components(separatedBy: "Room: ").last {
+                   infoString = justRoom
+                }
+                
+            } else {
+                return nil
+            }
+
+            
+        case .originalTeacher:
+            
+            titleString = "Usual Teacher"
+            
+            if SchoolAnalyser.schoolMode == .Magdalene {
+            
+                if let teacher = event.usualTeacher, event.teacherChange != nil {
+                   
+                    infoString = teacher
+                
+                }
+                
+            }
+            
+        case .oldLocationName:
+            
+            if event.oldLocationSetting == .replace {
+                titleString = "New Name"
+            }
+            
+            if event.oldLocationSetting == .showInSubmenu {
+                titleString = "Old Name"
+            }
+            
+            if let old = event.secondaryRoomName {
+                
+                if old.contains(text: "Room: ") {
+                    
+                    if let justRoom = old.components(separatedBy: "Room: ").last {
+                        
+                        infoString = "\(justRoom)"
+                        
+                    }
+                    
+                } else {
+                    infoString = old
+                }
+                
+                
                 
             }
             

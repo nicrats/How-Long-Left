@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 19/7/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -16,13 +16,13 @@ class SchoolHolidayEventFetcher {
         
         get {
             
-            return self.getNextHolidays()?.holidaysTerm
+            return self.getCurrentHolidays()?.holidaysTerm
             
             
         }
     }
     
-    func getNextHolidays() -> HLLEvent? {
+    func getHolidays() -> [HLLEvent] {
         
         return getSchoolHolidaysFrom(start: Date(), end: Date.distantFuture)
         
@@ -30,24 +30,24 @@ class SchoolHolidayEventFetcher {
     
     func getCurrentHolidays() -> HLLEvent? {
         
-        var returnEvent: HLLEvent?
-        
-        if let next = getNextHolidays() {
+
+        for event in getHolidays() {
             
-            if next.completionStatus == .Current {
+            if event.completionStatus == .Current {
                 
-                returnEvent = next
+                return event
                 
             }
             
         }
         
-        return returnEvent
+        return nil
     }
     
     func getUpcomingHolidays() -> HLLEvent? {
         
-        return getSchoolHolidaysFrom(start: Date(), end: Date.distantFuture, excludeOnNow: true)
+        return getSchoolHolidaysFrom(start: Date(), end: Date.distantFuture, excludeOnNow: true).first
+        
         
     }
     
@@ -76,41 +76,36 @@ class SchoolHolidayEventFetcher {
         
     }
     
-    func getSchoolHolidaysFrom(start: Date, end: Date, excludeOnNow: Bool = false) -> HLLEvent? {
+    func getSchoolHolidaysFrom(start: Date, end: Date, excludeOnNow: Bool = false) -> [HLLEvent] {
+        
+        var returnArray = [HLLEvent]()
         
         if SchoolAnalyser.schoolMode != .Magdalene {
-            return nil
+            return returnArray
         }
-        
-        var returnEvent: HLLEvent?
         
         for holidayPeriod in holidaysStore.holidayPeriods {
             
             if holidayPeriod.start.timeIntervalSince(end) < 0, holidayPeriod.end.timeIntervalSince(start) > 0 {
                 
-                returnEvent = createHolidaysHLLEvent(from: holidayPeriod)
+                let event = createHolidaysHLLEvent(from: holidayPeriod)
                 
-                if returnEvent!.completionStatus == .Current {
+                if event.completionStatus == .Current {
                     
-                    if excludeOnNow == false {
+                    if excludeOnNow == true {
                         
-                        break
+                        continue
                         
                     }
                     
-                } else {
-                    
-                    break
-                    
                 }
                 
+                returnArray.append(event)
+            
             }
-            
-            
-            
         }
         
-        return returnEvent
+        return returnArray.sorted(by: { $0.startDate.compare($1.startDate) == .orderedAscending })
         
     }
     
@@ -119,7 +114,7 @@ class SchoolHolidayEventFetcher {
         var holidaysEvent = HLLEvent(title: "Holidays", start: period.start, end: period.end, location: nil)
         holidaysEvent.titleReferencesMultipleEvents = true
         holidaysEvent.holidaysTerm = period.term
-        holidaysEvent.useSchoolCslendarColour = true
+        holidaysEvent.associatedCalendar = SchoolAnalyser.schoolCalendar
         holidaysEvent.visibilityString = .holidays
         return holidaysEvent
     }

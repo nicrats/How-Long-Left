@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 4/12/18.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -12,8 +12,11 @@ import Preferences
 import LaunchAtLogin
 import EventKit
 
-final class GeneralPreferenceViewController: NSViewController, Preferenceable {
-    let toolbarItemTitle = "General"
+final class GeneralPreferenceViewController: NSViewController, PreferencePane {
+    
+    let preferencePaneIdentifier = PreferencePane.Identifier.general
+    var preferencePaneTitle: String = "General"
+
     let toolbarItemIcon = NSImage(named: NSImage.preferencesGeneralName)!
     
     override var nibName: NSNib.Name? {
@@ -61,7 +64,7 @@ final class GeneralPreferenceViewController: NSViewController, Preferenceable {
             self.allDayCurrentButton.isEnabled = state
             
         
-        NotificationCenter.default.post(name: Notification.Name("updateCalendar"), object: nil)
+            HLLEventSource.shared.asyncUpdateEventPool()
             
         }
         
@@ -82,7 +85,7 @@ final class GeneralPreferenceViewController: NSViewController, Preferenceable {
         
         
             
-        NotificationCenter.default.post(name: Notification.Name("updateCalendar"), object: nil)
+         HLLEventSource.shared.asyncUpdateEventPool()
             
         }
             
@@ -115,7 +118,7 @@ final class GeneralPreferenceViewController: NSViewController, Preferenceable {
             
         
         
-        NotificationCenter.default.post(name: Notification.Name("updateCalendar"), object: nil)
+         HLLEventSource.shared.asyncUpdateEventPool()
             
         }
         
@@ -123,6 +126,8 @@ final class GeneralPreferenceViewController: NSViewController, Preferenceable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.preferredContentSize = CGSize(width: 466, height: 236)
         
         allDayCurrentButton.removeAllItems()
         
@@ -173,6 +178,12 @@ final class GeneralPreferenceViewController: NSViewController, Preferenceable {
         }
         
         // Setup stuff here
+    }
+    
+    override func viewWillAppear() {
+        
+        PreferencesWindowManager.shared.currentIdentifier = preferencePaneIdentifier
+        
     }
     
 }

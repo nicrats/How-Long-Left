@@ -23,7 +23,7 @@ class MilestoneSettingsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         
-        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         
         super.viewDidLoad()
         
@@ -65,6 +65,11 @@ class MilestoneSettingsTableViewController: UITableViewController {
         
     }
     
+    @objc func addTapped() {
+        
+        
+        
+    }
     
     
     @objc func selectAllButtonTapped() {

@@ -3,7 +3,7 @@
 //  How Long Left (macOS)
 //
 //  Created by Ryan Kontos on 12/7/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -14,19 +14,25 @@ class MenuTopShelfGenerator {
     let eventItemGen = EventMenuItemGenerator()
     let submenuGen = DetailSubmenuGenerator()
     let upcomingSectionGen = UpcomingSoonMenuGenerator()
+    let upcomingWeekGen = UpcomingWeekMenuGenerator()
+    var schoolEventChangesMenuItemGenerator: SchoolEventChangesMenuItemGenerator!
     
-    func generateTopShelfMenuItems(currentEvents: [HLLEvent], upcomingEventsToday: [HLLEvent]) -> [NSMenuItem] {
+    func generateTopShelfMenuItems(currentEvents: [HLLEvent], upcomingEventsToday: [HLLEvent], moreUpcoming: [DateOfEvents]) -> [NSMenuItem] {
         
-        let upcomingWillBeShown = HLLDefaults.menu.listUpcoming == true && HLLDefaults.menu.topLevelUpcoming == true
-        
-        let topLevelUpcoming = upcomingWillBeShown && HLLMain.proUser
+        schoolEventChangesMenuItemGenerator = SchoolEventChangesMenuItemGenerator(events: upcomingEventsToday)
         
         var items = [NSMenuItem]()
         
-        EventUIWindowsManager.shared.removeItems()
-        SelectedEventManager.shared.removeItems()
+       
         
-        if let selected = SelectedEventManager.selectedEvent {
+        let upcomingWillBeShown = HLLDefaults.menu.listUpcoming == true && HLLDefaults.menu.topLevelUpcoming == true
+        
+        let topLevelUpcoming = upcomingWillBeShown
+        
+        EventUIWindowsManager.shared.removeItems()
+        SelectionMenuItemHandler.shared.removeItems()
+        
+        if let selected = SelectedEventManager.shared.selectedEvent {
           
         var show = true
             
@@ -94,8 +100,31 @@ class MenuTopShelfGenerator {
             
         }
         
-        if HLLDefaults.calendar.enabledCalendars.isEmpty {
+        if HLLDefaults.general.showUpcomingWeekMenu, moreUpcoming.isEmpty == false {
+        
+        items.append(NSMenuItem.separator())
+        
+        let moreUpcomingMenuItem = NSMenuItem()
+        moreUpcomingMenuItem.title = "More Upcoming"
+        moreUpcomingMenuItem.submenu = NSMenu()
+        
+        items.append(moreUpcomingMenuItem)
+        
+        DispatchQueue.global().async {
             
+            let submenu = self.upcomingWeekGen.generateUpcomingWeekMenuItem(for: moreUpcoming)
+            
+            DispatchQueue.main.async {
+                moreUpcomingMenuItem.submenu = submenu
+            }
+            
+        }
+        
+        }
+        
+        
+        if HLLDefaults.calendar.enabledCalendars.isEmpty {
+                   
             items.removeAll()
             let item = NSMenuItem()
             item.title = "You haven't selected any calendars to use with How Long Left..."
@@ -103,13 +132,78 @@ class MenuTopShelfGenerator {
             let item2 = NSMenuItem()
             item2.title = "No events will be found until you fix this in Preferences."
             items.append(item2)
+                   
+        }
+        
+        if HLLEventSource.shared.access == .Denied {
+                   
+            items.removeAll()
+            let item = NSMenuItem()
+            item.title = "How Long Left needs calendar access to show your events."
+            items.append(item)
+            let item2 = NSMenuItem()
+            item2.title = "Fix in System Preferences..."
             
+            item2.target = MenuItemClosureHandler.shared
+            item2.action = #selector(MenuItemClosureHandler.shared.runClosureFor(sender:))
+            item2.representedObject = {
+                
+                DispatchQueue.main.async {
+                    
+                    if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Calendars") {
+                        NSWorkspace.shared.open(url)
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        NSWorkspace.shared.launchApplication("System Preferences")
+                    }
+                    
+                }
+                
+                
+            }
+            
+            items.append(item2)
+                   
+        }
+        
+        items.append(NSMenuItem.separator())
+        
+        let preferencesMenuItem = NSMenuItem()
+        preferencesMenuItem.title = "Preferences..."
+        preferencesMenuItem.target = PreferencesWindowManager.shared
+        preferencesMenuItem.action = #selector(PreferencesWindowManager.shared.objcLaunchPreferences)
+        items.append(preferencesMenuItem)
+        
+        let quitMenuItem = NSMenuItem()
+        quitMenuItem.title = "Quit"
+        quitMenuItem.target = TerminationHandler.shared
+        quitMenuItem.action = #selector(TerminationHandler.shared.terminateApp)
+        items.append(quitMenuItem)
+        
+        if HLLDefaults.magdalene.showCompassButton, SchoolAnalyser.schoolMode == .Magdalene {
+            
+            items.append(NSMenuItem.separator())
+            
+            let compassMenuItem = NSMenuItem()
+            compassMenuItem.title = "Open Compass..."
+            compassMenuItem.target = CompassLaunchHandler.shared
+            compassMenuItem.action = #selector(CompassLaunchHandler.shared.launchCompass)
+            items.append(compassMenuItem)
             
         }
-
+        
+        if NSEvent.modifierFlags.contains(NSEvent.ModifierFlags.option) {
+            
+            items.append(NSMenuItem.separator())
+            let menuItem = NSMenuItem()
+            menuItem.title = "How Long Left \(Version.currentVersion) (\(Version.buildVersion))"
+            items.append(menuItem)
+            
+        }
+        
         return items
         
     }
-    
     
 }

@@ -3,7 +3,7 @@
 //  How Long Left (watchOS) Extension
 //
 //  Created by Ryan Kontos on 16/10/18.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import Foundation
@@ -17,7 +17,14 @@ class ComplicationContentsGenerator {
         var returnArray = [CLKComplicationTimelineEntry]()
         let items = generateComplicationItems()
         
-        HLLDefaults.defaults.set(false, forKey: "ComplicationPurchased")
+        if HLLDefaults.complication.complicationEnabled == false {
+            
+            HLLDefaults.defaults.set(false, forKey: "UpdatedWithEvents")
+            returnArray.append(generateComplicationNotPurchasedEntry(for: complication))
+            return returnArray
+            
+        }
+        
         
         if HLLDefaults.defaults.bool(forKey: "ComplicationPurchased") == true || SchoolAnalyser.privSchoolMode == .Magdalene {
         
@@ -106,7 +113,7 @@ class ComplicationContentsGenerator {
                 
                 let next = getNextEventToStart(after: current.startDate, from: events)
                 
-                print("CompSim1: \(date.formattedDate()) \(date.formattedTime()): \(current.title), Next: \(String(describing: next?.title))")
+                //print("CompSim1: \(date.formattedDate()) \(date.formattedTime()): \(current.title), Next: \(String(describing: next?.title))")
                 
                 let entry = HLLComplicationEntry(date: date, event: current, next: next)
                 
@@ -125,7 +132,7 @@ class ComplicationContentsGenerator {
             } else {
                 
                 let nextEv = getNextEventToStart(after: date, from: events)
-                print("CompSim2: \(date.formattedDate()) \(date.formattedTime()): No events are on")
+                //print("CompSim2: \(date.formattedDate()) \(date.formattedTime()): No events are on")
                 returnItems.append(HLLComplicationEntry(date: date, event: nil, next: nextEv))
                 
             }
@@ -136,7 +143,7 @@ class ComplicationContentsGenerator {
             
             let nextEv = getNextEventToStart(after: Date(), from: events)
             
-            print("CompSim5: \(Date().formattedDate()) \(Date().formattedTime()): No event is on, Next: \(nextEv?.title ?? "None")")
+            //print("CompSim5: \(Date().formattedDate()) \(Date().formattedTime()): No event is on, Next: \(nextEv?.title ?? "None")")
             returnItems.append(HLLComplicationEntry(date: Date(), event: nil, next: nextEv))
             
         }
@@ -145,7 +152,7 @@ class ComplicationContentsGenerator {
             
             let nextEv = getNextEventToStart(after: Date(), from: events)
             
-            print("CompSim6: \(Date().formattedDate()) \(Date().formattedTime()): No event is on, Next: \(nextEv?.title ?? "None")")
+            //print("CompSim6: \(Date().formattedDate()) \(Date().formattedTime()): No event is on, Next: \(nextEv?.title ?? "None")")
             returnItems.append(HLLComplicationEntry(date: Date(), event: nil, next: nextEv))
             HLLDefaults.defaults.set("returnItems empty", forKey: "ComplicationDebug")
         }
@@ -303,7 +310,7 @@ class ComplicationContentsGenerator {
             
             providerArray.append(CLKRelativeDateTextProvider(date: current.endDate, style: .natural, units: [.day, .hour, .minute]))
             
-            providerArray.append(CLKSimpleTextProvider(text: "\(current.truncateTitle(limit: 14, postion: .middle)): "))
+            providerArray.append(CLKSimpleTextProvider(text: "\(current.truncatedTitle()): "))
             
             template.textProvider = CLKTextProvider(byJoining: providerArray.reversed(), separator: nil)
             

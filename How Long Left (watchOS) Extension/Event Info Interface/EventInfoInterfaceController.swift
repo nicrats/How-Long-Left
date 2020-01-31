@@ -3,7 +3,7 @@
 //  How Long Left (watchOS) Extension
 //
 //  Created by Ryan Kontos on 28/9/19.
-//  Copyright © 2019 Ryan Kontos. All rights reserved.
+//  Copyright © 2020 Ryan Kontos. All rights reserved.
 //
 
 import WatchKit
@@ -15,6 +15,7 @@ class EventInfoInterfaceController: WKInterfaceController {
     var event: HLLEvent!
     var infoSource: HLLEventInfoItemGenerator!
     var timer: Timer?
+    var activity: NSUserActivity?
     
     @IBOutlet weak var countdownTable: WKInterfaceTable!
     @IBOutlet weak var infoTable: WKInterfaceTable!
@@ -25,30 +26,41 @@ class EventInfoInterfaceController: WKInterfaceController {
         countdownTable.setHidden(true)
         event = (context as! HLLEvent)
         self.setTitle(event.title)
-        timer = Timer(timeInterval: 1, target: self, selector: #selector(updateRows), userInfo: nil, repeats: true)
-        RunLoop.main.add(timer!, forMode: .common)
-        
+
     }
 
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        timer = Timer(timeInterval: 1, target: self, selector: #selector(updateRows), userInfo: nil, repeats: true)
+        RunLoop.main.add(timer!, forMode: .common)
         updateTables()
+        
+        let activityObject = NSUserActivity(activityType: "com.ryankontos.how-long-left.viewEventActivity")
+             activityObject.title = event.title
+             
+            let id = event.identifier
+        
+                print("Activity id = \(id)")
+        
+             activityObject.addUserInfoEntries(from: ["EventID":id])
+             activityObject.isEligibleForHandoff = true
+             activityObject.becomeCurrent()
+             self.activity = activityObject
         
     }
 
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
+        timer?.invalidate()
+        self.activity?.invalidate()
         super.didDeactivate()
     }
     
     
     func updateTables() {
         
-        
-        
         infoSource = HLLEventInfoItemGenerator(event)
-        updateCountdownTable()
         updateInfoTable()
         
         DispatchQueue.main.async {
@@ -59,12 +71,7 @@ class EventInfoInterfaceController: WKInterfaceController {
                 self.addMenuItem(with: UIImage(named: "eye.slash.fill") ?? UIImage(), title: visibilityString, action: #selector(self.toggleVisibilty))
    
         }
-            
-            /*if HLLDefaults.general.selectedEventID == self.event.identifier {
-                               self.addMenuItem(with: UIImage(named: "eye.slash.fill") ?? UIImage(), title: "Deselect", action: #selector(self.select))
-                           } else {
-                               self.addMenuItem(with: UIImage(named: "eye.slash.fill") ?? UIImage(), title: "Select", action: #selector(self.select))
-                           }*/
+
             
         }
         
@@ -91,15 +98,9 @@ class EventInfoInterfaceController: WKInterfaceController {
         
     }
     
-    func updateCountdownTable() {
-        
-       // countdownTable.setNumberOfRows(1, withRowType: "CountdownCell")
-        
-    }
-    
     func updateInfoTable() {
         
-        let items = infoSource.getInfoItems(for: [.countdown, .completion, .location, .period, .start, .end, .elapsed, .duration, .calendar, .nextOccurence])
+        let items = infoSource.getInfoItems(for: [.countdown, .completion, .location, .oldLocationName, .period, .start, .end, .elapsed, .duration, .calendar, .teacher,.nextOccurence])
         
         infoTable.setNumberOfRows(items.count, withRowType: "InfoCell")
         
@@ -116,8 +117,8 @@ class EventInfoInterfaceController: WKInterfaceController {
     
     @objc func updateRows() {
         
-        DispatchQueue.global(qos: .default).async {
-        
+        DispatchQueue.global(qos: .userInteractive).async {
+            
         let previousEvent = self.event
             
         if let event = self.event.refresh() {
@@ -130,6 +131,7 @@ class EventInfoInterfaceController: WKInterfaceController {
                 
                 DispatchQueue.main.async {
                     self.updateTables()
+                    self.setTitle(event.title)
                 }
             }
                 
@@ -144,12 +146,8 @@ class EventInfoInterfaceController: WKInterfaceController {
         }
             
         self.infoSource = HLLEventInfoItemGenerator(self.event)
-        
-        
-
-                
-                let count = self.infoTable.numberOfRows
-            
+       
+        let count = self.infoTable.numberOfRows
         for index in 0..<count {
             
             if let row = self.infoTable.rowController(at: index) as? EventInfoTableRow {
